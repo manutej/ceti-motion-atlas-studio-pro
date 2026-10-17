@@ -1,7 +1,7 @@
 # 01 · stitch60 — "Give every note a *label*." (LONGFORM-60)
 
 Brief: `storyboards/stitch/stitch60.prompt.md` (operadic-stitch, GREEN, prompt_hash c19614112251). Storyboard: `storyboards/final/stitch60.json` (validates against `SCHEMA.json`; mechanism steps equal the MOVE beats).
-Wada 166 · 128 BPM (beat 0.469 s, bar 1.875 s) · 32 bars + 0.3 s tail = 60.3 s. Kinds: draft = Naples Yellow (tab left), decided = Deep Slate Green (centre), rule = Grenadine Pink (right). Alarm = rust (one colour).
+Wada 166 · 128 BPM (beat 0.469 s, bar 1.875 s) · 32 bars + 0.3 s tail = 60.3 s. Kinds: draft = Naples Yellow (tab left), decided = Deep Slate Green lifted toward sage, `mix(GRN, sage, 0.5)` (centre), rule = Grenadine Pink (right). Alarm = rust (one colour).
 Symbols: whale, line, atom (card + tab), seam (joint dot / receipt tick), pod. Ending: `draft-stays-out` (new to the registry).
 
 ## Beat sheet
@@ -39,7 +39,7 @@ Score: −16.1 LUFS, peak −1.5 dBFS. Hinge ½ bar −56 dBFS.
 
 ## Known weaknesses
 - The series eyebrow and lockup are 15 px (series.js, shared). They are exempt from the §5 size floors.
-- The deep-green "decided" tab reads close to black at a glance.
+- The refusal push (z 1.6) and the LIMIT push (z 1.72) were re-aimed so the line stays at least 65 px above the caption chip (lowest point y 885, chip top 950). The root box is partly cropped at the top during both pushes.
 - The CASE blocks are small (cards 34×22 world units), and the act is mostly a static picture with row ticks. It is the weakest act.
 - The camera re-frames from z 1.2 to z 1.3 as MOVE starts (18.5–20.3), on top of the one push-in. This is a gentle settle, but still a second zoom.
 - The "Not this" caption fades out 0.28 s into PAYOFF.

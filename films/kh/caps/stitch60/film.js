@@ -14,7 +14,8 @@ const W = 1920, H = 1080, BPM = 128, B = 60 / BPM, BAR = 4 * B, b = n => n * B, 
 const PINK = WD.grenadinePink, YEL = WD.naplesYellow, GRN = WD.deepSlateGreen;
 const INK = C.navy, SOFT = C.slate, BG = mix(C.paper, PINK, 0.06), ATOM = mix(C.paper, KH.NEUTRALS.white, 0.5), CARD = mix(C.paper, KH.NEUTRALS.white, 0.6);
 const ACC = mix(PINK, INK, 0.66), REF = C.rust, LINES = mix(C.paper, C.slate, 0.5), DASH = mix(C.paper, C.slate, 0.62), GREYTAB = mix(C.paper, C.slate, 0.38);
-const TYPE = [YEL, GRN, PINK], TYPE_EDGE = [mix(YEL, INK, 0.45), INK, mix(PINK, INK, 0.35)], TABX = [-36, 0, 36];   // draft · decided · rule
+const DEC = mix(GRN, C.sage, 0.5);   // decided tab: Deep Slate Green lifted toward sage so it reads green, not black
+const TYPE = [YEL, DEC, PINK], TYPE_EDGE = [mix(YEL, INK, 0.45), INK, mix(PINK, INK, 0.35)], TABX = [-36, 0, 36];   // draft · decided · rule
 const POD = mix(C.mist, C.paper, 0.25), OKC = GRN;
 const G = EASE.glaser, Wm = EASE.warm, Rs = EASE.rest, Co = EASE.collect;
 
@@ -67,8 +68,8 @@ const facing = t => LEFT.some(([a, c]) => t > a && t < c) ? -1 : 1;
 
 // ---------- camera ----------
 const CK = mk([[0, 0, 10, 1.6], [3.0, 40, 10, 1.6], [9.375, 40, 10, 1.6, 'h'], [SPILL, 40, 10, 1.6, 'h'], [13.6, 0, 0, 1.2, 'h'], [18.5, 0, 0, 1.2, 'h'], [20.3, 0, -60, 1.3, 'h'],
-  [24.0, 0, -60, 1.3, 'h'], [24.7, 240, -40, 1.6, 'h'], [25.85, 240, -40, 1.6, 'h'], [26.9, 0, -60, 1.3, 'h'], [CASE0, 0, -60, 1.3, 'h'], [30.9, 0, -100, 1.05, 'h'],
-  [40.3, 30, -100, 1.05, 'h'], [41.1, 0, -70, 1.3, 'h'], [43.125, 0, -70, 1.3, 'h'], [44.7, 0, -60, 1.72, 'h'], [45.9, 0, -60, 1.72, 'h'], [46.75, 40, 10, 1.6, 'h'], [DUR, 40, 10, 1.6, 'h']]);
+  [24.0, 0, -60, 1.3, 'h'], [24.7, 240, -15, 1.6, 'h'], [25.85, 240, -15, 1.6, 'h'], [26.9, 0, -60, 1.3, 'h'], [CASE0, 0, -60, 1.3, 'h'], [30.9, 0, -100, 1.05, 'h'],
+  [40.3, 30, -100, 1.05, 'h'], [41.1, 0, -60, 1.3, 'h'], [43.125, 0, -60, 1.3, 'h'], [44.7, 0, 5, 1.72, 'h'], [45.9, 0, 5, 1.72, 'h'], [46.75, 40, 10, 1.6, 'h'], [DUR, 40, 10, 1.6, 'h']]);
 function cam(t) { const v = hermite(CK, t); return { x: v[0], y: v[1], z: v[2], ax: 960, ay: 540 }; }
 
 // ---------- READ (kind + size for the LONGFORM gates) ----------
