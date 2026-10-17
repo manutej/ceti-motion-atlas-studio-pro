@@ -26,6 +26,21 @@ else if (cmd === 'cues') { fs.writeFileSync(rest[0], JSON.stringify(FILM.cues())
 else if (cmd === 'gate') { let ok = true;
   for (const r of FILM.READ) { const hold = (r.out - r.fo) - (r.in + r.fi), need = 0.6 + 0.15 * r.text.split(/\s+/).length, pass = hold >= need; ok = ok && pass;
     console.log(`read  ${pass ? 'PASS' : 'FAIL'}  "${r.text}" ${hold.toFixed(2)} s (needs ${need.toFixed(2)})`); }
+  // O1 · plain words (wide audience). Required when the episode declares INTENT; a warning otherwise (older episodes).
+  // Every READ line: ≤ 8 words, Flesch–Kincaid grade ≤ 6 (lines of ≤ 3 words are exempt from the grade), and no expert word
+  // unless the episode lists it in TERMS = [{term, pictured_at}] AND the word first appears on screen after its picture.
+  { const strict = !!FILM.INTENT, tag = p => p ? 'PASS' : (strict ? 'FAIL' : 'WARN');
+    const EXPERT = /\b(llms?|models?|agents?|agentic|prompts?|context|tokens?|embeddings?|vectors?|operads?|operadic|sheaf|sheaves|stalks?|noether|symmetr\w*|invariants?|cohomolog\w*|rsi|recursive|recursion|meta\w*|ontolog\w*|provenance|schemas?|pipelines?|harness\w*|orchestrat\w*|inference|deterministic|axioms?|theorems?|proofs?|verif\w*|lean|compil\w*|api|json|repo\w*|commits?|regex|benchmark\w*|ledger|fixpoint|calibrat\w*|heuristic\w*|semantic\w*|topolog\w*|graph)\b/gi;
+    const syl = w => { w = w.toLowerCase().replace(/[^a-z]/g, ''); if (!w) return 0; if (w.length <= 3) return 1; w = w.replace(/(?:[^laeiouy]es|ed|[^laeiouy]e)$/, '').replace(/^y/, ''); const m = w.match(/[aeiouy]{1,2}/g); return Math.max(1, m ? m.length : 1); };
+    const terms = new Map((FILM.TERMS || []).map(x => [x.term.toLowerCase(), x.pictured_at])); let o1 = true, worst = 0;
+    for (const r of FILM.READ) { const words = r.text.replace(/<\/?i>/g, '').split(/\s+/).filter(Boolean);
+      const fk = 0.39 * words.length + 11.8 * (words.reduce((a, w) => a + syl(w), 0) / Math.max(1, words.length)) - 15.59;
+      const grade = words.length <= 3 || r.card ? 0 : fk; worst = Math.max(worst, grade);
+      const bad = (r.text.match(EXPERT) || []).filter(w => { const p = terms.get(w.toLowerCase()); return p == null || p > r.in; });
+      const card = !!r.card, pass = (card ? words.length <= 14 : words.length <= 8 && grade <= 6) && !bad.length; o1 = o1 && pass;   // cards (real-run numbers) may be longer, never jargon
+      if (!pass) console.log(`plain ${tag(false)}  "${r.text}" — ${words.length} words, grade ${grade.toFixed(1)}${bad.length ? ', expert: ' + bad.join(', ') : ''}`); }
+    console.log(`plain ${tag(o1)}  every on-screen line in plain words (worst grade ${worst.toFixed(1)}, limit 6)`); if (strict) ok = ok && o1;
+    if (strict) { const i = FILM.INTENT, has = i.problem && i.move && i.belief; ok = ok && !!has; console.log(`intent ${has ? 'PASS' : 'FAIL'}  INTENT {problem, move, belief} declared for the lay-viewer jury (O2)`); } }
   if (FILM.wpos) { // frame-jump on the SCREEN position of the whale, 60 fps; heading wrapped to (-pi, pi]
     const cam = FILM.cam || (() => ({ x: 0, y: 0, z: 1, ax: 0, ay: 0 })), scr = t => { const c = cam(t), p = FILM.wpos(t); return { x: (p.x - c.x) * c.z + c.ax, y: (p.y - c.y) * c.z + c.ay }; };
     const wrap = a => Math.atan2(Math.sin(a), Math.cos(a)); let wpx = 0, wr = 0, at = 0, atr = 0;

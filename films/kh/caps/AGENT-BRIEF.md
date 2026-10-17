@@ -40,3 +40,18 @@ You are building ONE ~25 s motion-graphics episode in an existing, working canva
 
 ## Report back (≤ 250 words)
 Include: final gate output lines, the contact-sheet path, the beat sheet in one line per act, what you'd improve next, and anything in the shared files you think should change. Don't change those files yourself.
+
+## Wide-audience obviousness (added 17 Oct 2026, required for every new episode)
+
+Manu: "make sure the idea is obvious to non-AI experts and a wide audience, as part of the eval spec." The audience is a smart adult who has never built an AI system, such as a teacher, a nurse or a shop owner. Two gates:
+
+- **O1 · plain words (mechanical, in `tool.cjs gate`).** Declare `INTENT = {problem, move, belief}` and `TERMS = [{term, pictured_at}]` on `EPISODE`. Once INTENT is declared, the gate requires the following of every READ line:
+  - 8 words or fewer.
+  - Flesch–Kincaid grade 6 or lower; lines of 3 words or fewer are exempt.
+  - No expert word (agent, prompt, context, model, sheaf, operad, Noether, ledger, schema, verify, proof, graph…), unless the word is listed in TERMS and its picture appeared first.
+  - Real-run cards may be marked `card: true`. They may run to 14 words, but still with no jargon.
+- **O2 · lay-viewer jury (judgement, run by the orchestrator after your gates pass).**
+  - Three fresh agents, one each as a retired teacher, a nurse and a small-shop owner, see only the 1-second contact sheet. They are given no title, no notes and no topic.
+  - Each writes what went wrong, what fixed it, what they would do differently on Monday, and any word or picture they didn't understand.
+  - The episode passes when all three name the problem and the move consistently with INTENT and no on-screen word is reported as unclear. Anything they misread gets fixed before render.
+- **Design consequences.** Name the pain the way a person says it ("It sent the refund twice"), not the way an engineer does. Prefer everyday objects (a door, a stamp, a checklist, a sticky note, a receipt). Keep the whale and its helpers. A helper pod is "the helper", not "the agent".

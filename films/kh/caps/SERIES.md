@@ -9,6 +9,7 @@
 | | |
 |---|---|
 | Length | **25–30 s is the house format** (Manu, 17 Oct 2026: "I like the 30 second ones better"). 60 fps, 1920×1080. The one-minute LONGFORM-60 cuts exist (Stitch-60, Conserve-60) but are opt-in, not the default. |
+| Audience | **Obvious to non-AI experts** (Manu, 17 Oct 2026). Every episode passes O1 plain words (`tool.cjs gate`: ≤ 8 words, grade ≤ 6, no expert word unless pictured first) and O2 lay-viewer jury (teacher · nurse · shop owner see only the contact sheet and must name the problem and the fix). See AGENT-BRIEF.md. |
 | Opening | Problem first, as in Gate v3: in the first ~3 s something fails for someone, captioned in their words; the title comes after the pain is felt. |
 | Ground | Air mode over the chart ground (`SERIES.ground`): paper, grid, depth contours, soundings, compass. Never bare, never white. |
 | Opening | `SERIES.open`: "CETI · Capabilities · 0N" plus a display title with one accent word, gone by about 2.3 s. Work starts underneath it. |
