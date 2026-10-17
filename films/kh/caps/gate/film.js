@@ -121,9 +121,9 @@ function iconMark(c, kind, x, y, r, a, lw) {
   if (kind === 'spell') { c.restore(); text(c, 'abc', x, y + 0.12 * r, { f: 'sans', size: Math.round(r * 0.72), col: INK, a, align: 'center' });
     c.save(); c.globalAlpha *= a; c.strokeStyle = FAIL; c.lineWidth = lw * 0.8; c.lineCap = 'round'; c.beginPath();       // a red wavy underline
     for (let k = 0; k <= 24; k++) { const u = k / 24, px = x + (u - 0.5) * 1.15 * r, py = y + 0.36 * r + 0.1 * r * Math.sin(u * Math.PI * 6); k ? c.lineTo(px, py) : c.moveTo(px, py); } c.stroke(); }
-  else if (kind === 'total') { c.restore(); text(c, '1+2', x, y + 0.24 * r, { f: 'sans', size: Math.round(r * 0.7), col: INK, a, align: 'center' }); return; }
+  else if (kind === 'total') { c.restore(); text(c, '1+2', x, y + 0.28 * r, { f: 'sans', size: Math.round(r * 0.82), col: INK, a, align: 'center' }); return; }
   else if (kind === 'font') { c.restore(); text(c, 'Aa', x, y + 0.38 * r, { f: 'sans', size: Math.round(r * 1.1), col: INK, a, align: 'center' }); return; }   // the EXPECTED font
-  else if (kind === 'order') { c.restore(); text(c, '1 2 3', x, y + 0.2 * r, { f: 'sans', size: Math.round(r * 0.56), col: INK, a, align: 'center' }); return; }
+  else if (kind === 'order') { c.restore(); text(c, '1 2 3', x, y + 0.24 * r, { f: 'sans', size: Math.round(r * 0.66), col: INK, a, align: 'center' }); return; }
   c.restore(); }
 // a flag's cloth (triangle, raw sienna) morphing into an icon disc (m: 0 flag → 1 icon). f mirrors the cloth.
 function flagToIcon(c, kind, x, y, r, m, f, a) {

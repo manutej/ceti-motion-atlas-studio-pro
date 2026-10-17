@@ -1,4 +1,25 @@
-# 02 · gate v3.2: Check each report at the *gate*.
+# 02 · gate v3.3: Every new mistake gets a *check*.
+
+## v3.3 (word pass; v3.2 is kept as `film-v3.2.js`)
+
+- **No "gate" in any on-screen word**; the picture is still a gate. The lockup short name is now "Check".
+- **FELT:** "Your AI helper wrote a report." The page sits parked at the left and its lines write in. Then "It passed every check." (it passes spelling and totals), then "The customer still found a mistake." (✕ at 3.8 s).
+- **Title:** "Every new mistake gets a *check*." It is fully visible for 2.5 s (5.88–8.38).
+- **Captions:**
+  - "Each check looks for one kind of mistake."
+  - "Nothing checks the font." (2.2 s hold)
+  - "Turn the mistake into a new check."
+  - "Now the wrong font stops here." (pointer)
+  - "A new kind of mistake still slips through."
+  - "Passing means: no mistakes we know of."
+  - "Every new mistake becomes a new check."
+- **Card:** "True story · 7 mistakes, 7 new checks" with "Source: our own list of mistakes". It is up 3.6 s; the main line is 64 px and the other lines 34 px.
+- **Icons are 92 px:** "abc" with a red wavy underline, "1+2", "Aa", "1 2 3". New gates fade in at full size, so the "=" glyph at about 12 s is gone.
+- **DUR 30.62 s**, 0.6 s over the 30 s ceiling. The new read holds force it: the title's 2.5 s, the extra FELT caption, the font caption's 2.2 s and the 3.6 s card. Caption fades are already down to 0.2/0.15 s.
+
+---
+
+
 
 ## v3.2 (lay-jury pass; v3.1 is kept as `film-v3.1.js`)
 

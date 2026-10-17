@@ -1,0 +1,5 @@
+{"episode": "fresh", "runs": [{"version": "v4", "sheet": "kh/caps/fresh/sheet-v4.png", "verdict": "FAIL (near pass)",
+ "personas": {"teacher": {"q1": 1, "q2": 1, "sure": [9, 7], "unclear": ["break it", "If checkers think alike, they miss alike", "Agreeing doesn't mean they're right", "feels off crossed out", "116 card tiny / what was checked", "fish colours", "lockup tiny"]},
+  "nurse": {"q1": 1, "q2": 1, "sure": [9, 7], "unclear": ["break it", "feels off crossed out (slow to get)", "116 card", "think alike", "pages out of order (fast)", "lockup", "three colours", "no AI mentioned"]},
+  "shop owner": {"q1": 1, "q2": 1, "sure": [9, 7], "unclear": ["fresh eyes (figure of speech)", "feels off crossed out", "116 card from another story", "think alike", "lockup", "break it"]}},
+ "why": "First half lands for all (9/10). Second idea (checkers who think alike) dilutes the ending; 116 card reads as another story; 'break it'; AI not named."}]}

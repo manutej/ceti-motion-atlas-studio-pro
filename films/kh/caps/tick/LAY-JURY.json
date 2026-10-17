@@ -1,0 +1,4 @@
+{"episode": "tick", "runs": [{"version": "v1", "sheet": "kh/caps/tick/sheet-v1.png", "verdict": "FAIL (near pass; shop owner pending at time of record)",
+ "personas": {"teacher": {"q1": 1, "q2": 1, "sure": [9, 8], "unclear": ["Crashed on purpose: nothing done twice (tiny)", "our own crash-test notes", "faint title 7-8 s", "lockup", "why a whale", "CRASH! hidden", "coin in limit"]},
+  "nurse": {"q1": 1, "q2": 1, "sure": [8, 7], "unclear": ["title card", "crash-test notes", "A tick says done, not right (late)", "lockup", "whale", "CRASH!", "Retry", "coin in second half", "no AI mentioned"]}},
+ "why": "$20 -> $40 crystal clear; limit beat with the coin muddies the fix; card unreadable; AI not named."}]}
