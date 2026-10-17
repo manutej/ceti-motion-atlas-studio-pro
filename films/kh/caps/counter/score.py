@@ -63,7 +63,7 @@ for x in Q['fix']: swipe(x, 0.9)
 for x in Q['popNew']: figure(x, 1, detune=35, gain=0.6)
 # zero: the single held tone, resolved; the whale's spark is a high glass ping
 tone(Q['zero'], 2.6); put(glass(1567.98, 2.4), Q['zero'] + 0.05, 0.06, 0.2, 0.7)
-for j, x in enumerate(Q['cardNums']): put(mallet(FIG[0] * (1, 1, 0.89, 0.75)[j], 0.9, 0.6), x, 0.1, -0.2 + 0.15 * j, 0.3)
+for j, x in enumerate(Q['cardNums']): put(mallet(FIG[0] * (1, 0.89, 0.75)[j], 0.9, 0.6), x, 0.1, -0.2 + 0.15 * j, 0.3)
 # limit: the same readers sweep again and pass the last line by; the tone a fourth up, left hanging
 for j in range(3): put(whoosh(0.5), Q['limitLap'] + 0.35 + j * 0.2, 0.05, -0.3 + 0.3 * j, 0.2)
 tone(Q['blind'], 1.8, f=523.25, gain=0.8)
