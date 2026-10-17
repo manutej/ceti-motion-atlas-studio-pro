@@ -1,32 +1,34 @@
-# 07 · counter: Stop when the *counter* hits zero.
+# 07 · counter v2: Stop when the *counter* hits zero.
 
-Wada 84 (Seashell Pink ground tint, Deep Slate Green = "stop / zero" and the title accent). Red pen = `mix(C.rust, PINK, 0.1)`, marks only. 128 BPM. DUR 28.52 s. Source: `storyboards/c05/sb-05-02.json`, compressed from 60 s using the gate v3 structure.
+Wada 84: the ground is tinted Seashell Pink, and Deep Slate Green means "stop / zero" and is the title accent. Red pen is used for marks only. 128 BPM. DUR 27.9 s.
+v1 is kept as `film-v1.js`, `score-v1.py`, `NOTES-v1.md`, `sheet-v1.png`. v2 applies `LAY-JURY.json` (v1: near pass) and brief lessons 7–10.
 
-**Actors, named on screen (O2 rules 1, 3, 6):** the page is labelled "YOUR COVER LETTER" and opens "Dear Hiring Team,". The whale is "YOU". The three grey helpers are "THREE FRESH READERS". The counter is labelled "CHANGES FOUND". Every red-pen mark gets a plain label: typo, unclear, too long, wrong name.
+**Actors, each named on screen once:**
+- The letter: "YOUR COVER LETTER", which opens "Dear Hiring Team,".
+- You: the whale, labelled "YOU".
+- The AI: "THREE AI READERS". These are peach pods holding magnifiers, so they look nothing like the blue whale. This is the only place the word AI appears.
+- The counter: "PROBLEMS FOUND", with the rounds in one row (3 → 1 → 0).
+- Each mark has a label: typo, too long, unclear, wrong name, too vague.
 
 ## Beat sheet
 
 | t (s) | act | picture | caption |
 |---|---|---|---|
-| 0–4.25 | FELT | Close (z 1.3). You smooth a squiggle and another pops up (0.95, 2.05, 3.1); you turn back with your fin up. Detuned figure on every pop. | "I keep tweaking my letter." · "I never know when to stop." |
-| 4.1–6.75 | hinge | Paper veil, pull back to z 1.15. Title. The counter appears as the veil lifts (6.3). | "Stop when the *counter* hits zero." |
-| 6.75–8.5 | ROUND 1 | Three readers sweep over the letter; their light passes each rough bit and a red circle plus a label draws on. Counter 0 → 4. | "Fresh readers mark what is wrong." |
-| 8.45–12.1 | FIX | You fix the four marks right to left (each becomes a green tick). Two fixes make new rough bits (FELT, now caught). | "Fix every mark. Ask again." |
-| 10.9–14.95 | ROUND 2 + FIX | Counter resets (history "4 →"); the readers mark 2; you fix both. | "Fewer marks each time." |
-| 14.5–16.6 | ROUND 3 | The readers find nothing. Counter "4 → 2 → 0 ✓", green border, push-in, whale spark (16.0). | "Nothing left to mark? Stop." |
-| 16.65–19.75 | CASE | Card: "Real case · changes found 14 → 14 → 10 → 0 · Three readers, then a last re-check · Source: our own records" (Notion, studio RMP ledger). Camera drops 90 px so the card sits on clean paper. | (none) |
-| 19.35–22.0 | LIMIT | Push in (z 1.3). The identical readers sweep again; their light stops above the last line, where a rough bit was there from frame 0. Dashed slate circle and a "?". | "Same kind of readers, same blind spot." |
-| 22.0–24.0 | not-this + ENDING | FELT callback: you reach toward the letter with your fin up, look up at the counter (0 ✓), and let go (delight, spark). | "Zero found does not mean perfect." |
-| 24.03–26.3 | BELIEF | You back off and spout. The letter is still. | "Repeat until fresh eyes find nothing. Then stop." |
-| 26.32–28.52 | lockup | `SERIES.lockup` | |
+| 0–4.1 | FELT | Close-up (z 1.3). You smooth a squiggle and another pops up, three times. You turn back with your fin raised. | "I keep tweaking my letter." · "I never know when to stop." |
+| 3.8–7.4 | hinge | Veil. The title holds for 2.5 s. The counter appears as the veil lifts (6.9). | "Stop when the *counter* hits zero." |
+| 7.0–10.9 | ROUND 1 + FIX | The readers sweep and circle 3 problems (counter 3). You fix them right to left; one fix makes a new problem. | "Fresh readers mark what is wrong." · "Fix every mark. Ask again." |
+| 10.9–13.95 | ROUND 2 + FIX | Counter shows "3 → 1". You fix it. | "Fewer marks each time." |
+| 13.3–15.6 | ROUND 3 | Nothing is marked. Counter shows "3 → 1 → 0 ✓" with a green border. Whale spark; a small push-in. | "Nothing left to mark? Stop." |
+| 15.65–19.15 | CASE | Card (3.5 s): "Real draft · problems found each round · 14 → 14 → 10 → 0 · Round 2 found as many as round 1. · Source: our own records". The camera drops 150 px and breathes. | (none) |
+| 19.15–21.3 | LIMIT ("and also") | The same readers sweep again. Their light stops above the last line, and a dashed "?" appears on a rough bit that has been there since frame 0. | "Zero means: these readers found nothing." |
+| 20.95–23.6 | NEW READER | A green pod comes from below the letter, looking up. It circles the problem ("too vague"), and the counter goes to 1. You fix it. It checks again on its way back, and the counter goes to 0 ✓. | "Add one new kind of reader." |
+| 23.4–25.7 | BELIEF | You back off and spout. The letter is still. | "Repeat until fresh eyes find nothing. Then stop." |
+| 25.7–27.9 | lockup | `SERIES.lockup` | |
 
-Marks are computed, not hand-timed. A flaw is marked in a round if it exists, is unfixed, and sits inside the readers' light (y < 152). The blind-spot flaw is on line 5 (y 190), so no round can mark it.
-
-## Words
-Station words: draft→"letter", readers, mark, fix, ask again, changes found, stop. No "prompt / RSI / fixpoint / critic". O1: worst grade 5.2. TERMS: `counter` (an everyday word, pictured at 6.3).
+Marks are computed, not hand-timed. A problem is marked when it exists, is not yet fixed, and sits inside a reader's light. The three readers' light ends at y 152, and the last line is at y 190.
 
 ## Known weaknesses
-- The readers are the series' grey pod, so on the sheet they read as "fish". The label "THREE FRESH READERS" carries this, but only in round 1.
-- The light beam as "what the readers look at" is implicit. The limit relies on the viewer noticing the light stops above the last line.
-- The card's 0 was the author's re-check, not a fourth reader. The card says so ("then a last re-check"), but the mechanism's third round is readers.
-- 16.65–19.75: only the card digits move (about 1.3 s fully static at the end of the card).
+- The film is 27.9 s, not the ~26 s asked for. The extra time comes from the 2.5 s title hold, the 3.5 s card and the new-reader beat. Cutting round 2 would save about 2.5 s but lose the 3 → 1 → 0 countdown.
+- The card's 0 was the author's re-check in the real record. The card says "each round", which compresses that detail.
+- The light beams are the only cue for what the readers look at. The new reader looking up from below carries the "different kind" idea.
+- At 5–7 s only the title is on screen (it is the required 2.5 s hold). The whale moves faintly under the veil.

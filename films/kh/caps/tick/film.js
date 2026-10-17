@@ -60,7 +60,8 @@ function cam(t) {
   L(ramp(t, 6.3, 7.6, EASE.rest), 1.1, -45, -12);
   L(ramp(t, 14.25, 15.15, EASE.warm), 1.25, 180, 40); L(ramp(t, 15.4, 16.3, EASE.warm), 1.1, -45, 48);   // card up: the strip rides above it
   L(ramp(t, 16.3, 18.6, EASE.rest), 1.13, -30, 48);                                        // slow drift under the card
-  L(ramp(t, 18.6, 19.5, EASE.warm), 1.25, 150, -20);                                       // nothing cropped: all three cards and the jar stay in frame L(ramp(t, 20.9, 21.8, EASE.warm), 1.15, -45, -12);
+  L(ramp(t, 18.6, 19.5, EASE.warm), 1.25, 150, -20);                                       // nothing cropped: all three cards and the jar stay in frame
+  L(ramp(t, 20.9, 21.8, EASE.warm), 1.15, -45, -12);
   return { x, y, z: z + 0.03 * ramp(t, 26.6, DUR, EASE.rest), ax: 960, ay: 540 }; }
 
 // ---------- text (every word on screen is in READ) ----------
