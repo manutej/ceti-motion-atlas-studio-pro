@@ -1,4 +1,104 @@
-{"episode": "tick", "runs": [{"version": "v1", "sheet": "kh/caps/tick/sheet-v1.png", "verdict": "FAIL (near pass; shop owner pending at time of record)",
- "personas": {"teacher": {"q1": 1, "q2": 1, "sure": [9, 8], "unclear": ["Crashed on purpose: nothing done twice (tiny)", "our own crash-test notes", "faint title 7-8 s", "lockup", "why a whale", "CRASH! hidden", "coin in limit"]},
-  "nurse": {"q1": 1, "q2": 1, "sure": [8, 7], "unclear": ["title card", "crash-test notes", "A tick says done, not right (late)", "lockup", "whale", "CRASH!", "Retry", "coin in second half", "no AI mentioned"]}},
- "why": "$20 -> $40 crystal clear; limit beat with the coin muddies the fix; card unreadable; AI not named."}]}
+{
+ "episode": "tick",
+ "runs": [
+  {
+   "version": "v1",
+   "sheet": "kh/caps/tick/sheet-v1.png",
+   "verdict": "FAIL (near pass; shop owner pending at time of record)",
+   "personas": {
+    "teacher": {
+     "q1": 1,
+     "q2": 1,
+     "sure": [
+      9,
+      8
+     ],
+     "unclear": [
+      "Crashed on purpose: nothing done twice (tiny)",
+      "our own crash-test notes",
+      "faint title 7-8 s",
+      "lockup",
+      "why a whale",
+      "CRASH! hidden",
+      "coin in limit"
+     ]
+    },
+    "nurse": {
+     "q1": 1,
+     "q2": 1,
+     "sure": [
+      8,
+      7
+     ],
+     "unclear": [
+      "title card",
+      "crash-test notes",
+      "A tick says done, not right (late)",
+      "lockup",
+      "whale",
+      "CRASH!",
+      "Retry",
+      "coin in second half",
+      "no AI mentioned"
+     ]
+    }
+   },
+   "why": "$20 -> $40 crystal clear; limit beat with the coin muddies the fix; card unreadable; AI not named."
+  },
+  {
+   "version": "v2",
+   "sheet": "kh/caps/tick/sheet-v2.png",
+   "verdict": "PASS",
+   "mean_sure": 7.83,
+   "personas": {
+    "teacher": {
+     "q1": 1,
+     "q2": 1,
+     "sure": [
+      9,
+      8
+     ],
+     "unclear": [
+      "YOUR AI HELPER (guessed whale, not certain)",
+      "title card faint",
+      "lockup",
+      "Source: our own tests",
+      "dotted skip line"
+     ]
+    },
+    "nurse": {
+     "q1": 1,
+     "q2": 1,
+     "sure": [
+      8,
+      7
+     ],
+     "unclear": [
+      "title card faint/slanted",
+      "faint caption 12-14 s",
+      "Source: our own tests",
+      "why a whale",
+      "dotted line",
+      "lockup"
+     ]
+    },
+    "shop owner": {
+     "q1": 1,
+     "q2": 1,
+     "sure": [
+      8,
+      7
+     ],
+     "unclear": [
+      "True story / our own tests: who is we",
+      "TO: BOB (guessed wrong recipient)",
+      "title card faint",
+      "lockup",
+      "CRASH! tiny"
+     ]
+    }
+   },
+   "why": "All three: retry paid Ana twice; ticks let the helper skip done steps after a crash. AI helper named and read as the whale. Limit (tick = done, not right) understood by all. Polish only: faint title card, tiny CRASH label, 'we' on card."
+  }
+ ]
+}

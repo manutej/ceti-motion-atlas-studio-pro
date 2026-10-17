@@ -1,5 +1,121 @@
-{"episode": "counter", "runs": [{"version": "v1", "sheet": "kh/caps/counter/sheet-v1.png", "verdict": "FAIL (near pass)",
- "personas": {"teacher": {"q1": 1, "q2": 1, "sure": [8, 7], "unclear": ["Zero found does not mean perfect (reads as contradicting stop-at-zero)", "4→ 2→ history tiny", "real-case card too small; why 14 twice", "same kind of readers, same blind spot", "why whales", "tiny lockup"]},
-  "nurse": {"q1": 1, "q2": 1, "sure": [8, 6], "unclear": ["same kind of readers, same blind spot (too fast)", "CHANGES FOUND", "real case: was it also a letter?", "fresh readers: people or AI?", "which whale is who", "4→2→", "counter = kitchen counter", "limit line contradicts"]},
-  "shop owner": {"q1": 1, "q2": 1, "sure": [8, 7], "unclear": ["4→ 2→ unexplained", "peer/our records: whose", "blind-spot squiggle link", "YOU whale vs reader whales look alike", "lockup tiny", "Stop when the counter hits zero fades fast", "mark labels tiny", "20–28 s nearly static", "whale cropped 21–22 s", "label overlaps card 17–19 s"]}},
- "why": "All three name problem and fix (avg 8 / 6.7). Limit line reads as a contradiction; readers' identity (people or AI) unclear; card unreadable; static ending; layout slips."}]}
+{
+ "episode": "counter",
+ "runs": [
+  {
+   "version": "v1",
+   "sheet": "kh/caps/counter/sheet-v1.png",
+   "verdict": "FAIL (near pass)",
+   "personas": {
+    "teacher": {
+     "q1": 1,
+     "q2": 1,
+     "sure": [
+      8,
+      7
+     ],
+     "unclear": [
+      "Zero found does not mean perfect (reads as contradicting stop-at-zero)",
+      "4\u2192 2\u2192 history tiny",
+      "real-case card too small; why 14 twice",
+      "same kind of readers, same blind spot",
+      "why whales",
+      "tiny lockup"
+     ]
+    },
+    "nurse": {
+     "q1": 1,
+     "q2": 1,
+     "sure": [
+      8,
+      6
+     ],
+     "unclear": [
+      "same kind of readers, same blind spot (too fast)",
+      "CHANGES FOUND",
+      "real case: was it also a letter?",
+      "fresh readers: people or AI?",
+      "which whale is who",
+      "4\u21922\u2192",
+      "counter = kitchen counter",
+      "limit line contradicts"
+     ]
+    },
+    "shop owner": {
+     "q1": 1,
+     "q2": 1,
+     "sure": [
+      8,
+      7
+     ],
+     "unclear": [
+      "4\u2192 2\u2192 unexplained",
+      "peer/our records: whose",
+      "blind-spot squiggle link",
+      "YOU whale vs reader whales look alike",
+      "lockup tiny",
+      "Stop when the counter hits zero fades fast",
+      "mark labels tiny",
+      "20\u201328 s nearly static",
+      "whale cropped 21\u201322 s",
+      "label overlaps card 17\u201319 s"
+     ]
+    }
+   },
+   "why": "All three name problem and fix (avg 8 / 6.7). Limit line reads as a contradiction; readers' identity (people or AI) unclear; card unreadable; static ending; layout slips."
+  },
+  {
+   "version": "v2",
+   "sheet": "kh/caps/counter/sheet-v2.png",
+   "verdict": "FAIL (AI role)",
+   "mean_sure": 7.5,
+   "personas": {
+    "teacher": {
+     "q1": 1,
+     "q2": 1,
+     "sure": [
+      8,
+      8
+     ],
+     "unclear": [
+      "THREE AI READERS: what AI means here",
+      "14->14->10->0 card",
+      "REAL DRAFT tiny",
+      "green fish unexplained"
+     ]
+    },
+    "nurse": {
+     "q1": 1,
+     "q2": 1,
+     "sure": [
+      8,
+      6
+     ],
+     "unclear": [
+      "THREE AI READERS: people or software?",
+      "14->14->10 card contradicts 3->1->0",
+      "whale YOU vs helper",
+      "mark",
+      "lockup"
+     ]
+    },
+    "shop owner": {
+     "q1": 1,
+     "q2": 1,
+     "sure": [
+      8,
+      7
+     ],
+     "unclear": [
+      "14->14->10 card",
+      "REAL DRAFT tiny",
+      "Zero means... flashed by",
+      "why fish/magnifiers",
+      "YOU whale",
+      "lockup"
+     ]
+    }
+   },
+   "why": "Problem and stop-at-zero fix read by all. Fails the INTENT-critical rule: two of three could not say whether 'AI readers' are people or software. The real-number card confused all three (looks like a contradicting example)."
+  }
+ ]
+}
