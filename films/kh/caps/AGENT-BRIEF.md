@@ -68,3 +68,10 @@ All three viewers got the gist: "every miss becomes a new check". But every one 
 8. **The limit must not contradict the move.** Phrase it as "and also", never "but actually". Write "Zero means: these readers found nothing. Add one new kind of reader.", not "Zero does not mean perfect."
 9. **Real-number cards explain themselves in one line.** If a number repeats or looks odd (14, 14, 10, 0), the card says why in plain words ("round 2 found as many as round 1") or the number is left out. The main line is at least 34 px and stays up at least 3.5 s.
 10. **No static stretch longer than 2 s.** Nothing should be cropped at the frame edge, and no label should overlap a card.
+
+### O2 lessons, batch 2 (tick v2 PASS, counter v2 and private v4 FAIL, 17 Oct 2026)
+11. **Make the AI unmistakably software.** "AI readers" and "Your AI assistant" were read as maybe-people. Prefer "AI app" or "AI helper" next to a non-human icon. "Your AI helper" over the whale passed.
+12. **A real-number card must support the story, never complicate it.** A sequence that looks like a second, contradicting example (14 → 14 → 10 → 0 next to a tidy 3 → 1 → 0) confuses everyone. Use one line: "Real draft: 14 problems down to 0 in four rounds."
+13. **Use the everyday noun.** Say "notes", not "cards"; "email", not "message object". The fix's object word must be the one the viewer already uses.
+14. **Show the harm land.** If the problem is a leak or a wrong send, show the thing arriving in the wrong place. Don't just say it happened.
+15. **One limit line, plain.** "No stamp? Then the note can still go." beats two clever lines ("It checks the stamp, not the words." / "Plain cards go too.").
