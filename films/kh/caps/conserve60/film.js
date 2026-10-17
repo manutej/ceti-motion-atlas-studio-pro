@@ -11,7 +11,7 @@ const KH = root.KH, S = KH.SERIES, { CETI: C, W: WD, clamp, lerp, smoothstep, wi
 const W = 1920, H = 1080, BPM = 124, B = 60 / BPM, BAR = 4 * B, DUR = +(32 * BAR + 0.3).toFixed(3);
 const bar = n => (n - 1) * BAR;
 const PINK = WD.seashellPink, DSG = WD.deepSlateGreen, INK = C.navy, SOFT = C.slate, COP = C.copper, MIST = C.mist;
-const GROUND = mix(C.paper, PINK, 0.06), RULE = mix(C.paper, C.slate, 0.35), INACT = mix(SOFT, GROUND, 0.09), VEILED = mix(GROUND, PINK, 0.25);
+const GROUND = mix(C.paper, PINK, 0.06), OVERCOL = mix(C.copper, C.navy, 0.45), RULE = mix(C.paper, C.slate, 0.35), INACT = mix(SOFT, GROUND, 0.09), VEILED = mix(GROUND, PINK, 0.25);
 const XL = -800, SEG = 400, PINX = [-400, 0, 400], LABX = [1000, 1400], AMP = 1.4, LIFT = 36, TAPLIFT = 72;
 const EP = { no: '04', title: 'Change everything but the <i>pins</i>.', accent: DSG, short: 'Conserve' };
 const SRC = 'https://app.notion.com/p/3f3d50cfaf93813b8cfce21490365024';   // Memory graph map
@@ -93,6 +93,9 @@ function thread(i, t, lf) {
 const qpt = (g, u) => { const a = (1 - u) * (1 - u), b = 2 * u * (1 - u), c = u * u; return { x: a * g.S.x + b * g.Cc.x + c * g.E.x, y: a * g.S.y + b * g.Cc.y + c * g.E.y }; };
 const qtan = (g, u) => ({ x: 2 * (1 - u) * (g.Cc.x - g.S.x) + 2 * u * (g.E.x - g.Cc.x), y: 2 * (1 - u) * (g.Cc.y - g.S.y) + 2 * u * (g.E.y - g.Cc.y) });
 const LTH = [{ from: 0, to: 2, h: 160, t: DOCK + 0.35 }, { from: 1, to: 1, h: 300, t: DOCK + 0.6 }];   // the lab's new links land on C and B
+// focus: FELT shows only the followed link at full strength; in WHY only the link being snapped; all at full once pinned
+const threadA = (i, t) => { if (t < PULL) return i === 0 ? 1 : 0.32; const base = 0.26, th = TH[i];
+  const hot = i === 0 ? 0 : win(t, th.snap - 0.08, th.snap + 1.3, 0.08, 0.5); return Math.max(base, hot, ramp(t, th.re, th.re + 0.4, EASE.warm)); };
 const flut = t => (0.55 + 1.1 * win(t, FLUT, FLUT + 1.6, 0.1, 0.9)) * (1 - win(t, HOMES - 0.3, TAP[0] + 0.2, 0.35, 0.05));
 
 // ---------- the whale: thread follows, flights (eased arcs), rides (perched on the line), hovers ----------
@@ -228,7 +231,12 @@ const CAPS = [
   cap('notthis', NOT_T, FOLLOW + 0.46, 'Checked means no known breaks. Not proven true.', { fi: 0.25, fo: 0.25 }),
   cap('belief', BELIEF, LOCK - 0.2, 'Pick three things your wiki must keep.'),
 ];
-const LABR = { id: 'label', in: LABEL_T, out: FE[0] - 0.25, fi: 0.3, fo: 0.3, text: 'Links must land.', kind: 'label', size: 30 };
+const LAWS = ['Every claim sourced', 'No broken links', 'One page per thing'];   // under pins A (source), B (link), C (page)
+const LAWR = LAWS.flatMap((w, i) => [{ id: 'law' + i, in: TAP[i] + 0.1, out: CARD_T - 0.2, fi: 0.4, fo: 0.4, text: w, kind: 'label', size: 24 },
+  { id: 'lawB' + i, in: i === 2 ? POD2_OUT + 0.6 : FOLLOW, out: DUR, fi: 0.5, fo: 0, text: w, kind: 'label', size: 24 }]);
+const PANR = [{ id: 'pan1', in: PANEL_IN, out: GATE_SHUT, fi: 0.5, fo: 0.15, text: 'Checked on every edit', kind: 'label', size: 24 },
+  { id: 'over', in: GATE_SHUT, out: GATE_OPEN + 0.9, fi: 0.12, fo: 0.3, text: 'Over: fixed before saving.', kind: 'label', size: 24 },
+  { id: 'pan2', in: GATE_OPEN + 0.9, out: PANEL_OUT, fi: 0.3, fo: 0.5, text: 'Checked on every edit', kind: 'label', size: 24 }];
 const STRIP = { id: 'strip', in: STRIP_T, out: SLIDE - 0.1, fi: 0.35, fo: 0.35, text: 'Pin. Check. Fix.', kind: 'label', size: 24 };
 const CELLS = [['548', 'entities'], ['2,933', 'links'], ['0', 'laws broken'], ['0.988', 'sourced']];
 const CARDR = { id: 'card', in: CARD_T, out: bar(22) - 0.3, fi: 0.4, fo: 0.4, kind: 'card', size: 56, src: SRC,
@@ -237,7 +245,7 @@ const AUDR = { id: 'audit', in: bar(24), out: PAN - 0.05, fi: 0.3, fo: 0.3, kind
 const READ = [
   { id: 'eyebrow', in: TITLE_IN, out: TITLE_OUT, fi: 0.4, fo: 0.45, text: 'CETI · Capabilities · 04', kind: 'title', size: 15, src: 'films/kh/caps/SERIES.md' },
   { id: 'title', in: TITLE_IN, out: TITLE_OUT, fi: 0.4, fo: 0.45, text: 'Change everything but the pins.', kind: 'title', size: 92 },
-  ...CAPS, LABR, STRIP, CARDR, AUDR,
+  ...CAPS, ...LAWR, ...PANR, STRIP, CARDR, AUDR,
   { id: 'lockup', in: LOCK, out: DUR, fi: 0.45, fo: 0, text: 'CETI · Capabilities · 04 · Conserve', kind: 'card', size: 15, src: 'films/kh/caps/SERIES.md' },
 ].sort((a, b) => a.in - b.in);
 const RD = id => READ.find(r => r.id === id), ra = (t, id) => { const r = RD(id); return win(t, r.in, r.out, r.fi, r.fo); };
@@ -293,19 +301,22 @@ function podChip(c, kind, x, y, z, a) { if (a <= 0.001) return; const r = 21 * z
 // the save gate and its written record: no words; a gate glyph and a row of ticks
 function panel(c, t) {
   const a = ramp(t, PANEL_IN, PANEL_IN + 0.6, EASE.warm) * (1 - ramp(t, PANEL_OUT - 0.5, PANEL_OUT, EASE.rest)); if (a <= 0.001) return;
-  const X0 = 1296, Y0 = 52, PW = 568, PH = 150, shut = ramp(t, GATE_SHUT, GATE_SHUT + 0.22, EASE.glaser) * (1 - ramp(t, GATE_OPEN, GATE_OPEN + 0.3, EASE.glaser));
+  const X0 = 1296, Y0 = 52, PW = 568, PH = 196, shut = ramp(t, GATE_SHUT, GATE_SHUT + 0.22, EASE.glaser) * (1 - ramp(t, GATE_OPEN, GATE_OPEN + 0.3, EASE.glaser));
   const hl = win(t, LAST, LAST + 1.8, 0.3, 0.4);
   c.save(); c.globalAlpha = a; c.fillStyle = C.paper; c.beginPath(); c.roundRect(X0, Y0, PW, PH, 12); c.fill();
   c.strokeStyle = shut > 0.01 ? mix(RULE, COP, shut) : RULE; c.lineWidth = 1.6 + 2.4 * shut; c.stroke();
   // gate: two posts, a lintel, and a bar that drops across when an edit is stopped
-  const gx0 = X0 + 40, gx1 = X0 + 104, gy0 = Y0 + 30, gy1 = Y0 + 122;
+  const gx0 = X0 + 40, gx1 = X0 + 104, gy0 = Y0 + 76, gy1 = Y0 + 168;
   let glow = 0; for (const e of ENTRIES) if (!e.fire && !e.quiet) glow = Math.max(glow, win(t, e.t - 0.12, e.t + 0.5, 0.08, 0.4));
   if (glow > 0) { c.fillStyle = rgba(mix(C.paper, DSG, 0.25), glow); c.fillRect(gx0 + 4, gy0 + 4, gx1 - gx0 - 8, gy1 - gy0 - 4); }
   c.strokeStyle = DSG; c.lineWidth = 7; c.lineCap = 'round'; c.beginPath(); c.moveTo(gx0, gy1); c.lineTo(gx0, gy0); c.lineTo(gx1, gy0); c.lineTo(gx1, gy1); c.stroke();
-  const ang = lerp(-Math.PI / 2, 0, shut), px = gx0 + 2, py = Y0 + 82; c.strokeStyle = shut > 0.05 ? COP : mix(DSG, C.paper, 0.35); c.lineWidth = 8;
+  const ang = lerp(-Math.PI / 2, 0, shut), px = gx0 + 2, py = Y0 + 128; c.strokeStyle = shut > 0.05 ? COP : mix(DSG, C.paper, 0.35); c.lineWidth = 8;
   c.beginPath(); c.moveTo(px, py); c.lineTo(px + Math.cos(ang) * 64, py + Math.sin(ang) * 64); c.stroke();
+  { const h = Math.max(ra(t, 'pan1'), ra(t, 'pan2')), ov = ra(t, 'over');
+    if (h > 0) text(c, 'Checked on every edit', X0 + 40, Y0 + 46, { f: 'mono', size: 24, col: SOFT, a: h, track: 0.14 });
+    if (ov > 0) text(c, 'Over: fixed before saving.', X0 + 40, Y0 + 46, { f: 'monoB', size: 24, col: OVERCOL, a: ov, track: 0.1 }); }
   // the record: one tick per check (the stopped one in copper)
-  const tx0 = X0 + 156, base = Y0 + 112;
+  const tx0 = X0 + 156, base = Y0 + 158;
   c.strokeStyle = rgba(RULE, 1); c.lineWidth = 1.4; c.beginPath(); c.moveTo(tx0 - 10, base + 8); c.lineTo(X0 + PW - 24, base + 8); c.stroke();
   ENTRIES.forEach((e, i) => { if (t < e.t) return; const k = ramp(t, e.t, e.t + 0.25, EASE.glaser), x = tx0 + i * 21;
     c.lineCap = 'round'; c.strokeStyle = e.fire ? COP : INK; c.lineWidth = e.fire ? 8 : 6; c.beginPath(); c.moveTo(x, base); c.lineTo(x, base - (e.quiet ? 34 : 44) * k); c.stroke();
@@ -323,7 +334,7 @@ function drawFrame(c, t) {
   // ghosts of past saves, stacked behind the line (WHY)
   { const ga = win(t, PULL - 0.1, HOMES + 0.3, 0.8, 0.6); if (ga > 0) {
       const gl = [{ K: K.G1, F: [[0, 0], [20, 30], [0, 0]], t: -2 }, { K: K.G2, F: [[0, 0], [40, 40], [0, 0]], t: -1 }, { K: K.S0, F: FREE[0].v, t: ED[0] }, { K: K.A, F: FREE[1].v, t: ED[1] }, { K: K.Bk, F: FREE[2].v, t: ED[2] }, { K: K.Ck, F: FREE[3].v, t: ED[3] }];
-      const vis = gl.filter(g => t >= g.t); vis.forEach((g, n) => { const age = vis.length - n, a = ga * ramp(t, g.t, g.t + 0.3) * (0.34 - 0.04 * age);
+      const vis = gl.filter(g => t >= g.t); vis.forEach((g, n) => { const age = vis.length - n, a = ga * ramp(t, g.t, g.t + 0.3) * (0.22 - 0.03 * age);
         c.strokeStyle = rgba(SOFT, Math.max(a, 0)); c.lineWidth = 1.8; c.beginPath();
         for (let x = XL; x <= -XL; x += 12) { const px = X(x), py = Y(shapeY(g.K, g.F, x) - 11 * age); x === XL ? c.moveTo(px, py) : c.lineTo(px, py); } c.stroke(); }); } }
 
@@ -341,7 +352,7 @@ function drawFrame(c, t) {
     c.strokeStyle = rgba(DSG, 0.3); c.lineWidth = 1.6; c.setLineDash([3, 9]); c.beginPath(); c.moveTo(X(XL), Y(0)); c.lineTo(X(-XL), Y(0)); c.stroke(); c.setLineDash([]);
     c.fillStyle = PINK; c.beginPath(); c.moveTo(pts[0][0], Y(0)); pts.forEach(([x, y]) => c.lineTo(x, y)); c.lineTo(pts[pts.length - 1][0], Y(0)); c.closePath(); c.fill();
     for (let i = 0; i < 3; i++) { const ia = ramp(t, TAP[i] + 0.1, TAP[i] + 0.5, EASE.warm); if (ia <= 0) continue;
-      c.strokeStyle = rgba(C.slate, 0.4 * ia); c.lineWidth = 1.6; c.setLineDash([2, 5]); c.beginPath(); c.moveTo(X(PINX[i]), Y(lf(PINX[i])) + 40 * z); c.lineTo(X(PINX[i]), Y(118) - 26 * zz); c.stroke(); c.setLineDash([]); }
+      c.strokeStyle = rgba(C.slate, 0.4 * ia); c.lineWidth = 1.6; c.setLineDash([2, 5]); c.beginPath(); c.moveTo(X(PINX[i]), Y(lf(PINX[i])) + 40 * z); c.lineTo(X(PINX[i]), Y(t < SLIDE + 1 ? 205 : 118) - 26 * zz); c.stroke(); c.setLineDash([]); }
     c.strokeStyle = DSG; c.lineWidth = 5 * zz; c.lineJoin = 'round'; c.lineCap = 'round'; c.beginPath(); pts.forEach(([x, y], j) => j ? c.lineTo(x, y) : c.moveTo(x, y)); c.stroke();
     c.lineWidth = 4; c.beginPath(); c.moveTo(X(XL), Y(0) - 14 * z); c.lineTo(X(XL), Y(0) + 14 * z); c.stroke();
     c.save(); c.globalAlpha = 1 - docked; c.beginPath(); c.moveTo(X(-XL), Y(0) - 14 * z); c.lineTo(X(-XL), Y(0) + 14 * z); c.stroke(); c.restore(); }
@@ -358,7 +369,7 @@ function drawFrame(c, t) {
   // threads (links)
   const landGlow = win(t, LAND - 0.15, LAND + 1.4, 0.1, 0.8);
   for (let i = 0; i < 4; i++) { const g = thread(i, t, lf), re = win(t, TH[i].re + 0.1, TH[i].re + 0.9, 0.08, 0.6);
-    drawThread(c, g, X, Y, z, t, { a: i === 0 ? 1 : lerp(0.32, 1, ramp(t, PULL, PULL + 1.2, EASE.rest)) }); if (re > 0) drawThread(c, g, X, Y, z, t, { col: rgba(DSG, 0.85 * re), w: 4.4 });
+    drawThread(c, g, X, Y, z, t, { a: threadA(i, t) }); if (re > 0) drawThread(c, g, X, Y, z, t, { col: rgba(DSG, 0.85 * re), w: 4.4 });
     if (i === 0 && landGlow > 0) drawThread(c, g, X, Y, z, t, { col: rgba(DSG, 0.9 * landGlow), w: 5 }); }
   for (const L of LTH) { const d = ramp(t, L.t, L.t + 0.7, EASE.warm); if (d <= 0) continue; const S0 = labDot(L.from, t), E0 = dotTop(lf, L.to), Sp = { x: S0.x, y: S0.y - 14 };
     const g = { S: Sp, E: E0, Cc: { x: (Sp.x + E0.x) / 2, y: Math.min(Sp.y, E0.y) - 2 * L.h }, umax: 1, k: 0 }; drawThread(c, g, X, Y, z, t, { draw: d }); }
@@ -383,8 +394,9 @@ function drawFrame(c, t) {
 
   // what each pin keeps: icons under the pins (source · link · page); the link pin is labelled once
   { const gridK = ramp(t, GRID_T, GRID_T + 0.4, EASE.glaser) * (1 - ramp(t, PAN - 0.4, PAN, EASE.rest));
-    ['source', 'link', 'page'].forEach((kind, i) => { const ia = ramp(t, TAP[i] + 0.1, TAP[i] + 0.5, EASE.warm) * (i === 0 ? 1 - Math.min(1, gridK * 3) : 1); iconChip(c, kind, X(PINX[i]), Y(118), z, ia); });
-    const lab = ra(t, 'label'); if (lab > 0) S.chip(c, LABR.text, X(0), Y(118) + 62 * zz + (1 - EASE.defer(clamp(lab))) * 8, { f: 'sans', size: 30, col: INK, a: lab, align: 'center', pad: 16, border: RULE });
+    ['source', 'link', 'page'].forEach((kind, i) => { const ca = Math.max(ra(t, 'law' + i), ra(t, 'lawB' + i));
+      const ia = ramp(t, TAP[i] + 0.1, TAP[i] + 0.5, EASE.warm) * (i === 0 ? 1 - Math.min(1, gridK * 3) : 1) * (1 - ca); iconChip(c, kind, X(PINX[i]), Y(118), z, ia);
+      if (ca > 0) S.chip(c, LAWS[i], X(PINX[i]), Y(t < FOLLOW ? 205 : 118) + 9 + (1 - EASE.defer(clamp(ca))) * 8, { f: 'sans', size: 24, col: INK, a: ca, align: 'center', pad: 14, border: RULE }); });
     // LIMIT: the source tick opens into the atlas citation audit (60 ticks)
     if (gridK > 0.001) { const cx = X(PINX[0]), top = Y(118) - 23 * zz, wF = 640, hF = 290, w = lerp(46, wF, gridK), h = lerp(46, hF, gridK);
       c.save(); c.fillStyle = C.paper; c.strokeStyle = RULE; c.lineWidth = 1.8; c.beginPath(); c.roundRect(cx - w / 2, top, w, h, 10); c.fill(); c.stroke(); c.restore();
@@ -468,7 +480,7 @@ function cues() {
 }
 const CONTRAST = [['title', INK, GROUND], ['title on veil', INK, VEILED], ['title accent', DSG, GROUND], ['eyebrow', SOFT, GROUND],
   ['strip active', INK, GROUND], ['strip inactive', INACT, GROUND], ['caption (chip)', INK, C.paper], ['label (chip)', INK, C.paper],
-  ['card values', INK, C.paper], ['card labels', SOFT, C.paper], ['audit labels', SOFT, C.paper], ['audit count', INK, C.paper], ['lockup', SOFT, GROUND]];
+  ['card values', INK, C.paper], ['card labels', SOFT, C.paper], ['audit labels', SOFT, C.paper], ['audit count', INK, C.paper], ['law chips', INK, C.paper], ['panel label', SOFT, C.paper], ['panel over', OVERCOL, C.paper], ['lockup', SOFT, GROUND]];
 root.EPISODE = { drawFrame, cues, READ, CONTRAST, DUR, W, H, fps: 60, wpos, heading, cam, ACTS, TERMS, JARGON, BPM, SOLUTION_HINT, ENDING,
   shutter: t => (t > SH0 - 0.1 && t < SH2) ? [3, 0.6] : [2, 0.5] };
 })(typeof window !== 'undefined' ? window : globalThis);

@@ -51,10 +51,10 @@
         "sound": "Knock and tuned mallet per pin: A2, E3, A3."
       },
       {
-        "t": 20.806,
-        "picture": "A chip appears under the link pin.",
-        "words": "Links must land.",
-        "sound": "Soft click."
+        "t": 21.29,
+        "picture": "Each pin carries its law in plain words: Every claim sourced · No broken links · One page per thing. The strip Pin · Check · Fix appears.",
+        "words": "Pin. Check. Fix.",
+        "sound": "Soft tick."
       },
       {
         "t": 23.226,
@@ -105,7 +105,7 @@
   "ending_pattern": {
     "kind": "Example",
     "slug": "link-lands",
-    "body": "The whale follows the same link from the same dot and lands on the pinned dot. The pod that answered with a cross now answers with a tick, then the line is shaken and every link holds.",
+    "body": "The whale follows the same link from the same dot and lands on the pinned dot. The pod that answered with a cross now answers with a tick, then the line is shaken and every link holds; the three laws return under their pins.",
     "callback": "The link that ended in empty air in bar 1 now lands on a pin, in the same framing."
   },
   "end_belief": {
@@ -245,12 +245,12 @@
       ]
     },
     {
-      "t": 20.806,
-      "picture": "A chip appears under the link pin.",
-      "words": "Links must land.",
-      "sound": "Soft click.",
+      "t": 21.29,
+      "picture": "Each pin carries its law in plain words: Every claim sourced · No broken links · One page per thing. The strip Pin · Check · Fix appears.",
+      "words": "Pin. Check. Fix.",
+      "sound": "Soft tick.",
       "act": "move",
-      "bars": "11",
+      "bars": "12",
       "camera": "medium z 1.2",
       "cue_tags": [
         "mech"
@@ -451,9 +451,9 @@
       "kind": "caption"
     },
     {
-      "t_in": 20.806,
-      "t_out": 22.976,
-      "text": "Links must land.",
+      "t_in": 19.939,
+      "t_out": 33.187,
+      "text": "No broken links",
       "kind": "label"
     },
     {
