@@ -128,6 +128,7 @@ const READ = [
   cap('leaves', 16.55, 19.2, 'It leaves the Bakery note out.'),
   cap('limit', 20.95, 23.65, 'Stamp a note the moment you write it.'),
   cap('belief', 23.75, T_LOCK - 0.05, 'Stamp once. Private notes stay with their client.'),
+  { id: 'illus', kind: 'label', in: 0.2, out: 5.4, fi: 0.3, fo: 0.3, text: 'Illustration' },   // honesty: the Bakery/Clinic story is made up
   { id: 'ai1', kind: 'label', in: 0.1, out: DUR, fi: 0.3, fo: 0, text: 'Your AI app' },
   { id: 'lockup', kind: 'label', in: T_LOCK, out: DUR, fi: 0.45, fo: 0, text: 'CETI · Capabilities · 09 · Private' },
   { id: 'boxB', kind: 'label', in: 0, out: DUR, fi: 0.01, fo: 0, text: 'Client folder Bakery' },
@@ -280,6 +281,7 @@ function drawFrame(c, t) {
   }
 
   for (const r of READ) if (r.kind === 'caption') S.caption(c, t, r, { size: 40 });
+  { const ia = RA(t, 'illus'); if (ia > 0) S.chip(c, 'ILLUSTRATION', 1856, 74, { f: 'mono', size: 22, col: SOFT, a: ia, align: 'right', pad: 10, track: 0.14, border: CARDEDGE }); }
   S.open(c, t - T0, { no: '09', title: 'Private <i>notes</i> stay put.', accent: ACC }, { out: T_OUT });
   S.lockup(c, t, T_LOCK, { no: '09', short: 'Private' });
   c.restore();

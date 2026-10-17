@@ -232,6 +232,61 @@
     }
    },
    "why": "Contradiction gone; problem clear (7-8). Fix confidence stuck at 6 for all three: the moment the AI app refuses the stamped note is small and fast, 'tied'/'home' are metaphors, the tether line is easy to miss."
+  },
+  {
+   "version": "v7",
+   "sheet": "kh/caps/private/sheet-v7.png",
+   "verdict": "PASS",
+   "mean_sure": 7.33,
+   "personas": {
+    "teacher": {
+     "q1": 1,
+     "q2": 1,
+     "sure": [
+      8,
+      7
+     ],
+     "unclear": [
+      "Your AI app: what/where in real life",
+      "whale = You? flits",
+      "title script faint",
+      "Tap PRIVATE brief/faint",
+      "lockup",
+      "folders: move or copy?"
+     ]
+    },
+    "nurse": {
+     "q1": 1,
+     "q2": 1,
+     "sure": [
+      8,
+      6
+     ],
+     "unclear": [
+      "grey fish = AI app worked out slowly",
+      "Tap PRIVATE: where",
+      "limit line faint",
+      "title script thin",
+      "lockup",
+      "can AI see inside folders?"
+     ]
+    },
+    "shop owner": {
+     "q1": 1,
+     "q2": 1,
+     "sure": [
+      8,
+      7
+     ],
+     "unclear": [
+      "Your AI app: what is it",
+      "title flashes, eyebrow tiny",
+      "whale role",
+      "does the AI catch an unstamped note?"
+     ]
+    }
+   },
+   "why": "All three: last week's email reused for the Clinic carries the Bakery's private note; tap PRIVATE, the stamp names the client, the AI app leaves the note out. AI's on-screen role stated correctly by all (their doubt is what product it is in real life, not what it does here). Polish, logged: the series title card's thin script reads faint on phones (shared series.js, also flagged on tick); Tap PRIVATE caption could hold longer. Orchestrator added an ILLUSTRATION chip (0.2-5.4 s) after the run, since v7 dropped the real-example card."
   }
  ]
 }
