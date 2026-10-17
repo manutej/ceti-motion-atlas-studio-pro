@@ -1,0 +1,426 @@
+{
+ "seat": "A",
+ "lens": "Clarity for a fresh viewer: sound off, phone, 5-second attention",
+ "targets": {
+  "conserve60": {
+   "hook": {
+    "pick": "hook.sb-03-01",
+    "score": 0.82,
+    "why": "Link to nowhere: felt in one second, whale bumps empty air.",
+    "runner_up": "hook.sb-03-09"
+   },
+   "problem": {
+    "pick": "problem.sb-03-01",
+    "score": 0.8,
+    "why": "Everyday words, first person, every wiki reader has said it.",
+    "runner_up": "problem.sb-03-09"
+   },
+   "why": {
+    "pick": "why.sb-03-01",
+    "score": 0.76,
+    "why": "Threads snapping three times reads as keeps-happening; cause in plain words.",
+    "runner_up": "why.sb-03-02"
+   },
+   "stakes": {
+    "pick": "stakes.sb-03-01",
+    "score": 0.72,
+    "why": "Wrong answer travels to new hires and AI; slightly long.",
+    "runner_up": "stakes.sb-03-02"
+   },
+   "hint": {
+    "pick": "hint.sb-03-01",
+    "score": 0.86,
+    "why": "States the move exactly, plain verbs, seven words.",
+    "runner_up": "hint.sb-08-08"
+   },
+   "metaphor": {
+    "pick": "metaphor.sb-03-01",
+    "score": 0.85,
+    "why": "Pins on a bending line: simplest symbol, acts before naming.",
+    "runner_up": "metaphor.sb-08-08"
+   },
+   "mechanism": {
+    "pick": "mechanism.sb-03-01",
+    "score": 0.8,
+    "why": "Pin, edit, tug, snap back: obvious; gate adds one extra symbol.",
+    "runner_up": "mechanism.sb-03-09"
+   },
+   "case": {
+    "pick": "case.sb-03-01",
+    "score": 0.85,
+    "why": "Real merge, Memory graph map source, exact capability match.",
+    "runner_up": "case.sb-03-09"
+   },
+   "limit": {
+    "pick": "limit.sb-03-01",
+    "score": 0.82,
+    "why": "Shown picture: 13 copper ticks slip past pins; sourced audit.",
+    "runner_up": "limit.sb-03-02"
+   },
+   "notthis": {
+    "pick": "notthis.sb-03-03",
+    "score": 0.72,
+    "why": "Plainest honest line; 03-01's 'Not true.' misreads as denial.",
+    "runner_up": "notthis.sb-03-01"
+   },
+   "ending": {
+    "pick": "ending.sb-03-01",
+    "score": 0.88,
+    "why": "Same thread, same dot, now lands: opening visibly undone.",
+    "runner_up": "ending.sb-03-03"
+   },
+   "belief": {
+    "pick": "belief.sb-03-01",
+    "score": 0.76,
+    "why": "Actionable Monday; 'keep' weaker than 'never change'.",
+    "runner_up": "belief.sb-03-03"
+   }
+  },
+  "stitch60": {
+   "hook": {
+    "pick": "hook.sb-04-01",
+    "score": 0.78,
+    "why": "Draft and decision tossed into one heap; needs a caption added.",
+    "runner_up": "hook.sb-08-09"
+   },
+   "problem": {
+    "pick": "problem.sb-04-01",
+    "score": 0.88,
+    "why": "Best problem line in the set; exactly the goal's pain.",
+    "runner_up": "problem.sb-04-02"
+   },
+   "why": {
+    "pick": "why.sb-04-01",
+    "score": 0.82,
+    "why": "Look-alike cards, pod grabs wrong one thrice; cause obvious.",
+    "runner_up": "why.sb-08-02"
+   },
+   "stakes": {
+    "pick": "stakes.sb-04-01",
+    "score": 0.82,
+    "why": "Decision reversed in front of client: concrete, felt.",
+    "runner_up": "stakes.sb-04-04"
+   },
+   "hint": {
+    "pick": "hint.sb-04-01",
+    "score": 0.8,
+    "why": "Plain move; misses 'check where they join' half.",
+    "runner_up": "hint.sb-08-01"
+   },
+   "metaphor": {
+    "pick": "metaphor.sb-04-01",
+    "score": 0.86,
+    "why": "Coloured tabs into matching sockets: reads with sound off.",
+    "runner_up": "metaphor.sb-06-01"
+   },
+   "mechanism": {
+    "pick": "mechanism.sb-04-01",
+    "score": 0.84,
+    "why": "Draft refused at decision socket is the clearest refusal beat.",
+    "runner_up": "mechanism.sb-06-01"
+   },
+   "case": {
+    "pick": "case.sb-04-01",
+    "score": 0.85,
+    "why": "Real Context Atoms run, numbers on card, right capability.",
+    "runner_up": "case.sb-04-03"
+   },
+   "limit": {
+    "pick": "limit.sb-04-01",
+    "score": 0.86,
+    "why": "Wrong date labelled decided still fits: honest, pictured.",
+    "runner_up": "limit.sb-06-01"
+   },
+   "notthis": {
+    "pick": "notthis.sb-04-01",
+    "score": 0.85,
+    "why": "Six words, exact misconception, no jargon.",
+    "runner_up": "notthis.sb-04-08"
+   },
+   "ending": {
+    "pick": "ending.sb-04-01",
+    "score": 0.84,
+    "why": "Same two cards, draft drifts aside, pod ticks: clean callback.",
+    "runner_up": "ending.sb-04-02"
+   },
+   "belief": {
+    "pick": "belief.sb-04-01",
+    "score": 0.78,
+    "why": "Actionable; drops the seam-check half of the move.",
+    "runner_up": "belief.sb-08-01"
+   }
+  },
+  "gate-v3": {
+   "hook": {
+    "pick": "hook.sb-07-01",
+    "score": 0.8,
+    "why": "Ticked smooth line, pod says no: pain in three seconds.",
+    "runner_up": "hook.sb-07-03"
+   },
+   "problem": {
+    "pick": "problem.sb-07-01",
+    "score": 0.84,
+    "why": "Customer found the bug: universal, plain, consequence lands.",
+    "runner_up": "problem.sb-07-02"
+   },
+   "metaphor": {
+    "pick": "metaphor.sb-07-01",
+    "score": 0.88,
+    "why": "Lintel icons make kind visible; fixes the v2 slot error.",
+    "runner_up": "metaphor.sb-07-02"
+   },
+   "mechanism": {
+    "pick": "mechanism.sb-07-03",
+    "score": 0.78,
+    "why": "Miss folded into new icon gate; adapt page-edge to colour lens.",
+    "runner_up": "mechanism.sb-07-01"
+   },
+   "case": {
+    "pick": "case.sb-07-10",
+    "score": 0.84,
+    "why": "Declared Plex rendered Inter: the real wrong-kind escape, sourced.",
+    "runner_up": "case.sb-07-01"
+   },
+   "limit": {
+    "pick": "limit.sb-07-01",
+    "score": 0.78,
+    "why": "New kind passes every gate; backwards run needs clearer picture.",
+    "runner_up": "limit.sb-07-03"
+   },
+   "notthis": {
+    "pick": "notthis.sb-07-01",
+    "score": 0.84,
+    "why": "Review-endorsed seven words; correct caution, no 'proves'.",
+    "runner_up": "notthis.sb-07-03"
+   },
+   "ending": {
+    "pick": "ending.sb-07-01",
+    "score": 0.8,
+    "why": "Flag becomes new gate, same pod now ticks: undoes opening.",
+    "runner_up": "ending.sb-07-03"
+   },
+   "belief": {
+    "pick": "belief.sb-07-01",
+    "score": 0.84,
+    "why": "Eight words, plain, states both halves of the move.",
+    "runner_up": "belief.sb-07-02"
+   }
+  }
+ },
+ "boards": {
+  "sb-01-01": 0.6,
+  "sb-01-02": 0.46,
+  "sb-01-03": 0.66,
+  "sb-01-04": 0.62,
+  "sb-01-05": 0.56,
+  "sb-01-06": 0.54,
+  "sb-01-07": 0.48,
+  "sb-01-08": 0.62,
+  "sb-01-09": 0.58,
+  "sb-01-10": 0.55,
+  "sb-02-01": 0.62,
+  "sb-02-02": 0.55,
+  "sb-02-03": 0.52,
+  "sb-02-04": 0.38,
+  "sb-02-05": 0.36,
+  "sb-02-06": 0.44,
+  "sb-02-07": 0.42,
+  "sb-02-08": 0.58,
+  "sb-02-09": 0.6,
+  "sb-02-10": 0.5,
+  "sb-03-01": 0.8,
+  "sb-03-02": 0.68,
+  "sb-03-03": 0.72,
+  "sb-03-04": 0.7,
+  "sb-03-05": 0.4,
+  "sb-03-06": 0.5,
+  "sb-03-07": 0.44,
+  "sb-03-08": 0.6,
+  "sb-03-09": 0.72,
+  "sb-03-10": 0.62,
+  "sb-04-01": 0.82,
+  "sb-04-02": 0.7,
+  "sb-04-03": 0.66,
+  "sb-04-04": 0.72,
+  "sb-04-05": 0.44,
+  "sb-04-06": 0.44,
+  "sb-04-07": 0.55,
+  "sb-04-08": 0.58,
+  "sb-04-09": 0.6,
+  "sb-04-10": 0.55,
+  "sb-05-01": 0.58,
+  "sb-05-02": 0.6,
+  "sb-05-03": 0.58,
+  "sb-05-04": 0.34,
+  "sb-05-05": 0.62,
+  "sb-05-06": 0.5,
+  "sb-05-07": 0.62,
+  "sb-05-08": 0.66,
+  "sb-05-09": 0.66,
+  "sb-05-10": 0.55,
+  "sb-06-01": 0.66,
+  "sb-06-02": 0.56,
+  "sb-06-03": 0.72,
+  "sb-06-04": 0.74,
+  "sb-06-05": 0.6,
+  "sb-06-06": 0.58,
+  "sb-06-07": 0.64,
+  "sb-06-08": 0.55,
+  "sb-06-09": 0.44,
+  "sb-06-10": 0.62,
+  "sb-07-01": 0.78,
+  "sb-07-02": 0.72,
+  "sb-07-03": 0.74,
+  "sb-07-04": 0.7,
+  "sb-07-05": 0.66,
+  "sb-07-06": 0.46,
+  "sb-07-07": 0.48,
+  "sb-07-08": 0.52,
+  "sb-07-09": 0.66,
+  "sb-07-10": 0.72,
+  "sb-08-01": 0.56,
+  "sb-08-02": 0.64,
+  "sb-08-03": 0.62,
+  "sb-08-04": 0.6,
+  "sb-08-05": 0.55,
+  "sb-08-06": 0.58,
+  "sb-08-07": 0.45,
+  "sb-08-08": 0.5,
+  "sb-08-09": 0.68,
+  "sb-08-10": 0.6,
+  "sb-09-01": 0.5,
+  "sb-09-02": 0.62,
+  "sb-09-03": 0.4,
+  "sb-09-04": 0.6,
+  "sb-09-05": 0.6,
+  "sb-09-06": 0.5,
+  "sb-09-07": 0.5,
+  "sb-09-08": 0.52,
+  "sb-09-09": 0.4,
+  "sb-09-10": 0.55,
+  "sb-10-01": 0.48,
+  "sb-10-02": 0.45,
+  "sb-10-03": 0.55,
+  "sb-10-04": 0.55,
+  "sb-10-05": 0.7,
+  "sb-10-06": 0.6,
+  "sb-10-07": 0.64,
+  "sb-10-08": 0.5,
+  "sb-10-09": 0.55,
+  "sb-10-10": 0.58
+ },
+ "top10": [
+  {
+   "id": "sb-04-01",
+   "score": 0.82,
+   "why": "'It quoted our old draft as the decision': instant pain; tabs and sockets fix it."
+  },
+  {
+   "id": "sb-03-01",
+   "score": 0.8,
+   "why": "Dead wiki link felt at once; pins make 'what must not change' visible."
+  },
+  {
+   "id": "sb-07-01",
+   "score": 0.78,
+   "why": "'Passed every check, customer found the bug'; lintel icons show checks differ in kind."
+  },
+  {
+   "id": "sb-06-04",
+   "score": 0.74,
+   "why": "'AI sent the email before anyone looked': universal fear; send waits behind a rule gate."
+  },
+  {
+   "id": "sb-07-03",
+   "score": 0.74,
+   "why": "'Perfect on screen, print cut off': everyday miss becomes a new kind of check."
+  },
+  {
+   "id": "sb-03-09",
+   "score": 0.72,
+   "why": "'AI filled our wiki overnight': small batches checked against pins; huge relatability."
+  },
+  {
+   "id": "sb-04-04",
+   "score": 0.72,
+   "why": "'I sent the client's notes': leak felt instantly; sealed card stays at the gate."
+  },
+  {
+   "id": "sb-06-03",
+   "score": 0.72,
+   "why": "'The retry sent the refund twice': money pain; ticks resume, pay happens once."
+  },
+  {
+   "id": "sb-07-10",
+   "score": 0.72,
+   "why": "'Report said green, screen said otherwise': check the thing, not its label."
+  },
+  {
+   "id": "sb-03-03",
+   "score": 0.72,
+   "why": "'We fixed this exact mistake last month': a miss becomes a pin that bounces it."
+  }
+ ],
+ "flags": [
+  {
+   "atom": "case.sb-05-04",
+   "problem": "README's 100% Game of 24 claim, no method shown: overclaim if put on screen."
+  },
+  {
+   "atom": "case.sb-04-05",
+   "problem": "95.3/93.8/63% for conditions A/B/C that the README never defines; numbers can't be read."
+  },
+  {
+   "atom": "case.sb-07-06",
+   "problem": "Field benchmarks, not Manu's run; puts 'proof', 'Lean', 'oracle' on screen (RESEARCH §2 caution)."
+  },
+  {
+   "atom": "case.sb-07-07",
+   "problem": "External paper's 11.94% about Lean-verified workflows; risks implying AI routinely makes formal proofs."
+  },
+  {
+   "atom": "limit.sb-06-02",
+   "problem": "'94%' in a caption, not on a card; the figure is from JEV-works, but the board sources it to jev score_fill. Source mismatch."
+  },
+  {
+   "atom": "limit.sb-06-05",
+   "problem": "'0.82–0.91' in a caption, off-card (N8); also a unit the viewer can't feel."
+  },
+  {
+   "atom": "captions.sb-08-01",
+   "problem": "'Citation audit 47 of 60' is borrowed from Memory graph map, not from OmniMemory/kraken."
+  },
+  {
+   "atom": "captions.sb-01-10",
+   "problem": "Same 47-of-60 citation audit borrowed into a stalks-and-sections board; wrong source."
+  },
+  {
+   "atom": "hook.sb-03-05",
+   "problem": "'proven' / 'Noether proved' in FELT: jargon in FELT, and it primes the overclaim."
+  },
+  {
+   "atom": "problem.sb-03-05",
+   "problem": "Names Noether and 'proved' in viewer words; breaks N5 and the §4 caution."
+  },
+  {
+   "atom": "notthis.sb-03-05",
+   "problem": "Puts 'Noether's theorem' on screen, even negated; say 'Noether-inspired' only."
+  },
+  {
+   "atom": "mechanism.sb-03-03",
+   "problem": "'It proved itself' says 'prove' about a gate (RESEARCH §2); rephrase to 'It caught it twice'."
+  },
+  {
+   "atom": "metaphor.sb-03-03",
+   "problem": "'once it proves itself': the same 'prove' wording problem."
+  },
+  {
+   "atom": "case.sb-01-07",
+   "problem": "Planned explainer, not a run; 'one equation makes them consistent' has to be labelled Illustration, not evidence."
+  },
+  {
+   "atom": "case.sb-10-05",
+   "problem": "The 19.7% is second-hand through a README; verify USENIX 2025 primary before it goes on screen."
+  }
+ ]
+}
