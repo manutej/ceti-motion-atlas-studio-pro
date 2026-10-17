@@ -82,6 +82,9 @@ for k, f in enumerate([523.25, 659.25, 783.99, 1046.5]): put(mallet(f, 2.2, 0.8)
 put(whoosh(0.6), Q['seal'] - 0.1, 0.12, 0.6, 0.2); put(tick(1900, 0.06), Q['podArrive'], 0.16, 0.2, 0.2)
 put(tick(2400, 0.05), Q['grab'], 0.18, 0.1, 0.2); put(tick(2900, 0.05), Q['grab'] + B / 2, 0.16, 0.1, 0.2)
 put(whoosh(1.0), Q['leave'], 0.26, 0.5, 0.3)
+# the tree's ghost returns with its receipts: six soft high ticks, one per leaf seam; the whale spouts
+for k in range(6): put(tick(3000 + 180 * k, 0.03), Q['ghost'] + 0.12 * k, 0.05, -0.6 + 0.24 * k, 0.5)
+tt = T(0.9); put(bp(rng.standard_normal(len(tt)), 400, 3500) * np.exp(-tt * 4) * np.minimum(1, tt / 0.03), Q['spout'], 0.16, 0, 0.3)
 # resolve: pad under the belief, end chord, a last soft note for the lockup
 pad = np.zeros(N)
 for f, g in [(130.81, 1), (196.0, 0.7), (261.63, 0.6), (329.63, 0.45), (392.0, 0.3)]: pad += g * np.sin(2 * np.pi * f * (1 + 0.0015 * np.sin(2 * np.pi * 0.12 * t + f)) * t)
