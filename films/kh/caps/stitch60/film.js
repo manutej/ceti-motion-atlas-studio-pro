@@ -23,9 +23,9 @@ const ACTS = { felt: { in: 0, out: bar(6) }, why: { in: bar(6), out: bar(11) }, 
   limit: { in: bar(23), out: bar(26) }, payoff: { in: bar(26), out: bar(30) }, belief: { in: bar(30), out: bar(32) }, lockup: { in: bar(32), out: DUR } };
 
 // ---------- world layout ----------
-const LINE_Y = 200, LC_Y = 168, LC_S = 0.78, SX = i => (i - 7.5) * 104;
+const LINE_Y = 200, LC_Y = 160, LC_S = 1, SX = i => (i - 7.5) * 124;
 const BIG = { x: 40, y: 30, w: 250, h: 330 }, ANS = { x: 380, y: 40, w: 210, h: 130 }, PODP = { x: 380, y: -175 }, TALLY = { x: 380, y: -272 };
-const ROOT = { x: 0, y: -330 }, SY = -90, SOCK = [{ x: -280, ty: 2 }, { x: 0, ty: 1 }, { x: 280, ty: 1 }];
+const ROOT = { x: 0, y: -330 }, SY = -90, SOCK = [{ x: -300, ty: 2 }, { x: 0, ty: 1 }, { x: 300, ty: 1 }];
 const BR = { x: 40, y: 75, w: 220, h: 240 }, BSOCK = { x: 40, y: 112, s: 0.86 };
 const LSOCK = { x: 0, y: -60 };
 
@@ -52,9 +52,9 @@ const mk = arr => arr.map(([t, ...v]) => { const hold = v[v.length - 1] === 'h';
 const R0 = KH.rng(1660), ROWW = Array.from({ length: 40 }, () => 0.45 + 0.5 * R0());
 
 // ---------- whale ----------
-const WK = mk([[0, -330, -40, 'h'], [7.5, -330, -40, 'h'], [8.15, -285, -72, 'h'], [10.4, -285, -72, 'h'], [11.95, -620, -320, 'h'],
-  [22.0, -620, -320, 'h'], [22.9, -250, -480], [23.5, 300, -470], [23.95, 540, -120], [24.35, 410, 40, 'h'], [NUDGE - 0.06, 410, 40, 'h'], [NUDGE + 0.1, 372, 40], [REFUSE, 380, 40],
-  [25.15, 445, 46, 'h'], [25.6, 445, 46, 'h'], [26.6, 430, -330, 'h'], [30.2, 430, -330, 'h'], [31.0, 280, -480, 'h'], [40.0, 280, -480, 'h'], [40.6, -200, -300], [41.0, -560, -60, 'h'],
+const WK = mk([[0, -330, -40, 'h'], [7.5, -330, -40, 'h'], [8.15, -285, -72, 'h'], [10.4, -285, -72, 'h'], [11.95, -560, -320, 'h'],
+  [22.0, -560, -320, 'h'], [22.9, -250, -425], [23.5, 300, -420], [23.95, 580, -120], [24.35, 440, 40, 'h'], [NUDGE - 0.06, 440, 40, 'h'], [NUDGE + 0.1, 402, 40], [REFUSE, 410, 40],
+  [25.15, 475, 46, 'h'], [25.6, 475, 46, 'h'], [26.6, 450, -330, 'h'], [30.2, 450, -330, 'h'], [31.0, 300, -500, 'h'], [39.7, 300, -500, 'h'], [40.45, -150, -300], [41.0, -560, -60, 'h'],
   [41.25, -560, -60, 'h'], [L_SNAP, -150, -60, 'h'], [45.9, -150, -60, 'h'], [46.7, -330, -40, 'h'], [DUR, -330, -40, 'h']]);
 const base = t => { const v = hermite(WK, t); return { x: v[0], y: v[1] }; };
 const bvel = t => { const a = base(t - 1 / 240), c = base(t + 1 / 240); return { x: (c.x - a.x) * 120, y: (c.y - a.y) * 120 }; };
@@ -66,9 +66,9 @@ const LEFT = [[10.45, 11.95], [23.95, 41.1], [45.85, 46.75]];
 const facing = t => LEFT.some(([a, c]) => t > a && t < c) ? -1 : 1;
 
 // ---------- camera ----------
-const CK = mk([[0, 0, -20, 1.6], [3.0, 40, -20, 1.6], [9.375, 40, -20, 1.6, 'h'], [SPILL, 40, -20, 1.6, 'h'], [13.6, 0, -70, 1.1, 'h'], [22.0, 0, -80, 1.1, 'h'],
-  [24.0, 0, -80, 1.1, 'h'], [24.7, 220, -40, 1.45, 'h'], [25.85, 220, -40, 1.45, 'h'], [26.9, 0, -80, 1.1, 'h'], [CASE0, 0, -80, 1.1, 'h'], [30.9, 0, -100, 1.05, 'h'],
-  [40.3, 30, -100, 1.05, 'h'], [41.1, 0, -80, 1.1, 'h'], [43.125, 0, -80, 1.1, 'h'], [44.7, 0, -60, 1.6, 'h'], [45.9, 0, -60, 1.6, 'h'], [46.75, 40, -20, 1.6, 'h'], [DUR, 40, -20, 1.6, 'h']]);
+const CK = mk([[0, 0, -20, 1.6], [3.0, 40, -20, 1.6], [9.375, 40, -20, 1.6, 'h'], [SPILL, 40, -20, 1.6, 'h'], [13.6, 0, -20, 1.0, 'h'], [18.5, 0, -20, 1.0, 'h'], [20.3, 0, -60, 1.3, 'h'],
+  [24.0, 0, -60, 1.3, 'h'], [24.7, 240, -40, 1.6, 'h'], [25.85, 240, -40, 1.6, 'h'], [26.9, 0, -60, 1.3, 'h'], [CASE0, 0, -60, 1.3, 'h'], [30.9, 0, -100, 1.05, 'h'],
+  [40.3, 30, -100, 1.05, 'h'], [41.1, 0, -70, 1.3, 'h'], [43.125, 0, -70, 1.3, 'h'], [44.7, 0, -60, 1.72, 'h'], [45.9, 0, -60, 1.72, 'h'], [46.75, 40, -20, 1.6, 'h'], [DUR, 40, -20, 1.6, 'h']]);
 function cam(t) { const v = hermite(CK, t); return { x: v[0], y: v[1], z: v[2], ax: 960, ay: 540 }; }
 
 // ---------- READ (kind + size for the LONGFORM gates) ----------
@@ -80,11 +80,11 @@ const CAPS = [
   { id: 'why', in: bar(8), out: 16.5, fi: 0.3, fo: 0.3, text: 'Each note shows up looking the same.' },
   { id: 'hint', in: FREEZE, out: 19.2, fi: 0.3, fo: 0.25, text: 'Label each note by what it is.' },
   { id: 'move1', in: TREE_ON, out: 23.9, fi: 0.3, fo: 0.3, text: 'Label it: draft, decided, or rule.' },
-  { id: 'move2', in: REFUSE, out: 27.85, fi: 0.25, fo: 0.3, text: 'A draft cannot fill a decision slot.' },
+  { id: 'move2', in: bar(14), out: 27.85, fi: 0.25, fo: 0.3, text: 'A draft cannot fill a decision slot.' },
   { id: 'move3', in: SETTLE, out: 31.3, fi: 0.3, fo: 0.3, text: 'Labelled cards that fit slots: atoms.', html: 'Labelled cards that fit slots: <i>atoms</i>.' },
   { id: 'case1', in: bar(18), out: 35.25, fi: 0.3, fo: 0.3, text: 'Three real prompts, built this way.' },
   { id: 'case2', in: REVIEW, out: 39.9, fi: 0.3, fo: 0.3, text: 'The shared ones get a human check next.' },
-  { id: 'limit1', in: L_SNAP, out: 44.7, fi: 0.3, fo: 0.3, text: 'A wrong date marked decided still fits.' },
+  { id: 'limit1', in: bar(23), out: 44.7, fi: 0.3, fo: 0.3, text: 'A wrong date marked decided still fits.' },
   { id: 'not', in: NOT_T, out: 47.15, fi: 0.3, fo: 0.3, text: 'Labels catch mix-ups, not wrong facts.' },
   { id: 'end', in: bar(30), out: 58.0, fi: 0.35, fo: 0.3, text: 'Say what each piece is before you send.' },
 ].map(r => ({ ...r, kind: 'caption', size: 38 }));
@@ -93,6 +93,7 @@ const LAB = [
   { id: 'l-decided', in: TAB_T[1] + 0.05, out: 20.42, fi: 0.12, fo: 0.15, text: 'decided' },
   { id: 'l-rule', in: TAB_T[2] + 0.05, out: 20.77, fi: 0.12, fo: 0.15, text: 'rule' },
   { id: 'brief', in: b(45), out: 29.9, fi: 0.3, fo: 0.3, text: 'brief' },
+  { id: 'brief3', in: 41.0, out: 46.2, fi: 0.3, fo: 0.3, text: 'brief' },
   { id: 'brief2', in: PAY0 - 0.35, out: 58.0, fi: 0.35, fo: 0.3, text: 'brief' },
 ].map(r => ({ ...r, kind: 'label', size: 24 }));
 const CARDR = { id: 'card', in: CARD_T, out: CASE_OUT, fi: 0.4, fo: 0.35, kind: 'card', size: 46, src: SRC,
@@ -112,10 +113,10 @@ const TY = [1, 2, 0, 1, 0, 2, 1, 0, 1, 2, 0, 1, 0, 1, 0, 1];   // pairs (2,3) (7
 const SPILLED = [0, 1, 4, 5, 6, 9, 14, 15], EX = { 10: 'X', 8: 'D', 5: 'R', 11: 'F' };
 const LINESW = TY.map((_, i) => [0.5 + 0.35 * ((i * 37) % 10) / 10, 0.35 + 0.4 * ((i * 53) % 10) / 10]);
 const EXK = {   // [t, x, y, s, rot, ease]
-  X: [[TAB_T[0], SX(10), LC_Y, LC_S, 0], [TAB_T[0] + 0.45, 280, 40, 1, 0, G], [NUDGE, 280, 40, 1, 0], [REFUSE, 280, -50, 1, 0, G], [REFUSE + 0.3, 280, -50, 1, 0], [25.7, SX(10), LC_Y, LC_S, 0, Co]],
-  D: [[TAB_T[1], SX(8), LC_Y, LC_S, 0], [TAB_T[1] + 0.45, 0, 40, 1, 0, G], [SNAP_D - 0.47, 0, 40, 1, 0], [SNAP_D, 0, SY, 1, 0, G]],
-  R: [[TAB_T[2], SX(5), LC_Y, LC_S, 0], [TAB_T[2] + 0.45, -280, 40, 1, 0, G], [SNAP_R - 0.47, -280, 40, 1, 0], [SNAP_R, -280, SY, 1, 0, G]],
-  F: [[SNAP_F - 0.47, SX(11), LC_Y, LC_S, 0], [SNAP_F, 280, SY, 1, 0, G]],
+  X: [[TAB_T[0], SX(10), LC_Y, LC_S, 0], [TAB_T[0] + 0.3, 300, 40, 1, 0, G], [NUDGE, 300, 40, 1, 0], [REFUSE, 300, -50, 1, 0, G], [REFUSE + 0.3, 300, -50, 1, 0], [25.7, SX(10), LC_Y, LC_S, 0, Co]],
+  D: [[TAB_T[1], SX(8), LC_Y, LC_S, 0], [TAB_T[1] + 0.3, 0, 40, 1, 0, G], [SNAP_D - 0.47, 0, 40, 1, 0], [SNAP_D, 0, SY, 1, 0, G]],
+  R: [[TAB_T[2], SX(5), LC_Y, LC_S, 0], [TAB_T[2] + 0.3, -300, 40, 1, 0, G], [SNAP_R - 0.47, -300, 40, 1, 0], [SNAP_R, -300, SY, 1, 0, G]],
+  F: [[SNAP_F - 0.47, SX(11), LC_Y, LC_S, 0], [SNAP_F, 300, SY, 1, 0, G]],
 };
 const EXSTART = { X: TAB_T[0], D: TAB_T[1], R: TAB_T[2], F: SNAP_F - 0.47 };
 function lineCard(i, t) {
@@ -147,7 +148,7 @@ function drawCard(c, X, Y, s, rot, a, o) {   // o: ty, tab 0..1, lines, label, l
     c.restore(); }
   if ((o.flash || 0) > 0) { c.save(); c.globalAlpha *= o.flash; c.strokeStyle = o.ty == null ? INK : TYPE_EDGE[o.ty]; c.lineWidth = 4.5; rr(c, -72, -48, 144, 96, 14); c.stroke(); c.restore(); }
   c.restore();
-  if (lb > 0) text(c, o.label, X, Y + 8 * s * o.z, { f: 'mono', size: Math.round(22 * s * o.z), col: INK, a: a * lb, align: 'center', track: 0.08 });
+  if (lb > 0) text(c, o.label, X, Y + 8 * s * o.z, { f: 'mono', size: Math.max(24, Math.round(20 * s * o.z)), col: INK, a: a * lb, align: 'center', track: 0.04 });
 }
 function drawSocket(c, X, Y, s, ty, o) {
   c.save(); c.globalAlpha *= o.a; c.translate(X, Y); c.scale(s, s); const tx = TABX[ty], nk = o.notch;
@@ -192,7 +193,8 @@ function answer(c, X, Y, z, a, circ, col, link) {   // the pod's answer card: th
   if (a <= 0.003) return; const rect = ANS; rowsCard(c, X, Y, z, { ...rect, h: rect.h }, a, 3, null);
   if (circ > 0) { const ry = rowY(rect, 1), cx = rect.x - rect.w / 2 + 26 + (rect.w - 60) * ROWW[1] / 2;
     c.save(); c.globalAlpha *= a; c.strokeStyle = col; c.lineWidth = 4.5 * z; c.beginPath();
-    c.ellipse(X(cx), Y(ry), ((rect.w - 60) * ROWW[1] / 2 + 18) * z, 17 * z, -0.04, -Math.PI * 0.9, -Math.PI * 0.9 + Math.PI * 2 * clamp(circ * 1.4)); c.stroke();
+    const ex = (rect.w - 60) * ROWW[1] / 2 + 20, n = Math.round(48 * clamp(circ * 1.4)); c.lineCap = 'round';
+    for (let k = 0; k <= n; k++) { const th = -Math.PI * 0.9 + k / 48 * Math.PI * 2.1, px = X(cx + Math.cos(th) * ex), py = Y(ry + Math.sin(th) * 19); k ? c.lineTo(px, py) : c.moveTo(px, py); } c.stroke();
     if (link && circ > 0.4) { const u = clamp((circ - 0.4) / 0.6), x0 = rect.x - rect.w / 2, x1 = link.x, y1 = link.y;
       c.setLineDash([9 * z, 8 * z]); c.lineWidth = 3.2 * z; c.beginPath(); c.moveTo(X(x0), Y(ry));
       const mx = lerp(x0, x1, 0.5), my = Math.min(ry, y1) - 70; const steps = 24;
@@ -224,25 +226,25 @@ const FELTC = [
 ];
 const ARC = 90;
 const PAYC = {
-  D: [[45.9, -190, -120, 1, -0.06], [P_FLICK1, -190, -120, 1, -0.06], [P_SNAP, BSOCK.x, BSOCK.y, 0.8, 0, G]],
+  D: [[45.9, -190, -120, 1, -0.06], [P_FLICK1, -190, -120, 1, -0.06], [P_FLICK1 + 0.28, -150, 112, 0.85, 0, Wm], [P_SNAP, BSOCK.x, BSOCK.y, 0.8, 0, G]],
   X: [[45.9, -185, -18, 1, 0.05], [P_FLICK2, -185, -18, 1, 0.05], [P_BUMP, -125, 40, 1, 0.12, G], [P_BUMP + 0.25, -132, 40, 1, 0.06], [49.75, -175, -205, 0.9, -0.12, Wm]],
 };
 
 // ---------- CASE blocks ----------
-const BLK = [{ x: -560, n: 41 }, { x: 0, n: 26 }, { x: 560, n: 41 }], R1 = KH.rng(41), BTY = Array.from({ length: 41 }, () => Math.floor(R1() * 3));
+const BLK = [{ x: -600, n: 41 }, { x: 0, n: 26 }, { x: 600, n: 41 }], R1 = KH.rng(41), BTY = Array.from({ length: 41 }, () => Math.floor(R1() * 3));
 function drawBlock(c, X, Y, z, bk, t0, t, A) {
-  const a = ramp(t, t0, t0 + 0.4) * A; if (a <= 0.003) return; const gx = bk.x - 4 * 36, gy = -350;
+  const a = ramp(t, t0, t0 + 0.4) * A; if (a <= 0.003) return; const gx = bk.x - 4 * 44, gy = -380;
   c.save(); c.globalAlpha *= a;
-  c.strokeStyle = rgba(INK, 0.7); c.lineWidth = 3.6 * z; c.lineCap = 'round'; c.beginPath(); c.moveTo(X(bk.x), Y(-402)); c.lineTo(X(bk.x), Y(gy - 26)); c.stroke();
-  rr(c, X(bk.x) - 56 * z, Y(-440), 112 * z, 40 * z, 8 * z); c.fillStyle = ATOM; c.fill(); c.strokeStyle = INK; c.lineWidth = 3.6 * z; c.stroke();
+  c.strokeStyle = rgba(INK, 0.7); c.lineWidth = 3.6 * z; c.lineCap = 'round'; c.beginPath(); c.moveTo(X(bk.x), Y(-440)); c.lineTo(X(bk.x), Y(gy - 28)); c.stroke();
+  rr(c, X(bk.x) - 60 * z, Y(-484), 120 * z, 44 * z, 8 * z); c.fillStyle = ATOM; c.fill(); c.strokeStyle = INK; c.lineWidth = 3.6 * z; c.stroke();
   const spineOn = ramp(t, SPINE, SPINE + 0.5), beat = Math.floor((t - CARD_T) / B), rows = Math.ceil(bk.n / 9);
-  for (let i = 0; i < bk.n; i++) { const col = i % 9, row = Math.floor(i / 9), x = gx + col * 36, y = gy + row * 32, ap = ramp(t, t0 + 0.05 + i * 0.012, t0 + 0.3 + i * 0.012);
+  for (let i = 0; i < bk.n; i++) { const col = i % 9, row = Math.floor(i / 9), x = gx + col * 44, y = gy + row * 38, ap = ramp(t, t0 + 0.05 + i * 0.012, t0 + 0.3 + i * 0.012);
     if (ap <= 0) continue; const ty = BTY[(i + bk.n) % 41], lit = (t > CARD_T && t < CASE_OUT - 0.3 && beat % rows === row) ? Math.exp(-((t - CARD_T) - beat * B) * 6) : 0;
     c.save(); c.globalAlpha *= ap;
-    rr(c, X(x - 6), Y(y - 15), 12 * z, 6 * z, 2 * z); c.fillStyle = mix(BG, TYPE[ty], 0.75); c.fill();
-    rr(c, X(x - 14), Y(y - 9), 28 * z, 18 * z, 3 * z); c.fillStyle = ATOM; c.fill(); c.strokeStyle = rgba(INK, 0.55 + 0.45 * lit); c.lineWidth = (1.8 + 1.6 * lit) * z; c.stroke();
+    rr(c, X(x - 8), Y(y - 18), 16 * z, 7 * z, 2 * z); c.fillStyle = mix(BG, TYPE[ty], 0.75); c.fill();
+    rr(c, X(x - 17), Y(y - 11), 34 * z, 22 * z, 3 * z); c.fillStyle = ATOM; c.fill(); c.strokeStyle = rgba(INK, 0.55 + 0.45 * lit); c.lineWidth = (1.8 + 1.6 * lit) * z; c.stroke();
     c.restore(); }
-  if (spineOn > 0) { c.save(); c.globalAlpha *= spineOn; c.strokeStyle = ACC; c.lineWidth = 3.4 * z; c.setLineDash([8 * z, 7 * z]); rr(c, X(gx - 22), Y(gy - 24), (8 * 36 + 44) * z, 42 * z, 8 * z); c.stroke(); c.restore(); }
+  if (spineOn > 0) { c.save(); c.globalAlpha *= spineOn; c.strokeStyle = ACC; c.lineWidth = (3.4 + 3 * win(t, REVIEW, REVIEW + 0.9, 0.12, 0.6)) * z; c.setLineDash([8 * z, 7 * z]); c.lineDashOffset = -ramp(t, REVIEW, REVIEW + 0.9, Wm) * 30 * z; rr(c, X(gx - 26), Y(gy - 28), (8 * 44 + 52) * z, 50 * z, 8 * z); c.stroke(); c.restore(); }
   c.restore(); }
 
 // ---------- frame ----------
@@ -321,12 +323,9 @@ function drawFrame(c, t) {
   const caseA = 1 - ramp(t, CASE_OUT - 0.35, CASE_OUT);
   if (t > CASE0 && caseA > 0) {
     const sp = ramp(t, SPINE, SPINE + 0.6, Wm);
-    if (sp > 0) { c.save(); c.globalAlpha = caseA * 0.9; c.strokeStyle = ACC; c.lineWidth = 3 * z; c.setLineDash([10 * z, 9 * z]); c.beginPath(); c.moveTo(X(-760), Y(-350)); c.lineTo(X(lerp(-760, 760, sp)), Y(-350)); c.stroke(); c.restore(); }
+    if (sp > 0) { c.save(); c.globalAlpha = caseA * 0.9; c.strokeStyle = ACC; c.lineWidth = 3 * z; c.setLineDash([10 * z, 9 * z]); c.beginPath(); c.moveTo(X(-800), Y(-380)); c.lineTo(X(lerp(-800, 800, sp)), Y(-380)); c.stroke(); c.restore(); }
     BLK.forEach((bk, k) => drawBlock(c, X, Y, z, bk, BLOCK_T[k], t, caseA));
     // the spine is still draft: a hollow ring waits beside it (review next), not a tick
-    const rv = ramp(t, REVIEW, REVIEW + 0.4) * caseA;
-    if (rv > 0) { c.save(); c.globalAlpha = rv; c.fillStyle = C.paper; c.strokeStyle = ACC; c.lineWidth = 4 * z; const s = lerp(1.6, 1, G(clamp((t - REVIEW) / 0.35)));
-      c.beginPath(); c.arc(X(-790), Y(-350), 15 * z * s, 0, Math.PI * 2); c.fill(); c.stroke(); c.restore(); }
     // the real-run card
     const ca = la(t, 'card');
     if (ca > 0) { const cw = 820, ch = 230, cx = 0, cy = 75, L = X(cx - cw / 2), T = Y(cy - ch / 2);
@@ -341,6 +340,7 @@ function drawFrame(c, t) {
   if (limA > 0) {
     c.save(); c.globalAlpha = limA; c.lineWidth = 4.2 * z; c.lineCap = 'round'; c.strokeStyle = rgba(INK, 0.7); c.beginPath(); c.moveTo(X(LSOCK.x), Y(-298)); c.lineTo(X(LSOCK.x), Y(LSOCK.y - 69)); c.stroke();
     rr(c, X(0) - 85 * z, Y(-330) - 32 * z, 170 * z, 64 * z, 10 * z); c.fillStyle = ATOM; c.fill(); c.strokeStyle = INK; c.lineWidth = 4.4 * z; c.stroke(); c.restore();
+    text(c, 'brief', X(0), Y(-330) + 8 * z, { f: 'mono', size: Math.round(22 * z), col: INK, a: la(t, 'brief3') * limA, align: 'center', track: 0.12 });
     const filled = t >= L_SNAP;
     if (!filled || t < L_SNAP + 0.3) drawSocket(c, X(LSOCK.x), Y(LSOCK.y), z, 1, { a: limA * (filled ? 1 - ramp(t, L_SNAP, L_SNAP + 0.3) : 1), notch: 1, refuse: 0 });
     c.save(); c.globalAlpha = limA; seamDot(c, X(LSOCK.x + 95), Y(LSOCK.y - 60), z, { fill: ramp(t, L_SNAP, L_SNAP + 0.12), tick: ramp(t, L_TICK, L_TICK + 0.4, Rs), refuse: 0 }); c.restore();
@@ -363,7 +363,7 @@ function drawFrame(c, t) {
     c.save(); c.globalAlpha = payA; seamDot(c, X(BR.x + BR.w / 2 - 26), Y(BR.y - BR.h / 2 + 30), z * 0.9, { fill: ramp(t, P_SNAP, P_SNAP + 0.12), tick: ramp(t, P_TICK, P_TICK + 0.4, Rs), refuse: 0 }); c.restore();
     // the two look-alikes, now tabbed
     for (const [key, ty, ln] of [['D', 1, LINESW[3]], ['X', 0, LINESW[4]]]) { const K = PAYC[key]; if (t < K[0][0]) continue;
-      let [x, y, s, r] = keyed(K, t); const fl = t > K[1][0] && t < K[2][0] ? Math.sin(Math.PI * clamp((t - K[1][0]) / (K[2][0] - K[1][0]))) : 0; y -= fl * 70;
+      let [x, y, s, r] = keyed(K, t); const fl = key === 'X' && t > K[1][0] && t < K[2][0] ? Math.sin(Math.PI * clamp((t - K[1][0]) / (K[2][0] - K[1][0]))) : 0; y -= fl * 70;
       const idle = key === 'X' ? ramp(t, 49.75, 50.3) : 0, pre = t < K[1][0] ? 1 : 0; y += (idle + pre) * Math.sin(t * 1.3 + (key === 'X' ? 2 : 0)) * 6; r += (idle + pre) * Math.sin(t * 0.9) * 0.03;
       if (key === 'X' && t > P_BUMP && t < P_BUMP + 0.45) { const u = t - P_BUMP; x += 7 * Math.sin(u * 55) * Math.exp(-u * 8); }
       const snapF = key === 'D' && t > P_SNAP ? Math.exp(-(t - P_SNAP) * 6) : 0;
@@ -394,7 +394,7 @@ function drawFrame(c, t) {
     c.restore(); }
 
   // ---------- the hinge: a paper wash, then the title ----------
-  const wash = win(t, TITLE_IN - 0.25, TITLE_OUT + 0.15, 0.4, 0.55) * 0.86;
+  const wash = win(t, TITLE_IN - 0.25, TITLE_OUT + 0.15, 0.4, 0.55) * 0.93;
   if (wash > 0) { c.fillStyle = rgba(BG, wash); c.fillRect(0, 0, W, H); }
   S.open(c, t - TITLE_IN + 0.25, EP, { out: TITLE_OUT - TITLE_IN + 0.25 });
   for (const r of CAPS) S.caption(c, t, r, { accent: ACC });

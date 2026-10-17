@@ -16,22 +16,24 @@ const PASS = mix(OLIVE, INK, 0.12), FAIL = mix(RAW, INK, 0.08), TRACK = mix(C.pa
 const PODCOL = mix(SLATE, C.paper, 0.3);
 
 // ---------- the line, the gates (one kind each), the pod ----------
-const GX = [-520, -260, 0, 260], KIND = ['wobble', 'gap', 'colour', 'back'];
-const HT = 150, A = 56, GW = 30, ICON_Y = -HT - 52, ICON_R = 34, LEN = 300, PODX = 560, MOUTH = 515;
+const GX = [-560, -220, 120, 460], KIND = ['wobble', 'gap', 'colour', 'back'];
+// each kind has its own tint: it lights that gate's opening and draws its icon (colour's icon is a swatch of the EXPECTED colour, slate)
+const KT = [OLIVE, SLATE, mix(WD.ivoryBuff, C.driftwood, 0.3), C.mist], KM = [OLIVE, SLATE, SLATE, mix(C.mist, C.navy, 0.45)];
+const HT = 200, A = 88, GW = 46, ICON_Y = -HT - 60, ICON_R = 38, LEN = 420, PODX = 863, MOUTH = 793, PODS = 140;
 const T_PICK = [11.25, 21.0], T_FOLD = [[11.5, 11.95], [21.25, 21.65]], T_SET = [12.35, 22.05];
 const BUILT = [-9, -9, T_SET[0] - 0.35, T_SET[1] - 0.35];     // posts rise for 0.35 s; the icon lands as they finish
 
 // ---------- runs: kind decides colour/shape; t1 = time the head is at gate 1 ----------
 const RUNS = [
-  { id: 'e1', kind: 'colour', v: 650, t1: 0.56 },                         // FELT: smooth, whole, wrong colour: passes both, pod ✕
-  { id: 'w', kind: 'wobble', v: 650, t1: 6.95 },                          // KINDS: stopped by the wobble gate
-  { id: 'gp', kind: 'gap', v: 650, t1: 7.7 },                             // passes wobble, stopped by the gap gate
-  { id: 'e2', kind: 'colour', v: 800, t1: 8.75 },                         // the wrong colour again, faster…
-  { id: 'e3', kind: 'colour', v: 1000, t1: 9.47 },                        // …and faster: the pile of flags grows
-  { id: 'old', kind: 'colour', v: 650, t1: 13.05 },                       // MOVE: the old mistake, replayed, stops at the new gate
-  { id: 'fix', kind: 'ok', v: 700, t1: 14.2 },                            // the fixed run threads all three: pod ✓
-  { id: 'back', kind: 'back', v: 800, t1: 18.68 },                        // LIMIT: a new kind (backwards) gets through: pod ✕
-  { id: 'end', kind: 'ok', v: 640, t1: 23.13 },                            // PAYOFF: four kinds of check, the same pod answers ✓
+  { id: 'e1', kind: 'colour', v: 850, t1: 0.56 },                         // FELT: smooth, whole, wrong colour: passes both, pod ✕
+  { id: 'w', kind: 'wobble', v: 850, t1: 6.95 },                          // KINDS: stopped by the wobble gate
+  { id: 'gp', kind: 'gap', v: 850, t1: 7.7 },                             // passes wobble, stopped by the gap gate
+  { id: 'e2', kind: 'colour', v: 1046, t1: 8.75 },                         // the wrong colour again, faster…
+  { id: 'e3', kind: 'colour', v: 1308, t1: 9.47 },                        // …and faster: the pile of flags grows
+  { id: 'old', kind: 'colour', v: 850, t1: 13.05 },                       // MOVE: the old mistake, replayed, stops at the new gate
+  { id: 'fix', kind: 'ok', v: 915, t1: 14.2 },                            // the fixed run threads all three: pod ✓
+  { id: 'back', kind: 'back', v: 1046, t1: 18.68 },                        // LIMIT: a new kind (backwards) gets through: pod ✕
+  { id: 'end', kind: 'ok', v: 837, t1: 23.13 },                            // PAYOFF: four kinds of check, the same pod answers ✓
 ];
 const built = (g, t) => t >= BUILT[g] + 0.35;
 for (const r of RUNS) {
@@ -46,18 +48,18 @@ const ANSWERS = RUNS.filter(r => r.arr != null).map(r => ({ t: r.arr, ok: r.kind
 // flags: one per ✕, falling onto a pile under the pod. Slot 2 is the top of the pile (the one the whale picks).
 const FLAGS = ANSWERS.filter(a => !a.ok).map((a, i) => ({ t: a.t + 0.1, slot: [0, 1, 2, 2][i], id: a.id,
   pick: i === 2 ? 0 : i === 3 ? 1 : null, gone: i < 2 ? [14.0, 14.4] : null }));
-const SLOTX = [374, 410, 444], FTOP = 92, FBASE = 178, FS = 1.35, LEAN = [-0.16, -0.06, 0];
+const SLOTX = [500, 552, 600], FTOP = 92, FBASE = 220, FS = 2.0, LEAN = [-0.16, -0.06, 0];
 const TC = s => ({ x: SLOTX[s] + 14 * FS, y: FBASE + (FTOP - FBASE + 12) * FS });   // centre of a flag's cloth (slot 2 stands upright)
 function head(r, t) { const f = GX[0] + r.v * (t - r.t1); if (r.stop == null) return f;
   const G = r.face, s = 50; return f < G - s ? f : G - s * Math.exp(-(f - (G - s)) / s); }
 function runPt(r, u, h, cr) { const uu = Math.pow(u, 1 + 1.3 * cr), x = h - LEN * (1 - 0.32 * cr) * uu;
-  const amp = r.kind === 'wobble' ? 80 : 5, wl = r.kind === 'wobble' ? 104 : 210;
+  const amp = r.kind === 'wobble' ? 130 : 7, wl = r.kind === 'wobble' ? 160 : 300;
   const env = Math.max(Math.pow(Math.sin(Math.PI * u), 0.7), cr * Math.pow(1 - u, 0.5) * 0.9);
   return [x, amp * env * Math.sin(u * LEN * 2 * Math.PI / wl + 0.6)]; }
 
 // ---------- the whale: Hermite through keys (zero tangents = it settles at each key) ----------
-const WS = 0.58, REACH = 118 * WS + 30;                      // whale scale; nose-to-carried-item distance
-const P0 = [-130, -310], P1 = [130, -310], P2 = [430, -310], PICK = [TC(2).x - REACH, TC(2).y - 4];
+const WS = 0.8, REACH = 118 * WS + 48;                      // whale scale; nose-to-carried-item distance
+const P0 = [-50, -400], P1 = [300, -400], P2 = [640, -400], PICK = [TC(2).x - REACH, TC(2).y - 4];
 const K = [[0, ...P0], [10.5, ...P0], [T_PICK[0], ...PICK], [11.55, ...PICK], [T_SET[0], GX[2] + REACH, ICON_Y - 4], [12.8, ...P1],
   [20.45, ...P1], [T_PICK[1], ...PICK], [21.3, ...PICK], [T_SET[1], GX[3] + REACH, ICON_Y - 4], [22.5, ...P2], [DUR + 1, ...P2]];
 function herm(P, t) { const n = P.length; if (t <= P[0][0]) return { x: P[0][1], y: P[0][2] }; if (t >= P[n - 1][0]) return { x: P[n - 1][1], y: P[n - 1][2] };
@@ -79,8 +81,8 @@ function nose(t) { const p = wworld(t), a = heading(t), f = facing(t), rx = REAC
 // ---------- camera: close on the consequence, pull back under the title, one push-in on the build, release ----------
 function cam(t) {
   const pull = ramp(t, 4.0, 6.3, EASE.rest), push = ramp(t, 11.9, 12.8, EASE.warm), rel = ramp(t, 14.5, 15.3, EASE.warm), end = ramp(t, 22.8, DUR, EASE.rest);
-  let z = lerp(1.45, 1.2, pull), x = lerp(0, 20, pull); z = lerp(z, 1.45, push); x = lerp(x, -40, push); z = lerp(z, 1.2, rel); x = lerp(x, 20, rel);
-  return { x, y: 0, z: z + 0.03 * end, ax: 960, ay: 560 }; }
+  let z = lerp(1.12, 1.0, pull), x = 180; z = lerp(z, 1.3, push); x = lerp(x, 160, push); z = lerp(z, 1.0, rel); x = lerp(x, 180, rel);
+  return { x, y: 0, z: z + 0.03 * end, ax: 960, ay: 620 }; }
 const wpos = t => wworld(t);
 
 // ---------- text ----------
@@ -97,7 +99,6 @@ const READ = [
   cap('old', 12.75, 14.87, 'The old mistake must stop here now.'),
   { id: 'card', kind: 'card', in: 16.1, out: 18.55, fi: 0.3, fo: 0.3, text: 'Real run · 7 misses, 7 new checks', src: 'https://app.notion.com/p/3f2d50cfaf9381a88b04f3837efcac6a' },
   { id: 'src', kind: 'label', in: 16.1, out: 18.55, fi: 0.3, fo: 0.3, text: 'Source · Limits & escapes register' },
-  cap('font', 16.2, 18.55, 'A page asked for one font, got another.'),
   cap('limit', 18.6, 20.72, 'The next new kind still gets through.'),
   cap('notthis', 20.8, 22.92, 'Passing means no known failures. Not quality.'),
   cap('belief', 22.98, T_LOCK, 'Machines check every run. Misses become new checks.'),
@@ -107,11 +108,11 @@ const RD = id => READ.find(r => r.id === id), RA = (t, id) => { const r = RD(id)
 
 // ---------- icons: a paper disc on the lintel with one mark for the kind it checks ----------
 function iconMark(c, kind, x, y, r, a, lw) {
-  c.save(); c.globalAlpha *= a; c.strokeStyle = INK; c.lineWidth = lw; c.lineCap = 'round'; c.beginPath();
+  c.save(); c.globalAlpha *= a; c.strokeStyle = KM[KIND.indexOf(kind)]; c.lineWidth = lw; c.lineCap = 'round'; c.beginPath();
   if (kind === 'wobble') { for (let k = 0; k <= 24; k++) { const u = k / 24, px = x + (u - 0.5) * 1.3 * r, py = y + 0.3 * r * Math.sin(u * Math.PI * 3); k ? c.lineTo(px, py) : c.moveTo(px, py); } c.stroke(); }
   else if (kind === 'gap') { c.lineWidth = lw * 1.25; c.moveTo(x - 0.64 * r, y); c.lineTo(x - 0.16 * r, y); c.moveTo(x + 0.16 * r, y); c.lineTo(x + 0.64 * r, y); c.stroke(); }
-  else if (kind === 'colour') { const q = 0.56 * r; c.fillStyle = SLATE; c.beginPath(); c.arc(x, y, q, Math.PI / 2, Math.PI * 1.5); c.fill(); c.fillStyle = RAW; c.beginPath(); c.arc(x, y, q, -Math.PI / 2, Math.PI / 2); c.fill();
-    c.lineWidth = lw * 0.7; c.beginPath(); c.arc(x, y, q, 0, Math.PI * 2); c.moveTo(x, y - q); c.lineTo(x, y + q); c.stroke(); }
+  else if (kind === 'colour') { const q = 0.62 * r; c.fillStyle = SLATE; c.beginPath(); c.arc(x, y, q, 0, Math.PI * 2); c.fill();   // swatch of the expected colour
+    c.fillStyle = rgba(C.paper, 0.35); c.beginPath(); c.arc(x - q * 0.3, y - q * 0.3, q * 0.28, 0, Math.PI * 2); c.fill(); }
   else if (kind === 'back') { c.moveTo(x - 0.6 * r, y); c.lineTo(x + 0.5 * r, y); c.moveTo(x + 0.18 * r, y - 0.3 * r); c.lineTo(x + 0.56 * r, y); c.lineTo(x + 0.18 * r, y + 0.3 * r); c.stroke(); }
   c.restore(); }
 // a flag's cloth (triangle, raw sienna) morphing into an icon disc (m: 0 flag → 1 icon). f mirrors the cloth.
@@ -124,8 +125,8 @@ function flagToIcon(c, kind, x, y, r, m, f, a) {
     pts.push([x + lerp(tx, r * Math.cos(th), m), y + lerp(ty, r * Math.sin(th), m)]); }
   pts.sort((p, q) => Math.atan2(p[1] - y, p[0] - x) - Math.atan2(q[1] - y, q[0] - x));
   c.save(); c.globalAlpha *= a; c.beginPath(); pts.forEach(([px, py], j) => j ? c.lineTo(px, py) : c.moveTo(px, py)); c.closePath();
-  c.fillStyle = mix(RAW, C.paper, m); c.fill(); c.strokeStyle = mix(FAIL, INK, m); c.lineWidth = 2.5; c.lineJoin = 'round'; c.stroke(); c.restore();
-  if (m > 0.4) iconMark(c, kind, x, y, r, (m - 0.4) / 0.6, 3); }
+  c.fillStyle = mix(RAW, C.paper, m); c.fill(); c.strokeStyle = mix(FAIL, INK, m); c.lineWidth = lerp(3, 5, m); c.lineJoin = 'round'; c.stroke(); c.restore();
+  if (m > 0.4) iconMark(c, kind, x, y, r, (m - 0.4) / 0.6, 5); }
 
 function drawFrame(c, t) {
   t = clamp(t, 0, DUR);
@@ -147,8 +148,8 @@ function drawFrame(c, t) {
     c.fillStyle = WALL; c.fillRect(X0 - hw, top, 2 * hw, st - top); c.fillRect(X0 - hw, sb, 2 * hw, bot - sb);
     c.save(); c.beginPath(); c.rect(X0 - hw, top, 2 * hw, st - top); c.rect(X0 - hw, sb, 2 * hw, bot - sb); c.clip(); c.strokeStyle = HATCH; c.lineWidth = 1.5; c.beginPath();
     for (let y = top - 2 * hw; y < bot + 2 * hw; y += 13) { c.moveTo(X0 - hw, y); c.lineTo(X0 + hw, y - 2 * hw); } c.stroke(); c.restore();
-    c.fillStyle = C.paper; c.fillRect(X0 - hw, st, 2 * hw, sb - st);
-    if (flash > 0.02) { c.fillStyle = rgba(OLIVE, 0.45 * flash); c.fillRect(X0 - hw, st, 2 * hw, sb - st); }
+    c.fillStyle = mix(C.paper, KT[g], 0.26); c.fillRect(X0 - hw, st, 2 * hw, sb - st);
+    if (flash > 0.02) { c.fillStyle = rgba(KT[g], 0.38 * flash); c.fillRect(X0 - hw, st, 2 * hw, sb - st); }
     if (close > 0.02) { c.fillStyle = rgba(RAW, 0.22 * close); c.fillRect(X0 - hw, st, 2 * hw, sb - st); }
   });
 
@@ -158,14 +159,14 @@ function drawFrame(c, t) {
     const a = r.fade ? 1 - ramp(t, r.fade[0], r.fade[1], EASE.rest) : 1; if (a <= 0) continue;
     let glow = 0; for (const e of r.cross) if (t >= e.t) glow = Math.max(glow, Math.exp(-(t - e.t) * 1.6));
     const cr = r.tStop != null ? ramp(t, r.tStop, r.tStop + 0.28, EASE.glaser) : 0;
-    const base = r.kind === 'colour' ? RAW : SLATE, col = mix(mix(base, PASS, glow * (r.kind === 'colour' ? 0.15 : 0.6)), FAIL, cr * 0.5), lw = Math.max(6, 7.5 * z);
+    const base = r.kind === 'colour' ? RAW : SLATE, col = mix(mix(base, PASS, glow * (r.kind === 'colour' ? 0.15 : 0.6)), FAIL, cr * 0.5), lw = Math.max(9, 10 * z);
     const pts = []; for (let k = 0; k <= 90; k++) { const [x, y] = runPt(r, k / 90, h, cr); pts.push({ x, y, u: k / 90 }); }
     const vis = p => p.x <= MOUTH && !(r.kind === 'gap' && p.u > 0.36 && p.u < 0.64);
     const path = () => { c.beginPath(); let pen = false; for (const p of pts) { if (!vis(p)) { pen = false; continue; } pen ? c.lineTo(X(p.x), Y(p.y)) : c.moveTo(X(p.x), Y(p.y)); pen = true; } };
     if (glow > 0.02) { c.strokeStyle = rgba(OLIVE, (r.kind === 'colour' ? 0.22 : 0.32) * glow * a); c.lineWidth = lw * 3.4; path(); c.stroke(); }
     c.globalAlpha = a; c.strokeStyle = col; c.lineWidth = lw; path(); c.stroke();
     if (r.kind === 'back') { c.lineWidth = lw * 0.75; c.beginPath();       // chevrons pointing the wrong way
-      for (const u of [0.22, 0.5, 0.78]) { const [x, y] = runPt(r, u, h, 0); if (x + 8 > MOUTH) continue; const s = 13 * z;
+      for (const u of [0.22, 0.5, 0.78]) { const [x, y] = runPt(r, u, h, 0); if (x + 8 > MOUTH) continue; const s = 20 * z;
         c.moveTo(X(x) + s, Y(y) - s); c.lineTo(X(x) - s * 0.6, Y(y)); c.lineTo(X(x) + s, Y(y) + s); } c.stroke(); }
     c.globalAlpha = 1;
   }
@@ -173,9 +174,9 @@ function drawFrame(c, t) {
   // gate fronts: posts, lintel, foot, the closing bar, and the kind icon on the lintel
   GX.forEach((gx, g) => {
     const X0 = X(gx), grow = ramp(t, BUILT[g], BUILT[g] + 0.35, EASE.glaser); if (grow <= 0) return;
-    const flash = flashOf(g), close = closeOf(g), top = Y(-HT * grow), bot = Y(HT * grow), sA = Math.min(A, HT * grow), st = Y(-sA), sb = Y(sA), lw = Math.max(6, 7.5 * Math.min(z, 1.2));
+    const flash = flashOf(g), close = closeOf(g), top = Y(-HT * grow), bot = Y(HT * grow), sA = Math.min(A, HT * grow), st = Y(-sA), sb = Y(sA), lw = Math.max(8, 9 * Math.min(z, 1.2));
     const col = mix(mix(INK, PASS, flash * 0.8), FAIL, close * 0.6);
-    if (flash > 0.02) { c.strokeStyle = rgba(OLIVE, 0.22 * flash); c.lineWidth = lw * 4; c.strokeRect(X0 - hw, top, 2 * hw, bot - top); }
+    if (flash > 0.02) { c.strokeStyle = rgba(KT[g], 0.25 * flash); c.lineWidth = lw * 4; c.strokeRect(X0 - hw, top, 2 * hw, bot - top); }
     c.strokeStyle = col; c.lineWidth = lw; c.beginPath();
     c.moveTo(X0 - hw, st); c.lineTo(X0 - hw, top); c.moveTo(X0 + hw, st); c.lineTo(X0 + hw, top); c.moveTo(X0 - hw, sb); c.lineTo(X0 - hw, bot); c.moveTo(X0 + hw, sb); c.lineTo(X0 + hw, bot);
     c.moveTo(X0 - hw, st); c.lineTo(X0 + hw, st); c.moveTo(X0 - hw, sb); c.lineTo(X0 + hw, sb); c.stroke();
@@ -186,22 +187,22 @@ function drawFrame(c, t) {
     if (pg < 0 || t >= T_SET[pg]) {
       const fresh = pg >= 0 ? win(t, T_SET[pg], T_SET[pg] + 2.2, 0.05, 0.8) : 0, ring = mix(mix(INK, PASS, Math.max(flash, fresh) * 0.85), FAIL, close * 0.85);
       if (fresh > 0.02) { c.strokeStyle = rgba(OLIVE, 0.3 * fresh); c.lineWidth = 12 * z; c.beginPath(); c.arc(ix, iy, ir + 8 * z, 0, Math.PI * 2); c.stroke(); }
-      c.fillStyle = C.paper; c.strokeStyle = ring; c.lineWidth = Math.max(3, 3.2 * z); c.beginPath(); c.arc(ix, iy, ir, 0, Math.PI * 2); c.fill(); c.stroke();
-      iconMark(c, KIND[g], ix, iy, ir, 1, Math.max(3, 3.4 * z));
+      c.fillStyle = C.paper; c.strokeStyle = ring; c.lineWidth = Math.max(5, 5 * z); c.beginPath(); c.arc(ix, iy, ir, 0, Math.PI * 2); c.fill(); c.stroke();
+      iconMark(c, KIND[g], ix, iy, ir, 1, Math.max(5, 5.5 * z));
     }
     // a pass leaves a small olive tick beside the icon
     let tk = 0; for (const e of PASSES) if (e.g === g && t >= e.t) tk = Math.max(tk, win(t, e.t, e.t + 0.95, 0.08, 0.4));
-    if (tk > 0.02) { const s = 14 * z, tx = ix + ir + 22 * z, ty = iy; c.strokeStyle = rgba(PASS, tk); c.lineWidth = 5 * z; c.beginPath(); c.moveTo(tx - s, ty); c.lineTo(tx - s * 0.2, ty + s * 0.8); c.lineTo(tx + s * 1.1, ty - s); c.stroke(); }
+    if (tk > 0.02) { const s = 16 * z, tx = ix + ir + 26 * z, ty = iy; c.strokeStyle = rgba(PASS, tk); c.lineWidth = 5 * z; c.beginPath(); c.moveTo(tx - s, ty); c.lineTo(tx - s * 0.2, ty + s * 0.8); c.lineTo(tx + s * 1.1, ty - s); c.stroke(); }
   });
 
   // the pod: receives the work; answers ✓ or ✕ above its head
   { let shake = 0, glow = 0, cur = null; for (const e of ANSWERS) if (t >= e.t) { cur = e; const d = t - e.t; if (!e.ok) shake = 6 * Math.sin(d * 42) * Math.exp(-d * 7); else glow = win(t, e.t, e.t + 1.2, 0.1, 0.6); }
     const px = X(PODX) + shake * z, py = Y(0);
-    c.save(); c.translate(px, py); c.scale(-1, 1); KH.drawPod(c, 0, 0, 0, 104 * z, PODCOL, { glow: glow * 0.8 }); c.restore();
+    c.save(); c.translate(px, py); c.scale(-1, 1); KH.drawPod(c, 0, 0, 0, PODS * z, PODCOL, { glow: glow * 0.8 }); c.restore();
     if (cur) { const hold = cur.ok && cur.t > 24 ? DUR + 1 : cur.t + 1.7, a = win(t, cur.t, hold, 0.08, 0.3), pop = 1 + 0.18 * Math.exp(-(t - cur.t) * 8);
-      if (a > 0) { const cx = X(PODX), cy = Y(-112), R = 34 * z * pop, m = 14 * z * pop;
+      if (a > 0) { const cx = X(PODX), cy = Y(-160), R = 46 * z * pop, m = 19 * z * pop;
         c.save(); c.globalAlpha = a; c.fillStyle = C.paper; c.strokeStyle = cur.ok ? PASS : FAIL; c.lineWidth = 3; c.beginPath(); c.arc(cx, cy, R, 0, Math.PI * 2); c.fill(); c.stroke();
-        c.lineWidth = 6.5 * z; c.beginPath();
+        c.lineWidth = 8 * z; c.beginPath();
         if (cur.ok) { c.moveTo(cx - m, cy + 1); c.lineTo(cx - m * 0.25, cy + m * 0.8); c.lineTo(cx + m * 1.05, cy - m * 0.9); }
         else { c.moveTo(cx - m, cy - m); c.lineTo(cx + m, cy + m); c.moveTo(cx + m, cy - m); c.lineTo(cx - m, cy + m); }
         c.stroke(); c.restore(); } } }
@@ -209,10 +210,10 @@ function drawFrame(c, t) {
   // the flags: one per ✕, falling onto a pile under the pod
   for (const F of FLAGS) { if (t < F.t) continue; if (F.pick != null && t >= T_PICK[F.pick]) continue;
     const a = F.gone ? 1 - ramp(t, F.gone[0], F.gone[1], EASE.rest) : 1; if (a <= 0) continue;
-    const u = ramp(t, F.t, F.t + 0.38, EASE.glaser), fx = lerp(PODX - 40, SLOTX[F.slot], u), dy = lerp(-170, 0, u), lean = LEAN[F.slot];
+    const u = ramp(t, F.t, F.t + 0.38, EASE.glaser), fx = lerp(PODX - 40, SLOTX[F.slot], u), dy = lerp(-260, 0, u), lean = LEAN[F.slot];
     c.save(); c.globalAlpha = a * clamp((t - F.t) / 0.08); c.translate(X(fx), Y(FBASE + dy)); c.rotate(lean); c.scale(z * FS, z * FS);
-    c.strokeStyle = INK; c.lineWidth = 3.4; c.beginPath(); c.moveTo(0, 0); c.lineTo(0, FTOP - FBASE); c.stroke();
-    c.fillStyle = RAW; c.strokeStyle = FAIL; c.lineWidth = 2.5; c.beginPath(); c.moveTo(0, FTOP - FBASE); c.lineTo(36, FTOP - FBASE + 12); c.lineTo(0, FTOP - FBASE + 24); c.closePath(); c.fill(); c.stroke(); c.restore(); }
+    c.strokeStyle = INK; c.lineWidth = 2.6; c.beginPath(); c.moveTo(0, 0); c.lineTo(0, FTOP - FBASE); c.stroke();
+    c.fillStyle = RAW; c.strokeStyle = FAIL; c.lineWidth = 1.6; c.beginPath(); c.moveTo(0, FTOP - FBASE); c.lineTo(36, FTOP - FBASE + 12); c.lineTo(0, FTOP - FBASE + 24); c.closePath(); c.fill(); c.stroke(); c.restore(); }
 
   // the little whale (and what it carries)
   { const p = wworld(t), ang = heading(t), v = wvel(t), sp = Math.hypot(v.x, v.y), moving = clamp(sp / 400), f = facing(t);

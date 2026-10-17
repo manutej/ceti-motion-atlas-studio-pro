@@ -16,7 +16,7 @@ v2 is kept as `film-v2.js`, `score-v2.py`, `NOTES-v2.md`, `sheet-v2.png`. Brief:
 | 8.65–10.5 | KINDS ×3 | The wrong colour comes again, faster (10.04 ✕, 10.51 ✕). Passes both gates both times; the flag pile grows to three. | "No gate looks at colour." |
 | 10.5–12.7 | MOVE | The whale picks the top flag (11.25), turns, and folds it into a colour icon. One push-in (z 1.45). The posts rise and the icon lands on the new lintel with a squash (12.35). | "Fold the miss into a new check." |
 | 12.75–15.7 | MOVE | The old sienna run is replayed: it passes wobble and gap, then stops at the colour gate (13.78; spark). The other flags fade. The fixed slate run threads all three, and the same pod answers ✓ (15.68). | "The old mistake must stop here now." |
-| 16.1–18.55 | CASE | A Real run card: "7 misses, 7 new checks", sourced to the Limits & escapes register (Notion). | "A page asked for one font, got another." |
+| 16.1–18.55 | CASE | A Real run card: "7 misses, 7 new checks", sourced to the Limits & escapes register (Notion). The card stands alone, with no caption under it. | — |
 | 18.6–20.7 | LIMIT | A backwards run (chevrons pointing the wrong way) glows through all three gates. Pod ✕ (19.97), and a fresh flag falls. The thunk is left unresolved. | "The next new kind still gets through." |
 | 20.8–22.9 | not-this | The whale picks the fresh flag and folds it into an arrow icon. A fourth gate stands (22.05). | "Passing means no known failures. Not quality." |
 | 22.98–25.25 | PAYOFF / BELIEF | A good run threads all four gates. The same pod answers ✓ (24.75), with whale spark and delight. ✓ holds to the end. | "Machines check every run. Misses become new checks." |
@@ -28,7 +28,7 @@ v2 is kept as `film-v2.js`, `score-v2.py`, `NOTES-v2.md`, `sheet-v2.png`. Brief:
 - FELT: `hook.sb-07-01@v1` + `problem.sb-07-01@v1`. **Changed:** the whale watches rather than stamping. The gates' olive ticks are the "stamps", so the gate is pictured before it is named.
 - KINDS: `metaphor.sb-07-01@v1` (icons on lintels, equal openings), cut to two kinds at the start. The three-times device comes from sb-07-01 and sb-07-03 WHY, with the sb-07-03 flag pile.
 - MOVE: `mechanism.sb-07-03@v1` (pick flag, fold into icon, set on a new lintel, replay the old mistake, fixed run passes). **Changed:** "screen/page" became "wobble, gap → colour", so the escape is a visible difference of *kind* (REVIEW P1-1/P1-2). Dropped "A miss that slipped by is an escape." (no time, and it is jargon). The fin-point beat is cut.
-- CASE: `case.sb-07-01@v1`. The number is only on the Real run card, with its source. The font escape is told in plain words in the caption.
+- CASE: `case.sb-07-01@v1`. The number is only on the Real run card, with its source. **Changed:** the font caption ("A page asked for one font, got another.") was dropped so that only two text items are on screen at once. The font escape survives as the film's own picture: a smooth run whose colour no gate checked.
 - LIMIT: `limit.sb-07-03@v1` (a picture, then a fresh flag falls). **Changed:** "pale print" became a *backwards* run, because a pale run would be caught by the new colour gate (the risk sb-07-03 itself flagged). The words are kept.
 - Not-this: `notthis.sb-07-01@v1`, verbatim. Ending: `ending.sb-07-01@v1` (pod-answers-yes: the flag becomes the fourth gate's icon, and the same pod answers ✓). **Changed:** the backwards run is not "turned round". A good run threads all four gates instead (25 s budget). Belief: `belief.sb-07-01@v1`, verbatim.
 
@@ -43,10 +43,17 @@ v2 is kept as `film-v2.js`, `score-v2.py`, `NOTES-v2.md`, `sheet-v2.png`. Brief:
 - P3-3/P3-4 (sound): one bell per kind (four pitches). The escape's bells are 30 cents flat. ✕ is the bell muffled to a thunk. The new gate rings its own bell on landing.
 - The score is −16.2 LUFS with true peak −1.2 dBTP.
 
+## Pass 2 (coordinator: "reads small")
+
+- Layout ×1.3–1.6. Gates are at x −560/−220/120/460 (340 apart), and the pod is at 863. Each gate is 400 px tall on screen at z 1.0. Icons are 76 px across with 5 px strokes. Runs are ≥ 9 px. The pod is 140 px, its answer chip 92 px, and the flags are ×2.
+- Run speeds are scaled ×340/260, so every gate crossing, stop and answer stays at the same time.
+- Camera: FELT z 1.12, story z 1.0 centred at x 180 (the gates fill about 12–65% of the width and the pod sits at about 85%), push-in z 1.3 on the build. ay is 620.
+- Each kind has its own tint. The tint lightly fills that gate's opening (26%) and its pass glow uses the same colour: wobble = olive, gap = slate, colour = ivory buff × driftwood, direction = mist. The icon marks use the same colours.
+- The colour gate's icon is now a solid swatch of the EXPECTED colour (slate, the good runs' colour), so the sienna escape visibly mismatches it. The brief said "sienna swatch", but a sienna swatch would say sienna is expected.
+
 ## Known weaknesses
 
 - About 27.4 s, which is over the "about 26 s" fact but inside the 25–30 s Goal. Read-time floors on 11 captions set the length.
-- During CASE three text items are legible (card, its source line, caption). The source line is part of the card, but strict N7 would count it.
 - The pod is a dark slate fish shape. The link "pod expects slate, got sienna" is implicit, carried by the half-slate / half-sienna colour icon.
 - The FELT framing (z 1.45) and the final framing (z 1.23) differ by 17%, just outside N12's 15%.
 - No `storyboards/final/gate.json`. The sb60 schema is for 55–65 s boards, and this brief keeps edits inside `gate/`.
