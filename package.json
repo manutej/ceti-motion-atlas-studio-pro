@@ -1,0 +1,31 @@
+{
+  "name": "ceti-motion-atlas-studio-pro",
+  "version": "4.0.0",
+  "description": "CETI Motion Atlas Studio Pro — Transcendental Motion Graphic & Narrative Design Studio with Sanzo Wada 348 Harmonic Pinning, 8 Parametric Character Archetypes, Infinite-Zoom Living Canvas Sheaf DAG, and RFC 7636 OAuth 2.0 PKCE Live Storyboard Enhancer",
+  "main": "studio-ui.js",
+  "scripts": {
+    "start": "node scripts/oauth-bridge-server.mjs",
+    "build": "node scripts/build-package.mjs",
+    "validate": "node scripts/validate-motion-studio.mjs",
+    "selftest": "node scripts/validate-motion-studio.mjs --selftest",
+    "test": "node scripts/validate-motion-studio.mjs --selftest"
+  },
+  "keywords": [
+    "motion-graphics",
+    "sanzo-wada",
+    "saul-bass",
+    "milton-glaser",
+    "storyboard",
+    "infinite-canvas",
+    "oauth2-pkce",
+    "hyperframes",
+    "remotion",
+    "animejs",
+    "sheaf-cohomology"
+  ],
+  "author": "CETI Design Studio",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
