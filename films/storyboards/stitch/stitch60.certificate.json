@@ -1,0 +1,126 @@
+{
+ "verdict": "GREEN",
+ "library_hash": "7a59d2381909",
+ "term_hash": "9cf7d02350fd",
+ "prompt_hash": "c19614112251",
+ "tokens": {
+  "root": 1285
+ },
+ "budget_hint": {},
+ "atoms": {
+  "belief.sb-04-01": 1,
+  "c.captions-8": 1,
+  "c.kh-style": 1,
+  "c.limit-shown": 1,
+  "c.one-focal": 1,
+  "c.problem-first": 1,
+  "c.slow-down": 1,
+  "c.sourced-numbers": 1,
+  "c.symbol-before-word": 1,
+  "case.sb-04-01": 1,
+  "caution.case.sb-04-01": 1,
+  "contract.build-brief": 1,
+  "ending.sb-04-01": 1,
+  "fact.stitch60": 1,
+  "goal.stitch60": 1,
+  "hint.sb-04-01": 1,
+  "hook.sb-04-01": 1,
+  "limit.sb-04-01": 1,
+  "mechanism.sb-04-01": 1,
+  "metaphor.sb-04-01": 1,
+  "notthis.sb-04-01": 1,
+  "problem.sb-04-01": 1,
+  "role.director": 1,
+  "stakes.sb-04-01": 1,
+  "why.sb-04-01": 1
+ },
+ "briefs": {},
+ "findings": [
+  {
+   "law": "atom.status",
+   "severity": "NOTE",
+   "where": "hook.sb-04-01",
+   "detail": "draft atom (unverified)"
+  },
+  {
+   "law": "atom.status",
+   "severity": "NOTE",
+   "where": "problem.sb-04-01",
+   "detail": "draft atom (unverified)"
+  },
+  {
+   "law": "atom.status",
+   "severity": "NOTE",
+   "where": "why.sb-04-01",
+   "detail": "draft atom (unverified)"
+  },
+  {
+   "law": "atom.status",
+   "severity": "NOTE",
+   "where": "stakes.sb-04-01",
+   "detail": "draft atom (unverified)"
+  },
+  {
+   "law": "atom.status",
+   "severity": "NOTE",
+   "where": "hint.sb-04-01",
+   "detail": "draft atom (unverified)"
+  },
+  {
+   "law": "atom.status",
+   "severity": "NOTE",
+   "where": "metaphor.sb-04-01",
+   "detail": "draft atom (unverified)"
+  },
+  {
+   "law": "atom.status",
+   "severity": "NOTE",
+   "where": "ending.sb-04-01",
+   "detail": "draft atom (unverified)"
+  },
+  {
+   "law": "atom.status",
+   "severity": "NOTE",
+   "where": "belief.sb-04-01",
+   "detail": "draft atom (unverified)"
+  },
+  {
+   "law": "atom.status",
+   "severity": "NOTE",
+   "where": "mechanism.sb-04-01",
+   "detail": "draft atom (unverified)"
+  },
+  {
+   "law": "atom.status",
+   "severity": "NOTE",
+   "where": "case.sb-04-01",
+   "detail": "draft atom (unverified)"
+  },
+  {
+   "law": "atom.status",
+   "severity": "NOTE",
+   "where": "limit.sb-04-01",
+   "detail": "draft atom (unverified)"
+  },
+  {
+   "law": "atom.status",
+   "severity": "NOTE",
+   "where": "notthis.sb-04-01",
+   "detail": "draft atom (unverified)"
+  },
+  {
+   "law": "atom.status",
+   "severity": "NOTE",
+   "where": "caution.case.sb-04-01",
+   "detail": "draft atom (unverified)"
+  }
+ ],
+ "subterms": [
+  "0dcb5a1faf04",
+  "5a4dd7812bed",
+  "6a9f1c8e006a",
+  "9cf7d02350fd",
+  "b25f02555b5b"
+ ],
+ "term": "(film60 @goal.stitch60 @fact.stitch60 (glue (seq @hook.sb-04-01 @problem.sb-04-01 @why.sb-04-01 @stakes.sb-04-01 @hint.sb-04-01 @metaphor.sb-04-01 @ending.sb-04-01 @belief.sb-04-01) @mechanism.sb-04-01 @case.sb-04-01 (bag @limit.sb-04-01 @notthis.sb-04-01 @caution.case.sb-04-01)))"
+}

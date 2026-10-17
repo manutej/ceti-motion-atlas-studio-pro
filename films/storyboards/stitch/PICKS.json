@@ -1,0 +1,297 @@
+{
+ "conserve60": {
+  "belief": {
+   "atom": "belief.sb-03-01",
+   "combined": 1.44,
+   "seats_agree": true,
+   "why": [
+    "A: Actionable Monday; 'keep' weaker than 'never change'.",
+    "B: Actionable Monday, but drops 'check every edit'; append it."
+   ]
+  },
+  "case": {
+   "atom": "case.sb-03-01",
+   "combined": 1.73,
+   "seats_agree": true,
+   "why": [
+    "A: Real merge, Memory graph map source, exact capability match.",
+    "B: Verified in Notion: 548 entities, 2,933 triples, exact 0, prov 0.988."
+   ]
+  },
+  "ending": {
+   "atom": "ending.sb-03-01",
+   "combined": 1.64,
+   "seats_agree": true,
+   "why": [
+    "A: Same thread, same dot, now lands: opening visibly undone.",
+    "B: Exact FELT callback: same thread now lands, pod flips to tick."
+   ]
+  },
+  "hint": {
+   "atom": "hint.sb-03-01",
+   "combined": 1.7,
+   "seats_agree": true,
+   "why": [
+    "A: States the move exactly, plain verbs, seven words.",
+    "B: States the move plainly, matches worked mapping and goal verbatim in spirit."
+   ]
+  },
+  "hook": {
+   "atom": "hook.sb-03-01",
+   "combined": 1.6,
+   "seats_agree": true,
+   "why": [
+    "A: Link to nowhere: felt in one second, whale bumps empty air.",
+    "B: Consequence in 3 s: thread ends in air. Viewer words, no jargon."
+   ]
+  },
+  "limit": {
+   "atom": "limit.sb-03-01",
+   "combined": 1.67,
+   "seats_agree": true,
+   "why": [
+    "A: Shown picture: 13 copper ticks slip past pins; sourced audit.",
+    "B: Pictured 47/60 audit; label it the atlas audit, lab delta unaudited."
+   ]
+  },
+  "mechanism": {
+   "atom": "mechanism.sb-03-01",
+   "combined": 1.6,
+   "seats_agree": true,
+   "why": [
+    "A: Pin, edit, tug, snap back: obvious; gate adds one extra symbol.",
+    "B: Pin, check-before-save, ledger tick: faithful to noether-wiki gates, nothing decorative."
+   ]
+  },
+  "metaphor": {
+   "atom": "metaphor.sb-03-01",
+   "combined": 1.67,
+   "seats_agree": true,
+   "why": [
+    "A: Pins on a bending line: simplest symbol, acts before naming.",
+    "B: Pins are the real mechanism: chosen laws held while content bends."
+   ]
+  },
+  "notthis": {
+   "atom": "notthis.sb-03-01",
+   "combined": 1.011,
+   "seats_agree": false,
+   "why": []
+  },
+  "problem": {
+   "atom": "problem.sb-03-01",
+   "combined": 1.52,
+   "seats_agree": true,
+   "why": [
+    "A: Everyday words, first person, every wiki reader has said it.",
+    "B: Plain link-rot pain; covers one of three target breaks, not all three."
+   ]
+  },
+  "stakes": {
+   "atom": "stakes.sb-03-01",
+   "combined": 1.46,
+   "seats_agree": true,
+   "why": [
+    "A: Wrong answer travels to new hires and AI; slightly long.",
+    "B: Wrong answer travels via new hires and AI helpers; concrete, not inflated."
+   ]
+  },
+  "why": {
+   "atom": "why.sb-03-01",
+   "combined": 1.54,
+   "seats_agree": true,
+   "why": [
+    "A: Threads snapping three times reads as keeps-happening; cause in plain words.",
+    "B: One cause repeating: saved edits nobody checks. Three-times device intact."
+   ]
+  }
+ },
+ "stitch60": {
+  "belief": {
+   "atom": "belief.sb-04-01",
+   "combined": 1.5,
+   "seats_agree": true,
+   "why": [
+    "A: Actionable; drops the seam-check half of the move.",
+    "B: Monday-actionable; misses the check-at-joint half of the move."
+   ]
+  },
+  "case": {
+   "atom": "case.sb-04-01",
+   "combined": 1.7,
+   "seats_agree": true,
+   "why": [
+    "A: Real Context Atoms run, numbers on card, right capability.",
+    "B: Verified Notion: 41/26/41 atoms GREEN, 9-atom spine; spine still Draft."
+   ]
+  },
+  "ending": {
+   "atom": "ending.sb-04-01",
+   "combined": 1.58,
+   "seats_agree": true,
+   "why": [
+    "A: Same two cards, draft drifts aside, pod ticks: clean callback.",
+    "B: Same cards, now tabbed; only decision reaches pod. Clean callback."
+   ]
+  },
+  "hint": {
+   "atom": "hint.sb-04-01",
+   "combined": 1.54,
+   "seats_agree": true,
+   "why": [
+    "A: Plain move; misses 'check where they join' half.",
+    "B: Plain verb phrase; add 'check where they join' to cover seams."
+   ]
+  },
+  "hook": {
+   "atom": "hook.sb-04-01",
+   "combined": 1.6,
+   "seats_agree": true,
+   "why": [
+    "A: Draft and decision tossed into one heap; needs a caption added.",
+    "B: Draft and decision vanish into one pasted card: the goal's exact pain."
+   ]
+  },
+  "limit": {
+   "atom": "limit.sb-04-01",
+   "combined": 1.68,
+   "seats_agree": true,
+   "why": [
+    "A: Wrong date labelled decided still fits: honest, pictured.",
+    "B: Wrong date labelled decided snaps in: consistency-not-correctness pictured."
+   ]
+  },
+  "mechanism": {
+   "atom": "mechanism.sb-04-01",
+   "combined": 1.59,
+   "seats_agree": true,
+   "why": [
+    "A: Draft refused at decision socket is the clearest refusal beat.",
+    "B: Refuse-at-joint is real typed plugging; draft/decided tabs are analogy, not engine types."
+   ]
+  },
+  "metaphor": {
+   "atom": "metaphor.sb-04-01",
+   "combined": 1.66,
+   "seats_agree": true,
+   "why": [
+    "A: Coloured tabs into matching sockets: reads with sound off.",
+    "B: Tabs plus socket tree mirrors typed plugging; one symbol, one meaning."
+   ]
+  },
+  "notthis": {
+   "atom": "notthis.sb-04-01",
+   "combined": 1.7,
+   "seats_agree": true,
+   "why": [
+    "A: Six words, exact misconception, no jargon.",
+    "B: Exact misconception from RESEARCH section 1, seven plain words."
+   ]
+  },
+  "problem": {
+   "atom": "problem.sb-04-01",
+   "combined": 1.74,
+   "seats_agree": true,
+   "why": [
+    "A: Best problem line in the set; exactly the goal's pain.",
+    "B: Most recognisable stitch pain; viewer words, no jargon."
+   ]
+  },
+  "stakes": {
+   "atom": "stakes.sb-04-01",
+   "combined": 1.56,
+   "seats_agree": true,
+   "why": [
+    "A: Decision reversed in front of client: concrete, felt.",
+    "B: Decision reversed before the client; concrete trust cost."
+   ]
+  },
+  "why": {
+   "atom": "why.sb-04-01",
+   "combined": 1.6,
+   "seats_agree": true,
+   "why": [
+    "A: Look-alike cards, pod grabs wrong one thrice; cause obvious.",
+    "B: Look-alike cards, pod grabs wrong one thrice: cause shown, not said."
+   ]
+  }
+ },
+ "gate-v3": {
+  "belief": {
+   "atom": "belief.sb-07-01",
+   "combined": 1.68,
+   "seats_agree": true,
+   "why": [
+    "A: Eight words, plain, states both halves of the move.",
+    "B: Matches REVIEW belief; eight words, actionable."
+   ]
+  },
+  "case": {
+   "atom": "case.sb-07-01",
+   "combined": 1.418,
+   "seats_agree": false,
+   "why": [
+    "B: Escapes register: 7 misses, each now caught by a different kind of check."
+   ]
+  },
+  "ending": {
+   "atom": "ending.sb-07-01",
+   "combined": 1.261,
+   "seats_agree": false,
+   "why": [
+    "A: Flag becomes new gate, same pod now ticks: undoes opening."
+   ]
+  },
+  "hook": {
+   "atom": "hook.sb-07-01",
+   "combined": 1.58,
+   "seats_agree": true,
+   "why": [
+    "A: Ticked smooth line, pod says no: pain in three seconds.",
+    "B: Passed every check, pod answers cross: consequence first, REVIEW P1-3 satisfied."
+   ]
+  },
+  "limit": {
+   "atom": "limit.sb-07-03",
+   "combined": 1.037,
+   "seats_agree": false,
+   "why": []
+  },
+  "mechanism": {
+   "atom": "mechanism.sb-07-03",
+   "combined": 1.62,
+   "seats_agree": true,
+   "why": [
+    "A: Miss folded into new icon gate; adapt page-edge to colour lens.",
+    "B: Whale folds flag into new gate icon; old miss replayed stops. P2-5 fixed."
+   ]
+  },
+  "metaphor": {
+   "atom": "metaphor.sb-07-01",
+   "combined": 1.74,
+   "seats_agree": true,
+   "why": [
+    "A: Lintel icons make kind visible; fixes the v2 slot error.",
+    "B: Gates differ in kind via lintel icons: fixes REVIEW P1-1 at root."
+   ]
+  },
+  "notthis": {
+   "atom": "notthis.sb-07-01",
+   "combined": 1.72,
+   "seats_agree": true,
+   "why": [
+    "A: Review-endorsed seven words; correct caution, no 'proves'.",
+    "B: Exact REVIEW P2-3 rewrite; avoids 'proves'; seven words."
+   ]
+  },
+  "problem": {
+   "atom": "problem.sb-07-01",
+   "combined": 1.62,
+   "seats_agree": true,
+   "why": [
+    "A: Customer found the bug: universal, plain, consequence lands.",
+    "B: Near-verbatim REVIEW-v3 FELT line; customer-felt pain."
+   ]
+  }
+ }
+}

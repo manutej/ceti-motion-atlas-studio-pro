@@ -10,8 +10,18 @@ import json, glob, os, subprocess, collections, sys
 HERE = os.path.dirname(os.path.abspath(__file__)); SNAP = os.path.join(HERE, 'atoms.snapshot.json')
 STITCH = os.environ.get('STITCH', '/root/.claude/skills/synced/ef36a148-c3ad-432f-8379-66f6ce82c4f3_2955edd5-b0fb-4198-84b4-db3d4bc035fd/operadic-stitch/scripts/stitch.py')
 seats = [json.load(open(f)) for f in sorted(glob.glob(os.path.join(HERE, 'JURY-*.json')))]
-flagged = {f['atom'] for s in seats for f in s.get('flags', [])}
-ids = {a['id'] for a in json.load(open(SNAP))['atoms']}
+CAUTION = lambda t: t.strip().lower().startswith(('not an error', 'caution'))
+flagged = {f['atom'] for s in seats for f in s.get('flags', []) if not CAUTION(f['problem'])}   # blocking flags: never stitched
+cautions = {}                                                                                  # cautions: stitched WITH a constraint atom
+for s in seats:
+    for f in s.get('flags', []):
+        if CAUTION(f['problem']): cautions.setdefault(f['atom'], []).append(f"{s['seat']}: {f['problem']}")
+snap = json.load(open(SNAP)); ids = {a['id'] for a in snap['atoms']}
+for atom, notes in sorted(cautions.items()):   # each caution becomes a Constraint atom, scoped like the piece it guards
+    src = next(a for a in snap['atoms'] if a['id'] == atom)
+    snap['atoms'].append({'id': 'caution.' + atom, 'kind': 'Constraint', 'scope': src['scope'], 'status': 'draft', 'version': 1, 'priority': 9,
+                          'body': f'Jury caution on {atom}: ' + ' / '.join(notes)})
+SNAP = os.path.join(HERE, 'atoms.final.snapshot.json'); json.dump(snap, open(SNAP, 'w'), indent=1, ensure_ascii=False, sort_keys=True)
 picks, report = {}, {}
 for target in ('conserve60', 'stitch60', 'gate-v3'):
     slots = sorted({sl for s in seats for sl in s['targets'].get(target, {})})
@@ -34,6 +44,7 @@ for target, p in picks.items():
     ex = ' '.join('@' + p[s]['atom'] for s in EX if s in p)
     rest = ' '.join('@' + p[s]['atom'] for s in ('mechanism', 'case') if s in p)
     cons = ' '.join('@' + p[s]['atom'] for s in ('limit', 'notthis') if s in p)
+    cons += ''.join(' @caution.' + p[s]['atom'] for s in p if p[s]['atom'] in cautions)
     goal = {'gate-v3': 'gate-v3'}.get(target, target)
     term = f"(film60 @goal.{goal} @fact.{goal} (glue (seq {ex}) {rest} (bag {cons})))"
     r = subprocess.run(['python3', STITCH, 'compose', SNAP, term, '--provenance', '--json'], capture_output=True, text=True)

@@ -1,0 +1,455 @@
+{
+ "seat": "B",
+ "lens": "Honesty and mechanism fidelity: real mechanism, accuracy cautions, sourced numbers spot-checked (8 WebFetch, 3 Notion reads), real limits",
+ "verification": {
+  "webfetch": [
+   "JEV-works: 62.6/95.1/91.8/0.82-0.91/94%/117-119 confirmed",
+   "sheaf-knowledge-studio: 377pp/291 decl/30-30/33-33 confirmed",
+   "craft: ~19.7% USENIX 2025 confirmed",
+   "categorical-meta-prompting: 100% uncited, no method",
+   "wiring-and-the-whole: A/B/C undefined",
+   "Lean4Agent: 11.94% avg, metric unnamed",
+   "jev-tape: 0 duplicate applies, 0 TypeSafe POSTs confirmed; 'Writes stay parked'",
+   "sheaf-port: 6 parts/4 teal/cap 120/'not permission to merge' confirmed"
+  ],
+  "notion": [
+   "Memory graph map: 548/2,933/exact 0/prov 0.988/types 13->17/47 of 60 confirmed",
+   "Context Atoms: 41/26/41 GREEN, 9-atom spine to verify confirmed",
+   "Whale Line brief v1: 3 fixes before render, 7 gates incl. contact_sheet 'reviewed'"
+  ]
+ },
+ "targets": {
+  "conserve60": {
+   "hook": {
+    "pick": "hook.sb-03-01",
+    "score": 0.78,
+    "why": "Consequence in 3 s: thread ends in air. Viewer words, no jargon.",
+    "runner_up": "hook.sb-03-09"
+   },
+   "problem": {
+    "pick": "problem.sb-03-01",
+    "score": 0.72,
+    "why": "Plain link-rot pain; covers one of three target breaks, not all three.",
+    "runner_up": "problem.sb-03-09"
+   },
+   "why": {
+    "pick": "why.sb-03-01",
+    "score": 0.78,
+    "why": "One cause repeating: saved edits nobody checks. Three-times device intact.",
+    "runner_up": "why.sb-03-08"
+   },
+   "stakes": {
+    "pick": "stakes.sb-03-01",
+    "score": 0.74,
+    "why": "Wrong answer travels via new hires and AI helpers; concrete, not inflated.",
+    "runner_up": "stakes.sb-03-09"
+   },
+   "hint": {
+    "pick": "hint.sb-03-01",
+    "score": 0.84,
+    "why": "States the move plainly, matches worked mapping and goal verbatim in spirit.",
+    "runner_up": "hint.sb-03-09"
+   },
+   "metaphor": {
+    "pick": "metaphor.sb-03-01",
+    "score": 0.82,
+    "why": "Pins are the real mechanism: chosen laws held while content bends.",
+    "runner_up": "metaphor.sb-03-08"
+   },
+   "mechanism": {
+    "pick": "mechanism.sb-03-01",
+    "score": 0.8,
+    "why": "Pin, check-before-save, ledger tick: faithful to noether-wiki gates, nothing decorative.",
+    "runner_up": "mechanism.sb-03-09"
+   },
+   "case": {
+    "pick": "case.sb-03-01",
+    "score": 0.88,
+    "why": "Verified in Notion: 548 entities, 2,933 triples, exact 0, prov 0.988.",
+    "runner_up": "case.sb-03-09"
+   },
+   "limit": {
+    "pick": "limit.sb-03-01",
+    "score": 0.85,
+    "why": "Pictured 47/60 audit; label it the atlas audit, lab delta unaudited.",
+    "runner_up": "limit.sb-03-03"
+   },
+   "notthis": {
+    "pick": "notthis.sb-03-05",
+    "score": 0.86,
+    "why": "Carries the mandatory 'Noether-inspired' caution in his own direction-reversed framing.",
+    "runner_up": "notthis.sb-03-01"
+   },
+   "ending": {
+    "pick": "ending.sb-03-01",
+    "score": 0.76,
+    "why": "Exact FELT callback: same thread now lands, pod flips to tick.",
+    "runner_up": "ending.sb-03-09"
+   },
+   "belief": {
+    "pick": "belief.sb-03-01",
+    "score": 0.68,
+    "why": "Actionable Monday, but drops 'check every edit'; append it.",
+    "runner_up": "belief.sb-03-09"
+   }
+  },
+  "stitch60": {
+   "hook": {
+    "pick": "hook.sb-04-01",
+    "score": 0.82,
+    "why": "Draft and decision vanish into one pasted card: the goal's exact pain.",
+    "runner_up": "hook.sb-08-02"
+   },
+   "problem": {
+    "pick": "problem.sb-04-01",
+    "score": 0.86,
+    "why": "Most recognisable stitch pain; viewer words, no jargon.",
+    "runner_up": "problem.sb-04-03"
+   },
+   "why": {
+    "pick": "why.sb-04-01",
+    "score": 0.78,
+    "why": "Look-alike cards, pod grabs wrong one thrice: cause shown, not said.",
+    "runner_up": "why.sb-08-02"
+   },
+   "stakes": {
+    "pick": "stakes.sb-04-01",
+    "score": 0.74,
+    "why": "Decision reversed before the client; concrete trust cost.",
+    "runner_up": "stakes.sb-04-04"
+   },
+   "hint": {
+    "pick": "hint.sb-04-01",
+    "score": 0.74,
+    "why": "Plain verb phrase; add 'check where they join' to cover seams.",
+    "runner_up": "hint.sb-04-03"
+   },
+   "metaphor": {
+    "pick": "metaphor.sb-04-01",
+    "score": 0.8,
+    "why": "Tabs plus socket tree mirrors typed plugging; one symbol, one meaning.",
+    "runner_up": "metaphor.sb-04-03"
+   },
+   "mechanism": {
+    "pick": "mechanism.sb-04-01",
+    "score": 0.75,
+    "why": "Refuse-at-joint is real typed plugging; draft/decided tabs are analogy, not engine types.",
+    "runner_up": "mechanism.sb-04-03"
+   },
+   "case": {
+    "pick": "case.sb-04-01",
+    "score": 0.85,
+    "why": "Verified Notion: 41/26/41 atoms GREEN, 9-atom spine; spine still Draft.",
+    "runner_up": "case.sb-04-03"
+   },
+   "limit": {
+    "pick": "limit.sb-04-01",
+    "score": 0.82,
+    "why": "Wrong date labelled decided snaps in: consistency-not-correctness pictured.",
+    "runner_up": "limit.sb-06-01"
+   },
+   "notthis": {
+    "pick": "notthis.sb-04-01",
+    "score": 0.85,
+    "why": "Exact misconception from RESEARCH section 1, seven plain words.",
+    "runner_up": "notthis.sb-04-03"
+   },
+   "ending": {
+    "pick": "ending.sb-04-01",
+    "score": 0.74,
+    "why": "Same cards, now tabbed; only decision reaches pod. Clean callback.",
+    "runner_up": "ending.sb-04-03"
+   },
+   "belief": {
+    "pick": "belief.sb-04-01",
+    "score": 0.72,
+    "why": "Monday-actionable; misses the check-at-joint half of the move.",
+    "runner_up": "belief.sb-04-03"
+   }
+  },
+  "gate-v3": {
+   "hook": {
+    "pick": "hook.sb-07-01",
+    "score": 0.78,
+    "why": "Passed every check, pod answers cross: consequence first, REVIEW P1-3 satisfied.",
+    "runner_up": "hook.sb-07-03"
+   },
+   "problem": {
+    "pick": "problem.sb-07-01",
+    "score": 0.78,
+    "why": "Near-verbatim REVIEW-v3 FELT line; customer-felt pain.",
+    "runner_up": "problem.sb-07-03"
+   },
+   "metaphor": {
+    "pick": "metaphor.sb-07-01",
+    "score": 0.86,
+    "why": "Gates differ in kind via lintel icons: fixes REVIEW P1-1 at root.",
+    "runner_up": "metaphor.sb-07-03"
+   },
+   "mechanism": {
+    "pick": "mechanism.sb-07-03",
+    "score": 0.84,
+    "why": "Whale folds flag into new gate icon; old miss replayed stops. P2-5 fixed.",
+    "runner_up": "mechanism.sb-07-01"
+   },
+   "case": {
+    "pick": "case.sb-07-01",
+    "score": 0.88,
+    "why": "Escapes register: 7 misses, each now caught by a different kind of check.",
+    "runner_up": "case.sb-07-09"
+   },
+   "limit": {
+    "pick": "limit.sb-07-09",
+    "score": 0.84,
+    "why": "Dull film passes all gates: real catalogued-failures limit, his words.",
+    "runner_up": "limit.sb-07-03"
+   },
+   "notthis": {
+    "pick": "notthis.sb-07-01",
+    "score": 0.88,
+    "why": "Exact REVIEW P2-3 rewrite; avoids 'proves'; seven words.",
+    "runner_up": "notthis.sb-07-09"
+   },
+   "ending": {
+    "pick": "ending.sb-07-03",
+    "score": 0.72,
+    "why": "Flag lives on new lintel; whale picks next flag: rules accrue honestly.",
+    "runner_up": "ending.sb-07-01"
+   },
+   "belief": {
+    "pick": "belief.sb-07-01",
+    "score": 0.84,
+    "why": "Matches REVIEW belief; eight words, actionable.",
+    "runner_up": "belief.sb-07-03"
+   }
+  }
+ },
+ "boards": {
+  "sb-01-01": 0.55,
+  "sb-01-02": 0.6,
+  "sb-01-03": 0.62,
+  "sb-01-04": 0.72,
+  "sb-01-05": 0.45,
+  "sb-01-06": 0.64,
+  "sb-01-07": 0.5,
+  "sb-01-08": 0.52,
+  "sb-01-09": 0.68,
+  "sb-01-10": 0.48,
+  "sb-02-01": 0.62,
+  "sb-02-02": 0.62,
+  "sb-02-03": 0.5,
+  "sb-02-04": 0.52,
+  "sb-02-05": 0.55,
+  "sb-02-06": 0.45,
+  "sb-02-07": 0.45,
+  "sb-02-08": 0.68,
+  "sb-02-09": 0.65,
+  "sb-02-10": 0.55,
+  "sb-03-01": 0.8,
+  "sb-03-02": 0.62,
+  "sb-03-03": 0.74,
+  "sb-03-04": 0.6,
+  "sb-03-05": 0.6,
+  "sb-03-06": 0.42,
+  "sb-03-07": 0.45,
+  "sb-03-08": 0.6,
+  "sb-03-09": 0.68,
+  "sb-03-10": 0.66,
+  "sb-04-01": 0.76,
+  "sb-04-02": 0.62,
+  "sb-04-03": 0.7,
+  "sb-04-04": 0.64,
+  "sb-04-05": 0.45,
+  "sb-04-06": 0.55,
+  "sb-04-07": 0.5,
+  "sb-04-08": 0.58,
+  "sb-04-09": 0.6,
+  "sb-04-10": 0.58,
+  "sb-05-01": 0.45,
+  "sb-05-02": 0.74,
+  "sb-05-03": 0.45,
+  "sb-05-04": 0.3,
+  "sb-05-05": 0.5,
+  "sb-05-06": 0.4,
+  "sb-05-07": 0.45,
+  "sb-05-08": 0.66,
+  "sb-05-09": 0.62,
+  "sb-05-10": 0.5,
+  "sb-06-01": 0.66,
+  "sb-06-02": 0.55,
+  "sb-06-03": 0.68,
+  "sb-06-04": 0.58,
+  "sb-06-05": 0.74,
+  "sb-06-06": 0.6,
+  "sb-06-07": 0.62,
+  "sb-06-08": 0.55,
+  "sb-06-09": 0.5,
+  "sb-06-10": 0.5,
+  "sb-07-01": 0.8,
+  "sb-07-02": 0.68,
+  "sb-07-03": 0.78,
+  "sb-07-04": 0.66,
+  "sb-07-05": 0.7,
+  "sb-07-06": 0.5,
+  "sb-07-07": 0.45,
+  "sb-07-08": 0.35,
+  "sb-07-09": 0.74,
+  "sb-07-10": 0.72,
+  "sb-08-01": 0.48,
+  "sb-08-02": 0.62,
+  "sb-08-03": 0.5,
+  "sb-08-04": 0.66,
+  "sb-08-05": 0.4,
+  "sb-08-06": 0.45,
+  "sb-08-07": 0.35,
+  "sb-08-08": 0.45,
+  "sb-08-09": 0.5,
+  "sb-08-10": 0.66,
+  "sb-09-01": 0.4,
+  "sb-09-02": 0.5,
+  "sb-09-03": 0.38,
+  "sb-09-04": 0.48,
+  "sb-09-05": 0.55,
+  "sb-09-06": 0.38,
+  "sb-09-07": 0.4,
+  "sb-09-08": 0.45,
+  "sb-09-09": 0.3,
+  "sb-09-10": 0.55,
+  "sb-10-01": 0.5,
+  "sb-10-02": 0.5,
+  "sb-10-03": 0.7,
+  "sb-10-04": 0.6,
+  "sb-10-05": 0.68,
+  "sb-10-06": 0.45,
+  "sb-10-07": 0.5,
+  "sb-10-08": 0.55,
+  "sb-10-09": 0.6,
+  "sb-10-10": 0.62
+ },
+ "top10": [
+  {
+   "id": "sb-03-01",
+   "score": 0.8,
+   "why": "Broken wiki links: pins on what must stay true; Notion-verified run and audit limit."
+  },
+  {
+   "id": "sb-07-01",
+   "score": 0.8,
+   "why": "'Passed every check, still broke': gates of different kinds; real 7-escape register."
+  },
+  {
+   "id": "sb-07-03",
+   "score": 0.78,
+   "why": "Misses recur by hand: a miss literally becomes a new kind of gate; real print escape."
+  },
+  {
+   "id": "sb-04-01",
+   "score": 0.76,
+   "why": "AI quoted the draft as decision: typed parts refused at joints; verified 41/26/41 run."
+  },
+  {
+   "id": "sb-03-03",
+   "score": 0.74,
+   "why": "Same mistake fixed twice: escape becomes a law; real IBM Plex/Inter escape."
+  },
+  {
+   "id": "sb-05-02",
+   "score": 0.74,
+   "why": "Endless prompt tweaking: fresh-reader fixpoint, real 14/14/10/0 ledger, honest blind-spot limit."
+  },
+  {
+   "id": "sb-06-05",
+   "score": 0.74,
+   "why": "One blurry question gives mush: split into five; README-verified 62.6 to 95.1, regex honesty."
+  },
+  {
+   "id": "sb-07-09",
+   "score": 0.74,
+   "why": "Jerky video on phones: seven gate kinds caught our own whale; Notion-verified."
+  },
+  {
+   "id": "sb-01-04",
+   "score": 0.72,
+   "why": "Merge broke links: map joins first; README-verified, limit quotes 'not permission to merge'."
+  },
+  {
+   "id": "sb-07-10",
+   "score": 0.72,
+   "why": "Green report, broken screen: check what rendered, not the tag; two real escapes."
+  }
+ ],
+ "flags": [
+  {
+   "atom": "case.sb-05-04",
+   "problem": "'100% on Game of 24' is uncited in the README with no method (WebFetch-verified). The 4%/36% baselines are uncited too. Never stitch."
+  },
+  {
+   "atom": "captions.sb-05-04",
+   "problem": "'Reported · 4% · 36% · 100%' puts an unsupported 100% on screen."
+  },
+  {
+   "atom": "case.sb-04-05",
+   "problem": "The E3 conditions A/B/C are undefined on the README (verified), so '95.3% vs 93.8%, 63% of tokens' means nothing to a viewer."
+  },
+  {
+   "atom": "limit.sb-06-02",
+   "problem": "'94% handed back' comes from JEV-works' all-signals-confident gate. The film sets it beside the jev score_fill τ thresholds, which belong to a different system. The τ numbers are also unfeelable units on screen."
+  },
+  {
+   "atom": "captions.sb-08-01",
+   "problem": "'Citation audit · 47 of 60 faithful' is the p5 atlas memory-graph audit, not OmniMemory. The number is misattributed."
+  },
+  {
+   "atom": "case.sb-07-06",
+   "problem": "Showing 'Verus 81% · DafnyBench 92.7%' on screen implies AI routinely produces formal proofs, and it puts proof/Lean terms in a gate context (RESEARCH §2 cautions)."
+  },
+  {
+   "atom": "mechanism.sb-03-03",
+   "problem": "The caption 'It proved itself' uses proof language for a mechanical check (RESEARCH §2). Reword to 'It caught it. Now it stops it.' before stitching."
+  },
+  {
+   "atom": "mechanism.sb-03-07",
+   "problem": "'What stays put is conserved' conflates a fixed point under rotation with a conserved quantity. That muddles the Noether analogy RESEARCH §4 warns about."
+  },
+  {
+   "atom": "belief.sb-01-10",
+   "problem": "'Trust what fits its neighbours', together with the mechanism 'the made-up part stands out', implies agreement detects fabrication. That contradicts 'consistency ≠ truth'."
+  },
+  {
+   "atom": "mechanism.sb-01-06",
+   "problem": "It pictures a working caption-ownership gate, but R1/G7 is proposed and not built (sb-10-03's own case says so). Mark it Illustration or proposed."
+  },
+  {
+   "atom": "limit.sb-03-09",
+   "problem": "A near-empty page 'passes every pin', yet the same case cites a real 'stubs 0' gate that targets exactly that. The film contradicts itself; make it a thin non-stub page."
+  },
+  {
+   "atom": "case.sb-07-09",
+   "problem": "Of the 'seven gates', contact_sheet is 'PASS — reviewed', a human review. The Notion page does not attribute the 3 fixes to specific gates. Do not call all seven machine checks."
+  },
+  {
+   "atom": "case.sb-04-01",
+   "problem": "Not an error, a caution: GREEN is the engine's own verdict, and the 9 spine atoms are still Draft per the Context Atoms page. Never caption them 'verified'."
+  },
+  {
+   "atom": "case.sb-03-01",
+   "problem": "Caution: 548 = 437 + 107 lab + 4 hubs, and 47/60 is the atlas's audit, while the lab delta is unaudited. The limit card must say 'atlas citation audit'."
+  },
+  {
+   "atom": "case.sb-01-01",
+   "problem": "The 30/30 binary gates are a build audit. They do not evidence the join-discord mechanism the film shows (capability mismatch)."
+  },
+  {
+   "atom": "case.sb-04-07",
+   "problem": "The README run shows 'Cycles Found: 0', but the film's move is finding a loop. The case does not show the move."
+  },
+  {
+   "atom": "case.sb-02-03",
+   "problem": "The 9 red CI runs have no recorded cause, and none shows the gate catching a bad file, so the case does not evidence the move."
+  },
+  {
+   "atom": "case.sb-06-04",
+   "problem": "The README says 'Writes stay parked'. 'Sending mail … unless explicitly enabled' is not verified wording."
+  }
+ ]
+}

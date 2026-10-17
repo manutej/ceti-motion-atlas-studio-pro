@@ -1,0 +1,98 @@
+{
+ "verdict": "GREEN",
+ "library_hash": "7a59d2381909",
+ "term_hash": "9110fcf5431d",
+ "prompt_hash": "b5877179fee5",
+ "tokens": {
+  "root": 1103
+ },
+ "budget_hint": {},
+ "atoms": {
+  "belief.sb-07-01": 1,
+  "c.captions-8": 1,
+  "c.kh-style": 1,
+  "c.limit-shown": 1,
+  "c.one-focal": 1,
+  "c.problem-first": 1,
+  "c.slow-down": 1,
+  "c.sourced-numbers": 1,
+  "c.symbol-before-word": 1,
+  "case.sb-07-01": 1,
+  "contract.build-brief": 1,
+  "ending.sb-07-01": 1,
+  "fact.gate-v3": 1,
+  "goal.gate-v3": 1,
+  "hook.sb-07-01": 1,
+  "limit.sb-07-03": 1,
+  "mechanism.sb-07-03": 1,
+  "metaphor.sb-07-01": 1,
+  "notthis.sb-07-01": 1,
+  "problem.sb-07-01": 1,
+  "role.director": 1
+ },
+ "briefs": {},
+ "findings": [
+  {
+   "law": "atom.status",
+   "severity": "NOTE",
+   "where": "hook.sb-07-01",
+   "detail": "draft atom (unverified)"
+  },
+  {
+   "law": "atom.status",
+   "severity": "NOTE",
+   "where": "problem.sb-07-01",
+   "detail": "draft atom (unverified)"
+  },
+  {
+   "law": "atom.status",
+   "severity": "NOTE",
+   "where": "metaphor.sb-07-01",
+   "detail": "draft atom (unverified)"
+  },
+  {
+   "law": "atom.status",
+   "severity": "NOTE",
+   "where": "ending.sb-07-01",
+   "detail": "draft atom (unverified)"
+  },
+  {
+   "law": "atom.status",
+   "severity": "NOTE",
+   "where": "belief.sb-07-01",
+   "detail": "draft atom (unverified)"
+  },
+  {
+   "law": "atom.status",
+   "severity": "NOTE",
+   "where": "mechanism.sb-07-03",
+   "detail": "draft atom (unverified)"
+  },
+  {
+   "law": "atom.status",
+   "severity": "NOTE",
+   "where": "case.sb-07-01",
+   "detail": "draft atom (unverified)"
+  },
+  {
+   "law": "atom.status",
+   "severity": "NOTE",
+   "where": "limit.sb-07-03",
+   "detail": "draft atom (unverified)"
+  },
+  {
+   "law": "atom.status",
+   "severity": "NOTE",
+   "where": "notthis.sb-07-01",
+   "detail": "draft atom (unverified)"
+  }
+ ],
+ "subterms": [
+  "6a9f1c8e006a",
+  "85408e7583e8",
+  "9110fcf5431d",
+  "c77c274df297",
+  "d6cc6f508351"
+ ],
+ "term": "(film60 @goal.gate-v3 @fact.gate-v3 (glue (seq @hook.sb-07-01 @problem.sb-07-01 @metaphor.sb-07-01 @ending.sb-07-01 @belief.sb-07-01) @mechanism.sb-07-03 @case.sb-07-01 (bag @limit.sb-07-03 @notthis.sb-07-01)))"
+}
