@@ -1,4 +1,6 @@
-# 10 · steps: Five small *gates*, not one.
+# 10 · steps v4: Five small *checks*, not one.
+
+v4 applies the first lay-jury notes and AGENT-BRIEF lessons 7–10. v3 is kept as `film-v3.js` (sheet-v3.png); the beat sheet below is the v3 order, and v4 timings are in `film.js`. v4 changes: the title says "checks" (no "gate" in any on-screen word). "the AI checker" names the AI once. The real bill now gets a "?" maybe-lamp (drawn as a mark) under "Is this real? It says: maybe." The two opening captions are each held ≥ 2 s. The card reads "Right answers, scam emails" (38 px), rows are 36 px with 48 px values, and "A simple fixed rule" has a tiny two-line rule card beside it; source "Source: our own tests"; the main lines hold ≥ 3.5 s. The limit is now two captions: "Not magic." and "A simple rule did nearly as well." The inbox is bigger with a 30 px label, "Example checks" is 26 px. The push-in frames out the inbox so it is not cropped. The whale drifts during the opening so it is not a static hold. DUR is 29.85 s.
 
 Source board sb-06-05 (JEV-works), cut from 58.5 s to 28.9 s. Wada 296 (ground tint Ochraceous Salmon; lit lamp = Sulpher Yellow × Salmon with a Pale Raw Umber ring; ✓ marks Slate Color; a clear no = CETI rust). 132 BPM (B = 0.4545 s). Text is ink or slate on paper or chips only.
 

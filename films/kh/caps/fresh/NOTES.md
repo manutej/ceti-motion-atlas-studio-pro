@@ -1,4 +1,8 @@
-# 08 · fresh: Fresh *eyes* try to break it.
+# 08 · fresh v5: Fresh *eyes* find what you missed.
+
+**v5 (lay-jury round 1: problem 9/9/9, fix 7/7/7).** v4 is kept as `film-v4.js` / `sheet-v4.png`. Changes: new title. The checkers are named as AI once ("3 different AI checkers"). The pages start in order and get swapped only in the limit beat. The second half is now one limit beat (identical checkers tick the swapped pages, "Checkers that think alike miss alike.") and then one different checker points at the swap; the "Agreeing…" line is gone. The strike caption holds 2.53 s. The card is about this story: "True story · from our own review notes / 57 complaints, 0 crossed out / Each one pointed at its evidence." (grounding: round 1 "57 rows, 0 struck", doctrine "Evidence or strike"). The 116 number is dropped.
+
+## v4 notes (beat times below are v4's)
 
 Wada 166 (Grenadine Pink = alarm/complaint marks · Naples Yellow = ground tint, gaze, fresh helper · Deep Slate Green = ✓ that holds). 124 BPM. DUR 30.0 s. Source: sb-07-05 (the jury), cut to the 30-s problem-first format modelled on gate v3; O2 lessons applied.
 

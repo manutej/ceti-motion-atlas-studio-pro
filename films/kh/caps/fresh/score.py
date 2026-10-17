@@ -58,6 +58,7 @@ for x in Q['podsIn']: put(tick(1900, 0.04), x, 0.1, 0.2)
 # the pokes
 for k in Q['pokes']:
     if k['says'] in ('missing', 'order'): evidence(k['t'], -0.1)
+    elif k.get('agree'): soft_knock(k['t'], -0.2)
     elif k['holds']:
         soft_knock(k['t']); put(mallet(523.25 if not k['final'] else 392, 1.6 if not k['final'] else 2.6, 0.6), k['t'] + 0.02, 0.1 if not k['final'] else 0.16, 0.1, 0.5)
     else: soft_knock(k['t'], 0.3)
@@ -73,7 +74,7 @@ put(mallet(987.77, 1.4, 0.4), Q['set'] + 0.12, 0.06, 0.1, 0.6)
 put(tick(3300, 0.03), Q['card'], 0.1, 0.3, 0.3)
 # the limit: the helpers turn alike (a low falling glide); three ✓ in one slightly sour chord, unresolved
 tt = T(0.6); put(np.sin(2 * np.pi * np.cumsum(330 - 90 * tt / 0.6) / SR) * np.sin(np.pi * tt / 0.6) ** 2, Q['alike'], 0.07, 0, 0.5)
-for i, f in enumerate([523.25, 659.25 * 2 ** (-35 / 1200), 783.99]): put(mallet(f, 2.2, 0.5), Q['agree'] + 0.02 * i, 0.07, -0.3 + 0.3 * i, 0.6)
+for i, (f, x) in enumerate(zip([523.25, 659.25 * 2 ** (-35 / 1200), 783.99], Q['agree'])): put(mallet(f, 2.2, 0.5), x + 0.08, 0.07, -0.3 + 0.3 * i, 0.6)
 # the payoff: the pages swap (two paper slides); the final held poke resolves to a warm chord + pad
 for i, x in enumerate(Q['swap']): paper(x, 0.25, 0.12, -0.3 + 0.6 * i)
 for i, f in enumerate([196, 293.66, 392, 493.88]): put(mallet(f, 3.0, 0.3), Q['final'] + 0.06 + 0.04 * i, 0.07, -0.3 + 0.2 * i, 0.7)

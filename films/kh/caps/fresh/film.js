@@ -1,10 +1,10 @@
-// CETI Capabilities 08 · fresh — "Fresh eyes try to break it." Kinetic Hydrography 1.0.0 + series layer. 30-s house format.
-// The work is a REPORT: a row of numbered pages. Page 4 is missing. The whale (you) checks it twice and its eye fills in
-// the page it meant to write; the customer finds the hole. Fix: fresh eyes (helpers who didn't write it) try to break it,
-// and every complaint must point at the problem ("page 4 is missing" points at the hole; "feels off" points at nothing and
-// is crossed out). Someone else adds the page; the fresh eyes check again and it holds. Limit: checkers who think alike
-// miss alike (pages 3 and 2 swapped all along; three look-alike helpers all say ✓). Ending: a different pair of eyes
-// points at the swap, someone else fixes it, the poke holds. drawFrame(ctx, t) is a pure function of t.
+// CETI Capabilities 08 · fresh v5 — "Fresh eyes find what you missed." Kinetic Hydrography 1.0.0 + series layer. 30-s house format.
+// The work is a REPORT: seven numbered pages, page 4 missing. The whale (you) checks it twice and its eye fills in the page it
+// meant to write; the customer finds the hole. Fix: three different AI checkers who didn't write it hunt for mistakes; every
+// complaint must point at the problem ("page 4 is missing" points at the hole; "feels off" points at nothing and is crossed
+// out). Someone else adds the page; the checkers check again and it holds. Limit (one beat): pages 2 and 3 get swapped, the
+// checkers turn identical and all tick it. Ending: one different checker points at it, someone else fixes it, the poke holds.
+// drawFrame(ctx, t) is a pure function of t. v4 is kept as film-v4.js.
 (function (root) {
 'use strict';
 const KH = root.KH, S = KH.SERIES, { CETI: C, W: WD, clamp, lerp, win, EASE, ramp, mix, rgba, text } = KH;
@@ -93,7 +93,7 @@ const READ = [
   cap('felt2', 2.4, 4.4, 'The customer found a missing page.'),
   { id: 'eyebrow', kind: 'label', in: T0 + 0.25, out: T0 + 2.62, fi: 0.4, fo: 0.45, text: 'CETI · Capabilities · 08' },
   { id: 'title', kind: 'title', in: T0 + 0.25, out: T0 + 2.62, fi: 0.4, fo: 0.45, text: 'Fresh <i>eyes</i> find what you missed.' },
-  lab('fresh', 7.5, 9.35, 'three different AI checkers'),
+  lab('fresh', 7.5, 9.35, '3 different AI checkers'),
   cap('ask', 7.1, 9.25, 'Ask someone who didn\'t write the report.'),
   cap('hunt', 9.3, 11.25, 'They hunt for mistakes.'),
   lab('missing', 9.6, 16.15, 'page 4 is missing'), lab('vague', 10.05, 15.4, 'feels off'),
@@ -209,7 +209,7 @@ function drawFrame(c, t) {
     sayChip(c, 'your report', X(SLOT(5)), Y(-PH / 2 - 40), RA(t, 'report'), { border: EDGE, size: 36 });
     const q = podPos('cust', t); sayChip(c, 'the customer', X(q.x) - 30, Y(q.y + 140), RA(t, 'cust'), { border: EDGE, size: 36 });
     { const f = podPos('fix', t); sayChip(c, 'someone else', X(f.x) + 210 * z, Y(f.y) + 10, RA(t, 'else'), { border: EDGE, size: 36 }); }
-    sayChip(c, 'three different AI checkers', X(300), Y(HY - 160), RA(t, 'fresh'), { border: EDGE, size: 36 }); }
+    sayChip(c, '3 different AI checkers', X(300), Y(HY - 160), RA(t, 'fresh'), { border: EDGE, size: 36 }); }
 
   // the title hinge: the scene goes still under a paper veil
   const veil = win(t, 4.45, T0 + 2.7, 0.35, 0.4); if (veil > 0) { c.fillStyle = rgba(C.paper, 0.9 * veil); c.fillRect(0, 0, W, H); }

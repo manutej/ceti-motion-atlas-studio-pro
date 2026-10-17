@@ -3,7 +3,7 @@
 // The work is a refund in three steps (find order · pay refund · send email). The helper (the whale) does the steps;
 // the customer is a coin jar. A crash after paying makes the retry pay again (two coins). The move: each finished step
 // gets a tick in a box; after a crash the helper skips the ticked steps, so the refund is paid once.
-// Limit: a wrong step (the coin misses the jar) gets a tick too. Ending: one coin after the crash.
+// Limit: the ticked email step went to the wrong name (To: Bob; the customer is Ana). A tick means done, not right. Ending: one coin after the crash.
 // drawFrame(ctx, t) is a pure function of t. Every event below is a fixed time; nothing is carried between frames.
 (function (root) {
 'use strict';
@@ -54,7 +54,7 @@ function heading(t) { let a = 0, s = 0; for (let k = -8; k <= 8; k++) { const v 
   return a / s + tumble; }
 const wpos = t => wworld(t);
 
-// ---------- camera: close on the pain, pull back under the title, push to the one coin, push to the wrong tick, close again ----------
+// ---------- camera: close on the pain, pull back under the title, push to the one coin, push to the wrong-name email, close again ----------
 function cam(t) {
   let z = 1.15, x = -45, y = -12; const L = (k, Z, X, Y) => { z = lerp(z, Z, k); x = lerp(x, X, k); y = lerp(y, Y, k); };
   L(ramp(t, 6.3, 7.6, EASE.rest), 1.1, -45, -12);
@@ -136,11 +136,14 @@ function drawFrame(c, t) {
   const g = 34 * brk; c.beginPath(); c.moveTo(X(START - 60), Y(0)); c.lineTo(X(BREAKX - g), Y(0)); c.moveTo(X(BREAKX + g), Y(0)); c.lineTo(X(JX - 80), Y(0)); c.stroke();
   const bolt = () => { if (brk <= 0.02) return; const a = brk; c.save(); c.globalAlpha = a; c.strokeStyle = RUST; c.lineWidth = 7 * z; c.beginPath();      // the snap: a jagged bolt across the gap
     const zz = [[-16, -86], [12, -50], [-12, -18], [14, 12], [-8, 40]]; zz.forEach(([dx, dy], i) => i ? c.lineTo(X(BREAKX + dx), Y(dy)) : c.moveTo(X(BREAKX + dx), Y(dy))); c.stroke();
-    c.lineWidth = 5 * z; c.beginPath(); for (const [dx, dy] of [[-40, -40], [44, -30], [-46, 30], [40, 44]]) { c.moveTo(X(BREAKX + dx * 0.5), Y(dy * 0.5)); c.lineTo(X(BREAKX + dx), Y(dy)); } c.stroke(); c.restore();
-    label(c, t, cr.id, X(BREAKX), Y(96), 40, { f: 'monoB', border: RUST }); };
+    c.lineWidth = 5 * z; c.beginPath(); for (const [dx, dy] of [[-40, -40], [44, -30], [-46, 30], [40, 44]]) { c.moveTo(X(BREAKX + dx * 0.5), Y(dy * 0.5)); c.lineTo(X(BREAKX + dx), Y(dy)); } c.stroke(); c.restore(); };
+  // the "Crash!" chip sits in clear paper above the gap, left of the bolt, with a short rust leader to it (drawn after the whale)
+  const crashChip = () => { if (!cr) return; const a = RA(t, cr.id); if (a <= 0.01) return; const cx = X(BREAKX - 80), cy = Y(-150);
+    c.save(); c.globalAlpha = a; c.strokeStyle = RUST; c.lineWidth = 4; c.beginPath(); c.moveTo(cx + 62, cy + 10); c.lineTo(X(BREAKX - 14), Y(-84)); c.stroke(); c.restore();
+    label(c, t, cr.id, cx, cy, 34, { f: 'monoB', border: RUST }); };
 
   // ---- the tick strip (appears with the move) and its boxes ----
-  const strip = ramp(t, 7.9, 8.5, EASE.warm) * (t < 7.9 ? 0 : 1);
+  const strip = ramp(t, 9.2, 9.8, EASE.warm) * (t < 9.2 ? 0 : 1);
   if (strip > 0.01) { const x0 = X(SX[0] - 140), x1 = X(SX[2] + 140), y0 = Y(BOXY - 64), y1 = Y(BOXY + 64);
     c.save(); c.globalAlpha = strip; c.fillStyle = C.paper; c.strokeStyle = mix(C.paper, C.slate, 0.4); c.lineWidth = 2; c.beginPath(); c.roundRect(x0, y0, (x1 - x0) * strip, y1 - y0, 10 * z); c.fill(); c.stroke(); c.restore();
     SX.forEach((sx, s) => { const ba = clamp((strip - 0.3 - 0.2 * s) / 0.3); if (ba <= 0) return; const b = BOX * z;
@@ -165,6 +168,12 @@ function drawFrame(c, t) {
     c.restore(); });
   bolt();
 
+  // ---- LIMIT: the sent email lifts out of its card. Its step is ticked, and it is addressed to the wrong name ----
+  { const a = win(t, ENV.up, 21.3, 0.1, 0.3); if (a > 0) { const u = ramp(t, ENV.up, ENV.up + 0.55, EASE.glaser), ex = SX[2], ey = lerp(-37, -262, u), k = lerp(1.3, 2.3, u);
+      icon(c, 2, X(ex), Y(ey), k * z, a);
+      label(c, t, 'to', X(ex), Y(ey + 34), 34, { f: 'monoB' });
+      const r = win(t, ENV.ring, 21.3, 0.12, 0.3); if (r > 0.01) { c.save(); c.globalAlpha = r * a; c.strokeStyle = RUST; c.lineWidth = 5 * z; c.beginPath(); c.ellipse(X(ex), Y(ey + 22), 118 * z, 46 * z, 0, 0, Math.PI * 2); c.stroke(); c.restore(); } } }
+
   // ---- the customer: a coin jar at the end of the line ----
   { const jx = X(JX), jt = Y(JTOP), jb = Y(JBOT), hw = 96 * z;
     let ans = null; for (const e of ANS) if (t >= e.t) ans = e;
@@ -185,14 +194,13 @@ function drawFrame(c, t) {
         if (ans.ok) { c.moveTo(cx - m, cy + 1); c.lineTo(cx - m * 0.25, cy + m * 0.8); c.lineTo(cx + m * 1.05, cy - m * 0.9); }
         else { c.moveTo(cx - m, cy - m); c.lineTo(cx + m, cy + m); c.moveTo(cx + m, cy - m); c.lineTo(cx - m, cy + m); }
         c.stroke(); c.restore(); } }
-    for (const id of ['paidA1', 'paidA2', 'paidB', 'paidD', 'paidE']) label(c, t, id, jx, Y(BOXY + 14), 30, { f: 'monoB', border: id === 'paidA2' || id === 'paidD' ? RUST : null }); }
+    for (const id of ['paidA1', 'paidA2', 'paidB', 'paidE']) label(c, t, id, jx, Y(BOXY + 14), 30, { f: 'monoB', border: id === 'paidA2' ? RUST : null }); }
 
-  // ---- coins: fly from the "Pay refund" card into the jar (or, once, onto the floor) ----
+  // ---- coins: fly from the "Pay refund" card into the jar. Money only ever means the refund. ----
   for (const k of COINS) { if (t < k.t) continue; const a = k.gone ? 1 - ramp(t, k.gone, k.gone + 0.35, EASE.rest) : 1; if (a <= 0) continue;
-    const u = ramp(t, k.t, k.t + FLY, EASE.warm), from = [SX[1], -37], to = k.wrong ? STRAY : SLOT[k.slot];
-    let x = lerp(from[0], to[0], u), y = lerp(from[1], to[1], u) - (k.wrong ? 150 : 300) * Math.sin(Math.PI * u);
+    const u = ramp(t, k.t, k.t + FLY, EASE.warm), from = [SX[1], -37], to = SLOT[k.slot];
+    let x = lerp(from[0], to[0], u), y = lerp(from[1], to[1], u) - 300 * Math.sin(Math.PI * u);
     let glow = 0; if (k.lift) { const l = ramp(t, k.lift, k.lift + 0.5, EASE.glaser); y -= 26 * l; glow = l * (0.7 + 0.3 * Math.sin(t * 4)); }
-    if (k.wrong && t > k.t + FLY) { const r = win(t, k.t + FLY, k.gone, 0.1, 0.3); c.strokeStyle = rgba(RUST, 0.6 * r); c.lineWidth = 5 * z; c.beginPath(); c.arc(X(x), Y(y), 62 * z, 0, Math.PI * 2); c.stroke(); }
     const land = u >= 1 ? 1 - 0.12 * Math.exp(-(t - k.t - FLY) * 10) : 1;
     c.save(); c.translate(X(x), Y(y)); c.scale(1 / land, land); coin(c, 0, 0, 38 * z, a, glow); c.restore(); }
 
@@ -202,43 +210,46 @@ function drawFrame(c, t) {
 
   // ---- the little whale: the helper ----
   { const p = wworld(t), ang = heading(t), v = wvel(t), sp = Math.hypot(v.x, v.y), moving = clamp(sp / 400);
-    let blink = 0; for (const k of [2.9, 5.6, 8.0, 12.0, 15.5, 19.4, 24.3, 27.4]) blink = Math.max(blink, 1 - Math.abs(t - k) / 0.07);
+    let blink = 0; for (const k of [2.9, 5.6, 8.0, 13.0, 16.6, 19.4, 25.0, 28.1]) blink = Math.max(blink, 1 - Math.abs(t - k) / 0.07);
     let squash = 0; for (const k of WORK) { const d = t - k; if (d >= 0 && d < 0.3) squash = Math.max(squash, 0.1 * (1 - EASE.glaser(d / 0.3))); }
     const daze = Math.max(...CRASH.map(k => win(t, k.t, k.t + 1.3, 0.05, 0.3)));
-    const focus = Math.max(win(t, 11.7, 13.1, 0.15, 0.2), win(t, 24.15, 25.5, 0.15, 0.2), win(t, 17.6, 20.5, 0.4, 0.4) * 0.5);
+    const focus = Math.max(win(t, 12.85, 14.25, 0.15, 0.2), win(t, 24.85, 26.2, 0.15, 0.2));
     const eye = 1 + 0.4 * win(t, 4.7, 6.2, 0.06, 0.4) + 0.25 * daze;
-    const delight = (t > 13.45 && t < 14.6) || t > 25.9 ? 1 : 0, spark = Math.max(win(t, 13.45, 14.4, 0.12, 0.4), win(t, 25.9, 27.2, 0.12, 0.5));
+    const delight = (t > 14.6 && t < 15.8) || t > 26.6 ? 1 : 0, spark = Math.max(win(t, 14.6, 15.5, 0.12, 0.4), win(t, 26.6, 27.9, 0.12, 0.5));
     c.save(); c.translate(X(p.x), Y(p.y));
     KH.drawWhale(c, { x: 0, y: 0, ang, scale: WS * z, L: 1, tail: Math.sin(t * (moving > 0.3 ? 11 : 3)) * lerp(0.12, 0.34, moving), fin: Math.sin(t * 6 + 1.3) * lerp(0.15, 0.3, moving),
       blink, squash, focus: delight ? 0 : focus, eye, spark, sparkColor: RAW, delight, blush: 0.6, mouth: delight ? 0.4 : 0.4 * win(t, 4.8, 6.0, 0.06, 0.3) + 0.3 * daze, sw: 3.2 });
     c.restore();
     label(c, t, 'who', X(p.x + 10), Y(p.y - 100), 28, { f: 'monoB' }); }
+  crashChip();
 
   // ---- the title hinge: the scene goes still under a paper veil ----
-  const veil = win(t, T0, T0 + 2.55, 0.35, 0.4); if (veil > 0) { c.fillStyle = rgba(C.paper, 0.9 * veil); c.fillRect(0, 0, W, H); }
+  const veil = win(t, T0, T0 + T_OUT + 0.1, 0.35, 0.4); if (veil > 0) { c.fillStyle = rgba(C.paper, 0.94 * veil); c.fillRect(0, 0, W, H); }
 
-  // ---- the real-test card (top left, clean paper) ----
-  const ka = RA(t, 'card'); if (ka > 0) { const dy = (1 - EASE.defer(ramp(t, 13.45, 13.8))) * 8, y0 = 862;
-    c.save(); c.font = `52px ${KH.FONTS.disp}`; const w1 = c.measureText(RD('card').text).width; c.restore(); const x0 = 960 - w1 / 2;
+  // ---- the true-story card (bottom centre, clean paper, two plain lines at 44 px, up 3.5 s) ----
+  const ka = RA(t, 'card1'); if (ka > 0) { const dy = (1 - EASE.defer(ramp(t, CARD[0], CARD[0] + 0.35))) * 8, y0 = 834;
+    c.save(); c.font = `44px ${KH.FONTS.sans}`; const w1 = Math.max(c.measureText(RD('card1').text).width, c.measureText(RD('card2').text).width); c.restore(); const x0 = 960 - w1 / 2;
     c.save(); c.globalAlpha = ka; c.fillStyle = C.paper; c.strokeStyle = mix(C.paper, C.slate, 0.4); c.lineWidth = 1.2;
-    c.beginPath(); c.roundRect(x0 - 30, y0 + dy, w1 + 60, 196, 8); c.fill(); c.stroke(); c.fillStyle = TYR; c.fillRect(x0 - 30, y0 + dy, 6, 196); c.restore();
-    text(c, RD('cardTop').text, x0, y0 + 46 + dy, { f: 'mono', size: 26, col: SOFT, a: ka });
-    text(c, RD('card').text, x0, y0 + 114 + dy, { f: 'disp', size: 52, col: INK, a: ka });
-    text(c, RD('cardSrc').text, x0, y0 + 164 + dy, { f: 'sans', size: 28, col: SOFT, a: ka }); }
+    c.beginPath(); c.roundRect(x0 - 34, y0 + dy, w1 + 68, 214, 8); c.fill(); c.stroke(); c.fillStyle = TYR; c.fillRect(x0 - 34, y0 + dy, 7, 214); c.restore();
+    text(c, RD('card1').text, x0, y0 + 62 + dy, { f: 'sans', size: 44, col: INK, a: ka });
+    text(c, RD('card2').text, x0, y0 + 122 + dy, { f: 'sans', size: 44, col: INK, a: ka });
+    text(c, RD('cardSrc').text, x0, y0 + 180 + dy, { f: 'sans', size: 30, col: SOFT, a: ka }); }
 
   for (const r of READ) if (r.kind === 'caption') S.caption(c, t, r, { size: 42 });
-  S.open(c, t - T0, { no: '06', title: 'Every step gets a <i>tick</i>.', accent: ACC }, { out: 2.47 });
+  { const ta = S.open(c, t - T0, { no: '06', title: 'Every step gets a <i>tick</i>.', accent: ACC }, { out: T_OUT });   // full-weight title: overstroke the light display face
+    if (ta > 0.01) { c.save(); c.setTransform(1, 0, 0, 1, 0, 0); text(c, 'Every step gets a <i>tick</i>.', 960, 560, { f: 'disp', size: 92, col: INK, accent: ACC, a: ta, align: 'center', stroke: 1.6 }); c.restore(); } }
   S.lockup(c, t, T_LOCK, { no: '06', short: 'Tick' });
   c.restore();
 }
 
 function cues() {
-  return { bpm: BPM, dur: DUR, title: T0 + 0.25, veil: T0, unveil: T0 + 2.15, strip: 7.9,
-    work: WORK.map((t, i) => ({ t, s: WORKS[i] })), tick: TICKS.map(k => ({ t: k.t, s: k.s })), coinOut: COINS.map(k => ({ t: k.t, wrong: !!k.wrong })),
-    coinIn: COINS.map((k, i) => ({ t: k.t + FLY, wrong: !!k.wrong, second: i === 1 })), crash: CRASH.map(k => k.t), heal: CRASH.map(k => k.heal),
-    read: READS.map(r => r[0]), skip: SKIPS.map(s => s[0]), answer: ANS.map(a => ({ t: a.t, ok: a.ok })), lift: 25.85, push: [13.1, 17.4],
-    card: RD('card').in, limit: RD('limit').in, notThis: RD('notthis').in, belief: RD('belief').in, lockup: T_LOCK,
-    tags: { consequence: [1.95, 4.65], focus: [4.75, 11.75, 13.45, 17.35, 24.2], mech: [9.3, 9.95, 10.65, 12.1, 13.25], limit: [16.6, 17.35], callback: [23.1, 25.85] } }; }
+  return { bpm: BPM, dur: DUR, title: T0 + 0.25, veil: T0, unveil: T0 + T_OUT - 0.3, strip: 9.2,
+    work: WORK.map((t, i) => ({ t, s: WORKS[i] })), tick: TICKS.map(k => ({ t: k.t, s: k.s })), coinOut: COINS.map(k => ({ t: k.t, wrong: false })),
+    coinIn: COINS.map((k, i) => ({ t: k.t + FLY, wrong: false, second: i === 1 })), crash: CRASH.map(k => k.t), heal: CRASH.map(k => k.heal),
+    read: READS.slice(0, 4).map(r => r[0]), skip: SKIPS.map(s => s[0]), answer: ANS.map(a => ({ t: a.t, ok: a.ok })), lift: 26.55, push: [14.25, 18.6],
+    envelope: ENV.up, wrongName: ENV.ring, tickHolds: ENV.ring + 0.1,
+    card: CARD[0], limit: RD('limit').in, notThis: RD('limit').in, belief: RD('belief').in, lockup: T_LOCK,
+    tags: { consequence: [1.95, 4.65], focus: [4.75, 12.9, 14.6, ENV.ring], mech: [10.45, 11.1, 11.8, 13.25, 14.4], limit: [ENV.up, ENV.ring], callback: [23.8, 26.55] } }; }
 const CONTRAST = [['captions / labels / card main (ink on paper chip)', INK, C.paper], ['title (ink on chart ground)', INK, BG], ['title accent on ground', ACC, BG],
   ['title accent on veiled ground (paper)', ACC, C.paper], ['eyebrow / lockup (slate on ground)', SOFT, BG], ['card label + source (slate on paper)', SOFT, C.paper],
   ['step-card label (ink on card paper, worst case while working)', INK, mix(C.paper, ECRU, 0.37)]];
