@@ -1,0 +1,44 @@
+{
+ "properties": {
+  "Name": "Capabilities 02 \u00b7 Every new mistake gets a check \u2014 film v3.4",
+  "Kind": "Film",
+  "Version": "3.4",
+  "Status": "shipped",
+  "Style": "Kinetic Hydrography 1.0.0",
+  "Fingerprint": "61b0f3347ae5b0ed",
+  "Passport hash": "11df6c39a3869737",
+  "Wada": [
+   "243"
+  ],
+  "Engine": [
+   "Canvas (skia)",
+   "ffmpeg",
+   "numpy synth",
+   "operadic-stitch"
+  ],
+  "Gates": "Pass",
+  "Gate detail": "read_time: PASS \u2014 21 lines, tightest 1.51 s vs 1.50 s \u00b7 frame_jump: PASS \u2014 23.5 px, 0.042 rad per frame \u00b7 contrast: PASS \u2014 8 pairs, lowest 4.8:1 \u00b7 flash_safety: PASS \u2014 0 flashes in any 1 s \u00b7 loudness: PASS \u2014 -16.5 LUFS, -3.0 dBTP \u00b7 ffprobe: PASS \u2014 1790 frames at 60 fps (re-probed after mux) \u00b7 contact_sheet: PASS \u2014 director review rounds (sheet-v1.png \u2192 sheet-v3.4.png in the episode folder) \u00b7 plain_words: PASS \u2014 every on-screen line in plain words, worst grade 5.7 (limit 6) \u00b7 lay_jury: PASS (revised criterion) \u2014 v3.3, mean sure 7.50, 3 personas \u00b7 colour_provenance: PASS",
+  "Deviations": "None",
+  "Design ID": "cap-gate-v3.4",
+  "Derived from": [
+   "3fcd50cfaf9381fa8252ed30415d11ba"
+  ],
+  "Atlas lineage": [
+   "3fbd50cfaf938109b4d8cdcbc2fc8787",
+   "3fbd50cfaf9381fbb243e1afa8e20b3c",
+   "3fbd50cfaf9381159144e6222a7785ef",
+   "3fbd50cfaf9381078d70c4da78795394",
+   "3fbd50cfaf93818c9148cabe066e555a",
+   "3fbd50cfaf93810bbfc9fe9ad8c1949d",
+   "3fbd50cfaf9381eb9960f6866c267d59",
+   "3fbd50cfaf9381269a41dd50de1c851b"
+  ],
+  "date:Registered:start": "2026-10-17",
+  "date:Registered:is_datetime": 0
+ },
+ "content": "Your AI helper's report passed every check yet the customer found the wrong font, because each check looks for one kind of mistake, so every new mistake becomes a new check (a font check); sourced card: \"True story \u00b7 7 mistakes, 7 new checks\" (Source: our own list of mistakes \u2014 Limits & escapes register). Limit: passing means no mistakes we know of, not quality.\n\n## Provenance\n- **Style:** Kinetic Hydrography 1.0.0 \u00b7 passport `11df6c39a3869737` \u00b7 kit `a19e3d258a95aa78`\n- **Fingerprint:** `61b0f3347ae5b0edf8145f355debe5e3f1219d04bb494f9924f5b470e41981bc`\n- **Parents:** cap-gate-v3 (`f1ce3784789b`), caps-series-v1 (`24c5bd802e26`)\n- **Colour provenance:** PASS \u2014 36 literal colours, 36 registered tokens, 0 declared derived\n\n## What changed\nLay jury: v3.1 FAIL \u2192 v3.2 FAIL (near pass) \u2192 v3.3 PASS (revised criterion). v3.2 everyday words and actors; v3.3 word pass (no \"gate\" on screen); v3.4 polish after the jury: title over a 30% dim, centred 78 px card held 3.5 s with pulsing checks, clipped labels clamped, whale turns capped, DUR 29.83 s. v3.3 kept as film-v3.3.js.\n\n## Gates\n- read_time: PASS \u2014 21 lines, tightest 1.51 s vs 1.50 s\n- frame_jump: PASS \u2014 23.5 px, 0.042 rad per frame\n- contrast: PASS \u2014 8 pairs, lowest 4.8:1\n- flash_safety: PASS \u2014 0 flashes in any 1 s\n- loudness: PASS \u2014 -16.5 LUFS, -3.0 dBTP\n- ffprobe: PASS \u2014 1790 frames at 60 fps (re-probed after mux)\n- contact_sheet: PASS \u2014 director review rounds (sheet-v1.png \u2192 sheet-v3.4.png in the episode folder)\n- plain_words: PASS \u2014 every on-screen line in plain words, worst grade 5.7 (limit 6)\n- lay_jury: PASS (revised criterion) \u2014 v3.3, mean sure 7.50, 3 personas\n- colour_provenance: PASS\n\n## Deviations from the style\n- None\n\n## Files\n- `renders/cap-gate-v3.4.mp4` \u00b7 `a0e41dc02e7c` \u00b7 6,818,532 bytes\n- `kh/caps/gate/film.js` \u00b7 `8814dbd04164` \u00b7 31,026 bytes\n- `kh/caps/gate/score.py` \u00b7 `f781e93538ca` \u00b7 8,596 bytes\n- `kh/caps/gate/NOTES.md` \u00b7 `529da2086229` \u00b7 12,159 bytes\n- `kh/caps/gate/LAY-JURY.json` \u00b7 `ab5b6213d373` \u00b7 5,086 bytes\n- `kh/caps/series.js` \u00b7 `f4196c7fb910` \u00b7 5,335 bytes\n- `kh/caps/tool.cjs` \u00b7 `76442fbe7351` \u00b7 7,376 bytes\n- `kh/whale-rig.js` \u00b7 `5a15b4982f5b` \u00b7 6,438 bytes\n- `kh/kh-kit.js` \u00b7 `a19e3d258a95` \u00b7 7,272 bytes\n- `storyboards/c07/sb-07-01.json` \u00b7 `3d0f3f0c06cc` \u00b7 15,431 bytes\n- `storyboards/c07/sb-07-03.json` \u00b7 `08fe324ef395` \u00b7 14,635 bytes\n- `storyboards/stitch/gate-v3.prompt.md` \u00b7 `7acaa9162dab` \u00b7 5,222 bytes\n\n## Manifest\n```json\n{\n \"id\": \"cap-gate-v3.4\",\n \"fingerprint\": \"61b0f3347ae5b0edf8145f355debe5e3f1219d04bb494f9924f5b470e41981bc\",\n \"style\": {\n  \"name\": \"Kinetic Hydrography\",\n  \"version\": \"1.0.0\",\n  \"passport_sha256\": \"11df6c39a38697375745f2bdb2040780e72f3657a56ab4306338bbfa64913efe\",\n  \"kit_sha256\": \"a19e3d258a95aa78e3199a8a95645703411e1ff218b262cd087dcf6516312a05\"\n },\n \"parents\": {\n  \"cap-gate-v3\": \"f1ce3784789b73e1a33d4b9af0dc953276268f8280bdb95fd36c32b062e660f3\",\n  \"caps-series-v1\": \"24c5bd802e26d992214518788404b4084265daae5d0f519d40ffa9fa8af9c259\"\n },\n \"wada\": [\n  243\n ],\n \"atlas\": [\n  \"el:character-rig\",\n  \"el:camera-move\",\n  \"q:time-pure-frames\",\n  \"q:motion-blur\",\n  \"q:cue-locked-sound\",\n  \"gate:contact-sheet\",\n  \"gate:ffprobe-spec\",\n  \"gate:frame-jump-detector\"\n ],\n \"gates\": {\n  \"read_time\": \"PASS \\u2014 21 lines, tightest 1.51 s vs 1.50 s\",\n  \"frame_jump\": \"PASS \\u2014 23.5 px, 0.042 rad per frame\",\n  \"contrast\": \"PASS \\u2014 8 pairs, lowest 4.8:1\",\n  \"flash_safety\": \"PASS \\u2014 0 flashes in any 1 s\",\n  \"loudness\": \"PASS \\u2014 -16.5 LUFS, -3.0 dBTP\",\n  \"ffprobe\": \"PASS \\u2014 1790 frames at 60 fps (re-probed after mux)\",\n  \"contact_sheet\": \"PASS \\u2014 director review rounds (sheet-v1.png \\u2192 sheet-v3.4.png in the episode folder)\",\n  \"plain_words\": \"PASS \\u2014 every on-screen line in plain words, worst grade 5.7 (limit 6)\",\n  \"lay_jury\": \"PASS (revised criterion) \\u2014 v3.3, mean sure 7.50, 3 personas\",\n  \"colour_provenance\": \"PASS\"\n }\n}\n```",
+ "preview": "kh/registry/previews/cap-gate-v3.4.jpg",
+ "unresolved_parents": [
+  "cap-gate-v3"
+ ]
+}

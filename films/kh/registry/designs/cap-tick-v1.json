@@ -1,0 +1,60 @@
+{
+ "id": "cap-tick-v1",
+ "name": "Capabilities 06 · Every step gets a tick — film v1",
+ "kind": "Film",
+ "version": "1.0",
+ "parents": [
+  "caps-series-v1"
+ ],
+ "wada": [
+  279
+ ],
+ "engine": [
+  "Canvas (skia)",
+  "ffmpeg",
+  "numpy synth"
+ ],
+ "atlas": [
+  "el:character-rig",
+  "el:camera-move",
+  "q:time-pure-frames",
+  "q:motion-blur",
+  "q:cue-locked-sound",
+  "gate:contact-sheet",
+  "gate:ffprobe-spec",
+  "gate:frame-jump-detector"
+ ],
+ "sources": [
+  "kh/caps/tick/film.js",
+  "kh/caps/tick/score.py",
+  "kh/caps/tick/NOTES.md",
+  "kh/caps/tick/LAY-JURY.json",
+  "kh/caps/series.js",
+  "kh/caps/tool.cjs",
+  "kh/whale-rig.js",
+  "kh/kh-kit.js",
+  "storyboards/c06/sb-06-03.json"
+ ],
+ "outputs": [
+  "renders/cap-tick.mp4"
+ ],
+ "preview": "kh/registry/previews/cap-tick-v1.jpg",
+ "gates": {
+  "read_time": "PASS — 26 lines, tightest 1.50 s vs 1.50 s",
+  "frame_jump": "PASS — 29.5 px, 0.058 rad per frame",
+  "contrast": "PASS — 7 pairs, lowest 8.2:1",
+  "flash_safety": "PASS — 0 flashes in any 1 s",
+  "loudness": "PASS — -16.3 LUFS, -2.7 dBTP",
+  "ffprobe": "PASS — 1761 frames at 60 fps (re-probed after mux)",
+  "contact_sheet": "PASS — director review rounds (sheet-v1.png → sheet-v2.png in the episode folder)",
+  "plain_words": "PASS — every on-screen line in plain words, worst grade 4.5 (limit 6)",
+  "lay_jury": "PASS — v2, mean sure 7.83, 3 personas"
+ },
+ "summary": "A crash after paying made the retry refund the customer twice ($20 → $40), so each finished step gets a tick and a restart skips the ticked steps, paying once; sourced card: \"True story: we crashed it on purpose. Each step happened once.\" (Source: our own tests — jev-tape demo:crash, 0 duplicate applies). Limit: a tick means done, not right.",
+ "changes": "Lay jury: v1 FAIL (near pass; shop owner pending at time of record) → v2 PASS. v1 kept as film-v1.js; v2 names the AI helper, moves the coin out of the limit beat, enlarges the card.",
+ "style": "1.0.0",
+ "status": "shipped",
+ "uses_kit": true,
+ "derived_colours": {},
+ "deviations": []
+}

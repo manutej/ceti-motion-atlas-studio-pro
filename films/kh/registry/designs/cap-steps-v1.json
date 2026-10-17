@@ -1,0 +1,60 @@
+{
+ "id": "cap-steps-v1",
+ "name": "Capabilities 10 · Five small checks, not one — film v1",
+ "kind": "Film",
+ "version": "1.0",
+ "parents": [
+  "caps-series-v1"
+ ],
+ "wada": [
+  296
+ ],
+ "engine": [
+  "Canvas (skia)",
+  "ffmpeg",
+  "numpy synth"
+ ],
+ "atlas": [
+  "el:character-rig",
+  "el:camera-move",
+  "q:time-pure-frames",
+  "q:motion-blur",
+  "q:cue-locked-sound",
+  "gate:contact-sheet",
+  "gate:ffprobe-spec",
+  "gate:frame-jump-detector"
+ ],
+ "sources": [
+  "kh/caps/steps/film.js",
+  "kh/caps/steps/score.py",
+  "kh/caps/steps/NOTES.md",
+  "kh/caps/steps/LAY-JURY.json",
+  "kh/caps/series.js",
+  "kh/caps/tool.cjs",
+  "kh/whale-rig.js",
+  "kh/kh-kit.js",
+  "storyboards/c06/sb-06-05.json"
+ ],
+ "outputs": [
+  "renders/cap-steps.mp4"
+ ],
+ "preview": "kh/registry/previews/cap-steps-v1.jpg",
+ "gates": {
+  "read_time": "PASS — 30 lines, tightest 1.80 s vs 1.80 s",
+  "frame_jump": "PASS — 15.4 px, 0.065 rad per frame",
+  "contrast": "PASS — 7 pairs, lowest 4.8:1",
+  "flash_safety": "PASS — 0 flashes in any 1 s",
+  "loudness": "PASS — -16.2 LUFS, -2.9 dBTP",
+  "ffprobe": "PASS — 1791 frames at 60 fps (re-probed after mux)",
+  "contact_sheet": "PASS — director review rounds (sheet-v1.png → sheet-v5.png in the episode folder)",
+  "plain_words": "PASS — every on-screen line in plain words, worst grade 3.8 (limit 6)",
+  "lay_jury": "PASS (revised criterion) — v4, mean sure 7.67, 3 personas"
+ },
+ "summary": "One big question (\"Is this email a scam?\") gives the AI checker a wobbly maybe, so you split it into five small yes/no checks and one clear no stops the fake; sourced card: \"Real test · Right answers on scam emails — one big question 63%, five small checks 95%, a simple fixed rule 92%\" (Source: our own tests — JEV-works README 62.6 / 95.1 / 91.8). Limit: splitting the question is what helps. The 0.82–0.91 figure is not on screen.",
+ "changes": "Lay jury: v3 FAIL (near pass) → v4 PASS (revised criterion). v3 kept as film-v3.js, v4 as film-v4.js; v4 \"checks\" not \"gates\", AI checker named, maybe-lamp; v5 polish: chart alone on a veil at 64 px bars, limit reworded.",
+ "style": "1.0.0",
+ "status": "shipped",
+ "uses_kit": true,
+ "derived_colours": {},
+ "deviations": []
+}

@@ -1,0 +1,60 @@
+{
+ "id": "cap-counter-v1",
+ "name": "Capabilities 07 · Stop when the counter hits zero — film v1",
+ "kind": "Film",
+ "version": "1.0",
+ "parents": [
+  "caps-series-v1"
+ ],
+ "wada": [
+  84
+ ],
+ "engine": [
+  "Canvas (skia)",
+  "ffmpeg",
+  "numpy synth"
+ ],
+ "atlas": [
+  "el:character-rig",
+  "el:camera-move",
+  "q:time-pure-frames",
+  "q:motion-blur",
+  "q:cue-locked-sound",
+  "gate:contact-sheet",
+  "gate:ffprobe-spec",
+  "gate:frame-jump-detector"
+ ],
+ "sources": [
+  "kh/caps/counter/film.js",
+  "kh/caps/counter/score.py",
+  "kh/caps/counter/NOTES.md",
+  "kh/caps/counter/LAY-JURY.json",
+  "kh/caps/series.js",
+  "kh/caps/tool.cjs",
+  "kh/whale-rig.js",
+  "kh/kh-kit.js",
+  "storyboards/c05/sb-05-02.json"
+ ],
+ "outputs": [
+  "renders/cap-counter.mp4"
+ ],
+ "preview": "kh/registry/previews/cap-counter-v1.jpg",
+ "gates": {
+  "read_time": "PASS — 28 lines, tightest 0.90 s vs 0.90 s",
+  "frame_jump": "PASS — 28.6 px, 0.084 rad per frame",
+  "contrast": "PASS — 9 pairs, lowest 8.5:1",
+  "flash_safety": "PASS — 0 flashes in any 1 s",
+  "loudness": "PASS — -16.0 LUFS, -2.9 dBTP",
+  "ffprobe": "PASS — 1770 frames at 60 fps (re-probed after mux)",
+  "contact_sheet": "PASS — director review rounds (sheet-v1.png → sheet-v3.png in the episode folder)",
+  "plain_words": "PASS — every on-screen line in plain words, worst grade 5.2 (limit 6)",
+  "lay_jury": "PASS — v3, mean sure 7.67, 3 personas"
+ },
+ "summary": "You keep tweaking a letter and never know when to stop, so three AI apps circle problems, you fix and ask again, and you stop when the problem counter hits zero (3 → 1 → 0); sourced card: \"Real draft: 28 problems, then 10, then 0.\" (Source: our own drafts — studio meta-prompt RMP ledger). Limit: zero means these readers found nothing, so add a new kind of reader.",
+ "changes": "Lay jury: v1 FAIL (near pass) → v2 FAIL (AI role) → v3 PASS. v1/v2 kept as film-v1/v2.js; v3 names the readers as AI apps (software), card corrected to 28 → 10 → 0 over three rounds, longer limit hold.",
+ "style": "1.0.0",
+ "status": "shipped",
+ "uses_kit": true,
+ "derived_colours": {},
+ "deviations": []
+}

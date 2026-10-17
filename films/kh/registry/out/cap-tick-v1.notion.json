@@ -1,0 +1,41 @@
+{
+ "properties": {
+  "Name": "Capabilities 06 \u00b7 Every step gets a tick \u2014 film v1",
+  "Kind": "Film",
+  "Version": "1.0",
+  "Status": "shipped",
+  "Style": "Kinetic Hydrography 1.0.0",
+  "Fingerprint": "5820a18ab2275c46",
+  "Passport hash": "11df6c39a3869737",
+  "Wada": [
+   "279"
+  ],
+  "Engine": [
+   "Canvas (skia)",
+   "ffmpeg",
+   "numpy synth"
+  ],
+  "Gates": "Pass",
+  "Gate detail": "read_time: PASS \u2014 26 lines, tightest 1.50 s vs 1.50 s \u00b7 frame_jump: PASS \u2014 29.5 px, 0.058 rad per frame \u00b7 contrast: PASS \u2014 7 pairs, lowest 8.2:1 \u00b7 flash_safety: PASS \u2014 0 flashes in any 1 s \u00b7 loudness: PASS \u2014 -16.3 LUFS, -2.7 dBTP \u00b7 ffprobe: PASS \u2014 1761 frames at 60 fps (re-probed after mux) \u00b7 contact_sheet: PASS \u2014 director review rounds (sheet-v1.png \u2192 sheet-v2.png in the episode folder) \u00b7 plain_words: PASS \u2014 every on-screen line in plain words, worst grade 4.5 (limit 6) \u00b7 lay_jury: PASS \u2014 v2, mean sure 7.83, 3 personas \u00b7 colour_provenance: PASS",
+  "Deviations": "None",
+  "Design ID": "cap-tick-v1",
+  "Derived from": [
+   "3fcd50cfaf9381fa8252ed30415d11ba"
+  ],
+  "Atlas lineage": [
+   "3fbd50cfaf938109b4d8cdcbc2fc8787",
+   "3fbd50cfaf9381fbb243e1afa8e20b3c",
+   "3fbd50cfaf9381159144e6222a7785ef",
+   "3fbd50cfaf9381078d70c4da78795394",
+   "3fbd50cfaf93818c9148cabe066e555a",
+   "3fbd50cfaf93810bbfc9fe9ad8c1949d",
+   "3fbd50cfaf9381eb9960f6866c267d59",
+   "3fbd50cfaf9381269a41dd50de1c851b"
+  ],
+  "date:Registered:start": "2026-10-17",
+  "date:Registered:is_datetime": 0
+ },
+ "content": "A crash after paying made the retry refund the customer twice ($20 \u2192 $40), so each finished step gets a tick and a restart skips the ticked steps, paying once; sourced card: \"True story: we crashed it on purpose. Each step happened once.\" (Source: our own tests \u2014 jev-tape demo:crash, 0 duplicate applies). Limit: a tick means done, not right.\n\n## Provenance\n- **Style:** Kinetic Hydrography 1.0.0 \u00b7 passport `11df6c39a3869737` \u00b7 kit `a19e3d258a95aa78`\n- **Fingerprint:** `5820a18ab2275c464218666ed304e47540bdf01bf96d4644ab12188c7b961623`\n- **Parents:** caps-series-v1 (`24c5bd802e26`)\n- **Colour provenance:** PASS \u2014 36 literal colours, 36 registered tokens, 0 declared derived\n\n## What changed\nLay jury: v1 FAIL (near pass; shop owner pending at time of record) \u2192 v2 PASS. v1 kept as film-v1.js; v2 names the AI helper, moves the coin out of the limit beat, enlarges the card.\n\n## Gates\n- read_time: PASS \u2014 26 lines, tightest 1.50 s vs 1.50 s\n- frame_jump: PASS \u2014 29.5 px, 0.058 rad per frame\n- contrast: PASS \u2014 7 pairs, lowest 8.2:1\n- flash_safety: PASS \u2014 0 flashes in any 1 s\n- loudness: PASS \u2014 -16.3 LUFS, -2.7 dBTP\n- ffprobe: PASS \u2014 1761 frames at 60 fps (re-probed after mux)\n- contact_sheet: PASS \u2014 director review rounds (sheet-v1.png \u2192 sheet-v2.png in the episode folder)\n- plain_words: PASS \u2014 every on-screen line in plain words, worst grade 4.5 (limit 6)\n- lay_jury: PASS \u2014 v2, mean sure 7.83, 3 personas\n- colour_provenance: PASS\n\n## Deviations from the style\n- None\n\n## Files\n- `renders/cap-tick.mp4` \u00b7 `0575f9318beb` \u00b7 7,332,755 bytes\n- `kh/caps/tick/film.js` \u00b7 `b3a53647fbea` \u00b7 25,389 bytes\n- `kh/caps/tick/score.py` \u00b7 `e80a1060dc63` \u00b7 8,001 bytes\n- `kh/caps/tick/NOTES.md` \u00b7 `ba530932f24b` \u00b7 3,709 bytes\n- `kh/caps/tick/LAY-JURY.json` \u00b7 `654f7733f644` \u00b7 2,139 bytes\n- `kh/caps/series.js` \u00b7 `f4196c7fb910` \u00b7 5,335 bytes\n- `kh/caps/tool.cjs` \u00b7 `76442fbe7351` \u00b7 7,376 bytes\n- `kh/whale-rig.js` \u00b7 `5a15b4982f5b` \u00b7 6,438 bytes\n- `kh/kh-kit.js` \u00b7 `a19e3d258a95` \u00b7 7,272 bytes\n- `storyboards/c06/sb-06-03.json` \u00b7 `7abe1d73afd6` \u00b7 13,435 bytes\n\n## Manifest\n```json\n{\n \"id\": \"cap-tick-v1\",\n \"fingerprint\": \"5820a18ab2275c464218666ed304e47540bdf01bf96d4644ab12188c7b961623\",\n \"style\": {\n  \"name\": \"Kinetic Hydrography\",\n  \"version\": \"1.0.0\",\n  \"passport_sha256\": \"11df6c39a38697375745f2bdb2040780e72f3657a56ab4306338bbfa64913efe\",\n  \"kit_sha256\": \"a19e3d258a95aa78e3199a8a95645703411e1ff218b262cd087dcf6516312a05\"\n },\n \"parents\": {\n  \"caps-series-v1\": \"24c5bd802e26d992214518788404b4084265daae5d0f519d40ffa9fa8af9c259\"\n },\n \"wada\": [\n  279\n ],\n \"atlas\": [\n  \"el:character-rig\",\n  \"el:camera-move\",\n  \"q:time-pure-frames\",\n  \"q:motion-blur\",\n  \"q:cue-locked-sound\",\n  \"gate:contact-sheet\",\n  \"gate:ffprobe-spec\",\n  \"gate:frame-jump-detector\"\n ],\n \"gates\": {\n  \"read_time\": \"PASS \\u2014 26 lines, tightest 1.50 s vs 1.50 s\",\n  \"frame_jump\": \"PASS \\u2014 29.5 px, 0.058 rad per frame\",\n  \"contrast\": \"PASS \\u2014 7 pairs, lowest 8.2:1\",\n  \"flash_safety\": \"PASS \\u2014 0 flashes in any 1 s\",\n  \"loudness\": \"PASS \\u2014 -16.3 LUFS, -2.7 dBTP\",\n  \"ffprobe\": \"PASS \\u2014 1761 frames at 60 fps (re-probed after mux)\",\n  \"contact_sheet\": \"PASS \\u2014 director review rounds (sheet-v1.png \\u2192 sheet-v2.png in the episode folder)\",\n  \"plain_words\": \"PASS \\u2014 every on-screen line in plain words, worst grade 4.5 (limit 6)\",\n  \"lay_jury\": \"PASS \\u2014 v2, mean sure 7.83, 3 personas\",\n  \"colour_provenance\": \"PASS\"\n }\n}\n```",
+ "preview": "kh/registry/previews/cap-tick-v1.jpg",
+ "unresolved_parents": []
+}

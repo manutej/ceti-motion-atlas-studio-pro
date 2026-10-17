@@ -1,0 +1,112 @@
+{
+ "id": "cap-fresh-v1",
+ "name": "Capabilities 08 \u00b7 Fresh eyes find what you missed \u2014 film v1",
+ "kind": "Film",
+ "version": "1.0",
+ "status": "shipped",
+ "style": {
+  "name": "Kinetic Hydrography",
+  "version": "1.0.0",
+  "passport_sha256": "11df6c39a38697375745f2bdb2040780e72f3657a56ab4306338bbfa64913efe",
+  "kit_sha256": "a19e3d258a95aa78e3199a8a95645703411e1ff218b262cd087dcf6516312a05"
+ },
+ "parents": {
+  "caps-series-v1": "24c5bd802e26d992214518788404b4084265daae5d0f519d40ffa9fa8af9c259"
+ },
+ "wada": [
+  166
+ ],
+ "engine": [
+  "Canvas (skia)",
+  "ffmpeg",
+  "numpy synth"
+ ],
+ "atlas": [
+  "el:character-rig",
+  "el:camera-move",
+  "q:time-pure-frames",
+  "q:motion-blur",
+  "q:cue-locked-sound",
+  "gate:contact-sheet",
+  "gate:ffprobe-spec",
+  "gate:frame-jump-detector"
+ ],
+ "sources": [
+  {
+   "path": "kh/caps/fresh/film.js",
+   "sha256": "cb1036f97d3992b5acd7abe6c981ce698e8e2d9cce47171eebf0172b24979ee7",
+   "bytes": 24109
+  },
+  {
+   "path": "kh/caps/fresh/score.py",
+   "sha256": "fbcd3acabca91ca3ab740a6db85e8c01e996332e21df1e2b696357998685cf83",
+   "bytes": 7902
+  },
+  {
+   "path": "kh/caps/fresh/NOTES.md",
+   "sha256": "3c8f73cb75bb423e24415c5dc8577c64bb110dd661634d62edcf6d52509958f1",
+   "bytes": 3831
+  },
+  {
+   "path": "kh/caps/fresh/LAY-JURY.json",
+   "sha256": "6540d4d1fa64e430d2a567a5820d0babb374de89aceff14b6dac2abc3832e13f",
+   "bytes": 2553
+  },
+  {
+   "path": "kh/caps/series.js",
+   "sha256": "f4196c7fb910ff127673e2ffd1b0ce0f89221152bbd259e9503dbbcf0b882e44",
+   "bytes": 5335
+  },
+  {
+   "path": "kh/caps/tool.cjs",
+   "sha256": "76442fbe73510ee374d93934614f070ba549e00cd9d5d2de829862a06d26cc87",
+   "bytes": 7376
+  },
+  {
+   "path": "kh/whale-rig.js",
+   "sha256": "5a15b4982f5b7bc30b77a071b560558113342fcb60f46674c218ad99bb2ecff4",
+   "bytes": 6438
+  },
+  {
+   "path": "kh/kh-kit.js",
+   "sha256": "a19e3d258a95aa78e3199a8a95645703411e1ff218b262cd087dcf6516312a05",
+   "bytes": 7272
+  },
+  {
+   "path": "storyboards/c07/sb-07-05.json",
+   "sha256": "96516ebb783566cbaf6742acfdc8aaee36ea373032ebf5d90169bc23a4d0f672",
+   "bytes": 14764
+  }
+ ],
+ "outputs": [
+  {
+   "path": "renders/cap-fresh.mp4",
+   "sha256": "f0ea7464e0a4026b5e9553cc29a85586b7b1fa08a2bf049ddf9eda222adaa77d",
+   "bytes": 5673206
+  }
+ ],
+ "gates": {
+  "read_time": "PASS \u2014 25 lines, tightest 1.53 s vs 1.50 s",
+  "frame_jump": "PASS \u2014 5.8 px, 0.021 rad per frame",
+  "contrast": "PASS \u2014 9 pairs, lowest 4.9:1",
+  "flash_safety": "PASS \u2014 0 flashes in any 1 s",
+  "loudness": "PASS \u2014 -16.6 LUFS, -2.6 dBTP",
+  "ffprobe": "PASS \u2014 1800 frames at 60 fps (re-probed after mux)",
+  "contact_sheet": "PASS \u2014 director review rounds (sheet-v1.png \u2192 sheet-v6.png in the episode folder)",
+  "plain_words": "PASS \u2014 every on-screen line in plain words, worst grade 4.5 (limit 6)",
+  "lay_jury": "PASS (revised criterion) \u2014 v5, mean sure 7.67, 3 personas",
+  "colour_provenance": "PASS"
+ },
+ "colour_provenance": {
+  "literal_colours": 36,
+  "registered": 36,
+  "declared_derived": [],
+  "unregistered": [],
+  "status": "PASS"
+ },
+ "deviations": [],
+ "summary": "You checked your own report twice and the customer still found a missing page, so AI checkers who did not write it hunt for mistakes, every complaint must point at the problem or is crossed out, and someone else fixes it; sourced card: \"True story \u00b7 our own review notes \u2014 57 complaints raised. Each one pointed at.\" Limit: checkers that think alike miss alike.",
+ "changes": "Lay jury: v4 FAIL (near pass) \u2192 v5 PASS (revised criterion). v4 kept as film-v4.js; v5 new title, AI checkers named, one limit beat, card about this story (57 raised, 0 struck; 116 dropped).",
+ "registered_at": "2026-10-17T23:46:43+00:00",
+ "fingerprint": "68faa45363f8dd288099c935d15c8c982b0a0f444d136feabbffb7fb81f6539d"
+}

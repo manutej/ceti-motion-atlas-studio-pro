@@ -1,0 +1,124 @@
+{
+ "id": "cap-gate-v3.4",
+ "name": "Capabilities 02 \u00b7 Every new mistake gets a check \u2014 film v3.4",
+ "kind": "Film",
+ "version": "3.4",
+ "status": "shipped",
+ "style": {
+  "name": "Kinetic Hydrography",
+  "version": "1.0.0",
+  "passport_sha256": "11df6c39a38697375745f2bdb2040780e72f3657a56ab4306338bbfa64913efe",
+  "kit_sha256": "a19e3d258a95aa78e3199a8a95645703411e1ff218b262cd087dcf6516312a05"
+ },
+ "parents": {
+  "cap-gate-v3": "f1ce3784789b73e1a33d4b9af0dc953276268f8280bdb95fd36c32b062e660f3",
+  "caps-series-v1": "24c5bd802e26d992214518788404b4084265daae5d0f519d40ffa9fa8af9c259"
+ },
+ "wada": [
+  243
+ ],
+ "engine": [
+  "Canvas (skia)",
+  "ffmpeg",
+  "numpy synth",
+  "operadic-stitch"
+ ],
+ "atlas": [
+  "el:character-rig",
+  "el:camera-move",
+  "q:time-pure-frames",
+  "q:motion-blur",
+  "q:cue-locked-sound",
+  "gate:contact-sheet",
+  "gate:ffprobe-spec",
+  "gate:frame-jump-detector"
+ ],
+ "sources": [
+  {
+   "path": "kh/caps/gate/film.js",
+   "sha256": "8814dbd0416482a5ab4106db6f4b6cb12ef1222409b2a4cf280664ef41fbf9ae",
+   "bytes": 31026
+  },
+  {
+   "path": "kh/caps/gate/score.py",
+   "sha256": "f781e93538ca714d271205f4771be0aae018326b523286c262bfd2fcc7410ac4",
+   "bytes": 8596
+  },
+  {
+   "path": "kh/caps/gate/NOTES.md",
+   "sha256": "529da2086229f7ddb0d87c6e712dde4769b7c537033886786a7382c38884fc36",
+   "bytes": 12159
+  },
+  {
+   "path": "kh/caps/gate/LAY-JURY.json",
+   "sha256": "ab5b6213d37308bb86a4eafe76bebb5571d05917519f5a5e031dcdee1cc4ed1d",
+   "bytes": 5086
+  },
+  {
+   "path": "kh/caps/series.js",
+   "sha256": "f4196c7fb910ff127673e2ffd1b0ce0f89221152bbd259e9503dbbcf0b882e44",
+   "bytes": 5335
+  },
+  {
+   "path": "kh/caps/tool.cjs",
+   "sha256": "76442fbe73510ee374d93934614f070ba549e00cd9d5d2de829862a06d26cc87",
+   "bytes": 7376
+  },
+  {
+   "path": "kh/whale-rig.js",
+   "sha256": "5a15b4982f5b7bc30b77a071b560558113342fcb60f46674c218ad99bb2ecff4",
+   "bytes": 6438
+  },
+  {
+   "path": "kh/kh-kit.js",
+   "sha256": "a19e3d258a95aa78e3199a8a95645703411e1ff218b262cd087dcf6516312a05",
+   "bytes": 7272
+  },
+  {
+   "path": "storyboards/c07/sb-07-01.json",
+   "sha256": "3d0f3f0c06cc5ad4476448aca1d752012b1fef7d734a458d2ed977ee0cd43015",
+   "bytes": 15431
+  },
+  {
+   "path": "storyboards/c07/sb-07-03.json",
+   "sha256": "08fe324ef395f020888c64f8a719cf9a6d0c8295653bd20e99e6385380c01ec8",
+   "bytes": 14635
+  },
+  {
+   "path": "storyboards/stitch/gate-v3.prompt.md",
+   "sha256": "7acaa9162dabe428699f2cc2e3f63f453bc736d9d48170310f4ca995f67614c3",
+   "bytes": 5222
+  }
+ ],
+ "outputs": [
+  {
+   "path": "renders/cap-gate-v3.4.mp4",
+   "sha256": "a0e41dc02e7c4dc34834f7199c034fc1b1628e9fc7407922cf3780fd9dd07165",
+   "bytes": 6818532
+  }
+ ],
+ "gates": {
+  "read_time": "PASS \u2014 21 lines, tightest 1.51 s vs 1.50 s",
+  "frame_jump": "PASS \u2014 23.5 px, 0.042 rad per frame",
+  "contrast": "PASS \u2014 8 pairs, lowest 4.8:1",
+  "flash_safety": "PASS \u2014 0 flashes in any 1 s",
+  "loudness": "PASS \u2014 -16.5 LUFS, -3.0 dBTP",
+  "ffprobe": "PASS \u2014 1790 frames at 60 fps (re-probed after mux)",
+  "contact_sheet": "PASS \u2014 director review rounds (sheet-v1.png \u2192 sheet-v3.4.png in the episode folder)",
+  "plain_words": "PASS \u2014 every on-screen line in plain words, worst grade 5.7 (limit 6)",
+  "lay_jury": "PASS (revised criterion) \u2014 v3.3, mean sure 7.50, 3 personas",
+  "colour_provenance": "PASS"
+ },
+ "colour_provenance": {
+  "literal_colours": 36,
+  "registered": 36,
+  "declared_derived": [],
+  "unregistered": [],
+  "status": "PASS"
+ },
+ "deviations": [],
+ "summary": "Your AI helper's report passed every check yet the customer found the wrong font, because each check looks for one kind of mistake, so every new mistake becomes a new check (a font check); sourced card: \"True story \u00b7 7 mistakes, 7 new checks\" (Source: our own list of mistakes \u2014 Limits & escapes register). Limit: passing means no mistakes we know of, not quality.",
+ "changes": "Lay jury: v3.1 FAIL \u2192 v3.2 FAIL (near pass) \u2192 v3.3 PASS (revised criterion). v3.2 everyday words and actors; v3.3 word pass (no \"gate\" on screen); v3.4 polish after the jury: title over a 30% dim, centred 78 px card held 3.5 s with pulsing checks, clipped labels clamped, whale turns capped, DUR 29.83 s. v3.3 kept as film-v3.3.js.",
+ "registered_at": "2026-10-17T23:46:44+00:00",
+ "fingerprint": "61b0f3347ae5b0edf8145f355debe5e3f1219d04bb494f9924f5b470e41981bc"
+}

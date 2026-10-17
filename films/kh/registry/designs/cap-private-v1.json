@@ -1,0 +1,60 @@
+{
+ "id": "cap-private-v1",
+ "name": "Capabilities 09 · Private notes stay put — film v1",
+ "kind": "Film",
+ "version": "1.0",
+ "parents": [
+  "caps-series-v1"
+ ],
+ "wada": [
+  339
+ ],
+ "engine": [
+  "Canvas (skia)",
+  "ffmpeg",
+  "numpy synth"
+ ],
+ "atlas": [
+  "el:character-rig",
+  "el:camera-move",
+  "q:time-pure-frames",
+  "q:motion-blur",
+  "q:cue-locked-sound",
+  "gate:contact-sheet",
+  "gate:ffprobe-spec",
+  "gate:frame-jump-detector"
+ ],
+ "sources": [
+  "kh/caps/private/film.js",
+  "kh/caps/private/score.py",
+  "kh/caps/private/NOTES.md",
+  "kh/caps/private/LAY-JURY.json",
+  "kh/caps/series.js",
+  "kh/caps/tool.cjs",
+  "kh/whale-rig.js",
+  "kh/kh-kit.js",
+  "storyboards/c04/sb-04-04.json"
+ ],
+ "outputs": [
+  "renders/cap-private.mp4"
+ ],
+ "preview": "kh/registry/previews/cap-private-v1.jpg",
+ "gates": {
+  "read_time": "PASS — 35 lines, tightest 1.80 s vs 1.80 s",
+  "frame_jump": "PASS — 25.9 px, 0.079 rad per frame",
+  "contrast": "PASS — 13 pairs, lowest 6.8:1",
+  "flash_safety": "PASS — 0 flashes in any 1 s",
+  "loudness": "PASS — -16.3 LUFS, -2.2 dBTP",
+  "ffprobe": "PASS — 1764 frames at 60 fps (re-probed after mux)",
+  "contact_sheet": "PASS — director review rounds (sheet-v1.png → sheet-v7.png in the episode folder)",
+  "plain_words": "PASS — every on-screen line in plain words, worst grade 3.7 (limit 6)",
+  "lay_jury": "PASS — v7, mean sure 7.33, 3 personas"
+ },
+ "summary": "Reusing last week's email sends the Bakery's private note to the Clinic, so you tap PRIVATE, the stamp names the client (\"PRIVATE · BAKERY\"), and your AI app sees the stamp and leaves the note out (\"Stamped for Bakery. Not sent.\"); no real-number card — the story carries an ILLUSTRATION chip (0.2–5.4 s). Limit: a note you never stamped can still go.",
+ "changes": "Lay jury: v3 FAIL (AI role unclear) → v4 FAIL (AI role, 'cards', limit lines) → v5 FAIL (mean sure 6.67 < 7) → v6 FAIL (mean sure 6.83 < 7) → v7 PASS. v6 kept as film-v6.js; v7 makes the check the hero beat (stamp names the client, slow centred refusal), drops thread/\"home\" and the example card; ILLUSTRATION chip added after the jury run.",
+ "style": "1.0.0",
+ "status": "shipped",
+ "uses_kit": true,
+ "derived_colours": {},
+ "deviations": []
+}

@@ -1,0 +1,112 @@
+{
+ "id": "cap-counter-v1",
+ "name": "Capabilities 07 \u00b7 Stop when the counter hits zero \u2014 film v1",
+ "kind": "Film",
+ "version": "1.0",
+ "status": "shipped",
+ "style": {
+  "name": "Kinetic Hydrography",
+  "version": "1.0.0",
+  "passport_sha256": "11df6c39a38697375745f2bdb2040780e72f3657a56ab4306338bbfa64913efe",
+  "kit_sha256": "a19e3d258a95aa78e3199a8a95645703411e1ff218b262cd087dcf6516312a05"
+ },
+ "parents": {
+  "caps-series-v1": "24c5bd802e26d992214518788404b4084265daae5d0f519d40ffa9fa8af9c259"
+ },
+ "wada": [
+  84
+ ],
+ "engine": [
+  "Canvas (skia)",
+  "ffmpeg",
+  "numpy synth"
+ ],
+ "atlas": [
+  "el:character-rig",
+  "el:camera-move",
+  "q:time-pure-frames",
+  "q:motion-blur",
+  "q:cue-locked-sound",
+  "gate:contact-sheet",
+  "gate:ffprobe-spec",
+  "gate:frame-jump-detector"
+ ],
+ "sources": [
+  {
+   "path": "kh/caps/counter/film.js",
+   "sha256": "84afa02481a7b1f6490eee5fb4824041b27c8895f0382935413b3c7d97364cd5",
+   "bytes": 25623
+  },
+  {
+   "path": "kh/caps/counter/score.py",
+   "sha256": "f54dd04b8378c3da3ae0c29b8e262350855b1cc454a14f8c921e8890f8943a99",
+   "bytes": 7912
+  },
+  {
+   "path": "kh/caps/counter/NOTES.md",
+   "sha256": "6020374fd807f420e8ba34bbafaf2ac319ae3812dee1c6d208d059222c9508af",
+   "bytes": 4675
+  },
+  {
+   "path": "kh/caps/counter/LAY-JURY.json",
+   "sha256": "ba490e238a2045cb8f8a901f2ad88fe8fea2c400903d97e89678bfcc19eda81a",
+   "bytes": 4108
+  },
+  {
+   "path": "kh/caps/series.js",
+   "sha256": "f4196c7fb910ff127673e2ffd1b0ce0f89221152bbd259e9503dbbcf0b882e44",
+   "bytes": 5335
+  },
+  {
+   "path": "kh/caps/tool.cjs",
+   "sha256": "76442fbe73510ee374d93934614f070ba549e00cd9d5d2de829862a06d26cc87",
+   "bytes": 7376
+  },
+  {
+   "path": "kh/whale-rig.js",
+   "sha256": "5a15b4982f5b7bc30b77a071b560558113342fcb60f46674c218ad99bb2ecff4",
+   "bytes": 6438
+  },
+  {
+   "path": "kh/kh-kit.js",
+   "sha256": "a19e3d258a95aa78e3199a8a95645703411e1ff218b262cd087dcf6516312a05",
+   "bytes": 7272
+  },
+  {
+   "path": "storyboards/c05/sb-05-02.json",
+   "sha256": "910cfb1f7b876fe667458e8201e523b50ffdccb6c82c433eecd6b993366b3a9b",
+   "bytes": 12222
+  }
+ ],
+ "outputs": [
+  {
+   "path": "renders/cap-counter.mp4",
+   "sha256": "d81541c1ea5e7715a4d66cbf30ea294378caaf7fe44570264623fe558a0740ca",
+   "bytes": 7449084
+  }
+ ],
+ "gates": {
+  "read_time": "PASS \u2014 28 lines, tightest 0.90 s vs 0.90 s",
+  "frame_jump": "PASS \u2014 28.6 px, 0.084 rad per frame",
+  "contrast": "PASS \u2014 9 pairs, lowest 8.5:1",
+  "flash_safety": "PASS \u2014 0 flashes in any 1 s",
+  "loudness": "PASS \u2014 -16.0 LUFS, -2.9 dBTP",
+  "ffprobe": "PASS \u2014 1770 frames at 60 fps (re-probed after mux)",
+  "contact_sheet": "PASS \u2014 director review rounds (sheet-v1.png \u2192 sheet-v3.png in the episode folder)",
+  "plain_words": "PASS \u2014 every on-screen line in plain words, worst grade 5.2 (limit 6)",
+  "lay_jury": "PASS \u2014 v3, mean sure 7.67, 3 personas",
+  "colour_provenance": "PASS"
+ },
+ "colour_provenance": {
+  "literal_colours": 36,
+  "registered": 36,
+  "declared_derived": [],
+  "unregistered": [],
+  "status": "PASS"
+ },
+ "deviations": [],
+ "summary": "You keep tweaking a letter and never know when to stop, so three AI apps circle problems, you fix and ask again, and you stop when the problem counter hits zero (3 \u2192 1 \u2192 0); sourced card: \"Real draft: 28 problems, then 10, then 0.\" (Source: our own drafts \u2014 studio meta-prompt RMP ledger). Limit: zero means these readers found nothing, so add a new kind of reader.",
+ "changes": "Lay jury: v1 FAIL (near pass) \u2192 v2 FAIL (AI role) \u2192 v3 PASS. v1/v2 kept as film-v1/v2.js; v3 names the readers as AI apps (software), card corrected to 28 \u2192 10 \u2192 0 over three rounds, longer limit hold.",
+ "registered_at": "2026-10-17T23:46:43+00:00",
+ "fingerprint": "b50c48efbdd69ef4abb700cdb56312483cc07c0cce21db19983156d0017e783d"
+}

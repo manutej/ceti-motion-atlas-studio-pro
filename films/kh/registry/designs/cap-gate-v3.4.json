@@ -1,0 +1,64 @@
+{
+ "id": "cap-gate-v3.4",
+ "name": "Capabilities 02 · Every new mistake gets a check — film v3.4",
+ "kind": "Film",
+ "version": "3.4",
+ "parents": [
+  "cap-gate-v3",
+  "caps-series-v1"
+ ],
+ "wada": [
+  243
+ ],
+ "engine": [
+  "Canvas (skia)",
+  "ffmpeg",
+  "numpy synth",
+  "operadic-stitch"
+ ],
+ "atlas": [
+  "el:character-rig",
+  "el:camera-move",
+  "q:time-pure-frames",
+  "q:motion-blur",
+  "q:cue-locked-sound",
+  "gate:contact-sheet",
+  "gate:ffprobe-spec",
+  "gate:frame-jump-detector"
+ ],
+ "sources": [
+  "kh/caps/gate/film.js",
+  "kh/caps/gate/score.py",
+  "kh/caps/gate/NOTES.md",
+  "kh/caps/gate/LAY-JURY.json",
+  "kh/caps/series.js",
+  "kh/caps/tool.cjs",
+  "kh/whale-rig.js",
+  "kh/kh-kit.js",
+  "storyboards/c07/sb-07-01.json",
+  "storyboards/c07/sb-07-03.json",
+  "storyboards/stitch/gate-v3.prompt.md"
+ ],
+ "outputs": [
+  "renders/cap-gate-v3.4.mp4"
+ ],
+ "preview": "kh/registry/previews/cap-gate-v3.4.jpg",
+ "gates": {
+  "read_time": "PASS — 21 lines, tightest 1.51 s vs 1.50 s",
+  "frame_jump": "PASS — 23.5 px, 0.042 rad per frame",
+  "contrast": "PASS — 8 pairs, lowest 4.8:1",
+  "flash_safety": "PASS — 0 flashes in any 1 s",
+  "loudness": "PASS — -16.5 LUFS, -3.0 dBTP",
+  "ffprobe": "PASS — 1790 frames at 60 fps (re-probed after mux)",
+  "contact_sheet": "PASS — director review rounds (sheet-v1.png → sheet-v3.4.png in the episode folder)",
+  "plain_words": "PASS — every on-screen line in plain words, worst grade 5.7 (limit 6)",
+  "lay_jury": "PASS (revised criterion) — v3.3, mean sure 7.50, 3 personas"
+ },
+ "summary": "Your AI helper's report passed every check yet the customer found the wrong font, because each check looks for one kind of mistake, so every new mistake becomes a new check (a font check); sourced card: \"True story · 7 mistakes, 7 new checks\" (Source: our own list of mistakes — Limits & escapes register). Limit: passing means no mistakes we know of, not quality.",
+ "changes": "Lay jury: v3.1 FAIL → v3.2 FAIL (near pass) → v3.3 PASS (revised criterion). v3.2 everyday words and actors; v3.3 word pass (no \"gate\" on screen); v3.4 polish after the jury: title over a 30% dim, centred 78 px card held 3.5 s with pulsing checks, clipped labels clamped, whale turns capped, DUR 29.83 s. v3.3 kept as film-v3.3.js.",
+ "style": "1.0.0",
+ "status": "shipped",
+ "uses_kit": true,
+ "derived_colours": {},
+ "deviations": []
+}

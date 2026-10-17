@@ -1,0 +1,112 @@
+{
+ "id": "cap-tick-v1",
+ "name": "Capabilities 06 \u00b7 Every step gets a tick \u2014 film v1",
+ "kind": "Film",
+ "version": "1.0",
+ "status": "shipped",
+ "style": {
+  "name": "Kinetic Hydrography",
+  "version": "1.0.0",
+  "passport_sha256": "11df6c39a38697375745f2bdb2040780e72f3657a56ab4306338bbfa64913efe",
+  "kit_sha256": "a19e3d258a95aa78e3199a8a95645703411e1ff218b262cd087dcf6516312a05"
+ },
+ "parents": {
+  "caps-series-v1": "24c5bd802e26d992214518788404b4084265daae5d0f519d40ffa9fa8af9c259"
+ },
+ "wada": [
+  279
+ ],
+ "engine": [
+  "Canvas (skia)",
+  "ffmpeg",
+  "numpy synth"
+ ],
+ "atlas": [
+  "el:character-rig",
+  "el:camera-move",
+  "q:time-pure-frames",
+  "q:motion-blur",
+  "q:cue-locked-sound",
+  "gate:contact-sheet",
+  "gate:ffprobe-spec",
+  "gate:frame-jump-detector"
+ ],
+ "sources": [
+  {
+   "path": "kh/caps/tick/film.js",
+   "sha256": "b3a53647fbeae5e932ce4d9157b8550f306b19f3de50b19d57036f0d846b830c",
+   "bytes": 25389
+  },
+  {
+   "path": "kh/caps/tick/score.py",
+   "sha256": "e80a1060dc6388bfaf30277e2a890bf7c8a48dbb0325e9628906f61feeb8f4f7",
+   "bytes": 8001
+  },
+  {
+   "path": "kh/caps/tick/NOTES.md",
+   "sha256": "ba530932f24bc46fe293a2e067a792b0f56f6abab9cfa6b435a33ba5052ba7ef",
+   "bytes": 3709
+  },
+  {
+   "path": "kh/caps/tick/LAY-JURY.json",
+   "sha256": "654f7733f644c3a62ccd8f17cefa4009c8ba3ca028ad3153560d05ff64059f76",
+   "bytes": 2139
+  },
+  {
+   "path": "kh/caps/series.js",
+   "sha256": "f4196c7fb910ff127673e2ffd1b0ce0f89221152bbd259e9503dbbcf0b882e44",
+   "bytes": 5335
+  },
+  {
+   "path": "kh/caps/tool.cjs",
+   "sha256": "76442fbe73510ee374d93934614f070ba549e00cd9d5d2de829862a06d26cc87",
+   "bytes": 7376
+  },
+  {
+   "path": "kh/whale-rig.js",
+   "sha256": "5a15b4982f5b7bc30b77a071b560558113342fcb60f46674c218ad99bb2ecff4",
+   "bytes": 6438
+  },
+  {
+   "path": "kh/kh-kit.js",
+   "sha256": "a19e3d258a95aa78e3199a8a95645703411e1ff218b262cd087dcf6516312a05",
+   "bytes": 7272
+  },
+  {
+   "path": "storyboards/c06/sb-06-03.json",
+   "sha256": "7abe1d73afd63ba9a1b19d3128bce3f877515c05aa037f3beb022fa7e8fbe2d4",
+   "bytes": 13435
+  }
+ ],
+ "outputs": [
+  {
+   "path": "renders/cap-tick.mp4",
+   "sha256": "0575f9318beb1ea2cdbb52510b0b9ce7560ebf28bbc868bb26b1d620741d2637",
+   "bytes": 7332755
+  }
+ ],
+ "gates": {
+  "read_time": "PASS \u2014 26 lines, tightest 1.50 s vs 1.50 s",
+  "frame_jump": "PASS \u2014 29.5 px, 0.058 rad per frame",
+  "contrast": "PASS \u2014 7 pairs, lowest 8.2:1",
+  "flash_safety": "PASS \u2014 0 flashes in any 1 s",
+  "loudness": "PASS \u2014 -16.3 LUFS, -2.7 dBTP",
+  "ffprobe": "PASS \u2014 1761 frames at 60 fps (re-probed after mux)",
+  "contact_sheet": "PASS \u2014 director review rounds (sheet-v1.png \u2192 sheet-v2.png in the episode folder)",
+  "plain_words": "PASS \u2014 every on-screen line in plain words, worst grade 4.5 (limit 6)",
+  "lay_jury": "PASS \u2014 v2, mean sure 7.83, 3 personas",
+  "colour_provenance": "PASS"
+ },
+ "colour_provenance": {
+  "literal_colours": 36,
+  "registered": 36,
+  "declared_derived": [],
+  "unregistered": [],
+  "status": "PASS"
+ },
+ "deviations": [],
+ "summary": "A crash after paying made the retry refund the customer twice ($20 \u2192 $40), so each finished step gets a tick and a restart skips the ticked steps, paying once; sourced card: \"True story: we crashed it on purpose. Each step happened once.\" (Source: our own tests \u2014 jev-tape demo:crash, 0 duplicate applies). Limit: a tick means done, not right.",
+ "changes": "Lay jury: v1 FAIL (near pass; shop owner pending at time of record) \u2192 v2 PASS. v1 kept as film-v1.js; v2 names the AI helper, moves the coin out of the limit beat, enlarges the card.",
+ "registered_at": "2026-10-17T23:46:43+00:00",
+ "fingerprint": "5820a18ab2275c464218666ed304e47540bdf01bf96d4644ab12188c7b961623"
+}

@@ -1,0 +1,112 @@
+{
+ "id": "cap-steps-v1",
+ "name": "Capabilities 10 \u00b7 Five small checks, not one \u2014 film v1",
+ "kind": "Film",
+ "version": "1.0",
+ "status": "shipped",
+ "style": {
+  "name": "Kinetic Hydrography",
+  "version": "1.0.0",
+  "passport_sha256": "11df6c39a38697375745f2bdb2040780e72f3657a56ab4306338bbfa64913efe",
+  "kit_sha256": "a19e3d258a95aa78e3199a8a95645703411e1ff218b262cd087dcf6516312a05"
+ },
+ "parents": {
+  "caps-series-v1": "24c5bd802e26d992214518788404b4084265daae5d0f519d40ffa9fa8af9c259"
+ },
+ "wada": [
+  296
+ ],
+ "engine": [
+  "Canvas (skia)",
+  "ffmpeg",
+  "numpy synth"
+ ],
+ "atlas": [
+  "el:character-rig",
+  "el:camera-move",
+  "q:time-pure-frames",
+  "q:motion-blur",
+  "q:cue-locked-sound",
+  "gate:contact-sheet",
+  "gate:ffprobe-spec",
+  "gate:frame-jump-detector"
+ ],
+ "sources": [
+  {
+   "path": "kh/caps/steps/film.js",
+   "sha256": "618a4dada4bba2daf1cf93fccf934eafcc4c8fa42ffc38f914acf9211eb78438",
+   "bytes": 27554
+  },
+  {
+   "path": "kh/caps/steps/score.py",
+   "sha256": "f8da68ce24d52e204f4d032916cdf04bb06d24fb1b25e802a0fe81b694f77505",
+   "bytes": 7943
+  },
+  {
+   "path": "kh/caps/steps/NOTES.md",
+   "sha256": "ea6bee45af5e00bfb994e6f69ef07f20b5382a0cbadf6eb48c67f8b029185613",
+   "bytes": 5606
+  },
+  {
+   "path": "kh/caps/steps/LAY-JURY.json",
+   "sha256": "3a6c71f1faa58b09994d1677d9247f9d2e16b2abd3f5d362c875955a938ef453",
+   "bytes": 2781
+  },
+  {
+   "path": "kh/caps/series.js",
+   "sha256": "f4196c7fb910ff127673e2ffd1b0ce0f89221152bbd259e9503dbbcf0b882e44",
+   "bytes": 5335
+  },
+  {
+   "path": "kh/caps/tool.cjs",
+   "sha256": "76442fbe73510ee374d93934614f070ba549e00cd9d5d2de829862a06d26cc87",
+   "bytes": 7376
+  },
+  {
+   "path": "kh/whale-rig.js",
+   "sha256": "5a15b4982f5b7bc30b77a071b560558113342fcb60f46674c218ad99bb2ecff4",
+   "bytes": 6438
+  },
+  {
+   "path": "kh/kh-kit.js",
+   "sha256": "a19e3d258a95aa78e3199a8a95645703411e1ff218b262cd087dcf6516312a05",
+   "bytes": 7272
+  },
+  {
+   "path": "storyboards/c06/sb-06-05.json",
+   "sha256": "1314ff00b7da022e201e7a95ab707ef8097aca40f147e0c917f74b2351e6954a",
+   "bytes": 13155
+  }
+ ],
+ "outputs": [
+  {
+   "path": "renders/cap-steps.mp4",
+   "sha256": "32838f65a657e7816bab9be1493e8652d9517a66b11a27fc9b75fb7900a92256",
+   "bytes": 7930481
+  }
+ ],
+ "gates": {
+  "read_time": "PASS \u2014 30 lines, tightest 1.80 s vs 1.80 s",
+  "frame_jump": "PASS \u2014 15.4 px, 0.065 rad per frame",
+  "contrast": "PASS \u2014 7 pairs, lowest 4.8:1",
+  "flash_safety": "PASS \u2014 0 flashes in any 1 s",
+  "loudness": "PASS \u2014 -16.2 LUFS, -2.9 dBTP",
+  "ffprobe": "PASS \u2014 1791 frames at 60 fps (re-probed after mux)",
+  "contact_sheet": "PASS \u2014 director review rounds (sheet-v1.png \u2192 sheet-v5.png in the episode folder)",
+  "plain_words": "PASS \u2014 every on-screen line in plain words, worst grade 3.8 (limit 6)",
+  "lay_jury": "PASS (revised criterion) \u2014 v4, mean sure 7.67, 3 personas",
+  "colour_provenance": "PASS"
+ },
+ "colour_provenance": {
+  "literal_colours": 36,
+  "registered": 36,
+  "declared_derived": [],
+  "unregistered": [],
+  "status": "PASS"
+ },
+ "deviations": [],
+ "summary": "One big question (\"Is this email a scam?\") gives the AI checker a wobbly maybe, so you split it into five small yes/no checks and one clear no stops the fake; sourced card: \"Real test \u00b7 Right answers on scam emails \u2014 one big question 63%, five small checks 95%, a simple fixed rule 92%\" (Source: our own tests \u2014 JEV-works README 62.6 / 95.1 / 91.8). Limit: splitting the question is what helps. The 0.82\u20130.91 figure is not on screen.",
+ "changes": "Lay jury: v3 FAIL (near pass) \u2192 v4 PASS (revised criterion). v3 kept as film-v3.js, v4 as film-v4.js; v4 \"checks\" not \"gates\", AI checker named, maybe-lamp; v5 polish: chart alone on a veil at 64 px bars, limit reworded.",
+ "registered_at": "2026-10-17T23:46:44+00:00",
+ "fingerprint": "79a2568e97779e0694d79ca9bb697115c565369f3e0eef85b2efede66c3adc94"
+}

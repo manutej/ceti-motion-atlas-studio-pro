@@ -1,0 +1,112 @@
+{
+ "id": "cap-private-v1",
+ "name": "Capabilities 09 \u00b7 Private notes stay put \u2014 film v1",
+ "kind": "Film",
+ "version": "1.0",
+ "status": "shipped",
+ "style": {
+  "name": "Kinetic Hydrography",
+  "version": "1.0.0",
+  "passport_sha256": "11df6c39a38697375745f2bdb2040780e72f3657a56ab4306338bbfa64913efe",
+  "kit_sha256": "a19e3d258a95aa78e3199a8a95645703411e1ff218b262cd087dcf6516312a05"
+ },
+ "parents": {
+  "caps-series-v1": "24c5bd802e26d992214518788404b4084265daae5d0f519d40ffa9fa8af9c259"
+ },
+ "wada": [
+  339
+ ],
+ "engine": [
+  "Canvas (skia)",
+  "ffmpeg",
+  "numpy synth"
+ ],
+ "atlas": [
+  "el:character-rig",
+  "el:camera-move",
+  "q:time-pure-frames",
+  "q:motion-blur",
+  "q:cue-locked-sound",
+  "gate:contact-sheet",
+  "gate:ffprobe-spec",
+  "gate:frame-jump-detector"
+ ],
+ "sources": [
+  {
+   "path": "kh/caps/private/film.js",
+   "sha256": "b20122a4f56a98498efcf1b84b896d6138a03fc5180de4ece9a2c8fd23d6f103",
+   "bytes": 30535
+  },
+  {
+   "path": "kh/caps/private/score.py",
+   "sha256": "1e47b27948a42b4d0f232433f8a08f0acc228a5cca00c0a2608c312afe1d55c5",
+   "bytes": 8275
+  },
+  {
+   "path": "kh/caps/private/NOTES.md",
+   "sha256": "8ff533657f6bf8f3b91db46248a074268fe2572467c1986fdbadbba3c4c89b8c",
+   "bytes": 16141
+  },
+  {
+   "path": "kh/caps/private/LAY-JURY.json",
+   "sha256": "1aad70b09b333a3bfa70b55b6bc84942cbcea97665fd718dafc44c6eaf992d1f",
+   "bytes": 7096
+  },
+  {
+   "path": "kh/caps/series.js",
+   "sha256": "f4196c7fb910ff127673e2ffd1b0ce0f89221152bbd259e9503dbbcf0b882e44",
+   "bytes": 5335
+  },
+  {
+   "path": "kh/caps/tool.cjs",
+   "sha256": "76442fbe73510ee374d93934614f070ba549e00cd9d5d2de829862a06d26cc87",
+   "bytes": 7376
+  },
+  {
+   "path": "kh/whale-rig.js",
+   "sha256": "5a15b4982f5b7bc30b77a071b560558113342fcb60f46674c218ad99bb2ecff4",
+   "bytes": 6438
+  },
+  {
+   "path": "kh/kh-kit.js",
+   "sha256": "a19e3d258a95aa78e3199a8a95645703411e1ff218b262cd087dcf6516312a05",
+   "bytes": 7272
+  },
+  {
+   "path": "storyboards/c04/sb-04-04.json",
+   "sha256": "b7a45ccc999a35c0805503c7523a4790710dd069549e7f89d2f859dfe63c682d",
+   "bytes": 14173
+  }
+ ],
+ "outputs": [
+  {
+   "path": "renders/cap-private.mp4",
+   "sha256": "8eb2209c425955bd6377a10e0967fe43f84d30c1f0f655b1238db95662fbae50",
+   "bytes": 9208681
+  }
+ ],
+ "gates": {
+  "read_time": "PASS \u2014 35 lines, tightest 1.80 s vs 1.80 s",
+  "frame_jump": "PASS \u2014 25.9 px, 0.079 rad per frame",
+  "contrast": "PASS \u2014 13 pairs, lowest 6.8:1",
+  "flash_safety": "PASS \u2014 0 flashes in any 1 s",
+  "loudness": "PASS \u2014 -16.3 LUFS, -2.2 dBTP",
+  "ffprobe": "PASS \u2014 1764 frames at 60 fps (re-probed after mux)",
+  "contact_sheet": "PASS \u2014 director review rounds (sheet-v1.png \u2192 sheet-v7.png in the episode folder)",
+  "plain_words": "PASS \u2014 every on-screen line in plain words, worst grade 3.7 (limit 6)",
+  "lay_jury": "PASS \u2014 v7, mean sure 7.33, 3 personas",
+  "colour_provenance": "PASS"
+ },
+ "colour_provenance": {
+  "literal_colours": 36,
+  "registered": 36,
+  "declared_derived": [],
+  "unregistered": [],
+  "status": "PASS"
+ },
+ "deviations": [],
+ "summary": "Reusing last week's email sends the Bakery's private note to the Clinic, so you tap PRIVATE, the stamp names the client (\"PRIVATE \u00b7 BAKERY\"), and your AI app sees the stamp and leaves the note out (\"Stamped for Bakery. Not sent.\"); no real-number card \u2014 the story carries an ILLUSTRATION chip (0.2\u20135.4 s). Limit: a note you never stamped can still go.",
+ "changes": "Lay jury: v3 FAIL (AI role unclear) \u2192 v4 FAIL (AI role, 'cards', limit lines) \u2192 v5 FAIL (mean sure 6.67 < 7) \u2192 v6 FAIL (mean sure 6.83 < 7) \u2192 v7 PASS. v6 kept as film-v6.js; v7 makes the check the hero beat (stamp names the client, slow centred refusal), drops thread/\"home\" and the example card; ILLUSTRATION chip added after the jury run.",
+ "registered_at": "2026-10-17T23:46:43+00:00",
+ "fingerprint": "d6c91d6164534fd158dc9c9461ff487f7b84152321bb4cdf542d03ab7b4fe54e"
+}
