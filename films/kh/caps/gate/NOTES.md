@@ -1,4 +1,40 @@
-# 02 · gate v3: Check it at the *gate*.
+# 02 · gate v3.2: Check each report at the *gate*.
+
+## v3.2 (lay-jury pass; v3.1 is kept as `film-v3.1.js`)
+
+The lay jury (`LAY-JURY.json`, O2: FAIL on v3.1) got the gist but not the words or the actors. The structure is unchanged; the semantics are now everyday:
+
+- **The work and the actors.** The moving thing is a **report**: a page with an "Aa" heading and text lines, riding the line with its trail. Caption at 0.45 s: "Your report passed every check." The grey fish is labelled **customer** (0.3 s to the lockup). The whale is labelled **you** (0.45–4.25 s).
+- **Each gate has a plain word under its icon:**
+
+  | Gate | Icon | Label | Tint |
+  |---|---|---|---|
+  | 1 | wavy underline | spelling | olive |
+  | 2 | Σ | totals | slate |
+  | 3 | "Aa" in the expected sans font | font | ivory buff × driftwood |
+  | 4 | arrow | page order | mist |
+
+  Each mistake is drawn on the page in the alarm colour: a wavy underline, a ≠ on the total, the heading set in a curly italic font, or the page upside-down (wrong order).
+- **The escape is the wrong font.** The page's "Aa" is set in Fraunces italic, in the darkened sienna accent. The new font gate's icon shows the expected plain "Aa".
+- **Words.**
+  - Title: "Check each report at the gate."
+  - Captions:
+    - "The customer still found a mistake."
+    - "Each gate checks one kind of mistake."
+    - "No gate checks the font."
+    - "Turn the miss into a new check."
+    - "Now the wrong font stops here." (an ink arrow points at the closed font gate; the stopped report now holds there for 1.0 s)
+    - "A new kind of mistake still slips through."
+    - "Passing means no known mistakes. Not quality."
+    - "Machines check each report. Misses become new checks."
+  - I used "each", not the requested "every": the O1 syllable counter scores "every" as 3 syllables, which pushed that line to grade 6.7.
+- **Card:** "True story · 7 misses, 7 new checks" with "Source: our own error log". It is up for 3.35 s, the smallest text is 28 px, and it is marked `card: true`.
+- **Pace:** captions between 10.8 and 16 s now get 2.55–2.6 s windows. DUR is 29.22 s.
+- **O1:** INTENT and TERMS are declared. "report" is in TERMS because the expert regex matches `repo*`. The report page is on screen from 0.42 s, before the word appears at 0.45 s.
+
+---
+
+# (v3/v3.1 notes follow)
 
 Wada 243 (Raw Sienna, Ivory Buff, Olive Green, Slate). 128 BPM. DUR 27.38 s (25-s series format; the 25–30 s Goal wins over the 60-s grid).
 Olive = a check passed. Raw Sienna = the one alarm: the wrong-colour run, the pod's ✕, the miss flags. Text is ink or slate on paper or a chip.
