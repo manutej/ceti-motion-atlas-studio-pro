@@ -73,7 +73,7 @@ put(pluck(A, 2.6, 0.55), one('homes'), 0.5, 0, 0.45)
 # ---------- MOVE: the string is tuned; three pins build an open A chord ----------
 for e, f in zip(at('tap'), [110.0, 164.81, 220.0]):
     put(knock(900 + 150 * e['i']), e['t'], 0.35, -0.5 + 0.5 * e['i'], 0.2); put(mallet(f, 2.4, 0.5), e['t'] + 0.02, 0.32, -0.5 + 0.5 * e['i'], 0.5)
-put(tick(3000, 0.03), one('label'), 0.1, 0, 0.2); put(tick(2200, 0.03), one('strip'), 0.08, -0.6, 0.1)
+put(tick(3000, 0.03), one('label'), 0.1, 0, 0.2);
 for e in at('pedit'):
     i = e['i']; put(pluck(A, 1.8, [0.3, 0.75, 0.5, 0.6][i]), e['t'], 0.55, [-0.3, 0.3, 0.0, -0.2][i], 0.35); put(kick(0.3), e['t'])
 for e in at('pulse'):

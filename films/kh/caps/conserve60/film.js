@@ -232,11 +232,11 @@ const CAPS = [
   cap('belief', BELIEF, LOCK - 0.2, 'Pick three things your wiki must keep.'),
 ];
 const LAWS = ['Every claim sourced', 'No broken links', 'One page per thing'];   // under pins A (source), B (link), C (page)
-const LAWR = LAWS.flatMap((w, i) => [{ id: 'law' + i, in: TAP[i] + 0.1, out: CARD_T - 0.2, fi: 0.4, fo: 0.4, text: w, kind: 'label', size: 24 },
+const LAWR = LAWS.flatMap((w, i) => [{ id: 'law' + i, in: TAP[i] + 0.1, out: SLIDE + 0.3, fi: 0.4, fo: 0.4, text: w, kind: 'label', size: 24 },
   { id: 'lawB' + i, in: i === 2 ? POD2_OUT + 0.6 : FOLLOW, out: DUR, fi: 0.5, fo: 0, text: w, kind: 'label', size: 24 }]);
-const PANR = [{ id: 'pan1', in: PANEL_IN, out: GATE_SHUT, fi: 0.5, fo: 0.15, text: 'Checked on every edit', kind: 'label', size: 24 },
+const PANR = [{ id: 'pan1', in: ENTRIES[0].t, out: GATE_SHUT, fi: 0.5, fo: 0.15, text: 'Checked on every edit', kind: 'label', size: 24 },
   { id: 'over', in: GATE_SHUT, out: GATE_OPEN + 0.9, fi: 0.12, fo: 0.3, text: 'Over: fixed before saving.', kind: 'label', size: 24 },
-  { id: 'pan2', in: GATE_OPEN + 0.9, out: PANEL_OUT, fi: 0.3, fo: 0.5, text: 'Checked on every edit', kind: 'label', size: 24 }];
+  { id: 'pan2', in: GATE_OPEN + 0.9, out: SLIDE + 0.2, fi: 0.3, fo: 0.4, text: 'Checked on every edit', kind: 'label', size: 24 }];
 const STRIP = { id: 'strip', in: STRIP_T, out: SLIDE - 0.1, fi: 0.35, fo: 0.35, text: 'Pin. Check. Fix.', kind: 'label', size: 24 };
 const CELLS = [['548', 'entities'], ['2,933', 'links'], ['0', 'laws broken'], ['0.988', 'sourced']];
 const CARDR = { id: 'card', in: CARD_T, out: bar(22) - 0.3, fi: 0.4, fo: 0.4, kind: 'card', size: 56, src: SRC,
@@ -245,9 +245,10 @@ const AUDR = { id: 'audit', in: bar(24), out: PAN - 0.05, fi: 0.3, fo: 0.3, kind
 const READ = [
   { id: 'eyebrow', in: TITLE_IN, out: TITLE_OUT, fi: 0.4, fo: 0.45, text: 'CETI · Capabilities · 04', kind: 'title', size: 15, src: 'films/kh/caps/SERIES.md' },
   { id: 'title', in: TITLE_IN, out: TITLE_OUT, fi: 0.4, fo: 0.45, text: 'Change everything but the pins.', kind: 'title', size: 92 },
-  ...CAPS, ...LAWR, ...PANR, STRIP, CARDR, AUDR,
+  ...CAPS, ...LAWR, ...PANR, CARDR, AUDR,
   { id: 'lockup', in: LOCK, out: DUR, fi: 0.45, fo: 0, text: 'CETI · Capabilities · 04 · Conserve', kind: 'card', size: 15, src: 'films/kh/caps/SERIES.md' },
 ].sort((a, b) => a.in - b.in);
+const LEGEND = /^law/;   // declared N7 rule: the pin legend (three law chips) counts as one item
 const RD = id => READ.find(r => r.id === id), ra = (t, id) => { const r = RD(id); return win(t, r.in, r.out, r.fi, r.fo); };
 const TERMS = [{ term: 'laws', symbol: 'pin', pictured_at: TAP[0], named_at: FE[0] },
   { term: 'citation audit', symbol: 'grid of 60 ticks', pictured_at: GRID_T, named_at: bar(24) }];
@@ -395,7 +396,7 @@ function drawFrame(c, t) {
   // what each pin keeps: icons under the pins (source · link · page); the link pin is labelled once
   { const gridK = ramp(t, GRID_T, GRID_T + 0.4, EASE.glaser) * (1 - ramp(t, PAN - 0.4, PAN, EASE.rest));
     ['source', 'link', 'page'].forEach((kind, i) => { const ca = Math.max(ra(t, 'law' + i), ra(t, 'lawB' + i));
-      const ia = ramp(t, TAP[i] + 0.1, TAP[i] + 0.5, EASE.warm) * (i === 0 ? 1 - Math.min(1, gridK * 3) : 1) * (1 - ca); iconChip(c, kind, X(PINX[i]), Y(118), z, ia);
+      const ia = ramp(t, TAP[i] + 0.1, TAP[i] + 0.5, EASE.warm) * (i === 0 ? 1 - Math.min(1, gridK * 3) : 1) * (1 - ca) * (i === 2 && t > PAN && t < RD('lawB2').in ? 0 : 1); iconChip(c, kind, X(PINX[i]), Y(118), z, ia);
       if (ca > 0) S.chip(c, LAWS[i], X(PINX[i]), Y(t < FOLLOW ? 205 : 118) + 9 + (1 - EASE.defer(clamp(ca))) * 8, { f: 'sans', size: 24, col: INK, a: ca, align: 'center', pad: 14, border: RULE }); });
     // LIMIT: the source tick opens into the atlas citation audit (60 ticks)
     if (gridK > 0.001) { const cx = X(PINX[0]), top = Y(118) - 23 * zz, wF = 640, hF = 290, w = lerp(46, wF, gridK), h = lerp(46, hF, gridK);
@@ -437,7 +438,7 @@ function drawFrame(c, t) {
 
   panel(c, t);
   // the three-verb strip
-  { const sa = ra(t, 'strip'); if (sa > 0) { const words = ['Pin', 'Check', 'Fix'], spans = [[STRIP_T, FE[0]], [FE[0], TUG0], [TUG0, LAST]]; let x = 156;
+  { const sa = 0; if (sa > 0) { const words = ['Pin', 'Check', 'Fix'], spans = [[STRIP_T, FE[0]], [FE[0], TUG0], [TUG0, LAST]]; let x = 156;
       words.forEach((w, i) => { const act = Math.max(win(t, spans[i][0], spans[i][1], 0.25, 0.25), t > LAST ? 1 : 0), wpx = w.length * 19.2;
         if (act < 1) text(c, w, x, 112, { f: 'mono', size: 24, col: INACT, a: sa * (1 - act) });
         if (act > 0) { text(c, w, x, 112, { f: 'monoB', size: 24, col: INK, a: sa * act });
@@ -481,6 +482,6 @@ function cues() {
 const CONTRAST = [['title', INK, GROUND], ['title on veil', INK, VEILED], ['title accent', DSG, GROUND], ['eyebrow', SOFT, GROUND],
   ['strip active', INK, GROUND], ['strip inactive', INACT, GROUND], ['caption (chip)', INK, C.paper], ['label (chip)', INK, C.paper],
   ['card values', INK, C.paper], ['card labels', SOFT, C.paper], ['audit labels', SOFT, C.paper], ['audit count', INK, C.paper], ['law chips', INK, C.paper], ['panel label', SOFT, C.paper], ['panel over', OVERCOL, C.paper], ['lockup', SOFT, GROUND]];
-root.EPISODE = { drawFrame, cues, READ, CONTRAST, DUR, W, H, fps: 60, wpos, heading, cam, ACTS, TERMS, JARGON, BPM, SOLUTION_HINT, ENDING,
+root.EPISODE = { LEGEND, drawFrame, cues, READ, CONTRAST, DUR, W, H, fps: 60, wpos, heading, cam, ACTS, TERMS, JARGON, BPM, SOLUTION_HINT, ENDING,
   shutter: t => (t > SH0 - 0.1 && t < SH2) ? [3, 0.6] : [2, 0.5] };
 })(typeof window !== 'undefined' ? window : globalThis);
