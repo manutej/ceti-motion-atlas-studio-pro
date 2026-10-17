@@ -1,24 +1,30 @@
-// CETI Capabilities 09 · private — "Private notes stay home." (v5) Kinetic Hydrography 1.0.0 + series layer. 30-s house format.
-// Source: storyboards/c04/sb-04-04 (Context Atoms), compressed. Everyday picture: an email is a page of note cards; each client
-// has a box. A card stamped PRIVATE is tied by a violet thread to its own client's box, so when the email goes to anyone else
-// the thread pulls that card back home. Nobody has to remember. Honest limit: a note written on a plain (unstamped) card still goes.
+// CETI Capabilities 09 · private — "Private notes stay home." (v6) Kinetic Hydrography 1.0.0 + series layer. 30-s house format.
+// Source: storyboards/c04/sb-04-04 (Context Atoms), compressed. Everyday picture: an email is a page of notes; each client has a
+// folder. Beside a note sits a small PRIVATE button; you tap it and it becomes a violet stamp. A stamped note is tied by a violet
+// thread to its own client's folder, so when the email goes to anyone else the thread pulls that note back home. And also: tap
+// it when you write the note; a note whose button was never tapped still goes (shown landing, circled, in the limit beat).
 // drawFrame(ctx, t) is a pure function of t.
 (function (root) {
 'use strict';
 const KH = root.KH, S = KH.SERIES, { CETI: C, W: WD, clamp, lerp, win, EASE, ramp, mix, rgba, text } = KH;
-const W = 1920, H = 1080, BPM = 120, DUR = 28.65;
+const W = 1920, H = 1080, BPM = 120;
+// v6 retime: M maps v5 beat times to v6 (longer title hold, slower tie, the "no one has to remember" beat and its email cut).
+const MK = [[0, 0], [5.4, 5.4], [6.9, 7.9], [10.0, 11.0], [10.7, 12.2], [12.05, 14.05], [14.37, 16.37], [16.45, 16.4], [40, 39.95]];
+const M = v => { let i = 0; while (i < MK.length - 2 && MK[i + 1][0] < v) i++; const [a, A] = MK[i], [b, B2] = MK[i + 1]; return +(A + (v - a) / (b - a) * (B2 - A)).toFixed(4); };
+const DUR = M(28.65);
 const INK = C.navy, SOFT = C.slate, VIO = WD.violetBlue, RED = WD.englishRed, SAL = WD.ochraceousSalmon, GLAU = WD.lightGlaucousBlue;
 const BG = mix(C.paper, VIO, 0.06);                          // what SERIES.ground paints with tint: violet blue
 let ACC = VIO; for (let k = 0; k <= 1; k += 0.05) { ACC = mix(VIO, INK, k); if (KH.contrast(ACC, BG) >= 4.6 && KH.contrast(ACC, C.paper) >= 4.6) break; }
 const CARD = mix(C.paper, C.slate, 0.06), CARDEDGE = mix(C.paper, C.slate, 0.5), CLINE = mix(C.paper, C.slate, 0.32), PTAB = mix(C.paper, C.slate, 0.4);
 const PAGEEDGE = mix(C.paper, C.slate, 0.55), BOXF = mix(C.paper, C.slate, 0.08), BOXB = mix(C.paper, C.slate, 0.26);
 const ALARM = mix(RED, INK, 0.1), STAMPC = mix(VIO, INK, 0.1), THREAD = VIO, CROSS = mix(GLAU, INK, 0.45);
+const CHIPF = mix(CARD, VIO, 0.12), BTNSH = rgba(C.slate, 0.35);
 
 // ---------- the world: one desk (the email being written), two client boxes ----------
 const DESK = { x: 0, y: 40 }, PW = 344, PH = 300, CY = [-50, 28, 106], CW = 304, CH = 74;
 const BAK = { x: -480, y: 70 }, CLI = { x: 480, y: 70 }, RIM = -60, BW = 290, BH = 150;
 const ANCH = { x: BAK.x, y: BAK.y + RIM };
-const SLOT = i => ({ x: BAK.x - 50 + 34 * i, y: BAK.y + RIM - 14 - 5 * (i % 2), r: -0.09 + 0.06 * i });
+const SLOT = i => ({ x: BAK.x - 18 + 34 * i, y: BAK.y + RIM - 14 - 5 * (i % 2), r: -0.09 + 0.06 * i });
 const POP = { x: 440, y: -192 }, PSC = 0.92, TICK = { x: CLI.x, y: -110 }, POD = { x: 245, y: 135 }, PODS = 120, PODCOL = mix(C.slate, C.paper, 0.35);
 const PODEYE = { x: POD.x - 27, y: POD.y - 9 };
 
@@ -26,11 +32,11 @@ const PODEYE = { x: POD.x - 27, y: POD.y - 9 };
 const LET = [
   // L1 and L5 do not vanish into the folder: they land just above the Clinic's folder and stay open, so the viewer sees
   // the Bakery note arrive inside the Clinic's email (v5, lay jury: "never saw the Clinic email get the note").
-  { id: 'L1', in: -1, send: 1.4, fly: 0.95, mid: 'bakery', hdr: [['To: Bakery', -1, 1.05, 0, 0.15], ['To: Clinic', 1.0, 7.65, 0.15, 0.4]], pop: [7.25, 7.65] },
-  { id: 'L2', in: 7.55, send: 12.25, fly: 0.9, mid: 'sealed', stamp: 8.5, thread: [10.0, 10.7], hdr: [['To: Bakery', 7.65, 12.0, 0.3, 0.15], ['To: Clinic', 11.9, 13.2, 0.15, 0.1]] },
-  { id: 'L3', in: 13.95, send: 14.85, fly: 0.8, mid: 'sealed', hdr: [['To: Clinic', 13.95, 15.7, 0.2, 0.1]] },
-  { id: 'L5', in: 19.85, send: 20.95, fly: 0.85, mid: 'scrawl', scrawl: [20.3, 20.8], hdr: [['To: Clinic', 19.9, 23.8, 0.3, 0.4]], pop: [23.4, 23.8] },
-  { id: 'L6', in: 23.25, send: 24.55, fly: 0.95, mid: 'sealed', hdr: [['To: Bakery', 23.25, 24.45, 0.15, 0.15], ['To: Clinic', 24.35, 25.55, 0.1, 0.1]] },
+  { id: 'L1', in: -1, send: 1.4, fly: 0.95, mid: 'bakery', hdr: [['To: Bakery', -1, 1.05, 0, 0.15], ['To: Clinic', 1.0, M(7.65), 0.15, 0.4]], pop: [M(7.25), M(7.65)] },
+  // L2 carries the PRIVATE button beside its note: tapped at L2.stamp, it becomes the stamp. L5's button is never tapped.
+  { id: 'L2', in: M(7.55), send: M(12.25), fly: 0.9, mid: 'sealed', btn: true, stamp: M(8.5), thread: [M(10.0), M(10.7)], hdr: [['To: Bakery', M(7.65), M(12.0), 0.3, 0.15], ['To: Clinic', M(11.9), M(13.2), 0.15, 0.1]] },
+  { id: 'L5', in: M(19.85), send: M(20.95), fly: 0.85, mid: 'scrawl', btn: true, scrawl: [M(20.3), M(20.8)], hdr: [['To: Clinic', M(19.9), M(23.8), 0.3, 0.4]], pop: [M(23.4), M(23.8)] },
+  { id: 'L6', in: M(23.25), send: M(24.55), fly: 0.95, mid: 'sealed', hdr: [['To: Bakery', M(23.25), M(24.45), 0.15, 0.15], ['To: Clinic', M(24.35), M(25.55), 0.1, 0.1]] },
 ];
 let home = 0;
 for (const L of LET) { L.arr = L.send + L.fly;
@@ -63,57 +69,63 @@ function sealedCard(L, t) {   // where the stamped card is: in the email, being 
 
 // ---------- the whale ("you"): Hermite through keys (zero tangents = it settles at each key) ----------
 const WS = 0.8, REACH = 118 * WS + 48;
-// the stamp lands on the card's right half (whale on the right, facing left, so it never covers the words); the scrawl is on the loaf (left)
-const IMP = { x: DESK.x + 78, y: DESK.y + CY[1] + 19 };
-const PERCH0 = [-150, -180], PERCHR = [235, -245], PRESS = [IMP.x + REACH, IMP.y - 49], HOVER = [PRESS[0], PRESS[1] - 62],
+// the PRIVATE button sits on the note's lower right, under the words (card coords BTN). The whale taps its right end nose-down
+// from above-right (TILT), so its head stays right of and below the words; the scrawl is on the loaf (left).
+const BTN = { x: 22, y: 4, w: 116, h: 32 }, IMP = { x: DESK.x + BTN.x + BTN.w / 2, y: DESK.y + CY[1] + BTN.y + BTN.h / 2 };
+const TA = 0.55, TAPNOSE = { x: IMP.x + 34, y: IMP.y - 2 };
+const PERCH0 = [-150, -180], PERCHR = [235, -245], PRESS = [TAPNOSE.x + REACH * Math.cos(TA) - 4 * Math.sin(TA), TAPNOSE.y - REACH * Math.sin(TA) - 4 * Math.cos(TA)],
+  HOVER = [PRESS[0] + 46, PRESS[1] - 40],
   SCRAWL = [DESK.x - 116 - REACH, DESK.y + CY[1] - 60], WATCH = [40, -250], BAKP = [-480, -160];
-const K = [[0, ...PERCH0], [2.85, ...PERCH0], [3.7, 120, -235], [4.85, 120, -235], [5.65, 100, -150], [7.8, 100, -150],
-  [8.25, ...HOVER], [8.5, ...PRESS], [8.8, ...HOVER], [9.55, ...PERCHR], [16.55, ...PERCHR], [17.75, ...BAKP], [18.95, ...BAKP],
-  [19.95, ...SCRAWL], [20.85, ...SCRAWL], [21.55, ...WATCH], [23.0, ...WATCH], [23.75, ...PERCH0], [DUR + 1, ...PERCH0]];
+const K = [[0, ...PERCH0], [2.85, ...PERCH0], [3.7, 120, -235], [4.85, 120, -235], [5.65, 100, -150], [M(7.8), 100, -150],
+  [M(8.25), ...HOVER], [M(8.5), ...PRESS], [M(8.5) + 0.55, ...PRESS], [M(8.5) + 0.85, ...HOVER], [M(9.55) + 0.4, ...PERCHR], [M(16.55), ...PERCHR], [M(17.75), ...BAKP], [M(18.95), ...BAKP],
+  [M(19.95), ...SCRAWL], [M(20.85), ...SCRAWL], [M(21.55), ...WATCH], [M(23.0), ...WATCH], [M(23.75), ...PERCH0], [DUR + 1, ...PERCH0]];
 function herm(P, t) { const n = P.length; if (t <= P[0][0]) return { x: P[0][1], y: P[0][2] }; if (t >= P[n - 1][0]) return { x: P[n - 1][1], y: P[n - 1][2] };
   let i = 0; while (P[i + 1][0] < t) i++; const p1 = P[i], p2 = P[i + 1], u = (t - p1[0]) / (p2[0] - p1[0]), A2 = 2 * u * u * u - 3 * u * u + 1, C2 = 1 - A2;
   return { x: A2 * p1[1] + C2 * p2[1], y: A2 * p1[2] + C2 * p2[2] }; }
-const NODS = [0.95, 11.55, 17.95, 18.35, 23.9];
+const NODS = [0.95, M(11.55), M(17.95), M(18.35), M(23.9)];
 function wworld(t) { const p = herm(K, t), q = herm(K, t + 0.01), sp = Math.hypot(q.x - p.x, q.y - p.y) * 100, still = 1 - clamp(sp / 150);
   let dip = 0; for (const s of NODS) { const d = t - s; if (d > 0 && d < 0.35) dip = Math.max(dip, 7 * Math.sin(Math.PI * d / 0.35)); }
-  const wig = win(t, 20.3, 20.8, 0.05, 0.05) * 7 * Math.sin((t - 20.3) * 30);
+  const wig = win(t, M(20.3), M(20.8), 0.05, 0.05) * 7 * Math.sin((t - M(20.3)) * 30);
   return { x: p.x + wig, y: p.y + (Math.sin(t * 2.4) * 2.5 + dip) * still }; }
 const wvel = t => { const a = wworld(t - 1 / 240), c = wworld(t + 1 / 240); return { x: (c.x - a.x) * 120, y: (c.y - a.y) * 120 }; };
 function heading(t) { let a = 0, s = 0; for (let k = -8; k <= 8; k++) { const v = wvel(t + k * 0.022), w = 1 - Math.abs(k) / 9, sp = Math.hypot(v.x, v.y);
     a += (sp < 40 ? 0 : clamp(Math.atan2(v.y, Math.abs(v.x)), -0.8, 0.8) * clamp(sp / 300)) * w; s += w; } return a / s; }
-const TURNS = [[7.45, -1], [11.05, 1], [14.15, -1], [18.6, 1]];
+const TURNS = [[M(7.45), -1], [M(11.05), 1], [M(16.0), -1], [M(18.6), 1]];
 function facing(t) { let f = 1; for (const [a, to] of TURNS) f = lerp(f, to, ramp(t, a, a + 0.25, EASE.warm)); return f; }
-function nose(t) { const p = wworld(t), a = heading(t), f = facing(t); return { x: p.x + f * (REACH * Math.cos(a) - 4 * Math.sin(a)), y: p.y + REACH * Math.sin(a) + 4 * Math.cos(a) }; }
+// nose-down tilt for the tap (eased in and out; part of the angle the gate checks)
+const tilt = t => TA * win(t, M(8.0), M(8.5) + 1.0, 0.3, 0.4);
+const angle = t => heading(t) + tilt(t);
+function nose(t) { const p = wworld(t), a = angle(t), f = facing(t); return { x: p.x + f * (REACH * Math.cos(a) - 4 * Math.sin(a)), y: p.y + REACH * Math.sin(a) + 4 * Math.cos(a) }; }
 
 // ---------- camera ----------
-const FELT = { x: 300, y: 0, z: 1.55 }, TITLE = { x: -150, y: -320, z: 0.9 }, MID = { x: 0, y: -20, z: 1.4 }, STAMP = { x: 0, y: 0, z: 1.5 },
-  CASE = { x: -60, y: -40, z: 1.3 }, LIM = { x: 40, y: -40, z: 1.42 }, PAY = { x: 0, y: -20, z: 1.42 };
+const FELT = { x: 300, y: 0, z: 1.55 }, TITLE = { x: -150, y: -320, z: 0.9 }, MID = { x: 0, y: -20, z: 1.36 }, STAMP = { x: 10, y: 0, z: 1.42 },
+  CASE = { x: -60, y: -40, z: 1.3 }, LIM = { x: 40, y: -40, z: 1.3 }, PAY = { x: 0, y: -20, z: 1.36 };   // v6: no shot puts a folder within 70 px of an edge
 function cam(t) { let s = { ...FELT };
   const go = (a, b, T, e) => { const k = ramp(t, a, b, e); s = { x: lerp(s.x, T.x, k), y: lerp(s.y, T.y, k), z: lerp(s.z, T.z, k) }; };
-  go(4.85, 5.7, TITLE, EASE.rest); go(6.95, 8.05, STAMP, EASE.warm); go(9.05, 9.85, MID, EASE.warm); go(16.45, 17.55, CASE, EASE.rest);
-  go(19.15, 19.95, MID, EASE.warm); go(21.55, 22.75, LIM, EASE.warm); go(23.2, 23.9, PAY, EASE.warm);
-  return { x: s.x, y: s.y, z: s.z + 0.02 * ramp(t, 25.65, DUR, EASE.rest), ax: 960, ay: 540 }; }
+  go(4.85, 5.7, TITLE, EASE.rest); go(8.0, 8.95, STAMP, EASE.warm); go(M(9.05), M(9.85), MID, EASE.warm); go(M(16.45), M(17.55), CASE, EASE.rest);
+  go(M(19.15), M(19.95), MID, EASE.warm); go(M(21.55), M(22.75), LIM, EASE.warm); go(M(23.2), M(23.9), PAY, EASE.warm);
+  return { x: s.x, y: s.y, z: s.z + 0.02 * ramp(t, M(25.65), DUR, EASE.rest), ax: 960, ay: 540 }; }
 const wpos = t => wworld(t);
 
 // ---------- text ----------
-const T0 = 5.4, T_LOCK = 26.45;
+const T0 = 5.4, T_OUT = 2.85, T_LOCK = M(26.45);
 const cap = (id, inn, out, text) => ({ id, kind: 'caption', in: inn, out, fi: 0.25, fo: 0.2, text });
 const READ = [
   cap('felt1', 0.25, 2.1, 'Same email, new client.'),
   cap('felt2', 3.1, 5.4, "I didn't mean to send the client's notes."),
   { id: 'you', kind: 'label', in: 0.1, out: 2.6, fi: 0.2, fo: 0.3, text: 'You' },
-  { id: 'you2', kind: 'label', in: 7.85, out: 9.6, fi: 0.2, fo: 0.3, text: 'You' },
-  { id: 'email', kind: 'label', in: 0, out: 7.65, fi: 0.01, fo: 0.4, text: 'Email' },
-  { id: 'eyebrow', kind: 'label', in: T0 + 0.25, out: T0 + 2.47, fi: 0.4, fo: 0.45, text: 'CETI · Capabilities · 09' },
-  { id: 'title', kind: 'title', in: T0 + 0.25, out: T0 + 2.47, fi: 0.4, fo: 0.45, text: 'Private notes stay home.' },
-  cap('stamp', 7.9, 9.85, 'Stamp the private note.'),
-  cap('tied', 9.9, 12.02, 'Stamped notes are tied to their folder.'),
-  cap('check', 12.05, 14.32, 'Your AI app checks the stamp before sending.'),
-  cap('remember', 14.37, 16.45, 'No one has to remember.'),
-  { id: 'story', kind: 'label', card: true, in: 16.5, out: 20.5, fi: 0.25, fo: 0.25, text: 'True story: in our own AI app,' },
-  { id: 'card', kind: 'card', card: true, in: 16.5, out: 20.5, fi: 0.25, fo: 0.25, text: 'one folder per client.', src: 'https://app.notion.com/p/3fbd50cfaf9381048ffaecd94c9f8264' },
-  cap('limit', 21.0, 23.7, 'No stamp? Then the note can still go.'),
-  cap('belief', 23.8, T_LOCK - 0.05, 'Stamp private notes once. They stay home.'),
+  { id: 'you2', kind: 'label', in: M(7.85), out: M(9.6), fi: 0.2, fo: 0.3, text: 'You' },
+  { id: 'email', kind: 'label', in: 0, out: M(7.65), fi: 0.01, fo: 0.4, text: 'Email' },
+  { id: 'eyebrow', kind: 'label', in: T0 + 0.25, out: T0 + T_OUT, fi: 0.4, fo: 0.45, text: 'CETI · Capabilities · 09' },
+  { id: 'title', kind: 'title', in: T0 + 0.25, out: T0 + T_OUT, fi: 0.4, fo: 0.45, text: 'Private notes stay home.' },
+  cap('stamp', M(7.9), M(9.85), 'Tap PRIVATE to stamp the note.'),
+  cap('tied', 10.85, 14.0, 'Stamped notes are tied to their folder.'),            // v6: held ≥ read time + 1 s
+  cap('check', M(12.05), M(14.32), 'Your AI app checks the stamp before sending.'),
+  // v6: one plain real-example card (was "True story: …", unclear three runs)
+  { id: 'card', kind: 'card', card: true, in: M(16.5), out: M(20.5), fi: 0.25, fo: 0.25, text: 'Real example: our AI app keeps one folder per client.', src: 'https://app.notion.com/p/3fbd50cfaf9381048ffaecd94c9f8264' },
+  // v6: the limit is an "and also" instruction at write time, over a new note whose PRIVATE button was never tapped
+  cap('limit', M(21.0), M(23.7), 'Stamp a note the moment you write it.'),
+  cap('belief', M(23.8), T_LOCK - 0.05, 'Stamp private notes once. They stay home.'),
   { id: 'ai1', kind: 'label', in: 0.1, out: DUR, fi: 0.3, fo: 0, text: 'Your AI app' },
   { id: 'lockup', kind: 'label', in: T_LOCK, out: DUR, fi: 0.45, fo: 0, text: 'CETI · Capabilities · 09 · Private' },
   { id: 'boxB', kind: 'label', in: 0, out: DUR, fi: 0.01, fo: 0, text: 'Client folder Bakery' },
@@ -121,12 +133,12 @@ const READ = [
 ];
 LET.forEach(L => L.hdr.forEach(([s, a, b, fi, fo], k) => READ.push({ id: `${L.id}h${k}`, kind: 'header', in: a, out: b, fi, fo, text: s })));
 LET.forEach(L => { if (L.mid !== 'plain') READ.push({ id: `${L.id}note`, kind: 'note', in: L.in, out: L.pop ? L.pop[1] : DUR, fi: L.in < 0 ? 0.01 : 0.3, fo: L.pop ? 0.3 : 0, text: "Bakery's rent is late" }); });
-LET.filter(L => L.mid === 'sealed').forEach(L => READ.push({ id: `${L.id}priv`, kind: 'stamp', in: L.stamp || L.in, out: DUR, fi: L.stamp ? 0.2 : 0.3, fo: 0, text: 'PRIVATE' }));
+LET.filter(L => L.mid === 'sealed' || L.btn).forEach(L => READ.push({ id: `${L.id}priv`, kind: 'stamp', in: L.in, out: L.pop ? L.pop[1] : DUR, fi: L.in < 0 ? 0.01 : 0.3, fo: L.pop ? 0.3 : 0, text: 'PRIVATE' }));
 const RD = id => READ.find(r => r.id === id), RA = (t, id) => { const r = RD(id); return win(t, r.in, r.out, r.fi, r.fo); };
 const INTENT = {
   problem: "Your AI app sends last week's email to a new client (the Clinic), and the old client's private note (\"Bakery's rent is late\") arrives inside the Clinic's email.",
-  move: "You stamp the note PRIVATE once; it is tied to the Bakery's folder. Your AI app checks the stamp before sending, so the stamped note is pulled back home every time. No one has to remember.",
-  belief: 'Stamp private notes once and they stay with their client. And also: a note with no stamp can still go, so stamp it.' };
+  move: "When you write the note you tap the small PRIVATE button beside it; it becomes a stamp and the note is tied to the Bakery's folder. Your AI app checks the stamp before sending, so the stamped note is pulled back home.",
+  belief: "Stamp private notes once, the moment you write them, and they stay with their client. And also: a note whose button you never tapped can still go." };
 const TERMS = [];
 
 // ---------- drawing helpers ----------
@@ -149,10 +161,20 @@ function card(c, X, Y, z, kind, s, r, a, o = {}) {
   c.restore();
   if (kind !== 'scrawl' || (o.scrawl ?? 1) > 0.6) { const ta = kind === 'scrawl' ? clamp(((o.scrawl ?? 1) - 0.6) / 0.4) : 1;
     c.save(); c.translate(X, Y); c.rotate(r); text(c, "Bakery's rent is late", -84 * k, -6 * k, { f: 'sans', size: 24 * k, col: INK, a: a * ta * (o.ta ?? 1) }); c.restore(); }
-  if (sealed > 0.01) {   // the rubber-stamp impression: a violet box with PRIVATE, pressed over the right half of the card
-    const pop = 1 + 0.25 * (1 - sealed); c.save(); c.translate(X, Y); c.rotate(r - 0.06); c.scale(k * pop, k * pop); c.globalAlpha *= a * clamp(sealed * 1.4);
-    c.strokeStyle = STAMPC; c.lineWidth = 4; c.beginPath(); c.roundRect(22, 4, 112, 30, 5); c.stroke(); c.restore();
-    c.save(); c.translate(X, Y); c.rotate(r - 0.06); text(c, 'PRIVATE', 78 * k * pop, 26 * k * pop, { f: 'monoB', size: 17 * k * pop, col: ACC, a: a * clamp(sealed * 1.4), align: 'center', track: 0.12 }); c.restore(); }
+  const bx = BTN.x + BTN.w / 2, by = BTN.y + BTN.h / 2;
+  if (o.btn && sealed < 0.5) {   // v6: the PRIVATE button beside the words, raised (a shadow under it) until it is pressed
+    const pr = o.press ?? 0, ba = a * (1 - clamp(sealed * 2)), dy = 3 * pr;
+    c.save(); c.translate(X, Y); c.rotate(r); c.scale(k, k); c.globalAlpha *= ba;
+    c.fillStyle = BTNSH; c.beginPath(); c.roundRect(BTN.x, BTN.y + 4, BTN.w, BTN.h, 8); c.fill();
+    c.fillStyle = C.paper; c.strokeStyle = SOFT; c.lineWidth = 2.5; c.beginPath(); c.roundRect(BTN.x, BTN.y + dy, BTN.w, BTN.h, 8); c.fill(); c.stroke();
+    if (o.pulse > 0) { c.strokeStyle = rgba(SOFT, 0.6 * o.pulse); c.lineWidth = 3; c.beginPath(); c.roundRect(BTN.x - 10 - 8 * (1 - o.pulse), BTN.y - 10 - 8 * (1 - o.pulse), BTN.w + 20 + 16 * (1 - o.pulse), BTN.h + 20 + 16 * (1 - o.pulse), 12); c.stroke(); }
+    c.restore();
+    c.save(); c.translate(X, Y); c.rotate(r); text(c, 'PRIVATE', bx * k, (by + 7 + dy) * k, { f: 'monoB', size: 19 * k, col: SOFT, a: ba, align: 'center', track: 0.12 }); c.restore(); }
+  if (sealed > 0.01) {   // the stamp: the pressed button turns into a violet rubber-stamp impression in the same place
+    const pop = 1 + 0.18 * (1 - sealed), sa = a * clamp(sealed * 1.4), rr = r - 0.06 * sealed;
+    c.save(); c.translate(X, Y); c.rotate(rr); c.scale(k, k); c.translate(bx, by); c.scale(pop, pop); c.globalAlpha *= sa;
+    c.fillStyle = CHIPF; c.strokeStyle = STAMPC; c.lineWidth = 4; c.beginPath(); c.roundRect(-BTN.w / 2, -BTN.h / 2 + 3, BTN.w, BTN.h, 6); c.fill(); c.stroke(); c.restore();
+    c.save(); c.translate(X, Y); c.rotate(rr); text(c, 'PRIVATE', bx * k, (by + 10) * k, { f: 'monoB', size: 19 * k * pop, col: ACC, a: sa, align: 'center', track: 0.12 }); c.restore(); }
 }
 
 function drawFrame(c, t) {
@@ -162,7 +184,9 @@ function drawFrame(c, t) {
   c.save(); c.setTransform(1, 0, 0, 1, 0, 0); c.lineCap = 'round'; c.lineJoin = 'round';
 
   // box backs + the stamped cards already home (peeking over the rim)
-  for (const B of [BAK, CLI]) { c.fillStyle = BOXB; c.beginPath(); c.roundRect(X(B.x - BW / 2 + 10), Y(B.y + RIM - 22), (BW - 20) * z, (BH + 22) * z, 8 * z); c.fill(); }
+  // v6: during the opening pull-back the Bakery folder fades in as it clears the left edge (never shown touching it)
+  const bakA = t < 7 ? clamp((X(BAK.x - BW / 2) - 12) / 70) : 1, FA = B => B === BAK ? bakA : 1;
+  for (const B of [BAK, CLI]) { c.globalAlpha = FA(B); c.fillStyle = BOXB; c.beginPath(); c.roundRect(X(B.x - BW / 2 + 10), Y(B.y + RIM - 22), (BW - 20) * z, (BH + 22) * z, 8 * z); c.fill(); } c.globalAlpha = 1;
   for (const Ld of LANDS) if (t >= Ld.t) { const s = SLOT(Ld.slot); card(c, X(s.x), Y(s.y), z, 'sealed', 0.8, s.r, 1); }
 
   // the helper pod: your AI app, who sends the email (a small push) and checks each card's stamp as it goes
@@ -185,9 +209,10 @@ function drawFrame(c, t) {
         c.moveTo(sx - 4 * s, py - 119 * s); c.lineTo(sx - 4 * s + (w - 58 * s) * st, py - 119 * s); c.stroke(); c.restore(); } } }
     CY.forEach((cy, i) => { const kind = i === 1 ? L.mid : 'plain';
       if (kind === 'sealed' && t > L.send) return;
-      const seal = L.stamp ? ramp(t, L.stamp, L.stamp + 0.22, EASE.glaser) : 1;
-      card(c, px, py + cy * s, 1, kind === 'sealed' && seal <= 0 ? 'bakery' : kind, s, 0, lt.a, { seal, scrawl: L.scrawl ? ramp(t, L.scrawl[0], L.scrawl[1], EASE.warm) : 1 }); });
-    if (L.stamp) { const ring = win(t, L.stamp, L.stamp + 0.7, 0.03, 0.5); if (ring > 0) { const sx = px + 78 * s, sy = py + (CY[1] + 19) * s, rr = (70 + 50 * ramp(t, L.stamp, L.stamp + 0.7)) * s;
+      const seal = L.stamp ? ramp(t, L.stamp, L.stamp + 0.22, EASE.glaser) : 1, press = L.stamp ? ramp(t, L.stamp - 0.12, L.stamp, EASE.glaser) : 0;
+      const pulse = L.mid === 'scrawl' ? win(t, L.scrawl[1], L.scrawl[1] + 0.6, 0.15, 0.3) : 0;   // the untapped button shows itself once
+      card(c, px, py + cy * s, 1, kind === 'sealed' && seal <= 0 ? 'bakery' : kind, s, 0, lt.a, { seal, btn: i === 1 && L.btn, press, pulse, scrawl: L.scrawl ? ramp(t, L.scrawl[0], L.scrawl[1], EASE.warm) : 1 }); });
+    if (L.stamp) { const ring = win(t, L.stamp, L.stamp + 0.7, 0.03, 0.5); if (ring > 0) { const sx = px + (BTN.x + BTN.w / 2) * s, sy = py + (CY[1] + BTN.y + BTN.h / 2) * s, rr = (70 + 50 * ramp(t, L.stamp, L.stamp + 0.7)) * s;
       c.save(); c.strokeStyle = rgba(VIO, 0.45 * ring); c.lineWidth = 5 * s; c.beginPath(); c.arc(sx, sy, rr, 0, Math.PI * 2); c.stroke(); c.restore(); } } }
 
   // stamped cards that have left their email and are on the way home, and the violet threads that tie them home
@@ -206,13 +231,12 @@ function drawFrame(c, t) {
 
   // the AI's look at each card as the email goes: a violet line to the stamp (held back), a slate line to the plain card (let through)
   for (const sc of SCANS) { const a = win(t, sc.t, sc.t + 0.5, 0.08, 0.15); if (a <= 0) continue; const L = sc.L;
-    let tx, ty; if (L.mid === 'sealed') { const q = sealedCard(L, t); tx = q.x + 78 * q.s; ty = q.y + 19 * q.s; } else { const lt = letter(L, t); tx = lt.x - 116 * lt.s; ty = lt.y + (CY[1] + 2) * lt.s; }
+    let tx, ty; if (L.mid === 'sealed') { const q = sealedCard(L, t); tx = q.x + 80 * q.s; ty = q.y + 20 * q.s; } else { const lt = letter(L, t); tx = lt.x + 80 * lt.s; ty = lt.y + (CY[1] + 20) * lt.s; }
     const col = L.mid === 'sealed' ? VIO : SOFT, ex = X(PODEYE.x), ey = Y(PODEYE.y);
-    c.save(); c.globalAlpha = a; c.strokeStyle = col; c.lineWidth = 4 * z; c.setLineDash([10 * z, 8 * z]); c.beginPath(); c.moveTo(ex, ey); c.lineTo(X(tx), Y(ty)); c.stroke(); c.setLineDash([]);
-    c.lineWidth = 5 * z; c.beginPath(); c.arc(X(tx), Y(ty), 30 * z, 0, Math.PI * 2); c.stroke(); c.restore(); }
+    c.save(); c.globalAlpha = a; c.strokeStyle = col; c.lineWidth = 4 * z; c.setLineDash([10 * z, 8 * z]); c.beginPath(); c.moveTo(ex, ey); c.lineTo(X(tx), Y(ty)); c.stroke(); c.restore(); }
 
   // box fronts with their labels
-  for (const [B, name] of [[BAK, 'Bakery'], [CLI, 'Clinic']]) {
+  for (const [B, name] of [[BAK, 'Bakery'], [CLI, 'Clinic']]) { if (FA(B) <= 0.001) continue; c.save(); c.globalAlpha = FA(B);
     const x0 = X(B.x - BW / 2), y0 = Y(B.y + RIM), w = BW * z, h = BH * z;
     let glow = 0; for (const Ld of LANDS) if (B === BAK) glow = Math.max(glow, win(t, Ld.t, Ld.t + 0.9, 0.05, 0.6));
     if (glow > 0.01) { c.save(); c.strokeStyle = rgba(VIO, 0.35 * glow); c.lineWidth = 16 * z; c.beginPath(); c.roundRect(x0, y0, w, h, 10 * z); c.stroke(); c.restore(); }
@@ -221,7 +245,7 @@ function drawFrame(c, t) {
     text(c, 'Client folder', X(B.x), Y(B.y + RIM + 46), { f: 'mono', size: 27 * z, col: SOFT, align: 'center', track: 0.06 });
     if (B === BAK) { loaf(c, X(B.x - 70), Y(B.y + RIM + 94), 1.15 * z, SAL, INK, 3 * z); text(c, name, X(B.x + 22), Y(B.y + RIM + 110), { f: 'sans', size: 42 * z, col: INK, align: 'center' }); }
     else text(c, name, X(B.x), Y(B.y + RIM + 110), { f: 'sans', size: 42 * z, col: INK, align: 'center' });
-  }
+    c.restore(); }
 
   // the wrong note has arrived inside the Clinic's email: it is circled in red where it sits
   for (const P of POPS) { if (t < P.circ) continue; const lt = letter(P.L, t); if (lt.a <= 0.001) continue;
@@ -235,57 +259,51 @@ function drawFrame(c, t) {
     c.lineWidth = 9 * z; c.beginPath(); c.moveTo(cx - m, cy + 1); c.lineTo(cx - m * 0.25, cy + m * 0.8); c.lineTo(cx + m * 1.05, cy - m * 0.9); c.stroke(); c.restore(); }
 
   // the little whale ("you"), with the rubber stamp at its nose during the stamping
-  { const p = wworld(t), ang = heading(t), v = wvel(t), sp = Math.hypot(v.x, v.y), moving = clamp(sp / 400), f = facing(t);
-    let blink = 0; for (const k of [1.8, 6.55, 10.55, 13.35, 16.95, 20.85, 24.35, 27.15]) blink = Math.max(blink, 1 - Math.abs(t - k) / 0.07);
-    blink = Math.max(blink, win(t, 14.4, 16.4, 0.15, 0.15));                    // eyes shut: not watching, the box does the work
-    let squash = 0; for (const k of [8.5]) { const d = t - k; if (d >= 0 && d < 0.32) squash = Math.max(squash, 0.13 * (1 - EASE.glaser(d / 0.32))); }
-    const focus = Math.max(win(t, 7.85, 8.85, 0.2, 0.2), win(t, 19.95, 20.85, 0.15, 0.15), win(t, 22.3, 23.4, 0.2, 0.2) * 0.6);
-    const eye = 1 + 0.4 * win(t, 2.85, 4.5, 0.06, 0.4) + 0.35 * win(t, 22.1, 22.8, 0.06, 0.3);
-    const spark = Math.max(win(t, LANDS[0].t, LANDS[0].t + 0.9, 0.1, 0.4), win(t, 17.95, 18.65, 0.1, 0.3) * 0.7, win(t, LANDS[LANDS.length - 1].t, LANDS[LANDS.length - 1].t + 1.3, 0.12, 0.5));
-    const delight = (t > LANDS[0].t && t < LANDS[0].t + 0.8) || (t > 17.9 && t < 18.65) || t > LANDS[LANDS.length - 1].t + 0.05 ? 1 : 0;
+  { const p = wworld(t), ang = angle(t), v = wvel(t), sp = Math.hypot(v.x, v.y), moving = clamp(sp / 400), f = facing(t);
+    let blink = 0; for (const k of [1.8, 6.55, M(10.55), M(13.35), M(16.95), M(20.85), M(24.35), M(27.15)]) blink = Math.max(blink, 1 - Math.abs(t - k) / 0.07);
+    let squash = 0; for (const k of [LET[1].stamp]) { const d = t - k + 0.05; if (d >= 0 && d < 0.32) squash = Math.max(squash, 0.13 * (1 - EASE.glaser(d / 0.32))); }
+    const focus = Math.max(win(t, M(7.85), M(8.85), 0.2, 0.2), win(t, M(19.95), M(20.85), 0.15, 0.15), win(t, M(22.3), M(23.4), 0.2, 0.2) * 0.6);
+    const eye = 1 + 0.4 * win(t, 2.85, 4.5, 0.06, 0.4) + 0.35 * win(t, M(22.1), M(22.8), 0.06, 0.3);
+    const spark = Math.max(win(t, LANDS[0].t, LANDS[0].t + 0.9, 0.1, 0.4), win(t, M(17.95), M(18.65), 0.1, 0.3) * 0.7, win(t, LANDS[LANDS.length - 1].t, LANDS[LANDS.length - 1].t + 1.3, 0.12, 0.5));
+    const delight = (t > LANDS[0].t && t < LANDS[0].t + 0.8) || (t > M(17.9) && t < M(18.65)) || t > LANDS[LANDS.length - 1].t + 0.05 ? 1 : 0;
     c.save(); c.translate(X(p.x), Y(p.y)); c.scale(f, 1);
     KH.drawWhale(c, { x: 0, y: 0, ang, scale: WS * z, L: 1, tail: Math.sin(t * (moving > 0.3 ? 11 : 3)) * lerp(0.12, 0.34, moving), fin: Math.sin(t * 6 + 1.3) * lerp(0.15, 0.3, moving),
-      blink, squash, focus: delight ? 0 : focus, eye, spark, sparkColor: VIO, delight, blush: 0.6, mouth: delight ? 0.4 : 0.45 * win(t, 2.9, 4.2, 0.06, 0.3) + 0.3 * win(t, 22.1, 22.8, 0.06, 0.3),
-      spray: win(t, 26.95, 28.05, 0.2, 0.6), sw: 3.2 });
+      blink, squash, focus: delight ? 0 : focus, eye, spark, sparkColor: VIO, delight, blush: 0.6, mouth: delight ? 0.4 : 0.45 * win(t, 2.9, 4.2, 0.06, 0.3) + 0.3 * win(t, M(22.1), M(22.8), 0.06, 0.3),
+      spray: win(t, M(26.95), M(28.05), 0.2, 0.6), sw: 3.2 });
     c.restore();
     const ya = Math.max(RA(t, 'you'), RA(t, 'you2')); if (ya > 0) S.chip(c, 'You', X(p.x), Y(p.y - 98), { f: 'sans', size: Math.round(30 * z), col: INK, a: ya, align: 'center', pad: 12, border: CARDEDGE });
-    const pa = win(t, 20.0, 21.05, 0.15, 0.2); if (pa > 0) { const n = nose(t), nx = X(n.x), ny = Y(n.y), k = z;   // a pencil: you write the note by hand
+    const pa = win(t, M(20.0), M(21.05), 0.15, 0.2); if (pa > 0) { const n = nose(t), nx = X(n.x), ny = Y(n.y), k = z;   // a pencil: you write the note by hand
       c.save(); c.globalAlpha = pa; c.lineCap = 'butt'; c.strokeStyle = INK; c.lineWidth = 12 * k; c.beginPath(); c.moveTo(nx, ny - 4 * k); c.lineTo(nx, ny + 38 * k); c.stroke();
       c.fillStyle = SAL; c.strokeStyle = INK; c.lineWidth = 2.5 * k; c.beginPath(); c.moveTo(nx - 6 * k, ny + 38 * k); c.lineTo(nx + 6 * k, ny + 38 * k); c.lineTo(nx, ny + 54 * k); c.closePath(); c.fill(); c.stroke(); c.restore(); }
-    const st = win(t, 7.9, 9.15, 0.2, 0.3); if (st > 0) { const n = nose(t), nx = X(n.x), ny = Y(n.y), k = z;
-      c.save(); c.globalAlpha = st; c.fillStyle = INK; c.beginPath(); c.roundRect(nx - 10 * k, ny + 2 * k, 20 * k, 30 * k, 6 * k); c.fill();
-      c.beginPath(); c.arc(nx, ny, 13 * k, 0, Math.PI * 2); c.fill();
-      c.fillStyle = VIO; c.strokeStyle = INK; c.lineWidth = 3 * k; c.beginPath(); c.roundRect(nx - 40 * k, ny + 32 * k, 80 * k, 26 * k, 4 * k); c.fill(); c.stroke(); c.restore(); }
   }
 
-  // the title hinge: the scene goes still under a paper veil
-  const veil = win(t, T0 + 0.05, T0 + 2.55, 0.35, 0.4); if (veil > 0) { c.fillStyle = rgba(C.paper, 0.5 * veil); c.fillRect(0, 0, W, H); }
+  // v6: the title sits on the unfaded picture (no veil); the camera keeps the scene clear of the title band
 
-  // the real-case card (top left, clean paper round it): two big lines, one sentence
-  const ka = RA(t, 'card'); if (ka > 0) { const x0 = 150, dy = (1 - EASE.defer(ramp(t, 16.5, 16.85))) * 8, l1 = RD('story').text, l2 = RD('card').text;
-    c.save(); c.font = `66px ${KH.FONTS.disp}`; const w1 = c.measureText(l2).width; c.font = `40px ${KH.FONTS.sans}`; const w2 = c.measureText(l1).width; c.restore();
+  // the real-example card (top left, clean paper round it): one sentence in two big lines
+  const ka = RA(t, 'card'); if (ka > 0) { const x0 = 150, dy = (1 - EASE.defer(ramp(t, RD('card').in, RD('card').in + 0.35))) * 8, l1 = 'Real example:', l2 = 'Our AI app keeps one folder per client.';
+    c.save(); c.font = `54px ${KH.FONTS.sans}`; const w1 = c.measureText(l2).width; c.font = `38px ${KH.FONTS.sans}`; const w2 = c.measureText(l1).width; c.restore();
     const wd = Math.max(w1, w2) + 70; c.save(); c.globalAlpha = ka; c.fillStyle = C.paper; c.strokeStyle = CARDEDGE; c.lineWidth = 1.2;
-    c.beginPath(); c.roundRect(x0 - 30, 44 + dy, wd, 190, 8); c.fill(); c.stroke(); c.fillStyle = VIO; c.fillRect(x0 - 30, 44 + dy, 6, 190); c.restore();
-    text(c, l1, x0, 104 + dy, { f: 'sans', size: 40, col: INK, a: ka });
-    text(c, l2, x0, 190 + dy, { f: 'disp', size: 66, col: INK, a: ka }); }
+    c.beginPath(); c.roundRect(x0 - 30, 44 + dy, wd, 180, 8); c.fill(); c.stroke(); c.fillStyle = VIO; c.fillRect(x0 - 30, 44 + dy, 6, 180); c.restore();
+    text(c, l1, x0, 102 + dy, { f: 'sans', size: 38, col: INK, a: ka });
+    text(c, l2, x0, 182 + dy, { f: 'sans', size: 54, col: INK, a: ka }); }
 
   for (const r of READ) if (r.kind === 'caption') S.caption(c, t, r, { size: 40 });
-  S.open(c, t - T0, { no: '09', title: 'Private <i>notes</i> stay home.', accent: ACC }, { out: 2.47 });
+  S.open(c, t - T0, { no: '09', title: 'Private <i>notes</i> stay home.', accent: ACC }, { out: T_OUT });
   S.lockup(c, t, T_LOCK, { no: '09', short: 'Private' });
   c.restore();
 }
 
 function cues() {
-  return { bpm: BPM, dur: DUR, title: T0 + 0.25, veil: T0 + 0.05, unveil: T0 + 2.15,
+  return { bpm: BPM, dur: DUR, title: T0 + 0.25, veil: T0 + 0.05, unveil: T0 + T_OUT - 0.3, tap: LET[1].stamp - 0.1,
     hdrSwap: LET.filter(L => L.hdr.length > 1).map(L => L.hdr[0][2] - 0.45), send: LET.map(L => L.send), arrive: LET.map(L => L.arr),
-    pop: POPS.map(P => P.t), circle: POPS.map(P => P.circ), stamp: 8.5, thread: [10.0, 10.7], taut: LET.filter(L => L.taut).map(L => L.taut),
-    home: LANDS.map(l => l.t), ok: OKS.map(o => o.t), sleep: 14.4, wake: 16.4, pat: [17.95, 18.35], scrawl: [20.3, 20.8], podSend: LET.map(L => L.send), scan: SCANS.map(s => s.t),
-    spark: [LANDS[0].t, LANDS[LANDS.length - 1].t], card: RD('card').in, limit: POPS[1].t, notThis: RD('limit').in, belief: RD('belief').in, lockup: T_LOCK, spray: 26.95,
-    tags: { consequence: [POPS[0].circ], focus: [POPS[0].circ, 8.5, LANDS[0].t, LANDS[LANDS.length - 1].t], mech: [8.5, 10.0, LET[1].taut, LANDS[0].t], limit: [POPS[1].circ], callback: [LANDS[LANDS.length - 1].t] } }; }
+    pop: POPS.map(P => P.t), circle: POPS.map(P => P.circ), stamp: LET[1].stamp, thread: LET[1].thread, taut: LET.filter(L => L.taut).map(L => L.taut),
+    home: LANDS.map(l => l.t), ok: OKS.map(o => o.t), pat: [M(17.95), M(18.35)], scrawl: LET[2].scrawl, podSend: LET.map(L => L.send), scan: SCANS.map(s => s.t),
+    spark: [LANDS[0].t, LANDS[LANDS.length - 1].t], card: RD('card').in, limit: POPS[1].t, notThis: RD('limit').in, belief: RD('belief').in, lockup: T_LOCK, spray: M(26.95),
+    tags: { consequence: [POPS[0].circ], focus: [POPS[0].circ, LET[1].stamp, LANDS[0].t, LANDS[LANDS.length - 1].t], mech: [LET[1].stamp, LET[1].thread[0], LET[1].taut, LANDS[0].t], limit: [POPS[1].circ], callback: [LANDS[LANDS.length - 1].t] } }; }
 const CONTRAST = [['captions / card main (ink on paper chip)', INK, C.paper], ['title (ink on chart ground)', INK, BG], ['title accent on ground', ACC, BG],
   ['title accent on veiled ground (paper)', ACC, C.paper], ['eyebrow / lockup (slate on ground)', SOFT, BG], ['card lines (ink on paper)', INK, C.paper],
-  ['email header (ink on paper page)', INK, C.paper], ['"Bakery\'s rent is late" (ink on note card)', INK, CARD], ['PRIVATE stamp text (accent on note card)', ACC, CARD],
+  ['email header (ink on paper page)', INK, C.paper], ['"Bakery\'s rent is late" (ink on note card)', INK, CARD], ['PRIVATE stamp text (accent on violet-tinted stamp)', ACC, CHIPF], ['PRIVATE button text (slate on paper button)', SOFT, C.paper],
   ['box name (ink on box front)', INK, BOXF], ['"Client folder" (slate on folder front)', SOFT, BOXF]];
-root.EPISODE = { drawFrame, cues, READ, CONTRAST, INTENT, TERMS, DUR, W, H, fps: 60, wpos, heading, cam,
+root.EPISODE = { drawFrame, cues, READ, CONTRAST, INTENT, TERMS, DUR, W, H, fps: 60, wpos, heading: angle, cam,
   shutter: t => LET.some(L => t > L.send && t < (L.land || L.arr)) ? [3, 0.6] : [2, 0.5] };
 })(typeof window !== 'undefined' ? window : globalThis);

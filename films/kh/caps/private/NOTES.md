@@ -1,4 +1,4 @@
-# 09 · private: Private *notes* stay home.  (v5 current; v1–v4 history below)
+# 09 · private: Private *notes* stay home.  (v6 current; v1–v5 history below)
 
 Wada 339: Violet Blue = the stamp and the thread (private, tied home) · English Red = the one alarm (the wrong card circled at the clinic) · Ochraceous Salmon = the bakery's loaf icon · Light Glaucous Blue = the whale and the clinic's cross.
 120 BPM (B = 0.5 s). DUR 28.1 s. Source: `storyboards/c04/sb-04-04.json` (Context Atoms), compressed from 64 s.
@@ -62,3 +62,15 @@ Sheets: `sheet-v1.png` (too small, mechanism a thin band), `sheet-v2.png` (×1.4
 - Beats (new times): FELT 0–5.4 · title 5.65–7.9 · STAMP 7.9 · TIE 9.9 · CHECK/PULL 12.05 · ×2 14.4 · TRUE STORY 16.5–20.5 · LIMIT 19.85–23.7 · PAYOFF/belief 23.8 · lockup 26.45–28.65.
 - DUR 28.65 s. Gate: GATES PASS (plain worst grade 3.7, intent PASS, jump 25.9 px/frame, 0.117 rad/frame, 11 pairs ≥ 7.6:1). Score −16.0 LUFS / −1.2 dBTP. Sheet: `sheet-v5.png`.
 - Weak spots left: at ~8.0 the stamp hovers over "rent is" for ~0.3 s before pressing; the Bakery folder touches the left edge during the 4.9–5.7 pull-back and the limit shot.
+
+## v6 (lay jury on v5: mean sure 6.67 < 7). v5 kept as `film-v5.js`, `score-v5.py`, `NOTES-v5.md`.
+- **Contradiction gone.** "No one has to remember." is cut, together with its beat (the L3 auto-email and the eyes-shut sleep). Nothing on screen implies the user never acts. The limit is now an "and also" instruction at write time: "Stamp a note the moment you write it." It plays over a new hand-written note whose PRIVATE button was never tapped (the button pulses once after the writing). That note lands circled inside the Clinic's email.
+- **Concrete stamp.** Each note being written has a small raised **PRIVATE** button under its words (paper fill, slate outline, drop shadow). The whale tilts nose-down and taps it from above-right (held 0.55 s so the 10.0 s still shows the tap). The button presses in and turns into the violet PRIVATE stamp in the same place. Caption: "Tap PRIVATE to stamp the note." The rubber-stamp tool is gone, so nothing covers "rent is late". The AI's check is a dashed line only; the circle that was read as a magnifier is gone.
+- **Tie held.** "Stamped notes are tied to their folder." is fully up 2.70 s (needs 1.65 + 1). The thread now draws over 1.2 s (11.0–12.2) instead of 0.7 s.
+- **Real-example card.** "Real example:" (38 px) / "Our AI app keeps one folder per client." (54 px sans), fully up 3.5 s (16.45–20.45). One READ line, card:true. Grounded in Context Atoms: one child scope per client, Confidential sealed and checked before sending.
+- **Title on an unfaded picture.** The paper veil is gone and the title holds to T0+2.85. The pulled-back scene sits clear of the title band. The Bakery folder fades in as it clears the left edge during the pull-back. Home stack slots moved right. MID/PAY z 1.36, STAMP z 1.42, LIM z 1.3, so every folder sits ≥ 70 px from the frame edges.
+- Retime via `M()` (v5 → v6 time map in film.js). Beats: FELT 0–5.4 · title 5.65–8.25 · TAP 9.5 · TIE 11.0–12.2 · CHECK/PULL 14.05 (home 15.55) · REAL EXAMPLE 16.45–20.45 · LIMIT 19.8–23.15 · PAYOFF/belief 23.75 · lockup 26.4–28.6. **DUR 28.6 s.**
+- On-screen lines in order: Same email, new client. / I didn't mean to send the client's notes. / Private notes stay home. / Tap PRIVATE to stamp the note. / Stamped notes are tied to their folder. / Your AI app checks the stamp before sending. / Real example: our AI app keeps one folder per client. / Stamp a note the moment you write it. / Stamp private notes once. They stay home.
+- Score: the sleep drone is replaced by a dry key click on the tap (cue `tap`); the last home clasp is the big one. −16.1 LUFS / −0.8 dBTP.
+- Gate: GATES PASS (plain worst grade 3.7, intent PASS, jump 25.9 px/frame, 0.079 rad/frame, 12 pairs ≥ 6.8:1). Sheet: `sheet-v6.png`.
+- Weak spots left: at 9.0 the diving whale sits over the email's upper right (not over words). The PRIVATE button is ~9 px on the 640-px sheet and relies on the caption. "Your AI app" (pod) and "our AI app" (card) are two different apps on screen at once. The lockup is unchanged (shared).

@@ -63,13 +63,12 @@ put(tick(4200, 0.03), Q['title'], 0.14, 0, 0.4); put(whoosh(0.7, rev=True), Q['t
 clasp(Q['stamp'], 1.2, 0.1)
 tt = T(Q['thread'][1] - Q['thread'][0]); put(np.sin(2 * np.pi * np.cumsum(330 + 110 * tt / tt[-1]) / SR) * np.sin(np.pi * tt / tt[-1]) ** 2, Q['thread'][0], 0.05, -0.4, 0.4)
 for x in Q['taut']: pluck(x)
-for i, x in enumerate(Q['home']): clasp(x, 0.9 if i < 3 else 1.15, -0.4)
+for i, x in enumerate(Q['home']): clasp(x, 0.9 if i < len(Q['home']) - 1 else 1.15, -0.4)
 for x in Q['ok']: chime(x)
 for x in Q['pat']: put(tick(1200, 0.05), x + 0.1, 0.12, -0.4, 0.2)
 for x in Q['spark']: put(mallet(1760, 2.0), x + 0.05, 0.06, 0, 0.7)
-# eyes shut while the emails go by themselves: a quiet held fifth under "no one has to remember"
-tt = T(Q['wake'] - Q['sleep']); hold = (np.sin(2 * np.pi * 220 * tt) + 0.6 * np.sin(2 * np.pi * 330 * tt)) * np.sin(np.pi * tt / tt[-1]) ** 2
-put(lp(hold, 1500), Q['sleep'], 0.03, 0, 0.5)
+# v6: the PRIVATE button is tapped: a small dry key click just before the stamp's clasp
+put(tick(2600, 0.03), Q['tap'], 0.16, 0.3, 0.1)
 # the limit: a pencil scratch as the note is written by hand
 tt = T(Q['scrawl'][1] - Q['scrawl'][0]); put(bp(rng.standard_normal(len(tt)), 2500, 7000) * (0.5 + 0.5 * np.sin(2 * np.pi * 9 * tt)), Q['scrawl'][0], 0.05, -0.2, 0.05)
 # payoff: the pad enters only after the stamped card lands home again; spout; lockup bell
