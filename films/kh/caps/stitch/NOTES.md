@@ -1,6 +1,6 @@
 # 01 · stitch — "Context is *composed*."
 
-Wada 166 (Grenadine Pink · Naples Yellow · Deep Slate Green), 128 BPM (beat = 0.469 s), DUR 26.25 s.
+Wada 166 (Grenadine Pink · Naples Yellow · Deep Slate Green), 128 BPM (beat = 0.469 s), DUR 25.75 s.
 Type = colour + tab position (index-card tab): claim = pink/left, evidence = green/centre, rule = yellow/right.
 Differs from Composition v2 (a horizontal chain of function boxes, data run through it): here the parts are
 context atoms, the structure is a socketed tree hanging over a line, and the payoff is a sealed brief carried off by a pod.
@@ -19,14 +19,19 @@ context atoms, the structure is a socketed tree hanging over a line, and the pay
 | 14.53 | 31 | **Certificate**: receipt ticks ripple up every seam (leaves b31.5/32/32.5, joints b33), the root gets its badge (15.94, b34), whale spark. | Certificate / a receipt for every joint |
 | 16.88–18.3 | 36–39 | Act 3, **seal and send**: the tree folds up into the root, and the root opens into one brief card. | BRIEF · LITTLE WHALE FILM / Context Atoms · 41 atoms · GREEN |
 | 18.75 | 40 | Receipt stamp tick on the card; the whale is delighted; the AI pod arrives. | |
-| 20.2–21.7 | 43–46 | The pod takes the card and leaves frame top right. | caption "Consistency is not correctness." (the "not this" line) |
-| 22.45 | 48 | End belief | caption "Small typed parts, checked at every seam." |
-| 23.95 | 51 | `SERIES.lockup` holds to DUR | CETI · Capabilities · 01 · Stitch |
+| 19.4–21.15 | | "not this" caption over the sealed card | caption "Consistency is not correctness." |
+| 20.15–21.35 | 43–45.5 | The pod takes the card and leaves frame top right; the line fades; the whale glides to centre and spouts (22.0). | |
+| 21.2–23.45 | | End belief, fully out before the lockup | caption "Small typed parts, checked at every seam." |
+| 23.45 | 50 | `SERIES.lockup` (DUR−2.3, so its 7-word line passes the read gate) holds to DUR, slow push-in | CETI · Capabilities · 01 · Stitch |
 
 Real number: "Context Atoms · 41 atoms · GREEN" sits on the brief card under the header "BRIEF · LITTLE WHALE FILM". It is the
 little whale film job from RESEARCH.md §1 (3 prompts, 41 atoms, GREEN). The tree on screen has six atoms and is an illustration.
 
+Station text: a mono rail (20 px, active word bold ink with an accent underline) plus the gloss (DM Sans 40) on paper chips, top left.
+Camera: z 1.05–1.1 through the move, pushes to 1.3 on the refusal and to 1.22 on the seal.
+
 ## Known weaknesses
-- The station word and gloss sit on paper chips top-left, because the push-in on Seams brings the root bus under that corner.
+- During the push-in on Seams the root and the root bus slide under the rail chip's corner for about 0.5 s.
+- On the Certificate rise, the whale passes in front of the centre-right atom for about 0.3 s.
 - Six atoms is a toy tree; the "41 atoms" is framed as a real job, not as a count of what we see.
 - The refused claim reappears later in the right branch (its correct socket). That is deliberate but subtle.

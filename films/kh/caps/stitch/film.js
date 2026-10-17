@@ -69,7 +69,7 @@ function heading(t) { let a = 0, s = 0; for (let k = -8; k <= 8; k++) { const v 
 const facing = t => (t > 4.62 && t < 6.45) ? -1 : 1;   // explicit: only the sweep over the heap faces left
 
 // ---------- camera ----------
-const CK = mk([[0, -430, 70, 1.0], [2.4, -360, 60, 1.02], [4.6, -270, 60, 1.05], [6.4, -130, 50, 1.06], [7.6, -20, 50, 1.1], [9.0, 20, 90, 1.18], [9.9, 40, 130, 1.3, 'h'], [11.1, 60, 130, 1.3, 'h'],
+const CK = mk([[0, -430, 70, 1.0], [2.4, -360, 60, 1.02], [4.6, -270, 60, 1.05], [6.4, -130, 50, 1.06], [7.6, -20, 50, 1.1], [9.0, 0, 90, 1.18], [9.9, 0, 130, 1.3, 'h'], [11.1, 10, 130, 1.3, 'h'],
   [12.3, 0, 40, 1.1, 'h'], [14.4, 0, 30, 1.1, 'h'], [15.7, 0, -30, 1.1], [17.3, 0, -105, 1.12], [18.6, 0, -90, 1.22, 'h'], [19.8, 10, -110, 1.16], [21.0, 20, -140, 1.1], [22.4, 0, -160, 1.08], [DUR, 0, -170, 1.14, 'h']]);
 function cam(t) { const v = hermite(CK, t); return { x: v[0], y: v[1], z: v[2], ax: 960, ay: 540 }; }
 
@@ -271,7 +271,7 @@ function drawFrame(c, t) {
   S.open(c, t, EP, { out: 2.5 });
   // station rail (mono, active word in ink with an accent underline) and its gloss
   const railA = la(t, 'rail');
-  if (railA > 0) { const words = STA.map(s => s.word), sz = 20, gap = 46;
+  if (railA > 0) { const words = STA.map(s => s.word), sz = 20, gap = 30;
     const meas = w => { c.save(); c.globalAlpha = 0; const k = text(c, w, 0, -100, { f: 'monoB', size: sz, col: INK }); c.restore(); return k; };
     const wds = words.map(meas), total = wds.reduce((a, w) => a + w, 0) + gap * (words.length - 1); let x = 160;
     c.save(); c.globalAlpha = railA; c.fillStyle = C.paper; rr(c, 142, 98, total + 36, 48, 8); c.fill(); c.restore();

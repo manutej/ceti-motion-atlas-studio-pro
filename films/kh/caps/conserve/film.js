@@ -54,8 +54,8 @@ function lineFn(t) {
     let y = AMP * (s[0] * s1 + s[1] * s2 + s[2] * s3);
     for (let i = 0; i < 3; i++) if (F[i][1]) y += F[i][1] * hat(x - PINX[i]);
     if (tg) y += tg * hat(x - PINX[1]);
-    if (se > 0) y += se * (j === 0 ? 58 * Math.sin(p) * s1 : j === 1 ? 140 * Math.sin(p - 1.1) * s1 + 40 * Math.sin(2 * p + 0.4) * s2
-      : j === 2 ? 150 * Math.sin(p - 2.2) * s1 + 50 * Math.sin(1.5 * p) * s3 : 120 * Math.sin(p - 3.3) * s1 + 60 * Math.sin(2 * p + 1) * s2);
+    if (se > 0) y += se * (j === 0 ? 58 * Math.sin(p) * s1 : j === 1 ? 190 * Math.sin(p - 1.1) * s1 + 50 * Math.sin(2 * p + 0.4) * s2
+      : j === 2 ? 200 * Math.sin(p - 2.2) * s1 + 60 * Math.sin(1.5 * p) * s3 : 170 * Math.sin(p - 3.3) * s1 + 70 * Math.sin(2 * p + 1) * s2);
     return y; };
   f.dots = F.map((v, i) => { const x = PINX[i] + v[0]; return { x, y: f(x) }; }); return f; }
 const lineY = (x, t) => lineFn(t)(x);
@@ -124,7 +124,7 @@ function cam(t) {
   const z = 1.0 + 0.14 * ramp(t, 1.5, 5.0, EASE.rest) + 0.14 * push - 0.02 * park + 0.16 * ramp(t, SH2 - 0.3, DUR - 1.0, EASE.rest);
   let fx = 0, s = 0; for (let k = 0; k <= 6; k++) { const w = 1 - k / 7; fx += wpos(t - k * 0.08).x * w; s += w; } fx /= s;
   const x = lerp(lerp(clamp(fx, -700, 700) * 0.08 * ramp(t, 1.8, 3.4, EASE.rest), 0, push), 0, park);
-  return { x, y: 25 * push, z, ax: 960, ay: 575 };
+  return { x: lerp(x, -230, ramp(t, SH2 - 0.3, DUR - 1.0, EASE.rest)), y: 25 * push, z, ax: 960, ay: 575 };
 }
 
 // ---------- READ table ----------

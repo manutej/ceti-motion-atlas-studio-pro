@@ -5,7 +5,7 @@
 (function (root) {
 'use strict';
 const KH = root.KH, S = KH.SERIES, { CETI: C, W: WD, clamp, lerp, smoothstep, win, EASE, ramp, mix, rgba, text } = KH;
-const W = 1920, H = 1080, BPM = 132, B = 60 / BPM, DUR = 27.65, beat = n => n * B;
+const W = 1920, H = 1080, BPM = 132, B = 60 / BPM, DUR = 25.35, beat = n => n * B;
 const INK = C.navy, SOFT = C.slate, TINT = WD.violetBlue;
 const GROUND = mix(C.paper, TINT, 0.06);                       // what SERIES.ground actually paints
 let ACC = WD.englishRed; for (let k = 0; k <= 1.0001; k += 0.02) { ACC = mix(WD.englishRed, INK, k); if (KH.contrast(ACC, GROUND) >= 4.7) break; }
@@ -14,24 +14,27 @@ const RULE = mix(C.paper, C.slate, 0.38);
 const EP = { no: '05', short: 'Tell-apart', title: 'Same reading, <i>different</i> world.', accent: ACC };
 
 // ---------- geometry (world units; camera maps them to the screen) ----------
-const WX = [-360, 360], WY = 240, HW = 250, BASE = 192, MERGE = -40, CHIP_Y = -306, TOP = -284, POD = [0, -394];
-const GX = 470, GW = 34;                                       // the gap in world B (the outage)
-const CARD = [[-230, 40], [230, 40]], CW = 250, CHH = 132, CHIPX = [-230, 230];
+const WX = [-360, 360], WY = 250, HW = 250, BASE = 196, MERGE = -20, CHIP_Y = -300, TOP = -230, POD = [0, -430];
+const GX = 470, GW = 46;                                       // the gap in world B (the outage)
+const CARD = [[-240, 50], [240, 50]], CW = 270, CHH = 140, CHIPX = [-240, 240];
 // ---------- times on the 132 BPM grid ----------
 const T_DEC = beat(6), T_COL = beat(12), T_DIVE = beat(18), T_GAP = beat(21), T_FOUND = beat(22), T_RISE = beat(23), T_CARDS = beat(25);
-const T_SPLIT = beat(28), T_RIDE = beat(30.4), T_CHIPS = beat(30), T_ALERT = beat(32), T_TURN = beat(31.2), T_GREEN = beat(36.5);
-const T_NOT = 18.9, T_END = 21.75, T_LOCK = DUR - 2.3;
+const T_SPLIT = beat(27), T_RIDE = beat(30), T_CHIPS = beat(30), T_ALERT = beat(32), T_TURN = beat(31), T_GREEN = beat(33.5);
+const T_NOT = 16.6, T_END = 19.45, T_LOCK = DUR - 2.3;
 const TRAVEL = 2 * B;                                          // a pulse takes two beats from its world to the reading
-// pulses 0–3: the collapse; 4–7: after the split (7 = the green check); 8+: the strands keep reading to the end
-const PULSES = [[0, 10], [1, 12], [0, 14], [1, 15], [1, 30], [0, 31], [1, 34], [0, 37], [1, 39], [0, 41], [1, 43], [0, 45], [1, 47], [0, 49], [1, 51], [0, 53], [1, 55]].map(([w, b]) => ({ w, t0: beat(b), t1: beat(b) + TRAVEL }));
+// pulses 0–3: the collapse; 4–5: after the split (4 lands on the alert); 6 = the green check; 7+: the strands keep reading to the end
+const G_PULSE = 6;
+const PULSES = [[0, 10], [1, 12], [0, 14], [1, 15], [1, 30], [0, 31], [0, 34], [1, 35], [0, 37], [1, 39], [0, 41], [1, 43], [0, 45], [1, 47], [0, 49], [1, 51], [0, 53]].map(([w, b]) => ({ w, t0: beat(b), t1: beat(b) + TRAVEL }));
 
 // ---------- the whale's path (Hermite through time keys; zero tangent where it perches) ----------
-const KEYS = [[1.1, -1300, -330], [2.0, -620, -430], [T_DEC, -190, -404], [4.9, -190, -404], [5.5, -160, -112], [8.0, -160, -112],
-  [8.55, 40, 110], [9.05, 220, 140], [T_GAP, GX - 88, 128], [T_RISE, GX - 88, 128], [10.95, 380, 10], [T_CARDS, 268, -96], [T_SPLIT - 0.5, 268, -96],
-  [T_SPLIT, 0, -12], [T_RIDE + 0.3, 0, -226], [T_TURN, 0, -226], [T_TURN + 0.32, 16, -228], [DUR, 16, -228]];
+const RIDE_Y = -168;
+const KEYS = [[1.1, -1300, -380], [2.0, -620, -480], [T_DEC, -205, -440], [4.9, -205, -440], [5.5, -170, -110], [7.95, -170, -110],
+  [8.5, 40, 110], [9.05, 220, 150], [T_GAP, GX - 98, 140], [T_RISE, GX - 98, 140], [10.95, 380, 0], [T_CARDS, 280, -92], [T_SPLIT - 0.5, 280, -92],
+  [T_SPLIT, 0, 4], [T_RIDE, 0, RIDE_Y], [T_TURN, 0, RIDE_Y], [T_TURN + 0.32, 16, RIDE_Y - 2], [DUR, 16, RIDE_Y - 2]];
 const PK = KEYS.map(([t, x, y]) => ({ t, x, y }));
 const near = (a, b) => Math.hypot(a.x - b.x, a.y - b.y) < 1;
-function herm(t) { const P = PK, n = P.length; if (t <= P[0].t) return { x: P[0].x, y: P[0].y }; if (t >= P[n - 1].t) return { x: P[n - 1].x, y: P[n - 1].y };
+function herm(t) { if (t > T_SPLIT && t < T_RIDE) return { x: 0, y: lerp(4, RIDE_Y, EASE.glaser((t - T_SPLIT) / (T_RIDE - T_SPLIT))) };
+  const P = PK, n = P.length; if (t <= P[0].t) return { x: P[0].x, y: P[0].y }; if (t >= P[n - 1].t) return { x: P[n - 1].x, y: P[n - 1].y };
   let i = 0; while (P[i + 1].t < t) i++; const p1 = P[i], p2 = P[i + 1], h = p2.t - p1.t, u = (t - p1.t) / h;
   const tan = k => { if (k <= 0 || k >= n - 1 || near(P[k], P[k - 1]) || near(P[k], P[k + 1])) return { x: 0, y: 0 };
     const a = P[k - 1], b = P[k + 1]; return { x: (b.x - a.x) / (b.t - a.t), y: (b.y - a.y) / (b.t - a.t) }; };
@@ -48,8 +51,8 @@ const facing = t => { let f = 0; for (let k = 0; k < 6; k++) f += lastDir(t - k 
 
 // ---------- the line: two strands, merged above MERGE until the whale unzips them ----------
 // fork height (world y): everything below it is split. It waits under the worlds, then rides just behind the whale.
-function forkY(t) { if (t < T_SPLIT - 0.4) return 400; if (t < T_SPLIT) return lerp(400, 8, ramp(t, T_SPLIT - 0.4, T_SPLIT, EASE.warm));
-  if (t < T_RIDE + 0.3) return herm(t).y + 20; return lerp(-206, TOP - 160, ramp(t, T_RIDE + 0.3, T_RIDE + 0.75, EASE.glaser)); }
+function forkY(t) { if (t < T_SPLIT - 0.4) return 420; if (t < T_SPLIT) return lerp(420, 24, ramp(t, T_SPLIT - 0.4, T_SPLIT, EASE.warm));
+  if (t < T_RIDE) return herm(t).y + 20; return lerp(RIDE_Y + 20, TOP - 170, ramp(t, T_RIDE, T_RIDE + 0.35, EASE.glaser)); }
 const ss = u => { u = clamp(u); return u * u * (3 - 2 * u); };
 function strandX(y, k, t) { const sg = k ? 1 : -1;
   const u = (BASE - y) / (BASE - MERGE);
@@ -61,41 +64,46 @@ const drainK = (y, t) => (1 - splitW(y, t)) * clamp((MERGE + 14 - y) / 46);   //
 const drawIn = t => ramp(t, 2.15, 2.85, EASE.warm);
 
 // ---------- the worlds ----------
-const amp = (k, t) => k ? 24 : lerp(24, 38, ramp(t, T_GREEN, T_GREEN + 0.7, EASE.warm));
-const waveY = (x, k, t) => WY + amp(k, t) * Math.sin((x - WX[k]) / 46 + t * 1.5 + k * 0.9 + (k ? 0 : 1.3 * ramp(t, T_GREEN, T_GREEN + 0.7, EASE.warm)));
+const amp = (k, t) => k ? 36 : lerp(36, 54, ramp(t, T_GREEN, T_GREEN + 0.7, EASE.warm));
+const waveY = (x, k, t) => WY + amp(k, t) * Math.sin((x - WX[k]) / 50 + t * 1.5 + k * 0.9 + (k ? 0 : 1.3 * ramp(t, T_GREEN, T_GREEN + 0.7, EASE.warm)));
 const inGap = x => Math.abs(x - GX) < GW;
 
 // ---------- camera ----------
 function cam(t) {
-  const k1 = ramp(t, 7.9, 9.4, EASE.rest) * (1 - ramp(t, 10.5, 11.7, EASE.rest)), kS = ramp(t, T_SPLIT - 1.0, T_SPLIT, EASE.rest) * (1 - ramp(t, T_ALERT - 0.3, T_ALERT + 1.0, EASE.rest));
-  const k2 = ramp(t, 17.4, 19.4, EASE.rest), drift = ramp(t, 19.4, DUR, EASE.rest);   // the end keeps breathing in, never a dead hold
-  const x = lerp(lerp(lerp(-70, 300, k1), -60, kS), 0, k2), y = lerp(lerp(lerp(-10, 100, k1), -140, kS), 0, k2), z = lerp(lerp(lerp(1.15, 1.4, k1), 1.35, kS), 0.92 + 0.05 * drift, k2);
-  return { x, y, z, ax: 960, ay: lerp(540, 450, k2) };
+  // base: readout, pod and both worlds in frame · witness: a gentle push that keeps both labels and the readout · split: push in on the unzip
+  // close: z 1.15 on the two strands with their readings, breathing in; lockup: ease back so the bottom is clear
+  const k1 = ramp(t, 7.9, 9.4, EASE.rest) * (1 - ramp(t, 10.6, 11.7, EASE.rest)), kS = ramp(t, T_SPLIT - 0.9, T_SPLIT + 0.1, EASE.rest);
+  const kC = ramp(t, T_ALERT - 0.1, T_ALERT + 1.1, EASE.rest), kL = ramp(t, T_LOCK - 0.2, T_LOCK + 0.9, EASE.rest), drift = ramp(t, T_ALERT + 1.1, T_LOCK, EASE.rest);
+  let x = lerp(0, 110, k1), y = lerp(-60, -20, k1), z = lerp(1.08, 1.22, k1), ay = 540;
+  x = lerp(x, 0, kS); y = lerp(y, -190, kS); z = lerp(z, 1.35, kS);
+  x = lerp(x, 0, kC); y = lerp(y, 0, kC); z = lerp(z, 1.15 + 0.04 * drift, kC); ay = lerp(ay, 590, kC);
+  z = lerp(z, 0.95, kL); ay = lerp(ay, 470, kL);
+  return { x, y, z, ax: 960, ay };
 }
 
 // ---------- READ table (drives text and the read-time gate) ----------
 const ST = [
   { id: 's1', in: 2.6, out: 5.25, word: 'Decision', gloss: 'who acts on it' },
-  { id: 's2', in: 5.45, out: 8.7, word: 'Collapse', gloss: 'two realities, one reading' },
-  { id: 's3', in: 8.9, out: 12.55, word: 'Witness', gloss: 'show both side by side' },
-  { id: 's4', in: 12.7, out: 16.4, word: 'Split', gloss: 'add the missing distinction' },
-  { id: 's5', in: 16.6, out: 18.8, word: 'Green', gloss: 'irrelevant change, same reading' },
-].map(s => ({ ...s, fi: 0.3, fo: 0.3, text: `${s.word} — ${s.gloss}` }));
+  { id: 's2', in: 5.45, out: 7.95, word: 'Collapse', gloss: 'two realities, one reading' },
+  { id: 's3', in: 8.1, out: 11.95, word: 'Witness', gloss: 'show both side by side' },
+  { id: 's4', in: 12.1, out: 14.85, word: 'Split', gloss: 'add the missing distinction' },
+  { id: 's5', in: 15.0, out: 16.95, word: 'Green', gloss: 'irrelevant change, same reading', f: 0.2 },
+].map(s => ({ ...s, fi: s.f || 0.3, fo: s.f || 0.3, text: `${s.word} — ${s.gloss}` }));
 const R_NOT = { id: 'not', in: T_NOT, out: T_NOT + 2.75, fi: 0.3, fo: 0.3, text: "More metrics isn't the fix — the right distinction is." };
 const R_END = { id: 'end', in: T_END, out: T_LOCK, fi: 0.4, fo: 0.3, text: 'If two worlds look the same in your numbers, nothing downstream can tell them apart.' };
 const READ = [
   { id: 'eyebrow', in: 0.25, out: 2.5, fi: 0.4, fo: 0.45, text: 'CETI · Capabilities · 05' },
   { id: 'title', in: 0.25, out: 2.5, fi: 0.4, fo: 0.45, text: 'Same reading, different world.' },
   ...ST,
-  { id: 'rail', in: 2.6, out: 18.8, fi: 0.4, fo: 0.3, text: 'DECISION COLLAPSE WITNESS SPLIT GREEN' },
+  { id: 'rail', in: 2.6, out: 16.95, fi: 0.4, fo: 0.2, text: 'DECISION COLLAPSE WITNESS SPLIT GREEN' },
   { id: 'illus', in: 2.6, out: T_LOCK, fi: 0.4, fo: 0.4, text: 'checkout success · illustrative' },
-  { id: 'worldA', in: 0.6, out: DUR, fi: 0.6, fo: 0, text: 'world A' },
-  { id: 'worldB', in: 0.6, out: DUR, fi: 0.6, fo: 0, text: 'world B' },
-  { id: 'down', in: T_FOUND + 0.1, out: DUR, fi: 0.35, fo: 0, text: 'EU lockers down' },
-  { id: 'chip', in: 2.75, out: T_CHIPS + 0.6, fi: 0.35, fo: 0.3, text: '99%' },
+  { id: 'worldA', in: 0.6, out: 16.45, fi: 0.6, fo: 0.3, text: 'world A' },
+  { id: 'worldB', in: 0.6, out: T_FOUND + 0.45, fi: 0.6, fo: 0.3, text: 'world B' },
+  { id: 'down', in: T_FOUND + 0.3, out: 16.45, fi: 0.3, fo: 0.3, text: 'world B · EU lockers down' },
+  { id: 'chip', in: 2.75, out: T_CHIPS + 0.45, fi: 0.35, fo: 0.3, text: '99%' },
   { id: 'cards', in: T_RISE + 0.5, out: T_CHIPS + 0.5, fi: 0.3, fo: 0.3, text: '99% = 99%' },
-  { id: 'chipA', in: T_CHIPS + 0.3, out: DUR, fi: 0.4, fo: 0, text: 'EU lockers · healthy' },
-  { id: 'chipB', in: T_CHIPS + 0.3, out: DUR, fi: 0.4, fo: 0, text: 'EU lockers · 0%' },
+  { id: 'chipA', in: T_CHIPS + 0.15, out: DUR, fi: 0.35, fo: 0, text: 'EU lockers healthy' },
+  { id: 'chipB', in: T_CHIPS + 0.15, out: DUR, fi: 0.35, fo: 0, text: 'EU lockers 0%' },
   { id: 'noalert', in: T_DEC + 0.15, out: T_ALERT + 0.1, fi: 0.3, fo: 0.25, text: 'no alert' },
   { id: 'alert', in: T_ALERT, out: DUR, fi: 0.3, fo: 0, text: 'alert' },
   R_NOT, R_END,
