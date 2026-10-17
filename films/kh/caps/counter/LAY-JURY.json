@@ -116,6 +116,61 @@
     }
    },
    "why": "Problem and stop-at-zero fix read by all. Fails the INTENT-critical rule: two of three could not say whether 'AI readers' are people or software. The real-number card confused all three (looks like a contradicting example)."
+  },
+  {
+   "version": "v3",
+   "sheet": "kh/caps/counter/sheet-v3.png",
+   "verdict": "PASS",
+   "mean_sure": 7.67,
+   "personas": {
+    "teacher": {
+     "q1": 1,
+     "q2": 1,
+     "sure": [
+      8,
+      8
+     ],
+     "unclear": [
+      "Real draft 28/10/0 card: whose drafts",
+      "Zero means... (hedge)",
+      "A NEW AI APP half-worked out",
+      "lockup",
+      "card static 4 s, grey fine print"
+     ]
+    },
+    "nurse": {
+     "q1": 1,
+     "q2": 1,
+     "sure": [
+      8,
+      7
+     ],
+     "unclear": [
+      "Zero means hedge",
+      "28 card: who is our, numbers vs 3-1-0",
+      "squiggles unlabelled",
+      "3 apps = 3 products or one 3x?",
+      "lockup",
+      "green-fish beat"
+     ]
+    },
+    "shop owner": {
+     "q1": 1,
+     "q2": 1,
+     "sure": [
+      8,
+      7
+     ],
+     "unclear": [
+      "28 card fine print",
+      "fresh eyes = new app?",
+      "whale/fish roles from labels only",
+      "lockup",
+      "?~ squiggle at 22 s"
+     ]
+    }
+   },
+   "why": "All three: endless tweaking; stop when the AI apps' problem count hits zero. 'AI apps' read as software by all (fixes v2's fail). Polish, logged: the real-draft card still reads as fine print and its 28 doesn't match the 3-1-0 demo (third run in a row); the green 'new kind of reader' twist is the least clear beat; opening rule caption dim."
   }
  ]
 }

@@ -6,7 +6,7 @@
 (function (root) {
 'use strict';
 const KH = root.KH, S = KH.SERIES, { CETI: C, W: WD, clamp, lerp, win, EASE, ramp, mix, rgba, text } = KH;
-const W = 1920, H = 1080, BPM = 120, DUR = 28.25;
+const W = 1920, H = 1080, BPM = 120, DUR = 28.65;
 const INK = C.navy, SOFT = C.slate, VIO = WD.violetBlue, RED = WD.englishRed, SAL = WD.ochraceousSalmon, GLAU = WD.lightGlaucousBlue;
 const BG = mix(C.paper, VIO, 0.06);                          // what SERIES.ground paints with tint: violet blue
 let ACC = VIO; for (let k = 0; k <= 1; k += 0.05) { ACC = mix(VIO, INK, k); if (KH.contrast(ACC, BG) >= 4.6 && KH.contrast(ACC, C.paper) >= 4.6) break; }
@@ -19,7 +19,7 @@ const DESK = { x: 0, y: 40 }, PW = 344, PH = 300, CY = [-50, 28, 106], CW = 304,
 const BAK = { x: -480, y: 70 }, CLI = { x: 480, y: 70 }, RIM = -60, BW = 290, BH = 150;
 const ANCH = { x: BAK.x, y: BAK.y + RIM };
 const SLOT = i => ({ x: BAK.x - 50 + 34 * i, y: BAK.y + RIM - 14 - 5 * (i % 2), r: -0.09 + 0.06 * i });
-const POP = { x: 440, y: -190 }, PSC = 0.8, TICK = { x: CLI.x, y: -110 }, POD = { x: 245, y: 135 }, PODS = 120, PODCOL = mix(C.slate, C.paper, 0.35);
+const POP = { x: 440, y: -192 }, PSC = 0.92, TICK = { x: CLI.x, y: -110 }, POD = { x: 245, y: 135 }, PODS = 120, PODCOL = mix(C.slate, C.paper, 0.35);
 const PODEYE = { x: POD.x - 27, y: POD.y - 9 };
 
 // ---------- the emails: each has a header (To:), three cards, a send time and a flight time ----------
@@ -29,8 +29,8 @@ const LET = [
   { id: 'L1', in: -1, send: 1.4, fly: 0.95, mid: 'bakery', hdr: [['To: Bakery', -1, 1.05, 0, 0.15], ['To: Clinic', 1.0, 7.65, 0.15, 0.4]], pop: [7.25, 7.65] },
   { id: 'L2', in: 7.55, send: 12.25, fly: 0.9, mid: 'sealed', stamp: 8.5, thread: [10.0, 10.7], hdr: [['To: Bakery', 7.65, 12.0, 0.3, 0.15], ['To: Clinic', 11.9, 13.2, 0.15, 0.1]] },
   { id: 'L3', in: 13.95, send: 14.85, fly: 0.8, mid: 'sealed', hdr: [['To: Clinic', 13.95, 15.7, 0.2, 0.1]] },
-  { id: 'L5', in: 19.85, send: 20.95, fly: 0.85, mid: 'scrawl', scrawl: [20.3, 20.8], hdr: [['To: Clinic', 19.9, 23.4, 0.3, 0.4]], pop: [23.0, 23.4] },
-  { id: 'L6', in: 22.85, send: 24.15, fly: 0.95, mid: 'sealed', hdr: [['To: Bakery', 22.85, 24.05, 0.15, 0.15], ['To: Clinic', 23.95, 25.15, 0.1, 0.1]] },
+  { id: 'L5', in: 19.85, send: 20.95, fly: 0.85, mid: 'scrawl', scrawl: [20.3, 20.8], hdr: [['To: Clinic', 19.9, 23.8, 0.3, 0.4]], pop: [23.4, 23.8] },
+  { id: 'L6', in: 23.25, send: 24.55, fly: 0.95, mid: 'sealed', hdr: [['To: Bakery', 23.25, 24.45, 0.15, 0.15], ['To: Clinic', 24.35, 25.55, 0.1, 0.1]] },
 ];
 let home = 0;
 for (const L of LET) { L.arr = L.send + L.fly;
@@ -44,7 +44,7 @@ const POPS = LET.filter(L => L.stay).map(L => ({ L, t: L.popT, circ: L.popT + 0.
 function letter(L, t) {   // email page transform: x, y, scale, alpha
   let a = L.in < 0 ? 1 : ramp(t, L.in, L.in + 0.3, EASE.warm);
   const u = ramp(t, L.send, L.arr, EASE.warm);
-  if (L.stay) { const x = lerp(DESK.x, POP.x, u), y = lerp(DESK.y, POP.y, u) - 70 * Math.sin(Math.PI * u), s = lerp(1, PSC, u);
+  if (L.stay) { const x = lerp(DESK.x, POP.x, u), y = lerp(DESK.y, POP.y, u) - 40 * Math.sin(Math.PI * u), s = lerp(1, PSC, u);
     return { x, y, s, a: a * (1 - ramp(t, L.pop[0], L.pop[1], EASE.rest)) }; }
   const x = lerp(DESK.x, CLI.x, u), y = lerp(DESK.y, CLI.y - 10, u) - 90 * Math.sin(Math.PI * u), s = lerp(1, 0.4, u);
   a *= 1 - ramp(t, L.arr - 0.1, L.arr + 0.04, EASE.rest);
@@ -69,11 +69,11 @@ const PERCH0 = [-150, -180], PERCHR = [235, -245], PRESS = [IMP.x + REACH, IMP.y
   SCRAWL = [DESK.x - 116 - REACH, DESK.y + CY[1] - 60], WATCH = [40, -250], BAKP = [-480, -160];
 const K = [[0, ...PERCH0], [2.85, ...PERCH0], [3.7, 120, -235], [4.85, 120, -235], [5.65, 100, -150], [7.8, 100, -150],
   [8.25, ...HOVER], [8.5, ...PRESS], [8.8, ...HOVER], [9.55, ...PERCHR], [16.55, ...PERCHR], [17.75, ...BAKP], [18.95, ...BAKP],
-  [19.95, ...SCRAWL], [20.85, ...SCRAWL], [21.55, ...WATCH], [22.6, ...WATCH], [23.35, ...PERCH0], [DUR + 1, ...PERCH0]];
+  [19.95, ...SCRAWL], [20.85, ...SCRAWL], [21.55, ...WATCH], [23.0, ...WATCH], [23.75, ...PERCH0], [DUR + 1, ...PERCH0]];
 function herm(P, t) { const n = P.length; if (t <= P[0][0]) return { x: P[0][1], y: P[0][2] }; if (t >= P[n - 1][0]) return { x: P[n - 1][1], y: P[n - 1][2] };
   let i = 0; while (P[i + 1][0] < t) i++; const p1 = P[i], p2 = P[i + 1], u = (t - p1[0]) / (p2[0] - p1[0]), A2 = 2 * u * u * u - 3 * u * u + 1, C2 = 1 - A2;
   return { x: A2 * p1[1] + C2 * p2[1], y: A2 * p1[2] + C2 * p2[2] }; }
-const NODS = [0.95, 11.55, 17.95, 18.35, 23.5];
+const NODS = [0.95, 11.55, 17.95, 18.35, 23.9];
 function wworld(t) { const p = herm(K, t), q = herm(K, t + 0.01), sp = Math.hypot(q.x - p.x, q.y - p.y) * 100, still = 1 - clamp(sp / 150);
   let dip = 0; for (const s of NODS) { const d = t - s; if (d > 0 && d < 0.35) dip = Math.max(dip, 7 * Math.sin(Math.PI * d / 0.35)); }
   const wig = win(t, 20.3, 20.8, 0.05, 0.05) * 7 * Math.sin((t - 20.3) * 30);
@@ -86,17 +86,17 @@ function facing(t) { let f = 1; for (const [a, to] of TURNS) f = lerp(f, to, ram
 function nose(t) { const p = wworld(t), a = heading(t), f = facing(t); return { x: p.x + f * (REACH * Math.cos(a) - 4 * Math.sin(a)), y: p.y + REACH * Math.sin(a) + 4 * Math.cos(a) }; }
 
 // ---------- camera ----------
-const FELT = { x: 300, y: 0, z: 1.55 }, TITLE = { x: 0, y: -320, z: 0.9 }, MID = { x: 0, y: -20, z: 1.4 }, STAMP = { x: 0, y: 0, z: 1.5 },
+const FELT = { x: 300, y: 0, z: 1.55 }, TITLE = { x: -150, y: -320, z: 0.9 }, MID = { x: 0, y: -20, z: 1.4 }, STAMP = { x: 0, y: 0, z: 1.5 },
   CASE = { x: -60, y: -40, z: 1.3 }, LIM = { x: 40, y: -40, z: 1.42 }, PAY = { x: 0, y: -20, z: 1.42 };
 function cam(t) { let s = { ...FELT };
   const go = (a, b, T, e) => { const k = ramp(t, a, b, e); s = { x: lerp(s.x, T.x, k), y: lerp(s.y, T.y, k), z: lerp(s.z, T.z, k) }; };
   go(4.85, 5.7, TITLE, EASE.rest); go(6.95, 8.05, STAMP, EASE.warm); go(9.05, 9.85, MID, EASE.warm); go(16.45, 17.55, CASE, EASE.rest);
-  go(19.15, 19.95, MID, EASE.warm); go(21.55, 22.75, LIM, EASE.warm); go(22.8, 23.5, PAY, EASE.warm);
-  return { x: s.x, y: s.y, z: s.z + 0.02 * ramp(t, 25.25, DUR, EASE.rest), ax: 960, ay: 540 }; }
+  go(19.15, 19.95, MID, EASE.warm); go(21.55, 22.75, LIM, EASE.warm); go(23.2, 23.9, PAY, EASE.warm);
+  return { x: s.x, y: s.y, z: s.z + 0.02 * ramp(t, 25.65, DUR, EASE.rest), ax: 960, ay: 540 }; }
 const wpos = t => wworld(t);
 
 // ---------- text ----------
-const T0 = 5.4, T_LOCK = 26.05;
+const T0 = 5.4, T_LOCK = 26.45;
 const cap = (id, inn, out, text) => ({ id, kind: 'caption', in: inn, out, fi: 0.25, fo: 0.2, text });
 const READ = [
   cap('felt1', 0.25, 2.1, 'Same email, new client.'),
@@ -112,8 +112,8 @@ const READ = [
   cap('remember', 14.37, 16.45, 'No one has to remember.'),
   { id: 'story', kind: 'label', card: true, in: 16.5, out: 20.5, fi: 0.25, fo: 0.25, text: 'True story: in our own AI app,' },
   { id: 'card', kind: 'card', card: true, in: 16.5, out: 20.5, fi: 0.25, fo: 0.25, text: 'one folder per client.', src: 'https://app.notion.com/p/3fbd50cfaf9381048ffaecd94c9f8264' },
-  cap('limit', 21.0, 23.3, 'No stamp? Then the note can still go.'),
-  cap('belief', 23.4, T_LOCK - 0.05, 'Stamp private notes once. They stay home.'),
+  cap('limit', 21.0, 23.7, 'No stamp? Then the note can still go.'),
+  cap('belief', 23.8, T_LOCK - 0.05, 'Stamp private notes once. They stay home.'),
   { id: 'ai1', kind: 'label', in: 0.1, out: DUR, fi: 0.3, fo: 0, text: 'Your AI app' },
   { id: 'lockup', kind: 'label', in: T_LOCK, out: DUR, fi: 0.45, fo: 0, text: 'CETI · Capabilities · 09 · Private' },
   { id: 'boxB', kind: 'label', in: 0, out: DUR, fi: 0.01, fo: 0, text: 'Client folder Bakery' },
@@ -236,17 +236,17 @@ function drawFrame(c, t) {
 
   // the little whale ("you"), with the rubber stamp at its nose during the stamping
   { const p = wworld(t), ang = heading(t), v = wvel(t), sp = Math.hypot(v.x, v.y), moving = clamp(sp / 400), f = facing(t);
-    let blink = 0; for (const k of [1.8, 6.55, 10.55, 13.35, 16.95, 20.85, 23.95, 26.75]) blink = Math.max(blink, 1 - Math.abs(t - k) / 0.07);
+    let blink = 0; for (const k of [1.8, 6.55, 10.55, 13.35, 16.95, 20.85, 24.35, 27.15]) blink = Math.max(blink, 1 - Math.abs(t - k) / 0.07);
     blink = Math.max(blink, win(t, 14.4, 16.4, 0.15, 0.15));                    // eyes shut: not watching, the box does the work
     let squash = 0; for (const k of [8.5]) { const d = t - k; if (d >= 0 && d < 0.32) squash = Math.max(squash, 0.13 * (1 - EASE.glaser(d / 0.32))); }
-    const focus = Math.max(win(t, 7.85, 8.85, 0.2, 0.2), win(t, 19.95, 20.85, 0.15, 0.15), win(t, 22.3, 23.0, 0.2, 0.2) * 0.6);
+    const focus = Math.max(win(t, 7.85, 8.85, 0.2, 0.2), win(t, 19.95, 20.85, 0.15, 0.15), win(t, 22.3, 23.4, 0.2, 0.2) * 0.6);
     const eye = 1 + 0.4 * win(t, 2.85, 4.5, 0.06, 0.4) + 0.35 * win(t, 22.1, 22.8, 0.06, 0.3);
     const spark = Math.max(win(t, LANDS[0].t, LANDS[0].t + 0.9, 0.1, 0.4), win(t, 17.95, 18.65, 0.1, 0.3) * 0.7, win(t, LANDS[LANDS.length - 1].t, LANDS[LANDS.length - 1].t + 1.3, 0.12, 0.5));
     const delight = (t > LANDS[0].t && t < LANDS[0].t + 0.8) || (t > 17.9 && t < 18.65) || t > LANDS[LANDS.length - 1].t + 0.05 ? 1 : 0;
     c.save(); c.translate(X(p.x), Y(p.y)); c.scale(f, 1);
     KH.drawWhale(c, { x: 0, y: 0, ang, scale: WS * z, L: 1, tail: Math.sin(t * (moving > 0.3 ? 11 : 3)) * lerp(0.12, 0.34, moving), fin: Math.sin(t * 6 + 1.3) * lerp(0.15, 0.3, moving),
       blink, squash, focus: delight ? 0 : focus, eye, spark, sparkColor: VIO, delight, blush: 0.6, mouth: delight ? 0.4 : 0.45 * win(t, 2.9, 4.2, 0.06, 0.3) + 0.3 * win(t, 22.1, 22.8, 0.06, 0.3),
-      spray: win(t, 26.55, 27.65, 0.2, 0.6), sw: 3.2 });
+      spray: win(t, 26.95, 28.05, 0.2, 0.6), sw: 3.2 });
     c.restore();
     const ya = Math.max(RA(t, 'you'), RA(t, 'you2')); if (ya > 0) S.chip(c, 'You', X(p.x), Y(p.y - 98), { f: 'sans', size: Math.round(30 * z), col: INK, a: ya, align: 'center', pad: 12, border: CARDEDGE });
     const pa = win(t, 20.0, 21.05, 0.15, 0.2); if (pa > 0) { const n = nose(t), nx = X(n.x), ny = Y(n.y), k = z;   // a pencil: you write the note by hand
@@ -280,7 +280,7 @@ function cues() {
     hdrSwap: LET.filter(L => L.hdr.length > 1).map(L => L.hdr[0][2] - 0.45), send: LET.map(L => L.send), arrive: LET.map(L => L.arr),
     pop: POPS.map(P => P.t), circle: POPS.map(P => P.circ), stamp: 8.5, thread: [10.0, 10.7], taut: LET.filter(L => L.taut).map(L => L.taut),
     home: LANDS.map(l => l.t), ok: OKS.map(o => o.t), sleep: 14.4, wake: 16.4, pat: [17.95, 18.35], scrawl: [20.3, 20.8], podSend: LET.map(L => L.send), scan: SCANS.map(s => s.t),
-    spark: [LANDS[0].t, LANDS[LANDS.length - 1].t], card: RD('card').in, limit: POPS[1].t, notThis: RD('limit').in, belief: RD('belief').in, lockup: T_LOCK, spray: 26.55,
+    spark: [LANDS[0].t, LANDS[LANDS.length - 1].t], card: RD('card').in, limit: POPS[1].t, notThis: RD('limit').in, belief: RD('belief').in, lockup: T_LOCK, spray: 26.95,
     tags: { consequence: [POPS[0].circ], focus: [POPS[0].circ, 8.5, LANDS[0].t, LANDS[LANDS.length - 1].t], mech: [8.5, 10.0, LET[1].taut, LANDS[0].t], limit: [POPS[1].circ], callback: [LANDS[LANDS.length - 1].t] } }; }
 const CONTRAST = [['captions / card main (ink on paper chip)', INK, C.paper], ['title (ink on chart ground)', INK, BG], ['title accent on ground', ACC, BG],
   ['title accent on veiled ground (paper)', ACC, C.paper], ['eyebrow / lockup (slate on ground)', SOFT, BG], ['card lines (ink on paper)', INK, C.paper],
