@@ -45,6 +45,11 @@ case "$FILM" in
     GATE=(true); CUES=(true)                                          # v2 reuses whale/cues.json + score.json
     SCORE=(bash -c "cd whale && OUT='$WK/score.wav' python3 synth.py"); RENDER=(node whale/render2.cjs)
     DUR_JS="require('./whale/engine2.cjs').FILM.DUR || globalThis.SCORE.duration" ;;
+  cap:*)                                                              # CETI Capabilities episode: kh/caps/<slug>/{film.js,score.py}
+    SLUG=${FILM#cap:}; NAME="cap-$SLUG"; T=(node kh/caps/tool.cjs "$SLUG")
+    GATE=("${T[@]}" gate); CUES=("${T[@]}" cues "$WK/cues.json")
+    SCORE=(python3 "kh/caps/$SLUG/score.py" "$WK/cues.json" "$WK/score.wav"); RENDER=("${T[@]}" render)
+    DUR_JS="$(node kh/caps/tool.cjs "$SLUG" dur)" ;;
   *) echo "unknown film: $FILM" >&2; exit 2 ;;
 esac
 
