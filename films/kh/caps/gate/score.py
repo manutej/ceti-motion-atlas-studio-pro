@@ -1,7 +1,7 @@
-"""CETI Capabilities 02 · gate — score. 128 BPM. Every sound sits on a cue the picture exports (cues.json).
-Signature: the gate is two upright ticks, so it sounds as a double tick. On a pass, a bright double tick plus a mallet
-note (each gate has its own pitch, 01 low to 07 high, so a run through the row plays a rising line). On a stop, the
-ticks clack together over a low, muted thud."""
+"""CETI Capabilities 02 · gate v3 — score. 128 BPM. Every sound sits on a cue the picture exports (cues.json).
+Signature: a struck glass bell per KIND of check (wobble, gap, colour, direction — four pitches). Problem motif: the same
+bell muffled to a dull thunk when the pod answers ✕. The fold is a tuned paper crease; the new gate lands with a clean stamp
+and rings its new bell for the first time. The limit's thunk is left unresolved; the pod's ✓ is the bells as one chord."""
 import json, sys, numpy as np
 from scipy.signal import butter, sosfilt, fftconvolve, resample_poly, lfilter
 from scipy.io import wavfile
@@ -28,65 +28,59 @@ def whoosh(d, rev=False):
     tt = T(d); e = (tt / d) ** 2 if rev else np.sin(np.pi * tt / d) ** 2; return bp(rng.standard_normal(len(tt)), 500, 6000) * e
 def bell(f, d=2.6):
     tt = T(d); return sum(a * np.sin(2 * np.pi * f * m * tt) * np.exp(-tt * k) for m, a, k in [(1, 1, 1.6), (2.76, 0.3, 3.5), (0.5, 0.35, 1.2)]) * np.minimum(1, tt / 0.003)
-def gate_pass(t0, g, gain=1.0, pan=0.0, detune=0.0):        # signature: double tick + the gate's note
-    put(tick(3100, 0.035), t0 - 0.028, 0.22 * gain, pan - 0.15, 0.1); put(tick(3700, 0.035), t0, 0.22 * gain, pan + 0.15, 0.1)
-    put(mallet(GATE_NOTE[g], 1.3, 0.9, detune), t0, 0.26 * gain, pan, 0.45)
-def gate_stop(t0, g):                                        # the ticks clack shut: converging double tick + muted thud
-    put(tick(2200, 0.05), t0, 0.3, -0.2, 0.1); put(tick(1500, 0.06), t0 + 0.035, 0.3, 0.2, 0.1)
-    tt = T(0.45); f = 70 + 60 * np.exp(-tt * 25); put(np.sin(2 * np.pi * np.cumsum(f) / SR) * np.exp(-tt * 10), t0, 0.55)
-    put(lp(rng.standard_normal(len(T(0.12))), 900) * np.exp(-T(0.12) * 40), t0, 0.35, 0, 0.1)
-    put(mallet(GATE_NOTE[g] / 2 * 2 ** (3 / 12) / 2 ** (4 / 12), 0.9, 0.2), t0 + 0.02, 0.18, 0, 0.3)   # a soft minor colour under it
+# one struck glass bell per KIND of check (wobble, gap, colour, direction): the ear hears "a different check", not "the same check again"
+KIND_NOTE = [587.33, 659.25, 880.0, 987.77]
+def glass(f, d=2.2, muffle=False):
+    tt = T(d); s = sum(a * np.sin(2 * np.pi * f * m * tt) * np.exp(-tt * k) for m, a, k in [(1, 1, 2.2), (2.76, 0.42, 5.0), (5.4, 0.18, 9.0)]) * np.minimum(1, tt / 0.002)
+    return lp(s * np.exp(-tt * 6), 700) * 2.2 if muffle else s
+def thunk(t0, gain=1.0):                         # problem motif: the bell, muffled to a dull thunk, plus a low knock
+    put(glass(440, 0.8, True), t0, 0.32 * gain, 0.3, 0.15)
+    tt = T(0.4); f = 90 + 40 * np.exp(-tt * 20); put(np.sin(2 * np.pi * np.cumsum(f) / SR) * np.exp(-tt * 12), t0, 0.5 * gain, 0.3)
+def knock(t0):                                    # a gate stops a run: soft stop knock + converging double tick
+    tt = T(0.35); f = 75 + 55 * np.exp(-tt * 25); put(np.sin(2 * np.pi * np.cumsum(f) / SR) * np.exp(-tt * 11), t0, 0.5)
+    put(tick(2200, 0.05), t0, 0.22, -0.2, 0.1); put(tick(1500, 0.06), t0 + 0.035, 0.22, 0.2, 0.1)
+def fold(t0):                                     # paper fold, tuned: two filtered noise creases rising to the colour bell's pitch
+    for i, (lo, hi) in enumerate([(900, 3000), (1500, 5000)]):
+        tt = T(0.18); put(bp(rng.standard_normal(len(tt)), lo, hi) * np.sin(np.pi * tt / 0.18) ** 2, t0 + i * 0.2, 0.14, -0.2 + 0.4 * i, 0.2)
+    tt = T(0.5); put(np.sin(2 * np.pi * np.cumsum(440 + 440 * clamp(tt / 0.35)) / SR) * np.sin(np.pi * tt / 0.5) ** 2, t0 + 0.05, 0.05, 0, 0.4)
+def stamp(t0):                                    # clean stamp as the icon lands
+    put(lp(rng.standard_normal(len(T(0.08))), 2500) * np.exp(-T(0.08) * 50), t0, 0.3, 0, 0.1)
+    tt = T(0.3); f = 110 + 50 * np.exp(-tt * 30); put(np.sin(2 * np.pi * np.cumsum(f) / SR) * np.exp(-tt * 14), t0, 0.4)
 
-# D major pentatonic up the row: gate 01 low … gate 07 high
-GATE_NOTE = [293.66, 329.63, 369.99, 440.0, 493.88, 587.33, 659.25]
-
-# pulse: soft kick on the beat while the machine runs (Spec → pull-back), half-time across the row, gone for the belief
+# FELT: no pulse; the passes chime small, the pod answers with the thunk. A soft pulse starts with the move (the fold).
 n = 0
-while n * B < Q['belief'] - 0.6:
+while n * B < Q['notThis'] - 0.3:
     tb = n * B
-    if tb >= Q['spec'] - 0.01 and (tb < Q['pull'] or n % 2 == 0):
-        tt = T(0.3); f = 50 + 70 * np.exp(-tt * 30); put(np.sin(2 * np.pi * np.cumsum(f) / SR) * np.exp(-tt * 9), tb, 0.45 if tb < Q['pull'] else 0.3)
-        if tb < Q['pull'] and tb >= Q['scan']: tt = T(0.06); put(hp(rng.standard_normal(len(tt)), 7000) * np.exp(-tt * 60), tb + B / 2, 0.1, 0.3)
+    if tb >= Q['fold'][0] - 0.01 and n % 2 == 0:
+        tt = T(0.3); f = 50 + 70 * np.exp(-tt * 30); put(np.sin(2 * np.pi * np.cumsum(f) / SR) * np.exp(-tt * 9), tb, 0.28)
     n += 1
-
-# title + the track drawing on
-put(whoosh(0.7, rev=True), Q['title'] - 0.1, 0.12, 0, 0.2); put(whoosh(1.6), Q['draw'], 0.1, -0.2, 0.2)
-# act 1: runs ship unchecked (airy swish); the wobbly one warbles past, slightly out of tune
-for i, x in enumerate(Q['ship']): put(whoosh(0.5), x - 0.25, 0.16, -0.4 + 0.3 * i, 0.15)
-tt = T(0.9); wob = np.sin(2 * np.pi * np.cumsum(392 * (1 + 0.03 * np.sin(2 * np.pi * 9 * tt))) / SR) * np.sin(np.pi * tt / 0.9) ** 2
-put(lp(wob, 2000), Q['wobble'] - 0.45, 0.12, 0.2, 0.3)
-# Spec: the whale lands and the two ticks drive in
-put(mallet(146.83, 1.0, 0.3), Q['spec'], 0.32, 0, 0.2); put(tick(1800, 0.05), Q['spec'] + 0.05, 0.25, -0.2); put(tick(2400, 0.05), Q['spec'] + 0.16, 0.25, 0.2)
-# Check: the scan switches on — a quiet high hum that lives under the whole machine section
-hum = (np.sin(2 * np.pi * 1174.66 * t) + 0.5 * np.sin(2 * np.pi * 1760 * t)) * smooth(Q['scan'], Q['scan'] + 0.4, t) * (1 - smooth(Q['pull'], Q['pull'] + 1.5, t)) * 0.012
-BUS[:, 0] += hum; BUS[:, 1] += hum; put(tick(4200, 0.03), Q['scan'], 0.2, 0, 0.3)
-# every pass: story passes at full weight, the row's canon lighter; the escape's pass is a hair flat (a wrong "yes")
+# gate passes: the bell of that kind; story passes full, escapes slightly flat (a fair yes on the wrong question)
 for e in Q['pass']:
-    pan = -0.6 + 0.2 * e['g']
-    if e['id'] == 'esc': gate_pass(e['t'], e['g'], 1.0, pan, detune=-35)
-    elif e['id'].startswith('p'): gate_pass(e['t'], e['g'], 0.55, pan)
-    else: gate_pass(e['t'], e['g'], 1.0, pan)
-for e in Q['stop']: gate_stop(e['t'], e['g'])
-for x in Q['reopen']: put(tick(2800, 0.03), x, 0.12, 0, 0.2)
-# the rule ships: counter ticks (bell)
-for i, x in enumerate(Q['rule']): put(bell([880, 987.77][i], 2.2), x, 0.12, 0.3, 0.6)
-# escape: startle, take-off whoosh, the catch (a low mallet + grip tick)
-put(tick(5200, 0.03), Q['falsePass'] + 0.06, 0.12, 0.2)
-put(mallet(392, 0.9, 0.4), Q['missed'], 0.22, 0.3, 0.3); put(mallet(311.13, 1.2, 0.4), Q['missed'] + 0.16, 0.22, 0.3, 0.4); put(tick(1600, 0.05), Q['missed'], 0.2, 0.3)   # MISSED: a falling minor third
-put(whoosh(0.6), Q['takeoff'], 0.22, -0.1, 0.2)
-put(mallet(220, 1.2, 0.6), Q['catch'], 0.3, 0.3, 0.3); put(tick(1200, 0.06), Q['catch'], 0.25, 0.3)
-# the new gate grows (higher double tick), sparks
-put(tick(2600, 0.05), Q['build7'], 0.25, 0.2); put(whoosh(0.3, rev=True), Q['nudge'], 0.1, 0.3, 0.2); put(tick(3300, 0.05), Q['build7'] + 0.12, 0.25, 0.4)
-for x in Q['spark']: put(bell(1318.5, 2.4), x, 0.1, 0.2, 0.7)
-# rules accrue: pull-back breath, then RULES 6 → 7 lands as a chord
-put(whoosh(1.6), Q['pull'], 0.18, 0, 0.4)
-for i, f in enumerate([587.33, 739.99, 880, 1174.66]): put(mallet(f, 2.4, 0.8), Q['seven'] + i * 0.06, 0.18, -0.3 + 0.2 * i, 0.6)
-# pad under the payoff and the end; end chord on the belief, a last soft note on the lockup
+    esc = e['id'] in ('e1', 'e2', 'e3', 'back')
+    put(glass(KIND_NOTE[e['g']] * 2 ** ((-30 if esc else 0) / 1200), 1.8), e['t'], 0.16, -0.5 + 0.3 * e['g'], 0.45)
+    put(tick(3400, 0.03), e['t'], 0.1, -0.5 + 0.3 * e['g'], 0.1)
+for e in Q['stop']: put(glass(KIND_NOTE[e['g']], 1.2), e['t'] - 0.02, 0.18, -0.5 + 0.3 * e['g'], 0.4); knock(e['t'])
+for x in Q['reopen']: put(tick(2800, 0.03), x, 0.08, 0, 0.2)
+# the pod's answers: ✕ = the problem motif; ✓ = the four kind-bells as one resolved chord
+for a in Q['answer']:
+    if not a['ok']: thunk(a['t'], 1.0 if a['id'] != 'back' else 0.85)
+    else:
+        for i, f in enumerate(sorted(KIND_NOTE[:3] if a['t'] < Q['notThis'] else KIND_NOTE)): put(glass(f / 2, 2.6), a['t'] + i * 0.05, 0.12, -0.3 + 0.2 * i, 0.6)
+for x in Q['flag']: put(tick(1200, 0.05), x + 0.36, 0.16, 0.35, 0.1)
+# the title hinge: near-silence, then the title tick
+put(tick(4200, 0.03), Q['title'], 0.14, 0, 0.4); put(whoosh(0.7, rev=True), Q['title'] - 0.6, 0.06, 0, 0.3)
+# the move: lift, fold, posts rise, stamp + the NEW bell rings for the first time (a glass ping)
+for x in Q['lift']: put(whoosh(0.6), x, 0.14, -0.1, 0.2)
+for x in Q['pick']: put(tick(1800, 0.04), x, 0.16, 0.3)
+for x in Q['fold']: fold(x)
+for x in Q['grow']: put(tick(2600, 0.05), x, 0.14, 0.1); put(tick(3300, 0.05), x + 0.12, 0.14, 0.3)
+for i, x in enumerate(Q['set']): stamp(x); put(glass(KIND_NOTE[2 + i] * 2, 2.4), x + 0.03, 0.12, 0.2, 0.7)
+for x in Q['spark']: put(glass(1318.5, 2.4), x + 0.05, 0.07, 0.2, 0.7)
+# limit: the escape's thunk is left unresolved (no chord after it) — the pad enters only after the fourth gate stands
 pad = np.zeros(N)
 for f, g in [(146.83, 1), (220, 0.7), (293.66, 0.6), (369.99, 0.45), (440, 0.3)]: pad += g * np.sin(2 * np.pi * f * (1 + 0.0015 * np.sin(2 * np.pi * 0.11 * t + f)) * t)
-pad *= 0.045 * smooth(Q['pull'], Q['pull'] + 3, t) * (1 - 0.6 * smooth(D - 1.2, D, t)); pad = lp(pad, 2400); BUS[:, 0] += pad; BUS[:, 1] += pad; SEND += pad * 0.4
-for i, f in enumerate([293.66, 369.99, 440, 587.33]): put(mallet(f, 2.8, 0.7), Q['belief'] + i * 0.1, 0.22, -0.3 + 0.2 * i, 0.6)
-put(mallet(587.33, 2.4, 0.5), Q['lockup'], 0.14, 0, 0.7)
+pad *= 0.04 * smooth(Q['set'][1], Q['set'][1] + 2.5, t) * (1 - 0.6 * smooth(D - 1.2, D, t)); pad = lp(pad, 2400); BUS[:, 0] += pad; BUS[:, 1] += pad; SEND += pad * 0.4
+put(glass(587.33, 2.4), Q['lockup'], 0.08, 0, 0.7)
 
 # reverb send, fades, then loudness: BS.1770-style K-weighted, gated integrated level → −16 LUFS, true peak ≤ −1 dBTP
 ir_t = T(1.6); ir = [lp(rng.standard_normal(len(ir_t)), 5000) * np.exp(-ir_t * 3.4) for _ in range(2)]; ir = [x / np.sqrt((x ** 2).sum()) for x in ir]
