@@ -72,7 +72,7 @@ echo "== loudness"
 I=$(ffmpeg -hide_banner -nostats -i "$WK/score.wav" -af ebur128 -f null - 2>&1 | awk '/Integrated loudness/{f=1} f&&/I:/{print $2; exit}')
 G=$(python3 -c "print(round(-16-($I),2))"); echo "measured $I LUFS -> gain $G dB"
 ffmpeg -y -loglevel error -i "$WK/score.wav" -af "volume=${G}dB,alimiter=limit=0.708:attack=0.5:release=40:level=false" -ar 48000 "$WK/norm.wav"
-ffmpeg -y -loglevel error -i "$WK/video.mp4" -i "$WK/norm.wav" -c:v copy -c:a aac -b:a 256k -shortest -movflags +faststart "$OUT_DIR/$NAME.mp4"
+ffmpeg -y -loglevel error -i "$WK/video.mp4" -i "$WK/norm.wav" -c:v copy -af apad -c:a aac -b:a 256k -shortest -movflags +faststart "$OUT_DIR/$NAME.mp4"
 
 echo "== checks"
 ffmpeg -hide_banner -nostats -i "$OUT_DIR/$NAME.mp4" -af ebur128=peak=true -f null - 2>&1 | grep -E "^\s+(I|Peak):" | tr -s ' '

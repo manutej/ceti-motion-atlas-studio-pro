@@ -78,8 +78,8 @@ const HOMEB = { x: 0, y: -14 };
 
 // ---------- threads (links): start on one dot, land on another ----------
 // snap: when an edit moves the target dot and the thread is left in the air; re: when the pin brings the dot home
-const TH = [{ s: 0, e: 1, h: 170, snap: -1, re: TAP[1], W: HOMEB }, { s: 1, e: 2, h: 150, snap: ED[0], re: TAP[2] },
-  { s: 2, e: 0, h: 330, snap: ED[1], re: TAP[0] }, { s: 2, e: 1, h: 250, snap: ED[2], re: TAP[1] }];
+const TH = [{ s: 0, e: 1, h: 170, snap: -1, re: TAP[1], W: HOMEB }, { s: 1, e: 2, h: 125, snap: ED[0], re: TAP[2] },
+  { s: 2, e: 0, h: 250, snap: ED[1], re: TAP[0] }, { s: 2, e: 1, h: 205, snap: ED[2], re: TAP[1] }];
 const dotTop = (lf, i) => ({ x: lf.dots[i].x, y: lf.dots[i].y - 14 });
 TH.forEach(th => { if (!th.W) th.W = dotTop(lineFn(th.snap - 1e-3), th.e); });
 function thread(i, t, lf) {
@@ -97,18 +97,19 @@ const flut = t => (0.55 + 1.1 * win(t, FLUT, FLUT + 1.6, 0.1, 0.9)) * (1 - win(t
 
 // ---------- the whale: thread follows, flights (eased arcs), rides (perched on the line), hovers ----------
 const PLAN = [
-  { a: -1, b: BUMP, thread: 0, u0: 0.0, u1: 0.71, e: lin },
+  { a: -1, b: BUMP, thread: 0, u0: 0.0, u1: 0.68, e: lin },
   { a: BUMP, b: BUMP + 0.4, to: { dx: -24, dy: -14 }, H: 0, keep: 1 },
   { a: BUMP + 0.4, b: 3.0, hover: true, looks: [[FLUT, -1], [FLUT + 0.75, 1]] },
-  { a: 3.0, b: 3.7, to: { x: -150, y: -262 }, H: 0, keep: 1 },
+  { a: 3.0, b: 3.7, to: { x: -255, y: -300 }, H: 0, keep: 1 },
   { a: 3.7, b: PULL + 0.15, hover: true, face: 1 },
   { a: PULL + 0.15, b: 13.3, to: { x: -620, y: -300 }, H: 0 },
   { a: 13.3, b: 18.45, hover: true, face: 1 },
   { a: 18.45, b: TAP[0], to: { x: PINX[0], y: -TAPLIFT }, H: 40 },
   { a: TAP[0], b: TAP[1], to: { x: PINX[1], y: -TAPLIFT }, H: 55, e: lin, sq0: 0.08 },
   { a: TAP[1], b: TAP[2], to: { x: PINX[2], y: -TAPLIFT }, H: 55, e: lin, sq0: 0.08 },
-  { a: TAP[2], b: 21.8, hover: true, sq0: 0.08 },
-  { a: 21.8, b: FE[0], to: { ride: -560 }, H: 110 },
+  { a: TAP[2], b: TAP[2] + 0.6, to: { x: 330, y: -190 }, H: 0, keep: 1, sq0: 0.08 },
+  { a: TAP[2] + 0.6, b: 21.5, hover: true },
+  { a: 21.5, b: FE[0], to: { ride: -560 }, H: 60 },
   { a: FE[0], b: FE[0] + 0.18, ride: -560, sq: 0.12 },
   { a: FE[0] + 0.18, b: FE[1], to: { ride: -200 }, H: 80 },
   { a: FE[1], b: FE[1] + 0.18, ride: -200, sq: 0.12 },
@@ -129,10 +130,10 @@ const PLAN = [
   { a: 38.5, b: 41.7, to: { thread0: 0.22 }, H: 70 },
   { a: 41.7, b: FOLLOW, hover: true, looks: [[41.7, -1], [PAN + 0.4, 1]] },
   { a: FOLLOW, b: LAND - 0.5, thread: 0, u0: 0.22, u1: 0.8, e: lin },
-  { a: LAND - 0.5, b: LAND, to: { x: 0, y: -96 }, H: 0, e: EASE.defer },
+  { a: LAND - 0.5, b: LAND, to: { x: -30, y: -108 }, H: 0, e: EASE.defer },
   { a: LAND, b: DUR + 1, hover: true, face: 1, breathe: 1 },
 ];
-const T1OFF = -30;
+const T1OFF = -20;
 function evalSeg(s, t) {
   if (s.thread != null) { const g = thread(s.thread, t, lineFn(t)), u = lerp(s.u0, s.u1, (s.e || lin)(clamp((t - s.a) / (s.b - s.a)))), p = qpt(g, u); return { x: p.x, y: p.y + T1OFF }; }
   if (s.ride != null) return { x: s.ride, y: lineY(s.ride, t) - LIFT };
@@ -164,7 +165,7 @@ const LANDS = PLAN.filter(s => s.sq).map(s => [s.a, s.sq]).concat(PLAN.filter(s 
 const squash = t => LANDS.reduce((q, [a, w]) => q + (t >= a ? w * Math.exp(-(t - a) * 10) : 0), 0);
 
 // ---------- the pod (an AI helper): follows the same link, answers ✕; in the payoff it answers ✓ ----------
-const POD1 = { x: -130, y: -70 }, POD2 = { x: -180, y: -22 }, PODS = { x: -880, y: -40 };
+const POD1 = { x: -130, y: -70 }, POD2 = { x: -205, y: -92 }, PODS = { x: -880, y: -40 };
 function podState(t) {
   const fly = (a, b, p, q, Hh, e) => { const u = e(clamp((t - a) / (b - a))); return { x: lerp(p.x, q.x, u), y: lerp(p.y, q.y, u) - Hh * Math.sin(Math.PI * u) }; };
   if (t >= 3.0 && t < POD_OUT + 1.6) {
@@ -173,11 +174,11 @@ function podState(t) {
     return { ...p, chip: 'x', ca: ramp(t, POD_X, POD_X + 0.3, EASE.glaser), a: 1 }; }
   if (t >= POD2_IN - 0.4 && t < POD2_OUT + 1.6) {
     const p = t < POD2_IN + 1.1 ? fly(POD2_IN - 0.4, POD2_IN + 1.1, PODS, POD2, 40, EASE.rest) : t < POD2_OUT ? { x: POD2.x, y: POD2.y + 3 * Math.sin((t - POD2_IN) * 2.2) * smoothstep(POD2_IN + 1.1, POD2_IN + 1.6, t) }
-      : fly(POD2_OUT, POD2_OUT + 1.5, POD2, { x: 620, y: -600 }, 0, EASE.collect);
+      : fly(POD2_OUT, POD2_OUT + 1.5, POD2, { x: 640, y: -640 }, 70, EASE.collect);
     return { ...p, chip: 'v', ca: ramp(t, POD_OK, POD_OK + 0.3, EASE.glaser), a: 1 }; }
   return null; }
 const podAng = t => { const a = podState(t - 0.02), b = podState(t + 0.02); if (!a || !b) return 0; const dx = b.x - a.x, dy = b.y - a.y;
-  return Math.hypot(dx, dy) < 0.3 ? 0 : clamp(Math.atan2(dy, Math.abs(dx) + 4) * Math.sign(dx || 1), -0.6, 0.6); };
+  return Math.hypot(dx, dy) < 0.3 ? 0 : clamp(Math.atan2(dy, Math.abs(dx) + 4), -0.6, 0.6); };
 
 // ---------- checks: the whale sounds, a ring runs out, each target flashes as it is reached ----------
 const RING_V = 1700;
@@ -204,8 +205,8 @@ const AUD = (() => { const R = rng(4760), idx = Array.from({ length: 60 }, (_, i
 
 // ---------- camera: eased keys ----------
 const CAMK = [[0, -170, -80, 1.6], [HINGE, -150, -88, 1.6], [PULL, -150, -88, 1.6], [13.7, 0, -70, 1.0], [18.3, 0, -70, 1.0], [19.3, 0, -40, 1.2],
-  [TUG0 - 0.25, 0, -40, 1.2], [TUG0 + 0.4, -60, -30, 1.32], [REP + 0.8, -60, -30, 1.32], [LAST + 0.1, 0, -40, 1.2], [SLIDE, 0, -40, 1.2], [SLIDE + 1.85, 420, -40, 0.7],
-  [PUSH, 450, -40, 0.7], [PUSH + 1.45, -400, 40, 1.5], [PAN, -400, 40, 1.5], [FOLLOW, -170, -80, 1.6], [POD2_OUT + 0.2, -170, -80, 1.6], [BELIEF - 0.05, 0, -60, 1.2], [DUR + 1, 0, -60, 1.2]];
+  [TUG0 - 0.25, 0, -40, 1.2], [TUG0 + 0.4, -60, -30, 1.32], [REP + 0.8, -60, -30, 1.32], [LAST + 0.1, 0, -40, 1.2], [SLIDE, 0, -40, 1.2], [SLIDE + 1.85, 400, -40, 0.78],
+  [PUSH, 425, -40, 0.78], [PUSH + 1.45, -400, 62, 1.5], [PAN, -400, 62, 1.5], [FOLLOW, -170, -80, 1.6], [POD2_OUT + 0.2, -170, -80, 1.6], [BELIEF - 0.05, 0, -60, 1.2], [DUR + 1, 0, -60, 1.2]];
 function cam(t) { let i = 0; while (i + 2 < CAMK.length && CAMK[i + 1][0] <= t) i++; const [a, x0, y0, z0] = CAMK[i], [b, x1, y1, z1] = CAMK[i + 1], u = EASE.rest(clamp((t - a) / (b - a)));
   const z = lerp(z0, z1, u), s = t < HINGE ? 1 : 0; let fx = 0; if (s) { const p = wpos(t); fx = clamp(p.x + 110, -80, 80) * 0.12; }
   return { x: lerp(x0, x1, u) + fx, y: lerp(y0, y1, u), z, ax: 960, ay: 575 }; }
@@ -382,14 +383,14 @@ function drawFrame(c, t) {
     ['source', 'link', 'page'].forEach((kind, i) => { const ia = ramp(t, TAP[i] + 0.1, TAP[i] + 0.5, EASE.warm) * (i === 0 ? 1 - Math.min(1, gridK * 3) : 1); iconChip(c, kind, X(PINX[i]), Y(118), z, ia); });
     const lab = ra(t, 'label'); if (lab > 0) S.chip(c, LABR.text, X(0), Y(118) + 62 * zz + (1 - EASE.defer(clamp(lab))) * 8, { f: 'sans', size: 26, col: INK, a: lab, align: 'center', pad: 16, border: RULE });
     // LIMIT: the source tick opens into the atlas citation audit (60 ticks)
-    if (gridK > 0.001) { const cx = X(PINX[0]), top = Y(118) - 23 * zz, wF = 520, hF = 236, w = lerp(46, wF, gridK), h = lerp(46, hF, gridK);
+    if (gridK > 0.001) { const cx = X(PINX[0]), top = Y(118) - 23 * zz, wF = 640, hF = 290, w = lerp(46, wF, gridK), h = lerp(46, hF, gridK);
       c.save(); c.fillStyle = C.paper; c.strokeStyle = RULE; c.lineWidth = 1.8; c.beginPath(); c.roundRect(cx - w / 2, top, w, h, 10); c.fill(); c.stroke(); c.restore();
-      const ta = ramp(gridK, 0.7, 1, lin); if (ta > 0) { const gx = cx - wF / 2 + 34, gy = top + 34;
-        for (const q of AUD) { const k = ramp(t, q.t, q.t + 0.18, EASE.glaser); const col = q.i % 10, row = Math.floor(q.i / 10), x = gx + col * 25, y = gy + row * 22;
-          c.save(); c.globalAlpha = ta; c.lineCap = 'round'; c.lineWidth = 4.5; c.strokeStyle = k > 0.01 ? (q.bad ? COP : DSG) : mix(C.paper, C.slate, 0.25);
-          c.beginPath(); c.moveTo(x, y + 14); c.lineTo(x, y + 14 - 14 * Math.max(k, 0.35)); c.stroke(); c.restore(); }
-        const aa = ra(t, 'audit'); if (aa > 0) { text(c, 'Atlas citation audit', gx + 264, gy + 20, { f: 'sans', size: 24, col: SOFT, a: aa });
-          text(c, '47 of 60', gx + 264, gy + 70, { f: 'monoB', size: 34, col: INK, a: aa, track: 0.02 }); text(c, 'faithful', gx + 264, gy + 106, { f: 'sans', size: 24, col: SOFT, a: aa }); } } } }
+      const ta = ramp(gridK, 0.7, 1, lin); if (ta > 0) { const gx = cx - wF / 2 + 40, gy = top + 40;
+        for (const q of AUD) { const k = ramp(t, q.t, q.t + 0.18, EASE.glaser); const col = q.i % 10, row = Math.floor(q.i / 10), x = gx + col * 30, y = gy + row * 36;
+          c.save(); c.globalAlpha = ta; c.lineCap = 'round'; c.lineWidth = 7; c.strokeStyle = k > 0.01 ? (q.bad ? COP : DSG) : mix(C.paper, C.slate, 0.25);
+          c.beginPath(); c.moveTo(x, y + 24); c.lineTo(x, y + 24 - 24 * Math.max(k, 0.3)); c.stroke(); c.restore(); }
+        const aa = ra(t, 'audit'); if (aa > 0) { text(c, 'Atlas citation audit', gx + 318, gy + 22, { f: 'sans', size: 26, col: SOFT, a: aa });
+          text(c, '47 of 60', gx + 318, gy + 100, { f: 'monoB', size: 50, col: INK, a: aa, track: 0.02 }); text(c, 'faithful', gx + 318, gy + 146, { f: 'sans', size: 26, col: SOFT, a: aa }); } } } }
 
   // the pod
   { const p = podState(t); if (p) { const ang = podAng(t); c.save(); c.translate(X(p.x), Y(p.y)); c.rotate(ang); KH.drawPod(c, 0, 0, 0, 54 * zz, MIST, { ink: INK }); c.restore();

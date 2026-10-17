@@ -52,8 +52,8 @@ const mk = arr => arr.map(([t, ...v]) => { const hold = v[v.length - 1] === 'h';
 const R0 = KH.rng(1660), ROWW = Array.from({ length: 40 }, () => 0.45 + 0.5 * R0());
 
 // ---------- whale ----------
-const WK = mk([[0, -330, -40, 'h'], [7.5, -330, -40, 'h'], [8.15, -285, -72, 'h'], [10.4, -285, -72, 'h'], [11.95, -560, -320, 'h'],
-  [22.0, -560, -320, 'h'], [22.9, -250, -425], [23.5, 300, -420], [23.95, 580, -120], [24.35, 440, 40, 'h'], [NUDGE - 0.06, 440, 40, 'h'], [NUDGE + 0.1, 402, 40], [REFUSE, 410, 40],
+const WK = mk([[0, -330, -40, 'h'], [7.5, -330, -40, 'h'], [8.15, -285, -72, 'h'], [10.4, -285, -72, 'h'], [11.95, -480, -250, 'h'],
+  [22.0, -480, -250, 'h'], [22.9, -250, -425], [23.5, 300, -420], [23.95, 580, -120], [24.35, 440, 40, 'h'], [NUDGE - 0.06, 440, 40, 'h'], [NUDGE + 0.1, 402, 40], [REFUSE, 410, 40],
   [25.15, 475, 46, 'h'], [25.6, 475, 46, 'h'], [26.6, 450, -330, 'h'], [30.2, 450, -330, 'h'], [31.0, 300, -500, 'h'], [39.7, 300, -500, 'h'], [40.45, -150, -300], [41.0, -560, -60, 'h'],
   [41.25, -560, -60, 'h'], [L_SNAP, -150, -60, 'h'], [45.9, -150, -60, 'h'], [46.7, -330, -40, 'h'], [DUR, -330, -40, 'h']]);
 const base = t => { const v = hermite(WK, t); return { x: v[0], y: v[1] }; };
@@ -66,9 +66,9 @@ const LEFT = [[10.45, 11.95], [23.95, 41.1], [45.85, 46.75]];
 const facing = t => LEFT.some(([a, c]) => t > a && t < c) ? -1 : 1;
 
 // ---------- camera ----------
-const CK = mk([[0, 0, -20, 1.6], [3.0, 40, -20, 1.6], [9.375, 40, -20, 1.6, 'h'], [SPILL, 40, -20, 1.6, 'h'], [13.6, 0, -20, 1.0, 'h'], [18.5, 0, -20, 1.0, 'h'], [20.3, 0, -60, 1.3, 'h'],
+const CK = mk([[0, 0, 10, 1.6], [3.0, 40, 10, 1.6], [9.375, 40, 10, 1.6, 'h'], [SPILL, 40, 10, 1.6, 'h'], [13.6, 0, 0, 1.2, 'h'], [18.5, 0, 0, 1.2, 'h'], [20.3, 0, -60, 1.3, 'h'],
   [24.0, 0, -60, 1.3, 'h'], [24.7, 240, -40, 1.6, 'h'], [25.85, 240, -40, 1.6, 'h'], [26.9, 0, -60, 1.3, 'h'], [CASE0, 0, -60, 1.3, 'h'], [30.9, 0, -100, 1.05, 'h'],
-  [40.3, 30, -100, 1.05, 'h'], [41.1, 0, -70, 1.3, 'h'], [43.125, 0, -70, 1.3, 'h'], [44.7, 0, -60, 1.72, 'h'], [45.9, 0, -60, 1.72, 'h'], [46.75, 40, -20, 1.6, 'h'], [DUR, 40, -20, 1.6, 'h']]);
+  [40.3, 30, -100, 1.05, 'h'], [41.1, 0, -70, 1.3, 'h'], [43.125, 0, -70, 1.3, 'h'], [44.7, 0, -60, 1.72, 'h'], [45.9, 0, -60, 1.72, 'h'], [46.75, 40, 10, 1.6, 'h'], [DUR, 40, 10, 1.6, 'h']]);
 function cam(t) { const v = hermite(CK, t); return { x: v[0], y: v[1], z: v[2], ax: 960, ay: 540 }; }
 
 // ---------- READ (kind + size for the LONGFORM gates) ----------
@@ -94,7 +94,7 @@ const LAB = [
   { id: 'l-rule', in: TAB_T[2] + 0.05, out: 20.77, fi: 0.12, fo: 0.15, text: 'rule' },
   { id: 'brief', in: b(45), out: 29.9, fi: 0.3, fo: 0.3, text: 'brief' },
   { id: 'brief3', in: 41.0, out: 46.2, fi: 0.3, fo: 0.3, text: 'brief' },
-  { id: 'brief2', in: PAY0 - 0.35, out: 58.0, fi: 0.35, fo: 0.3, text: 'brief' },
+  { id: 'brief2', in: PAY0 - 0.35, out: DUR, fi: 0.35, fo: 0, text: 'brief' },
 ].map(r => ({ ...r, kind: 'label', size: 24 }));
 const CARDR = { id: 'card', in: CARD_T, out: CASE_OUT, fi: 0.4, fo: 0.35, kind: 'card', size: 46, src: SRC,
   text: 'Real run · Context Atoms · 16 Oct 2026 · 3 prompts · 41, 26 and 41 atoms · Engine check: GREEN · 9 shared, still draft' };
@@ -208,7 +208,7 @@ function pod(c, X, Y, z, p, glow) { if (p.a <= 0) return; const flip = Math.cos(
 function podFelt(t) {   // FELT (and the WHY wide shot): in from the right, reads, parks; leaves before the freeze
   if (t < 0.9 || t > 16.7) return { a: 0, x: 0, y: 0, ang: 0 };
   const u = ramp(t, 0.9, POD_ARR, G), w = ramp(t, SPILL, 13.4, Rs), go = ramp(t, 15.75, 16.6, Co);
-  let x = lerp(1050, PODP.x, u), y = lerp(-420, PODP.y, u) + Math.sin(t * 2.6) * 5 * u; x = lerp(x, 640, w); y = lerp(y, -340, w); x = lerp(x, 1400, go); y = lerp(y, -800, go);
+  let x = lerp(1050, PODP.x, u), y = lerp(-420, PODP.y, u) + Math.sin(t * 2.6) * 5 * u; x = lerp(x, 260, w); y = lerp(y, -235, w); x = lerp(x, 1400, go); y = lerp(y, -800, go);
   const ang = go > 0.02 ? Math.atan2(-460, 760) : lerp(Math.atan2(255, -670), Math.PI, u);
   return { a: ramp(t, 0.9, 1.1), x, y, ang }; }
 function podPay(t) {
@@ -308,13 +308,14 @@ function drawFrame(c, t) {
       const pk = PAIR_SLOTS.findIndex(p => p.includes(i)), land = pk >= 0 ? PAIRS[pk] : SPILL + 0.9 + SPILLED.indexOf(i) * 0.07;
       const flash = t > land && t < land + 0.8 ? Math.exp(-(t - land) * 6) : 0;
       let x = L.x, y = L.y, r = L.r;
+      if (pk >= 0 && i === PAIR_SLOTS[pk][0]) { const gl = win(t, PAIRS[pk] + 0.08, FREEZE, 0.12, 0.5); y -= 28 * gl; r -= 0.08 * gl; }
       if (EX[i] === 'X' && t > REFUSE && t < REFUSE + 0.45) { const u = t - REFUSE; r += 0.1 * Math.sin(u * 55) * Math.exp(-u * 8); x += 8 * Math.sin(u * 55) * Math.exp(-u * 8); }
       const ex = EX[i], snapT = ex === 'D' ? SNAP_D : ex === 'R' ? SNAP_R : ex === 'F' ? SNAP_F : 0, snapF = snapT && t > snapT ? Math.exp(-(t - snapT) * 6) : 0;
       const lab = ex === 'X' ? ['draft', la(t, 'l-draft')] : ex === 'D' ? ['decided', la(t, 'l-decided')] : ex === 'R' ? ['rule', la(t, 'l-rule')] : ['', 0];
       drawCard(c, X(x), Y(y), z * L.s * (1 + 0.06 * snapF), r, L.a * caseFade, { ty: TY[i], tab: tabK(i, t), lines: LINESW[i], flash: Math.max(flash, snapF), label: lab[0], labelA: lab[1], z });
       // WHY: the pod grabs the wrong (draft) card of each look-alike pair
       if (pk >= 0 && i === PAIR_SLOTS[pk][0]) { const g = PAIRS[pk] + 0.08, xa = win(t, g, FREEZE + 0.4, 0.06, 0.4);
-        if (xa > 0) { crossMark(c, X(x + 40), Y(y - 44), 15 * z * lerp(1.5, 1, G(clamp((t - g) / 0.25))), 5 * z, xa); }
+        if (xa > 0) { crossMark(c, X(x + 40), Y(y - 44), 20 * z * lerp(1.5, 1, G(clamp((t - g) / 0.25))), 5 * z, xa); }
         const th = win(t, g - 0.02, g + 0.3, 0.04, 0.15), p = podFelt(t);
         if (th > 0 && p.a > 0) { c.save(); c.strokeStyle = rgba(REF, 0.8 * th); c.lineWidth = 3 * z; c.setLineDash([8 * z, 7 * z]); c.beginPath(); c.moveTo(X(p.x - 30), Y(p.y + 20)); c.lineTo(X(x + 20), Y(y - 40)); c.stroke(); c.restore(); } } }
   }
