@@ -1,0 +1,59 @@
+{
+ "id": "cap-gate-v3",
+ "name": "Capabilities 02 · Check it at the gate — film v3",
+ "kind": "Film",
+ "version": "3.0",
+ "parents": [
+  "cap-gate-v1",
+  "caps-series-v1"
+ ],
+ "wada": [
+  243
+ ],
+ "engine": [
+  "Canvas (skia)",
+  "ffmpeg",
+  "numpy synth",
+  "operadic-stitch"
+ ],
+ "atlas": [
+  "el:character-rig",
+  "el:camera-move",
+  "q:time-pure-frames",
+  "q:motion-blur",
+  "q:cue-locked-sound",
+  "gate:contact-sheet",
+  "gate:ffprobe-spec",
+  "gate:frame-jump-detector"
+ ],
+ "sources": [
+  "kh/caps/gate/film.js",
+  "kh/caps/gate/score.py",
+  "kh/caps/gate/NOTES.md",
+  "kh/caps/series.js",
+  "kh/caps/tool.cjs",
+  "kh/whale-rig.js",
+  "kh/kh-kit.js",
+  "storyboards/stitch/gate-v3.prompt.md"
+ ],
+ "outputs": [
+  "renders/cap-gate-v3.mp4"
+ ],
+ "preview": "kh/registry/previews/cap-gate-v3.jpg",
+ "gates": {
+  "read_time": "PASS — 14 lines, tightest 1.37 s vs 1.35 s",
+  "frame_jump": "PASS — 22.0 px, 0.070 rad per frame",
+  "contrast": "PASS — 6 pairs, lowest 4.8:1",
+  "flash_safety": "PASS — 0 flashes in any 1 s",
+  "loudness": "PASS — -16.4 LUFS, -2.8 dBTP",
+  "ffprobe": "PASS — 1643 frames at 60 fps (re-probed after mux)",
+  "contact_sheet": "PASS — director review rounds (sheets in the episode folder)"
+ },
+ "summary": "v3 from the operadic-stitch brief (sb-07-01 + sb-07-03): each gate checks a different KIND of thing (wobble, gap, colour, direction); the escape is a smooth run of the wrong colour (like a page that declared one font and rendered another); the miss becomes a new kind of check; sourced card: 7 misses, 7 new checks (Limits & escapes register).",
+ "changes": "Rebuilt after meta-review (REVIEW-v3.md): the v2 metaphor taught \"tighten the threshold\". 1.5x scale, kind-tinted gates. v2 kept as film-v2.js.",
+ "style": "1.0.0",
+ "status": "shipped",
+ "uses_kit": true,
+ "derived_colours": {},
+ "deviations": []
+}

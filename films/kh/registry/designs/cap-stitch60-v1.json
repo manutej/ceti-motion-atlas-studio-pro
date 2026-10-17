@@ -1,0 +1,59 @@
+{
+ "id": "cap-stitch60-v1",
+ "name": "Capabilities 01 · Give every note a label — one-minute film v1",
+ "kind": "Film",
+ "version": "1.0",
+ "parents": [
+  "cap-stitch-v1",
+  "caps-series-v1"
+ ],
+ "wada": [
+  166
+ ],
+ "engine": [
+  "Canvas (skia)",
+  "ffmpeg",
+  "numpy synth",
+  "operadic-stitch"
+ ],
+ "atlas": [
+  "el:character-rig",
+  "el:camera-move",
+  "q:time-pure-frames",
+  "q:motion-blur",
+  "q:cue-locked-sound",
+  "gate:contact-sheet",
+  "gate:ffprobe-spec",
+  "gate:frame-jump-detector"
+ ],
+ "sources": [
+  "kh/caps/stitch60/film.js",
+  "kh/caps/stitch60/score.py",
+  "kh/caps/stitch60/NOTES.md",
+  "kh/caps/series.js",
+  "kh/caps/tool.cjs",
+  "kh/whale-rig.js",
+  "kh/kh-kit.js",
+  "storyboards/stitch/stitch60.prompt.md"
+ ],
+ "outputs": [
+  "renders/cap-stitch60.mp4"
+ ],
+ "preview": "kh/registry/previews/cap-stitch60-v1.jpg",
+ "gates": {
+  "read_time": "PASS — 22 lines, tightest 0.76 s vs 0.75 s",
+  "frame_jump": "PASS — 28.4 px, 0.066 rad per frame",
+  "contrast": "PASS — 11 pairs, lowest 4.9:1",
+  "flash_safety": "PASS — 0 flashes in any 1 s",
+  "loudness": "PASS — -16.1 LUFS, -2.7 dBTP",
+  "ffprobe": "PASS — 3618 frames at 60 fps (re-probed after mux)",
+  "contact_sheet": "PASS — director review rounds (sheets in the episode folder)"
+ },
+ "summary": "One-minute, problem-first Stitch (LONGFORM-60) from the operadic-stitch brief (sb-04-01): an AI quotes the old draft as final; every note gets a label (draft, decided, rule); a draft cannot fill a decision slot; real run: Context Atoms, 3 prompts, 41/26/41 atoms, engine check GREEN, 9 shared still draft; limit: a wrong date marked decided still fits.",
+ "changes": "First one-minute cut; jury cautions applied (GREEN captioned as engine check; spine atoms shown as draft).",
+ "style": "1.0.0",
+ "status": "shipped",
+ "uses_kit": true,
+ "derived_colours": {},
+ "deviations": []
+}

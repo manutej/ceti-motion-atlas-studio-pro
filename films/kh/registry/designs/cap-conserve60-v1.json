@@ -1,0 +1,61 @@
+{
+ "id": "cap-conserve60-v1",
+ "name": "Capabilities 04 · Change everything but the pins — one-minute film v1",
+ "kind": "Film",
+ "version": "1.0",
+ "parents": [
+  "cap-conserve-v1",
+  "caps-series-v1"
+ ],
+ "wada": [
+  84
+ ],
+ "engine": [
+  "Canvas (skia)",
+  "ffmpeg",
+  "numpy synth",
+  "operadic-stitch"
+ ],
+ "atlas": [
+  "el:character-rig",
+  "el:camera-move",
+  "q:time-pure-frames",
+  "q:motion-blur",
+  "q:cue-locked-sound",
+  "gate:contact-sheet",
+  "gate:ffprobe-spec",
+  "gate:frame-jump-detector"
+ ],
+ "sources": [
+  "kh/caps/conserve60/film.js",
+  "kh/caps/conserve60/score.py",
+  "kh/caps/conserve60/NOTES.md",
+  "kh/caps/series.js",
+  "kh/caps/tool.cjs",
+  "kh/whale-rig.js",
+  "kh/kh-kit.js",
+  "storyboards/stitch/conserve60.prompt.md"
+ ],
+ "outputs": [
+  "renders/cap-conserve60.mp4"
+ ],
+ "preview": "kh/registry/previews/cap-conserve60-v1.jpg",
+ "gates": {
+  "read_time": "PASS — 26 lines, tightest 1.82 s vs 1.80 s",
+  "frame_jump": "PASS — 23.9 px, 0.081 rad per frame",
+  "contrast": "PASS — 16 pairs, lowest 5.1:1",
+  "flash_safety": "PASS — 0 flashes in any 1 s",
+  "loudness": "PASS — -16.3 LUFS, -2.0 dBTP",
+  "ffprobe": "PASS — 3734 frames at 60 fps (re-probed after mux)",
+  "contact_sheet": "PASS — director review rounds (sheets in the episode folder)"
+ },
+ "summary": "One-minute, problem-first Conserve (LONGFORM-60) from the operadic-stitch brief (sb-03-01): edits silently break links and the AI follows them to a wrong answer; three pinned laws (no broken links, one page per thing, every claim sourced) checked on every edit; real run: memory graph map 548 entities, 2,933 links, 0 laws broken, 0.988 sourced; limit: atlas citation audit 47 of 60 faithful.",
+ "changes": "First one-minute cut.",
+ "style": "1.0.0",
+ "status": "shipped",
+ "uses_kit": true,
+ "derived_colours": {},
+ "deviations": [
+  "N7 density: a pin legend counts as one item; caption + legend + panel = 3 items for 4.1 s in MOVE (declared)"
+ ]
+}

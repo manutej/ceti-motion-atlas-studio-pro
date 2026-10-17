@@ -1,0 +1,43 @@
+{
+ "properties": {
+  "Name": "Capabilities 02 \u00b7 Check it at the gate \u2014 film v3",
+  "Kind": "Film",
+  "Version": "3.0",
+  "Status": "shipped",
+  "Style": "Kinetic Hydrography 1.0.0",
+  "Fingerprint": "f1ce3784789b73e1",
+  "Passport hash": "11df6c39a3869737",
+  "Wada": [
+   "243"
+  ],
+  "Engine": [
+   "Canvas (skia)",
+   "ffmpeg",
+   "numpy synth",
+   "operadic-stitch"
+  ],
+  "Gates": "Pass",
+  "Gate detail": "read_time: PASS \u2014 14 lines, tightest 1.37 s vs 1.35 s \u00b7 frame_jump: PASS \u2014 22.0 px, 0.070 rad per frame \u00b7 contrast: PASS \u2014 6 pairs, lowest 4.8:1 \u00b7 flash_safety: PASS \u2014 0 flashes in any 1 s \u00b7 loudness: PASS \u2014 -16.4 LUFS, -2.8 dBTP \u00b7 ffprobe: PASS \u2014 1643 frames at 60 fps (re-probed after mux) \u00b7 contact_sheet: PASS \u2014 director review rounds (sheets in the episode folder) \u00b7 colour_provenance: PASS",
+  "Deviations": "None",
+  "Design ID": "cap-gate-v3",
+  "Derived from": [
+   "3fcd50cfaf93811ca2d0d76b5e506d6d",
+   "3fcd50cfaf9381fa8252ed30415d11ba"
+  ],
+  "Atlas lineage": [
+   "3fbd50cfaf938109b4d8cdcbc2fc8787",
+   "3fbd50cfaf9381fbb243e1afa8e20b3c",
+   "3fbd50cfaf9381159144e6222a7785ef",
+   "3fbd50cfaf9381078d70c4da78795394",
+   "3fbd50cfaf93818c9148cabe066e555a",
+   "3fbd50cfaf93810bbfc9fe9ad8c1949d",
+   "3fbd50cfaf9381eb9960f6866c267d59",
+   "3fbd50cfaf9381269a41dd50de1c851b"
+  ],
+  "date:Registered:start": "2026-10-17",
+  "date:Registered:is_datetime": 0
+ },
+ "content": "v3 from the operadic-stitch brief (sb-07-01 + sb-07-03): each gate checks a different KIND of thing (wobble, gap, colour, direction); the escape is a smooth run of the wrong colour (like a page that declared one font and rendered another); the miss becomes a new kind of check; sourced card: 7 misses, 7 new checks (Limits & escapes register).\n\n## Provenance\n- **Style:** Kinetic Hydrography 1.0.0 \u00b7 passport `11df6c39a3869737` \u00b7 kit `a19e3d258a95aa78`\n- **Fingerprint:** `f1ce3784789b73e1a33d4b9af0dc953276268f8280bdb95fd36c32b062e660f3`\n- **Parents:** cap-gate-v1 (`0d73cb73e7e4`), caps-series-v1 (`24c5bd802e26`)\n- **Colour provenance:** PASS \u2014 36 literal colours, 36 registered tokens, 0 declared derived\n\n## What changed\nRebuilt after meta-review (REVIEW-v3.md): the v2 metaphor taught \"tighten the threshold\". 1.5x scale, kind-tinted gates. v2 kept as film-v2.js.\n\n## Gates\n- read_time: PASS \u2014 14 lines, tightest 1.37 s vs 1.35 s\n- frame_jump: PASS \u2014 22.0 px, 0.070 rad per frame\n- contrast: PASS \u2014 6 pairs, lowest 4.8:1\n- flash_safety: PASS \u2014 0 flashes in any 1 s\n- loudness: PASS \u2014 -16.4 LUFS, -2.8 dBTP\n- ffprobe: PASS \u2014 1643 frames at 60 fps (re-probed after mux)\n- contact_sheet: PASS \u2014 director review rounds (sheets in the episode folder)\n- colour_provenance: PASS\n\n## Deviations from the style\n- None\n\n## Files\n- `renders/cap-gate-v3.mp4` \u00b7 `9391199a8b7e` \u00b7 5,581,462 bytes\n- `kh/caps/gate/film.js` \u00b7 `39ba83adbb47` \u00b7 25,260 bytes\n- `kh/caps/gate/score.py` \u00b7 `1961e09da24c` \u00b7 8,409 bytes\n- `kh/caps/gate/NOTES.md` \u00b7 `e98df3d4fc28` \u00b7 7,578 bytes\n- `kh/caps/series.js` \u00b7 `e84951d2e9ba` \u00b7 5,322 bytes\n- `kh/caps/tool.cjs` \u00b7 `8934b235d179` \u00b7 4,861 bytes\n- `kh/whale-rig.js` \u00b7 `5a15b4982f5b` \u00b7 6,438 bytes\n- `kh/kh-kit.js` \u00b7 `a19e3d258a95` \u00b7 7,272 bytes\n- `storyboards/stitch/gate-v3.prompt.md` \u00b7 `7acaa9162dab` \u00b7 5,222 bytes\n\n## Manifest\n```json\n{\n \"id\": \"cap-gate-v3\",\n \"fingerprint\": \"f1ce3784789b73e1a33d4b9af0dc953276268f8280bdb95fd36c32b062e660f3\",\n \"style\": {\n  \"name\": \"Kinetic Hydrography\",\n  \"version\": \"1.0.0\",\n  \"passport_sha256\": \"11df6c39a38697375745f2bdb2040780e72f3657a56ab4306338bbfa64913efe\",\n  \"kit_sha256\": \"a19e3d258a95aa78e3199a8a95645703411e1ff218b262cd087dcf6516312a05\"\n },\n \"parents\": {\n  \"cap-gate-v1\": \"0d73cb73e7e4ddb073551078c8e2dbbd57b9acccaa4f63b57cfba893e65f0c5b\",\n  \"caps-series-v1\": \"24c5bd802e26d992214518788404b4084265daae5d0f519d40ffa9fa8af9c259\"\n },\n \"wada\": [\n  243\n ],\n \"atlas\": [\n  \"el:character-rig\",\n  \"el:camera-move\",\n  \"q:time-pure-frames\",\n  \"q:motion-blur\",\n  \"q:cue-locked-sound\",\n  \"gate:contact-sheet\",\n  \"gate:ffprobe-spec\",\n  \"gate:frame-jump-detector\"\n ],\n \"gates\": {\n  \"read_time\": \"PASS \\u2014 14 lines, tightest 1.37 s vs 1.35 s\",\n  \"frame_jump\": \"PASS \\u2014 22.0 px, 0.070 rad per frame\",\n  \"contrast\": \"PASS \\u2014 6 pairs, lowest 4.8:1\",\n  \"flash_safety\": \"PASS \\u2014 0 flashes in any 1 s\",\n  \"loudness\": \"PASS \\u2014 -16.4 LUFS, -2.8 dBTP\",\n  \"ffprobe\": \"PASS \\u2014 1643 frames at 60 fps (re-probed after mux)\",\n  \"contact_sheet\": \"PASS \\u2014 director review rounds (sheets in the episode folder)\",\n  \"colour_provenance\": \"PASS\"\n }\n}\n```",
+ "preview": "kh/registry/previews/cap-gate-v3.jpg",
+ "unresolved_parents": []
+}
