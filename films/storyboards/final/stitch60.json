@@ -1,0 +1,540 @@
+{
+ "schema_version": "sb60-v1",
+ "id": "sb-04-01",
+ "meta_prompt_id": "stitch60.prompt c19614112251 (operadic-stitch, GREEN)",
+ "cluster": "04 Operads & composition",
+ "repo": "operadic-stitch (Context Atoms)",
+ "capability": "Label each note by kind; fit it where it belongs",
+ "audience": "Everyone",
+ "wada": 166,
+ "bpm": 128,
+ "dur": 60.3,
+ "title": "Give every note a <i>label</i>.",
+ "hook": {
+  "kind": "Example",
+  "picture": "Close on the whale dropping two near-identical grey cards, an old draft and the final decision, into one huge pasted card on the line.",
+  "words": ""
+ },
+ "problem_in_viewer_words": {
+  "kind": "Fact",
+  "body": "It quoted our old draft like it was the decision.",
+  "who": "project lead reading the AI summary on Monday"
+ },
+ "why_it_keeps_happening": {
+  "kind": "Fact",
+  "picture": "Pull back: sixteen grey cards on the line, drafts and decisions side by side. Look-alike pairs drop in every 2 beats, then 1, then half; each time the pod grabs the draft.",
+  "words": "Each note shows up looking the same."
+ },
+ "stakes": {
+  "kind": "Fact",
+  "body": "A decision gets reversed in front of the client, and the team stops trusting the summary."
+ },
+ "solution_hint": "Label each note by what it is.",
+ "metaphor": {
+  "kind": "Example",
+  "body": "Notes are cards that all look the same until each gets a coloured tab for its kind; the brief is a tree of sockets that only takes the right kind in each slot.",
+  "symbols": [
+   "whale",
+   "line",
+   "atom",
+   "seam",
+   "pod"
+  ]
+ },
+ "mechanism_beats": {
+  "kind": "Method",
+  "steps": [
+   {
+    "t": 18.75,
+    "picture": "The cards freeze and tabs colour in: yellow for draft, deep green for decided, pink for rule; one of each lifts out, named inside.",
+    "words": "",
+    "sound": "Three tuned wooden clicks, one per colour"
+   },
+   {
+    "t": 20.625,
+    "picture": "A tree of sockets hangs over the line from a brief; each socket notch shows the tab colour it accepts.",
+    "words": "Label it: draft, decided, or rule.",
+    "sound": "A rising two-note figure"
+   },
+   {
+    "t": 22.5,
+    "picture": "The green decided card glides up into the middle socket and snaps; a tick appears at its joint.",
+    "words": "",
+    "sound": "Clean wooden click"
+   },
+   {
+    "t": 24.375,
+    "picture": "Push-in: the whale nudges the yellow draft at the second decided socket; it is refused at the joint, rust cross, small shake, and drops back to the line.",
+    "words": "A draft cannot fill a decision slot.",
+    "sound": "The click, muffled and a half-step flat"
+   },
+   {
+    "t": 26.25,
+    "picture": "The pink rule card snaps into its own socket, a real decision fills the second slot, and receipts tick up the branches to the brief.",
+    "words": "",
+    "sound": "Clean clicks, then soft ticks climbing to a bell"
+   },
+   {
+    "t": 28.125,
+    "picture": "The tree settles; every card shows its tab.",
+    "words": "Labelled cards that fit slots: atoms.",
+    "sound": "The clean click once, held"
+   }
+  ]
+ },
+ "real_case": {
+  "kind": "Evidence",
+  "claim": "Context Atoms first three jobs (16 Oct 2026): 3 prompts; 41, 26 and 41 atoms; engine verdict GREEN; 9 atoms shared by all three (the spine), still Draft, to be verified first.",
+  "numbers": [
+   "3 prompts",
+   "41 atoms",
+   "26 atoms",
+   "41 atoms",
+   "GREEN",
+   "9 atoms"
+  ],
+  "source": {
+   "kind": "notion",
+   "title": "Context Atoms — operadic stitch",
+   "url": "https://app.notion.com/p/3fbd50cfaf9381048ffaecd94c9f8264"
+  },
+  "verified": true,
+  "illustrative": false
+ },
+ "honest_limit": {
+  "kind": "Constraint",
+  "picture": "A green decided card snaps into a decided socket and gets its receipt, but its words carry a rust smudge: someone marked a wrong date as decided.",
+  "words": "A wrong date marked decided still fits."
+ },
+ "not_this": {
+  "kind": "Constraint",
+  "body": "Labels catch mix-ups, not wrong facts."
+ },
+ "ending_pattern": {
+  "kind": "Example",
+  "slug": "draft-stays-out",
+  "body": "The same two look-alike cards return in the FELT framing, now tabbed yellow and green. The decided card snaps into a small brief; the draft bounces off and floats aside; the pod answers with a tick.",
+  "callback": "In bar 2 the pod quoted the draft from a huge pasted card; now, same framing, the brief is small and the draft cannot get in."
+ },
+ "end_belief": {
+  "kind": "Goal",
+  "body": "Say what each piece is before you send."
+ },
+ "beats": [
+  {
+   "t": 0,
+   "picture": "Close on the whale flicking two near-identical grey cards, an old draft and the final decision, into one huge pasted card on the line.",
+   "words": "",
+   "sound": "Paper shuffle, a muddy low note",
+   "act": "felt",
+   "bars": "1",
+   "camera": "Close z 1.6 on the whale, small follow pan",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 1.875,
+   "picture": "A pod arrives and reads the huge card; its answer card pops; one answer line is circled in rust, a thread runs back to the draft rows; a rust cross on the pod chip.",
+   "words": "It quoted our old draft as final.",
+   "sound": "A bright note goes sour",
+   "act": "felt",
+   "bars": "2",
+   "camera": "Close z 1.6",
+   "cue_tags": [
+    "consequence",
+    "focus"
+   ]
+  },
+  {
+   "t": 5.625,
+   "picture": "A newer note falls in; the whale pastes it; the pod answers again, circles the draft again; the cross count goes to two.",
+   "words": "Same answer, same mistake, again.",
+   "sound": "The sour note again",
+   "act": "felt",
+   "bars": "3-4",
+   "camera": "Close z 1.6",
+   "cue_tags": [
+    "consequence",
+    "focus"
+   ]
+  },
+  {
+   "t": 7.5,
+   "picture": "The whale leans toward the two crosses (focus face). Hold.",
+   "words": "",
+   "sound": "Room tone",
+   "act": "felt",
+   "bars": "5",
+   "camera": "Close z 1.6",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 9.84,
+   "picture": "Hinge: half a bar of stillness, then a paper wash and SERIES.open with the title; the accent word is pink mixed toward navy.",
+   "words": "Give every note a label.",
+   "sound": "Near-silence, then the title tick",
+   "act": "why",
+   "bars": "6",
+   "camera": "Still",
+   "cue_tags": [
+    "hinge"
+   ]
+  },
+  {
+   "t": 12.188,
+   "picture": "Pull back: the huge card spills into sixteen grey cards along the line, drafts and decisions side by side with no difference.",
+   "words": "Each note shows up looking the same.",
+   "sound": "A whoosh and scattered paper",
+   "act": "why",
+   "bars": "7",
+   "camera": "Pull back z 1.6 to 1.2",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 13.594,
+   "picture": "Three-times device: look-alike pairs drop in every 2 beats, then 1, then half; each time the pod threads to the draft, lifts it, and a rust cross lands; its cross chip grows to six.",
+   "words": "",
+   "sound": "The problem motif, accelerating",
+   "act": "why",
+   "bars": "8-9",
+   "camera": "Wide z 1.2",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 16.875,
+   "picture": "All motion stops; faint tab colours ghost onto every card.",
+   "words": "Label each note by what it is.",
+   "sound": "One clean, in-tune note: first signature",
+   "act": "why",
+   "bars": "10",
+   "camera": "Still at z 1.2",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 18.75,
+   "picture": "The cards freeze and tabs colour in: yellow for draft, deep green for decided, pink for rule; one of each lifts out, named inside.",
+   "words": "",
+   "sound": "Three tuned wooden clicks, one per colour",
+   "act": "move",
+   "bars": "11",
+   "camera": "Settle from z 1.2 to medium z 1.3",
+   "cue_tags": [
+    "mech",
+    "focus"
+   ]
+  },
+  {
+   "t": 20.625,
+   "picture": "A tree of sockets hangs over the line from a brief; each socket notch shows the tab colour it accepts.",
+   "words": "Label it: draft, decided, or rule.",
+   "sound": "A rising two-note figure",
+   "act": "move",
+   "bars": "12",
+   "camera": "Medium z 1.3",
+   "cue_tags": [
+    "mech",
+    "focus"
+   ]
+  },
+  {
+   "t": 22.5,
+   "picture": "The green decided card glides up into the middle socket and snaps; a tick appears at its joint.",
+   "words": "",
+   "sound": "Clean wooden click",
+   "act": "move",
+   "bars": "13",
+   "camera": "Medium z 1.3",
+   "cue_tags": [
+    "mech",
+    "focus"
+   ]
+  },
+  {
+   "t": 24.375,
+   "picture": "Push-in: the whale nudges the yellow draft at the second decided socket; it is refused at the joint, rust cross, small shake, and drops back to the line.",
+   "words": "A draft cannot fill a decision slot.",
+   "sound": "The click, muffled and a half-step flat",
+   "act": "move",
+   "bars": "14",
+   "camera": "One push-in to z 1.6 on this moment",
+   "cue_tags": [
+    "mech",
+    "focus"
+   ]
+  },
+  {
+   "t": 26.25,
+   "picture": "The pink rule card snaps into its own socket, a real decision fills the second slot, and receipts tick up the branches to the brief.",
+   "words": "",
+   "sound": "Clean clicks, then soft ticks climbing to a bell",
+   "act": "move",
+   "bars": "15",
+   "camera": "Pull back to z 1.3",
+   "cue_tags": [
+    "mech",
+    "focus"
+   ]
+  },
+  {
+   "t": 28.125,
+   "picture": "The tree settles; every card shows its tab.",
+   "words": "Labelled cards that fit slots: atoms.",
+   "sound": "The clean click once, held",
+   "act": "move",
+   "bars": "16",
+   "camera": "Medium z 1.3",
+   "cue_tags": [
+    "mech",
+    "focus"
+   ]
+  },
+  {
+   "t": 30.0,
+   "picture": "Wide: three blocks of small tabbed cards hang from three roots, one per real prompt (41, 26 and 41 cards); the Real run card fades in.",
+   "words": "",
+   "sound": "Pulse bed starts, quiet receipt ticks",
+   "act": "case",
+   "bars": "17",
+   "camera": "Steady wide z 1.05, slow drift",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 31.875,
+   "picture": "The block rows tick on the beat; a dashed line joins the first row of all three blocks: the shared nine.",
+   "words": "Three real prompts, built this way.",
+   "sound": "Pulse bed, a three-note figure on the shared row",
+   "act": "case",
+   "bars": "18-19",
+   "camera": "Steady wide, slow drift",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 35.625,
+   "picture": "The dashed outlines around the shared rows pulse once and stay dashed: still draft, queued for a person.",
+   "words": "The shared ones get a human check next.",
+   "sound": "A deliberate two-note figure",
+   "act": "case",
+   "bars": "20-22",
+   "camera": "Steady wide, slow drift",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 41.25,
+   "picture": "The whale pushes a green decided card whose words carry a rust smudge (a wrong date) into a decided socket; it snaps and gets its receipt.",
+   "words": "A wrong date marked decided still fits.",
+   "sound": "The signature, once, unresolved",
+   "act": "limit",
+   "bars": "23-24",
+   "camera": "Still z 1.3, then one slow push to the smudged card",
+   "cue_tags": [
+    "limit",
+    "focus"
+   ]
+  },
+  {
+   "t": 45.0,
+   "picture": "Close on the smudged card holding its socket; the tick beside it does not change.",
+   "words": "Labels catch mix-ups, not wrong facts.",
+   "sound": "Room tone",
+   "act": "limit",
+   "bars": "25",
+   "camera": "Held push z 1.72",
+   "cue_tags": [
+    "limit"
+   ]
+  },
+  {
+   "t": 46.875,
+   "picture": "FELT framing restored: in place of the huge card, a small brief with a decided socket. The decided card snaps in and ticks; the yellow draft bounces off the brief and floats aside.",
+   "words": "",
+   "sound": "Clean click, a soft dull knock",
+   "act": "payoff",
+   "bars": "26-27",
+   "camera": "FELT framing, z 1.6, same position",
+   "cue_tags": [
+    "callback",
+    "focus"
+   ]
+  },
+  {
+   "t": 48.75,
+   "picture": "The pod returns; only the decided socket glows for it; its answer circles a line in green with a thread to the decided card, and its chip shows a tick. The whale sparks.",
+   "words": "",
+   "sound": "Resolved chord, a spark",
+   "act": "payoff",
+   "bars": "27-28",
+   "camera": "FELT framing",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 52.5,
+   "picture": "The pod leaves with its tick; the draft floats harmlessly beside the whale.",
+   "words": "",
+   "sound": "A whoosh",
+   "act": "payoff",
+   "bars": "29",
+   "camera": "FELT framing",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 54.375,
+   "picture": "The settled image; the whale breathes and spouts once.",
+   "words": "Say what each piece is before you send.",
+   "sound": "Pad tail only",
+   "act": "belief",
+   "bars": "30-31",
+   "camera": "Still, breathing only",
+   "cue_tags": []
+  },
+  {
+   "t": 58.125,
+   "picture": "SERIES.lockup",
+   "words": "",
+   "sound": "Pad tail fades",
+   "act": "lockup",
+   "bars": "32",
+   "camera": "Still",
+   "cue_tags": []
+  }
+ ],
+ "captions": [
+  {
+   "t_in": 2.812,
+   "t_out": 5.45,
+   "text": "It quoted our old draft as final.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 6.797,
+   "t_out": 9.2,
+   "text": "Same answer, same mistake, again.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 9.844,
+   "t_out": 12.188,
+   "text": "Give every note a label.",
+   "kind": "title"
+  },
+  {
+   "t_in": 13.125,
+   "t_out": 16.5,
+   "text": "Each note shows up looking the same.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 16.875,
+   "t_out": 19.2,
+   "text": "Label each note by what it is.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 20.625,
+   "t_out": 23.9,
+   "text": "Label it: draft, decided, or rule.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 24.375,
+   "t_out": 27.85,
+   "text": "A draft cannot fill a decision slot.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 28.125,
+   "t_out": 31.3,
+   "text": "Labelled cards that fit slots: atoms.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 31.406,
+   "t_out": 40.55,
+   "text": "Real run: 3 prompts, 41, 26, 41 atoms.",
+   "kind": "card",
+   "src": "https://app.notion.com/p/3fbd50cfaf9381048ffaecd94c9f8264"
+  },
+  {
+   "t_in": 31.875,
+   "t_out": 35.25,
+   "text": "Three real prompts, built this way.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 35.625,
+   "t_out": 39.9,
+   "text": "The shared ones get a human check next.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 41.25,
+   "t_out": 44.7,
+   "text": "A wrong date marked decided still fits.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 45,
+   "t_out": 47.15,
+   "text": "Labels catch mix-ups, not wrong facts.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 54.375,
+   "t_out": 58,
+   "text": "Say what each piece is before you send.",
+   "kind": "caption"
+  }
+ ],
+ "terms": [
+  {
+   "term": "atoms",
+   "symbol": "atom (card with a coloured tab)",
+   "pictured_at": 18.75,
+   "named_at": 28.125
+  }
+ ],
+ "jargon": [
+  "atom",
+  "atoms",
+  "typed",
+  "seam",
+  "seams",
+  "socket",
+  "slot",
+  "brief",
+  "composed",
+  "context",
+  "operad",
+  "spine",
+  "certificate",
+  "receipt"
+ ],
+ "sound": {
+  "signature": "a clean wooden click plus a mallet tuned to the card kind when a card fits its socket",
+  "problem_motif": "the same click, muffled and a half-step flat",
+  "limit_unresolved": true
+ },
+ "score_self": {
+  "score": 0.8,
+  "reason": "Problem, move and payoff read without sound; the FELT/PAYOFF callback is exact. Risks: dark-green decided tabs read close to black; the case blocks are small; the spine idea needs the card to land.",
+  "weakest_piece": "real_case"
+ }
+}

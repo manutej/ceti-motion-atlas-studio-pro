@@ -44,7 +44,7 @@ const K = {
 };
 const LK = [[50, 0, 0], [-55, 25, 0]];   // the lab's line (segments 4 and 5, x 800..1600)
 const EDITS = [{ t: -1, K: K.S0 }, { t: ED[0], K: K.A, d: 0.5 }, { t: ED[1], K: K.Bk, d: 0.45 }, { t: ED[2], K: K.Ck, d: 0.22 }, { t: ED[3], K: K.Dw, d: 0.2 },
-  { t: FE[0], K: K.D }, { t: FE[1], K: K.E }, { t: FE[2], K: K.F }, { t: LAST, K: K.G }, { t: SLIDE + 0.6, K: K.CALM, d: 1.4, e: EASE.rest }];
+  { t: FE[0], K: K.D, d: 0.75 }, { t: FE[1], K: K.E, d: 0.7 }, { t: FE[2], K: K.F, d: 0.7 }, { t: LAST, K: K.G }, { t: SLIDE + 0.6, K: K.CALM, d: 1.4, e: EASE.rest }];
 // before the pins exist, edits drag the dots (pages) off their homes: [sx, dy] per dot
 const FREE = [{ t: -1, v: [[0, 0], [60, 48], [0, 0]] }, { t: ED[0], v: [[0, 0], [60, 48], [-60, -45]], d: 0.5 },
   { t: ED[1], v: [[50, 52], [60, 48], [-60, -45]], d: 0.45 }, { t: ED[2], v: [[50, 52], [-55, 72], [-60, -45]], d: 0.22 }, { t: ED[3], v: [[35, 40], [-45, 64], [-75, -30]], d: 0.2 }];
@@ -78,7 +78,7 @@ const HOMEB = { x: 0, y: -14 };
 
 // ---------- threads (links): start on one dot, land on another ----------
 // snap: when an edit moves the target dot and the thread is left in the air; re: when the pin brings the dot home
-const TH = [{ s: 0, e: 1, h: 170, snap: -1, re: TAP[1], W: HOMEB }, { s: 1, e: 2, h: 125, snap: ED[0], re: TAP[2] },
+const TH = [{ s: 0, e: 1, h: 150, snap: -1, re: TAP[1], W: HOMEB, cut: 0.28 }, { s: 1, e: 2, h: 125, snap: ED[0], re: TAP[2] },
   { s: 2, e: 0, h: 250, snap: ED[1], re: TAP[0] }, { s: 2, e: 1, h: 205, snap: ED[2], re: TAP[1] }];
 const dotTop = (lf, i) => ({ x: lf.dots[i].x, y: lf.dots[i].y - 14 });
 TH.forEach(th => { if (!th.W) th.W = dotTop(lineFn(th.snap - 1e-3), th.e); });
@@ -88,7 +88,7 @@ function thread(i, t, lf) {
   if (t >= th.snap) k = ramp(t, th.snap, th.snap + 0.35, EASE.glaser) * (1 - ramp(t, th.re, th.re + 0.35, EASE.glaser));
   if (th.e === 1) { const kt = ramp(t, TUG0 + 0.25, TUG0 + 0.55, EASE.glaser) * (1 - ramp(t, REP, REP + 0.36, EASE.glaser)); if (kt > k) { k = kt; Wp = HOMEB; } }
   const E = { x: lerp(Ed.x, Wp.x, k), y: lerp(Ed.y, Wp.y, k) };
-  return { S: Sp, E, Cc: { x: (Sp.x + E.x) / 2, y: Math.min(Sp.y, E.y) - 2 * th.h }, umax: 1 - 0.16 * k, k };
+  return { S: Sp, E, Cc: { x: (Sp.x + E.x) / 2, y: Math.min(Sp.y, E.y) - 2 * th.h }, umax: 1 - (th.cut || 0.16) * k, k };
 }
 const qpt = (g, u) => { const a = (1 - u) * (1 - u), b = 2 * u * (1 - u), c = u * u; return { x: a * g.S.x + b * g.Cc.x + c * g.E.x, y: a * g.S.y + b * g.Cc.y + c * g.E.y }; };
 const qtan = (g, u) => ({ x: 2 * (1 - u) * (g.Cc.x - g.S.x) + 2 * u * (g.E.x - g.Cc.x), y: 2 * (1 - u) * (g.Cc.y - g.S.y) + 2 * u * (g.E.y - g.Cc.y) });
@@ -97,7 +97,7 @@ const flut = t => (0.55 + 1.1 * win(t, FLUT, FLUT + 1.6, 0.1, 0.9)) * (1 - win(t
 
 // ---------- the whale: thread follows, flights (eased arcs), rides (perched on the line), hovers ----------
 const PLAN = [
-  { a: -1, b: BUMP, thread: 0, u0: 0.0, u1: 0.68, e: lin },
+  { a: -1, b: BUMP, thread: 0, u0: 0.0, u1: 0.56, e: lin },
   { a: BUMP, b: BUMP + 0.4, to: { dx: -24, dy: -14 }, H: 0, keep: 1 },
   { a: BUMP + 0.4, b: 3.0, hover: true, looks: [[FLUT, -1], [FLUT + 0.75, 1]] },
   { a: 3.0, b: 3.7, to: { x: -255, y: -300 }, H: 0, keep: 1 },
@@ -133,7 +133,7 @@ const PLAN = [
   { a: LAND - 0.5, b: LAND, to: { x: -30, y: -108 }, H: 0, e: EASE.defer },
   { a: LAND, b: DUR + 1, hover: true, face: 1, breathe: 1 },
 ];
-const T1OFF = -20;
+const T1OFF = -16;
 function evalSeg(s, t) {
   if (s.thread != null) { const g = thread(s.thread, t, lineFn(t)), u = lerp(s.u0, s.u1, (s.e || lin)(clamp((t - s.a) / (s.b - s.a)))), p = qpt(g, u); return { x: p.x, y: p.y + T1OFF }; }
   if (s.ride != null) return { x: s.ride, y: lineY(s.ride, t) - LIFT };
@@ -165,7 +165,7 @@ const LANDS = PLAN.filter(s => s.sq).map(s => [s.a, s.sq]).concat(PLAN.filter(s 
 const squash = t => LANDS.reduce((q, [a, w]) => q + (t >= a ? w * Math.exp(-(t - a) * 10) : 0), 0);
 
 // ---------- the pod (an AI helper): follows the same link, answers ✕; in the payoff it answers ✓ ----------
-const POD1 = { x: -130, y: -70 }, POD2 = { x: -205, y: -92 }, PODS = { x: -880, y: -40 };
+const POD1 = { x: -55, y: -62 }, POD2 = { x: -205, y: -92 }, PODS = { x: -880, y: -40 };
 function podState(t) {
   const fly = (a, b, p, q, Hh, e) => { const u = e(clamp((t - a) / (b - a))); return { x: lerp(p.x, q.x, u), y: lerp(p.y, q.y, u) - Hh * Math.sin(Math.PI * u) }; };
   if (t >= 3.0 && t < POD_OUT + 1.6) {
@@ -174,11 +174,12 @@ function podState(t) {
     return { ...p, chip: 'x', ca: ramp(t, POD_X, POD_X + 0.3, EASE.glaser), a: 1 }; }
   if (t >= POD2_IN - 0.4 && t < POD2_OUT + 1.6) {
     const p = t < POD2_IN + 1.1 ? fly(POD2_IN - 0.4, POD2_IN + 1.1, PODS, POD2, 40, EASE.rest) : t < POD2_OUT ? { x: POD2.x, y: POD2.y + 3 * Math.sin((t - POD2_IN) * 2.2) * smoothstep(POD2_IN + 1.1, POD2_IN + 1.6, t) }
-      : fly(POD2_OUT, POD2_OUT + 1.5, POD2, { x: 640, y: -640 }, 70, EASE.collect);
+      : fly(POD2_OUT, POD2_OUT + 1.5, POD2, { x: -960, y: -560 }, 0, EASE.collect);
     return { ...p, chip: 'v', ca: ramp(t, POD_OK, POD_OK + 0.3, EASE.glaser), a: 1 }; }
   return null; }
 const podAng = t => { const a = podState(t - 0.02), b = podState(t + 0.02); if (!a || !b) return 0; const dx = b.x - a.x, dy = b.y - a.y;
   return Math.hypot(dx, dy) < 0.3 ? 0 : clamp(Math.atan2(dy, Math.abs(dx) + 4), -0.6, 0.6); };
+const podDir = t => { const a = podState(t - 0.02), b = podState(t + 0.02); return a && b && b.x < a.x - 0.3 ? -1 : 1; };
 
 // ---------- checks: the whale sounds, a ring runs out, each target flashes as it is reached ----------
 const RING_V = 1700;
@@ -357,7 +358,7 @@ function drawFrame(c, t) {
   // threads (links)
   const landGlow = win(t, LAND - 0.15, LAND + 1.4, 0.1, 0.8);
   for (let i = 0; i < 4; i++) { const g = thread(i, t, lf), re = win(t, TH[i].re + 0.1, TH[i].re + 0.9, 0.08, 0.6);
-    drawThread(c, g, X, Y, z, t); if (re > 0) drawThread(c, g, X, Y, z, t, { col: rgba(DSG, 0.85 * re), w: 4.4 });
+    drawThread(c, g, X, Y, z, t, { a: i === 0 ? 1 : lerp(0.32, 1, ramp(t, PULL, PULL + 1.2, EASE.rest)) }); if (re > 0) drawThread(c, g, X, Y, z, t, { col: rgba(DSG, 0.85 * re), w: 4.4 });
     if (i === 0 && landGlow > 0) drawThread(c, g, X, Y, z, t, { col: rgba(DSG, 0.9 * landGlow), w: 5 }); }
   for (const L of LTH) { const d = ramp(t, L.t, L.t + 0.7, EASE.warm); if (d <= 0) continue; const S0 = labDot(L.from, t), E0 = dotTop(lf, L.to), Sp = { x: S0.x, y: S0.y - 14 };
     const g = { S: Sp, E: E0, Cc: { x: (Sp.x + E0.x) / 2, y: Math.min(Sp.y, E0.y) - 2 * L.h }, umax: 1, k: 0 }; drawThread(c, g, X, Y, z, t, { draw: d }); }
@@ -395,11 +396,16 @@ function drawFrame(c, t) {
           text(c, '47 of 60', gx + 318, gy + 100, { f: 'monoB', size: 50, col: INK, a: aa, track: 0.02 }); text(c, 'faithful', gx + 318, gy + 146, { f: 'sans', size: 26, col: SOFT, a: aa }); } } } }
 
   // the pod
-  { const p = podState(t); if (p) { const ang = podAng(t); c.save(); c.translate(X(p.x), Y(p.y)); c.rotate(ang); KH.drawPod(c, 0, 0, 0, 62 * zz, MIST, { ink: INK }); c.restore();
+  { const p = podState(t); if (p) { const ang = podAng(t); c.save(); c.translate(X(p.x), Y(p.y)); if (podDir(t) < 0) c.scale(-1, 1); c.rotate(ang); KH.drawPod(c, 0, 0, 0, 62 * zz, MIST, { ink: INK }); c.restore();
       const pulse = p.chip === 'x' ? win(t, POD_PULSE, POD_PULSE + 0.9, 0.08, 0.7) : 0;
       podChip(c, p.chip, X(p.x), Y(p.y) - 56 * zz, zz, p.ca);
       if (pulse > 0) { c.save(); c.strokeStyle = rgba(COP, 0.8 * pulse); c.lineWidth = 3; c.beginPath(); c.arc(X(p.x), Y(p.y) - 56 * zz, (26 + 16 * (1 - pulse)) * zz, 0, Math.PI * 2); c.stroke(); c.restore(); } } }
 
+  // the bump: three short strokes where the link should have gone on
+  { const bk = win(t, BUMP - 0.02, BUMP + 0.75, 0.04, 0.4); if (bk > 0) { const g = thread(0, t, lf), p = qpt(g, g.umax), sx = X(p.x) + 30 * z, sy = Y(p.y) - 6 * z, gr = EASE.glaser(clamp((t - BUMP) / 0.4));
+      c.save(); c.globalAlpha = bk; c.strokeStyle = INK; c.lineWidth = 3; c.lineCap = 'round'; c.beginPath();
+      for (const a of [-0.7, 0, 0.7]) { const r0 = (10 + 8 * gr) * z, r1 = r0 + 12 * z; c.moveTo(sx + Math.cos(a) * r0, sy + Math.sin(a) * r0); c.lineTo(sx + Math.cos(a) * r1, sy + Math.sin(a) * r1); }
+      c.stroke(); c.restore(); } }
   // the whale
   { const p = wpos(t), f = facing(t), ang = heading(t), v = wvel(t), sp = Math.hypot(v.x, v.y), still = sp < 60;
     let blink = 0; for (const b of [2.6, 6.4, 12.2, 16.3, 21.0, 34.0, 39.5, 47.6, 57.3, 59.2]) blink = Math.max(blink, 1 - Math.abs(t - b) / 0.07);
@@ -451,7 +457,7 @@ function cues() {
   ENTRIES.forEach(en => e(en.t, 'ledger', [], { fire: en.fire ? 1 : 0, quiet: en.quiet ? 1 : 0 }));
   e(GATE_OPEN, 'gateOpen', ['mech']);
   e(SLIDE, 'slide', ['focus']); e(DOCK, 'dock', ['focus']); e(CARD_T, 'card', []); LAB.forEach((x, i) => e(x, 'labDot', ['focus'], { i }));
-  for (let q = SLIDE; q < bar(22) + 1e-6; q += B) e(q, 'pulse', []);
+  for (let q = FE[0]; q < bar(22) + 1e-6; q += B) e(q, 'pulse', [], { tense: q > FIRE_T - 0.05 && q < REP + 0.3 ? 1 : 0, kase: q >= SLIDE - 1e-6 ? 1 : 0 });
   e(PUSH, 'push', []); e(GRID_T, 'grid', ['limit', 'focus']); AUD.forEach(q => e(q.t, 'auditTick', q.bad ? ['limit'] : [], { bad: q.bad ? 1 : 0 }));
   e(PASS_T, 'pinsCalm', ['limit']); e(NOT_T, 'notThis', ['limit']);
   e(FOLLOW, 'follow', ['callback', 'focus']); e(LAND, 'land', ['focus']); e(POD2_IN, 'podIn2', []); e(POD_OK, 'podOk', ['focus']); e(POD2_OUT, 'podOut2', ['focus']);
