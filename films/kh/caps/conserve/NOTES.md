@@ -6,24 +6,26 @@
 
 **The picture:** one line across the chart, with nodes at x = −400, 0, +400 (the three laws). Content is a sum of sine modes on each 400 px segment, so once the pins are in, every shape the content takes still passes through them, like a plucked string with fixed nodes.
 
-## Beat sheet (beats at 124 BPM)
+**Sound signature:** the line is a Karplus–Strong string. Before the pins are in, each landing plucks a detuned, sagging note. After that, every edit plucks the same A (220 Hz) with a different brightness. The tug pulls the string flat (a beating drone while over budget), the repair snaps it back into tune, and the shake strums that one A on every 8th. Normalised in-script to −16 LUFS, true peak −1.3 dBTP.
+
+## Beat sheet
 | t (s) | beat | what happens |
 |---|---|---|
-| 0.25–2.5 | 0–5 | `SERIES.open`: "Change everything but the *laws*." The line draws on under it from 1.9; three hollow dots appear on it. |
-| 2.55–5.45 | 5–11 | **Change** · content moves freely. The whale hops three times (b6, b8, b10). Each landing bends the line under its weight, and the unpinned dots slide and drift with it (the mess). |
-| 5.6–8.25 | 12–17 | **Conserve** · what must not change. The whale taps each dot on b13/b14/b15: it slides home and a pin drops in. Labels: no broken links · one page per thing · every claim sourced. |
-| 8.4–10.75 | 17.5–22 | **Measure** · count it every edit. Two big edits (b18, b20); the pins hold. Each edit sends a sounding ring from the whale; every pin flashes green as the ring passes it, and the ledger ticks. Drift meter and ledger panel appear top right. |
-| 10.9–13.65 | 22.5–28 | **Budget** · how much wobble allowed. The meter's budget band fills in. Camera pushes in. A heavy hop (b24) drags the middle pin off its home; a copper drift line appears, the meter passes the budget mark, the readout says OVER, and the check ring flashes copper (fire, written to the ledger in copper). |
-| 13.8–16.05 | 28.5–33 | **Repair** · fix before commit. The whale lifts (b29), the pin snaps home (glaser) and the line springs back. Meter back to 0.0; a re-check passes. |
-| 16.2–19.05 | 33.5–39.5 | **Ledger** · every fire written down. One more edit (b34); the copper fire tick in the ledger is ringed. Framed real example: "A real run · memory graph merge — 548 entities · exact 0 · drift 0.0 · prov. 0.988". |
-| 19.35–22.5 | 40–46.5 | **The shake.** The whale dives onto the first segment and shakes the whole line hard (2 cycles per beat, every segment swinging as a standing wave). All three pins stay still, drift stays 0.0, and four checks tick through the ledger on b41–b44. The shake decays into one calm wave, and everything goes still. The whale gets delight and a copper spark. |
-| 22.35–25.3 | | Caption: "Noether-inspired — we choose the laws; no theorem is applied." |
-| 25.35–28 | | Caption: "Name what must never change. Check it on every edit." `SERIES.lockup` from 25.8. |
+| 0.25–2.5 | 0–5 | `SERIES.open`. The line draws on from 1.9 and three hollow dots appear on it. |
+| 2.55–5.0 | 5–10 | **Change** · content moves freely. Hops on b6/b7.5/b9: each landing bends the line under the whale, and the unpinned dots drift (the mess). |
+| 5.1–7.3 | 10.5–15 | **Conserve** · what must not change. Taps on b11.5/12.5/13.5: each dot slides home and a pin drops in, with its law label. |
+| 7.4–9.55 | 15.3–19.7 | **Measure** · count it every edit. Edits on b15.5/b17.5; sounding rings from the whale; each pin flashes green; the ledger ticks. The panel appears. |
+| 9.65–11.75 | 20–24 | **Budget** · how much wobble allowed. The budget band fills, the camera pushes in, and a heavy hop (b20.5) drags the middle pin. A copper drift line appears, the meter reads OVER, and the check flashes copper (the fire is written in copper). |
+| 11.85–13.75 | 24.5–28.4 | **Repair** · fix before commit. The whale lifts (b25), the pin snaps home and the line springs back. The re-check passes. |
+| 13.85–16.5 | 28.6–34 | **Ledger** · every fire written down. One more edit (b29); the copper tick is ringed. Real run: 548 entities · exact 0 · drift 0.0 · prov. 0.988 (four cells). |
+| 16.94–20.1 | 35–41.5 | **The shake.** Dive, then the whole line is strummed hard as standing waves (±200 px). The pins don't move, drift stays 0.0, and four checks tick the ledger. It decays into one calm wave and goes still: delight and a copper spark. |
+| 20.25–22.95 | | "Noether-inspired — we choose the laws; no theorem is applied." Labels return; slow push-in. |
+| 22.95–25.75 | | "Name what must never change. Check it on every edit." It is fully out before the lockup at 25.8. |
 
-## Station words used
-Change · Conserve · Measure · Budget · Repair · Ledger (RESEARCH §4 stations; glosses verbatim from the table). Pin labels are the three laws from RESEARCH §4's plain-words mechanism.
+Station strip (all six, mono 18 px, the active one bold with a green underline) plus the active word large.
 
 ## Known weaknesses
-- The drift meter is illustrative: it has no number while the drift is rising, only "0.0" or "OVER", so there's no invented statistic. The budget mark's position is arbitrary.
-- Camera parks for the shake on purpose, so the pins are fixed on screen as well as in the world. The cost is that the chart ground doesn't move during the climax.
-- The whale's flip when it changes direction is an instant mirror, as in `sea`.
+- The drift meter is illustrative: it shows only "0.0" or "OVER" and never an invented number. The budget mark's position is arbitrary.
+- The whale's peak is 27.9 px/frame during the shake (limit 30). If the shake amplitude goes up, slow the whale's grip, not the line.
+- From 20.1 the content is still; only the camera push, the whale's breathing and the caption changes keep it alive.
+- The end camera drifts left to keep the whale in frame, so the lockup sits slightly off the pins' centre.

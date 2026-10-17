@@ -70,7 +70,8 @@ for f1, pan in [(CS5, -0.6), (GS5, 0.6)]:
     env = np.minimum(1, tt / 0.15) * np.exp(-np.maximum(0, tt - (b - a)) * 2.2)
     put((np.sin(ph) + 0.2 * np.sin(2 * ph)) * env, a, 0.1, pan, 0.6)
 put(whoosh(b - a, rev=True), a, 0.1, 0, 0.3)
-put(mallet(CS5, 1.8, 1.0), Q['chips'] + 0.3, 0.2, -0.6, 0.5); put(mallet(GS5, 1.8, 1.0), Q['chips'] + 0.3, 0.2, 0.6, 0.5)
+put(mallet(CS5, 1.8, 1.0), Q['chips'], 0.22, -0.6, 0.5); put(mallet(GS5, 1.8, 1.0), Q['chips'], 0.22, 0.6, 0.5)
+tt = T(0.12); put(bp(rng.standard_normal(len(tt)), 1500, 7000) * np.exp(-tt * 45), Q['chips'], 0.25, 0, 0.4)   # the snap
 # the decision can finally tell them apart: a soft two-tone alert on B
 for k, f in enumerate([GS5, E5, GS5]): put(mallet(f, 0.7, 1.2), Q['alert'] + k * B / 2, 0.16, 0.55, 0.3)
 put(tick(2000, 0.04), Q['turn'], 0.1, 0.2, 0.1)

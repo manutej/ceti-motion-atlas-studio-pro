@@ -76,7 +76,7 @@ function cam(t) {
   const kC = ramp(t, T_ALERT - 0.1, T_ALERT + 1.1, EASE.rest), kL = ramp(t, T_LOCK - 0.2, T_LOCK + 0.9, EASE.rest), drift = ramp(t, T_ALERT + 1.1, T_LOCK, EASE.rest);
   let x = lerp(0, 110, k1), y = lerp(-60, -20, k1), z = lerp(1.08, 1.22, k1), ay = 540;
   x = lerp(x, 0, kS); y = lerp(y, -190, kS); z = lerp(z, 1.35, kS);
-  x = lerp(x, 0, kC); y = lerp(y, 0, kC); z = lerp(z, 1.15 + 0.04 * drift, kC); ay = lerp(ay, 590, kC);
+  x = lerp(x, -45 * (1 - ramp(t, 16.9, 17.9, EASE.rest)), kC); y = lerp(y, 0, kC); z = lerp(z, 1.1 + 0.03 * drift, kC); ay = lerp(ay, 565, kC);
   z = lerp(z, 0.95, kL); ay = lerp(ay, 470, kL);
   return { x, y, z, ax: 960, ay };
 }
