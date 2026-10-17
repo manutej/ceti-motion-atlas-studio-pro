@@ -1,0 +1,56 @@
+{
+ "id": "cap-glue-v1",
+ "name": "Capabilities 03 · Memory that agrees — film v1",
+ "kind": "Film",
+ "version": "1.0",
+ "parents": [
+  "caps-series-v1"
+ ],
+ "wada": [
+  207
+ ],
+ "engine": [
+  "Canvas (skia)",
+  "ffmpeg",
+  "numpy synth"
+ ],
+ "atlas": [
+  "el:character-rig",
+  "el:camera-move",
+  "q:time-pure-frames",
+  "q:motion-blur",
+  "q:cue-locked-sound",
+  "gate:contact-sheet",
+  "gate:ffprobe-spec",
+  "gate:frame-jump-detector"
+ ],
+ "sources": [
+  "kh/caps/glue/film.js",
+  "kh/caps/glue/score.py",
+  "kh/caps/glue/NOTES.md",
+  "kh/caps/series.js",
+  "kh/caps/tool.cjs",
+  "kh/whale-rig.js",
+  "kh/kh-kit.js"
+ ],
+ "outputs": [
+  "renders/cap-glue.mp4"
+ ],
+ "preview": "kh/registry/previews/cap-glue-v1.jpg",
+ "gates": {
+  "read_time": "PASS — 16 lines, tightest 1.40 s vs 1.35 s",
+  "frame_jump": "PASS — 24.9 px, 0.099 rad per frame",
+  "contrast": "PASS — 10 pairs, lowest 4.8:1",
+  "flash_safety": "PASS — 0 flashes in any 1 s",
+  "loudness": "PASS — -16.1 LUFS, -2.9 dBTP",
+  "ffprobe": "PASS — 1440 frames at 60 fps",
+  "contact_sheet": "PASS — two director review rounds (sheet-v1.png → sheet-v2.png in the episode folder)"
+ },
+ "summary": "Five notes, each with its own view; overlaps are compared end to end; one seam disagrees (a visible step, terracotta) on a real film-check case (18 vs 20 captions); the whale closes it, the seam turns teal, the pieces fuse into one line and close into a ring. Not this: “Glued is not the same as true.”",
+ "changes": "First cut, after two director review rounds (scale, focal moment, pacing, legibility).",
+ "style": "1.0.0",
+ "status": "shipped",
+ "uses_kit": true,
+ "derived_colours": {},
+ "deviations": []
+}

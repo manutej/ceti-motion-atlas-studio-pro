@@ -1,0 +1,55 @@
+{
+ "id": "caps-series-v1",
+ "name": "CETI Capabilities — series format v1",
+ "kind": "Format",
+ "version": "1.0",
+ "parents": [
+  "whale-line-format-v1.1",
+  "character-sheet-v2"
+ ],
+ "wada": [
+  166,
+  243,
+  207,
+  84,
+  339
+ ],
+ "engine": [
+  "Canvas (skia)",
+  "ffmpeg",
+  "numpy synth"
+ ],
+ "atlas": [
+  "el:character-rig",
+  "el:camera-move",
+  "el:kinetic-type",
+  "q:time-pure-frames",
+  "q:cue-locked-sound",
+  "q:beat-locked-changes",
+  "q:loudness-normalisation",
+  "gate:contact-sheet",
+  "gate:frame-jump-detector"
+ ],
+ "sources": [
+  "kh/caps/series.js",
+  "kh/caps/tool.cjs",
+  "kh/caps/SERIES.md",
+  "kh/caps/AGENT-BRIEF.md",
+  "kh/caps/RESEARCH.md",
+  "scripts/build.sh",
+  "kh/kh-kit.js",
+  "kh/whale-rig.js"
+ ],
+ "outputs": [],
+ "preview": null,
+ "gates": {
+  "format": "PASS — every episode passes the shared tool gates"
+ },
+ "summary": "One capability CETI uses every week, one move, ~25 s, the little whale flying over a hydrographic chart. Shared layer: chart ground (air mode is never bare), opening card, paper caption chips, closing lockup; one tool and one build command per episode; a reusable builder brief.",
+ "changes": "New series. Adds the chart ground to air mode, the lockup-takes-the-caption rule and the phone-legibility scale rule (learned in review round 1).",
+ "style": "1.0.0",
+ "status": "shipped",
+ "uses_kit": true,
+ "derived_colours": {},
+ "deviations": []
+}

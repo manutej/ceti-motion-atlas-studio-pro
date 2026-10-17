@@ -1,0 +1,100 @@
+{
+ "id": "cap-tellapart-v1",
+ "name": "Capabilities 05 \u00b7 Same reading, different world \u2014 film v1",
+ "kind": "Film",
+ "version": "1.0",
+ "status": "shipped",
+ "style": {
+  "name": "Kinetic Hydrography",
+  "version": "1.0.0",
+  "passport_sha256": "11df6c39a38697375745f2bdb2040780e72f3657a56ab4306338bbfa64913efe",
+  "kit_sha256": "a19e3d258a95aa78e3199a8a95645703411e1ff218b262cd087dcf6516312a05"
+ },
+ "parents": {
+  "caps-series-v1": "24c5bd802e26d992214518788404b4084265daae5d0f519d40ffa9fa8af9c259"
+ },
+ "wada": [
+  339
+ ],
+ "engine": [
+  "Canvas (skia)",
+  "ffmpeg",
+  "numpy synth"
+ ],
+ "atlas": [
+  "el:character-rig",
+  "el:camera-move",
+  "q:time-pure-frames",
+  "q:motion-blur",
+  "q:cue-locked-sound",
+  "gate:contact-sheet",
+  "gate:ffprobe-spec",
+  "gate:frame-jump-detector"
+ ],
+ "sources": [
+  {
+   "path": "kh/caps/tellapart/film.js",
+   "sha256": "66e31f1fb5078b7c47fe28c2eb37245a66d1ed8221338d9cf36eb363f592907d",
+   "bytes": 24119
+  },
+  {
+   "path": "kh/caps/tellapart/score.py",
+   "sha256": "7a6bf00a5fc5667fac24277d414c0d0dea71fb21fbf35d7c96b55fe8afe45b89",
+   "bytes": 7004
+  },
+  {
+   "path": "kh/caps/tellapart/NOTES.md",
+   "sha256": "ec8a33c3aeef9bcf16c1a6a87d13d1d6e48c76c13ce4d4129f0c63b05b90103b",
+   "bytes": 3285
+  },
+  {
+   "path": "kh/caps/series.js",
+   "sha256": "e84951d2e9ba449eff6ce48a42aa3a3d5d5d9f21ffa34db17148e12aafbb6e43",
+   "bytes": 5322
+  },
+  {
+   "path": "kh/caps/tool.cjs",
+   "sha256": "8934b235d17925a91b0702b1c02651ce6f3498f1ad12399aaadfd0de5828614b",
+   "bytes": 4861
+  },
+  {
+   "path": "kh/whale-rig.js",
+   "sha256": "5a15b4982f5b7bc30b77a071b560558113342fcb60f46674c218ad99bb2ecff4",
+   "bytes": 6438
+  },
+  {
+   "path": "kh/kh-kit.js",
+   "sha256": "a19e3d258a95aa78e3199a8a95645703411e1ff218b262cd087dcf6516312a05",
+   "bytes": 7272
+  }
+ ],
+ "outputs": [
+  {
+   "path": "renders/cap-tellapart.mp4",
+   "sha256": "9f8945afff2a0469ebd4edf6a17001f99e66b554302f2d0e07c44dc78f594b10",
+   "bytes": 6814910
+  }
+ ],
+ "gates": {
+  "read_time": "PASS \u2014 21 lines, tightest 1.40 s vs 1.35 s",
+  "frame_jump": "PASS \u2014 19.7 px, 0.122 rad per frame",
+  "contrast": "PASS \u2014 10 pairs, lowest 4.7:1",
+  "flash_safety": "PASS \u2014 0 flashes in any 1 s",
+  "loudness": "PASS \u2014 -16.4 LUFS, -2.7 dBTP",
+  "ffprobe": "PASS \u2014 1521 frames at 60 fps",
+  "contact_sheet": "PASS \u2014 two director review rounds (sheet-v1.png \u2192 sheet-v2.png in the episode folder)",
+  "colour_provenance": "PASS"
+ },
+ "colour_provenance": {
+  "literal_colours": 36,
+  "registered": 36,
+  "declared_derived": [],
+  "unregistered": [],
+  "status": "PASS"
+ },
+ "deviations": [],
+ "summary": "Two worlds \u2014 one healthy, one with an outage \u2014 feed one big reading that never changes (99%, illustrative checkout example); the whale finds the gap, brings back the witness pair, and unzips the line into two strands with their own readings (healthy vs 0%), so the alert can fire. Not this: \u201cMore metrics isn't the fix \u2014 the right distinction is.\u201d",
+ "changes": "First cut, after two director review rounds (scale, focal moment, pacing, legibility).",
+ "registered_at": "2026-10-17T19:11:56+00:00",
+ "fingerprint": "7fc82d4229b1b8c3b793e200f7bcb35028f30b6d83af55508d3eef0ad345c0c9"
+}

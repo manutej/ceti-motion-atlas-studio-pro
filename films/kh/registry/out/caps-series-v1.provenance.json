@@ -1,0 +1,99 @@
+{
+ "id": "caps-series-v1",
+ "name": "CETI Capabilities \u2014 series format v1",
+ "kind": "Format",
+ "version": "1.0",
+ "status": "shipped",
+ "style": {
+  "name": "Kinetic Hydrography",
+  "version": "1.0.0",
+  "passport_sha256": "11df6c39a38697375745f2bdb2040780e72f3657a56ab4306338bbfa64913efe",
+  "kit_sha256": "a19e3d258a95aa78e3199a8a95645703411e1ff218b262cd087dcf6516312a05"
+ },
+ "parents": {
+  "whale-line-format-v1.1": "982e72b50c3d5797a16e065a264aa5b7cfb630dd4195a3ca83ce617ba752a3a2",
+  "character-sheet-v2": "a5642288092cd8896b6dd1efc15fc38dcdb3582115686b78405dae9e0c195247"
+ },
+ "wada": [
+  166,
+  243,
+  207,
+  84,
+  339
+ ],
+ "engine": [
+  "Canvas (skia)",
+  "ffmpeg",
+  "numpy synth"
+ ],
+ "atlas": [
+  "el:character-rig",
+  "el:camera-move",
+  "el:kinetic-type",
+  "q:time-pure-frames",
+  "q:cue-locked-sound",
+  "q:beat-locked-changes",
+  "q:loudness-normalisation",
+  "gate:contact-sheet",
+  "gate:frame-jump-detector"
+ ],
+ "sources": [
+  {
+   "path": "kh/caps/series.js",
+   "sha256": "e84951d2e9ba449eff6ce48a42aa3a3d5d5d9f21ffa34db17148e12aafbb6e43",
+   "bytes": 5322
+  },
+  {
+   "path": "kh/caps/tool.cjs",
+   "sha256": "8934b235d17925a91b0702b1c02651ce6f3498f1ad12399aaadfd0de5828614b",
+   "bytes": 4861
+  },
+  {
+   "path": "kh/caps/SERIES.md",
+   "sha256": "033f0aec26e7a28836989a9034cdc4f8c762d3f987231ab4ba1ae9c756aeafc5",
+   "bytes": 5081
+  },
+  {
+   "path": "kh/caps/AGENT-BRIEF.md",
+   "sha256": "a4154831cf4612e235611b69eaf831deb4d4069db3439d60cefc718f5a36180f",
+   "bytes": 5217
+  },
+  {
+   "path": "kh/caps/RESEARCH.md",
+   "sha256": "90b96afac9519f581bfb9120dc1dbbc96a4f2d5403b2d598d092e6c18515167d",
+   "bytes": 29192
+  },
+  {
+   "path": "scripts/build.sh",
+   "sha256": "29d4d5c6ab2f2f2c3abe36c390b4249701bd9a141c258a8f63fcdcd78650cddb",
+   "bytes": 5273
+  },
+  {
+   "path": "kh/kh-kit.js",
+   "sha256": "a19e3d258a95aa78e3199a8a95645703411e1ff218b262cd087dcf6516312a05",
+   "bytes": 7272
+  },
+  {
+   "path": "kh/whale-rig.js",
+   "sha256": "5a15b4982f5b7bc30b77a071b560558113342fcb60f46674c218ad99bb2ecff4",
+   "bytes": 6438
+  }
+ ],
+ "outputs": [],
+ "gates": {
+  "format": "PASS \u2014 every episode passes the shared tool gates",
+  "colour_provenance": "PASS"
+ },
+ "colour_provenance": {
+  "literal_colours": 36,
+  "registered": 36,
+  "declared_derived": [],
+  "unregistered": [],
+  "status": "PASS"
+ },
+ "deviations": [],
+ "summary": "One capability CETI uses every week, one move, ~25 s, the little whale flying over a hydrographic chart. Shared layer: chart ground (air mode is never bare), opening card, paper caption chips, closing lockup; one tool and one build command per episode; a reusable builder brief.",
+ "changes": "New series. Adds the chart ground to air mode, the lockup-takes-the-caption rule and the phone-legibility scale rule (learned in review round 1).",
+ "registered_at": "2026-10-17T19:11:56+00:00",
+ "fingerprint": "24c5bd802e26d992214518788404b4084265daae5d0f519d40ffa9fa8af9c259"
+}

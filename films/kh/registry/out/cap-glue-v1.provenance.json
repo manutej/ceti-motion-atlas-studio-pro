@@ -1,0 +1,100 @@
+{
+ "id": "cap-glue-v1",
+ "name": "Capabilities 03 \u00b7 Memory that agrees \u2014 film v1",
+ "kind": "Film",
+ "version": "1.0",
+ "status": "shipped",
+ "style": {
+  "name": "Kinetic Hydrography",
+  "version": "1.0.0",
+  "passport_sha256": "11df6c39a38697375745f2bdb2040780e72f3657a56ab4306338bbfa64913efe",
+  "kit_sha256": "a19e3d258a95aa78e3199a8a95645703411e1ff218b262cd087dcf6516312a05"
+ },
+ "parents": {
+  "caps-series-v1": "24c5bd802e26d992214518788404b4084265daae5d0f519d40ffa9fa8af9c259"
+ },
+ "wada": [
+  207
+ ],
+ "engine": [
+  "Canvas (skia)",
+  "ffmpeg",
+  "numpy synth"
+ ],
+ "atlas": [
+  "el:character-rig",
+  "el:camera-move",
+  "q:time-pure-frames",
+  "q:motion-blur",
+  "q:cue-locked-sound",
+  "gate:contact-sheet",
+  "gate:ffprobe-spec",
+  "gate:frame-jump-detector"
+ ],
+ "sources": [
+  {
+   "path": "kh/caps/glue/film.js",
+   "sha256": "cce24562578d93d429bdced0feafa959efcdc9f0f075e9cda2d4dd8b351d72f8",
+   "bytes": 22572
+  },
+  {
+   "path": "kh/caps/glue/score.py",
+   "sha256": "e0843b25d1b57b7bdcb795ec274271c5dbe7cb66abea7e73c61f31949b0dced8",
+   "bytes": 8999
+  },
+  {
+   "path": "kh/caps/glue/NOTES.md",
+   "sha256": "a7f13bbf42b9a79b38f281b8ffa58add038416ecf7ecc355f3de85ebf4a4fe7b",
+   "bytes": 3288
+  },
+  {
+   "path": "kh/caps/series.js",
+   "sha256": "e84951d2e9ba449eff6ce48a42aa3a3d5d5d9f21ffa34db17148e12aafbb6e43",
+   "bytes": 5322
+  },
+  {
+   "path": "kh/caps/tool.cjs",
+   "sha256": "8934b235d17925a91b0702b1c02651ce6f3498f1ad12399aaadfd0de5828614b",
+   "bytes": 4861
+  },
+  {
+   "path": "kh/whale-rig.js",
+   "sha256": "5a15b4982f5b7bc30b77a071b560558113342fcb60f46674c218ad99bb2ecff4",
+   "bytes": 6438
+  },
+  {
+   "path": "kh/kh-kit.js",
+   "sha256": "a19e3d258a95aa78e3199a8a95645703411e1ff218b262cd087dcf6516312a05",
+   "bytes": 7272
+  }
+ ],
+ "outputs": [
+  {
+   "path": "renders/cap-glue.mp4",
+   "sha256": "0e87f6ae83e4e79e3d0ccc1ea6a60b4f20a7ffe199feb4cc15d756b5f3f41340",
+   "bytes": 5682032
+  }
+ ],
+ "gates": {
+  "read_time": "PASS \u2014 16 lines, tightest 1.40 s vs 1.35 s",
+  "frame_jump": "PASS \u2014 24.9 px, 0.099 rad per frame",
+  "contrast": "PASS \u2014 10 pairs, lowest 4.8:1",
+  "flash_safety": "PASS \u2014 0 flashes in any 1 s",
+  "loudness": "PASS \u2014 -16.1 LUFS, -2.9 dBTP",
+  "ffprobe": "PASS \u2014 1440 frames at 60 fps",
+  "contact_sheet": "PASS \u2014 two director review rounds (sheet-v1.png \u2192 sheet-v2.png in the episode folder)",
+  "colour_provenance": "PASS"
+ },
+ "colour_provenance": {
+  "literal_colours": 36,
+  "registered": 36,
+  "declared_derived": [],
+  "unregistered": [],
+  "status": "PASS"
+ },
+ "deviations": [],
+ "summary": "Five notes, each with its own view; overlaps are compared end to end; one seam disagrees (a visible step, terracotta) on a real film-check case (18 vs 20 captions); the whale closes it, the seam turns teal, the pieces fuse into one line and close into a ring. Not this: \u201cGlued is not the same as true.\u201d",
+ "changes": "First cut, after two director review rounds (scale, focal moment, pacing, legibility).",
+ "registered_at": "2026-10-17T19:11:56+00:00",
+ "fingerprint": "5110b86dc64a348fa434b72eb24c8c7fda7f1d06a3602278b56183f6fd936d4e"
+}

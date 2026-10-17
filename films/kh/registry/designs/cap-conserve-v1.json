@@ -1,0 +1,56 @@
+{
+ "id": "cap-conserve-v1",
+ "name": "Capabilities 04 · Change everything but the laws — film v1",
+ "kind": "Film",
+ "version": "1.0",
+ "parents": [
+  "caps-series-v1"
+ ],
+ "wada": [
+  84
+ ],
+ "engine": [
+  "Canvas (skia)",
+  "ffmpeg",
+  "numpy synth"
+ ],
+ "atlas": [
+  "el:character-rig",
+  "el:camera-move",
+  "q:time-pure-frames",
+  "q:motion-blur",
+  "q:cue-locked-sound",
+  "gate:contact-sheet",
+  "gate:ffprobe-spec",
+  "gate:frame-jump-detector"
+ ],
+ "sources": [
+  "kh/caps/conserve/film.js",
+  "kh/caps/conserve/score.py",
+  "kh/caps/conserve/NOTES.md",
+  "kh/caps/series.js",
+  "kh/caps/tool.cjs",
+  "kh/whale-rig.js",
+  "kh/kh-kit.js"
+ ],
+ "outputs": [
+  "renders/cap-conserve.mp4"
+ ],
+ "preview": "kh/registry/previews/cap-conserve-v1.jpg",
+ "gates": {
+  "read_time": "PASS — 18 lines, tightest 1.40 s vs 1.35 s",
+  "frame_jump": "PASS — 27.9 px, 0.115 rad per frame",
+  "contrast": "PASS — 16 pairs, lowest 5.1:1",
+  "flash_safety": "PASS — 0 flashes in any 1 s",
+  "loudness": "PASS — -16.3 LUFS, -2.4 dBTP",
+  "ffprobe": "PASS — 1530 frames at 60 fps",
+  "contact_sheet": "PASS — two director review rounds (sheet-v1.png → sheet-v2.png in the episode folder)"
+ },
+ "summary": "Content bends freely while three pinned laws (no broken links, one page per thing, every claim sourced) hold; an edit drags a pin over budget, is repaired before commit, and the ledger records the fire; real run 548 entities · exact 0 · drift 0.0 · prov. 0.988; then the whole line is shaken and every pin holds. Not this: “Noether-inspired — we choose the laws; no theorem is applied.”",
+ "changes": "First cut, after two director review rounds (scale, focal moment, pacing, legibility).",
+ "style": "1.0.0",
+ "status": "shipped",
+ "uses_kit": true,
+ "derived_colours": {},
+ "deviations": []
+}

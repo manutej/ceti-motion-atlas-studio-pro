@@ -1,0 +1,56 @@
+{
+ "id": "cap-tellapart-v1",
+ "name": "Capabilities 05 · Same reading, different world — film v1",
+ "kind": "Film",
+ "version": "1.0",
+ "parents": [
+  "caps-series-v1"
+ ],
+ "wada": [
+  339
+ ],
+ "engine": [
+  "Canvas (skia)",
+  "ffmpeg",
+  "numpy synth"
+ ],
+ "atlas": [
+  "el:character-rig",
+  "el:camera-move",
+  "q:time-pure-frames",
+  "q:motion-blur",
+  "q:cue-locked-sound",
+  "gate:contact-sheet",
+  "gate:ffprobe-spec",
+  "gate:frame-jump-detector"
+ ],
+ "sources": [
+  "kh/caps/tellapart/film.js",
+  "kh/caps/tellapart/score.py",
+  "kh/caps/tellapart/NOTES.md",
+  "kh/caps/series.js",
+  "kh/caps/tool.cjs",
+  "kh/whale-rig.js",
+  "kh/kh-kit.js"
+ ],
+ "outputs": [
+  "renders/cap-tellapart.mp4"
+ ],
+ "preview": "kh/registry/previews/cap-tellapart-v1.jpg",
+ "gates": {
+  "read_time": "PASS — 21 lines, tightest 1.40 s vs 1.35 s",
+  "frame_jump": "PASS — 19.7 px, 0.122 rad per frame",
+  "contrast": "PASS — 10 pairs, lowest 4.7:1",
+  "flash_safety": "PASS — 0 flashes in any 1 s",
+  "loudness": "PASS — -16.4 LUFS, -2.7 dBTP",
+  "ffprobe": "PASS — 1521 frames at 60 fps",
+  "contact_sheet": "PASS — two director review rounds (sheet-v1.png → sheet-v2.png in the episode folder)"
+ },
+ "summary": "Two worlds — one healthy, one with an outage — feed one big reading that never changes (99%, illustrative checkout example); the whale finds the gap, brings back the witness pair, and unzips the line into two strands with their own readings (healthy vs 0%), so the alert can fire. Not this: “More metrics isn't the fix — the right distinction is.”",
+ "changes": "First cut, after two director review rounds (scale, focal moment, pacing, legibility).",
+ "style": "1.0.0",
+ "status": "shipped",
+ "uses_kit": true,
+ "derived_colours": {},
+ "deviations": []
+}

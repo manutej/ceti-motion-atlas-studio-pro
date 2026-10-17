@@ -1,0 +1,56 @@
+{
+ "id": "cap-gate-v1",
+ "name": "Capabilities 02 · Check it at the gate — film v1",
+ "kind": "Film",
+ "version": "1.0",
+ "parents": [
+  "caps-series-v1"
+ ],
+ "wada": [
+  243
+ ],
+ "engine": [
+  "Canvas (skia)",
+  "ffmpeg",
+  "numpy synth"
+ ],
+ "atlas": [
+  "el:character-rig",
+  "el:camera-move",
+  "q:time-pure-frames",
+  "q:motion-blur",
+  "q:cue-locked-sound",
+  "gate:contact-sheet",
+  "gate:ffprobe-spec",
+  "gate:frame-jump-detector"
+ ],
+ "sources": [
+  "kh/caps/gate/film.js",
+  "kh/caps/gate/score.py",
+  "kh/caps/gate/NOTES.md",
+  "kh/caps/series.js",
+  "kh/caps/tool.cjs",
+  "kh/whale-rig.js",
+  "kh/kh-kit.js"
+ ],
+ "outputs": [
+  "renders/cap-gate.mp4"
+ ],
+ "preview": "kh/registry/previews/cap-gate-v1.jpg",
+ "gates": {
+  "read_time": "PASS — 29 lines, tightest 2.27 s vs 2.25 s",
+  "frame_jump": "PASS — 24.7 px, 0.106 rad per frame",
+  "contrast": "PASS — 6 pairs, lowest 4.8:1",
+  "flash_safety": "PASS — 0 flashes in any 1 s",
+  "loudness": "PASS — -16.2 LUFS, -2.8 dBTP",
+  "ffprobe": "PASS — 1563 frames at 60 fps",
+  "contact_sheet": "PASS — two director review rounds (sheet-v1.png → sheet-v2.png in the episode folder)"
+ },
+ "summary": "Runs pass a real gate whose slot is the spec; a bad run crumples against the bar (fail closed), one subtle wobble escapes, is flagged and caught, and becomes a narrower gate 07; pull back on seven gates: every miss became a rule (rules 6 → 7). Real catch: this series' whale snap 1.26 → 0.11 rad/frame. Not this: “A gate proves the absence of known failures — not quality.”",
+ "changes": "First cut, after two director review rounds (scale, focal moment, pacing, legibility).",
+ "style": "1.0.0",
+ "status": "shipped",
+ "uses_kit": true,
+ "derived_colours": {},
+ "deviations": []
+}

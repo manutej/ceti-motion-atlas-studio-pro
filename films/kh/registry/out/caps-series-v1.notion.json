@@ -1,0 +1,47 @@
+{
+ "properties": {
+  "Name": "CETI Capabilities \u2014 series format v1",
+  "Kind": "Format",
+  "Version": "1.0",
+  "Status": "shipped",
+  "Style": "Kinetic Hydrography 1.0.0",
+  "Fingerprint": "24c5bd802e26d992",
+  "Passport hash": "11df6c39a3869737",
+  "Wada": [
+   "166",
+   "243",
+   "207",
+   "84",
+   "339"
+  ],
+  "Engine": [
+   "Canvas (skia)",
+   "ffmpeg",
+   "numpy synth"
+  ],
+  "Gates": "Pass",
+  "Gate detail": "format: PASS \u2014 every episode passes the shared tool gates \u00b7 colour_provenance: PASS",
+  "Deviations": "None",
+  "Design ID": "caps-series-v1",
+  "Derived from": [
+   "3fcd50cfaf9381dfaaa1e76efbec18cf",
+   "3fcd50cfaf93816bb451d1dfcc721076"
+  ],
+  "Atlas lineage": [
+   "3fbd50cfaf938109b4d8cdcbc2fc8787",
+   "3fbd50cfaf9381fbb243e1afa8e20b3c",
+   "3fbd50cfaf938104bd6dc9ee16ba93f9",
+   "3fbd50cfaf9381159144e6222a7785ef",
+   "3fbd50cfaf93818c9148cabe066e555a",
+   "3fbd50cfaf93817a873fefa2714b4f69",
+   "3fbd50cfaf93818da268d8e60efb8eb4",
+   "3fbd50cfaf93810bbfc9fe9ad8c1949d",
+   "3fbd50cfaf9381269a41dd50de1c851b"
+  ],
+  "date:Registered:start": "2026-10-17",
+  "date:Registered:is_datetime": 0
+ },
+ "content": "One capability CETI uses every week, one move, ~25 s, the little whale flying over a hydrographic chart. Shared layer: chart ground (air mode is never bare), opening card, paper caption chips, closing lockup; one tool and one build command per episode; a reusable builder brief.\n\n## Provenance\n- **Style:** Kinetic Hydrography 1.0.0 \u00b7 passport `11df6c39a3869737` \u00b7 kit `a19e3d258a95aa78`\n- **Fingerprint:** `24c5bd802e26d992214518788404b4084265daae5d0f519d40ffa9fa8af9c259`\n- **Parents:** whale-line-format-v1.1 (`982e72b50c3d`), character-sheet-v2 (`a5642288092c`)\n- **Colour provenance:** PASS \u2014 36 literal colours, 36 registered tokens, 0 declared derived\n\n## What changed\nNew series. Adds the chart ground to air mode, the lockup-takes-the-caption rule and the phone-legibility scale rule (learned in review round 1).\n\n## Gates\n- format: PASS \u2014 every episode passes the shared tool gates\n- colour_provenance: PASS\n\n## Deviations from the style\n- None\n\n## Files\n- `kh/caps/series.js` \u00b7 `e84951d2e9ba` \u00b7 5,322 bytes\n- `kh/caps/tool.cjs` \u00b7 `8934b235d179` \u00b7 4,861 bytes\n- `kh/caps/SERIES.md` \u00b7 `033f0aec26e7` \u00b7 5,081 bytes\n- `kh/caps/AGENT-BRIEF.md` \u00b7 `a4154831cf46` \u00b7 5,217 bytes\n- `kh/caps/RESEARCH.md` \u00b7 `90b96afac951` \u00b7 29,192 bytes\n- `scripts/build.sh` \u00b7 `29d4d5c6ab2f` \u00b7 5,273 bytes\n- `kh/kh-kit.js` \u00b7 `a19e3d258a95` \u00b7 7,272 bytes\n- `kh/whale-rig.js` \u00b7 `5a15b4982f5b` \u00b7 6,438 bytes\n\n## Manifest\n```json\n{\n \"id\": \"caps-series-v1\",\n \"fingerprint\": \"24c5bd802e26d992214518788404b4084265daae5d0f519d40ffa9fa8af9c259\",\n \"style\": {\n  \"name\": \"Kinetic Hydrography\",\n  \"version\": \"1.0.0\",\n  \"passport_sha256\": \"11df6c39a38697375745f2bdb2040780e72f3657a56ab4306338bbfa64913efe\",\n  \"kit_sha256\": \"a19e3d258a95aa78e3199a8a95645703411e1ff218b262cd087dcf6516312a05\"\n },\n \"parents\": {\n  \"whale-line-format-v1.1\": \"982e72b50c3d5797a16e065a264aa5b7cfb630dd4195a3ca83ce617ba752a3a2\",\n  \"character-sheet-v2\": \"a5642288092cd8896b6dd1efc15fc38dcdb3582115686b78405dae9e0c195247\"\n },\n \"wada\": [\n  166,\n  243,\n  207,\n  84,\n  339\n ],\n \"atlas\": [\n  \"el:character-rig\",\n  \"el:camera-move\",\n  \"el:kinetic-type\",\n  \"q:time-pure-frames\",\n  \"q:cue-locked-sound\",\n  \"q:beat-locked-changes\",\n  \"q:loudness-normalisation\",\n  \"gate:contact-sheet\",\n  \"gate:frame-jump-detector\"\n ],\n \"gates\": {\n  \"format\": \"PASS \\u2014 every episode passes the shared tool gates\",\n  \"colour_provenance\": \"PASS\"\n }\n}\n```",
+ "preview": null,
+ "unresolved_parents": []
+}
