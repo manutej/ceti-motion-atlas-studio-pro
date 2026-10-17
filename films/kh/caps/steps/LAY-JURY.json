@@ -1,5 +1,128 @@
-{"episode": "steps", "runs": [{"version": "v3", "sheet": "kh/caps/steps/sheet-v3.png", "verdict": "FAIL (near pass)",
- "personas": {"teacher": {"q1": 1, "q2": 1, "sure": [8, 8], "unclear": ["Five small gates, not one (gates)", "card % too small; what measured; two-line rule never shown", "our own lab tests: who is our", "Example checks tiny", "Not magic. A plain rule came close.", "whale = you label tiny", "lockup '5K · 5 STEPS'"]},
-  "nurse": {"q1": 0.5, "q2": 1, "sure": [6, 8], "unclear": ["gates", "chart tiny / what % measures / lab tests of emails", "real test", "Your inbox tiny", "whale", "lockup", "first captions fade fast", "was the real bill blocked or unsure"]},
-  "shop owner": {"q1": 0.5, "q2": 1, "sure": [6, 8], "unclear": ["gates picture", "Example checks", "our own lab tests", "two-line rule never shown", "the checker vague", "% tiny", "lockup", "why the real bill gets X at 2-3 s"]}},
- "why": "Fix understood by all (8/10). Problem half-read by two: 'maybe' drawn like an X. Chart unreadable; 'gates', 'lab tests', 'two-line rule' unclear; lockup episode number bug."}]}
+{
+ "episode": "steps",
+ "runs": [
+  {
+   "version": "v3",
+   "sheet": "kh/caps/steps/sheet-v3.png",
+   "verdict": "FAIL (near pass)",
+   "personas": {
+    "teacher": {
+     "q1": 1,
+     "q2": 1,
+     "sure": [
+      8,
+      8
+     ],
+     "unclear": [
+      "Five small gates, not one (gates)",
+      "card % too small; what measured; two-line rule never shown",
+      "our own lab tests: who is our",
+      "Example checks tiny",
+      "Not magic. A plain rule came close.",
+      "whale = you label tiny",
+      "lockup '5K · 5 STEPS'"
+     ]
+    },
+    "nurse": {
+     "q1": 0.5,
+     "q2": 1,
+     "sure": [
+      6,
+      8
+     ],
+     "unclear": [
+      "gates",
+      "chart tiny / what % measures / lab tests of emails",
+      "real test",
+      "Your inbox tiny",
+      "whale",
+      "lockup",
+      "first captions fade fast",
+      "was the real bill blocked or unsure"
+     ]
+    },
+    "shop owner": {
+     "q1": 0.5,
+     "q2": 1,
+     "sure": [
+      6,
+      8
+     ],
+     "unclear": [
+      "gates picture",
+      "Example checks",
+      "our own lab tests",
+      "two-line rule never shown",
+      "the checker vague",
+      "% tiny",
+      "lockup",
+      "why the real bill gets X at 2-3 s"
+     ]
+    }
+   },
+   "why": "Fix understood by all (8/10). Problem half-read by two: 'maybe' drawn like an X. Chart unreadable; 'gates', 'lab tests', 'two-line rule' unclear; lockup episode number bug."
+  },
+  {
+   "version": "v4",
+   "sheet": "kh/caps/steps/sheet-v4.png",
+   "verdict": "PASS (revised criterion)",
+   "personas": {
+    "teacher": {
+     "q1": 1,
+     "q2": 1,
+     "sure": [
+      8,
+      8
+     ],
+     "unclear": [
+      "Right answers, scam emails",
+      "% tiny",
+      "simple fixed rule vague",
+      "Not magic.",
+      "lamps",
+      "lockup",
+      "whale",
+      "labels tiny",
+      "title script flashes"
+     ]
+    },
+    "nurse": {
+     "q1": 1,
+     "q2": 1,
+     "sure": [
+      7,
+      8
+     ],
+     "unclear": [
+      "what test / who ran it",
+      "% tiny; simple fixed rule = what",
+      "Not magic: is AI not needed?",
+      "whale",
+      "lamps took a moment",
+      "our own tests",
+      "lockup",
+      "closing caption fast"
+     ]
+    },
+    "shop owner": {
+     "q1": 1,
+     "q2": 1,
+     "sure": [
+      7,
+      8
+     ],
+     "unclear": [
+      "chart tiny",
+      "our own tests",
+      "AI checker just a box",
+      "Not magic / nearly as well = non sequitur",
+      "lockup",
+      "faded title + tiny eyebrow",
+      "whale"
+     ]
+    }
+   },
+   "why": "All three: one big question gave a maybe; five small yes/no checks stop the fake and pass the real bill. Mean confidence 7.7. Polish: chart legibility; the limit line read as \"AI not needed\" - reword to say splitting is what matters."
+  }
+ ]
+}

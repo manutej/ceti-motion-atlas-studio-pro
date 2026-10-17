@@ -72,8 +72,8 @@ const ROUND = [0, 1, 2].map(r => MARKS.filter(m => m.r === r));
 const ZERO = lapEnd(LAPS[2]) - 0.2;
 // the new kind of reader: green, looks UP from below the letter; out to the right, then back to check again
 const NR = { t0: 20.95, y: 300, v: 1100 }, NR_TURN = [23.0, 23.3];
-function nrX(t) { return t < NR_TURN[1] ? Math.min(640, -720 + NR.v * (t - NR.t0)) : 640 - NR.v * 0.9 * (t - NR_TURN[1]); }
-const NR_MARK = NR.t0 + (F.z.x + 720) / NR.v, NR_CLEAR = NR_TURN[1] + (640 - F.z.x) / (NR.v * 0.9);
+function nrX(t) { return t < NR_TURN[1] ? Math.min(640, -720 + NR.v * (t - NR.t0)) : 640 - NR.v * 1.4 * (t - NR_TURN[1]); }
+const NR_MARK = NR.t0 + (F.z.x + 720) / NR.v, NR_CLEAR = NR_TURN[1] + (640 - F.z.x) / (NR.v * 1.4);
 MARKS.push({ id: 'z', r: 3, k: 0, t: NR_MARK });
 const FLAW_AMP = (f, t) => { const a = f.amp ?? 1, inn = f.in == null || f.in < 0 ? 1 : ramp(t, f.in, f.in + 0.28, EASE.glaser), out = f.fix == null ? 0 : ramp(t, f.fix, f.fix + 0.25, EASE.warm); return a * inn * (1 - out); };
 
@@ -81,14 +81,14 @@ const FLAW_AMP = (f, t) => { const a = f.amp ?? 1, inn = f.in == null || f.in < 
 const CARD = [15.65, 19.15];
 function cam(t) {
   const pull = ramp(t, 3.9, 6.6, EASE.rest), push = ramp(t, 14.4, 15.2, EASE.warm), rel = ramp(t, 15.4, 16.1, EASE.warm);
-  const lim = ramp(t, 19.3, 20.1, EASE.warm), lrel = ramp(t, 23.4, 24.6, EASE.warm), end = ramp(t, 24.6, DUR, EASE.rest);
+  const lim = ramp(t, 19.3, 20.1, EASE.warm), lrel = ramp(t, 23.9, 24.9, EASE.warm), end = ramp(t, 24.6, DUR, EASE.rest);
   let z = lerp(1.3, 1.15, pull), x = lerp(-60, 90, pull), y = lerp(-40, -30, pull);
-  z = lerp(z, 1.25, push); x = lerp(x, 230, push); z = lerp(z, 1.15, rel); x = lerp(x, 90, rel);
+  z = lerp(z, 1.2, push); x = lerp(x, 170, push); z = lerp(z, 1.15, rel); x = lerp(x, 90, rel);
   z += 0.05 * win(t, CARD[0], CARD[1] + 0.3, 1.6, 0.6);           // a slow breath while the card is up
   z = lerp(z, 1.2, lim); x = lerp(x, 200, lim); y = lerp(y, 20, lim);
   z = lerp(z, 1.15, lrel); x = lerp(x, 120, lrel); y = lerp(y, -30, lrel);
   const card = win(t, CARD[0] - 0.25, CARD[1] + 0.25, 0.5, 0.45);
-  return { x, y, z: z - 0.03 * end, ax: 960, ay: 540 + 120 * card }; }
+  return { x, y, z: z - 0.03 * end, ax: 960, ay: 540 + 150 * card }; }
 
 // ---------- text ----------
 const T0 = 3.8, T_LOCK = 25.7, T_COUNTER = 6.9;
@@ -161,7 +161,7 @@ function drawFrame(c, t) {
     for (let k = 0; k < 3; k++) { const px = ld - GAP * k; if (px < PX0 - 120 || px > PX1 + 120) continue;
       c.fillStyle = rgba(RBEAM, 0.16 * a); c.beginPath(); c.moveTo(X(px - 22), Y(PY0)); c.lineTo(X(px + 22), Y(PY0)); c.lineTo(X(px + 68), Y(BEAM_Y)); c.lineTo(X(px - 68), Y(BEAM_Y)); c.closePath(); c.fill();
       c.strokeStyle = rgba(RBEAM, 0.6 * a); c.lineWidth = 3 * z; c.beginPath(); c.moveTo(X(px - 68), Y(BEAM_Y)); c.lineTo(X(px + 68), Y(BEAM_Y)); c.stroke(); } }
-  { const a = win(t, NR.t0 + 0.4, 24.3, 0.3, 0.4); if (a > 0) { const px = nrX(t);
+  { const a = win(t, NR.t0 + 0.4, 23.95, 0.3, 0.3); if (a > 0) { const px = nrX(t);
       c.fillStyle = rgba(NBEAM, 0.2 * a); c.beginPath(); c.moveTo(X(px - 22), Y(PY1)); c.lineTo(X(px + 22), Y(PY1)); c.lineTo(X(px + 68), Y(150)); c.lineTo(X(px - 68), Y(150)); c.closePath(); c.fill();
       c.strokeStyle = rgba(NBEAM, 0.7 * a); c.lineWidth = 3 * z; c.beginPath(); c.moveTo(X(px - 68), Y(150)); c.lineTo(X(px + 68), Y(150)); c.stroke(); } }
   c.restore();
@@ -188,7 +188,7 @@ function drawFrame(c, t) {
       reader(c, X(px), Y(POD_Y + Math.sin(t * 7 + k * 1.9) * 5), z, READER, 1, false, a * fade); } }
   { const a = RA(t, 'readers'); if (a > 0) { const px = lead(LAPS[0], t) - GAP; S.chip(c, 'Three AI readers', X(clamp(px, -230, 200)), Y(POD_Y - 72), { f: 'mono', size: Math.round(28 * z), col: INK, a, align: 'center', bg: C.paper, border: EDGE, track: 0.12 }); } }
   // the new kind of reader (green, looking up from below), out and back
-  { const a = win(t, NR.t0, 24.5, 0.3, 0.4); if (a > 0) { const dir = t < NR_TURN[0] ? 1 : t < NR_TURN[1] ? lerp(1, -1, ramp(t, NR_TURN[0], NR_TURN[1], EASE.warm)) : -1;
+  { const a = win(t, NR.t0, 24.05, 0.3, 0.3); if (a > 0) { const dir = t < NR_TURN[0] ? 1 : t < NR_TURN[1] ? lerp(1, -1, ramp(t, NR_TURN[0], NR_TURN[1], EASE.warm)) : -1;
       reader(c, X(nrX(t)), Y(NR.y + Math.sin(t * 6) * 4), z * 1.05, NEWR, dir, true, a); } }
 
   // the counter: PROBLEMS FOUND — earlier rounds, then this round, in one row
@@ -231,7 +231,7 @@ function drawFrame(c, t) {
   const veil = win(t, 3.9, T0 + 3.68, 0.35, 0.4); if (veil > 0) { c.fillStyle = rgba(C.paper, 0.9 * veil); c.fillRect(0, 0, W, H); }
 
   // the real-numbers card (top left, on clean paper above the letter)
-  const ka = RA(t, 'card'); if (ka > 0) { const x0 = 150, y0 = 34, dy = (1 - EASE.defer(ramp(t, CARD[0], CARD[0] + 0.35))) * 8, wd = 800, ht = 300;
+  const ka = RA(t, 'card'); if (ka > 0) { const x0 = 150, y0 = 24, dy = (1 - EASE.defer(ramp(t, CARD[0], CARD[0] + 0.35))) * 8, wd = 800, ht = 292;
     c.save(); c.globalAlpha = ka; c.fillStyle = C.paper; c.strokeStyle = EDGE; c.lineWidth = 1.4; c.beginPath(); c.roundRect(x0 - 30, y0 + dy, wd, ht, 8); c.fill(); c.stroke();
     c.fillStyle = DSG; c.fillRect(x0 - 30, y0 + dy, 6, ht); c.restore();
     text(c, 'Real draft · problems found each round', x0, y0 + 48 + dy, { f: 'mono', size: 24, col: SOFT, a: ka, track: 0.1 });
@@ -240,7 +240,7 @@ function drawFrame(c, t) {
       if (j < 3) { c.save(); c.globalAlpha = ta; c.strokeStyle = SOFT; c.lineWidth = 4; const ax = nx + w + 24, ay = y0 + 112 + dy; c.beginPath(); c.moveTo(ax, ay); c.lineTo(ax + 44, ay); c.moveTo(ax + 30, ay - 12); c.lineTo(ax + 44, ay); c.lineTo(ax + 30, ay + 12); c.stroke(); c.restore(); }
       nx += w + 96; });
     text(c, 'Round 2 found as many as round 1.', x0, y0 + 202 + dy, { f: 'sans', size: 36, col: INK, a: ka });
-    text(c, 'Source: our own records', x0, y0 + 256 + dy, { f: 'sans', size: 30, col: SOFT, a: ka }); }
+    text(c, 'Source: our own records', x0, y0 + 252 + dy, { f: 'sans', size: 30, col: SOFT, a: ka }); }
 
   for (const r of READ) if (r.kind === 'caption') S.caption(c, t, r, { size: 40 });
   S.open(c, t - T0, { no: '07', title: 'Stop when the <i>counter</i> hits zero.', accent: ACC }, { out: 3.6 });

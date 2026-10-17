@@ -113,7 +113,7 @@ const INTENT = { problem: 'Your AI helper wrote a report; it passed every check,
   belief: 'Every new mistake becomes a new check. Passing means no mistakes we know of, not quality.' };
 // 'report' trips the expert list (it matches repo*); the report page is on screen from 0 s, before the word (0.25 s)
 const TERMS = [{ term: 'report', pictured_at: 0 }];
-const CY = 432;                                        // the card's top edge: centred over the gate row, under the icons
+const CY = 470;                                        // the card's top edge: centred over the gate row, under the icons
 const RD = id => READ.find(r => r.id === id), RA = (t, id) => { const r = RD(id); return win(t, r.in, r.out, r.fi, r.fo); };
 
 // ---------- icons: a paper disc on the lintel with one mark for the kind it checks ----------
@@ -274,16 +274,18 @@ function drawFrame(c, t) {
     const an2 = Math.atan2(y2 - Y(40), x2 - X(gx + GW + 150)); c.moveTo(x2 - hl * Math.cos(an2 - 0.5), y2 - hl * Math.sin(an2 - 0.5)); c.lineTo(x2, y2); c.lineTo(x2 - hl * Math.cos(an2 + 0.5), y2 - hl * Math.sin(an2 + 0.5)); c.stroke(); c.restore(); } }
 
   // the title hinge: the scene goes still and dims slightly (30%) under the title card, the title names what we just watched
-  const veil = win(t, 5.35, T0 + 3.37, 0.35, 0.4); if (veil > 0) { c.fillStyle = rgba(C.paper, 0.3 * veil); c.fillRect(0, 0, W, H); }
+  const veil = win(t, 5.35, T0 + 3.37, 0.35, 0.4); if (veil > 0) { c.fillStyle = rgba(C.paper, 0.3 * veil); c.fillRect(0, 0, W, H);
+    c.save(); c.font = `92px ${KH.FONTS.disp}`; const tw = c.measureText('Every new mistake gets a check.').width; c.restore();   // a paper band under the title only
+    c.fillStyle = rgba(C.paper, 0.9 * veil); c.beginPath(); c.roundRect(960 - tw / 2 - 50, 395, tw + 100, 215, 14); c.fill(); }
 
   // the real-run card (top left, clean paper round it)
   const ka = RA(t, 'card'); if (ka > 0) { const ci = RD('card').in, dy = (1 - EASE.defer(ramp(t, ci, ci + 0.35))) * 8;
-    c.save(); c.font = `64px ${KH.FONTS.disp}`; const w1 = c.measureText('7 mistakes, 7 new checks').width; c.font = `34px ${KH.FONTS.sans}`; const w2 = c.measureText('Source: our own list of mistakes').width; c.restore();
+    c.save(); c.font = `78px ${KH.FONTS.disp}`; const w1 = c.measureText('7 mistakes, 7 new checks').width; c.font = `38px ${KH.FONTS.sans}`; const w2 = c.measureText('Source: our own list of mistakes').width; c.restore();
     const wd = Math.max(w1, w2) + 60, x0 = 960 - wd / 2 + 30; c.save(); c.globalAlpha = ka; c.fillStyle = C.paper; c.strokeStyle = mix(C.paper, C.slate, 0.4); c.lineWidth = 1.2;
-    c.beginPath(); c.roundRect(x0 - 30, CY + dy, wd, 230, 8); c.fill(); c.stroke(); c.fillStyle = OLIVE; c.fillRect(x0 - 30, CY + dy, 6, 230); c.restore();
-    text(c, 'True story', x0, CY + 54 + dy, { f: 'mono', size: 34, col: SOFT, a: ka });
-    text(c, '7 mistakes, 7 new checks', x0, CY + 134 + dy, { f: 'disp', size: 64, col: INK, a: ka });
-    text(c, 'Source: our own list of mistakes', x0, CY + 196 + dy, { f: 'sans', size: 34, col: SOFT, a: ka }); }
+    c.beginPath(); c.roundRect(x0 - 30, CY + dy, wd, 262, 8); c.fill(); c.stroke(); c.fillStyle = OLIVE; c.fillRect(x0 - 30, CY + dy, 6, 262); c.restore();
+    text(c, 'True story', x0, CY + 56 + dy, { f: 'mono', size: 36, col: SOFT, a: ka });
+    text(c, '7 mistakes, 7 new checks', x0, CY + 150 + dy, { f: 'disp', size: 78, col: INK, a: ka });
+    text(c, 'Source: our own list of mistakes', x0, CY + 222 + dy, { f: 'sans', size: 38, col: SOFT, a: ka }); }
 
   for (const r of READ) if (r.kind === 'caption') S.caption(c, t, r, { size: 40 });
   S.open(c, t - T0, { no: '02', title: 'Every new mistake gets a <i>check</i>.', accent: ACC }, { out: 3.3 });
