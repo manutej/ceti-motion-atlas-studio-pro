@@ -16,17 +16,17 @@ const LIT = mix(SY, OS, 0.45), LITRING = mix(PRU, INK, 0.15), YES = SLC, NO = RU
 const WALL = mix(C.paper, C.slate, 0.16), HATCH = mix(C.paper, C.slate, 0.34), TRACK = mix(C.paper, C.slate, 0.5), CHIPB = mix(C.paper, C.slate, 0.4);
 
 // ---------- geometry ----------
-const GX = [-600, -300, 0, 300, 600], OA = 56, ENV_W = 150, ENV_H = 90, TRAYX = 860, LINE_END = 765;
-const QS = ['Known sender?', 'Real link?', 'Expected bill?', 'Usual amount?', 'No rush?'];
-const BIG = { hw: 36, HH: 190, r: 58, chipW: 470, chipF: 44 }, SMALL = { hw: 22, HH: 112, r: 32, chipW: 250, chipF: 34 };
-const gateGeo = (s) => { const lampY = -s.HH - s.r - 12, base = lampY - s.r - (s.chipF > 40 ? 34 : 26); return { ...s, lampY, base, top: base - s.chipF * 1.05, h: s.chipF * 1.5 }; };
+const GX = [-540, -270, 0, 270, 540], OA = 50, ENV_W = 130, ENV_H = 80, TRAYX = 770, TRAY_HW = 80, LINE_END = 690;
+const QL = [['Known', 'sender?'], ['Real', 'link?'], ['Expected', 'bill?'], ['Usual', 'amount?'], ['No', 'rush?']], QS = QL.map(q => q.join(' '));
+const BIG = { hw: 36, HH: 150, r: 54, chipW: 470, chipF: 44, lh: 0 }, SMALL = { hw: 22, HH: 112, r: 40, chipW: 190, chipF: 36, lh: 40 };   // small chips: two lines
+const gateGeo = (s) => { const lampY = -s.HH - s.r - 12, base = lampY - s.r - (s.lh ? 24 : 34); return { ...s, lampY, base, top: base - s.chipF * 1.05 - s.lh, h: s.chipF * 1.5 + s.lh }; };
 const GB = gateGeo(BIG), GS = gateGeo(SMALL);
 const lerpGeo = (m) => { const o = {}; for (const k of ['hw', 'HH', 'r', 'chipW', 'chipF', 'lampY', 'base', 'top', 'h']) o[k] = lerp(GB[k], GS[k], m); return o; };
 
 // ---------- timing (132 BPM grid) ----------
 const T0 = 3.92, T_NUDGE = 7.0, T_SPLIT = 7.05, T_LAND = 8.15, T_Q = 7.95;
 const splitM = (i, t) => ramp(t, T_SPLIT + 0.05 * Math.abs(i - 2), T_LAND + 0.05 * Math.abs(i - 2), EASE.warm);
-const V = 300 / B;                                           // envelope speed: one gate per beat (660 px/s)
+const V = 270 / B;                                           // envelope speed: one gate per beat (594 px/s)
 const CK0 = 9.55, tA0 = CK0 - (GX[0] + 1000) / V;          // the fake bill: centre at gate 1 at CK0
 const STOPX = GX[2] - GS.hw - ENV_W / 2 - 4, T_STOP = tA0 + (STOPX + 1000) / V;
 const CHECK = [{ g: 0, t: CK0, ok: true }, { g: 1, t: CK0 + B, ok: true }, { g: 2, t: T_STOP, ok: false }];
@@ -38,10 +38,10 @@ const T_CARD = 13.65, BAR = [[13.95, 14.75], [14.95, 15.8], [17.7, 18.55]], T_CA
 const T_LOCK = 26.7;
 
 // ---------- the whale: Hermite through keys (zero tangents = it settles at each key) ----------
-const WS = 0.8, REACH = 118 * WS;
+const WS = 1.0, REACH = 118 * WS;
 const NUDGE = [-(BIG.chipW / 2) - REACH - 8, GB.top + GB.h / 2];
-const K = [[0, -470, -300], [6.25, -470, -300], [T_NUDGE, ...NUDGE], [7.2, ...NUDGE], [8.3, -300, -470], [9.45, -300, -470], [10.4, -110, -470],
-  [12.9, -110, -470], [14.15, 700, -420], [DUR + 1, 700, -420]];
+const K = [[0, -470, -250], [6.25, -470, -250], [T_NUDGE, ...NUDGE], [7.2, ...NUDGE], [8.3, -280, -440], [9.45, -280, -440], [10.4, -60, -440],
+  [12.9, -60, -440], [14.15, 700, -400], [DUR + 1, 700, -400]];
 function herm(P, t) { const n = P.length; if (t <= P[0][0]) return { x: P[0][1], y: P[0][2] }; if (t >= P[n - 1][0]) return { x: P[n - 1][1], y: P[n - 1][2] };
   let i = 0; while (P[i + 1][0] < t) i++; const p1 = P[i], p2 = P[i + 1], u = (t - p1[0]) / (p2[0] - p1[0]), A2 = 2 * u * u * u - 3 * u * u + 1, C2 = 1 - A2;
   return { x: A2 * p1[1] + C2 * p2[1], y: A2 * p1[2] + C2 * p2[2] }; }
@@ -58,9 +58,12 @@ const wpos = t => wworld(t);
 
 // ---------- camera: close on the maybe, pull back under the title, one push-in on the clear no, release, slow drift at the end ----------
 function cam(t) {
-  const pull = ramp(t, 4.0, 6.3, EASE.rest), push = ramp(t, 10.2, 10.95, EASE.warm), rel = ramp(t, 12.6, 13.6, EASE.warm), end = ramp(t, 23.3, DUR, EASE.rest);
-  let z = lerp(1.15, 1.0, pull), y = 0; z = lerp(z, 1.28, push); y = lerp(y, -60, push); z = lerp(z, 1.0, rel); y = lerp(y, 0, rel);
-  return { x: 0, y: y - 20 * end, z: z + 0.04 * end, ax: 960, ay: 640 }; }
+  // FELT: close on the one big gate. ROW: the five small gates and the inbox. PUSH: on the clear no. CASE: pulled down under the card.
+  const F = { z: 1.4, x: 0, y: -70, ay: 520 }, ROW = { z: 1.2, x: 100, y: 0, ay: 680 }, PUSH = { z: 1.38, x: -30, y: -40, ay: 680 }, CASE = { z: 1.05, x: 100, y: -80, ay: 680 };
+  const L = (a, b, k) => ({ z: lerp(a.z, b.z, k), x: lerp(a.x, b.x, k), y: lerp(a.y, b.y, k), ay: lerp(a.ay, b.ay, k) });
+  let s = L(F, ROW, ramp(t, 4.0, 6.3, EASE.rest)); s = L(s, PUSH, ramp(t, 10.2, 10.95, EASE.warm)); s = L(s, CASE, ramp(t, 12.6, 13.7, EASE.warm)); s = L(s, ROW, ramp(t, 20.0, 20.9, EASE.warm));
+  const end = ramp(t, 23.3, DUR, EASE.rest);
+  return { x: s.x, y: s.y - 20 * end, z: s.z + 0.04 * end, ax: 960, ay: s.ay }; }
 
 // ---------- text ----------
 const cap = (id, inn, out, text) => ({ id, kind: 'caption', in: inn, out, fi: 0.25, fo: 0.2, text });
@@ -76,7 +79,7 @@ const READ = [
   { id: 'title', kind: 'title', in: T0 + 0.25, out: T0 + 2.47, fi: 0.4, fo: 0.45, text: 'Five small <i>gates</i>, not one.' },
   cap('split', 6.55, 8.75, 'Split the question into five small checks.'),
   ...QS.map((q, i) => lab('q' + i, T_Q, DUR, q, { fi: 0.4, fo: 0 })),
-  lab('example', 8.3, DUR, 'Example checks', { fo: 0 }),
+  lab('example', 8.3, T_LOCK, 'Example checks', { fo: 0.5 }),
   lab('inbox', 6.6, DUR, 'Your inbox', { fo: 0 }),
   lab('env2', 8.95, 12.95, 'Fake bill', { fi: 0.2, fo: 0.4 }),
   cap('clear', 8.85, 11.15, 'Each check is a clear yes or no.'),
@@ -136,8 +139,8 @@ function mushLamp(c, x, y, R, t, z, a) {
   c.save(); c.globalAlpha *= a;
   for (const [dx, dy, al] of [[-jx, -jy, 0.35], [jx * 0.6, jy * 0.6, 0.35]]) { c.strokeStyle = rgba(mix(LITRING, NO, w), al); c.lineWidth = 6 * z; c.beginPath(); c.arc(x + dx, y + dy, R * 1.08, 0, Math.PI * 2); c.stroke(); }
   c.fillStyle = mix(LIT, mix(C.paper, NO, 0.25), w); c.strokeStyle = mix(LITRING, NO, w); c.lineWidth = 5 * z; c.beginPath(); c.arc(x + jx * 0.3, y + jy * 0.3, R, 0, Math.PI * 2); c.fill(); c.stroke();
-  c.save(); c.globalAlpha *= 0.25 + 0.65 * (1 - w); tickMark(c, x + jx, y + jy, R * 0.42, YES, R * 0.16); c.restore();
-  c.save(); c.globalAlpha *= 0.25 + 0.65 * w; crossMark(c, x - jx, y - jy, R * 0.36, NO, R * 0.16); c.restore();
+  c.save(); c.globalAlpha *= 0.4 + 0.5 * (1 - w); tickMark(c, x + jx, y + jy, R * 0.42, YES, R * 0.16); c.restore();
+  c.save(); c.globalAlpha *= 0.4 + 0.5 * w; crossMark(c, x - jx, y - jy, R * 0.36, NO, R * 0.16); c.restore();
   c.restore(); }
 // a gate: a wall with one opening on the line (hatched above and below)
 function gateWall(c, X0, Y, z, g, shut) {
@@ -172,7 +175,7 @@ function drawFrame(c, t) {
 
   // the line, ending at your inbox
   c.strokeStyle = TRACK; c.lineWidth = 2.6; c.beginPath(); c.moveTo(X(-1600), Y(0)); c.lineTo(X(LINE_END), Y(0)); c.stroke();
-  { const ta = ramp(t, 6.3, 6.9, EASE.warm); if (ta > 0) { const x0 = X(TRAYX - 95), x1 = X(TRAYX + 95), y0 = Y(-62), y1 = Y(66);
+  { const ta = ramp(t, 6.3, 6.9, EASE.warm); if (ta > 0) { const x0 = X(TRAYX - TRAY_HW), x1 = X(TRAYX + TRAY_HW), y0 = Y(-56), y1 = Y(60);
       c.save(); c.globalAlpha = ta; c.fillStyle = mix(C.paper, SY, 0.6); c.fillRect(x0, Y(-10), x1 - x0, y1 - Y(-10));
       c.strokeStyle = INK; c.lineWidth = Math.max(6, 7 * z); c.beginPath(); c.moveTo(x0, y0); c.lineTo(x0, y1); c.lineTo(x1, y1); c.lineTo(x1, y0); c.stroke(); c.restore(); } }
 
@@ -205,29 +208,30 @@ function drawFrame(c, t) {
       // the chip: a slice of the big chip flying to its own gate, growing into a small chip with one question
       const m = G.m, sx = -GB.chipW / 2 + GB.chipW * G.i / 5, cw = lerp(GB.chipW / 5, g.chipW, m), cxw = lerp(sx, G.x - g.chipW / 2, m), cyw = lerp(GB.top, GS.top, m), chh = lerp(GB.h, GS.h, m);
       chipRect(c, X(cxw), Y(cyw), cw * z, chh * z, 1, z);
-      const qa = RA(t, 'q' + G.i); if (qa > 0) text(c, QS[G.i], X0, Y(GS.base), { f: 'sans', size: GS.chipF * z, col: INK, a: qa, align: 'center' });
+      const qa = RA(t, 'q' + G.i); if (qa > 0) QL[G.i].forEach((w, k) => text(c, w, X0, Y(GS.base - GS.lh * (1 - k)), { f: 'sans', size: GS.chipF * z, col: INK, a: qa, align: 'center' }));
     }
   }
   // actor labels (once): you, the checker, your inbox, and the honesty label under the row
-  { const ca = RA(t, 'checker'); if (ca > 0) S.chip(c, 'the checker', X(0), Y(GB.HH + 62), { f: 'sans', size: 32 * z, col: SOFT, a: ca, align: 'center', pad: 12 });
-    const ia = RA(t, 'inbox'); if (ia > 0) S.chip(c, 'Your inbox', X(TRAYX), Y(122), { f: 'sans', size: 30 * z, col: SOFT, a: ia, align: 'center', pad: 10 });
-    const ea = RA(t, 'example'); if (ea > 0) text(c, 'Example checks', X(0), Y(178), { f: 'mono', size: 22 * z, col: SOFT, a: ea * (1 - ramp(t, 10.2, 10.6) + ramp(t, 12.8, 13.4)), align: 'center' }); }
+  { const ca = RA(t, 'checker'); if (ca > 0) S.chip(c, 'the checker', X(GB.hw + 34), Y(118), { f: 'sans', size: 26 * z, col: SOFT, a: ca, pad: 10 });
+    const ia = RA(t, 'inbox'); if (ia > 0) S.chip(c, 'Your inbox', X(TRAYX), Y(112), { f: 'sans', size: 26 * z, col: SOFT, a: ia, align: 'center', pad: 10 });
+    const hide = Math.max(win(t, 10.1, 13.7, 0.35, 0.4), win(t, 17.5, 20.8, 0.35, 0.4));
+    const ea = RA(t, 'example') * (1 - hide) * (1 - ramp(t, T_LOCK - 0.5, T_LOCK, EASE.rest)); if (ea > 0) text(c, 'Example checks', X(0), Y(178), { f: 'mono', size: 24 * z, col: SOFT, a: ea, align: 'center' }); }
   // your inbox answers ✓ when the real bill lands
   if (t >= T_TICK) { const a = ramp(t, T_TICK, T_TICK + 0.12), pop = 1 + 0.2 * Math.exp(-(t - T_TICK) * 8), cx = X(TRAYX), cy = Y(-150), R = 46 * z * pop;
     c.save(); c.globalAlpha = a; c.fillStyle = rgba(OS, 0.35); c.beginPath(); c.arc(cx, cy, R * 1.45, 0, Math.PI * 2); c.fill();
     c.fillStyle = C.paper; c.strokeStyle = LITRING; c.lineWidth = 5 * z; c.beginPath(); c.arc(cx, cy, R, 0, Math.PI * 2); c.fill(); c.stroke(); tickMark(c, cx, cy, R * 0.42, YES, 8 * z); c.restore(); }
 
   // the real-test card (top centre, clean paper round it): two bars, then the honest third bar
-  const ka = RA(t, 'cardH'); if (ka > 0) { const x0 = 470, y0 = 34 + (1 - EASE.defer(ramp(t, T_CARD, T_CARD + 0.35))) * 8, wd = 980, ht = 316, bx = 870, bw = 420;
+  const ka = RA(t, 'cardH'); if (ka > 0) { const x0 = 380, y0 = 28 + (1 - EASE.defer(ramp(t, T_CARD, T_CARD + 0.35))) * 8, wd = 980, ht = 352, bx = 820, bw = 400;
     c.save(); c.globalAlpha = ka; c.fillStyle = C.paper; c.strokeStyle = CHIPB; c.lineWidth = 1.2; c.beginPath(); c.roundRect(x0, y0, wd, ht, 8); c.fill(); c.stroke();
     c.fillStyle = OS; c.fillRect(x0, y0, 6, ht); c.restore();
-    text(c, 'Real test · spotting scam emails', x0 + 40, y0 + 50, { f: 'mono', size: 22, col: SOFT, a: ka });
-    const rows = [['cardA', 'One big question', 62.6, OFFRING, BAR[0]], ['cardB', 'Five small questions', 95.1, OS, BAR[1]], ['cardC', 'A plain two-line rule', 91.8, mix(SLC, C.paper, 0.35), BAR[2]]];
-    rows.forEach(([id, label, v, col, [b0, b1]], k) => { const ra = RA(t, id); if (ra <= 0) return; const by = y0 + 112 + k * 64, p = ramp(t, b0 + 0.1, b1, EASE.warm);
-      text(c, label, x0 + 40, by, { f: 'sans', size: 32, col: INK, a: ra });
-      c.save(); c.globalAlpha = ra; c.fillStyle = mix(C.paper, C.slate, 0.1); c.fillRect(bx, by - 26, bw, 30); c.fillStyle = col; c.fillRect(bx, by - 26, bw * v / 100 * p, 30); c.restore();
-      text(c, v.toFixed(1) + '%', bx + bw * v / 100 * p + 14, by + 2, { f: 'disp', size: 42, col: INK, a: ra * ramp(t, b1 - 0.25, b1, EASE.warm) }); });
-    text(c, 'Source: our own lab tests', x0 + 40, y0 + ht - 26, { f: 'sans', size: 28, col: SOFT, a: RA(t, 'src') }); }
+    text(c, 'Real test · spotting scam emails', x0 + 40, y0 + 54, { f: 'mono', size: 26, col: SOFT, a: ka });
+    const rows = [['cardA', 'One big question', 62.6, OFFRING, BAR[0]], ['cardB', 'Five small questions', 95.1, OS, BAR[1]], ['cardC', 'A plain two-line rule', 91.8, mix(PRU, C.paper, 0.2), BAR[2]]];
+    rows.forEach(([id, label, v, col, [b0, b1]], k) => { const ra = RA(t, id); if (ra <= 0) return; const by = y0 + 124 + k * 68, p = ramp(t, b0 + 0.1, b1, EASE.warm);
+      text(c, label, x0 + 40, by, { f: 'sans', size: 36, col: INK, a: ra });
+      c.save(); c.globalAlpha = ra; c.fillStyle = mix(C.paper, C.slate, 0.1); c.fillRect(bx, by - 30, bw, 34); c.fillStyle = col; c.fillRect(bx, by - 30, bw * v / 100 * p, 34); c.restore();
+      text(c, v.toFixed(1) + '%', bx + bw * v / 100 * p + 14, by + 2, { f: 'disp', size: 48, col: INK, a: ra * ramp(t, b1 - 0.25, b1, EASE.warm) }); });
+    text(c, 'Source: our own lab tests', x0 + 40, y0 + ht - 28, { f: 'sans', size: 30, col: SOFT, a: RA(t, 'src') }); }
 
   // the little whale ("you")
   { const p = wworld(t), ang = heading(t), v = wvel(t), sp = Math.hypot(v.x, v.y), moving = clamp(sp / 400), f = facing(t);
@@ -240,7 +244,7 @@ function drawFrame(c, t) {
     KH.drawWhale(c, { x: 0, y: 0, ang, scale: WS * z, L: 1, tail: Math.sin(t * (moving > 0.3 ? 11 : 3)) * lerp(0.12, 0.34, moving), fin: Math.sin(t * 6 + 1.3) * lerp(0.15, 0.3, moving),
       blink, squash, focus: delight ? 0 : focus, eye, spark, sparkColor: OS, delight, blush: 0.6, mouth: delight ? 0.4 : 0.3 * win(t, 2.3, 3.7, 0.1, 0.3), sw: 3.2 });
     c.restore();
-    const ya = RA(t, 'you'); if (ya > 0) S.chip(c, 'you', X(p.x), Y(p.y - 96), { f: 'sans', size: 30 * z, col: SOFT, a: ya, align: 'center', pad: 10 }); }
+    const ya = RA(t, 'you'); if (ya > 0) S.chip(c, 'you', X(p.x), Y(p.y + 100), { f: 'sans', size: 26 * z, col: SOFT, a: ya, align: 'center', pad: 10 }); }
 
   // the title hinge: the scene goes still under a paper veil
   const veil = win(t, 4.0, T0 + 2.55, 0.35, 0.4); if (veil > 0) { c.fillStyle = rgba(C.paper, 0.9 * veil); c.fillRect(0, 0, W, H); }

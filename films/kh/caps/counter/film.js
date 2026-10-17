@@ -11,7 +11,7 @@
 (function (root) {
 'use strict';
 const KH = root.KH, S = KH.SERIES, { CETI: C, W: WD, clamp, lerp, win, EASE, ramp, mix, rgba, text, rng } = KH;
-const W = 1920, H = 1080, BPM = 128, B = 60 / BPM, DUR = 28.2;
+const W = 1920, H = 1080, BPM = 128, B = 60 / BPM, DUR = 28.52;
 const INK = C.navy, SOFT = C.slate, PINK = WD.seashellPink, DSG = WD.deepSlateGreen;
 const BG = mix(C.paper, PINK, 0.06);                           // what SERIES.ground paints with tint: pink
 const ACC = DSG;                                               // the title's accent word: Deep Slate Green (12.5:1 on paper)
@@ -20,15 +20,15 @@ const TXT = mix(C.paper, C.slate, 0.62), PEN = mix(C.rust, PINK, 0.1), OK = mix(
 const BEAM = C.mist, LIGHT = mix(PINK, C.paper, 0.35);
 
 // ---------- the letter: a page with a greeting and five lines of text ----------
-const PX0 = -540, PX1 = 480, PY0 = -265, PY1 = 255, LY = [-120, -45, 30, 105, 180], LX0 = -470, LX1 = [420, 400, 425, 390, 380];
+const PX0 = -540, PX1 = 480, PY0 = -265, PY1 = 255, LY = [-110, -35, 40, 115, 190], LX0 = -470, LX1 = [420, 400, 425, 390, 380];
 const WORDS = LY.map((y, i) => { const R = rng(70 + i), segs = []; let x = LX0; while (x < LX1[i] - 30) { const w = 40 + R() * 120; segs.push([x, Math.min(x + w, LX1[i])]); x += w + 22; } return segs; });
-const BEAM_Y = 142;                                            // how far down every reader looks (line 5 at y 180 is never lit)
+const BEAM_Y = 152;                                            // how far down every reader looks (line 5 at y 180 is never lit)
 
 // ---------- rough bits (flaws). in: pops up (−1 = there from the start); fix: you smooth it ----------
 const F = {
   a: { x: -300, y: LY[1], in: -1 }, b: { x: -20, y: LY[3], in: 0.95 }, c: { x: 230, y: LY[0], in: 2.05 }, d: { x: -200, y: LY[2], in: 3.1 },
-  e: { x: -380, y: LY[0], in: 5.2 }, f: { x: 120, y: LY[3], in: 5.3 }, g: { x: 330, y: LY[1], in: 5.4 },
-  h: { x: -60, y: LY[0] }, i: { x: 200, y: LY[2] },             // made by fixes in round 1 (the FELT problem, now caught)
+  e: { x: -380, y: LY[1], in: 5.2 }, f: { x: 120, y: LY[3], in: 5.3 }, g: { x: 330, y: LY[1], in: 5.4 },
+  h: { x: -60, y: LY[1] }, i: { x: 200, y: LY[2] },             // made by fixes in round 1 (the FELT problem, now caught)
   z: { x: 300, y: LY[4], in: -1, amp: 0.7 },                    // the blind spot: below every reader's light, never marked
 };
 const LABEL = { e: 'typo', d: 'unclear', f: 'too long', g: 'wrong name', h: 'typo', i: 'unclear' };
@@ -39,14 +39,14 @@ const fixAt = (id, f) => [F[id].x - f * REACH, F[id].y - 26];   // where you sit
 const K = [];
 function key(t, p) { K.push([t, p[0], p[1]]); }
 // FELT: smooth a, b pops; smooth b, c pops; smooth c, d pops behind you; hover, fin up
-key(0, [-470, -170]); key(0.55, fixAt('a', 1)); key(0.85, fixAt('a', 1)); key(1.6, fixAt('b', 1)); key(1.9, fixAt('b', 1));
+key(0, [-560, 60]); key(0.55, fixAt('a', 1)); key(0.85, fixAt('a', 1)); key(1.6, fixAt('b', 1)); key(1.9, fixAt('b', 1));
 key(2.6, fixAt('c', 1)); key(2.9, fixAt('c', 1)); key(3.6, [60, -140]); key(4.5, [60, -140]);
 // under the title veil: swim to your seat beside the counter
 key(6.0, R0); key(8.45, R0);
 // round 1 fixes (right to left), then back
 const FIX1 = [['g', 8.9, 9.08], ['f', 9.42, 9.6], ['d', 9.95, 10.13], ['e', 10.43, 10.62]];
 for (const [id, a, b] of FIX1) { key(a, fixAt(id, -1)); key(b, fixAt(id, -1)); }
-key(10.85, fixAt('e', -1)); key(11.85, R0); key(12.6, R0);
+key(10.85, fixAt('e', -1)); key(12.1, R0); key(12.6, R0);
 const FIX2 = [['i', 13.05, 13.22], ['h', 13.55, 13.72]];
 for (const [id, a, b] of FIX2) { key(a, fixAt(id, -1)); key(b, fixAt(id, -1)); }
 key(13.97, fixAt('h', -1)); key(14.95, R0);
@@ -68,12 +68,12 @@ const look = t => -0.32 * win(t, T_LOOK, T_LETGO + 0.5, 0.3, 0.45);   // tilt th
 function heading(t) { let a = 0, s = 0; for (let k = -8; k <= 8; k++) { const v = wvel(t + k * 0.022), w = 1 - Math.abs(k) / 9, sp = Math.hypot(v.x, v.y);
     a += (sp < 40 ? 0 : clamp(Math.atan2(v.y, Math.abs(v.x)), -0.8, 0.8) * clamp(sp / 300)) * w; s += w; } return a / s + look(t); }
 // facing: +1 right, −1 left; turns only while (nearly) still
-const TURNS = [[3.15, -1], [4.55, 1], [6.05, -1], [10.62, 1], [11.9, -1], [13.72, 1], [15.0, -1]];
+const TURNS = [[3.15, -1], [4.55, 1], [6.05, -1], [10.62, 1], [12.12, -1], [13.72, 1], [15.0, -1]];
 function facing(t) { let f = 1; for (const [a, to] of TURNS) f = lerp(f, to, ramp(t, a, a + 0.22, EASE.warm)); return f; }
 const wpos = t => wworld(t);
 
 // ---------- the readers: three identical helpers sweeping left → right above the letter ----------
-const SPEED = 891, GAP = 150, POD_Y = -365;
+const SPEED = 891, GAP = 180, POD_Y = -372;
 const LAPS = [6.75, 10.9, 14.5, 19.35];                         // round 1, round 2, round 3 (finds nothing), and the limit pass
 const lead = (L, t) => -700 + SPEED * (t - L);
 const lapEnd = L => L + (860 + 700) / SPEED;
@@ -91,22 +91,23 @@ const FLAW_AMP = (f, t) => { const a = f.amp ?? 1, inn = f.in == null || f.in < 
 function cam(t) {
   const pull = ramp(t, 4.1, 6.4, EASE.rest), push = ramp(t, 15.3, 16.2, EASE.warm), rel = ramp(t, 16.5, 17.2, EASE.warm);
   const lim = ramp(t, 19.1, 19.95, EASE.warm), lrel = ramp(t, 21.5, 22.4, EASE.warm), end = ramp(t, 24.4, DUR, EASE.rest);
-  let z = lerp(1.3, 1.0, pull), x = lerp(-60, 80, pull), y = lerp(-40, -30, pull);
-  z = lerp(z, 1.1, push); x = lerp(x, 230, push); z = lerp(z, 1.0, rel); x = lerp(x, 80, rel);
-  z = lerp(z, 1.55, lim); x = lerp(x, 280, lim); y = lerp(y, 95, lim);
-  z = lerp(z, 1.12, lrel); x = lerp(x, 300, lrel); y = lerp(y, -10, lrel);
-  return { x, y, z: z - 0.03 * end, ax: 960, ay: 540 }; }
+  let z = lerp(1.3, 1.15, pull), x = lerp(-60, 90, pull), y = lerp(-40, -30, pull);
+  z = lerp(z, 1.25, push); x = lerp(x, 230, push); z = lerp(z, 1.15, rel); x = lerp(x, 90, rel);
+  z = lerp(z, 1.3, lim); x = lerp(x, 260, lim); y = lerp(y, 0, lim);
+  z = lerp(z, 1.15, lrel); x = lerp(x, 200, lrel); y = lerp(y, -20, lrel);
+  const card = win(t, 16.35, 19.95, 0.5, 0.5);
+  return { x, y, z: z - 0.03 * end, ax: 960, ay: 540 + 90 * card }; }
 
 // ---------- text ----------
-const T0 = 4.1, T_LOCK = 26.0, T_COUNTER = 6.3;
+const T0 = 4.1, T_LOCK = 26.32, T_COUNTER = 6.3;
 const cap = (id, inn, out, text) => ({ id, kind: 'caption', in: inn, out, fi: 0.25, fo: 0.2, text });
 const lab = (id, inn, out, text, fi = 0.2, fo = 0.2) => ({ id, kind: 'label', in: inn, out, fi, fo, text });
 const READ = [
   lab('tab', 0, DUR, 'Your cover letter', 0.01, 0.01),
   lab('dear', 0, DUR, 'Dear Hiring Team,', 0.01, 0.01),
   lab('you', 0.2, 3.05, 'You', 0.2, 0.3),
-  cap('felt1', 0.3, 2.05, 'I keep tweaking my letter.'),
-  cap('felt2', 2.12, 4.2, 'I never know when to stop.'),
+  cap('felt1', 0.25, 2.1, 'I keep tweaking my letter.'),
+  cap('felt2', 2.17, 4.25, 'I never know when to stop.'),
   { id: 'eyebrow', kind: 'label', in: T0 + 0.25, out: T0 + 2.65, fi: 0.4, fo: 0.45, text: 'CETI · Capabilities · 07' },
   { id: 'title', kind: 'title', in: T0 + 0.25, out: T0 + 2.65, fi: 0.4, fo: 0.45, text: 'Stop when the <i>counter</i> hits zero.' },
   lab('counter', T_COUNTER, DUR, 'Changes found', 0.3, 0.01),
@@ -119,17 +120,17 @@ const READ = [
   lab('cardsub', 16.65, 19.75, 'Three readers, then a last re-check', 0.3, 0.3),
   lab('src', 16.65, 19.75, 'Source: our own records', 0.3, 0.3),
   cap('limit', 19.82, 21.95, 'Same kind of readers, same blind spot.'),
-  cap('notthis', 22.03, 24.05, 'Zero found does not mean perfect.'),
-  cap('belief', 24.1, T_LOCK - 0.02, 'Repeat until fresh eyes find nothing. Then stop.'),
+  cap('notthis', 22.0, 23.97, 'Zero found does not mean perfect.'),
+  cap('belief', 24.03, T_LOCK - 0.02, 'Repeat until fresh eyes find nothing. Then stop.'),
   { id: 'lockup', kind: 'label', in: T_LOCK, out: DUR, fi: 0.45, fo: 0, text: 'CETI · Capabilities · 07 · Counter' },
 ];
 // a plain-word label beside each mark, from the moment it is marked until it is fixed
-for (const m of MARKS) { const f = F[m.id]; READ.push(lab('mk-' + m.id, m.t, (f.fix ?? DUR) + 0.25, LABEL[m.id], 0.18, 0.2)); }
+for (const m of MARKS) { const f = F[m.id]; READ.push(lab('mk-' + m.id, m.t, (f.fix ?? DUR) + 0.35, LABEL[m.id], 0.18, 0.2)); }
 const RD = id => READ.find(r => r.id === id), RA = (t, id) => { const r = RD(id); return win(t, r.in, r.out, r.fi, r.fo); };
 
 // ---------- drawing helpers ----------
 function lineY(i, x, t) { let dy = 0; for (const id in F) { const f = F[id]; if (f.y !== LY[i]) continue; const a = FLAW_AMP(f, t); if (a < 0.005) continue;
-    const u = (x - f.x) / 40; dy += a * 30 * Math.exp(-u * u) * Math.sin((x - f.x) / 8.5); } return dy; }
+    const u = (x - f.x) / 40; dy += a * 36 * Math.exp(-u * u) * Math.sin((x - f.x) / 8.5); } return dy; }
 function ringPath(c, x, y, r, p) { c.beginPath(); const a0 = -2.2; for (let k = 0; k <= 48 * p; k++) { const a = a0 + (k / 48) * Math.PI * 2.15, rr = r * (1 + 0.06 * Math.sin(a * 3 + 1));
     const px = x + rr * Math.cos(a) * 1.18, py = y + rr * Math.sin(a) * 0.86; k ? c.lineTo(px, py) : c.moveTo(px, py); } }
 function tick(c, x, y, s, col, lw, a) { c.save(); c.globalAlpha *= a; c.strokeStyle = col; c.lineWidth = lw; c.lineCap = 'round'; c.lineJoin = 'round'; c.beginPath();
@@ -147,7 +148,7 @@ function drawFrame(c, t) {
   c.fillStyle = SHADOW; c.beginPath(); c.roundRect(X(PX0) + 10 * z, Y(PY0) + 12 * z, (PX1 - PX0) * z, (PY1 - PY0) * z, 10 * z); c.fill();
   c.fillStyle = PAGE; c.strokeStyle = EDGE; c.lineWidth = 2; c.beginPath(); c.roundRect(X(PX0), Y(PY0), (PX1 - PX0) * z, (PY1 - PY0) * z, 10 * z); c.fill(); c.stroke();
   S.chip(c, 'Your cover letter', X(PX0) + 4 * z, Y(PY0) - 22 * z, { f: 'mono', size: Math.round(21 * z), col: INK, pad: 12 * z, bg: PAGE, border: EDGE, track: 0.12 });
-  text(c, 'Dear Hiring Team,', X(LX0), Y(-188), { f: 'sans', size: Math.round(34 * z), col: INK });
+  text(c, 'Dear Hiring Team,', X(LX0), Y(-198), { f: 'sans', size: Math.round(34 * z), col: INK });
 
   // the readers' light (under the text so the lines stay crisp): one soft beam per reader, down to BEAM_Y only
   const lapA = L => win(t, L - 0.1, lapEnd(L), 0.25, 0.35);
@@ -171,31 +172,31 @@ function drawFrame(c, t) {
     const gone = ramp(t, fx, fx + 0.3, EASE.warm), pop = 1 + 0.12 * Math.exp(-(t - m.t) * 9);
     if (gone < 1) { c.save(); c.globalAlpha = 1 - gone; c.strokeStyle = PEN; c.lineWidth = Math.max(5, 6 * z); ringPath(c, X(f.x), Y(f.y), 52 * z * pop, p); c.stroke(); c.restore(); }
     const tk = win(t, fx + 0.05, fx + 0.95, 0.12, 0.4); if (tk > 0) tick(c, X(f.x), Y(f.y - 4), 20 * z, OK, Math.max(5, 6 * z), tk);
-    const la = RA(t, 'mk-' + m.id); if (la > 0) S.chip(c, LABEL[m.id], X(f.x + 58), Y(f.y - 52), { f: 'sans', size: Math.round(27 * z), col: INK, a: la, bg: PAGE, border: PEN, pad: 10 * z }); }
+    const la = RA(t, 'mk-' + m.id); if (la > 0) { const rt = f.x > 150; S.chip(c, LABEL[m.id], X(f.x + (rt ? -62 : 58)), Y(f.y - 52), { align: rt ? 'right' : 'left', f: 'sans', size: Math.round(30 * z), col: INK, a: la, bg: PAGE, border: PEN, pad: 10 * z }); } }
 
   // the readers: three identical helpers
   for (const L of LAPS) { const a = lapA(L); if (a <= 0) continue; const ld = lead(L, t);
     for (let k = 0; k < 3; k++) { const px = ld - GAP * k; if (px < PX0 - 200 || px > PX1 + 260) continue; const fade = 1 - ramp(px, PX1 + 60, PX1 + 240, EASE.rest);
       const bob = Math.sin(t * 7 + k * 1.9) * 5;
-      c.save(); c.globalAlpha = a * fade; KH.drawPod(c, X(px), Y(POD_Y + bob), 0.08, 92 * z, POD, {}); c.restore(); } }
-  { const a = RA(t, 'readers'); if (a > 0) { const px = lead(LAPS[0], t) - GAP; S.chip(c, 'Three fresh readers', X(clamp(px, -260, 220)), Y(POD_Y - 70), { f: 'mono', size: Math.round(21 * z), col: INK, a, align: 'center', bg: C.paper, border: EDGE, track: 0.12 }); } }
+      c.save(); c.globalAlpha = a * fade; KH.drawPod(c, X(px), Y(POD_Y + bob), 0.08, 130 * z, POD, {}); c.restore(); } }
+  { const a = RA(t, 'readers'); if (a > 0) { const px = lead(LAPS[0], t) - GAP; S.chip(c, 'Three fresh readers', X(clamp(px, -260, 220)), Y(POD_Y - 66), { f: 'mono', size: Math.round(26 * z), col: INK, a, align: 'center', bg: C.paper, border: EDGE, track: 0.12 }); } }
 
   // the counter: CHANGES FOUND this round, big; earlier rounds in a row beneath it
   { const a = ramp(t, T_COUNTER, T_COUNTER + 0.45, EASE.warm); if (a > 0) {
-      const cx = 730, cy = -120, wd = 300, ht = 236, v = counterVal(t), pop = 1 + 0.22 * Math.exp(-(t - v.last) * 9), zero = ramp(t, ZERO, ZERO + 0.35, EASE.glaser);
+      const cx = 700, cy = -120, wd = 280, ht = 236, v = counterVal(t), pop = 1 + 0.22 * Math.exp(-(t - v.last) * 9), zero = ramp(t, ZERO, ZERO + 0.35, EASE.glaser);
       const see = win(t, T_SEE, DUR + 1, 0.15, 0) ; const glow = Math.max(win(t, ZERO, ZERO + 1.6, 0.1, 0.6), win(t, T_SEE, T_SEE + 1.4, 0.1, 0.6));
       c.save(); c.globalAlpha = a;
       if (glow > 0.02) { c.strokeStyle = rgba(OK, 0.32 * glow); c.lineWidth = 16 * z; c.beginPath(); c.roundRect(X(cx - wd / 2), Y(cy - ht / 2), wd * z, ht * z, 14 * z); c.stroke(); }
       c.fillStyle = C.paper; c.strokeStyle = mix(EDGE, DSG, zero); c.lineWidth = lerp(2, 5, zero) * z; c.beginPath(); c.roundRect(X(cx - wd / 2), Y(cy - ht / 2), wd * z, ht * z, 14 * z); c.fill(); c.stroke();
       c.restore();
-      text(c, 'Changes found', X(cx), Y(cy - 78), { f: 'mono', size: Math.round(20 * z), col: SOFT, a, align: 'center', track: 0.14 });
+      text(c, 'Changes found', X(cx), Y(cy - 78), { f: 'mono', size: Math.round(23 * z), col: SOFT, a, align: 'center', track: 0.1 });
       const nc = v.r === 2 ? mix(INK, DSG, zero) : INK;
-      c.save(); c.translate(X(cx - (zero > 0 && v.r === 2 ? 28 : 0) * zero), Y(cy + 30)); c.scale(pop, pop); text(c, String(v.n), 0, 0, { f: 'disp', size: Math.round(128 * z), col: nc, a, align: 'center' }); c.restore();
+      c.save(); c.translate(X(cx - (zero > 0 && v.r === 2 ? 28 : 0) * zero), Y(cy + 30)); c.scale(pop, pop); text(c, String(v.n), 0, 0, { f: 'sans', size: Math.round(118 * z), col: nc, a, align: 'center' }); c.restore();
       if (v.r === 2) tick(c, X(cx + 62), Y(cy - 2), 24 * z * (0.6 + 0.4 * zero), DSG, 8 * z, zero);
       // earlier rounds
       const hist = ROUND.slice(0, Math.max(0, v.r)).map(R => R.length);
       hist.forEach((n, j) => { const ha = ramp(t, LAPS[j + 1] - 0.2, LAPS[j + 1] + 0.25, EASE.warm); const hx = cx - 40 + j * 80 - (hist.length - 1) * 0;
-        text(c, String(n), X(hx), Y(cy + 96), { f: 'disp', size: Math.round(44 * z), col: SOFT, a: a * ha, align: 'center' });
+        text(c, String(n), X(hx), Y(cy + 96), { f: 'sans', size: Math.round(42 * z), col: SOFT, a: a * ha, align: 'center' });
         if (j < hist.length) { c.save(); c.globalAlpha = a * ha; c.strokeStyle = SOFT; c.lineWidth = 3 * z; const ax0 = X(hx + 22), ay0 = Y(cy + 82); c.beginPath(); c.moveTo(ax0, ay0); c.lineTo(ax0 + 18 * z, ay0); c.moveTo(ax0 + 11 * z, ay0 - 7 * z); c.lineTo(ax0 + 18 * z, ay0); c.lineTo(ax0 + 11 * z, ay0 + 7 * z); c.stroke(); c.restore(); } });
       if (see > 0 && 0) {} } }
 
@@ -211,9 +212,9 @@ function drawFrame(c, t) {
     const finUp = Math.max(win(t, 3.3, 4.5, 0.25, 0.3), win(t, T_REACH[0] + 0.2, T_LETGO + 0.15, 0.3, 0.3));
     c.save(); c.translate(X(p.x), Y(p.y)); c.scale(f, 1);
     KH.drawWhale(c, { x: 0, y: 0, ang, scale: WS * z, L: 1, tail: Math.sin(t * (moving > 0.3 ? 11 : 3)) * lerp(0.12, 0.34, moving), fin: lerp(Math.sin(t * 6 + 1.3) * lerp(0.15, 0.3, moving), -1.05, finUp),
-      blink, squash, focus: delight ? 0 : focus, eye, spark, sparkColor: OK, delight, blush: 0.6, mouth: delight ? 0.4 : 0.3 * win(t, 3.15, 3.9, 0.06, 0.3), sw: 3.2 });
+      blink, squash, focus: delight ? 0 : focus, eye, spark, sparkColor: OK, delight, blush: 0.6, spray: win(t, 24.55, 25.9, 0.35, 0.6), sprayColor: mix(C.mist, C.navy, 0.2), mouth: delight ? 0.4 : 0.3 * win(t, 3.15, 3.9, 0.06, 0.3), sw: 3.2 });
     c.restore();
-    const ya = RA(t, 'you'); if (ya > 0) { S.chip(c, 'You', X(p.x), Y(p.y - 92), { f: 'mono', size: Math.round(22 * z), col: INK, a: ya, align: 'center', bg: C.paper, border: EDGE, track: 0.16 }); } }
+    const ya = RA(t, 'you'); if (ya > 0) { S.chip(c, 'You', X(p.x), Y(p.y - 92), { f: 'mono', size: Math.round(28 * z), col: INK, a: ya, align: 'center', bg: C.paper, border: EDGE, track: 0.16 }); } }
 
   // the title hinge: the scene goes still under a paper veil
   const veil = win(t, 4.15, T0 + 2.72, 0.35, 0.4); if (veil > 0) { c.fillStyle = rgba(C.paper, 0.9 * veil); c.fillRect(0, 0, W, H); }
@@ -225,7 +226,7 @@ function drawFrame(c, t) {
     text(c, 'Real case · changes found', x0, y0 + 46 + dy, { f: 'mono', size: 24, col: SOFT, a: ka, track: 0.12 });
     const NUM = ['14', '14', '10', '0']; let nx = x0;
     NUM.forEach((n, j) => { const ta = ka * ramp(t, 16.85 + j * 0.38, 17.1 + j * 0.38, EASE.glaser), col = j === 3 ? DSG : INK;
-      const w = text(c, n, nx, y0 + 140 + dy, { f: 'disp', size: 84, col, a: ta });
+      const w = text(c, n, nx, y0 + 140 + dy, { f: 'sans', size: 80, col, a: ta });
       if (j < 3) { c.save(); c.globalAlpha = ta; c.strokeStyle = SOFT; c.lineWidth = 4; const ax = nx + w + 26, ay = y0 + 112 + dy; c.beginPath(); c.moveTo(ax, ay); c.lineTo(ax + 44, ay); c.moveTo(ax + 30, ay - 12); c.lineTo(ax + 44, ay); c.lineTo(ax + 30, ay + 12); c.stroke(); c.restore(); }
       nx += w + 100; });
     text(c, 'Three readers, then a last re-check', x0, y0 + 196 + dy, { f: 'sans', size: 30, col: INK, a: ka });
