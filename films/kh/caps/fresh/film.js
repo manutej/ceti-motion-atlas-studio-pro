@@ -163,14 +163,14 @@ function drawFrame(c, t) {
   { const g = win(t, T_SET4, T_SET4 + 1.4, 0.05, 0.8); if (g > 0.01) { c.save(); c.globalAlpha = g * 0.5; c.strokeStyle = OK; c.lineWidth = 10 * z; c.beginPath(); c.roundRect(X(SLOT(3) - PW / 2 - 8), Y(-PH / 2 - 8), (PW + 16) * z, (PH + 16) * z, 12 * z); c.stroke(); c.restore(); } }
 
   // the hole, pointed at: by the customer (felt) and by helper A (move)
-  const holeA = Math.max(win(t, 2.65, 4.6, 0.12, 0.3), win(t, 9.55, 15.9, 0.12, 0.3));
+  const holeA = Math.max(win(t, 2.65, 4.6, 0.12, 0.3), win(t, 9.55, 16.75, 0.12, 0.3));
   outline(c, X(SLOT(3) - PW / 2 - 10), Y(-PH / 2 - 10), X(SLOT(3) + PW / 2 + 10), Y(PH / 2 + 10), z, holeA);
   // the swapped pages, pulsing faintly once the look-alike helpers face away; outlined when the different helper points
-  { const pulse = win(t, 21.6, 25.3, 0.4, 0.3) * (0.35 + 0.25 * Math.sin((t - 21.6) * 5)), pt = win(t, 26.0, 27.05, 0.1, 0.15);
+  { const pulse = win(t, 22.6, 24.7, 0.4, 0.3) * (0.35 + 0.25 * Math.sin((t - 22.6) * 5)), pt = win(t, 25.35, 26.4, 0.1, 0.15);
     const a = Math.max(pulse, pt); outline(c, X(SLOT(1) - PW / 2 - 10), Y(-PH / 2 - 10), X(SLOT(2) + PW / 2 + 10), Y(PH / 2 + 10), z, a); }
 
   // recheck: each held poke leaves a green tick under its page
-  for (const k of POKES) if (k.holds && !k.final) { const q = podPos(k.p, k.t), a = win(t, k.t + 0.08, 21.0, 0.15, 0.4); tickAt(c, X(q.x), Y(PH / 2 + 46), 24 * z, a); }
+  for (const k of POKES) if (k.holds && !k.final) { const q = podPos(k.p, k.t), a = win(t, k.t + 0.08, 22.1, 0.15, 0.4); tickAt(c, X(q.x), Y(PH / 2 + 46), 24 * z, a); }
 
   // helpers
   for (const p of ['cust', 'A', 'B', 'C', 'fix', 'fix2', 'F']) pod(c, X, Y, z, p, t);
@@ -180,23 +180,23 @@ function drawFrame(c, t) {
     const am = RA(t, 'missing'); if (am > 0.01) { const cx = X(qa.x), cy = Y(HY - 190); leader(c, cx, cy + 30, X(SLOT(3)), Y(-PH / 2 - 14), am, z); sayChip(c, 'page 4 is missing', cx, cy + 12, am); }
     const av = RA(t, 'vague'); if (av > 0.01) { const cx = X(qb.x) - 30, cy = Y(HY - 190) + 12; sayChip(c, 'feels off', cx, cy, av);
       const s = ramp(t, 13.75, 14.05, EASE.glaser); if (s > 0) { c.save(); c.globalAlpha = av; c.strokeStyle = INK; c.lineWidth = 6; c.beginPath(); c.moveTo(cx - 100, cy - 10); c.lineTo(cx - 100 + 200 * s, cy - 10 - 20 * s); c.stroke(); c.restore(); } }
-    const ao = RA(t, 'order'); if (ao > 0.01) { const cx = X(qf.x) - 40 * z, cy = Y(HY - 190) + 12; sayChip(c, 'pages out of order', cx, cy, ao); leader(c, cx + 60, cy + 22, X(SLOT(1) + 115), Y(-PH / 2 - 14), ao * (1 - ramp(t, 26.95, 27.05)), z); }
+    const ao = RA(t, 'order'); if (ao > 0.01) { const cx = X(qf.x) - 40 * z, cy = Y(HY - 190) + 12; sayChip(c, 'pages out of order', cx, cy, ao); leader(c, cx + 60, cy + 22, X(SLOT(1) + 115), Y(-PH / 2 - 14), ao * (1 - ramp(t, 26.25, 26.35)), z); }
     // the customer's ✕ (felt)
     const qc = podPos('cust', t); mark(c, X(qc.x), Y(qc.y - 150), 44 * z, false, win(t, 2.65, 4.7, 0.08, 0.3), 1 + 0.18 * Math.exp(-Math.max(0, t - 2.65) * 8));
     // A's ✕ (the complaint with evidence) and B's ✕ (no pointer)
     // the look-alikes all agree: ✓ ✓ ✓ while the swap sits there
-    for (const p of ['A', 'B', 'C']) { const q = podPos(p, t); mark(c, X(q.x) + 20 * z, Y(q.y - 150), 40 * z, true, win(t, 23.45, 25.25, 0.1, 0.3), 1 + 0.15 * Math.exp(-Math.max(0, t - 23.45) * 8)); }
+    for (const k of POKES) if (k.agree) { const q = podPos(k.p, t), e = k.t + 0.08; mark(c, X(q.x) + 20 * z, Y(q.y - 150), 40 * z, true, win(t, e, 24.55, 0.1, 0.3), 1 + 0.15 * Math.exp(-Math.max(0, t - e) * 8)); }
     // the different helper's final ✓ (holds to the end)
-    mark(c, X(qf.x), Y(qf.y - 160), 46 * z, true, win(t, 27.68, DUR + 1, 0.08, 0.1), 1 + 0.2 * Math.exp(-Math.max(0, t - 27.68) * 8)); }
+    mark(c, X(qf.x), Y(qf.y - 160), 46 * z, true, win(t, 27.03, DUR + 1, 0.08, 0.1), 1 + 0.2 * Math.exp(-Math.max(0, t - 27.03) * 8)); }
 
   // the little whale (you)
   { const p = wworld(t), ang = heading(t), v = wvel(t), sp = Math.hypot(v.x, v.y), moving = clamp(sp / 400);
     let blink = 0; for (const k of [3.4, 8.2, 12.6, 19.3, 22.4, 29.0]) blink = Math.max(blink, 1 - Math.abs(t - k) / 0.07);
     let squash = 0; for (const k of [1.95]) { const d = t - k; if (d >= 0 && d < 0.32) squash = Math.max(squash, 0.1 * (1 - EASE.glaser(d / 0.32))); }
-    const focus = Math.max(win(t, 0.3, 1.9, 0.15, 0.15), win(t, 9.3, 14.2, 0.3, 0.3) * 0.5, win(t, 21.6, 25.2, 0.3, 0.3) * 0.6);
-    const eye = 1 + 0.38 * win(t, 2.65, 4.0, 0.06, 0.4) + 0.25 * win(t, 9.5, 10.3, 0.06, 0.3) + 0.25 * win(t, 25.95, 26.6, 0.06, 0.3);
-    const spark = Math.max(win(t, T_SET4, T_SET4 + 0.9, 0.12, 0.4), win(t, 27.68, 29.0, 0.12, 0.5));
-    const delight = (t > T_SET4 && t < T_SET4 + 0.9) || t > 27.7 ? 1 : 0;
+    const focus = Math.max(win(t, 0.3, 1.9, 0.15, 0.15), win(t, 9.3, 14.2, 0.3, 0.3) * 0.5, win(t, 22.6, 24.5, 0.3, 0.3) * 0.6);
+    const eye = 1 + 0.38 * win(t, 2.65, 4.0, 0.06, 0.4) + 0.25 * win(t, 9.5, 10.3, 0.06, 0.3) + 0.25 * win(t, 25.35, 26.0, 0.06, 0.3);
+    const spark = Math.max(win(t, T_SET4, T_SET4 + 0.9, 0.12, 0.4), win(t, 27.03, 28.6, 0.12, 0.5));
+    const delight = (t > T_SET4 && t < T_SET4 + 0.9) || t > 27.05 ? 1 : 0;
     c.save(); c.translate(X(p.x), Y(p.y));
     KH.drawWhale(c, { x: 0, y: 0, ang, scale: WS * z, L: 1, tail: Math.sin(t * (moving > 0.3 ? 11 : 3)) * lerp(0.12, 0.34, moving), fin: Math.sin(t * 6 + 1.3) * lerp(0.15, 0.3, moving),
       blink, squash, focus: delight ? 0 : focus, eye, spark, sparkColor: OK, delight, blush: 0.6, mouth: delight ? 0.4 : 0.35 * win(t, 2.7, 3.8, 0.06, 0.3), sw: 3.2 });
@@ -209,35 +209,35 @@ function drawFrame(c, t) {
     sayChip(c, 'your report', X(SLOT(5)), Y(-PH / 2 - 40), RA(t, 'report'), { border: EDGE, size: 36 });
     const q = podPos('cust', t); sayChip(c, 'the customer', X(q.x) - 30, Y(q.y + 140), RA(t, 'cust'), { border: EDGE, size: 36 });
     { const f = podPos('fix', t); sayChip(c, 'someone else', X(f.x) + 210 * z, Y(f.y) + 10, RA(t, 'else'), { border: EDGE, size: 36 }); }
-    sayChip(c, 'fresh eyes', X(115), Y(HY - 160), RA(t, 'fresh'), { border: EDGE, size: 36 }); }
+    sayChip(c, 'three different AI checkers', X(300), Y(HY - 160), RA(t, 'fresh'), { border: EDGE, size: 36 }); }
 
   // the title hinge: the scene goes still under a paper veil
   const veil = win(t, 4.45, T0 + 2.7, 0.35, 0.4); if (veil > 0) { c.fillStyle = rgba(C.paper, 0.9 * veil); c.fillRect(0, 0, W, H); }
 
   // the real-example card: it stands alone in the caption's place (bottom centre, clean paper)
-  const ka = RA(t, 'card'); if (ka > 0) { const dy = (1 - EASE.defer(ramp(t, 17.6, 17.95))) * 8, big = '116 checks passed, 0 failed', l1 = 'Real example · our final re-check', l3 = 'Source: our own review notes';
-    c.save(); c.font = `60px ${KH.FONTS.disp}`; const wd = c.measureText(big).width + 140; c.restore();
+  const ka = RA(t, 'card'); if (ka > 0) { const dy = (1 - EASE.defer(ramp(t, 18.4, 18.75))) * 8, big = RD('card').text, l1 = RD('cardl1').text, l3 = RD('cardl3').text;
+    c.save(); c.font = `64px ${KH.FONTS.disp}`; const wd = c.measureText(big).width + 220; c.restore();
     c.save(); c.globalAlpha = ka; c.fillStyle = C.paper; c.strokeStyle = EDGE; c.lineWidth = 1.5;
-    c.beginPath(); c.roundRect(960 - wd / 2, 848 + dy, wd, 196, 10); c.fill(); c.stroke(); c.fillStyle = OK; c.fillRect(960 - wd / 2, 848 + dy, 7, 196); c.restore();
-    text(c, l1, 960, 894 + dy, { f: 'sans', size: 30, col: SOFT, a: ka, align: 'center' });
-    text(c, big, 960, 966 + dy, { f: 'disp', size: 60, col: INK, a: ka, align: 'center' });
-    text(c, l3, 960, 1016 + dy, { f: 'sans', size: 28, col: SOFT, a: ka, align: 'center' }); }
+    c.beginPath(); c.roundRect(960 - wd / 2, 840 + dy, wd, 210, 10); c.fill(); c.stroke(); c.fillStyle = OK; c.fillRect(960 - wd / 2, 840 + dy, 7, 210); c.restore();
+    text(c, l1, 960, 886 + dy, { f: 'sans', size: 30, col: SOFT, a: ka, align: 'center' });
+    text(c, big, 960, 962 + dy, { f: 'disp', size: 64, col: INK, a: ka, align: 'center' });
+    text(c, l3, 960, 1018 + dy, { f: 'sans', size: 32, col: INK, a: ka, align: 'center' }); }
 
   for (const r of READ) if (r.kind === 'caption') S.caption(c, t, r, { size: 40 });
-  S.open(c, t - T0, { no: '08', title: 'Fresh <i>eyes</i> try to break it.', accent: ACC }, { out: 2.62 });
+  S.open(c, t - T0, { no: '08', title: 'Fresh <i>eyes</i> find what you missed.', accent: ACC }, { out: 2.62 });
   S.lockup(c, t, T_LOCK, { no: '08', short: 'Fresh' });
   c.restore();
 }
 
 function cues() {
   return { bpm: BPM, dur: DUR, gaze: [0.35, 1.2], ghost: [1.0, 1.75], selfTick: 1.95, custIn: 2.05, custX: 2.65, title: T0 + 0.25, veil: 4.45, unveil: T0 + 2.3,
-    podsIn: [7.6, 7.75, 7.9], pokes: POKES.map(k => ({ t: k.t, at: k.at, holds: !!k.holds, says: k.says || null, final: !!k.final })),
-    claim: [9.6, 10.05, 25.98], push: 11.2, strike: 13.75, release: 15.0, fixIn: 15.45, set: T_SET4, card: RD('card').in,
-    alike: T_ALIKE[0], swapPulse: 21.6, agree: 23.45, notThis: RD('notthis').in, payoff: 25.2, swap: SWAP, belief: RD('belief').in, final: 27.6, lockup: T_LOCK,
-    tags: { consequence: [2.65], focus: [2.65, 9.45, 13.75, T_SET4, 25.95, 27.6], mech: [9.45, 9.9, 13.75, T_SET4, 17.65], limit: [21.0, 23.45], callback: [25.95] } }; }
+    podsIn: [7.6, 7.75, 7.9], pokes: POKES.map(k => ({ t: k.t, at: k.at, holds: !!k.holds, agree: !!k.agree, says: k.says || null, final: !!k.final })),
+    claim: [9.6, 10.05, 25.35], push: 11.2, strike: 13.75, release: 15.9, fixIn: 16.3, set: T_SET4, card: RD('card').in,
+    alike: T_ALIKE[0], swap: [SWAP1[0], SWAP2[0]], agree: POKES.filter(k => k.agree).map(k => k.t), payoff: 24.5, belief: RD('belief').in, final: 26.95, lockup: T_LOCK,
+    tags: { consequence: [2.65], focus: [2.65, 9.45, 13.75, T_SET4, 25.35, 26.95], mech: [9.45, 9.9, 13.75, T_SET4, 18.55], limit: [22.1, 22.9], callback: [25.35] } }; }
 const CONTRAST = [['captions / labels / complaint chips (ink on paper chip)', INK, C.paper], ['page numbers (ink on paper page)', INK, C.paper],
   ['ghost page number (slate on paper)', SOFT, C.paper], ['title (ink on chart ground)', INK, BG], ['title accent on ground', ACC, BG],
-  ['title accent on veiled ground (paper)', ACC, C.paper], ['eyebrow / lockup (slate on ground)', SOFT, BG], ['card label + source (slate on paper)', SOFT, C.paper]];
+  ['title accent on veiled ground (paper)', ACC, C.paper], ['eyebrow / lockup (slate on ground)', SOFT, BG], ['card label + source (slate on paper)', SOFT, C.paper], ['card main + explainer (ink on paper)', INK, C.paper]];
 root.EPISODE = { drawFrame, cues, READ, CONTRAST, INTENT, TERMS, DUR, W, H, fps: 60, wpos, heading, cam,
   shutter: t => (t > 6.0 && t < 7.4) ? [3, 0.6] : [2, 0.5] };
 })(typeof window !== 'undefined' ? window : globalThis);
