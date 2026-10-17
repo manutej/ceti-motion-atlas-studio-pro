@@ -236,7 +236,7 @@ const LAWR = LAWS.flatMap((w, i) => [{ id: 'law' + i, in: TAP[i] + 0.1, out: SLI
   { id: 'lawB' + i, in: i === 2 ? POD2_OUT + 0.6 : FOLLOW, out: DUR, fi: 0.5, fo: 0, text: w, kind: 'label', size: 24 }]);
 const PANR = [{ id: 'pan1', in: ENTRIES[0].t, out: GATE_SHUT, fi: 0.5, fo: 0.15, text: 'Checked on every edit', kind: 'label', size: 24 },
   { id: 'over', in: GATE_SHUT, out: GATE_OPEN + 0.9, fi: 0.12, fo: 0.3, text: 'Over: fixed before saving.', kind: 'label', size: 24 },
-  { id: 'pan2', in: GATE_OPEN + 0.9, out: SLIDE + 0.2, fi: 0.3, fo: 0.4, text: 'Checked on every edit', kind: 'label', size: 24 }];
+  { id: 'pan2', in: GATE_OPEN + 0.9, out: SLIDE + 0.35, fi: 0.3, fo: 0.3, text: 'Checked on every edit', kind: 'label', size: 24 }];
 const STRIP = { id: 'strip', in: STRIP_T, out: SLIDE - 0.1, fi: 0.35, fo: 0.35, text: 'Pin. Check. Fix.', kind: 'label', size: 24 };
 const CELLS = [['548', 'entities'], ['2,933', 'links'], ['0', 'laws broken'], ['0.988', 'sourced']];
 const CARDR = { id: 'card', in: CARD_T, out: bar(22) - 0.3, fi: 0.4, fo: 0.4, kind: 'card', size: 56, src: SRC,
