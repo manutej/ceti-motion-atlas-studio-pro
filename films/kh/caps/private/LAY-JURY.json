@@ -116,6 +116,64 @@
     }
    },
    "why": "Problem (one client's note in another's email) and stamp fix read by all. Fails: AI assistant read as maybe-a-person; the fix's object word 'cards' unclear; both limit lines confused all three; the leak itself never shown landing. Lockup shows '00' on one sheet."
+  },
+  {
+   "version": "v5",
+   "sheet": "kh/caps/private/sheet-v5.png",
+   "verdict": "FAIL (mean sure 6.67 < 7)",
+   "mean_sure": 6.67,
+   "personas": {
+    "teacher": {
+     "q1": 1,
+     "q2": 1,
+     "sure": [
+      8,
+      6
+     ],
+     "unclear": [
+      "Your AI app: what is it on my phone",
+      "True story card: warning, boast or tip?",
+      "No stamp? Then the note can still go. (doesn't fully protect)",
+      "lockup",
+      "title card fast"
+     ]
+    },
+    "nurse": {
+     "q1": 1,
+     "q2": 1,
+     "sure": [
+      7,
+      5
+     ],
+     "unclear": [
+      "what the stamp is on screen: button, label, typed?",
+      "CLIENT FOLDER real or picture",
+      "Stamped notes are tied... too fast",
+      "True story: whose app",
+      "home?",
+      "No stamp? ... confusing",
+      "lockup"
+     ]
+    },
+    "shop owner": {
+     "q1": 1,
+     "q2": 1,
+     "sure": [
+      8,
+      6
+     ],
+     "unclear": [
+      "Your AI app: thing I type into?",
+      "tied to folder too fast",
+      "No stamp? contradicts No one has to remember",
+      "True story: real case or tip?",
+      "title on faded picture",
+      "magnifier circle",
+      "lockup"
+     ]
+    }
+   },
+   "why": "Problem and stamp fix read by all; AI now read as software (v4 fail fixed). Fails on confidence: all three hit the same contradiction: 'No one has to remember.' vs 'No stamp? Then the note can still go.' The stamp is abstract (what is it on screen?), 'tied to folder' too fast, True-story card unclear for the third run."
   }
  ]
 }
