@@ -260,12 +260,14 @@ function drawThread(c, g, X, Y, z, t, o = {}) {
   c.save(); c.globalAlpha = o.a ?? 1; c.strokeStyle = o.col || rgba(INK, 0.72); c.lineWidth = (o.w || 2.6) * z; c.lineCap = 'round'; c.lineJoin = 'round';
   c.beginPath(); let last = null, tan = null;
   for (let j = 0; j <= n; j++) { const u = um * j / n, p = qpt(g, u), d = qtan(g, u), L = Math.hypot(d.x, d.y) || 1, nx = -d.y / L, ny = d.x / L;
-    const wob = fl * 7 * smoothstep(0.45, 1, u / Math.max(um, 1e-3)) * Math.sin(u * 15 - t * 8.5);
+    const wob = fl * 9 * smoothstep(0.45, 1, u / Math.max(um, 1e-3)) * Math.sin(u * 15 - t * 8.5);
     const x = X(p.x + nx * wob), y = Y(p.y + ny * wob); j ? c.lineTo(x, y) : c.moveTo(x, y); last = { x, y }; tan = { x: d.x / L, y: d.y / L }; }
   c.stroke();
   if (k > 0.05) { // a loose, curled end
     const r = 7 * z * k, cx = last.x - tan.y * r, cy = last.y + tan.x * r, a0 = Math.atan2(last.y - cy, last.x - cx);
-    c.beginPath(); c.arc(cx, cy, r, a0, a0 + 4.2 * k); c.stroke(); }
+    c.beginPath(); c.arc(cx, cy, r, a0, a0 + 4.2 * k); c.stroke();
+    const ta = Math.atan2(tan.y, tan.x), fr = 10 * z * k; c.lineWidth = 1.8 * z; c.beginPath();
+    for (const d of [-0.75, 0.75]) { c.moveTo(last.x, last.y); c.lineTo(last.x + Math.cos(ta + d) * fr, last.y + Math.sin(ta + d) * fr); } c.stroke(); }
   if ((o.draw ?? 1) > 0.98 && k < 0.5) { const s = 10 * z, a = 1 - 2 * k, ang = Math.atan2(tan.y, tan.x);
     c.globalAlpha = (o.a ?? 1) * a; c.beginPath(); c.moveTo(last.x - Math.cos(ang - 0.5) * s, last.y - Math.sin(ang - 0.5) * s); c.lineTo(last.x, last.y);
     c.lineTo(last.x - Math.cos(ang + 0.5) * s, last.y - Math.sin(ang + 0.5) * s); c.stroke(); }
@@ -393,7 +395,7 @@ function drawFrame(c, t) {
           text(c, '47 of 60', gx + 318, gy + 100, { f: 'monoB', size: 50, col: INK, a: aa, track: 0.02 }); text(c, 'faithful', gx + 318, gy + 146, { f: 'sans', size: 26, col: SOFT, a: aa }); } } } }
 
   // the pod
-  { const p = podState(t); if (p) { const ang = podAng(t); c.save(); c.translate(X(p.x), Y(p.y)); c.rotate(ang); KH.drawPod(c, 0, 0, 0, 54 * zz, MIST, { ink: INK }); c.restore();
+  { const p = podState(t); if (p) { const ang = podAng(t); c.save(); c.translate(X(p.x), Y(p.y)); c.rotate(ang); KH.drawPod(c, 0, 0, 0, 62 * zz, MIST, { ink: INK }); c.restore();
       const pulse = p.chip === 'x' ? win(t, POD_PULSE, POD_PULSE + 0.9, 0.08, 0.7) : 0;
       podChip(c, p.chip, X(p.x), Y(p.y) - 56 * zz, zz, p.ca);
       if (pulse > 0) { c.save(); c.strokeStyle = rgba(COP, 0.8 * pulse); c.lineWidth = 3; c.beginPath(); c.arc(X(p.x), Y(p.y) - 56 * zz, (26 + 16 * (1 - pulse)) * zz, 0, Math.PI * 2); c.stroke(); c.restore(); } } }
