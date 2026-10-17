@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cetiai.co/schemas/ceti-storyboard-60/v1",
+  "title": "CETI 60-s problem-first storyboard (sb60-v1)",
+  "description": "One storyboard for a LONGFORM-60 capability film (films/kh/caps/LONGFORM-60.md). Each top-level piece carries an atom kind (operadic-stitch colours) so the best pieces across many storyboards can be composed later. Seam rule: mechanism_beats.steps must equal the beats with act=='move' (same t, picture, words, sound).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "id", "meta_prompt_id", "cluster", "repo", "capability", "audience", "wada", "bpm", "dur", "title", "hook", "problem_in_viewer_words", "why_it_keeps_happening", "stakes", "solution_hint", "metaphor", "mechanism_beats", "real_case", "honest_limit", "not_this", "ending_pattern", "end_belief", "beats", "captions", "terms", "jargon", "sound", "score_self"],
+  "properties": {
+    "schema_version": { "const": "sb60-v1" },
+    "id": { "type": "string", "pattern": "^sb-(0[1-9]|10)-[0-9]{2,3}$", "description": "sb-<cluster>-<nn>" },
+    "meta_prompt_id": { "type": "string", "description": "Prompt ID of the meta-prompt that produced this board, e.g. mp-master-v1" },
+    "cluster": { "enum": ["01 Sheaf memory", "02 Sheaves in the wild", "03 Noether & conservation", "04 Operads & composition", "05 Meta-prompting & RSI", "06 JEV decisions & evidence", "07 Formal correctness & logic", "08 Memory & agent harnesses", "09 Generative art & sound", "10 Explainers & craft"] },
+    "repo": { "type": "string", "minLength": 1, "description": "owner/repo, a skill path, or 'none'" },
+    "capability": { "type": "string", "maxLength": 60, "description": "Plain-words name of the one capability" },
+    "audience": { "enum": ["Engineers", "Leaders", "Learners", "Researchers", "Everyone"] },
+    "wada": { "type": "integer", "minimum": 1, "maximum": 348 },
+    "bpm": { "type": "integer", "minimum": 120, "maximum": 132 },
+    "dur": { "type": "number", "minimum": 55, "maximum": 65, "description": "32 bars at bpm + 0.3 s tail" },
+
+    "title": { "type": "string", "maxLength": 48, "pattern": "^[^<]+<i>[^<]+</i>[^<]*$", "description": "<= 6 everyday words, exactly one <i>accent</i> word naming the move's symbol" },
+
+    "hook": { "$ref": "#/$defs/pictured", "x-atom-kind": "Example", "description": "First 3 s: the pain happening to the whale, mid-action" },
+    "problem_in_viewer_words": { "type": "object", "x-atom-kind": "Fact", "additionalProperties": false, "required": ["kind", "body", "who"],
+      "properties": { "kind": { "const": "Fact" }, "body": { "$ref": "#/$defs/words12" }, "who": { "type": "string", "maxLength": 60, "description": "the person who says it, e.g. 'team lead on Monday'" } } },
+    "why_it_keeps_happening": { "$ref": "#/$defs/pictured", "x-atom-kind": "Fact", "description": "One cause, shown repeating three times" },
+    "stakes": { "$ref": "#/$defs/text", "x-atom-kind": "Fact", "description": "What it costs the viewer" },
+    "solution_hint": { "$ref": "#/$defs/caption8", "x-atom-kind": "Goal", "description": "Last WHY caption: the move as a plain instruction" },
+
+    "metaphor": { "type": "object", "x-atom-kind": "Example", "additionalProperties": false, "required": ["kind", "body", "symbols"],
+      "properties": { "kind": { "const": "Example" }, "body": { "type": "string", "maxLength": 240 },
+        "symbols": { "type": "array", "minItems": 2, "maxItems": 5, "uniqueItems": true, "allOf": [{ "contains": { "const": "whale" } }, { "contains": { "const": "line" } }],
+          "items": { "enum": ["whale", "line", "pin", "gate", "seam", "atom", "pod", "flag", "ring", "tick", "counter"] } } } },
+
+    "mechanism_beats": { "type": "object", "x-atom-kind": "Method", "additionalProperties": false, "required": ["kind", "steps"],
+      "properties": { "kind": { "const": "Method" }, "steps": { "type": "array", "minItems": 3, "maxItems": 6, "items": { "$ref": "#/$defs/step" } } } },
+
+    "real_case": { "type": "object", "x-atom-kind": "Evidence", "additionalProperties": false, "required": ["kind", "claim", "numbers", "source", "verified", "illustrative"],
+      "properties": { "kind": { "const": "Evidence" }, "claim": { "type": "string", "maxLength": 200 },
+        "numbers": { "type": "array", "items": { "type": "string", "maxLength": 40 }, "description": "exactly as in the source; empty if none" },
+        "source": { "type": "object", "additionalProperties": false, "required": ["kind", "title"],
+          "properties": { "kind": { "enum": ["notion", "skill", "repo", "research_md", "none"] }, "title": { "type": "string" }, "url": { "type": ["string", "null"] } } },
+        "verified": { "type": "boolean", "description": "true only if the claim was read in the source, not inferred" },
+        "illustrative": { "type": "boolean", "description": "true => on-screen card says 'Illustration'" } },
+      "if": { "properties": { "source": { "properties": { "kind": { "const": "none" } } } } },
+      "then": { "properties": { "illustrative": { "const": true }, "numbers": { "maxItems": 0 } } } },
+
+    "honest_limit": { "$ref": "#/$defs/pictured", "x-atom-kind": "Constraint", "description": "Something the move lets through, SHOWN (gate N9)" },
+    "not_this": { "type": "object", "x-atom-kind": "Constraint", "additionalProperties": false, "required": ["kind", "body"],
+      "properties": { "kind": { "const": "Constraint" }, "body": { "$ref": "#/$defs/caption8" } } },
+    "ending_pattern": { "type": "object", "x-atom-kind": "Example", "additionalProperties": false, "required": ["kind", "slug", "body", "callback"],
+      "properties": { "kind": { "const": "Example" }, "slug": { "type": "string", "pattern": "^[a-z0-9-]{3,32}$" }, "body": { "type": "string", "maxLength": 240 },
+        "callback": { "type": "string", "maxLength": 160, "description": "how the ending visibly undoes the FELT image (gate N12)" } } },
+    "end_belief": { "type": "object", "x-atom-kind": "Goal", "additionalProperties": false, "required": ["kind", "body"],
+      "properties": { "kind": { "const": "Goal" }, "body": { "$ref": "#/$defs/caption8" } } },
+
+    "beats": { "type": "array", "minItems": 14, "maxItems": 40, "x-atom-kind": "Contract", "description": "The full build timeline in time order. Acts in order felt, why, move, case, limit, payoff, belief, lockup.",
+      "items": { "allOf": [{ "$ref": "#/$defs/step" }, { "type": "object", "required": ["act", "bars"],
+        "properties": { "act": { "enum": ["felt", "why", "move", "case", "limit", "payoff", "belief", "lockup"] }, "bars": { "type": "string", "pattern": "^[0-9]{1,2}(-[0-9]{1,2})?$" },
+          "camera": { "type": "string", "maxLength": 80 }, "cue_tags": { "type": "array", "items": { "enum": ["consequence", "mech", "focus", "limit", "hinge", "callback"] } } } }] } },
+
+    "captions": { "type": "array", "minItems": 6, "maxItems": 16, "x-atom-kind": "Contract",
+      "items": { "type": "object", "additionalProperties": false, "required": ["t_in", "t_out", "text", "kind"],
+        "properties": { "t_in": { "type": "number", "minimum": 0 }, "t_out": { "type": "number" }, "text": { "$ref": "#/$defs/caption8" },
+          "kind": { "enum": ["caption", "title", "label", "counter", "card"] }, "src": { "type": "string", "description": "required when text contains a digit (gate N8)" } },
+        "if": { "properties": { "text": { "pattern": "[0-9]" } } }, "then": { "required": ["src"] } } },
+
+    "terms": { "type": "array", "x-atom-kind": "Constraint", "description": "Every jargon word shown on screen: pictured before named (gate N3)",
+      "items": { "type": "object", "additionalProperties": false, "required": ["term", "symbol", "pictured_at", "named_at"],
+        "properties": { "term": { "type": "string" }, "symbol": { "type": "string" }, "pictured_at": { "type": "number" }, "named_at": { "type": "number" } } } },
+    "jargon": { "type": "array", "items": { "type": "string" }, "description": "Film-specific banned words for FELT and WHY, added to the series list" },
+
+    "sound": { "type": "object", "additionalProperties": false, "required": ["signature", "problem_motif", "limit_unresolved"],
+      "properties": { "signature": { "type": "string", "maxLength": 120 }, "problem_motif": { "type": "string", "maxLength": 120 }, "limit_unresolved": { "const": true } } },
+
+    "score_self": { "type": "object", "additionalProperties": false, "required": ["score", "reason", "weakest_piece"],
+      "properties": { "score": { "type": "number", "minimum": 0, "maximum": 1 }, "reason": { "type": "string", "maxLength": 300 },
+        "weakest_piece": { "type": "string", "description": "name of the top-level field you trust least" } } }
+  },
+
+  "$defs": {
+    "caption8": { "type": "string", "maxLength": 64, "pattern": "^\\S+(\\s+\\S+){0,7}$", "description": "<= 8 whitespace-separated words" },
+    "words12": { "type": "string", "maxLength": 90, "pattern": "^\\S+(\\s+\\S+){0,11}$" },
+    "text": { "type": "object", "additionalProperties": false, "required": ["kind", "body"],
+      "properties": { "kind": { "enum": ["Fact", "Constraint", "Goal", "Example"] }, "body": { "type": "string", "maxLength": 200 } } },
+    "pictured": { "type": "object", "additionalProperties": false, "required": ["kind", "picture", "words"],
+      "properties": { "kind": { "enum": ["Example", "Fact", "Constraint"] }, "picture": { "type": "string", "maxLength": 240, "description": "what is drawn, in symbols from the lexicon" },
+        "words": { "anyOf": [{ "$ref": "#/$defs/caption8" }, { "const": "" }] } } },
+    "step": { "type": "object", "required": ["t", "picture", "words", "sound"],
+      "properties": { "t": { "type": "number", "minimum": 0, "maximum": 65 }, "picture": { "type": "string", "maxLength": 240 },
+        "words": { "anyOf": [{ "$ref": "#/$defs/caption8" }, { "const": "" }] }, "sound": { "type": "string", "maxLength": 100 } } }
+  }
+}
