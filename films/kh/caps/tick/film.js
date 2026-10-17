@@ -58,9 +58,9 @@ const wpos = t => wworld(t);
 function cam(t) {
   let z = 1.15, x = -45, y = -12; const L = (k, Z, X, Y) => { z = lerp(z, Z, k); x = lerp(x, X, k); y = lerp(y, Y, k); };
   L(ramp(t, 6.3, 7.6, EASE.rest), 1.1, -45, -12);
-  L(ramp(t, 14.25, 15.15, EASE.warm), 1.35, 380, 40); L(ramp(t, 15.4, 16.3, EASE.warm), 1.1, -45, -12);
-  L(ramp(t, 16.3, 18.6, EASE.rest), 1.14, -20, -12);                                       // slow drift under the card
-  L(ramp(t, 18.6, 19.5, EASE.warm), 1.4, 330, -20); L(ramp(t, 20.9, 21.8, EASE.warm), 1.15, -45, -12);
+  L(ramp(t, 14.25, 15.15, EASE.warm), 1.25, 180, 40); L(ramp(t, 15.4, 16.3, EASE.warm), 1.1, -45, 48);   // card up: the strip rides above it
+  L(ramp(t, 16.3, 18.6, EASE.rest), 1.13, -30, 48);                                        // slow drift under the card
+  L(ramp(t, 18.6, 19.5, EASE.warm), 1.25, 150, -20);                                       // nothing cropped: all three cards and the jar stay in frame L(ramp(t, 20.9, 21.8, EASE.warm), 1.15, -45, -12);
   return { x, y, z: z + 0.03 * ramp(t, 26.6, DUR, EASE.rest), ax: 960, ay: 540 }; }
 
 // ---------- text (every word on screen is in READ) ----------
@@ -185,7 +185,7 @@ function drawFrame(c, t) {
     c.fillStyle = mix(C.paper, ECRU, 0.5); c.beginPath(); c.roundRect(jx - hw + 2 * z, jt - 6 * z, 2 * hw - 4 * z, 18 * z, 4 * z); c.fill(); c.stroke();   // the rim
     c.strokeStyle = rgba(C.paper, 0.8); c.lineWidth = 5 * z; c.beginPath(); c.moveTo(jx + hw - 20 * z, jt + 44 * z); c.lineTo(jx + hw - 20 * z, jb - 40 * z); c.stroke();   // glass glint
     c.restore();
-    label(c, t, 'cust', jx, Y(JTOP - 40), 28, { f: 'monoB' });
+    label(c, t, 'cust', jx, Y(JTOP - 40), 32, { f: 'monoB' });
     // the answer over the jar: ✓ paid once, ✕ wrong
     if (ans) { const a = win(t, ans.t, ans.hold, 0.08, 0.3), pop = 1 + 0.18 * Math.exp(-(t - ans.t) * 8);
       if (a > 0) { const cx = jx, cy = Y(JTOP - 150), R = 52 * z * pop, m = 19 * z * pop, col = ans.ok ? TICK : RUST;
@@ -227,7 +227,7 @@ function drawFrame(c, t) {
   const veil = win(t, T0, T0 + T_OUT + 0.1, 0.35, 0.4); if (veil > 0) { c.fillStyle = rgba(C.paper, 0.94 * veil); c.fillRect(0, 0, W, H); }
 
   // ---- the true-story card (bottom centre, clean paper, two plain lines at 44 px, up 3.5 s) ----
-  const ka = RA(t, 'card1'); if (ka > 0) { const dy = (1 - EASE.defer(ramp(t, CARD[0], CARD[0] + 0.35))) * 8, y0 = 834;
+  const ka = RA(t, 'card1'); if (ka > 0) { const dy = (1 - EASE.defer(ramp(t, CARD[0], CARD[0] + 0.35))) * 8, y0 = 848;
     c.save(); c.font = `44px ${KH.FONTS.sans}`; const w1 = Math.max(c.measureText(RD('card1').text).width, c.measureText(RD('card2').text).width); c.restore(); const x0 = 960 - w1 / 2;
     c.save(); c.globalAlpha = ka; c.fillStyle = C.paper; c.strokeStyle = mix(C.paper, C.slate, 0.4); c.lineWidth = 1.2;
     c.beginPath(); c.roundRect(x0 - 34, y0 + dy, w1 + 68, 214, 8); c.fill(); c.stroke(); c.fillStyle = TYR; c.fillRect(x0 - 34, y0 + dy, 7, 214); c.restore();
@@ -237,7 +237,7 @@ function drawFrame(c, t) {
 
   for (const r of READ) if (r.kind === 'caption') S.caption(c, t, r, { size: 42 });
   { const ta = S.open(c, t - T0, { no: '06', title: 'Every step gets a <i>tick</i>.', accent: ACC }, { out: T_OUT });   // full-weight title: overstroke the light display face
-    if (ta > 0.01) { c.save(); c.setTransform(1, 0, 0, 1, 0, 0); text(c, 'Every step gets a <i>tick</i>.', 960, 560, { f: 'disp', size: 92, col: INK, accent: ACC, a: ta, align: 'center', stroke: 1.6 }); c.restore(); } }
+    if (ta > 0.01) { c.save(); c.setTransform(1, 0, 0, 1, 0, 0); text(c, 'Every step gets a <i>tick</i>.', 960, 560, { f: 'disp', size: 92, col: INK, accent: ACC, a: ta, align: 'center', stroke: 2.4 }); c.restore(); } }
   S.lockup(c, t, T_LOCK, { no: '06', short: 'Tick' });
   c.restore();
 }

@@ -1,3 +1,11 @@
+# 02 · gate v3.4: Every new mistake gets a *check*. (polish; v3.3 is kept as `film-v3.3.js`)
+
+- **Title hinge:** the scene dims only 30% and stays visible. A paper band sits behind the title text only. The title is fully visible for 2.2 s (5.93–8.13).
+- **True-story card:** centred over the gate row, under the icons and labels. Text is 78 px main and 36–38 px for the other lines; up 3.5 s. While it is up, the spelling, totals and font checks pulse in turn, each with its own bell (cue `pulse`).
+- **Clipped labels fixed:** the push-in is gentler (z 1.18, not 1.3), and the gate and customer labels are clamped inside the frame.
+- **Whale turns:** 0.18 s glaser turns with a squash nod, and dives are capped at 0.45 rad, so there is no long thin mid-flip.
+- **Retime:** FELT starts at 0.1 s. The old wrong-font report holds 0.55 s and the fixed report runs faster, so the ✓ lands at 17.46 s and the card at 17.86 s. **DUR is 29.83 s.**
+
 # 02 · gate v3.3: Every new mistake gets a *check*.
 
 ## v3.3 (word pass; v3.2 is kept as `film-v3.2.js`)

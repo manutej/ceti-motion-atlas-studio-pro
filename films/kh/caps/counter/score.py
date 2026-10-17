@@ -2,7 +2,7 @@
 Signature: a three-note figure that loses one note per round (3 → 2 → 1) until a single held tone when the counter reads 0.
 Problem motif (FELT): the same figure, detuned, looping on every pop-up and never landing. A red-pen mark is a quick paper
 scritch plus a small chime that climbs with the count; a fix is a soft smoothing swipe. The limit's tone is left unresolved;
-the let-go lands the figure on the held tone."""
+the new reader's clean second look lands the figure on the held tone."""
 import json, sys, numpy as np
 from scipy.signal import butter, sosfilt, fftconvolve, resample_poly, lfilter
 from scipy.io import wavfile
@@ -64,15 +64,18 @@ for x in Q['popNew']: figure(x, 1, detune=35, gain=0.6)
 # zero: the single held tone, resolved; the whale's spark is a high glass ping
 tone(Q['zero'], 2.6); put(glass(1567.98, 2.4), Q['zero'] + 0.05, 0.06, 0.2, 0.7)
 for j, x in enumerate(Q['cardNums']): put(mallet(FIG[0] * (1, 1, 0.89, 0.75)[j], 0.9, 0.6), x, 0.1, -0.2 + 0.15 * j, 0.3)
-# limit: the readers sweep again; the tone a fourth up, left hanging
+# limit: the same readers sweep again and pass the last line by; the tone a fourth up, left hanging
 for j in range(3): put(whoosh(0.5), Q['limitLap'] + 0.35 + j * 0.2, 0.05, -0.3 + 0.3 * j, 0.2)
-tone(Q['blind'], 2.0, f=523.25, gain=0.8)
-# ending: reach (a lift), look (a tick), see the 0 (glass), let go: the figure lands on the held tone
-put(whoosh(0.6), Q['reach'], 0.1, -0.1, 0.2); put(tick(3000, 0.03), Q['look'], 0.1, 0.3, 0.3); put(glass(783.99, 2.0), Q['see'], 0.08, 0.3, 0.6)
-figure(Q['letgo'], 1); tone(Q['letgo'] + 0.2, 3.4)
+tone(Q['blind'], 1.8, f=523.25, gain=0.8)
+# the new kind of reader: a lower voice (an octave down), its mark, your fix, its second look finds nothing: the figure lands
+put(whoosh(0.7), Q['newReader'] + 0.2, 0.08, -0.4, 0.2)
+scritch(Q['newMark']); put(glass(FIG[0], 1.6), Q['newMark'] + 0.12, 0.1, 0.2, 0.5)
+put(tick(2400, 0.04), Q['newTurn'], 0.08, 0.3, 0.2)
+figure(Q['clear'], 1); tone(Q['clear'] + 0.15, 3.4); put(glass(1567.98, 2.4), Q['clear'] + 0.05, 0.06, 0.2, 0.7)
+put(whoosh(0.5), Q['spout'], 0.06, 0.2, 0.3)
 pad = np.zeros(N)
 for f, g in [(130.81, 1), (196, 0.7), (261.63, 0.6), (329.63, 0.45), (392, 0.3)]: pad += g * np.sin(2 * np.pi * f * (1 + 0.0015 * np.sin(2 * np.pi * 0.11 * t + f)) * t)
-pad *= 0.04 * smooth(Q['letgo'], Q['letgo'] + 2.0, t) * (1 - 0.6 * smooth(D - 1.2, D, t)); pad = lp(pad, 2400); BUS[:, 0] += pad; BUS[:, 1] += pad; SEND += pad * 0.4
+pad *= 0.04 * smooth(Q['clear'], Q['clear'] + 2.0, t) * (1 - 0.6 * smooth(D - 1.2, D, t)); pad = lp(pad, 2400); BUS[:, 0] += pad; BUS[:, 1] += pad; SEND += pad * 0.4
 put(glass(523.25, 2.4), Q['lockup'], 0.08, 0, 0.7)
 
 # reverb send, fades, then loudness: BS.1770-style K-weighted, gated integrated level → −16 LUFS, true peak ≤ −1 dBTP
