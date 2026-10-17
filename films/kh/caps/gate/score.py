@@ -71,10 +71,12 @@ for x in Q['reopen']: put(tick(2800, 0.03), x, 0.12, 0, 0.2)
 # the rule ships: counter ticks (bell)
 for i, x in enumerate(Q['rule']): put(bell([880, 987.77][i], 2.2), x, 0.12, 0.3, 0.6)
 # escape: startle, take-off whoosh, the catch (a low mallet + grip tick)
-put(tick(5200, 0.03), Q['falsePass'] + 0.06, 0.12, 0.2); put(whoosh(0.5), Q['takeoff'], 0.22, -0.1, 0.2)
+put(tick(5200, 0.03), Q['falsePass'] + 0.06, 0.12, 0.2)
+put(mallet(392, 0.9, 0.4), Q['missed'], 0.22, 0.3, 0.3); put(mallet(311.13, 1.2, 0.4), Q['missed'] + 0.16, 0.22, 0.3, 0.4); put(tick(1600, 0.05), Q['missed'], 0.2, 0.3)   # MISSED: a falling minor third
+put(whoosh(0.6), Q['takeoff'], 0.22, -0.1, 0.2)
 put(mallet(220, 1.2, 0.6), Q['catch'], 0.3, 0.3, 0.3); put(tick(1200, 0.06), Q['catch'], 0.25, 0.3)
 # the new gate grows (higher double tick), sparks
-put(tick(2600, 0.05), Q['build7'], 0.25, 0.2); put(tick(3300, 0.05), Q['build7'] + 0.12, 0.25, 0.4)
+put(tick(2600, 0.05), Q['build7'], 0.25, 0.2); put(whoosh(0.3, rev=True), Q['nudge'], 0.1, 0.3, 0.2); put(tick(3300, 0.05), Q['build7'] + 0.12, 0.25, 0.4)
 for x in Q['spark']: put(bell(1318.5, 2.4), x, 0.1, 0.2, 0.7)
 # rules accrue: pull-back breath, then RULES 6 → 7 lands as a chord
 put(whoosh(1.6), Q['pull'], 0.18, 0, 0.4)

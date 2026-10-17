@@ -35,7 +35,9 @@ function ground(c, t, cam, o = {}) {
 
 // A paper chip under any text that must be read over colour — the series never puts text straight on a fill.
 function chip(c, s, x, y, o) { c.save(); c.font = `${o.size}px ${KH.FONTS[o.f]}`;
-  const w = c.measureText(s.replace(/<\/?i>/g, '')).width * (o.f === 'mono' ? 1 + (o.track ?? 0.2) : 1), pad = o.pad ?? 12, h = o.size * 1.5;
+  const mono = o.f === 'mono' || o.f === 'monoB', plain = s.replace(/<\/?i>/g, ''), str = mono ? plain.toUpperCase() : plain;
+  if ('letterSpacing' in c) c.letterSpacing = '0px';   // measure bare glyphs, then add the tracking text() applies per glyph
+  const w = c.measureText(str).width + (mono ? o.size * (o.track ?? 0.2) * str.length : 0), pad = o.pad ?? 12, h = o.size * 1.5;
   const X = o.align === 'center' ? x - w / 2 : o.align === 'right' ? x - w : x;
   c.globalAlpha *= o.a ?? 1; c.fillStyle = o.bg || C.paper; c.beginPath(); c.roundRect(X - pad, y - o.size * 1.05, w + pad * 2, h, 6); c.fill();
   if (o.border) { c.strokeStyle = o.border; c.lineWidth = 1.2; c.stroke(); } c.restore();
