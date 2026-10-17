@@ -17,51 +17,50 @@ const COL = { A: NAP, B: mix(GREN, C.paper, 0.45), C: mix(C.sage, C.paper, 0.2),
   fix2: mix(DSG, C.paper, 0.6), F: mix(GREN, NAP, 0.55) };
 const ALIKE = mix(WD.lightGlaucousBlue, C.slate, 0.25);                 // the look-alike helpers take the maker's own colour
 
-// ---------- the report: seven page slots, page 4 missing, pages 3 and 2 swapped from the start ----------
+// ---------- the report: seven page slots, page 4 missing; pages 2 and 3 get swapped only in the limit beat ----------
 const SLOT = i => -690 + 230 * i, PW = 160, PH = 212, HY = -380, PODS = 140, NOSE = 70;
-const T_SET4 = 16.2, SWAP = [27.0, 27.35];
-// pages: { n, slot0, slot1, t0..t1 for a move }
+const T_SET4 = 17.05, SWAP1 = [22.1, 22.5], SWAP2 = [26.3, 26.65];
 function pagePos(n, t) {                                                 // returns {x, y, a} or null
-  if (n === 4) { if (t < 15.5) return null; if (t < T_SET4) { const f = podPos('fix', t); return { x: f.x, y: f.y + NOSE + PH / 2 + 4, a: 1 }; } return { x: SLOT(3), y: 0, a: 1 }; }
-  const home = { 1: 0, 3: 1, 2: 2, 5: 4, 6: 5, 7: 6 }[n];
-  if (n === 3 || n === 2) { const to = n === 3 ? 2 : 1, k = ramp(t, SWAP[0], SWAP[1], EASE.warm);
-    return { x: lerp(SLOT(home), SLOT(to), k), y: -Math.sin(Math.PI * k) * (n === 3 ? 120 : -120) * 0.5 - Math.sin(Math.PI * k) * 40, a: 1 }; }
-  return { x: SLOT(home), y: 0, a: 1 };
+  if (n === 4) { if (t < 16.35) return null; if (t < T_SET4) { const f = podPos('fix', t); return { x: f.x, y: f.y + NOSE + PH / 2 + 4, a: 1 }; } return { x: SLOT(3), y: 0, a: 1 }; }
+  if (n === 2 || n === 3) { const k1 = ramp(t, SWAP1[0], SWAP1[1], EASE.warm), k2 = ramp(t, SWAP2[0], SWAP2[1], EASE.warm), sw = k1 - k2, arc = Math.sin(Math.PI * (t < SWAP2[0] ? k1 : k2));
+    const home = n === 2 ? 1 : 2, other = n === 2 ? 2 : 1; return { x: lerp(SLOT(home), SLOT(other), sw), y: n === 2 ? -110 * arc : 40 * arc, a: 1 }; }
+  return { x: SLOT(n - 1), y: 0, a: 1 };
 }
 
 // ---------- helpers (pods): keys [t, x, y]; eased between keys ----------
 const KEYS = {
-  A: [[0, 0, -1100], [7.0, 0, -1100], [7.6, 0, HY], [15.3, 0, HY], [15.7, -150, -560], [16.9, -150, -560], [17.3, 0, HY], [25.2, 0, HY], [25.75, 200, -1200]],
-  B: [[0, 690, -1100], [7.15, 690, -1100], [7.75, 690, HY], [25.25, 690, HY], [25.8, 900, -1200]],
-  C: [[0, 230, -1100], [7.3, 230, -1100], [7.9, 230, HY], [25.3, 230, HY], [25.85, 450, -1200]],
+  A: [[0, 0, -1100], [7.0, 0, -1100], [7.6, 0, HY], [16.15, 0, HY], [16.55, -150, -560], [17.75, -150, -560], [18.15, 0, HY], [22.1, 0, HY], [22.6, -460, HY], [24.5, -460, HY], [25.0, 200, -1300]],
+  B: [[0, 690, -1100], [7.15, 690, -1100], [7.75, 690, HY], [22.1, 690, HY], [22.6, 0, HY], [24.6, 0, HY], [25.1, 500, -1300]],
+  C: [[0, 230, -1100], [7.3, 230, -1100], [7.9, 230, HY], [22.1, 230, HY], [22.6, -230, HY], [24.55, -230, HY], [25.05, 350, -1300]],
   cust: [[0, 1500, -230], [2.05, 1500, -230], [2.55, 880, -230], [4.7, 880, -230], [5.4, 1550, -230]],
-  fix: [[0, 0, -1300], [15.45, 0, -1300], [16.1, 0, -PH / 2 - NOSE - 4], [16.55, 0, -PH / 2 - NOSE - 4], [17.15, 150, -1300]],
-  fix2: [[0, -230, -1300], [26.3, -230, -1300], [26.75, -230, HY], [27.4, -230, HY], [27.85, -60, -1300]],
-  F: [[0, -460, -1300], [25.3, -460, -1300], [25.85, -460, HY], [DUR + 1, -460, HY]],
+  fix: [[0, 0, -1300], [16.3, 0, -1300], [16.95, 0, -PH / 2 - NOSE - 4], [17.4, 0, -PH / 2 - NOSE - 4], [18.0, 150, -1300]],
+  fix2: [[0, -230, -1300], [25.6, -230, -1300], [26.05, -230, HY], [26.7, -230, HY], [27.15, -60, -1300]],
+  F: [[0, -460, -1300], [24.75, -460, -1300], [25.2, -460, HY], [DUR + 1, -460, HY]],
 };
 function keyed(P, t) { const n = P.length; if (t <= P[0][0]) return { x: P[0][1], y: P[0][2] }; if (t >= P[n - 1][0]) return { x: P[n - 1][1], y: P[n - 1][2] };
   let i = 0; while (P[i + 1][0] < t) i++; const a = P[i], b = P[i + 1], k = EASE.warm((t - a[0]) / (b[0] - a[0])); return { x: lerp(a[1], b[1], k), y: lerp(a[2], b[2], k) }; }
-// pokes: the helper darts nose-first at a page. 'slot' = nothing there: the nose goes into the hole. 'page' = it bounces.
+// pokes: the checker darts nose-first at a page. 'slot' = nothing there: the nose goes into the hole. 'page' = it bounces.
 const POKES = [
   { p: 'A', t: 9.45, at: 'slot', says: 'missing' }, { p: 'B', t: 9.9, at: 'page', says: 'vague' }, { p: 'C', t: 10.35, at: 'page' },
-  { p: 'A', t: 17.65, at: 'page', holds: true }, { p: 'B', t: 18.05, at: 'page', holds: true }, { p: 'C', t: 18.45, at: 'page', holds: true },
-  { p: 'F', t: 25.95, at: 'page', says: 'order' }, { p: 'F', t: 27.6, at: 'page', holds: true, final: true },
+  { p: 'A', t: 18.55, at: 'page', holds: true }, { p: 'C', t: 19.35, at: 'page', holds: true }, { p: 'B', t: 20.15, at: 'page', holds: true },
+  { p: 'A', t: 22.9, at: 'page', agree: true }, { p: 'C', t: 23.15, at: 'page', agree: true }, { p: 'B', t: 23.4, at: 'page', agree: true },
+  { p: 'F', t: 25.35, at: 'page', says: 'order' }, { p: 'F', t: 26.95, at: 'page', holds: true, final: true },
 ];
 const CONTACT = { page: -PH / 2 - NOSE - 2, slot: -40 };
 function podPos(p, t) { const q = keyed(KEYS[p], t); let y = q.y;
   for (const k of POKES) if (k.p === p) { const d = ramp(t, k.t - 0.15, k.t, EASE.glaser) * (1 - ramp(t, k.t + 0.1, k.t + 0.45, EASE.warm)); if (d > 0) y = lerp(y, CONTACT[k.at], d); }
   return { x: q.x, y: y + (p === 'cust' ? 0 : 7 * Math.sin(t * 2.1 + p.charCodeAt(0))) }; }
-const T_ALIKE = [21.0, 21.5];
-function podDir(p, t) { if (p === 'cust') return Math.PI; if ('ABC'.includes(p)) return lerp(Math.PI / 2, 0.12, ramp(t, T_ALIKE[0], T_ALIKE[1], EASE.warm)); return Math.PI / 2; }
+const T_ALIKE = [22.1, 22.6];
+function podDir(p, t) { return p === 'cust' ? Math.PI : Math.PI / 2; }
 function podCol(p, t) { return 'ABC'.includes(p) ? mix(COL[p], ALIKE, ramp(t, T_ALIKE[0], T_ALIKE[1], EASE.warm)) : COL[p]; }
 
 // ---------- the whale ("you"): Hermite through keys ----------
 const WS = 0.8;
-const K = [[0, -480, -330], [6.0, -480, -330], [7.4, -780, -470], [25.2, -780, -470], [25.9, -750, -470], [DUR + 1, -750, -470]];
+const K = [[0, -480, -330], [6.0, -480, -330], [7.4, -780, -470], [24.5, -780, -470], [25.2, -750, -470], [DUR + 1, -750, -470]];
 function herm(P, t) { const n = P.length; if (t <= P[0][0]) return { x: P[0][1], y: P[0][2] }; if (t >= P[n - 1][0]) return { x: P[n - 1][1], y: P[n - 1][2] };
   let i = 0; while (P[i + 1][0] < t) i++; const p1 = P[i], p2 = P[i + 1], u = (t - p1[0]) / (p2[0] - p1[0]), A2 = 2 * u * u * u - 3 * u * u + 1, C2 = 1 - A2;
   return { x: A2 * p1[1] + C2 * p2[1], y: A2 * p1[2] + C2 * p2[2] }; }
-const NODS = [1.95, T_SET4, 27.68];
+const NODS = [1.95, T_SET4, 18.6, 19.4, 20.2, 21.1, 27.03];
 function wworld(t) { const p = herm(K, t), q = herm(K, t + 0.01), sp = Math.hypot(q.x - p.x, q.y - p.y) * 100, still = 1 - clamp(sp / 150);
   let dip = 0; for (const s of NODS) { const d = t - s; if (d > 0 && d < 0.35) dip = Math.max(dip, 6 * Math.sin(Math.PI * d / 0.35)); }
   return { x: p.x, y: p.y + (Math.sin(t * 2.4) * 2.5 + dip) * still }; }
@@ -76,7 +75,7 @@ function meant(t) { const lx = lensX(t); let m = lx == null ? 0 : clamp(1 - Math
 
 // ---------- camera ----------
 function cam(t) {
-  const pull = ramp(t, 4.4, 6.8, EASE.rest), push = ramp(t, 11.2, 11.9, EASE.warm), rel = ramp(t, 15.0, 15.8, EASE.warm), pay = ramp(t, 25.2, 25.95, EASE.warm), end = ramp(t, 27.6, DUR, EASE.rest);
+  const pull = ramp(t, 4.4, 6.8, EASE.rest), push = ramp(t, 11.2, 11.9, EASE.warm), rel = ramp(t, 15.9, 16.7, EASE.warm), pay = ramp(t, 24.5, 25.2, EASE.warm), end = ramp(t, 27.6, DUR, EASE.rest);
   let z = lerp(1.05, 1.0, pull), x = lerp(80, 0, pull), y = -60;
   z = lerp(z, 1.12, push); x = lerp(x, -40, push); y = lerp(y, -170, push); z = lerp(z, 1.0, rel); x = lerp(x, 0, rel); y = lerp(y, -60, rel);
   z = lerp(z, 1.05, pay); x = lerp(x, 0, pay); y = lerp(y, -120, pay);
@@ -86,34 +85,35 @@ function cam(t) {
 const T0 = 4.4, T_LOCK = 27.8;
 const cap = (id, inn, out, text) => ({ id, kind: 'caption', in: inn, out, fi: 0.25, fo: 0.2, text });
 const lab = (id, inn, out, text, o = {}) => ({ id, kind: 'label', in: inn, out, fi: 0.2, fo: 0.2, text, ...o });
+const SRC = 'https://app.notion.com/p/3f2d50cfaf93811dafbdfac6f43bd8a9';
 const READ = [
-  lab('pages', 0, DUR, '1 3 2 5 6 7', { fi: 0, fo: 0 }),
+  lab('pages', 0, DUR, '1 2 3 5 6 7', { fi: 0, fo: 0 }),
   lab('you', 0.3, 4.4, 'you'), lab('report', 0.3, 4.4, 'your report'), lab('cust', 2.3, 4.5, 'the customer'),
   cap('felt1', 0.25, 2.3, 'I checked my report twice.'),
   cap('felt2', 2.4, 4.4, 'The customer found a missing page.'),
   { id: 'eyebrow', kind: 'label', in: T0 + 0.25, out: T0 + 2.62, fi: 0.4, fo: 0.45, text: 'CETI · Capabilities · 08' },
-  { id: 'title', kind: 'title', in: T0 + 0.25, out: T0 + 2.62, fi: 0.4, fo: 0.45, text: 'Fresh <i>eyes</i> try to break it.' },
-  lab('fresh', 7.5, 9.35, 'fresh eyes'),
+  { id: 'title', kind: 'title', in: T0 + 0.25, out: T0 + 2.62, fi: 0.4, fo: 0.45, text: 'Fresh <i>eyes</i> find what you missed.' },
+  lab('fresh', 7.5, 9.35, 'three different AI checkers'),
   cap('ask', 7.1, 9.25, 'Ask someone who didn\'t write the report.'),
   cap('hunt', 9.3, 11.25, 'They hunt for mistakes.'),
-  lab('else', 15.65, 17.25, 'someone else'),
-  lab('missing', 9.6, 15.3, 'page 4 is missing'), lab('vague', 10.05, 14.6, 'feels off'),
+  lab('missing', 9.6, 16.15, 'page 4 is missing'), lab('vague', 10.05, 15.4, 'feels off'),
   cap('point', 11.3, 13.45, 'Each complaint must point at the problem.'),
-  { ...cap('strike', 13.47, 15.57, 'No pointing? The complaint is crossed out.'), fi: 0.2 },
-  cap('fix', 15.6, 17.6, 'Someone else adds the missing page.'),
-  { id: 'card', kind: 'card', card: true, in: 17.6, out: 21.0, fi: 0.15, fo: 0.15, text: 'Real example · our final re-check · 116 checks passed, 0 failed', src: 'https://app.notion.com/p/3f2d50cfaf93811dafbdfac6f43bd8a9' },
-  lab('src', 17.6, 21.0, 'Source: our own review notes', { fi: 0.15, fo: 0.15 }),
-  cap('limit', 21.05, 23.25, 'If checkers think alike, they miss alike.'),
-  cap('notthis', 23.3, 25.15, 'Agreeing doesn\'t mean they\'re right.'),
-  lab('order', 25.98, 27.5, 'pages out of order', { fi: 0.1 }),
-  cap('belief', 25.25, T_LOCK - 0.05, 'Never let the maker be the judge.'),
+  { ...cap('strike', 13.47, 16.4, 'No pointing? The complaint is crossed out.'), fi: 0.2 },
+  lab('else', 16.5, 18.1, 'someone else'),
+  cap('fix', 16.45, 18.45, 'Someone else adds the missing page.'),
+  { id: 'card', kind: 'card', card: true, in: 18.4, out: 22.05, fi: 0.1, fo: 0.1, text: '57 complaints, 0 crossed out', src: SRC },
+  lab('cardl1', 18.4, 22.05, 'True story · from our own review notes', { fi: 0.1, fo: 0.1, card: true, src: SRC }),
+  lab('cardl3', 18.4, 22.05, 'Each one pointed at its evidence.', { fi: 0.1, fo: 0.1 }),
+  cap('limit', 22.15, 24.5, 'Checkers that think alike miss alike.'),
+  lab('order', 25.35, 26.9, 'pages out of order', { fi: 0.1 }),
+  cap('belief', 24.55, T_LOCK - 0.05, 'Never let the maker be the judge.'),
   { id: 'lockup', kind: 'label', in: T_LOCK, out: DUR, fi: 0.45, fo: 0, text: 'CETI · Capabilities · 08 · Fresh' },
 ];
 const RD = id => READ.find(r => r.id === id), RA = (t, id) => { const r = RD(id); return win(t, r.in, r.out, r.fi, r.fo); };
 const INTENT = {
   problem: 'You checked your own report twice and still missed a missing page; the customer found it, because the maker sees what they meant to write.',
-  move: 'Let fresh eyes, helpers who did not write it, try to break it; every complaint must point at the actual problem or it is crossed out, and someone else makes the fix.',
-  belief: 'Never let the maker be the judge of their own work (and checkers who think alike miss alike).',
+  move: 'Ask AI checkers that did not write the report to hunt for mistakes; every complaint must point at the actual problem or it is crossed out, and someone else makes the fix.',
+  belief: 'Never let the maker be the judge of their own work; and use checkers that think differently, because checkers that think alike miss alike.',
 };
 const TERMS = [];
 
