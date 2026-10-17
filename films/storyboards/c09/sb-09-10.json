@@ -1,0 +1,446 @@
+{
+ "schema_version": "sb60-v1",
+ "id": "sb-09-10",
+ "meta_prompt_id": "mp-c09-v1",
+ "cluster": "09 Generative art & sound",
+ "repo": "none",
+ "capability": "Write the sound to the picture's own clock",
+ "audience": "Everyone",
+ "wada": 84,
+ "bpm": 132,
+ "dur": 58.5,
+ "title": "Every sound on the <i>tick</i>.",
+ "hook": {
+  "kind": "Example",
+  "picture": "Close on the whale dragging a music strip under the line. The hits land a hair after each picture change. It nudges, and the next hit slips.",
+  "words": "I'll just nudge the music a bit."
+ },
+ "problem_in_viewer_words": {
+  "kind": "Fact",
+  "body": "The music never hits the moment the picture changes.",
+  "who": "video editor late at night"
+ },
+ "why_it_keeps_happening": {
+  "kind": "Fact",
+  "picture": "Pull back: the edit gets shorter three times (every 2 beats, then 1, then half). Each time the whole music strip slides out of step at once.",
+  "words": "The music and the picture keep separate clocks."
+ },
+ "stakes": {
+  "kind": "Fact",
+  "body": "Hours of nudging, redone after every edit, and the film still feels off."
+ },
+ "solution_hint": "Place each sound on the picture's clock.",
+ "metaphor": {
+  "kind": "Example",
+  "body": "Ticks sit on the line at each picture change. Each sound is a ring written onto a tick, so when the edit moves, the ticks move and the rings move with them.",
+  "symbols": [
+   "whale",
+   "line",
+   "tick",
+   "ring",
+   "pod"
+  ]
+ },
+ "mechanism_beats": {
+  "kind": "Method",
+  "steps": [
+   {
+    "t": 18.182,
+    "picture": "Ticks drop onto the line at each picture change. A small ring blooms on each tick: a sound written at that moment.",
+    "words": "One cue, one sound.",
+    "sound": "A crisp hit per tick."
+   },
+   {
+    "t": 21.818,
+    "picture": "The whale shortens the edit. The ticks move with the pictures, and the rings move with the ticks. Nothing slips.",
+    "words": "Change the edit. The sound moves too.",
+    "sound": "Hits stay locked as the tempo tightens."
+   },
+   {
+    "t": 25.455,
+    "picture": "Push-in: the whale deletes a shot. Its tick and ring vanish together, and the next ring sits on the next tick in the same frame.",
+    "words": "Rebuilt in seconds, from the same list.",
+    "sound": "One hit drops out cleanly, then the rest."
+   },
+   {
+    "t": 27.273,
+    "picture": "The counter of sounds matches the counter of ticks.",
+    "words": "",
+    "sound": "A soft double tick."
+   }
+  ]
+ },
+ "real_case": {
+  "kind": "Evidence",
+  "claim": "Motion Atlas node 'Code-synthesized audio' (proven): music and sound effects written as code and rendered to WAV, giving exact sync, zero licensing risk and a seconds-long rebuild.",
+  "numbers": [],
+  "source": {
+   "kind": "notion",
+   "title": "Code-synthesized audio (Motion Atlas node)",
+   "url": "https://app.notion.com/p/3fbd50cfaf9381269880f33214682643"
+  },
+  "verified": true,
+  "illustrative": false
+ },
+ "honest_limit": {
+  "kind": "Constraint",
+  "picture": "Every sound lands exactly on its tick, but one is a harsh beep that no check notices. The code that writes it cannot hear it.",
+  "words": "On time is not the same as good."
+ },
+ "not_this": {
+  "kind": "Constraint",
+  "body": "The code can't hear it. You must."
+ },
+ "ending_pattern": {
+  "kind": "Example",
+  "slug": "hits-stay-locked",
+  "body": "The whale trims a shot as in FELT, but drags nothing. Every hit stays locked on its cut and the pod answers ✓.",
+  "callback": "Same close shot of the strip under the line as bar 1, now nothing slips."
+ },
+ "end_belief": {
+  "kind": "Goal",
+  "body": "Tie each sound to the moment it marks."
+ },
+ "beats": [
+  {
+   "t": 0.0,
+   "picture": "Close: the whale drags a music strip under the line. Each hit lands just after a picture change.",
+   "words": "I'll just nudge the music a bit.",
+   "sound": "Drum hits a hair late.",
+   "act": "felt",
+   "bars": "1",
+   "camera": "Close z 1.6 on the whale",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 2.727,
+   "picture": "A pod watching sees a cut land between beats and answers with a copper ✕ chip.",
+   "words": "Change one shot and it's all off.",
+   "sound": "A late, smeared hit.",
+   "act": "felt",
+   "bars": "2-3",
+   "camera": "Close z 1.6, small follow pan",
+   "cue_tags": [
+    "consequence"
+   ]
+  },
+  {
+   "t": 5.455,
+   "picture": "The whale nudges the strip. The next hit slips the other way.",
+   "words": "",
+   "sound": "An early hit, then a late one.",
+   "act": "felt",
+   "bars": "4",
+   "camera": "Close z 1.6",
+   "cue_tags": []
+  },
+  {
+   "t": 7.273,
+   "picture": "The whale looks at the strip. Hold.",
+   "words": "",
+   "sound": "Silence.",
+   "act": "felt",
+   "bars": "5",
+   "camera": "Close z 1.7, hold on the whale's face",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 9.091,
+   "picture": "Half a bar of stillness, then the title.",
+   "words": "Every sound on the tick.",
+   "sound": "Near-silence, then the title tick.",
+   "act": "why",
+   "bars": "6",
+   "camera": "Still z 1.6, half bar of stillness",
+   "cue_tags": [
+    "hinge"
+   ]
+  },
+  {
+   "t": 10.909,
+   "picture": "Pull back: the picture line on top, the music strip below, each with its own clock face.",
+   "words": "The music and the picture keep separate clocks.",
+   "sound": "Problem motif: a hit that lands late.",
+   "act": "why",
+   "bars": "7-8",
+   "camera": "Pull back z 1.6 to 1.0",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 14.545,
+   "picture": "The edit shortens three times, every 2 beats, then 1, then half. The strip slides out of step each time.",
+   "words": "",
+   "sound": "Problem motif three times, accelerating.",
+   "act": "why",
+   "bars": "9",
+   "camera": "Wide z 1.0, pattern revealed",
+   "cue_tags": []
+  },
+  {
+   "t": 16.364,
+   "picture": "Motion stops. Ticks ghost onto the line at every picture change.",
+   "words": "Place each sound on the picture's clock.",
+   "sound": "One crisp hit, exactly on a tick: the signature.",
+   "act": "why",
+   "bars": "10",
+   "camera": "Wide z 1.0, all motion stops",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 18.182,
+   "picture": "Ticks drop onto the line at each picture change. A small ring blooms on each tick: a sound written at that moment.",
+   "words": "One cue, one sound.",
+   "sound": "A crisp hit per tick.",
+   "act": "move",
+   "bars": "11-12",
+   "camera": "Medium z 1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 21.818,
+   "picture": "The whale shortens the edit. The ticks move with the pictures, and the rings move with the ticks. Nothing slips.",
+   "words": "Change the edit. The sound moves too.",
+   "sound": "Hits stay locked as the tempo tightens.",
+   "act": "move",
+   "bars": "13-14",
+   "camera": "Medium z 1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 25.455,
+   "picture": "Push-in: the whale deletes a shot. Its tick and ring vanish together, and the next ring sits on the next tick in the same frame.",
+   "words": "Rebuilt in seconds, from the same list.",
+   "sound": "One hit drops out cleanly, then the rest.",
+   "act": "move",
+   "bars": "15",
+   "camera": "One push-in z 1.2 to 1.3",
+   "cue_tags": [
+    "mech",
+    "focus"
+   ]
+  },
+  {
+   "t": 27.273,
+   "picture": "The counter of sounds matches the counter of ticks.",
+   "words": "",
+   "sound": "A soft double tick.",
+   "act": "move",
+   "bars": "16",
+   "camera": "Medium z 1.3 easing back to 1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 29.091,
+   "picture": "Wide: a list of ticks feeds a row of rings: plucks, bells, drums.",
+   "words": "Real practice: plucks, bells and drums, as code.",
+   "sound": "Pluck, bell, drum, each on a tick.",
+   "act": "case",
+   "bars": "17-19",
+   "camera": "Steady wide, slow drift",
+   "cue_tags": []
+  },
+  {
+   "t": 34.545,
+   "picture": "The same film is exported twice. The two sound strips lie exactly on top of each other.",
+   "words": "Same list, same sound, every build.",
+   "sound": "The same phrase twice, identical.",
+   "act": "case",
+   "bars": "20-22",
+   "camera": "Steady wide, slow drift",
+   "cue_tags": []
+  },
+  {
+   "t": 40.0,
+   "picture": "Every ring lands exactly on its tick, but one is a shrill beep. The pod writing the sounds has no ears. Only the whale, listening, winces.",
+   "words": "On time is not the same as good.",
+   "sound": "The crisp hit once, then an unresolved shrill tone.",
+   "act": "limit",
+   "bars": "23-24",
+   "camera": "Still",
+   "cue_tags": [
+    "limit"
+   ]
+  },
+  {
+   "t": 43.636,
+   "picture": "Slow push to the shrill ring.",
+   "words": "",
+   "sound": "Room tone.",
+   "act": "limit",
+   "bars": "25",
+   "camera": "One slow push to the thing that slipped",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 45.455,
+   "picture": "FELT framing: the whale trims a shot again. It drags nothing, and every hit stays locked on its cut.",
+   "words": "",
+   "sound": "Hits on every tick.",
+   "act": "payoff",
+   "bars": "26-27",
+   "camera": "Close z 1.6, the FELT framing restored",
+   "cue_tags": [
+    "callback"
+   ]
+  },
+  {
+   "t": 49.091,
+   "picture": "The pod watching answers ✓. The whale sparks.",
+   "words": "",
+   "sound": "Full phrase resolves.",
+   "act": "payoff",
+   "bars": "28-29",
+   "camera": "Wide reveal z 1.0",
+   "cue_tags": []
+  },
+  {
+   "t": 52.727,
+   "picture": "The line with ticks and rings at rest, the whale breathing.",
+   "words": "Tie each sound to the moment it marks.",
+   "sound": "Pad tail.",
+   "act": "belief",
+   "bars": "30-31",
+   "camera": "Still, breathing only",
+   "cue_tags": []
+  },
+  {
+   "t": 56.364,
+   "picture": "SERIES.lockup.",
+   "words": "",
+   "sound": "Pad tail ends, lockup tick.",
+   "act": "lockup",
+   "bars": "32",
+   "camera": "Still",
+   "cue_tags": []
+  }
+ ],
+ "captions": [
+  {
+   "t_in": 0.909,
+   "t_out": 3.636,
+   "text": "I'll just nudge the music a bit.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 4.545,
+   "t_out": 8.182,
+   "text": "Change one shot and it's all off.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 10.0,
+   "t_out": 12.727,
+   "text": "Every sound on the tick.",
+   "kind": "title"
+  },
+  {
+   "t_in": 12.727,
+   "t_out": 16.364,
+   "text": "The music and the picture keep separate clocks.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 16.364,
+   "t_out": 18.636,
+   "text": "Place each sound on the picture's clock.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 19.091,
+   "t_out": 21.364,
+   "text": "One cue, one sound.",
+   "kind": "label"
+  },
+  {
+   "t_in": 21.818,
+   "t_out": 25.0,
+   "text": "Change the edit. The sound moves too.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 25.455,
+   "t_out": 28.636,
+   "text": "Rebuilt in seconds, from the same list.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 29.091,
+   "t_out": 32.727,
+   "text": "Real practice: plucks, bells and drums, as code.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 30.0,
+   "t_out": 39.545,
+   "text": "Field notes · exact sync, no licence risk.",
+   "kind": "card",
+   "src": "https://app.notion.com/p/3fbd50cfaf9381269880f33214682643"
+  },
+  {
+   "t_in": 34.545,
+   "t_out": 38.182,
+   "text": "Same list, same sound, every build.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 40.0,
+   "t_out": 42.727,
+   "text": "On time is not the same as good.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 42.727,
+   "t_out": 45.227,
+   "text": "The code can't hear it. You must.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 52.727,
+   "t_out": 56.364,
+   "text": "Tie each sound to the moment it marks.",
+   "kind": "caption"
+  }
+ ],
+ "terms": [
+  {
+   "term": "cue",
+   "symbol": "tick",
+   "pictured_at": 18.182,
+   "named_at": 19.091
+  }
+ ],
+ "jargon": [
+  "cue",
+  "WAV",
+  "synth",
+  "SFX",
+  "BPM",
+  "audio"
+ ],
+ "sound": {
+  "signature": "A crisp hit exactly on each picture-change tick.",
+  "problem_motif": "The same hit landing a hair late.",
+  "limit_unresolved": true
+ },
+ "score_self": {
+  "score": 0.76,
+  "reason": "Universal editing pain, a mechanism that is easy to draw (ticks carry rings), and a limit straight from the source ('cannot hear'). Card has no numbers, so the case is soft.",
+  "weakest_piece": "real_case"
+ }
+}

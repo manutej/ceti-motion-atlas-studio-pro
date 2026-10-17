@@ -1,0 +1,452 @@
+{
+ "schema_version": "sb60-v1",
+ "id": "sb-09-04",
+ "meta_prompt_id": "mp-c09-v1",
+ "cluster": "09 Generative art & sound",
+ "repo": "manutej/glyph-foundry-studio-pro",
+ "capability": "Improve a design one checked round at a time",
+ "audience": "Leaders",
+ "wada": 243,
+ "bpm": 124,
+ "dur": 62.2,
+ "title": "Finished is when every <i>gate</i> opens.",
+ "hook": {
+  "kind": "Example",
+  "picture": "Close on the whale admiring an infographic line, nodding, and pushing it toward a pod.",
+  "words": "It looks finished to me."
+ },
+ "problem_in_viewer_words": {
+  "kind": "Fact",
+  "body": "It looks finished to me. Can we ship it?",
+  "who": "studio lead at the Friday review"
+ },
+ "why_it_keeps_happening": {
+  "kind": "Fact",
+  "picture": "Pull back: three Friday reviews. Each time the whale glances, nods and ships, and each time a pod answers ✕ (every 2 beats, then 1, then half).",
+  "words": "A glance finds what it expects to find."
+ },
+ "stakes": {
+  "kind": "Fact",
+  "body": "Clients find the problems first, and every fix after delivery costs trust."
+ },
+ "solution_hint": "Let a machine check it. Fix. Repeat.",
+ "metaphor": {
+  "kind": "Example",
+  "body": "A row of small gates along the line. The line runs through all of them each round. Flags show what failed, and the counter climbs until every gate glows.",
+  "symbols": [
+   "whale",
+   "line",
+   "gate",
+   "flag",
+   "counter"
+  ]
+ },
+ "mechanism_beats": {
+  "kind": "Method",
+  "steps": [
+   {
+    "t": 19.355,
+    "picture": "A row of small gates rises along the line. The line runs through. Most glow, and three close with raw sienna flags.",
+    "words": "Run all checks.",
+    "sound": "Clean clicks, three muffled stops."
+   },
+   {
+    "t": 23.226,
+    "picture": "The whale fixes one flagged spot and the line runs again. That gate glows and the counter climbs.",
+    "words": "Fix what failed. Run every check again.",
+    "sound": "A click joins the row."
+   },
+   {
+    "t": 27.097,
+    "picture": "Push-in: a fix knocks an earlier gate shut again. The flag pops back up, and the rerun catches it at once.",
+    "words": "A fix that breaks something gets caught.",
+    "sound": "The muffled stop returns, then a clean click."
+   },
+   {
+    "t": 29.032,
+    "picture": "The last flags clear. Every gate glows in a row.",
+    "words": "",
+    "sound": "A run of clean clicks."
+   }
+  ]
+ },
+ "real_case": {
+  "kind": "Evidence",
+  "claim": "Glyph Foundry's self-improvement loop passed 22 of 52 gates in R0, 37 in R1, 47 in R2 and 52 of 52 in R3 (42.3% to 100.0%, author-reported).",
+  "numbers": [
+   "22 / 52",
+   "37/52",
+   "47/52",
+   "52 / 52",
+   "42.3%",
+   "100.0%"
+  ],
+  "source": {
+   "kind": "repo",
+   "title": "manutej/glyph-foundry-studio-pro README",
+   "url": "https://github.com/manutej/glyph-foundry-studio-pro"
+  },
+  "verified": true,
+  "illustrative": false
+ },
+ "honest_limit": {
+  "kind": "Constraint",
+  "picture": "The whale writes the last gate around the line's own shape, so the line passes it. Self-written checks can be cut to fit.",
+  "words": "We wrote the checks we passed."
+ },
+ "not_this": {
+  "kind": "Constraint",
+  "body": "Passing our own checks is not praise."
+ },
+ "ending_pattern": {
+  "kind": "Example",
+  "slug": "glance-becomes-run",
+  "body": "The FELT nod-and-ship moment is replaced by a run through the gate row. One flag is fixed, then the pod answers ✓.",
+  "callback": "Same close shot of the nod in bar 1, now interrupted by the gate row before the pod sees it."
+ },
+ "end_belief": {
+  "kind": "Goal",
+  "body": "Don't trust the glance. Run the checks."
+ },
+ "beats": [
+  {
+   "t": 0.0,
+   "picture": "Close: the whale admires an infographic line, nods, and pushes it toward a pod.",
+   "words": "It looks finished to me.",
+   "sound": "A confident two-note figure.",
+   "act": "felt",
+   "bars": "1",
+   "camera": "Close z 1.6 on the whale",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 2.903,
+   "picture": "The pod opens it. A label spills off the frame and an arrow points to nothing. The pod answers with a raw sienna ✕ chip.",
+   "words": "The client found the problems first.",
+   "sound": "The figure's second note lands flat.",
+   "act": "felt",
+   "bars": "2-3",
+   "camera": "Close z 1.6, small follow pan",
+   "cue_tags": [
+    "consequence"
+   ]
+  },
+  {
+   "t": 5.806,
+   "picture": "The whale nudges the label back by eye. Another one spills.",
+   "words": "",
+   "sound": "Flat note again.",
+   "act": "felt",
+   "bars": "4",
+   "camera": "Close z 1.6",
+   "cue_tags": []
+  },
+  {
+   "t": 7.742,
+   "picture": "The whale looks from the line to the pod's ✕. Hold.",
+   "words": "",
+   "sound": "Silence.",
+   "act": "felt",
+   "bars": "5",
+   "camera": "Close z 1.7, hold on the whale's face",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 9.677,
+   "picture": "Half a bar of stillness, then the title.",
+   "words": "Finished is when every gate opens.",
+   "sound": "Near-silence, then the title tick.",
+   "act": "why",
+   "bars": "6",
+   "camera": "Still z 1.6, half bar of stillness",
+   "cue_tags": [
+    "hinge"
+   ]
+  },
+  {
+   "t": 11.613,
+   "picture": "Pull back: a calendar of Friday reviews, glance, nod, ship, ✕.",
+   "words": "A glance finds what it expects to find.",
+   "sound": "Problem motif: a muffled click that cuts off early.",
+   "act": "why",
+   "bars": "7-8",
+   "camera": "Pull back z 1.6 to 1.0",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 15.484,
+   "picture": "Three more reviews, every 2 beats, then 1, then half. Each glance, each ✕.",
+   "words": "",
+   "sound": "Problem motif three times, accelerating.",
+   "act": "why",
+   "bars": "9",
+   "camera": "Wide z 1.0, pattern revealed",
+   "cue_tags": []
+  },
+  {
+   "t": 17.419,
+   "picture": "Motion stops. Faint gate outlines ghost along the line.",
+   "words": "Let a machine check it. Fix. Repeat.",
+   "sound": "One clean wood-block click: the signature.",
+   "act": "why",
+   "bars": "10",
+   "camera": "Wide z 1.0, all motion stops",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 19.355,
+   "picture": "A row of small gates rises along the line. The line runs through. Most glow, and three close with raw sienna flags.",
+   "words": "Run all checks.",
+   "sound": "Clean clicks, three muffled stops.",
+   "act": "move",
+   "bars": "11-12",
+   "camera": "Medium z 1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 23.226,
+   "picture": "The whale fixes one flagged spot and the line runs again. That gate glows and the counter climbs.",
+   "words": "Fix what failed. Run every check again.",
+   "sound": "A click joins the row.",
+   "act": "move",
+   "bars": "13-14",
+   "camera": "Medium z 1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 27.097,
+   "picture": "Push-in: a fix knocks an earlier gate shut again. The flag pops back up, and the rerun catches it at once.",
+   "words": "A fix that breaks something gets caught.",
+   "sound": "The muffled stop returns, then a clean click.",
+   "act": "move",
+   "bars": "15",
+   "camera": "One push-in z 1.2 to 1.3",
+   "cue_tags": [
+    "mech",
+    "focus"
+   ]
+  },
+  {
+   "t": 29.032,
+   "picture": "The last flags clear. Every gate glows in a row.",
+   "words": "",
+   "sound": "A run of clean clicks.",
+   "act": "move",
+   "bars": "16",
+   "camera": "Medium z 1.3 easing back to 1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 30.968,
+   "picture": "Wide: the same gate row runs again and again. Each run, fewer flags.",
+   "words": "Real run: the same checks, round after round.",
+   "sound": "Pulse bed, ticks.",
+   "act": "case",
+   "bars": "17-19",
+   "camera": "Steady wide, slow drift",
+   "cue_tags": []
+  },
+  {
+   "t": 36.774,
+   "picture": "The counter steps up as flags drop, round by round.",
+   "words": "Each round fixes what the last flagged.",
+   "sound": "Steady pulse, rising.",
+   "act": "case",
+   "bars": "20-22",
+   "camera": "Steady wide, slow drift",
+   "cue_tags": []
+  },
+  {
+   "t": 42.581,
+   "picture": "The whale builds the last gate itself, cut around the line's own shape. The line glides through because the gate was made to fit it.",
+   "words": "We wrote the checks we passed.",
+   "sound": "Signature click plays once, unresolved.",
+   "act": "limit",
+   "bars": "23-24",
+   "camera": "Still",
+   "cue_tags": [
+    "limit"
+   ]
+  },
+  {
+   "t": 46.452,
+   "picture": "Slow push to the gate cut to the line's shape.",
+   "words": "",
+   "sound": "Room tone.",
+   "act": "limit",
+   "bars": "25",
+   "camera": "One slow push to the thing that slipped",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 48.387,
+   "picture": "FELT framing: the whale is about to nod and ship. Instead the line runs the gate row, one gate closes, and the whale fixes it.",
+   "words": "",
+   "sound": "Muffled stop, then a clean click.",
+   "act": "payoff",
+   "bars": "26-27",
+   "camera": "Close z 1.6, the FELT framing restored",
+   "cue_tags": [
+    "callback"
+   ]
+  },
+  {
+   "t": 52.258,
+   "picture": "Then the pod opens the line and answers ✓. Counter chip.",
+   "words": "",
+   "sound": "Clean clicks resolve.",
+   "act": "payoff",
+   "bars": "28-29",
+   "camera": "Wide reveal z 1.0",
+   "cue_tags": []
+  },
+  {
+   "t": 56.129,
+   "picture": "The glowing gate row, the whale breathing.",
+   "words": "Don't trust the glance. Run the checks.",
+   "sound": "Pad tail.",
+   "act": "belief",
+   "bars": "30-31",
+   "camera": "Still, breathing only",
+   "cue_tags": []
+  },
+  {
+   "t": 60.0,
+   "picture": "SERIES.lockup.",
+   "words": "",
+   "sound": "Pad tail ends, lockup tick.",
+   "act": "lockup",
+   "bars": "32",
+   "camera": "Still",
+   "cue_tags": []
+  }
+ ],
+ "captions": [
+  {
+   "t_in": 0.968,
+   "t_out": 3.871,
+   "text": "It looks finished to me.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 4.839,
+   "t_out": 8.71,
+   "text": "The client found the problems first.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 10.645,
+   "t_out": 13.548,
+   "text": "Finished is when every gate opens.",
+   "kind": "title"
+  },
+  {
+   "t_in": 13.548,
+   "t_out": 17.419,
+   "text": "A glance finds what it expects to find.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 17.419,
+   "t_out": 19.839,
+   "text": "Let a machine check it. Fix. Repeat.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 20.323,
+   "t_out": 22.742,
+   "text": "Run all checks.",
+   "kind": "label"
+  },
+  {
+   "t_in": 23.226,
+   "t_out": 26.613,
+   "text": "Fix what failed. Run every check again.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 27.097,
+   "t_out": 30.484,
+   "text": "A fix that breaks something gets caught.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 30.968,
+   "t_out": 34.839,
+   "text": "Real run: the same checks, round after round.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 31.935,
+   "t_out": 42.097,
+   "text": "Real run · 22 → 52 of 52 checks.",
+   "kind": "card",
+   "src": "https://github.com/manutej/glyph-foundry-studio-pro"
+  },
+  {
+   "t_in": 36.774,
+   "t_out": 40.645,
+   "text": "Each round fixes what the last flagged.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 42.581,
+   "t_out": 45.484,
+   "text": "We wrote the checks we passed.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 45.484,
+   "t_out": 48.145,
+   "text": "Passing our own checks is not praise.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 50.323,
+   "t_out": 55.645,
+   "text": "checks 52/52",
+   "kind": "counter",
+   "src": "https://github.com/manutej/glyph-foundry-studio-pro"
+  },
+  {
+   "t_in": 56.129,
+   "t_out": 60.0,
+   "text": "Don't trust the glance. Run the checks.",
+   "kind": "caption"
+  }
+ ],
+ "terms": [],
+ "jargon": [
+  "RSI",
+  "harness",
+  "headless",
+  "Chromium",
+  "infographic"
+ ],
+ "sound": {
+  "signature": "A clean wood-block click as each gate glows.",
+  "problem_motif": "A dull, muffled click that cuts off early.",
+  "limit_unresolved": true
+ },
+ "score_self": {
+  "score": 0.73,
+  "reason": "Strong leader pain, and the real numbers carry the case well. The limit (self-written checks) is honest and unusual. The gate idea may overlap with cluster 07 boards.",
+  "weakest_piece": "honest_limit"
+ }
+}

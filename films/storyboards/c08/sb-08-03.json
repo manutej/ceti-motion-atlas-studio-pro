@@ -1,0 +1,489 @@
+{
+  "schema_version": "sb60-v1",
+  "id": "sb-08-03",
+  "meta_prompt_id": "mp-c08-v1",
+  "cluster": "08 Memory & agent harnesses",
+  "repo": "manutej/volumetric-intelligence",
+  "capability": "A replayable record of every agent step",
+  "audience": "Engineers",
+  "wada": 339,
+  "bpm": 132,
+  "dur": 58.48,
+  "title": "Every step leaves a <i>mark</i>.",
+  "hook": {
+    "kind": "Example",
+    "picture": "Close on the whale watching a pod finish a run. The line behind the pod fades out as it goes. The pod shows ✓; a dashboard pod downstream turns a rust ✕.",
+    "words": "The agent said it was done."
+  },
+  "problem_in_viewer_words": {
+    "kind": "Fact",
+    "body": "It said done. Nobody could replay what it did.",
+    "who": "engineer on call after an overnight agent run"
+  },
+  "why_it_keeps_happening": {
+    "kind": "Fact",
+    "picture": "Pull back: three pods run in parallel lanes, each line erasing itself. First failure downstream: ✕ (2 beats). It repeats, faster each time.",
+    "words": "The run leaves no trail behind it."
+  },
+  "stakes": {
+    "kind": "Fact",
+    "body": "Every failure becomes a guessing game. The fix takes hours, and the same bad step runs again tonight."
+  },
+  "solution_hint": "Write each step down. Go on green.",
+  "metaphor": {
+    "kind": "Example",
+    "body": "The pod's line leaves a strip of ticks under it, one per step, and a gate after each step lets the line go on only when it glows green. Rust alarm.",
+    "symbols": [
+      "whale",
+      "line",
+      "tick",
+      "gate",
+      "pod"
+    ]
+  },
+  "mechanism_beats": {
+    "kind": "Method",
+    "steps": [
+      {
+        "t": 18.182,
+        "picture": "The pod swims again. Now each step drops a tick onto a strip under the line, and the strip stays. Strip: Write · Read · Go.",
+        "words": "Write each step down as it happens.",
+        "sound": "Signature click, in tune, per tick"
+      },
+      {
+        "t": 21.818,
+        "picture": "A gate after each step. Green steps pass with a glow. On a red step the gate shuts and the line stops and waits.",
+        "words": "Not green? It stops and waits.",
+        "sound": "Muted thud on the shut gate"
+      },
+      {
+        "t": 23.636,
+        "picture": "Push-in: a second whale slides along the tick strip, lighting each tick as it reads. It adds none and changes none.",
+        "words": "Read it. Never rewrite.",
+        "sound": "Soft clicks, played back"
+      },
+      {
+        "t": 25.455,
+        "picture": "A person pod drops a verdict chip into the shut gate. The gate turns green and the line moves on.",
+        "words": "A person can give the verdict.",
+        "sound": "One warm note, resolved"
+      },
+      {
+        "t": 27.273,
+        "picture": "The tick strip glows from end to end, labelled.",
+        "words": "This is the tape.",
+        "sound": "Fast quiet clicks"
+      }
+    ]
+  },
+  "real_case": {
+    "kind": "Evidence",
+    "claim": "A typed gate decides if work proceeds; a durable tape records each step; /api/query reads it without writing; /api/signal takes a human verdict. Fail closed, GREEN only.",
+    "numbers": [],
+    "source": {
+      "kind": "repo",
+      "title": "manutej/volumetric-intelligence README",
+      "url": "https://github.com/manutej/volumetric-intelligence"
+    },
+    "verified": true,
+    "illustrative": true
+  },
+  "honest_limit": {
+    "kind": "Constraint",
+    "picture": "A pod reaches off the line through a side door and sends a message out. No tick lands. The strip looks complete and every gate is green.",
+    "words": "Off the line? No mark at all."
+  },
+  "not_this": {
+    "kind": "Constraint",
+    "body": "A full tape is not the whole story."
+  },
+  "ending_pattern": {
+    "kind": "Example",
+    "slug": "rewind-the-run",
+    "body": "The whale scrubs the tick strip backwards like a tape, finds the one bad step and fixes it. The run replays clean.",
+    "callback": "Act 1's self-erasing line now leaves a strip the whale can rewind."
+  },
+  "end_belief": {
+    "kind": "Goal",
+    "body": "Keep the record. Move on only on green."
+  },
+  "beats": [
+    {
+      "t": 0.0,
+      "picture": "Close on the whale watching a pod swim a run. Behind the pod, the line erases itself as it goes. The pod surfaces with a ✓.",
+      "words": "The agent said it was done.",
+      "sound": "Tape click, reversed and smeared",
+      "act": "felt",
+      "bars": "1",
+      "camera": "Close, z 1.6, on the whale",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 1.818,
+      "picture": "A dashboard pod downstream opens the result and turns a rust ✕.",
+      "words": "",
+      "sound": "Dull thunk",
+      "act": "felt",
+      "bars": "2",
+      "camera": "Close, z 1.6, on the whale",
+      "cue_tags": [
+        "consequence",
+        "focus"
+      ]
+    },
+    {
+      "t": 3.636,
+      "picture": "The whale swims back to look. There is nothing behind the pod, only open water.",
+      "words": "Nobody can say what it did.",
+      "sound": "Smeared click twice",
+      "act": "felt",
+      "bars": "3-4",
+      "camera": "Close, z 1.6, on the whale",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 7.273,
+      "picture": "The whale circles the empty water. Hold.",
+      "words": "",
+      "sound": "Silence creeps in",
+      "act": "felt",
+      "bars": "5",
+      "camera": "Close, z 1.6, on the whale",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 10.0,
+      "picture": "Hinge: half a bar of stillness, then SERIES.open shows the title.",
+      "words": "Every step leaves a mark.",
+      "sound": "Near-silence, then the title tick",
+      "act": "why",
+      "bars": "6",
+      "camera": "Still, z 1.6",
+      "cue_tags": [
+        "hinge"
+      ]
+    },
+    {
+      "t": 10.909,
+      "picture": "Pull back: three pods run in parallel lanes, each line erasing itself. First failure downstream: ✕ (2 beats).",
+      "words": "",
+      "sound": "Problem motif: smeared click",
+      "act": "why",
+      "bars": "7",
+      "camera": "Pull back to z 1.0, revealing the pattern",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 12.727,
+      "picture": "Second lane: ✕ (1 beat). Nothing to follow back.",
+      "words": "The run leaves no trail behind it.",
+      "sound": "Smeared click, faster",
+      "act": "why",
+      "bars": "8",
+      "camera": "Pull back to z 1.0, revealing the pattern",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 14.545,
+      "picture": "Third lane: ✕ (half a beat). Three empty trails.",
+      "words": "",
+      "sound": "Smeared click, fastest",
+      "act": "why",
+      "bars": "9",
+      "camera": "Pull back to z 1.0, revealing the pattern",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 16.364,
+      "picture": "Freeze. Faint ghost ticks appear where each step was.",
+      "words": "Write each step down. Go on green.",
+      "sound": "One clean click: the signature",
+      "act": "why",
+      "bars": "10",
+      "camera": "Still, z 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 18.182,
+      "picture": "The pod swims again. Now each step drops a tick onto a strip under the line, and the strip stays. Strip: Write · Read · Go.",
+      "words": "Write each step down as it happens.",
+      "sound": "Signature click, in tune, per tick",
+      "act": "move",
+      "bars": "11",
+      "camera": "Medium, z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 21.818,
+      "picture": "A gate after each step. Green steps pass with a glow. On a red step the gate shuts and the line stops and waits.",
+      "words": "Not green? It stops and waits.",
+      "sound": "Muted thud on the shut gate",
+      "act": "move",
+      "bars": "13",
+      "camera": "Medium, z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 23.636,
+      "picture": "Push-in: a second whale slides along the tick strip, lighting each tick as it reads. It adds none and changes none.",
+      "words": "Read it. Never rewrite.",
+      "sound": "Soft clicks, played back",
+      "act": "move",
+      "bars": "14",
+      "camera": "Push-in to z 1.3 on the decisive moment",
+      "cue_tags": [
+        "mech",
+        "focus"
+      ]
+    },
+    {
+      "t": 25.455,
+      "picture": "A person pod drops a verdict chip into the shut gate. The gate turns green and the line moves on.",
+      "words": "A person can give the verdict.",
+      "sound": "One warm note, resolved",
+      "act": "move",
+      "bars": "15",
+      "camera": "Medium, z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 27.273,
+      "picture": "The tick strip glows from end to end, labelled.",
+      "words": "This is the tape.",
+      "sound": "Fast quiet clicks",
+      "act": "move",
+      "bars": "16",
+      "camera": "Medium, z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 29.091,
+      "picture": "Wide: many takes of a video walk run in parallel lanes. Each lane leaves its tick strip; gates glow green one after another.",
+      "words": "Built for video takes and dashboard walks.",
+      "sound": "Pulse bed, clicks streaming",
+      "act": "case",
+      "bars": "17-19",
+      "camera": "Steady wide, slow drift",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 34.545,
+      "picture": "One lane's gate shuts on red and stays shut. Every other lane flows on. Nothing guesses past the shut gate.",
+      "words": "Its rule: fail closed, go on green.",
+      "sound": "Thud, then the bed continues",
+      "act": "case",
+      "bars": "20-22",
+      "camera": "Steady wide, slow drift",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 40.0,
+      "picture": "A pod reaches off the line through a side door and sends a message out. No tick lands. The strip looks complete and every gate is green.",
+      "words": "Off the line? No mark at all.",
+      "sound": "Signature click once, unresolved",
+      "act": "limit",
+      "bars": "23-24",
+      "camera": "Still, then one slow push to what slipped",
+      "cue_tags": [
+        "limit",
+        "focus"
+      ]
+    },
+    {
+      "t": 42.727,
+      "picture": "Slow push to the side door, still ajar.",
+      "words": "A full tape is not the whole story.",
+      "sound": "Room tone",
+      "act": "limit",
+      "bars": "24-25",
+      "camera": "Still"
+    },
+    {
+      "t": 45.455,
+      "picture": "FELT framing: the same pod finishes its run. This time the tick strip stays behind it. The whale scrubs back along it, stops on the bad step, and the dashboard pod's ✕ turns ✓.",
+      "words": "",
+      "sound": "Clicks rewind, then a resolved chord",
+      "act": "payoff",
+      "bars": "26-29",
+      "camera": "FELT framing restored, z 1.6, then a slow wide reveal",
+      "cue_tags": [
+        "callback"
+      ]
+    },
+    {
+      "t": 52.727,
+      "picture": "Still line with its tick strip, whale breathing beside it.",
+      "words": "Keep the record. Move on only on green.",
+      "sound": "Pad tail only",
+      "act": "belief",
+      "bars": "30-31",
+      "camera": "Still, breathing only"
+    },
+    {
+      "t": 56.364,
+      "picture": "SERIES.lockup over the still line.",
+      "words": "",
+      "sound": "Final tick, then room tone",
+      "act": "lockup",
+      "bars": "32",
+      "camera": "Still"
+    }
+  ],
+  "captions": [
+    {
+      "t_in": 0.909,
+      "t_out": 3.636,
+      "text": "The agent said it was done.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 3.636,
+      "t_out": 6.818,
+      "text": "Nobody can say what it did.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 10.0,
+      "t_out": 12.273,
+      "text": "Every step leaves a mark.",
+      "kind": "title"
+    },
+    {
+      "t_in": 12.727,
+      "t_out": 15.455,
+      "text": "The run leaves no trail behind it.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 16.364,
+      "t_out": 18.636,
+      "text": "Write each step down. Go on green.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 18.182,
+      "t_out": 20.909,
+      "text": "Write each step down as it happens.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 21.818,
+      "t_out": 24.545,
+      "text": "Not green? It stops and waits.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 23.636,
+      "t_out": 25.455,
+      "text": "Read it. Never rewrite.",
+      "kind": "label"
+    },
+    {
+      "t_in": 25.455,
+      "t_out": 28.636,
+      "text": "A person can give the verdict.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 27.273,
+      "t_out": 29.091,
+      "text": "This is the tape.",
+      "kind": "label"
+    },
+    {
+      "t_in": 29.091,
+      "t_out": 31.818,
+      "text": "Built for video takes and dashboard walks.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 30.909,
+      "t_out": 38.182,
+      "text": "From the repo · Illustration",
+      "kind": "card"
+    },
+    {
+      "t_in": 34.545,
+      "t_out": 37.273,
+      "text": "Its rule: fail closed, go on green.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 40.0,
+      "t_out": 42.727,
+      "text": "Off the line? No mark at all.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 42.727,
+      "t_out": 45.455,
+      "text": "A full tape is not the whole story.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 52.727,
+      "t_out": 55.909,
+      "text": "Keep the record. Move on only on green.",
+      "kind": "caption"
+    }
+  ],
+  "terms": [
+    {
+      "term": "tape",
+      "symbol": "tick strip",
+      "pictured_at": 18.182,
+      "named_at": 27.273
+    },
+    {
+      "term": "fail closed",
+      "symbol": "gate that shuts on red",
+      "pictured_at": 21.818,
+      "named_at": 34.545
+    }
+  ],
+  "jargon": [
+    "tape",
+    "mesh",
+    "workflow",
+    "durable",
+    "fail closed",
+    "query",
+    "signal"
+  ],
+  "sound": {
+    "signature": "A clean tape click, one per step",
+    "problem_motif": "The same click reversed and smeared",
+    "limit_unresolved": true
+  },
+  "score_self": {
+    "score": 0.78,
+    "reason": "The self-erasing line is a strong, readable felt image, and rewinding is a clean callback. MOVE carries three ideas (record, gate, human verdict), so a stranger may remember only the record.",
+    "weakest_piece": "mechanism_beats"
+  }
+}

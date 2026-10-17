@@ -1,0 +1,415 @@
+{
+ "schema_version": "sb60-v1",
+ "id": "sb-01-03",
+ "meta_prompt_id": "mp-c01-v1",
+ "cluster": "01 Sheaf memory",
+ "repo": "manutej/cell-sheaf",
+ "capability": "Traffic-light status on every join, never repainted",
+ "audience": "Leaders",
+ "wada": 207,
+ "bpm": 120,
+ "dur": 64.3,
+ "title": "Keep the red <i>join</i> red.",
+ "hook": {
+  "kind": "Example",
+  "picture": "Close: three team lines meet at two joins. One join glows terracotta. The whale, holding a paint roller, swipes it green in one stroke.",
+  "words": "Just mark it green for now."
+ },
+ "problem_in_viewer_words": {
+  "kind": "Fact",
+  "body": "Every team says green, but the project is late.",
+  "who": "a programme lead in the Monday status meeting"
+ },
+ "why_it_keeps_happening": {
+  "kind": "Fact",
+  "picture": "Pull back: a board of many team lines. Three times, every 2 beats, then 1, then half, a red join is painted green, and each time the paint cracks sooner.",
+  "words": "Bad news gets painted over, every week."
+ },
+ "stakes": {
+  "kind": "Fact",
+  "body": "The client finds the problem before you do, and trust in every report drops."
+ },
+ "solution_hint": "Show where teams disagree. Never paint over.",
+ "metaphor": {
+  "kind": "Example",
+  "body": "Team reports are lines that meet at joins. Each join carries a traffic light that is set by reading both sides, and paint will not stick to it.",
+  "symbols": [
+   "whale",
+   "line",
+   "seam",
+   "pod"
+  ]
+ },
+ "mechanism_beats": {
+  "kind": "Method",
+  "steps": [
+   {
+    "t": 20.0,
+    "picture": "Each join between two team lines gets a small light. The whale sets it by reading both ends: teal if they match, orange if partly, terracotta if not.",
+    "words": "Show where teams disagree. Never paint over.",
+    "sound": "Two tones per join; unison for teal."
+   },
+   {
+    "t": 23.0,
+    "picture": "Lights settle: most teal, one orange, one terracotta. The whale tries a green swipe on the terracotta light, and the paint slides off.",
+    "words": "Paint will not stick to a real gap.",
+    "sound": "A wet slide, then the beating pair again."
+   },
+   {
+    "t": 26.0,
+    "picture": "Push-in on the orange join: a small card hangs from it saying why, kept beside the light where everyone can read it.",
+    "words": "Keep the reason next to the light.",
+    "sound": "Soft tick as the card hangs."
+   },
+   {
+    "t": 29.0,
+    "picture": "Chips appear on the lights: the colour key. A caption names what the light shows.",
+    "words": "This light shows the glue colour.",
+    "sound": "Three tones: unison, half-beat, full beat."
+   }
+  ]
+ },
+ "real_case": {
+  "kind": "Evidence",
+  "claim": "The JEV ELDER collector map keeps its open items (δ1 to δ8) listed as do not fold. Its glue stays orange until δ2 and δ3 close or are parked.",
+  "numbers": [
+   "δ1–δ8 (8 listed)",
+   "Collector glue: orange",
+   "δ2 and δ3"
+  ],
+  "source": {
+   "kind": "notion",
+   "title": "JEV ELDER — collector pack (20 Sep 2026)",
+   "url": "https://app.notion.com/p/3e1d50cfaf938136b66ff87c7039ebac"
+  },
+  "verified": true,
+  "illustrative": false
+ },
+ "honest_limit": {
+  "kind": "Constraint",
+  "picture": "Push to the terracotta light: it is lit and honest, but no pod comes. Dust settles on it while the team lines move on past it.",
+  "words": "Everyone can see it. Nobody fixes it."
+ },
+ "not_this": {
+  "kind": "Constraint",
+  "body": "Shown is not the same as solved."
+ },
+ "ending_pattern": {
+  "kind": "Example",
+  "slug": "red-stays-red",
+  "body": "The paint roller is set down, the red light stays red, and an owner pod arrives. The board is honest, and the client is no longer surprised.",
+  "callback": "Bar 1's green swipe is refused at the same join, which gets an owner instead, and the client's ✕ becomes ✓."
+ },
+ "end_belief": {
+  "kind": "Goal",
+  "body": "Report the real colour. Name who fixes it."
+ },
+ "beats": [
+  {
+   "t": 0.0,
+   "picture": "Close: three team lines meet at two joins. One join glows terracotta. The whale, holding a paint roller, swipes it green in one stroke.",
+   "words": "Just mark it green for now.",
+   "sound": "Roller swish, a bright chord.",
+   "act": "felt",
+   "bars": "1-2",
+   "camera": "Close, z 1.6 on the whale, small follow pan",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 3.0,
+   "picture": "A client pod reads the all-green board, follows the painted join, and answers ✕.",
+   "words": "",
+   "sound": "The flat string twangs under the ✕.",
+   "act": "felt",
+   "bars": "2",
+   "camera": "Close, z 1.6 on the whale, small follow pan",
+   "cue_tags": [
+    "consequence"
+   ]
+  },
+  {
+   "t": 5.0,
+   "picture": "A second swipe paints another join green. The paint already shows a hairline crack.",
+   "words": "The client found out first.",
+   "sound": "Second swish, the flat string louder.",
+   "act": "felt",
+   "bars": "3-4",
+   "camera": "Close, z 1.6 on the whale, small follow pan"
+  },
+  {
+   "t": 8.0,
+   "picture": "The whale holds the roller, the client pod's ✕ lit. Hold.",
+   "words": "",
+   "sound": "The problem motif fades. Silence creeps in.",
+   "act": "felt",
+   "bars": "5",
+   "camera": "Close, z 1.6 on the whale, small follow pan"
+  },
+  {
+   "t": 11.0,
+   "picture": "Hinge: half a bar of stillness, then SERIES.open shows the title over the still line.",
+   "words": "",
+   "sound": "Near-silence, then the title tick.",
+   "act": "why",
+   "bars": "6",
+   "camera": "Pull back z 1.6 to 1.0, one reveal",
+   "cue_tags": [
+    "hinge"
+   ]
+  },
+  {
+   "t": 12.0,
+   "picture": "Pull back: a board of many team lines. Three times, every 2 beats, then 1, then half, a red join is painted green, and each time the paint cracks sooner.",
+   "words": "Bad news gets painted over, every week.",
+   "sound": "Swish and flat twang three times, accelerating.",
+   "act": "why",
+   "bars": "7-9",
+   "camera": "Pull back z 1.6 to 1.0, one reveal",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 18.0,
+   "picture": "The roller freezes mid-swipe. Under the paint, the real colours glow faintly.",
+   "words": "Show where teams disagree. Never paint over.",
+   "sound": "The chord stops; one honest unison.",
+   "act": "why",
+   "bars": "10",
+   "camera": "Pull back z 1.6 to 1.0, one reveal",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 20.0,
+   "picture": "Each join between two team lines gets a small light. The whale sets it by reading both ends: teal if they match, orange if partly, terracotta if not.",
+   "words": "Show where teams disagree. Never paint over.",
+   "sound": "Two tones per join; unison for teal.",
+   "act": "move",
+   "bars": "11-12",
+   "camera": "Medium z 1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 23.0,
+   "picture": "Lights settle: most teal, one orange, one terracotta. The whale tries a green swipe on the terracotta light, and the paint slides off.",
+   "words": "Paint will not stick to a real gap.",
+   "sound": "A wet slide, then the beating pair again.",
+   "act": "move",
+   "bars": "12-13",
+   "camera": "Medium z 1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 26.0,
+   "picture": "Push-in on the orange join: a small card hangs from it saying why, kept beside the light where everyone can read it.",
+   "words": "Keep the reason next to the light.",
+   "sound": "Soft tick as the card hangs.",
+   "act": "move",
+   "bars": "14",
+   "camera": "Medium z 1.2, the one push-in to z 1.3",
+   "cue_tags": [
+    "mech",
+    "focus"
+   ]
+  },
+  {
+   "t": 29.0,
+   "picture": "Chips appear on the lights: the colour key. A caption names what the light shows.",
+   "words": "This light shows the glue colour.",
+   "sound": "Three tones: unison, half-beat, full beat.",
+   "act": "move",
+   "bars": "15-16",
+   "camera": "Medium z 1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 32.0,
+   "picture": "Wide: a collector map of many repos and pages. Most joins teal; the map's overall light is orange. Eight small open items hang off it, each kept, none folded in.",
+   "words": "Real run: the map stays orange.",
+   "sound": "Pulse bed, eight soft ticks.",
+   "act": "case",
+   "bars": "17-19",
+   "camera": "Steady wide, slow drift"
+  },
+  {
+   "t": 38.0,
+   "picture": "Two of the eight items blink. Until they close, the overall light cannot turn teal.",
+   "words": "Two open items keep it orange.",
+   "sound": "Two ticks pulse, unresolved.",
+   "act": "case",
+   "bars": "20-22",
+   "camera": "Steady wide, slow drift"
+  },
+  {
+   "t": 44.0,
+   "picture": "Push to the terracotta light: it is lit and honest, but no pod comes. Dust settles on it while the team lines move on past it.",
+   "words": "Everyone can see it. Nobody fixes it.",
+   "sound": "Fast beat holds, no resolution.",
+   "act": "limit",
+   "bars": "23-24",
+   "camera": "Still, then one slow push to the thing that slipped",
+   "cue_tags": [
+    "limit"
+   ]
+  },
+  {
+   "t": 48.0,
+   "picture": "Hold on the dusty red light.",
+   "words": "Shown is not the same as solved.",
+   "sound": "Room tone.",
+   "act": "limit",
+   "bars": "25",
+   "camera": "Still"
+  },
+  {
+   "t": 50.0,
+   "picture": "Red stays red. FELT framing (z 1.6, the same two joins). The whale lifts the roller, then sets it down. The light stays terracotta and an owner pod swims to it. The client pod reads and answers ✓.",
+   "words": "",
+   "sound": "Roller set down, a bell, a resolved chord.",
+   "act": "payoff",
+   "bars": "26-29",
+   "camera": "Back to FELT framing z 1.6, then wide reveal",
+   "cue_tags": [
+    "callback"
+   ]
+  },
+  {
+   "t": 58.0,
+   "picture": "The board with honest lights, one owner pod at the red join, whale breathing.",
+   "words": "Report the real colour. Name who fixes it.",
+   "sound": "Pad tail only.",
+   "act": "belief",
+   "bars": "30-31",
+   "camera": "Still, breathing only"
+  },
+  {
+   "t": 62.0,
+   "picture": "SERIES.lockup over the still line.",
+   "words": "",
+   "sound": "Lockup tone.",
+   "act": "lockup",
+   "bars": "32",
+   "camera": "Still"
+  }
+ ],
+ "captions": [
+  {
+   "t_in": 1.0,
+   "t_out": 4.0,
+   "text": "Just mark it green for now.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 5.0,
+   "t_out": 9.0,
+   "text": "The client found out first.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 11.0,
+   "t_out": 13.5,
+   "text": "Keep the red join red.",
+   "kind": "title"
+  },
+  {
+   "t_in": 13.5,
+   "t_out": 17.0,
+   "text": "Bad news gets painted over, every week.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 17.5,
+   "t_out": 20.5,
+   "text": "Show where teams disagree. Never paint over.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 23.0,
+   "t_out": 26.0,
+   "text": "Paint will not stick to a real gap.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 26.0,
+   "t_out": 29.0,
+   "text": "Keep the reason next to the light.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 29.0,
+   "t_out": 32.0,
+   "text": "This light shows the glue colour.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 32.0,
+   "t_out": 34.5,
+   "text": "Real run: the map stays orange.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 34.0,
+   "t_out": 43.0,
+   "text": "Collector glue: orange · 8 residuals kept",
+   "kind": "card",
+   "src": "https://app.notion.com/p/3e1d50cfaf938136b66ff87c7039ebac"
+  },
+  {
+   "t_in": 38.0,
+   "t_out": 42.0,
+   "text": "Two open items keep it orange.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 44.0,
+   "t_out": 47.5,
+   "text": "Everyone can see it. Nobody fixes it.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 48.0,
+   "t_out": 51.0,
+   "text": "Shown is not the same as solved.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 58.0,
+   "t_out": 62.0,
+   "text": "Report the real colour. Name who fixes it.",
+   "kind": "caption"
+  }
+ ],
+ "terms": [
+  {
+   "term": "glue",
+   "symbol": "seam",
+   "pictured_at": 20.0,
+   "named_at": 29.0
+  }
+ ],
+ "jargon": [
+  "residuals",
+  "collector",
+  "status"
+ ],
+ "sound": {
+  "signature": "Each join is two tones: unison for teal, a slow beat for orange, a fast beat for terracotta.",
+  "problem_motif": "A cheerful major chord with one string flat underneath.",
+  "limit_unresolved": true
+ },
+ "score_self": {
+  "score": 0.77,
+  "reason": "Painting over red is an instantly legible leader pain. The case maps cleanly onto a real orange collector. Risk: \"glue colour\" may read as jargon even after its picture.",
+  "weakest_piece": "terms"
+ }
+}

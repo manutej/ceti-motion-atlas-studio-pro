@@ -1,0 +1,441 @@
+{
+ "schema_version": "sb60-v1",
+ "id": "sb-09-01",
+ "meta_prompt_id": "mp-c09-v1",
+ "cluster": "09 Generative art & sound",
+ "repo": "manutej/orpheum-studio-pro",
+ "capability": "Hear a colour set as one chord",
+ "audience": "Learners",
+ "wada": 339,
+ "bpm": 128,
+ "dur": 60.3,
+ "title": "Let the colours <i>ring</i>.",
+ "hook": {
+  "kind": "Example",
+  "picture": "Close on the whale sliding colour cards onto the line one at a time. Each new card is judged only against the one beside it, and the whale nods every time.",
+  "words": "Just one more colour."
+ },
+ "problem_in_viewer_words": {
+  "kind": "Fact",
+  "body": "I stared at these colours so long they all looked fine.",
+  "who": "designer at six, before the client call"
+ },
+ "why_it_keeps_happening": {
+  "kind": "Fact",
+  "picture": "Pull back: three palettes in a row. Each time a new card is matched to its neighbour only, the far end slides further off (every 2 beats, then 1, then half).",
+  "words": "Eyes only compare a colour to its neighbour."
+ },
+ "stakes": {
+  "kind": "Fact",
+  "body": "A page ships with colours that fight, and the client sees it before you do."
+ },
+ "solution_hint": "Hear the whole set at once.",
+ "metaphor": {
+  "kind": "Example",
+  "body": "Each colour card sends up a ring. The rings stack into one chord above the line, so the whole set is heard at once instead of judged pair by pair.",
+  "symbols": [
+   "whale",
+   "line",
+   "atom",
+   "ring",
+   "pod"
+  ]
+ },
+ "mechanism_beats": {
+  "kind": "Method",
+  "steps": [
+   {
+    "t": 18.75,
+    "picture": "The whale taps the cards. Each sends one ring up, and four rings stack into one chord shape above the line.",
+    "words": "Colour in. Chord out.",
+    "sound": "Four just-tuned voices enter one by one."
+   },
+   {
+    "t": 22.5,
+    "picture": "The whale slides one card lighter. Its ring climbs, and the whole chord shape changes with it.",
+    "words": "Change one colour. The chord changes too.",
+    "sound": "One voice rises, the chord re-voices."
+   },
+   {
+    "t": 26.25,
+    "picture": "Push-in: the whale swaps a card for a near-twin it cannot tell apart by eye. The chord shape shifts, and an English Red ring marks the change.",
+    "words": "Ears catch a change tired eyes miss.",
+    "sound": "The chord audibly shifts on the swap."
+   },
+   {
+    "t": 28.125,
+    "picture": "The whale plays the set twice. Two ring stacks land exactly on top of each other, and a tick lands.",
+    "words": "",
+    "sound": "Same chord twice, then a soft tick."
+   }
+  ]
+ },
+ "real_case": {
+  "kind": "Evidence",
+  "claim": "The studio's Orpheum engine maps each of its 19 curated Wada palettes to a 4-voice just-intonation chord, deterministically (gate G24).",
+  "numbers": [
+   "19/19",
+   "4-Voice"
+  ],
+  "source": {
+   "kind": "repo",
+   "title": "CETI Motion Atlas Studio Pro README (Orpheum/GEOME engine, gate G24)",
+   "url": null
+  },
+  "verified": true,
+  "illustrative": false
+ },
+ "honest_limit": {
+  "kind": "Constraint",
+  "picture": "A pale-on-pale colour set plays a calm, sweet chord, yet the pod's page in those colours is unreadable. The chord never noticed.",
+  "words": "A sweet chord can still be unreadable."
+ },
+ "not_this": {
+  "kind": "Constraint",
+  "body": "Sound is a second sense, not a judge."
+ },
+ "ending_pattern": {
+  "kind": "Example",
+  "slug": "chord-before-send",
+  "body": "The whale adds one more colour as in FELT, hears the chord shift, checks the page and swaps the card before sending. The pod answers ✓.",
+  "callback": "Same close shot as bar 1, the one-more-colour gesture, now caught by ear before it ships."
+ },
+ "end_belief": {
+  "kind": "Goal",
+  "body": "Before you ship colours, listen to them."
+ },
+ "beats": [
+  {
+   "t": 0.0,
+   "picture": "Close: the whale slides a fourth colour card onto the line, glances at the card beside it, nods.",
+   "words": "Just one more colour.",
+   "sound": "One soft pluck per card, slightly detuned.",
+   "act": "felt",
+   "bars": "1",
+   "camera": "Close z 1.6 on the whale",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 2.812,
+   "picture": "A pod renders a page in those colours. Its text turns muddy against the ground, and the pod answers with an English Red ✕ chip.",
+   "words": "It looked fine until it shipped.",
+   "sound": "A dull thunk on the ✕.",
+   "act": "felt",
+   "bars": "2-3",
+   "camera": "Close z 1.6, small follow pan",
+   "cue_tags": [
+    "consequence"
+   ]
+  },
+  {
+   "t": 5.625,
+   "picture": "The whale adds a fifth card next to the fourth. The pair looks fine, and the page gets muddier.",
+   "words": "",
+   "sound": "Plucks drift flatter.",
+   "act": "felt",
+   "bars": "4",
+   "camera": "Close z 1.6",
+   "cue_tags": []
+  },
+  {
+   "t": 7.5,
+   "picture": "The whale squints at the pod's ✕, blinks. Hold.",
+   "words": "",
+   "sound": "Silence creeps in.",
+   "act": "felt",
+   "bars": "5",
+   "camera": "Close z 1.7, hold on the whale's face",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 9.375,
+   "picture": "Half a bar of stillness, then the title.",
+   "words": "Let the colours ring.",
+   "sound": "Near-silence, then the title tick.",
+   "act": "why",
+   "bars": "6",
+   "camera": "Still z 1.6, half bar of stillness",
+   "cue_tags": [
+    "hinge"
+   ]
+  },
+  {
+   "t": 11.25,
+   "picture": "Pull back: three past colour rows. In each, every card matches its neighbour, but the first and last cards clash.",
+   "words": "Eyes only compare a colour to its neighbour.",
+   "sound": "Problem motif once: a chord with one voice a quarter-tone flat.",
+   "act": "why",
+   "bars": "7-8",
+   "camera": "Pull back z 1.6 to 1.0",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 15.0,
+   "picture": "Three more cards drop in, every 2 beats, then 1, then half. Each one is matched only to its neighbour, and the far end drifts further.",
+   "words": "",
+   "sound": "Problem motif three times, accelerating.",
+   "act": "why",
+   "bars": "9",
+   "camera": "Wide z 1.0, pattern revealed",
+   "cue_tags": []
+  },
+  {
+   "t": 16.875,
+   "picture": "Motion stops. A faint ring ghosts above every card at once.",
+   "words": "Hear the whole set at once.",
+   "sound": "First clean chord: the signature.",
+   "act": "why",
+   "bars": "10",
+   "camera": "Wide z 1.0, all motion stops",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 18.75,
+   "picture": "The whale taps the cards. Each sends one ring up, and four rings stack into one chord shape above the line.",
+   "words": "Colour in. Chord out.",
+   "sound": "Four just-tuned voices enter one by one.",
+   "act": "move",
+   "bars": "11-12",
+   "camera": "Medium z 1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 22.5,
+   "picture": "The whale slides one card lighter. Its ring climbs, and the whole chord shape changes with it.",
+   "words": "Change one colour. The chord changes too.",
+   "sound": "One voice rises, the chord re-voices.",
+   "act": "move",
+   "bars": "13-14",
+   "camera": "Medium z 1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 26.25,
+   "picture": "Push-in: the whale swaps a card for a near-twin it cannot tell apart by eye. The chord shape shifts, and an English Red ring marks the change.",
+   "words": "Ears catch a change tired eyes miss.",
+   "sound": "The chord audibly shifts on the swap.",
+   "act": "move",
+   "bars": "15",
+   "camera": "One push-in z 1.2 to 1.3",
+   "cue_tags": [
+    "mech",
+    "focus"
+   ]
+  },
+  {
+   "t": 28.125,
+   "picture": "The whale plays the set twice. Two ring stacks land exactly on top of each other, and a tick lands.",
+   "words": "",
+   "sound": "Same chord twice, then a soft tick.",
+   "act": "move",
+   "bars": "16",
+   "camera": "Medium z 1.3 easing back to 1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 30.0,
+   "picture": "Wide: nineteen short lines, each with its row of cards. Each plays its chord and earns a tick, nineteen ticks in a row.",
+   "words": "Real run: the studio's own colour sets.",
+   "sound": "Pulse bed, quick quiet ticks.",
+   "act": "case",
+   "bars": "17-19",
+   "camera": "Steady wide, slow drift",
+   "cue_tags": []
+  },
+  {
+   "t": 35.625,
+   "picture": "The whale replays one row. The two chords overlap exactly, and the tick does not move.",
+   "words": "Same colours give the same chord, always.",
+   "sound": "The same chord twice, unchanged.",
+   "act": "case",
+   "bars": "20-22",
+   "camera": "Steady wide, slow drift",
+   "cue_tags": []
+  },
+  {
+   "t": 41.25,
+   "picture": "A pale-on-pale colour set plays a calm, sweet chord. A pod renders a page in it and the words vanish. The pod answers ✕.",
+   "words": "A sweet chord can still be unreadable.",
+   "sound": "Signature chord plays once and does not resolve.",
+   "act": "limit",
+   "bars": "23-24",
+   "camera": "Still",
+   "cue_tags": [
+    "limit"
+   ]
+  },
+  {
+   "t": 45.0,
+   "picture": "Slow push to the faded words on the pod's page.",
+   "words": "",
+   "sound": "Room tone.",
+   "act": "limit",
+   "bars": "25",
+   "camera": "One slow push to the thing that slipped",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 46.875,
+   "picture": "FELT framing: the whale reaches for one more card. Its ring shifts the chord. The whale stops, checks the page, and swaps the card.",
+   "words": "",
+   "sound": "The chord shifts, then settles.",
+   "act": "payoff",
+   "bars": "26-27",
+   "camera": "Close z 1.6, the FELT framing restored",
+   "cue_tags": [
+    "callback"
+   ]
+  },
+  {
+   "t": 50.625,
+   "picture": "The pod renders the page: crisp text and a ✓ chip. The four rings glow and the whale sparks.",
+   "words": "",
+   "sound": "Full chord resolves.",
+   "act": "payoff",
+   "bars": "28-29",
+   "camera": "Wide reveal z 1.0",
+   "cue_tags": []
+  },
+  {
+   "t": 54.375,
+   "picture": "The settled card row, the rings fading, the whale breathing.",
+   "words": "Before you ship colours, listen to them.",
+   "sound": "Pad tail.",
+   "act": "belief",
+   "bars": "30-31",
+   "camera": "Still, breathing only",
+   "cue_tags": []
+  },
+  {
+   "t": 58.125,
+   "picture": "SERIES.lockup.",
+   "words": "",
+   "sound": "Pad tail ends, lockup tick.",
+   "act": "lockup",
+   "bars": "32",
+   "camera": "Still",
+   "cue_tags": []
+  }
+ ],
+ "captions": [
+  {
+   "t_in": 0.938,
+   "t_out": 3.75,
+   "text": "Just one more colour.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 4.688,
+   "t_out": 8.438,
+   "text": "It looked fine until it shipped.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 10.312,
+   "t_out": 13.125,
+   "text": "Let the colours ring.",
+   "kind": "title"
+  },
+  {
+   "t_in": 13.125,
+   "t_out": 16.875,
+   "text": "Eyes only compare a colour to its neighbour.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 16.875,
+   "t_out": 19.219,
+   "text": "Hear the whole set at once.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 19.688,
+   "t_out": 22.031,
+   "text": "Colour in. Chord out.",
+   "kind": "label"
+  },
+  {
+   "t_in": 22.5,
+   "t_out": 25.781,
+   "text": "Change one colour. The chord changes too.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 26.25,
+   "t_out": 29.531,
+   "text": "Ears catch a change tired eyes miss.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 30.0,
+   "t_out": 33.75,
+   "text": "Real run: the studio's own colour sets.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 30.938,
+   "t_out": 40.781,
+   "text": "Real run · 19/19 palettes map to chords.",
+   "kind": "card",
+   "src": "ceti-motion-atlas-studio-pro/README.md (Orpheum/GEOME engine), gate G24"
+  },
+  {
+   "t_in": 35.625,
+   "t_out": 39.375,
+   "text": "Same colours give the same chord, always.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 41.25,
+   "t_out": 44.062,
+   "text": "A sweet chord can still be unreadable.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 44.062,
+   "t_out": 46.641,
+   "text": "Sound is a second sense, not a judge.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 54.375,
+   "t_out": 58.125,
+   "text": "Before you ship colours, listen to them.",
+   "kind": "caption"
+  }
+ ],
+ "terms": [],
+ "jargon": [
+  "palette",
+  "Wada",
+  "OKLab",
+  "intonation",
+  "sonify"
+ ],
+ "sound": {
+  "signature": "Four-voice just-tuned chord, root set by the lightest colour.",
+  "problem_motif": "The same chord with one voice a quarter-tone flat, never settling.",
+  "limit_unresolved": true
+ },
+ "score_self": {
+  "score": 0.74,
+  "reason": "The problem is very relatable and the hint is plain. Risk: viewers may read the chord as a beauty judge, so the limit has to land hard. The case card is self-reported. No jargon is named, which keeps it clean.",
+  "weakest_piece": "mechanism_beats"
+ }
+}

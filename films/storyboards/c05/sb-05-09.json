@@ -1,0 +1,454 @@
+{
+ "schema_version": "sb60-v1",
+ "id": "sb-05-09",
+ "meta_prompt_id": "mp-c05-v1",
+ "cluster": "05 Meta-prompting & RSI",
+ "repo": "none",
+ "capability": "Change one thing, measure, keep or undo",
+ "audience": "Learners",
+ "wada": 279,
+ "bpm": 130,
+ "dur": 59.38,
+ "title": "One change, then <i>measure</i>.",
+ "hook": {
+  "kind": "Example",
+  "picture": "Close on a line with six kinks; the whale shoves all six flat at once; one pod answers ✓ and another ✕ (raw sienna chip).",
+  "words": "I changed six things at once."
+ },
+ "problem_in_viewer_words": {
+  "kind": "Fact",
+  "body": "I changed six things. Now I don't know what helped.",
+  "who": "learner tuning their first prompt"
+ },
+ "why_it_keeps_happening": {
+  "kind": "Fact",
+  "picture": "Three-times device: three bundled laps, every 2 beats, then 1, then ½; pods flip between ✓ and ✕.",
+  "words": "Big bundles hide what really worked."
+ },
+ "stakes": {
+  "kind": "Fact",
+  "body": "Gains can't be explained or repeated, and a harmful change hides inside a helpful bundle."
+ },
+ "solution_hint": "Change one thing. Measure. Keep or undo.",
+ "metaphor": {
+  "kind": "Example",
+  "body": "The whale smooths exactly one kink per lap; a ring measures; the counter rises (keep, a tick lands) or falls (the line springs back).",
+  "symbols": [
+   "whale",
+   "line",
+   "ring",
+   "counter",
+   "tick"
+  ]
+ },
+ "mechanism_beats": {
+  "kind": "Method",
+  "steps": [
+   {
+    "t": 18.462,
+    "picture": "The whale smooths exactly one kink; a ring pulses; the counter beside it moves up.",
+    "words": "One change.",
+    "sound": "one clean note"
+   },
+   {
+    "t": 22.154,
+    "picture": "Push-in: up, so a tick lands (kept). Next kink: the counter drops, and the line springs back (undone).",
+    "words": "Better? Keep it. Worse? Undo it.",
+    "sound": "note up a step; next note drops back"
+   },
+   {
+    "t": 25.846,
+    "picture": "The tick strip shows each change with its reading, kept or undone.",
+    "words": "Each change written down with its score.",
+    "sound": "soft ticks"
+   },
+   {
+    "t": 27.692,
+    "picture": "The ring is the same size every lap.",
+    "words": "The measure never changes between tries.",
+    "sound": "steady note"
+   }
+  ]
+ },
+ "real_case": {
+  "kind": "Evidence",
+  "claim": "A self-training setup in Manu's Motion Atlas: freeze the grader, baseline 3 tasks x 3 attempts, try 3 single-change candidates, keep or revert, confirm on held-out tasks.",
+  "numbers": [
+   "3 tasks x 3 attempts",
+   "3 single-change candidates"
+  ],
+  "source": {
+   "kind": "notion",
+   "title": "My Self Training Claude Code Setup (Motion Atlas source)",
+   "url": "https://app.notion.com/p/3fbd50cfaf93810e8161d806b3414cc9"
+  },
+  "verified": true,
+  "illustrative": false
+ },
+ "honest_limit": {
+  "kind": "Constraint",
+  "picture": "A kept change wins on the three familiar pods; a fresh fourth pod answers ✕. The gain did not travel.",
+  "words": "It won on three tasks. Not the fourth."
+ },
+ "not_this": {
+  "kind": "Constraint",
+  "body": "One small win is not a general win."
+ },
+ "ending_pattern": {
+  "kind": "Example",
+  "slug": "one-kink-per-beat",
+  "body": "FELT close shot of the six-kink line: kinks smooth one per beat, each ringed and ticked; one springs back; both pods answer ✓.",
+  "callback": "In FELT all six kinks were shoved at once and results were mixed; the same line is now smoothed one kink per beat, each measured."
+ },
+ "end_belief": {
+  "kind": "Goal",
+  "body": "Change one thing. Measure it. Keep what wins."
+ },
+ "beats": [
+  {
+   "t": 0.0,
+   "picture": "Close on a line with six kinks; the whale shoves all six flat in one big push.",
+   "words": "",
+   "sound": "muddy six-note cluster",
+   "act": "felt",
+   "bars": "1",
+   "camera": "close z1.6 on the whale",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 1.846,
+   "picture": "Two pods read it: one answers ✓, the other ✕ (raw sienna chip).",
+   "words": "I changed six things at once.",
+   "sound": "cluster, sour",
+   "act": "felt",
+   "bars": "2-3",
+   "camera": "close z1.6 on the whale",
+   "cue_tags": [
+    "consequence",
+    "focus"
+   ]
+  },
+  {
+   "t": 5.538,
+   "picture": "The whale looks from kink spot to kink spot, unsure which one mattered.",
+   "words": "Which one helped? No idea.",
+   "sound": "cluster again",
+   "act": "felt",
+   "bars": "4",
+   "camera": "close z1.6 on the whale",
+   "cue_tags": [
+    "consequence",
+    "focus"
+   ]
+  },
+  {
+   "t": 7.385,
+   "picture": "The whale undoes everything; the line snaps back to six kinks. Hold.",
+   "words": "",
+   "sound": "room tone",
+   "act": "felt",
+   "bars": "5",
+   "camera": "close z1.6 on the whale",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 10.154,
+   "picture": "Half a bar of stillness, then the title.",
+   "words": "One change, then measure.",
+   "sound": "near-silence, then title tick",
+   "act": "why",
+   "bars": "6",
+   "camera": "pull back z1.6 to 1.0, revealing the pattern",
+   "cue_tags": [
+    "hinge"
+   ]
+  },
+  {
+   "t": 11.077,
+   "picture": "Pull back: laps of bundled changes, each lap a different mess.",
+   "words": "",
+   "sound": "problem motif once",
+   "act": "why",
+   "bars": "7",
+   "camera": "pull back z1.6 to 1.0, revealing the pattern",
+   "cue_tags": []
+  },
+  {
+   "t": 12.923,
+   "picture": "Three-times device: three bundled laps, every 2 beats, then 1, then ½; pods flip between ✓ and ✕.",
+   "words": "Big bundles hide what really worked.",
+   "sound": "problem motif x3, accelerating",
+   "act": "why",
+   "bars": "8-9",
+   "camera": "pull back z1.6 to 1.0, revealing the pattern",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 16.615,
+   "picture": "Motion stops. One kink glows softly; the rest dim.",
+   "words": "Change one thing. Measure. Keep or undo.",
+   "sound": "first single clean note",
+   "act": "why",
+   "bars": "10",
+   "camera": "pull back z1.6 to 1.0, revealing the pattern",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 18.462,
+   "picture": "The whale smooths exactly one kink; a ring pulses; the counter beside it moves up.",
+   "words": "One change.",
+   "sound": "one clean note",
+   "act": "move",
+   "bars": "11-12",
+   "camera": "medium z1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 22.154,
+   "picture": "Push-in: up, so a tick lands (kept). Next kink: the counter drops, and the line springs back (undone).",
+   "words": "Better? Keep it. Worse? Undo it.",
+   "sound": "note up a step; next note drops back",
+   "act": "move",
+   "bars": "13-14",
+   "camera": "medium z1.2; one push-in to z1.3",
+   "cue_tags": [
+    "mech",
+    "focus"
+   ]
+  },
+  {
+   "t": 25.846,
+   "picture": "The tick strip shows each change with its reading, kept or undone.",
+   "words": "Each change written down with its score.",
+   "sound": "soft ticks",
+   "act": "move",
+   "bars": "15",
+   "camera": "medium z1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 27.692,
+   "picture": "The ring is the same size every lap.",
+   "words": "The measure never changes between tries.",
+   "sound": "steady note",
+   "act": "move",
+   "bars": "16",
+   "camera": "medium z1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 29.538,
+   "picture": "Wide: three lines, each with one different change, each ringed on a 3 by 3 grid of small tries.",
+   "words": "Real method: freeze the grader, change one thing.",
+   "sound": "pulse bed, nine soft rings",
+   "act": "case",
+   "bars": "17-19",
+   "camera": "steady wide, slow drift",
+   "cue_tags": []
+  },
+  {
+   "t": 35.077,
+   "picture": "The winning line meets fresh pods it has never seen before.",
+   "words": "Then test the winner on new tasks.",
+   "sound": "a new, brighter timbre",
+   "act": "case",
+   "bars": "20-22",
+   "camera": "steady wide, slow drift",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 40.615,
+   "picture": "A kept change wins on the three familiar pods; a fresh fourth pod answers ✕. The gain did not travel.",
+   "words": "It won on three tasks. Not the fourth.",
+   "sound": "note once, unresolved",
+   "act": "limit",
+   "bars": "23-24",
+   "camera": "still, then one slow push to what slipped",
+   "cue_tags": [
+    "limit",
+    "focus"
+   ]
+  },
+  {
+   "t": 44.308,
+   "picture": "Hold on the fourth pod's ✕.",
+   "words": "One small win is not a general win.",
+   "sound": "room tone",
+   "act": "limit",
+   "bars": "25",
+   "camera": "still, then one slow push to what slipped",
+   "cue_tags": []
+  },
+  {
+   "t": 46.154,
+   "picture": "FELT close shot of the six-kink line: kinks smooth one per beat, each ringed and ticked; one springs back.",
+   "words": "",
+   "sound": "notes climbing one step per beat",
+   "act": "payoff",
+   "bars": "26-27",
+   "camera": "FELT framing z1.6 (callback), then wide reveal",
+   "cue_tags": [
+    "callback",
+    "focus"
+   ]
+  },
+  {
+   "t": 49.846,
+   "picture": "Both pods from bar 2 answer ✓; whale delight; wide reveal of the tick strip.",
+   "words": "",
+   "sound": "full resolution",
+   "act": "payoff",
+   "bars": "28-29",
+   "camera": "FELT framing z1.6 (callback), then wide reveal",
+   "cue_tags": []
+  },
+  {
+   "t": 53.538,
+   "picture": "Still line, tick strip, whale breathing.",
+   "words": "Change one thing. Measure it. Keep what wins.",
+   "sound": "pad tail only",
+   "act": "belief",
+   "bars": "30-31",
+   "camera": "still, breathing",
+   "cue_tags": []
+  },
+  {
+   "t": 57.231,
+   "picture": "SERIES.lockup over the still chart ground",
+   "words": "",
+   "sound": "lockup sting",
+   "act": "lockup",
+   "bars": "32",
+   "camera": "still",
+   "cue_tags": []
+  }
+ ],
+ "captions": [
+  {
+   "t_in": 1.846,
+   "t_out": 5.538,
+   "text": "I changed six things at once.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 5.538,
+   "t_out": 9.231,
+   "text": "Which one helped? No idea.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 10.154,
+   "t_out": 12.923,
+   "text": "One change, then measure.",
+   "kind": "title"
+  },
+  {
+   "t_in": 12.923,
+   "t_out": 16.615,
+   "text": "Big bundles hide what really worked.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 16.615,
+   "t_out": 18.923,
+   "text": "Change one thing. Measure. Keep or undo.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 18.462,
+   "t_out": 22.154,
+   "text": "One change.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 22.154,
+   "t_out": 25.846,
+   "text": "Better? Keep it. Worse? Undo it.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 25.846,
+   "t_out": 28.615,
+   "text": "Each change written down with its score.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 27.692,
+   "t_out": 30.462,
+   "text": "The measure never changes between tries.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 29.538,
+   "t_out": 32.308,
+   "text": "Real method: freeze the grader, change one thing.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 32.308,
+   "t_out": 38.769,
+   "text": "3 tasks x 3 attempts, one change each",
+   "kind": "card",
+   "src": "https://app.notion.com/p/3fbd50cfaf93810e8161d806b3414cc9"
+  },
+  {
+   "t_in": 35.077,
+   "t_out": 40.615,
+   "text": "Then test the winner on new tasks.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 40.615,
+   "t_out": 44.308,
+   "text": "It won on three tasks. Not the fourth.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 44.308,
+   "t_out": 47.077,
+   "text": "One small win is not a general win.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 53.538,
+   "t_out": 57.231,
+   "text": "Change one thing. Measure it. Keep what wins.",
+   "kind": "caption"
+  }
+ ],
+ "terms": [],
+ "jargon": [
+  "candidate",
+  "ablation",
+  "held-out",
+  "grader",
+  "evaluator",
+  "baseline"
+ ],
+ "sound": {
+  "signature": "a single clean note per change, a step higher when kept",
+  "problem_motif": "a muddy cluster of six notes at once",
+  "limit_unresolved": true
+ },
+ "score_self": {
+  "score": 0.8,
+  "reason": "The simplest teachable RSI move, with a learner pain everyone has. The case is someone else's method as stated (not Manu's run, no results), and M4 adds a fourth idea.",
+  "weakest_piece": "real_case"
+ }
+}

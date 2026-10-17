@@ -1,0 +1,477 @@
+{
+  "schema_version": "sb60-v1",
+  "id": "sb-10-07",
+  "meta_prompt_id": "mp-c10-v1",
+  "cluster": "10 Explainers & craft",
+  "repo": "ceti-ai-services/loop-engineering",
+  "capability": "Every fix ships with a check that fails on the old copy",
+  "audience": "Everyone",
+  "wada": 166,
+  "bpm": 128,
+  "dur": 60.3,
+  "title": "The old bug meets a <i>door</i>.",
+  "hook": {
+    "kind": "Example",
+    "picture": "Close on the whale patching a kink in the line with care; the line runs smooth.",
+    "words": "There. Fixed it."
+  },
+  "problem_in_viewer_words": {
+    "kind": "Fact",
+    "body": "We fixed that last month. Why is it back?",
+    "who": "support lead reading a repeat bug report"
+  },
+  "why_it_keeps_happening": {
+    "kind": "Fact",
+    "picture": "Pull back: each fix is made by hand and nothing remembers it; an old copy of the line slides back in, kink and all. Three-times device: the old copy slides back three times, every 2 beats, then 1, then half, the kink returning each time.",
+    "words": "Nothing stops the old version coming back."
+  },
+  "stakes": {
+    "kind": "Fact",
+    "body": "Every repeat costs the fix twice and tells users the team is not listening."
+  },
+  "solution_hint": "Ship each fix with its own check.",
+  "metaphor": {
+    "kind": "Example",
+    "body": "Every patch leaves a small door right behind it, cut to the shape of the old kink, so the old copy can never slip back through.",
+    "symbols": [
+      "whale",
+      "line",
+      "gate",
+      "flag"
+    ]
+  },
+  "mechanism_beats": {
+    "kind": "Method",
+    "steps": [
+      {
+        "t": 18.75,
+        "picture": "The whale patches the kink, then plants a small gate right behind the patch.",
+        "words": "Ship each fix with its own check.",
+        "sound": "Patch stitch, then a small latch"
+      },
+      {
+        "t": 21.562,
+        "picture": "A ghost of the old kinked line slides in, hits the new gate and bounces off; a flag marks it.",
+        "words": "Old copy stopped.",
+        "sound": "Bounce thud, then a clean bell"
+      },
+      {
+        "t": 24.375,
+        "picture": "The fixed line passes the same gate cleanly; the gate glows.",
+        "words": "Old copy fails. New copy passes.",
+        "sound": "Clean bell"
+      },
+      {
+        "t": 27.188,
+        "picture": "The gate gets its name on its post.",
+        "words": "The old bug's own check: a gate.",
+        "sound": "Bells climbing"
+      }
+    ]
+  },
+  "real_case": {
+    "kind": "Evidence",
+    "claim": "The loop-engineering repo could not be read (UNGROUNDED). The jury doctrine \"Every fix ships with a check that fails on the old copy\"; in the jury run, fixers on disjoint files went 0/22 → 22/22, 0/15 → 15/15 and 0/16 → 16/16.",
+    "numbers": [
+      "0/22 → 22/22",
+      "0/15 → 15/15",
+      "0/16 → 16/16"
+    ],
+    "source": {
+      "kind": "notion",
+      "title": "The jury — adversarial evaluation",
+      "url": "https://app.notion.com/p/3f2d50cfaf93811dafbdfac6f43bd8a9"
+    },
+    "verified": true,
+    "illustrative": false
+  },
+  "honest_limit": {
+    "kind": "Constraint",
+    "picture": "A brand-new kink of a different shape slides through the gate untouched; a flag rises far downstream.",
+    "words": "A new bug walks right past."
+  },
+  "not_this": {
+    "kind": "Constraint",
+    "body": "A check stops repeats, not new bugs."
+  },
+  "ending_pattern": {
+    "kind": "Example",
+    "slug": "the-kink-stays-gone",
+    "body": "FELT framing returns. The whale patches the kink; on the same beat as bar 2 the old kink tries to return and bounces off the gate; the line stays smooth; the pod answers ✓.",
+    "callback": "The kink that came back in bar 2 tries again in the same framing and is stopped."
+  },
+  "end_belief": {
+    "kind": "Goal",
+    "body": "Every fix leaves a check behind."
+  },
+  "beats": [
+    {
+      "t": 0.0,
+      "act": "felt",
+      "bars": "1",
+      "picture": "Close on the whale patching a kink in the line with care; the line runs smooth.",
+      "words": "",
+      "sound": "Soft stitching sound",
+      "camera": "Close z 1.6 on the whale",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 0.938,
+      "act": "felt",
+      "bars": "1",
+      "picture": "The whale holds still for a breath, facing the trouble.",
+      "words": "There. Fixed it.",
+      "sound": "Low room tone",
+      "camera": "Close z 1.6 on the whale",
+      "cue_tags": []
+    },
+    {
+      "t": 1.875,
+      "act": "felt",
+      "bars": "2",
+      "picture": "A few beats later the same kink reappears in the same spot; a pod reports ✕.",
+      "words": "",
+      "sound": "Dull bell echo",
+      "camera": "Close z 1.6 on the whale",
+      "cue_tags": [
+        "consequence",
+        "focus"
+      ]
+    },
+    {
+      "t": 4.688,
+      "act": "felt",
+      "bars": "3",
+      "picture": "The whale looks at the kink, then at its own patch, now gone.",
+      "words": "Did we not fix this already?",
+      "sound": "Dull echo, louder",
+      "camera": "Close z 1.6 on the whale",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 7.5,
+      "act": "felt",
+      "bars": "5",
+      "picture": "The kink sits on the line. Hold.",
+      "words": "",
+      "sound": "Silence creeps in",
+      "camera": "Close z 1.6 on the whale",
+      "cue_tags": []
+    },
+    {
+      "t": 10.312,
+      "act": "why",
+      "bars": "6",
+      "picture": "Stillness over the kink, then the title.",
+      "words": "The old bug meets a door.",
+      "sound": "Half a bar of room tone, then the title tick",
+      "camera": "Pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "hinge"
+      ]
+    },
+    {
+      "t": 12.188,
+      "act": "why",
+      "bars": "7",
+      "picture": "Pull back: each fix is made by hand and nothing remembers it; an old copy of the line slides back in, kink and all.",
+      "words": "Nothing stops the old version coming back.",
+      "sound": "Dull bell",
+      "camera": "Pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 14.062,
+      "act": "why",
+      "bars": "8",
+      "picture": "Three-times device: the old copy slides back three times, every 2 beats, then 1, then half, the kink returning each time.",
+      "words": "",
+      "sound": "Dull bell x3, accelerating",
+      "camera": "Pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 16.875,
+      "act": "why",
+      "bars": "10",
+      "picture": "All motion stops. Where the fix will go, a faint outline of it ghosts in.",
+      "words": "Ship each fix with its own check.",
+      "sound": "One clean bell, the first in tune",
+      "camera": "Pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 18.75,
+      "act": "move",
+      "bars": "11",
+      "picture": "The whale patches the kink, then plants a small gate right behind the patch.",
+      "words": "Ship each fix with its own check.",
+      "sound": "Patch stitch, then a small latch",
+      "camera": "Medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 21.562,
+      "act": "move",
+      "bars": "12",
+      "picture": "A ghost of the old kinked line slides in, hits the new gate and bounces off; a flag marks it.",
+      "words": "Old copy stopped.",
+      "sound": "Bounce thud, then a clean bell",
+      "camera": "Medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 24.375,
+      "act": "move",
+      "bars": "14",
+      "picture": "The fixed line passes the same gate cleanly; the gate glows.",
+      "words": "Old copy fails. New copy passes.",
+      "sound": "Clean bell",
+      "camera": "Push-in z 1.1 to 1.3, the only push",
+      "cue_tags": [
+        "mech",
+        "focus"
+      ]
+    },
+    {
+      "t": 27.188,
+      "act": "move",
+      "bars": "15",
+      "picture": "The gate gets its name on its post.",
+      "words": "The old bug's own check: a gate.",
+      "sound": "Bells climbing",
+      "camera": "Medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 30.0,
+      "act": "case",
+      "bars": "17",
+      "picture": "Wide: three short lines side by side, each with a counter at zero; fixes land and each counter climbs to full.",
+      "words": "Real run: three fixes, three checks.",
+      "sound": "Pulse bed, quiet fast ticks",
+      "camera": "Steady wide, slow drift",
+      "cue_tags": []
+    },
+    {
+      "t": 31.875,
+      "act": "case",
+      "bars": "18",
+      "picture": "The card fades in on clean paper beside the run; the run keeps moving behind it.",
+      "words": "0/22 → 22/22 · 0/15 → 15/15",
+      "sound": "One soft card tick",
+      "camera": "Steady wide, slow drift",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 35.625,
+      "act": "case",
+      "bars": "20",
+      "picture": "The old copies are tried again on purpose; all bounce off their gates.",
+      "words": "The old copies tried again. Stopped.",
+      "sound": "Three bounce thuds",
+      "camera": "Steady wide, slow drift",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 41.25,
+      "act": "limit",
+      "bars": "23",
+      "picture": "A brand-new kink of a different shape slides through the gate untouched; a flag rises far downstream.",
+      "words": "A new bug walks right past.",
+      "sound": "The signature plays once and does not resolve",
+      "camera": "Still, then one slow push in",
+      "cue_tags": [
+        "limit",
+        "focus"
+      ]
+    },
+    {
+      "t": 45.0,
+      "act": "limit",
+      "bars": "25",
+      "picture": "Hold on the far flag.",
+      "words": "A check stops repeats, not new bugs.",
+      "sound": "Room tone",
+      "camera": "Still",
+      "cue_tags": []
+    },
+    {
+      "t": 46.875,
+      "act": "payoff",
+      "bars": "26",
+      "picture": "FELT framing (z 1.6). The whale patches the kink and the gate stands behind it.",
+      "words": "",
+      "sound": "Clean bell, resolved",
+      "camera": "FELT framing z 1.6, then wide reveal",
+      "cue_tags": [
+        "callback",
+        "focus"
+      ]
+    },
+    {
+      "t": 50.625,
+      "act": "payoff",
+      "bars": "28",
+      "picture": "The old kink tries to return on cue and bounces off; the pod answers ✓. Spark.",
+      "words": "",
+      "sound": "Full resolution, the signature in tune on every beat",
+      "camera": "FELT framing z 1.6, then wide reveal",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 54.375,
+      "act": "belief",
+      "bars": "30",
+      "picture": "The smooth line with its small gate; the whale breathes.",
+      "words": "Every fix leaves a check behind.",
+      "sound": "Pad tail only",
+      "camera": "Still, breathing",
+      "cue_tags": []
+    },
+    {
+      "t": 58.125,
+      "act": "lockup",
+      "bars": "32",
+      "picture": "SERIES.lockup over the chart ground.",
+      "words": "",
+      "sound": "Pad tail fades",
+      "camera": "Still",
+      "cue_tags": []
+    }
+  ],
+  "captions": [
+    {
+      "t_in": 0.938,
+      "t_out": 3.75,
+      "text": "There. Fixed it.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 4.688,
+      "t_out": 7.969,
+      "text": "Did we not fix this already?",
+      "kind": "caption"
+    },
+    {
+      "t_in": 10.312,
+      "t_out": 12.187,
+      "text": "The old bug meets a door.",
+      "kind": "title"
+    },
+    {
+      "t_in": 12.188,
+      "t_out": 15.938,
+      "text": "Nothing stops the old version coming back.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 16.875,
+      "t_out": 19.219,
+      "text": "Ship each fix with its own check.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 21.562,
+      "t_out": 23.437,
+      "text": "Old copy stopped.",
+      "kind": "label"
+    },
+    {
+      "t_in": 24.375,
+      "t_out": 27.188,
+      "text": "Old copy fails. New copy passes.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 27.188,
+      "t_out": 30.0,
+      "text": "The old bug's own check: a gate.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 30.0,
+      "t_out": 32.812,
+      "text": "Real run: three fixes, three checks.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 31.875,
+      "t_out": 39.375,
+      "text": "0/22 → 22/22 · 0/15 → 15/15",
+      "kind": "card",
+      "src": "https://app.notion.com/p/3f2d50cfaf93811dafbdfac6f43bd8a9"
+    },
+    {
+      "t_in": 35.625,
+      "t_out": 39.375,
+      "text": "The old copies tried again. Stopped.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 41.25,
+      "t_out": 44.062,
+      "text": "A new bug walks right past.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 45.0,
+      "t_out": 47.812,
+      "text": "A check stops repeats, not new bugs.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 54.375,
+      "t_out": 58.125,
+      "text": "Every fix leaves a check behind.",
+      "kind": "caption"
+    }
+  ],
+  "terms": [
+    {
+      "term": "gate",
+      "symbol": "gate",
+      "pictured_at": 21.562,
+      "named_at": 27.188
+    }
+  ],
+  "jargon": [
+    "regression",
+    "test",
+    "loop",
+    "revert",
+    "patch"
+  ],
+  "sound": {
+    "signature": "A clean bell tone that rings once and stops",
+    "problem_motif": "The same bell, ringing again with a dull echo",
+    "limit_unresolved": true
+  },
+  "score_self": {
+    "score": 0.66,
+    "reason": "Universal pain (the bug that comes back) with a clear picture. Honest weak spot: the named repo is ungrounded, and the case numbers come from the jury page.",
+    "weakest_piece": "real_case"
+  }
+}

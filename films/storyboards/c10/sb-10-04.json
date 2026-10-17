@@ -1,0 +1,475 @@
+{
+  "schema_version": "sb60-v1",
+  "id": "sb-10-04",
+  "meta_prompt_id": "mp-c10-v1",
+  "cluster": "10 Explainers & craft",
+  "repo": "manutej/p5js-explainer-lab",
+  "capability": "Check the whole film, not the first few seconds",
+  "audience": "Learners",
+  "wada": 339,
+  "bpm": 132,
+  "dur": 58.5,
+  "title": "Run the <i>ring</i> end to end.",
+  "hook": {
+    "kind": "Example",
+    "picture": "Close on the whale checking the first stretch of the line with a small ring; the ring glows; the whale nods.",
+    "words": "I checked it. It looked fine."
+  },
+  "problem_in_viewer_words": {
+    "kind": "Fact",
+    "body": "The start looked fine. The middle was broken.",
+    "who": "learner previewing their first animated explainer"
+  },
+  "why_it_keeps_happening": {
+    "kind": "Fact",
+    "picture": "Pull back: the ring only ever circles the first stretch; the rest of the line is dim. Three-times device: three new snaps appear further along, every 2 beats, then 1, then half, each just past where the ring stops.",
+    "words": "We only checked the first part."
+  },
+  "stakes": {
+    "kind": "Fact",
+    "body": "The problem ships exactly where nobody looked: the middle of the lesson."
+  },
+  "solution_hint": "Check the whole film, not a peek.",
+  "metaphor": {
+    "kind": "Example",
+    "body": "A ring is a look at one stretch of the line. Sliding the ring end to end, step by step, turns a peek into a full check.",
+    "symbols": [
+      "whale",
+      "line",
+      "ring",
+      "gate"
+    ]
+  },
+  "mechanism_beats": {
+    "kind": "Method",
+    "steps": [
+      {
+        "t": 18.182,
+        "picture": "The ring leaves the whale and slides along the full line, end to end, stopping at even steps.",
+        "words": "Check the whole film, not a peek.",
+        "sound": "Ping travelling the line"
+      },
+      {
+        "t": 20.909,
+        "picture": "At the middle step the ring catches the snap and glows copper; the line pauses there.",
+        "words": "Caught in the middle.",
+        "sound": "Ping turns sour on the snap"
+      },
+      {
+        "t": 23.636,
+        "picture": "The whale mends the snap; the ring passes over the same spot again and glows teal; a gate stands at the shore.",
+        "words": "Found it. Fixed it. Checked again.",
+        "sound": "Sour ping, then clean ping"
+      },
+      {
+        "t": 26.364,
+        "picture": "The line passes the gate only once the ring has covered every step; the name lands on its post.",
+        "words": "No full sweep, no ship: a gate.",
+        "sound": "Ping arrives home"
+      }
+    ]
+  },
+  "real_case": {
+    "kind": "Evidence",
+    "claim": "p5.js Explainer Lab, check R5 (scene code vs render): gated, but \"parity samples ~3 s of 120 s\". The proposal is to sample across the whole film.",
+    "numbers": [
+      "~3 s of 120 s"
+    ],
+    "source": {
+      "kind": "notion",
+      "title": "p5.js Explainer Lab: Research agenda",
+      "url": "https://app.notion.com/p/3f3d50cfaf9381eb9151e006efd3aba6"
+    },
+    "verified": true,
+    "illustrative": false
+  },
+  "honest_limit": {
+    "kind": "Constraint",
+    "picture": "Push in: every step is lit teal and the line passes the gate, but the pod at the end tilts, unsure what it was shown.",
+    "words": "Every frame checked. Still hard to follow."
+  },
+  "not_this": {
+    "kind": "Constraint",
+    "body": "A clean film is not a lesson."
+  },
+  "ending_pattern": {
+    "kind": "Example",
+    "slug": "far-end-lights",
+    "body": "FELT framing returns. The ring sets off from the whale and travels all the way to the far end where the snap was; that stretch lights and holds; the pod answers ✓.",
+    "callback": "The far-off snap from bar 2 now sits inside the ring's path and holds, in the same framing."
+  },
+  "end_belief": {
+    "kind": "Goal",
+    "body": "Check the whole thing, every time."
+  },
+  "beats": [
+    {
+      "t": 0.0,
+      "act": "felt",
+      "bars": "1",
+      "picture": "Close on the whale checking the first stretch of the line with a small ring; the ring glows; the whale nods.",
+      "words": "",
+      "sound": "Short ping",
+      "camera": "Close z 1.6 on the whale",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 0.909,
+      "act": "felt",
+      "bars": "1",
+      "picture": "The whale holds still for a breath, facing the trouble.",
+      "words": "I checked it. It looked fine.",
+      "sound": "Low room tone",
+      "camera": "Close z 1.6 on the whale",
+      "cue_tags": []
+    },
+    {
+      "t": 1.818,
+      "act": "felt",
+      "bars": "2",
+      "picture": "Far down the line, out past where the ring went, the line snaps; a pod at the far end answers ✕.",
+      "words": "",
+      "sound": "Snap far off, muffled",
+      "camera": "Close z 1.6 on the whale",
+      "cue_tags": [
+        "consequence",
+        "focus"
+      ]
+    },
+    {
+      "t": 4.545,
+      "act": "felt",
+      "bars": "3",
+      "picture": "The camera follows the whale along the line to the snap it never looked at.",
+      "words": "The break was where I never looked.",
+      "sound": "Muffled snap, closer",
+      "camera": "Close z 1.6 on the whale",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 7.273,
+      "act": "felt",
+      "bars": "5",
+      "picture": "The whale floats over the snap. Hold.",
+      "words": "",
+      "sound": "Silence creeps in",
+      "camera": "Close z 1.6 on the whale",
+      "cue_tags": []
+    },
+    {
+      "t": 10.0,
+      "act": "why",
+      "bars": "6",
+      "picture": "Stillness over the long line, then the title.",
+      "words": "Run the ring end to end.",
+      "sound": "Half a bar of room tone, then the title tick",
+      "camera": "Pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "hinge"
+      ]
+    },
+    {
+      "t": 11.818,
+      "act": "why",
+      "bars": "7",
+      "picture": "Pull back: the ring only ever circles the first stretch; the rest of the line is dim.",
+      "words": "We only checked the first part.",
+      "sound": "Ping cut short",
+      "camera": "Pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 13.636,
+      "act": "why",
+      "bars": "8",
+      "picture": "Three-times device: three new snaps appear further along, every 2 beats, then 1, then half, each just past where the ring stops.",
+      "words": "",
+      "sound": "Cut-off ping x3, accelerating",
+      "camera": "Pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 16.364,
+      "act": "why",
+      "bars": "10",
+      "picture": "All motion stops. Where the fix will go, a faint outline of it ghosts in.",
+      "words": "Check the whole film, not a peek.",
+      "sound": "One full ping, the first in tune",
+      "camera": "Pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 18.182,
+      "act": "move",
+      "bars": "11",
+      "picture": "The ring leaves the whale and slides along the full line, end to end, stopping at even steps.",
+      "words": "Check the whole film, not a peek.",
+      "sound": "Ping travelling the line",
+      "camera": "Medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 20.909,
+      "act": "move",
+      "bars": "12",
+      "picture": "At the middle step the ring catches the snap and glows copper; the line pauses there.",
+      "words": "Caught in the middle.",
+      "sound": "Ping turns sour on the snap",
+      "camera": "Medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 23.636,
+      "act": "move",
+      "bars": "14",
+      "picture": "The whale mends the snap; the ring passes over the same spot again and glows teal; a gate stands at the shore.",
+      "words": "Found it. Fixed it. Checked again.",
+      "sound": "Sour ping, then clean ping",
+      "camera": "Push-in z 1.1 to 1.3, the only push",
+      "cue_tags": [
+        "mech",
+        "focus"
+      ]
+    },
+    {
+      "t": 26.364,
+      "act": "move",
+      "bars": "15",
+      "picture": "The line passes the gate only once the ring has covered every step; the name lands on its post.",
+      "words": "No full sweep, no ship: a gate.",
+      "sound": "Ping arrives home",
+      "camera": "Medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 29.091,
+      "act": "case",
+      "bars": "17",
+      "picture": "Wide: one long line with a tiny lit stretch at its very start; the rest is dim.",
+      "words": "Real gap: a tiny slice was checked.",
+      "sound": "Pulse bed, quiet fast ticks",
+      "camera": "Steady wide, slow drift",
+      "cue_tags": []
+    },
+    {
+      "t": 30.909,
+      "act": "case",
+      "bars": "18",
+      "picture": "The card fades in on clean paper beside the run; the run keeps moving behind it.",
+      "words": "Checked today: about 3 s of 120 s",
+      "sound": "One soft card tick",
+      "camera": "Steady wide, slow drift",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 34.545,
+      "act": "case",
+      "bars": "20",
+      "picture": "The ring sweeps the whole line; the lit stretch grows until it covers everything.",
+      "words": "Proposed: sweep the whole film.",
+      "sound": "Long full ping",
+      "camera": "Steady wide, slow drift",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 40.0,
+      "act": "limit",
+      "bars": "23",
+      "picture": "Push in: every step is lit teal and the line passes the gate, but the pod at the end tilts, unsure what it was shown.",
+      "words": "Every frame checked. Still hard to follow.",
+      "sound": "The signature plays once and does not resolve",
+      "camera": "Still, then one slow push in",
+      "cue_tags": [
+        "limit",
+        "focus"
+      ]
+    },
+    {
+      "t": 43.636,
+      "act": "limit",
+      "bars": "25",
+      "picture": "Hold on the unsure pod.",
+      "words": "A clean film is not a lesson.",
+      "sound": "Room tone",
+      "camera": "Still",
+      "cue_tags": []
+    },
+    {
+      "t": 45.455,
+      "act": "payoff",
+      "bars": "26",
+      "picture": "FELT framing (z 1.6). The ring leaves the whale and keeps going, past where it used to stop.",
+      "words": "",
+      "sound": "Ping lands at the far end, resolved",
+      "camera": "FELT framing z 1.6, then wide reveal",
+      "cue_tags": [
+        "callback",
+        "focus"
+      ]
+    },
+    {
+      "t": 49.091,
+      "act": "payoff",
+      "bars": "28",
+      "picture": "The far end lights up whole; the pod answers ✓. Spark.",
+      "words": "",
+      "sound": "Full resolution, the signature in tune on every beat",
+      "camera": "FELT framing z 1.6, then wide reveal",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 52.727,
+      "act": "belief",
+      "bars": "30",
+      "picture": "A fully lit line; the whale breathes.",
+      "words": "Check the whole thing, every time.",
+      "sound": "Pad tail only",
+      "camera": "Still, breathing",
+      "cue_tags": []
+    },
+    {
+      "t": 56.364,
+      "act": "lockup",
+      "bars": "32",
+      "picture": "SERIES.lockup over the chart ground.",
+      "words": "",
+      "sound": "Pad tail fades",
+      "camera": "Still",
+      "cue_tags": []
+    }
+  ],
+  "captions": [
+    {
+      "t_in": 0.909,
+      "t_out": 3.636,
+      "text": "I checked it. It looked fine.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 4.545,
+      "t_out": 7.727,
+      "text": "The break was where I never looked.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 10.0,
+      "t_out": 11.818,
+      "text": "Run the ring end to end.",
+      "kind": "title"
+    },
+    {
+      "t_in": 11.818,
+      "t_out": 15.454,
+      "text": "We only checked the first part.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 16.364,
+      "t_out": 18.637,
+      "text": "Check the whole film, not a peek.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 20.909,
+      "t_out": 22.727,
+      "text": "Caught in the middle.",
+      "kind": "label"
+    },
+    {
+      "t_in": 23.636,
+      "t_out": 26.363,
+      "text": "Found it. Fixed it. Checked again.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 26.364,
+      "t_out": 29.091,
+      "text": "No full sweep, no ship: a gate.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 29.091,
+      "t_out": 31.818,
+      "text": "Real gap: a tiny slice was checked.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 30.909,
+      "t_out": 38.182,
+      "text": "Checked today: about 3 s of 120 s",
+      "kind": "card",
+      "src": "https://app.notion.com/p/3f3d50cfaf9381eb9151e006efd3aba6"
+    },
+    {
+      "t_in": 34.545,
+      "t_out": 38.181,
+      "text": "Proposed: sweep the whole film.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 40.0,
+      "t_out": 42.727,
+      "text": "Every frame checked. Still hard to follow.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 43.636,
+      "t_out": 46.363,
+      "text": "A clean film is not a lesson.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 52.727,
+      "t_out": 56.363,
+      "text": "Check the whole thing, every time.",
+      "kind": "caption"
+    }
+  ],
+  "terms": [
+    {
+      "term": "gate",
+      "symbol": "gate",
+      "pictured_at": 23.636,
+      "named_at": 26.364
+    }
+  ],
+  "jargon": [
+    "parity",
+    "sample",
+    "render",
+    "frame-rate",
+    "coverage"
+  ],
+  "sound": {
+    "signature": "A bright sonar ping that travels left to right",
+    "problem_motif": "The same ping cut short after its first echo",
+    "limit_unresolved": true
+  },
+  "score_self": {
+    "score": 0.72,
+    "reason": "The peek versus sweep idea reads from pictures alone. Weak spot: the CASE card is a finding about today, not a fixed run, so the scale-up is a proposal; \"s\" on screen is a feelable unit, but borderline.",
+    "weakest_piece": "real_case"
+  }
+}

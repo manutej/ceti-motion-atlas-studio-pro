@@ -1,0 +1,461 @@
+{
+ "schema_version": "sb60-v1",
+ "id": "sb-05-07",
+ "meta_prompt_id": "mp-c05-v1",
+ "cluster": "05 Meta-prompting & RSI",
+ "repo": "manutej/meta-prompting-plugin",
+ "capability": "Check the work between every step of a chain",
+ "audience": "Everyone",
+ "wada": 166,
+ "bpm": 128,
+ "dur": 60.3,
+ "title": "Check every <i>join</i> in the chain.",
+ "hook": {
+  "kind": "Example",
+  "picture": "Close on a line in five segments; the first is calm and each next segment wobbles more; at the end a pod answers ✕ (rust chip).",
+  "words": "Step one was fine."
+ },
+ "problem_in_viewer_words": {
+  "kind": "Fact",
+  "body": "Step one was fine. By step five it was nonsense.",
+  "who": "anyone running a multi-step AI workflow"
+ },
+ "why_it_keeps_happening": {
+  "kind": "Fact",
+  "picture": "Three-times device: three more chains run, every 2 beats, then 1, then ½, the wobble growing faster.",
+  "words": "Each step passes its mistakes along."
+ },
+ "stakes": {
+  "kind": "Fact",
+  "body": "One small early slip spreads into a useless final result, and you only find it at the end."
+ },
+ "solution_hint": "Check the work between every step.",
+ "metaphor": {
+  "kind": "Example",
+  "body": "Where each step hands to the next there is a seam with a small gate; a wobbly step is stopped and redone at its own seam.",
+  "symbols": [
+   "whale",
+   "line",
+   "seam",
+   "gate"
+  ]
+ },
+ "mechanism_beats": {
+  "kind": "Method",
+  "steps": [
+   {
+    "t": 18.75,
+    "picture": "At each join a dashed seam appears with a small gate.",
+    "words": "A check at every join.",
+    "sound": "tap, chord"
+   },
+   {
+    "t": 22.5,
+    "picture": "Push-in: a wobbly segment hits its seam gate and is stopped; it is redone and passes calm.",
+    "words": "Bad step? Stopped and redone right there.",
+    "sound": "detuned tap, then retuned"
+   },
+   {
+    "t": 26.25,
+    "picture": "The whole chain runs calm; each seam ticks as the work passes.",
+    "words": "The wobble never reaches the end.",
+    "sound": "five even taps"
+   },
+   {
+    "t": 28.125,
+    "picture": "The chain with its ticked seams sits still.",
+    "words": "Checks live at the seams.",
+    "sound": "chord resolves"
+   }
+  ]
+ },
+ "real_case": {
+  "kind": "Evidence",
+  "claim": "meta-prompting-plugin chains commands with a quality check at each step; its README diagram shows quality 0.42, 0.71, then 0.88 (an illustration), with retry on failure.",
+  "numbers": [
+   "q=0.42",
+   "q=0.71",
+   "q=0.88"
+  ],
+  "source": {
+   "kind": "repo",
+   "title": "meta-prompting-plugin README",
+   "url": "https://github.com/manutej/meta-prompting-plugin"
+  },
+  "verified": true,
+  "illustrative": true
+ },
+ "honest_limit": {
+  "kind": "Constraint",
+  "picture": "The first step was aimed at the wrong pod; every seam passes; the calm line arrives at the wrong pod; ✕.",
+  "words": "Every step checked. Wrong goal anyway."
+ },
+ "not_this": {
+  "kind": "Constraint",
+  "body": "Checked steps can still chase the wrong goal."
+ },
+ "ending_pattern": {
+  "kind": "Example",
+  "slug": "calm-to-the-last-step",
+  "body": "FELT close shot of the five segments: now calm from first to last, every seam ticked; the pod at the end answers ✓.",
+  "callback": "In FELT the wobble grew segment by segment into a ✕; the same five segments now stay calm to a ✓."
+ },
+ "end_belief": {
+  "kind": "Goal",
+  "body": "Check between steps, not just at the end."
+ },
+ "beats": [
+  {
+   "t": 0.0,
+   "picture": "Close on a line in five segments joined end to end; the first is calm, each next segment wobbles a bit more.",
+   "words": "",
+   "sound": "first tap in tune",
+   "act": "felt",
+   "bars": "1",
+   "camera": "close z1.6 on the whale",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 1.875,
+   "picture": "At the end a pod reads it and answers ✕ (rust chip).",
+   "words": "Step one was fine.",
+   "sound": "taps drifting out of tune",
+   "act": "felt",
+   "bars": "2-3",
+   "camera": "close z1.6 on the whale",
+   "cue_tags": [
+    "consequence",
+    "focus"
+   ]
+  },
+  {
+   "t": 5.625,
+   "picture": "The camera slides back along the segments: the wobble grows hop by hop.",
+   "words": "By the last step, it was nonsense.",
+   "sound": "fifth tap badly off",
+   "act": "felt",
+   "bars": "4",
+   "camera": "close z1.6 on the whale",
+   "cue_tags": [
+    "consequence",
+    "focus"
+   ]
+  },
+  {
+   "t": 7.5,
+   "picture": "The whale at the end, staring back along the chain. Hold.",
+   "words": "",
+   "sound": "room tone",
+   "act": "felt",
+   "bars": "5",
+   "camera": "close z1.6 on the whale",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 10.312,
+   "picture": "Half a bar of stillness, then the title.",
+   "words": "Check every join in the chain.",
+   "sound": "near-silence, then title tick",
+   "act": "why",
+   "bars": "6",
+   "camera": "pull back z1.6 to 1.0, revealing the pattern",
+   "cue_tags": [
+    "hinge"
+   ]
+  },
+  {
+   "t": 11.25,
+   "picture": "Pull back: each segment hands its wobble to the next, with nothing between them.",
+   "words": "",
+   "sound": "problem motif once",
+   "act": "why",
+   "bars": "7",
+   "camera": "pull back z1.6 to 1.0, revealing the pattern",
+   "cue_tags": []
+  },
+  {
+   "t": 13.125,
+   "picture": "Three-times device: three more chains run, every 2 beats, then 1, then ½, the wobble growing faster.",
+   "words": "Each step passes its mistakes along.",
+   "sound": "problem motif x3, accelerating",
+   "act": "why",
+   "bars": "8-9",
+   "camera": "pull back z1.6 to 1.0, revealing the pattern",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 16.875,
+   "picture": "Motion stops. Faint marks ghost onto every join.",
+   "words": "Check the work between every step.",
+   "sound": "first clean tap and chord",
+   "act": "why",
+   "bars": "10",
+   "camera": "pull back z1.6 to 1.0, revealing the pattern",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 18.75,
+   "picture": "At each join a dashed seam appears with a small gate.",
+   "words": "A check at every join.",
+   "sound": "tap, chord",
+   "act": "move",
+   "bars": "11-12",
+   "camera": "medium z1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 22.5,
+   "picture": "Push-in: a wobbly segment hits its seam gate and is stopped; it is redone and passes calm.",
+   "words": "Bad step? Stopped and redone right there.",
+   "sound": "detuned tap, then retuned",
+   "act": "move",
+   "bars": "13-14",
+   "camera": "medium z1.2; one push-in to z1.3",
+   "cue_tags": [
+    "mech",
+    "focus"
+   ]
+  },
+  {
+   "t": 26.25,
+   "picture": "The whole chain runs calm; each seam ticks as the work passes.",
+   "words": "The wobble never reaches the end.",
+   "sound": "five even taps",
+   "act": "move",
+   "bars": "15",
+   "camera": "medium z1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 28.125,
+   "picture": "The chain with its ticked seams sits still.",
+   "words": "Checks live at the seams.",
+   "sound": "chord resolves",
+   "act": "move",
+   "bars": "16",
+   "camera": "medium z1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 30.0,
+   "picture": "Wide: a chain of three steps; a small reading at each seam climbs as the work passes.",
+   "words": "From the plugin: a check at each join.",
+   "sound": "pulse bed, rising taps",
+   "act": "case",
+   "bars": "17-19",
+   "camera": "steady wide, slow drift",
+   "cue_tags": []
+  },
+  {
+   "t": 35.625,
+   "picture": "One seam lets a failing step retry, then stops it cleanly instead of passing it on.",
+   "words": "A failing step retries, then stops cleanly.",
+   "sound": "three taps, then silence",
+   "act": "case",
+   "bars": "20-22",
+   "camera": "steady wide, slow drift",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 41.25,
+   "picture": "The first step was aimed at the wrong pod; every seam passes; the calm line arrives at the wrong pod; ✕.",
+   "words": "Every step checked. Wrong goal anyway.",
+   "sound": "chord once, unresolved",
+   "act": "limit",
+   "bars": "23-24",
+   "camera": "still, then one slow push to what slipped",
+   "cue_tags": [
+    "limit",
+    "focus"
+   ]
+  },
+  {
+   "t": 45.0,
+   "picture": "Slow push to the wrong pod.",
+   "words": "Checked steps can still chase the wrong goal.",
+   "sound": "room tone",
+   "act": "limit",
+   "bars": "25",
+   "camera": "still, then one slow push to what slipped",
+   "cue_tags": []
+  },
+  {
+   "t": 46.875,
+   "picture": "FELT close shot of the five segments: calm from first to last, every seam ticked.",
+   "words": "",
+   "sound": "five taps in tune",
+   "act": "payoff",
+   "bars": "26-27",
+   "camera": "FELT framing z1.6 (callback), then wide reveal",
+   "cue_tags": [
+    "callback",
+    "focus"
+   ]
+  },
+  {
+   "t": 50.625,
+   "picture": "The pod at the end answers ✓; whale spark; wide reveal.",
+   "words": "",
+   "sound": "full resolution",
+   "act": "payoff",
+   "bars": "28-29",
+   "camera": "FELT framing z1.6 (callback), then wide reveal",
+   "cue_tags": []
+  },
+  {
+   "t": 54.375,
+   "picture": "Still chain, whale breathing.",
+   "words": "Check between steps, not just at the end.",
+   "sound": "pad tail only",
+   "act": "belief",
+   "bars": "30-31",
+   "camera": "still, breathing",
+   "cue_tags": []
+  },
+  {
+   "t": 58.125,
+   "picture": "SERIES.lockup over the still chart ground",
+   "words": "",
+   "sound": "lockup sting",
+   "act": "lockup",
+   "bars": "32",
+   "camera": "still",
+   "cue_tags": []
+  }
+ ],
+ "captions": [
+  {
+   "t_in": 1.875,
+   "t_out": 5.625,
+   "text": "Step one was fine.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 5.625,
+   "t_out": 9.375,
+   "text": "By the last step, it was nonsense.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 10.312,
+   "t_out": 13.125,
+   "text": "Check every join in the chain.",
+   "kind": "title"
+  },
+  {
+   "t_in": 13.125,
+   "t_out": 16.875,
+   "text": "Each step passes its mistakes along.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 16.875,
+   "t_out": 19.219,
+   "text": "Check the work between every step.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 18.75,
+   "t_out": 22.5,
+   "text": "A check at every join.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 22.5,
+   "t_out": 26.25,
+   "text": "Bad step? Stopped and redone right there.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 26.25,
+   "t_out": 29.062,
+   "text": "The wobble never reaches the end.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 28.125,
+   "t_out": 30.938,
+   "text": "Checks live at the seams.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 30.0,
+   "t_out": 32.812,
+   "text": "From the plugin: a check at each join.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 32.812,
+   "t_out": 39.375,
+   "text": "Illustration · 0.42 → 0.71 → 0.88",
+   "kind": "card",
+   "src": "https://github.com/manutej/meta-prompting-plugin"
+  },
+  {
+   "t_in": 35.625,
+   "t_out": 41.25,
+   "text": "A failing step retries, then stops cleanly.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 41.25,
+   "t_out": 45.0,
+   "text": "Every step checked. Wrong goal anyway.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 45.0,
+   "t_out": 47.812,
+   "text": "Checked steps can still chase the wrong goal.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 54.375,
+   "t_out": 58.125,
+   "text": "Check between steps, not just at the end.",
+   "kind": "caption"
+  }
+ ],
+ "terms": [
+  {
+   "term": "seams",
+   "symbol": "joins with small gates",
+   "pictured_at": 18.75,
+   "named_at": 28.125
+  }
+ ],
+ "jargon": [
+  "pipeline",
+  "operator",
+  "Kleisli",
+  "composition",
+  "monad",
+  "workflow"
+ ],
+ "sound": {
+  "signature": "five even taps, each closing a small chord",
+  "problem_motif": "five taps drifting further out of tune",
+  "limit_unresolved": true
+ },
+ "score_self": {
+  "score": 0.79,
+  "reason": "A universal pain with a visible cause, and a limit (wrong goal) that is easy to see. The numbers are illustrative only, and the seam idea overlaps cluster 04.",
+  "weakest_piece": "real_case"
+ }
+}

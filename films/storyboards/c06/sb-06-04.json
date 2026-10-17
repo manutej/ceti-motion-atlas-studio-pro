@@ -1,0 +1,426 @@
+{
+  "schema_version": "sb60-v1",
+  "id": "sb-06-04",
+  "meta_prompt_id": "mp-c06-v1",
+  "cluster": "06 JEV decisions & evidence",
+  "repo": "manutej/jev-tape",
+  "capability": "Answering and doing are separate steps",
+  "audience": "Leaders",
+  "wada": 243,
+  "bpm": 120,
+  "dur": 64.3,
+  "title": "Doing waits behind the <i>gate</i>.",
+  "hook": {
+    "kind": "Example",
+    "picture": "Close on the whale asking a pod for a draft: a small envelope card. The pod writes it and, in the same motion, flings it off the end of the line.",
+    "words": "I only asked it to draft."
+  },
+  "problem_in_viewer_words": {
+    "kind": "Fact",
+    "body": "The AI sent the email before anyone looked.",
+    "who": "head of sales at Monday standup"
+  },
+  "why_it_keeps_happening": {
+    "kind": "Fact",
+    "picture": "Pull back: three pods, each writing and sending in one motion. Three envelopes fly off, every 2 beats, then 1, then ½.",
+    "words": "Writing and sending are one step."
+  },
+  "stakes": {
+    "kind": "Fact",
+    "body": "A wrong price or the wrong client goes out in your name. Nothing reads it first, and nothing can call it back."
+  },
+  "solution_hint": "Let it write. Let rules decide the send.",
+  "metaphor": {
+    "kind": "Example",
+    "body": "The line splits into three stations: the pod answers small questions about the draft, a gate of plain rules reads the answers, and a tick records the result. The send card stays locked behind the gate until the whale switches it on.",
+    "symbols": [
+      "whale",
+      "line",
+      "pod",
+      "gate",
+      "tick"
+    ]
+  },
+  "mechanism_beats": {
+    "kind": "Method",
+    "steps": [
+      {
+        "t": 20.0,
+        "picture": "The pod writes the envelope and stops. It answers three small cards: right client? right price? approved?",
+        "words": "The AI answers. It does not send.",
+        "sound": "A soft paper settle"
+      },
+      {
+        "t": 24.0,
+        "picture": "Push-in (z 1.28): a gate of plain rules reads the cards. Two say yes and one says unsure, so the gate stays shut.",
+        "words": "Plain rules read the answers and decide.",
+        "sound": "Three taps, then a latch holding"
+      },
+      {
+        "t": 28.0,
+        "picture": "A tick lands on the line for the decision. The send card sits behind the gate with its switch off.",
+        "words": "Each decision goes on the tape.",
+        "sound": "One dry tick"
+      },
+      {
+        "t": 30.0,
+        "picture": "The three stations light in order: answer, rule, record.",
+        "words": "",
+        "sound": "Three ascending notes"
+      }
+    ]
+  },
+  "real_case": {
+    "kind": "Evidence",
+    "claim": "In jev-tape, a hosted judge answers the qualifying questions, code gates the answers, and Temporal records each step. Write actions such as sending mail stay blocked unless explicitly enabled.",
+    "numbers": [],
+    "source": {
+      "kind": "repo",
+      "title": "manutej/jev-tape README",
+      "url": "https://github.com/manutej/jev-tape"
+    },
+    "verified": true,
+    "illustrative": false
+  },
+  "honest_limit": {
+    "kind": "Constraint",
+    "picture": "Still. The whale flips the send switch on for speed. A polite envelope with a wrong price inside passes every rule card (all say yes) and flies out.",
+    "words": "Switched on, a wrong yes still flies."
+  },
+  "not_this": {
+    "kind": "Constraint",
+    "body": "The switch is yours. So is the risk."
+  },
+  "ending_pattern": {
+    "kind": "Example",
+    "slug": "envelope-waits-on-line",
+    "body": "The envelope waits on the line: the same envelope that flew off now sits behind a shut gate until the whale reads it and sends it.",
+    "callback": "The envelope that flew off by itself in bar 1 now waits on the line for the whale."
+  },
+  "end_belief": {
+    "kind": "Goal",
+    "body": "Keep sending off until you choose it."
+  },
+  "beats": [
+    {
+      "t": 0.0,
+      "picture": "Close on the whale asking a pod for a draft: a small envelope card. The pod writes it and, in the same motion, flings it off the end of the line.",
+      "words": "I only asked it to draft.",
+      "sound": "A paper whoosh with no landing tone",
+      "act": "felt",
+      "bars": "1",
+      "camera": "Close, z 1.6, on the whale; small follow pan",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 2.0,
+      "picture": "Far off, the envelope lands at a client pod. Its chip turns raw sienna ✕: the wrong price is inside.",
+      "words": "It sent it to the client.",
+      "sound": "A distant dull thunk",
+      "act": "felt",
+      "bars": "2-3",
+      "camera": "Close, z 1.6, on the whale; small follow pan",
+      "cue_tags": [
+        "consequence"
+      ]
+    },
+    {
+      "t": 6.0,
+      "picture": "The whale reaches for the envelope. It is already gone.",
+      "words": "",
+      "sound": "A short silence",
+      "act": "felt",
+      "bars": "4",
+      "camera": "Close, z 1.6, on the whale; small follow pan",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 8.0,
+      "picture": "Hold on the whale's empty fin and the empty end of the line.",
+      "words": "",
+      "sound": "Room tone",
+      "act": "felt",
+      "bars": "5",
+      "camera": "Close, z 1.6, on the whale; small follow pan",
+      "cue_tags": [
+        "consequence"
+      ]
+    },
+    {
+      "t": 11.0,
+      "picture": "Hinge: half a bar of stillness, then the title card.",
+      "words": "Doing waits behind the <i>gate</i>.",
+      "sound": "Half a bar of room tone, then the title tick",
+      "act": "why",
+      "bars": "6",
+      "camera": "Pull back z 1.6 to 1.0 to reveal the pattern",
+      "cue_tags": [
+        "hinge"
+      ]
+    },
+    {
+      "t": 12.0,
+      "picture": "Pull back: three pods, each writing and sending in one motion. Three envelopes fly off, every 2 beats, then 1, then ½.",
+      "words": "Writing and sending are one step.",
+      "sound": "Problem motif three times, accelerating",
+      "act": "why",
+      "bars": "7-9",
+      "camera": "Pull back z 1.6 to 1.0 to reveal the pattern",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 18.0,
+      "picture": "Freeze. A faint gap opens on the line between the pod and the end.",
+      "words": "",
+      "sound": "First clean statement of the signature sound",
+      "act": "why",
+      "bars": "10",
+      "camera": "Pull back z 1.6 to 1.0 to reveal the pattern",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 20.0,
+      "picture": "The pod writes the envelope and stops. It answers three small cards: right client? right price? approved?",
+      "words": "The AI answers. It does not send.",
+      "sound": "A soft paper settle",
+      "act": "move",
+      "bars": "11-12",
+      "camera": "Medium, z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 24.0,
+      "picture": "Push-in (z 1.28): a gate of plain rules reads the cards. Two say yes and one says unsure, so the gate stays shut.",
+      "words": "Plain rules read the answers and decide.",
+      "sound": "Three taps, then a latch holding",
+      "act": "move",
+      "bars": "13-14",
+      "camera": "Medium, z 1.2, one push-in to z 1.28 here",
+      "cue_tags": [
+        "mech",
+        "focus"
+      ]
+    },
+    {
+      "t": 28.0,
+      "picture": "A tick lands on the line for the decision. The send card sits behind the gate with its switch off.",
+      "words": "Each decision goes on the tape.",
+      "sound": "One dry tick",
+      "act": "move",
+      "bars": "15",
+      "camera": "Medium, z 1.2",
+      "cue_tags": [
+        "mech",
+        "focus"
+      ]
+    },
+    {
+      "t": 30.0,
+      "picture": "The three stations light in order: answer, rule, record.",
+      "words": "",
+      "sound": "Three ascending notes",
+      "act": "move",
+      "bars": "16",
+      "camera": "Medium, z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 32.0,
+      "picture": "Wide: many envelopes queue behind the gate, each with its answer cards and a tick. None leave on their own. The card fades in.",
+      "words": "jev-tape: sends blocked unless switched on.",
+      "sound": "Pulse bed, fast quiet ticks",
+      "act": "case",
+      "bars": "17-19",
+      "camera": "Steady wide, slow drift under 40 px/s",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 38.0,
+      "picture": "Three chips appear on the stations, one after another: answers, rules, record.",
+      "words": "Model answers. Code decides. Every step recorded.",
+      "sound": "Three notes, one per chip",
+      "act": "case",
+      "bars": "20-22",
+      "camera": "Steady wide, slow drift under 40 px/s",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 44.0,
+      "picture": "Still. The whale flips the send switch on for speed. A polite envelope with a wrong price inside passes every rule card (all say yes) and flies out.",
+      "words": "Switched on, a wrong yes still flies.",
+      "sound": "A bell starts to ring for the send and never resolves",
+      "act": "limit",
+      "bars": "23-24",
+      "camera": "Still, then one slow push to what slipped",
+      "cue_tags": [
+        "limit"
+      ]
+    },
+    {
+      "t": 48.0,
+      "picture": "Slow push to the envelope landing, raw sienna flag.",
+      "words": "",
+      "sound": "Room tone",
+      "act": "limit",
+      "bars": "25",
+      "camera": "Still, then one slow push to what slipped",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 50.0,
+      "picture": "FELT framing (z 1.6): the pod writes the envelope and it stays on the line behind the shut gate. The whale reads it, fixes the price, and taps once. It flies, and the client pod answers ✓.",
+      "words": "",
+      "sound": "Signature fully resolved",
+      "act": "payoff",
+      "bars": "26-29",
+      "camera": "FELT framing restored, z 1.6, then a wide reveal",
+      "cue_tags": [
+        "callback"
+      ]
+    },
+    {
+      "t": 58.0,
+      "picture": "An empty line end, the switch off, the whale breathing.",
+      "words": "Keep sending off until you choose it.",
+      "sound": "Pad tail only",
+      "act": "belief",
+      "bars": "30-31",
+      "camera": "Still, breathing only"
+    },
+    {
+      "t": 62.0,
+      "picture": "SERIES.lockup over the settled chart ground.",
+      "words": "",
+      "sound": "Lockup sting, pad out",
+      "act": "lockup",
+      "bars": "32",
+      "camera": "Still"
+    }
+  ],
+  "captions": [
+    {
+      "t_in": 1.0,
+      "t_out": 4.0,
+      "text": "I only asked it to draft.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 5.0,
+      "t_out": 9.0,
+      "text": "It sent it to the client.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 11.0,
+      "t_out": 13.5,
+      "text": "Doing waits behind the <i>gate</i>.",
+      "kind": "title"
+    },
+    {
+      "t_in": 14.0,
+      "t_out": 17.5,
+      "text": "Writing and sending are one step.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 17.5,
+      "t_out": 20.5,
+      "text": "Let it write. Let rules decide the send.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 21.0,
+      "t_out": 24.0,
+      "text": "The AI answers. It does not send.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 25.0,
+      "t_out": 28.0,
+      "text": "Plain rules read the answers and decide.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 29.0,
+      "t_out": 32.0,
+      "text": "Each decision goes on the tape.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 33.0,
+      "t_out": 38.0,
+      "text": "jev-tape: sends blocked unless switched on.",
+      "kind": "card",
+      "src": "https://github.com/manutej/jev-tape"
+    },
+    {
+      "t_in": 34.0,
+      "t_out": 38.0,
+      "text": "Sending stays off until you switch it.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 39.0,
+      "t_out": 43.5,
+      "text": "Model answers. Code decides. Every step recorded.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 44.5,
+      "t_out": 47.0,
+      "text": "Switched on, a wrong yes still flies.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 47.0,
+      "t_out": 50.0,
+      "text": "The switch is yours. So is the risk.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 58.0,
+      "t_out": 62.0,
+      "text": "Keep sending off until you choose it.",
+      "kind": "caption"
+    }
+  ],
+  "terms": [
+    {
+      "term": "tape",
+      "symbol": "tick",
+      "pictured_at": 28.0,
+      "named_at": 29.0
+    }
+  ],
+  "jargon": [
+    "write action"
+  ],
+  "sound": {
+    "signature": "A paper settle, a latch, then one clear bell when sent",
+    "problem_motif": "A whoosh with no landing tone",
+    "limit_unresolved": true
+  },
+  "score_self": {
+    "score": 0.76,
+    "reason": "The pain is very relatable for leaders, and three stations is a simple model. Risk: the CASE has no number, only a design claim, so it reads weaker than a run.",
+    "weakest_piece": "real_case"
+  }
+}

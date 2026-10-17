@@ -1,0 +1,462 @@
+{
+ "schema_version": "sb60-v1",
+ "id": "sb-05-02",
+ "meta_prompt_id": "mp-c05-v1",
+ "cluster": "05 Meta-prompting & RSI",
+ "repo": "manutej/meta-suite",
+ "capability": "Refine until fresh readers find nothing",
+ "audience": "Learners",
+ "wada": 84,
+ "bpm": 128,
+ "dur": 60.3,
+ "title": "Stop when the <i>counter</i> hits zero.",
+ "hook": {
+  "kind": "Example",
+  "picture": "Close on the whale smoothing one kink in a line; as it does, a new kink pops up further along; a pod reads and answers ✕.",
+  "words": "I keep tweaking it."
+ },
+ "problem_in_viewer_words": {
+  "kind": "Fact",
+  "body": "I keep tweaking it, and I never know when to stop.",
+  "who": "learner on their fifth rewrite of one prompt"
+ },
+ "why_it_keeps_happening": {
+  "kind": "Fact",
+  "picture": "Three-times device: three kinks slip past the whale's own glance, every 2 beats, then 1, then ½.",
+  "words": "You can't see your own blind spots."
+ },
+ "stakes": {
+  "kind": "Fact",
+  "body": "Endless rewriting by feel: time burned, and the author misses the flaws only a fresh reader would see."
+ },
+ "solution_hint": "Let fresh eyes list the fixes. Repeat.",
+ "metaphor": {
+  "kind": "Example",
+  "body": "Outline whales are fresh readers who ring each kink they find; a counter shows how many; the whale fixes the list and asks again until the counter reads zero.",
+  "symbols": [
+   "whale",
+   "line",
+   "ring",
+   "counter"
+  ]
+ },
+ "mechanism_beats": {
+  "kind": "Method",
+  "steps": [
+   {
+    "t": 18.75,
+    "picture": "Three outline whales swim along the line; each rings every kink it finds; a counter chip shows the count.",
+    "words": "Fresh eyes list every fix.",
+    "sound": "a ring chime per kink"
+   },
+   {
+    "t": 22.5,
+    "picture": "Push-in: the whale fixes every ringed kink; the readers swim again and ring fewer; the counter drops.",
+    "words": "Fix the list. Ask again.",
+    "sound": "figure loses a note"
+   },
+   {
+    "t": 26.25,
+    "picture": "A last pass: no rings. The counter reads 0 and the line holds still.",
+    "words": "Nothing left to fix? Stop there.",
+    "sound": "single held tone"
+   },
+   {
+    "t": 28.125,
+    "picture": "The still line, counter at 0, whale resting.",
+    "words": "That still point is a fixpoint.",
+    "sound": "tone sustains, resolved"
+   }
+  ]
+ },
+ "real_case": {
+  "kind": "Evidence",
+  "claim": "Studio meta-prompt RMP ledger: three critics gave 14, 14 and 10 edits (v1 to v3); the author re-check found 0, so v3 is the fixpoint.",
+  "numbers": [
+   "14",
+   "14",
+   "10",
+   "0"
+  ],
+  "source": {
+   "kind": "notion",
+   "title": "The studio meta-prompt + RMP ledger",
+   "url": "https://app.notion.com/p/3f2d50cfaf938197a25ce5ee67145c35"
+  },
+  "verified": true,
+  "illustrative": false
+ },
+ "honest_limit": {
+  "kind": "Constraint",
+  "picture": "The readers are all the same colour. Slow push to a kink on the side none of them faces; it stays unringed. Counter still 0.",
+  "words": "Same kind of eyes, same blind spot."
+ },
+ "not_this": {
+  "kind": "Constraint",
+  "body": "Zero fixes found is not the best version."
+ },
+ "ending_pattern": {
+  "kind": "Example",
+  "slug": "counter-says-stop",
+  "body": "FELT close shot: the whale lifts a fin to tweak again, sees the counter at 0, and lets go. The line holds; a pod answers ✓.",
+  "callback": "In FELT the whale tweaked forever and new kinks kept appearing; the same close shot now shows a counter at 0 and the whale stopping."
+ },
+ "end_belief": {
+  "kind": "Goal",
+  "body": "Repeat until fresh eyes find nothing. Then stop."
+ },
+ "beats": [
+  {
+   "t": 0.0,
+   "picture": "Close on the whale smoothing one kink in a line with three kinks; a new kink pops up further along.",
+   "words": "",
+   "sound": "detuned three-note figure",
+   "act": "felt",
+   "bars": "1",
+   "camera": "close z1.6 on the whale",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 1.875,
+   "picture": "A pod reads the line and answers ✕ (copper chip). The whale dives back in.",
+   "words": "I keep tweaking it.",
+   "sound": "figure loops, sour",
+   "act": "felt",
+   "bars": "2-3",
+   "camera": "close z1.6 on the whale",
+   "cue_tags": [
+    "consequence",
+    "focus"
+   ]
+  },
+  {
+   "t": 5.625,
+   "picture": "Another tweak, another kink elsewhere. The whale glances back and forth along its own line.",
+   "words": "When is it good enough to stop?",
+   "sound": "figure loops again",
+   "act": "felt",
+   "bars": "4",
+   "camera": "close z1.6 on the whale",
+   "cue_tags": [
+    "consequence",
+    "focus"
+   ]
+  },
+  {
+   "t": 7.5,
+   "picture": "The whale hovers, squashed, fin raised to tweak again. Hold.",
+   "words": "",
+   "sound": "room tone",
+   "act": "felt",
+   "bars": "5",
+   "camera": "close z1.6 on the whale",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 10.312,
+   "picture": "Half a bar of stillness, then the title.",
+   "words": "Stop when the counter hits zero.",
+   "sound": "near-silence, then title tick",
+   "act": "why",
+   "bars": "6",
+   "camera": "pull back z1.6 to 1.0, revealing the pattern",
+   "cue_tags": [
+    "hinge"
+   ]
+  },
+  {
+   "t": 11.25,
+   "picture": "Pull back: only the whale is looking at its line, from one side.",
+   "words": "",
+   "sound": "problem motif once",
+   "act": "why",
+   "bars": "7",
+   "camera": "pull back z1.6 to 1.0, revealing the pattern",
+   "cue_tags": []
+  },
+  {
+   "t": 13.125,
+   "picture": "Three-times device: three kinks slip past the whale's own glance, every 2 beats, then 1, then ½.",
+   "words": "You can't see your own blind spots.",
+   "sound": "problem motif x3, accelerating",
+   "act": "why",
+   "bars": "8-9",
+   "camera": "pull back z1.6 to 1.0, revealing the pattern",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 16.875,
+   "picture": "Motion stops. Three outline whales fade in at the edge of frame.",
+   "words": "Let fresh eyes list the fixes. Repeat.",
+   "sound": "first clean figure, landing",
+   "act": "why",
+   "bars": "10",
+   "camera": "pull back z1.6 to 1.0, revealing the pattern",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 18.75,
+   "picture": "Three outline whales swim along the line; each rings every kink it finds; a counter chip shows the count.",
+   "words": "Fresh eyes list every fix.",
+   "sound": "a ring chime per kink",
+   "act": "move",
+   "bars": "11-12",
+   "camera": "medium z1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 22.5,
+   "picture": "Push-in: the whale fixes every ringed kink; the readers swim again and ring fewer; the counter drops.",
+   "words": "Fix the list. Ask again.",
+   "sound": "figure loses a note",
+   "act": "move",
+   "bars": "13-14",
+   "camera": "medium z1.2; one push-in to z1.3",
+   "cue_tags": [
+    "mech",
+    "focus"
+   ]
+  },
+  {
+   "t": 26.25,
+   "picture": "A last pass: no rings. The counter reads 0 and the line holds still.",
+   "words": "Nothing left to fix? Stop there.",
+   "sound": "single held tone",
+   "act": "move",
+   "bars": "15",
+   "camera": "medium z1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 28.125,
+   "picture": "The still line, counter at 0, whale resting.",
+   "words": "That still point is a fixpoint.",
+   "sound": "tone sustains, resolved",
+   "act": "move",
+   "bars": "16",
+   "camera": "medium z1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 30.0,
+   "picture": "Wide: one long line (the studio prompt) goes through laps; the counter steps down lap by lap; rings thin out.",
+   "words": "Real run: three readers, then a quiet check.",
+   "sound": "pulse bed, ring chimes",
+   "act": "case",
+   "bars": "17-19",
+   "camera": "steady wide, slow drift",
+   "cue_tags": []
+  },
+  {
+   "t": 35.625,
+   "picture": "The three readers turn different ways: one checks coverage, one attacks, one checks the end.",
+   "words": "Each reader hunts a different flaw.",
+   "sound": "three distinct chimes",
+   "act": "case",
+   "bars": "20-22",
+   "camera": "steady wide, slow drift",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 41.25,
+   "picture": "The readers are all the same colour. Slow push to a kink on the side none of them faces; it stays unringed. Counter still 0.",
+   "words": "Same kind of eyes, same blind spot.",
+   "sound": "held tone, unresolved",
+   "act": "limit",
+   "bars": "23-24",
+   "camera": "still, then one slow push to what slipped",
+   "cue_tags": [
+    "limit",
+    "focus"
+   ]
+  },
+  {
+   "t": 45.0,
+   "picture": "Hold on the hidden kink.",
+   "words": "Zero fixes found is not the best version.",
+   "sound": "room tone",
+   "act": "limit",
+   "bars": "25",
+   "camera": "still, then one slow push to what slipped",
+   "cue_tags": []
+  },
+  {
+   "t": 46.875,
+   "picture": "FELT close shot: the whale lifts a fin to tweak, sees the counter at 0, and lets go. The line holds.",
+   "words": "",
+   "sound": "figure lands on the held tone",
+   "act": "payoff",
+   "bars": "26-27",
+   "camera": "FELT framing z1.6 (callback), then wide reveal",
+   "cue_tags": [
+    "callback",
+    "focus"
+   ]
+  },
+  {
+   "t": 50.625,
+   "picture": "A pod reads and answers ✓; the whale spouts; wide reveal of the calm line.",
+   "words": "",
+   "sound": "full resolution",
+   "act": "payoff",
+   "bars": "28-29",
+   "camera": "FELT framing z1.6 (callback), then wide reveal",
+   "cue_tags": []
+  },
+  {
+   "t": 54.375,
+   "picture": "Still line, counter 0, whale breathing.",
+   "words": "Repeat until fresh eyes find nothing. Then stop.",
+   "sound": "pad tail only",
+   "act": "belief",
+   "bars": "30-31",
+   "camera": "still, breathing",
+   "cue_tags": []
+  },
+  {
+   "t": 58.125,
+   "picture": "SERIES.lockup over the still chart ground",
+   "words": "",
+   "sound": "lockup sting",
+   "act": "lockup",
+   "bars": "32",
+   "camera": "still",
+   "cue_tags": []
+  }
+ ],
+ "captions": [
+  {
+   "t_in": 1.875,
+   "t_out": 5.625,
+   "text": "I keep tweaking it.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 5.625,
+   "t_out": 9.375,
+   "text": "When is it good enough to stop?",
+   "kind": "caption"
+  },
+  {
+   "t_in": 10.312,
+   "t_out": 13.125,
+   "text": "Stop when the counter hits zero.",
+   "kind": "title"
+  },
+  {
+   "t_in": 13.125,
+   "t_out": 16.875,
+   "text": "You can't see your own blind spots.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 16.875,
+   "t_out": 19.219,
+   "text": "Let fresh eyes list the fixes. Repeat.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 18.75,
+   "t_out": 22.5,
+   "text": "Fresh eyes list every fix.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 22.5,
+   "t_out": 26.25,
+   "text": "Fix the list. Ask again.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 26.25,
+   "t_out": 29.062,
+   "text": "Nothing left to fix? Stop there.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 28.125,
+   "t_out": 30.938,
+   "text": "That still point is a fixpoint.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 30.0,
+   "t_out": 32.812,
+   "text": "Real run: three readers, then a quiet check.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 32.812,
+   "t_out": 39.375,
+   "text": "Edits per lap: 14, 14, 10, 0.",
+   "kind": "card",
+   "src": "https://app.notion.com/p/3f2d50cfaf938197a25ce5ee67145c35"
+  },
+  {
+   "t_in": 35.625,
+   "t_out": 41.25,
+   "text": "Each reader hunts a different flaw.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 41.25,
+   "t_out": 45.0,
+   "text": "Same kind of eyes, same blind spot.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 45.0,
+   "t_out": 47.812,
+   "text": "Zero fixes found is not the best version.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 54.375,
+   "t_out": 58.125,
+   "text": "Repeat until fresh eyes find nothing. Then stop.",
+   "kind": "caption"
+  }
+ ],
+ "terms": [
+  {
+   "term": "fixpoint",
+   "symbol": "line holding still at counter zero",
+   "pictured_at": 26.25,
+   "named_at": 28.125
+  }
+ ],
+ "jargon": [
+  "critic",
+  "RMP",
+  "recursive",
+  "edit script",
+  "red team",
+  "iteration"
+ ],
+ "sound": {
+  "signature": "a three-note figure that loses one note per lap until a single held tone",
+  "problem_motif": "the same figure looping and never landing",
+  "limit_unresolved": true
+ },
+ "score_self": {
+  "score": 0.82,
+  "reason": "Clear pain (when to stop), real sourced numbers that literally count down to 0, and an honest limit that is pictured (a shared blind spot).",
+  "weakest_piece": "mechanism_beats"
+ }
+}

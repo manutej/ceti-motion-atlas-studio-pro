@@ -1,0 +1,479 @@
+{
+  "schema_version": "sb60-v1",
+  "id": "sb-10-10",
+  "meta_prompt_id": "mp-c10-v1",
+  "cluster": "10 Explainers & craft",
+  "repo": "Motion Atlas (this studio)",
+  "capability": "Measure the motion before anyone sees it",
+  "audience": "Everyone",
+  "wada": 84,
+  "bpm": 128,
+  "dur": 60.3,
+  "title": "Put a <i>ring</i> on every turn.",
+  "hook": {
+    "kind": "Example",
+    "picture": "Close on the whale making a sharp turn; the camera whips with it.",
+    "words": "Wait, that made me dizzy."
+  },
+  "problem_in_viewer_words": {
+    "kind": "Fact",
+    "body": "The animation made people feel a bit sick.",
+    "who": "viewer comment under a course video"
+  },
+  "why_it_keeps_happening": {
+    "kind": "Fact",
+    "picture": "Pull back: speed is judged by eye on a small preview; each turn is sharper than it looks. Three-times device: the whale whips round three times, every 2 beats, then 1, then half, each turn sharper.",
+    "words": "Our eyes miss how fast it moves."
+  },
+  "stakes": {
+    "kind": "Fact",
+    "body": "Viewers drop off, and some cannot watch at all, so the lesson never lands."
+  },
+  "solution_hint": "Measure each turn before anyone sees it.",
+  "metaphor": {
+    "kind": "Example",
+    "body": "A ring rides with the whale and measures each turn. A turn that overfills the ring stops the film before it is made.",
+    "symbols": [
+      "whale",
+      "line",
+      "ring",
+      "gate"
+    ]
+  },
+  "mechanism_beats": {
+    "kind": "Method",
+    "steps": [
+      {
+        "t": 18.75,
+        "picture": "A ring follows the whale; on each turn it measures how far the whale swung in one step.",
+        "words": "Measure each turn before anyone sees it.",
+        "sound": "Ring hum"
+      },
+      {
+        "t": 21.562,
+        "picture": "A sharp turn fills the ring past its mark; the ring glows copper and the film stops before it is made.",
+        "words": "Too fast. Stopped.",
+        "sound": "Bend overshoots, stops"
+      },
+      {
+        "t": 24.375,
+        "picture": "The whale makes the same turn spread over more steps; the ring stays inside its mark and glows teal.",
+        "words": "Same turn, slower. Now it passes.",
+        "sound": "Smooth glide lands"
+      },
+      {
+        "t": 27.188,
+        "picture": "A gate stands at the end of the line; only measured runs pass it; its name appears.",
+        "words": "Every run measured at the door: gate.",
+        "sound": "Gate latch, glide"
+      }
+    ]
+  },
+  "real_case": {
+    "kind": "Evidence",
+    "claim": "Whale Line, The brief v1: gates caught the whale's take-off turning at 1.26 rad/frame against a 0.35 limit (fixed to 0.11) and its swim at 41 px/frame (fixed to 26.5), before render. The numbers stay in NOTES.",
+    "numbers": [
+      "1.26 rad/frame",
+      "0.35",
+      "0.11",
+      "41 px/frame",
+      "26.5"
+    ],
+    "source": {
+      "kind": "notion",
+      "title": "Whale Line — The brief v1",
+      "url": "https://app.notion.com/p/3fcd50cfaf9381bda8d6e0a53b1ddc79"
+    },
+    "verified": true,
+    "illustrative": false
+  },
+  "honest_limit": {
+    "kind": "Constraint",
+    "picture": "Push in: a perfectly smooth, slow film passes every gate, and the pod yawns, its eyes drifting.",
+    "words": "Smooth and safe can still be dull."
+  },
+  "not_this": {
+    "kind": "Constraint",
+    "body": "Beauty is not a gate."
+  },
+  "ending_pattern": {
+    "kind": "Example",
+    "slug": "same-turn-smooth",
+    "body": "FELT framing returns. The whale makes the same turn as bar 1, now eased, with the ring inside its mark; the camera stays steady; the pod answers ✓.",
+    "callback": "The turn that whipped the camera in bar 1 is made again in the same framing, smooth."
+  },
+  "end_belief": {
+    "kind": "Goal",
+    "body": "Let a machine measure what eyes miss."
+  },
+  "beats": [
+    {
+      "t": 0.0,
+      "act": "felt",
+      "bars": "1",
+      "picture": "Close on the whale making a sharp turn; the camera whips with it.",
+      "words": "",
+      "sound": "Fast whoosh with a wobble",
+      "camera": "Close z 1.6 on the whale",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 0.938,
+      "act": "felt",
+      "bars": "1",
+      "picture": "The whale holds still for a breath, facing the trouble.",
+      "words": "Wait, that made me dizzy.",
+      "sound": "Low room tone",
+      "camera": "Close z 1.6 on the whale",
+      "cue_tags": []
+    },
+    {
+      "t": 1.875,
+      "act": "felt",
+      "bars": "2",
+      "picture": "A pod watching wobbles and shows ✕.",
+      "words": "",
+      "sound": "Seasick bend",
+      "camera": "Close z 1.6 on the whale",
+      "cue_tags": [
+        "consequence",
+        "focus"
+      ]
+    },
+    {
+      "t": 4.688,
+      "act": "felt",
+      "bars": "3",
+      "picture": "The whale replays the turn on a small preview; it looks smooth at that size.",
+      "words": "It looked smooth on my screen.",
+      "sound": "Small whoosh, thin",
+      "camera": "Close z 1.6 on the whale",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 7.5,
+      "act": "felt",
+      "bars": "5",
+      "picture": "The whale, small on the preview, mid-turn. Hold.",
+      "words": "",
+      "sound": "Silence creeps in",
+      "camera": "Close z 1.6 on the whale",
+      "cue_tags": []
+    },
+    {
+      "t": 10.312,
+      "act": "why",
+      "bars": "6",
+      "picture": "Stillness, then the title over the frozen turn.",
+      "words": "Put a ring on every turn.",
+      "sound": "Half a bar of room tone, then the title tick",
+      "camera": "Pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "hinge"
+      ]
+    },
+    {
+      "t": 12.188,
+      "act": "why",
+      "bars": "7",
+      "picture": "Pull back: speed is judged by eye on a small preview; each turn is sharper than it looks.",
+      "words": "Our eyes miss how fast it moves.",
+      "sound": "Whoosh",
+      "camera": "Pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 14.062,
+      "act": "why",
+      "bars": "8",
+      "picture": "Three-times device: the whale whips round three times, every 2 beats, then 1, then half, each turn sharper.",
+      "words": "",
+      "sound": "Wobbly whoosh x3, accelerating",
+      "camera": "Pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 16.875,
+      "act": "why",
+      "bars": "10",
+      "picture": "All motion stops. Where the fix will go, a faint outline of it ghosts in.",
+      "words": "Measure each turn before anyone sees it.",
+      "sound": "One smooth glide, the first in tune",
+      "camera": "Pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 18.75,
+      "act": "move",
+      "bars": "11",
+      "picture": "A ring follows the whale; on each turn it measures how far the whale swung in one step.",
+      "words": "Measure each turn before anyone sees it.",
+      "sound": "Ring hum",
+      "camera": "Medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 21.562,
+      "act": "move",
+      "bars": "12",
+      "picture": "A sharp turn fills the ring past its mark; the ring glows copper and the film stops before it is made.",
+      "words": "Too fast. Stopped.",
+      "sound": "Bend overshoots, stops",
+      "camera": "Medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 24.375,
+      "act": "move",
+      "bars": "14",
+      "picture": "The whale makes the same turn spread over more steps; the ring stays inside its mark and glows teal.",
+      "words": "Same turn, slower. Now it passes.",
+      "sound": "Smooth glide lands",
+      "camera": "Push-in z 1.1 to 1.3, the only push",
+      "cue_tags": [
+        "mech",
+        "focus"
+      ]
+    },
+    {
+      "t": 27.188,
+      "act": "move",
+      "bars": "15",
+      "picture": "A gate stands at the end of the line; only measured runs pass it; its name appears.",
+      "words": "Every run measured at the door: gate.",
+      "sound": "Gate latch, glide",
+      "camera": "Medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 30.0,
+      "act": "case",
+      "bars": "17",
+      "picture": "Wide: the whole little film laid out as one line; the ring sweeps it and flashes copper at take-off and at the swim.",
+      "words": "Real catch: our whale turned too fast.",
+      "sound": "Pulse bed, quiet fast ticks",
+      "camera": "Steady wide, slow drift",
+      "cue_tags": []
+    },
+    {
+      "t": 31.875,
+      "act": "case",
+      "bars": "18",
+      "picture": "The card fades in on clean paper beside the run; the run keeps moving behind it.",
+      "words": "Real catch · The brief film, before render",
+      "sound": "One soft card tick",
+      "camera": "Steady wide, slow drift",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 35.625,
+      "act": "case",
+      "bars": "20",
+      "picture": "Both spots are re-made, the ring glows teal at each, and the film is made.",
+      "words": "Both fixed before anyone saw them.",
+      "sound": "Two smooth glides",
+      "camera": "Steady wide, slow drift",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 41.25,
+      "act": "limit",
+      "bars": "23",
+      "picture": "Push in: a perfectly smooth, slow film passes every gate, and the pod yawns, its eyes drifting.",
+      "words": "Smooth and safe can still be dull.",
+      "sound": "The signature plays once and does not resolve",
+      "camera": "Still, then one slow push in",
+      "cue_tags": [
+        "limit",
+        "focus"
+      ]
+    },
+    {
+      "t": 45.0,
+      "act": "limit",
+      "bars": "25",
+      "picture": "Hold on the yawning pod.",
+      "words": "Beauty is not a gate.",
+      "sound": "Room tone",
+      "camera": "Still",
+      "cue_tags": []
+    },
+    {
+      "t": 46.875,
+      "act": "payoff",
+      "bars": "26",
+      "picture": "FELT framing (z 1.6). The whale starts the same turn as bar 1; the ring rides with it.",
+      "words": "",
+      "sound": "Glide resolved",
+      "camera": "FELT framing z 1.6, then wide reveal",
+      "cue_tags": [
+        "callback",
+        "focus"
+      ]
+    },
+    {
+      "t": 50.625,
+      "act": "payoff",
+      "bars": "28",
+      "picture": "The turn completes smoothly, the camera is steady, and the pod answers ✓. Spark.",
+      "words": "",
+      "sound": "Full resolution, the signature in tune on every beat",
+      "camera": "FELT framing z 1.6, then wide reveal",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 54.375,
+      "act": "belief",
+      "bars": "30",
+      "picture": "The whale idles over a calm line; it breathes.",
+      "words": "Let a machine measure what eyes miss.",
+      "sound": "Pad tail only",
+      "camera": "Still, breathing",
+      "cue_tags": []
+    },
+    {
+      "t": 58.125,
+      "act": "lockup",
+      "bars": "32",
+      "picture": "SERIES.lockup over the chart ground.",
+      "words": "",
+      "sound": "Pad tail fades",
+      "camera": "Still",
+      "cue_tags": []
+    }
+  ],
+  "captions": [
+    {
+      "t_in": 0.938,
+      "t_out": 3.75,
+      "text": "Wait, that made me dizzy.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 4.688,
+      "t_out": 7.969,
+      "text": "It looked smooth on my screen.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 10.312,
+      "t_out": 12.187,
+      "text": "Put a ring on every turn.",
+      "kind": "title"
+    },
+    {
+      "t_in": 12.188,
+      "t_out": 15.938,
+      "text": "Our eyes miss how fast it moves.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 16.875,
+      "t_out": 19.219,
+      "text": "Measure each turn before anyone sees it.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 21.562,
+      "t_out": 23.437,
+      "text": "Too fast. Stopped.",
+      "kind": "label"
+    },
+    {
+      "t_in": 24.375,
+      "t_out": 27.188,
+      "text": "Same turn, slower. Now it passes.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 27.188,
+      "t_out": 30.0,
+      "text": "Every run measured at the door: gate.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 30.0,
+      "t_out": 32.812,
+      "text": "Real catch: our whale turned too fast.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 31.875,
+      "t_out": 39.375,
+      "text": "Real catch · The brief film, before render",
+      "kind": "card",
+      "src": "https://app.notion.com/p/3fcd50cfaf9381bda8d6e0a53b1ddc79"
+    },
+    {
+      "t_in": 35.625,
+      "t_out": 39.375,
+      "text": "Both fixed before anyone saw them.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 41.25,
+      "t_out": 44.062,
+      "text": "Smooth and safe can still be dull.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 45.0,
+      "t_out": 47.812,
+      "text": "Beauty is not a gate.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 54.375,
+      "t_out": 58.125,
+      "text": "Let a machine measure what eyes miss.",
+      "kind": "caption"
+    }
+  ],
+  "terms": [
+    {
+      "term": "gate",
+      "symbol": "gate",
+      "pictured_at": 21.562,
+      "named_at": 27.188
+    }
+  ],
+  "jargon": [
+    "frame-rate",
+    "render",
+    "motion",
+    "accessibility",
+    "vestibular"
+  ],
+  "sound": {
+    "signature": "A smooth cello glide that lands in tune",
+    "problem_motif": "The same glide overshooting into a wobbly, seasick bend",
+    "limit_unresolved": true
+  },
+  "score_self": {
+    "score": 0.73,
+    "reason": "Self-referential and honest: the studio's own gate caught its own whale. The pain is physical and clear. Weak: \"Beauty is not a gate.\" names gate as a term again in LIMIT.",
+    "weakest_piece": "not_this"
+  }
+}

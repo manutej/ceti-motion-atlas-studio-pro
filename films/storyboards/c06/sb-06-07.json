@@ -1,0 +1,435 @@
+{
+  "schema_version": "sb60-v1",
+  "id": "sb-06-07",
+  "meta_prompt_id": "mp-c06-v1",
+  "cluster": "06 JEV decisions & evidence",
+  "repo": "manutej/jev-elder",
+  "capability": "Coin-flip answers and money go to a person",
+  "audience": "Everyone",
+  "wada": 296,
+  "bpm": 128,
+  "dur": 60.3,
+  "title": "Coin flips go to a <i>person</i>.",
+  "hook": {
+    "kind": "Example",
+    "picture": "Close on the whale beside a spinning coin on the line. The coin lands on its edge, wobbles, and falls 'yes'. A payout card slides down the line.",
+    "words": "It was basically a coin toss."
+  },
+  "problem_in_viewer_words": {
+    "kind": "Fact",
+    "body": "It was fifty-fifty, and it paid out anyway.",
+    "who": "claims handler at an insurer"
+  },
+  "why_it_keeps_happening": {
+    "kind": "Fact",
+    "picture": "Pull back: a row of spinning coins. Each lands near the middle and is read as yes. Three payouts slide, every 2 beats, then 1, then ½.",
+    "words": "A coin toss gets read as yes."
+  },
+  "stakes": {
+    "kind": "Fact",
+    "body": "Money leaves on a coin toss, and no one can undo it. The customer loses trust and the money doesn't come back."
+  },
+  "solution_hint": "If it's a coin toss, ask a person.",
+  "metaphor": {
+    "kind": "Example",
+    "body": "A meter with a shaded middle band sits on the line. Answers inside the band, and any card that moves money, are lifted out to the whale. Only clear answers on small things keep flowing.",
+    "symbols": [
+      "whale",
+      "line",
+      "ring",
+      "gate",
+      "atom"
+    ]
+  },
+  "mechanism_beats": {
+    "kind": "Method",
+    "steps": [
+      {
+        "t": 18.75,
+        "picture": "The coin becomes a ring meter with a shaded middle band. A clear, high answer passes straight through the gate.",
+        "words": "Clear answers pass on their own.",
+        "sound": "A coin ring, clean"
+      },
+      {
+        "t": 22.5,
+        "picture": "Push-in (z 1.28): an answer lands in the middle band. The gate lifts it off the line and hands it up to the whale.",
+        "words": "Near the middle? It goes to you.",
+        "sound": "The ring lifts up a third"
+      },
+      {
+        "t": 26.25,
+        "picture": "A payout card arrives, even with a clear answer. A copper pin on it sends it up to the whale too.",
+        "words": "Money always goes to a person.",
+        "sound": "A copper bell, held"
+      },
+      {
+        "t": 28.125,
+        "picture": "The whale reads the two held cards, decides, and drops a tick for each.",
+        "words": "Handing up is called escalating.",
+        "sound": "Two soft ticks"
+      }
+    ]
+  },
+  "real_case": {
+    "kind": "Evidence",
+    "claim": "The jev-elder pinned contracts say: \"Mid-band ~0.5 is a coin flip. Escalate.\" and \"Irreversible / money → human.\"",
+    "numbers": [
+      "~0.5"
+    ],
+    "source": {
+      "kind": "notion",
+      "title": "JEV ELDER — collector pack (20 Sep 2026)",
+      "url": "https://app.notion.com/p/3e1d50cfaf938136b66ff87c7039ebac"
+    },
+    "verified": true,
+    "illustrative": false
+  },
+  "honest_limit": {
+    "kind": "Constraint",
+    "picture": "Still. A wrong answer lands high on the meter, far from the band. It passes straight through and the payout slides. A copper flag rises behind it.",
+    "words": "A sure wrong answer skips the person."
+  },
+  "not_this": {
+    "kind": "Constraint",
+    "body": "High score is not the same as right."
+  },
+  "ending_pattern": {
+    "kind": "Example",
+    "slug": "coin-caught-midair",
+    "body": "The coin caught mid-air: the same coin toss no longer decides the payout, because the whale catches it before it lands.",
+    "callback": "The coin that tipped the payout in bar 1 is caught by the whale before it lands."
+  },
+  "end_belief": {
+    "kind": "Goal",
+    "body": "Coin toss? Hand it to a person."
+  },
+  "beats": [
+    {
+      "t": 0.0,
+      "picture": "Close on the whale beside a spinning coin on the line. The coin lands on its edge, wobbles, and falls 'yes'. A payout card slides down the line.",
+      "words": "It was basically a coin toss.",
+      "sound": "A coin spin that rattles down and stops dead",
+      "act": "felt",
+      "bars": "1",
+      "camera": "Close, z 1.6, on the whale; small follow pan",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 1.875,
+      "picture": "The payout reaches a pod. Its chip shows copper ✕: the claim was not covered.",
+      "words": "And the money still went out.",
+      "sound": "Dull thunk",
+      "act": "felt",
+      "bars": "2-3",
+      "camera": "Close, z 1.6, on the whale; small follow pan",
+      "cue_tags": [
+        "consequence"
+      ]
+    },
+    {
+      "t": 5.625,
+      "picture": "The whale picks up the coin. Both faces are half-faded.",
+      "words": "",
+      "sound": "Silence",
+      "act": "felt",
+      "bars": "4",
+      "camera": "Close, z 1.6, on the whale; small follow pan",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 7.5,
+      "picture": "Another coin spins and another payout slides away.",
+      "words": "",
+      "sound": "The rattle again, faster",
+      "act": "felt",
+      "bars": "5",
+      "camera": "Close, z 1.6, on the whale; small follow pan",
+      "cue_tags": [
+        "consequence"
+      ]
+    },
+    {
+      "t": 10.312,
+      "picture": "Hinge: half a bar of stillness, then the title card.",
+      "words": "Coin flips go to a <i>person</i>.",
+      "sound": "Half a bar of room tone, then the title tick",
+      "act": "why",
+      "bars": "6",
+      "camera": "Pull back z 1.6 to 1.0 to reveal the pattern",
+      "cue_tags": [
+        "hinge"
+      ]
+    },
+    {
+      "t": 11.25,
+      "picture": "Pull back: a row of spinning coins. Each lands near the middle and is read as yes. Three payouts slide, every 2 beats, then 1, then ½.",
+      "words": "A coin toss gets read as yes.",
+      "sound": "Problem motif three times, accelerating",
+      "act": "why",
+      "bars": "7-9",
+      "camera": "Pull back z 1.6 to 1.0 to reveal the pattern",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 16.875,
+      "picture": "Freeze. A shaded middle band appears on a meter beside the coins.",
+      "words": "",
+      "sound": "First clean statement of the signature sound",
+      "act": "why",
+      "bars": "10",
+      "camera": "Pull back z 1.6 to 1.0 to reveal the pattern",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 18.75,
+      "picture": "The coin becomes a ring meter with a shaded middle band. A clear, high answer passes straight through the gate.",
+      "words": "Clear answers pass on their own.",
+      "sound": "A coin ring, clean",
+      "act": "move",
+      "bars": "11-12",
+      "camera": "Medium, z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 22.5,
+      "picture": "Push-in (z 1.28): an answer lands in the middle band. The gate lifts it off the line and hands it up to the whale.",
+      "words": "Near the middle? It goes to you.",
+      "sound": "The ring lifts up a third",
+      "act": "move",
+      "bars": "13-14",
+      "camera": "Medium, z 1.2, one push-in to z 1.28 here",
+      "cue_tags": [
+        "mech",
+        "focus"
+      ]
+    },
+    {
+      "t": 26.25,
+      "picture": "A payout card arrives, even with a clear answer. A copper pin on it sends it up to the whale too.",
+      "words": "Money always goes to a person.",
+      "sound": "A copper bell, held",
+      "act": "move",
+      "bars": "15",
+      "camera": "Medium, z 1.2",
+      "cue_tags": [
+        "mech",
+        "focus"
+      ]
+    },
+    {
+      "t": 28.125,
+      "picture": "The whale reads the two held cards, decides, and drops a tick for each.",
+      "words": "Handing up is called escalating.",
+      "sound": "Two soft ticks",
+      "act": "move",
+      "bars": "16",
+      "camera": "Medium, z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 30.0,
+      "picture": "Wide: many coins on many lines. The middle-band ones lift to the whale in a steady trickle. The card fades in.",
+      "words": "jev-elder rule: near 0.5 means escalate.",
+      "sound": "Pulse bed, fast quiet ticks",
+      "act": "case",
+      "bars": "17-19",
+      "camera": "Steady wide, slow drift under 40 px/s",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 35.625,
+      "picture": "A refund card hovers in the band. It is held, not paid, with the chip 'held for a person'.",
+      "words": "Money or no undo: a person decides.",
+      "sound": "A held note, no payout chime",
+      "act": "case",
+      "bars": "20-22",
+      "camera": "Steady wide, slow drift under 40 px/s",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 41.25,
+      "picture": "Still. A wrong answer lands high on the meter, far from the band. It passes straight through and the payout slides. A copper flag rises behind it.",
+      "words": "A sure wrong answer skips the person.",
+      "sound": "The coin ring plays and does not resolve",
+      "act": "limit",
+      "bars": "23-24",
+      "camera": "Still, then one slow push to what slipped",
+      "cue_tags": [
+        "limit"
+      ]
+    },
+    {
+      "t": 45.0,
+      "picture": "Slow push to the flag behind the high reading.",
+      "words": "",
+      "sound": "Room tone",
+      "act": "limit",
+      "bars": "25",
+      "camera": "Still, then one slow push to what slipped",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 46.875,
+      "picture": "FELT framing (z 1.6): the coin spins and lands on its edge, and the whale catches it in mid-air. The payout waits on the line until the whale reads it. The pod answers ✓.",
+      "words": "",
+      "sound": "Signature fully resolved",
+      "act": "payoff",
+      "bars": "26-29",
+      "camera": "FELT framing restored, z 1.6, then a wide reveal",
+      "cue_tags": [
+        "callback"
+      ]
+    },
+    {
+      "t": 54.375,
+      "picture": "The caught coin resting by the whale. The meter still.",
+      "words": "Coin toss? Hand it to a person.",
+      "sound": "Pad tail only",
+      "act": "belief",
+      "bars": "30-31",
+      "camera": "Still, breathing only"
+    },
+    {
+      "t": 58.125,
+      "picture": "SERIES.lockup over the settled chart ground.",
+      "words": "",
+      "sound": "Lockup sting, pad out",
+      "act": "lockup",
+      "bars": "32",
+      "camera": "Still"
+    }
+  ],
+  "captions": [
+    {
+      "t_in": 0.938,
+      "t_out": 3.75,
+      "text": "It was basically a coin toss.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 4.688,
+      "t_out": 8.438,
+      "text": "And the money still went out.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 10.312,
+      "t_out": 12.656,
+      "text": "Coin flips go to a <i>person</i>.",
+      "kind": "title"
+    },
+    {
+      "t_in": 13.125,
+      "t_out": 16.406,
+      "text": "A coin toss gets read as yes.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 16.406,
+      "t_out": 19.219,
+      "text": "If it's a coin toss, ask a person.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 19.688,
+      "t_out": 22.5,
+      "text": "Clear answers pass on their own.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 23.438,
+      "t_out": 26.25,
+      "text": "Near the middle? It goes to you.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 27.188,
+      "t_out": 30.0,
+      "text": "Money always goes to a person.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 28.594,
+      "t_out": 30.938,
+      "text": "Handing up is called escalating.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 30.938,
+      "t_out": 35.625,
+      "text": "jev-elder rule: near 0.5 means escalate.",
+      "kind": "card",
+      "src": "https://app.notion.com/p/3e1d50cfaf938136b66ff87c7039ebac"
+    },
+    {
+      "t_in": 31.875,
+      "t_out": 35.625,
+      "text": "We wrote it down as a rule.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 36.562,
+      "t_out": 40.781,
+      "text": "Money or no undo: a person decides.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 41.719,
+      "t_out": 44.062,
+      "text": "A sure wrong answer skips the person.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 44.062,
+      "t_out": 46.875,
+      "text": "High score is not the same as right.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 54.375,
+      "t_out": 58.125,
+      "text": "Coin toss? Hand it to a person.",
+      "kind": "caption"
+    }
+  ],
+  "terms": [
+    {
+      "term": "escalating",
+      "symbol": "whale",
+      "pictured_at": 22.5,
+      "named_at": 28.594
+    }
+  ],
+  "jargon": [
+    "payout",
+    "meter"
+  ],
+  "sound": {
+    "signature": "A coin ring that resolves to a warm major third",
+    "problem_motif": "A coin spin that rattles down and stops dead",
+    "limit_unresolved": true
+  },
+  "score_self": {
+    "score": 0.8,
+    "reason": "The coin flip is an everyday symbol, the pain is visceral, and the rule is sourced verbatim. Risk: the coin is a new prop beyond the lexicon (drawn as the ring meter), and \"escalating\" is a stiff word.",
+    "weakest_piece": "metaphor"
+  }
+}

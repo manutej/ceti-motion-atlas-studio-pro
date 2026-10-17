@@ -1,0 +1,422 @@
+{
+ "sb-01-01": {
+  "file": "c01/sb-01-01.json",
+  "repo": "manutej/sheaf-knowledge-studio",
+  "score_self": 0.74,
+  "title": "Notes must agree at the <i>joins</i>.",
+  "wada": 296
+ },
+ "sb-01-02": {
+  "file": "c01/sb-01-02.json",
+  "repo": "manutej/stalks-and-sections",
+  "score_self": 0.68,
+  "title": "Give each note its own <i>card</i>.",
+  "wada": 339
+ },
+ "sb-01-03": {
+  "file": "c01/sb-01-03.json",
+  "repo": "manutej/cell-sheaf",
+  "score_self": 0.77,
+  "title": "Keep the red <i>join</i> red.",
+  "wada": 207
+ },
+ "sb-01-04": {
+  "file": "c01/sb-01-04.json",
+  "repo": "manutej/sheaf-port",
+  "score_self": 0.79,
+  "title": "Map the <i>joins</i>, then merge.",
+  "wada": 243
+ },
+ "sb-01-05": {
+  "file": "c01/sb-01-05.json",
+  "repo": "manutej/glue",
+  "score_self": 0.66,
+  "title": "Show both sides of the <i>edge</i>.",
+  "wada": 84
+ },
+ "sb-01-06": {
+  "file": "c01/sb-01-06.json",
+  "repo": "none",
+  "score_self": 0.8,
+  "title": "One owner for every <i>join</i>.",
+  "wada": 166
+ },
+ "sb-01-07": {
+  "file": "c01/sb-01-07.json",
+  "repo": "none",
+  "score_self": 0.7,
+  "title": "Seven opinions, one <i>line</i>.",
+  "wada": 279
+ },
+ "sb-01-08": {
+  "file": "c01/sb-01-08.json",
+  "repo": "none",
+  "score_self": 0.75,
+  "title": "Keep both. Mark the <i>join</i>.",
+  "wada": 84
+ },
+ "sb-01-09": {
+  "file": "c01/sb-01-09.json",
+  "repo": "manutej/sheaf-knowledge-studio",
+  "score_self": 0.76,
+  "title": "Test the <i>gate</i> by breaking it.",
+  "wada": 339
+ },
+ "sb-01-10": {
+  "file": "c01/sb-01-10.json",
+  "repo": "manutej/stalks-and-sections",
+  "score_self": 0.72,
+  "title": "Trust the <i>parts</i> that agree.",
+  "wada": 296
+ },
+ "sb-04-01": {
+  "file": "c04/sb-04-01.json",
+  "repo": "operadic-stitch (Context Atoms)",
+  "score_self": 0.78,
+  "title": "Give every note a <i>label</i>.",
+  "wada": 296
+ },
+ "sb-04-02": {
+  "file": "c04/sb-04-02.json",
+  "repo": "operadic-stitch (Context Atoms)",
+  "score_self": 0.74,
+  "title": "Hand over only the right <i>cards</i>.",
+  "wada": 279
+ },
+ "sb-04-03": {
+  "file": "c04/sb-04-03.json",
+  "repo": "operadic-stitch (Context Atoms)",
+  "score_self": 0.8,
+  "title": "One fact at every <i>joint</i>.",
+  "wada": 166
+ },
+ "sb-04-04": {
+  "file": "c04/sb-04-04.json",
+  "repo": "operadic-stitch (Context Atoms)",
+  "score_self": 0.76,
+  "title": "Private <i>cards</i> stay home.",
+  "wada": 339
+ },
+ "sb-04-05": {
+  "file": "c04/sb-04-05.json",
+  "repo": "manutej/wiring-and-the-whole",
+  "score_self": 0.72,
+  "title": "Send the <i>wiring</i>, not the pile.",
+  "wada": 84
+ },
+ "sb-04-06": {
+  "file": "c04/sb-04-06.json",
+  "repo": "manutej/discopy",
+  "score_self": 0.66,
+  "title": "Draw the <i>sockets</i> first.",
+  "wada": 207
+ },
+ "sb-04-07": {
+  "file": "c04/sb-04-07.json",
+  "repo": "manutej/catreview-go",
+  "score_self": 0.7,
+  "title": "See every <i>joint</i> first.",
+  "wada": 243
+ },
+ "sb-04-08": {
+  "file": "c04/sb-04-08.json",
+  "repo": "manutej/operadic-compositionality-course",
+  "score_self": 0.74,
+  "title": "Add the missing <i>piece</i>.",
+  "wada": 84
+ },
+ "sb-04-09": {
+  "file": "c04/sb-04-09.json",
+  "repo": "manutej/operadic-compositionality-course",
+  "score_self": 0.72,
+  "title": "Each helper gets its own <i>part</i>.",
+  "wada": 279
+ },
+ "sb-04-10": {
+  "file": "c04/sb-04-10.json",
+  "repo": "manutej/wiring-and-the-whole",
+  "score_self": 0.7,
+  "title": "Find the <i>joint</i> that slipped.",
+  "wada": 207
+ },
+ "sb-05-01": {
+  "file": "c05/sb-05-01.json",
+  "repo": "manutej/meta-suite",
+  "score_self": 0.74,
+  "title": "Build it once, with <i>slots</i>.",
+  "wada": 279
+ },
+ "sb-05-02": {
+  "file": "c05/sb-05-02.json",
+  "repo": "manutej/meta-suite",
+  "score_self": 0.82,
+  "title": "Stop when the <i>counter</i> hits zero.",
+  "wada": 84
+ },
+ "sb-05-03": {
+  "file": "c05/sb-05-03.json",
+  "repo": "manutej/categorical-meta-prompting",
+  "score_self": 0.75,
+  "title": "Send only what clears the <i>gate</i>.",
+  "wada": 296
+ },
+ "sb-05-04": {
+  "file": "c05/sb-05-04.json",
+  "repo": "manutej/categorical-meta-prompting",
+  "score_self": 0.72,
+  "title": "One <i>line</i> for every puzzle.",
+  "wada": 339
+ },
+ "sb-05-05": {
+  "file": "c05/sb-05-05.json",
+  "repo": "manutej/meta-prompting-framework",
+  "score_self": 0.78,
+  "title": "Every try gets a <i>tick</i>.",
+  "wada": 207
+ },
+ "sb-05-06": {
+  "file": "c05/sb-05-06.json",
+  "repo": "manutej/meta-prompting-framework",
+  "score_self": 0.7,
+  "title": "A small <i>gate</i> picks the road.",
+  "wada": 243
+ },
+ "sb-05-07": {
+  "file": "c05/sb-05-07.json",
+  "repo": "manutej/meta-prompting-plugin",
+  "score_self": 0.79,
+  "title": "Check every <i>join</i> in the chain.",
+  "wada": 166
+ },
+ "sb-05-08": {
+  "file": "c05/sb-05-08.json",
+  "repo": "operadic-stitch/references/RSI.md",
+  "score_self": 0.8,
+  "title": "Keep the judge <i>pinned</i>.",
+  "wada": 296
+ },
+ "sb-05-09": {
+  "file": "c05/sb-05-09.json",
+  "repo": "none",
+  "score_self": 0.8,
+  "title": "One change, then <i>measure</i>.",
+  "wada": 279
+ },
+ "sb-05-10": {
+  "file": "c05/sb-05-10.json",
+  "repo": "manutej/meta-prompting-plugin",
+  "score_self": 0.77,
+  "title": "Let it draft the <i>cards</i> first.",
+  "wada": 84
+ },
+ "sb-06-01": {
+  "file": "c06/sb-06-01.json",
+  "repo": "manutej/jev",
+  "score_self": 0.72,
+  "title": "Hunches don't fit the <i>slot</i>.",
+  "wada": 166
+ },
+ "sb-06-02": {
+  "file": "c06/sb-06-02.json",
+  "repo": "manutej/jev",
+  "score_self": 0.78,
+  "title": "When unsure, the <i>gate</i> stays shut.",
+  "wada": 84
+ },
+ "sb-06-03": {
+  "file": "c06/sb-06-03.json",
+  "repo": "manutej/jev-tape",
+  "score_self": 0.8,
+  "title": "Every step gets a <i>tick</i>.",
+  "wada": 279
+ },
+ "sb-06-04": {
+  "file": "c06/sb-06-04.json",
+  "repo": "manutej/jev-tape",
+  "score_self": 0.76,
+  "title": "Doing waits behind the <i>gate</i>.",
+  "wada": 243
+ },
+ "sb-06-05": {
+  "file": "c06/sb-06-05.json",
+  "repo": "manutej/JEV-works",
+  "score_self": 0.82,
+  "title": "Five small <i>gates</i>, not one.",
+  "wada": 339
+ },
+ "sb-06-06": {
+  "file": "c06/sb-06-06.json",
+  "repo": "manutej/JEV-works",
+  "score_self": 0.74,
+  "title": "First, check the <i>ruler</i>.",
+  "wada": 207
+ },
+ "sb-06-07": {
+  "file": "c06/sb-06-07.json",
+  "repo": "manutej/jev-elder",
+  "score_self": 0.8,
+  "title": "Coin flips go to a <i>person</i>.",
+  "wada": 296
+ },
+ "sb-06-08": {
+  "file": "c06/sb-06-08.json",
+  "repo": "manutej/jev-elder",
+  "score_self": 0.7,
+  "title": "Leave the <i>flag</i> where it is.",
+  "wada": 84
+ },
+ "sb-06-09": {
+  "file": "c06/sb-06-09.json",
+  "repo": "manutej/the-twenty-nesy",
+  "score_self": 0.77,
+  "title": "Every claim faces the same <i>gates</i>.",
+  "wada": 279
+ },
+ "sb-06-10": {
+  "file": "c06/sb-06-10.json",
+  "repo": "manutej/jev-tape-wiki",
+  "score_self": 0.71,
+  "title": "Readers pass a one-way <i>gate</i>.",
+  "wada": 166
+ },
+ "sb-08-01": {
+  "file": "c08/sb-08-01.json",
+  "repo": "manutej/kraken-omnimemory-mcp",
+  "score_self": 0.8,
+  "title": "Every answer keeps its <i>receipt</i>.",
+  "wada": 296
+ },
+ "sb-08-02": {
+  "file": "c08/sb-08-02.json",
+  "repo": "none",
+  "score_self": 0.82,
+  "title": "Give every note a <i>label</i>.",
+  "wada": 166
+ },
+ "sb-08-03": {
+  "file": "c08/sb-08-03.json",
+  "repo": "manutej/volumetric-intelligence",
+  "score_self": 0.78,
+  "title": "Every step leaves a <i>mark</i>.",
+  "wada": 339
+ },
+ "sb-08-04": {
+  "file": "c08/sb-08-04.json",
+  "repo": "Ormus-Solutions/ormus-agent-harness",
+  "score_self": 0.85,
+  "title": "Draw only the <i>joins</i> you see.",
+  "wada": 207
+ },
+ "sb-08-05": {
+  "file": "c08/sb-08-05.json",
+  "repo": "manutej/ceti-clock-tree",
+  "score_self": 0.75,
+  "title": "Test where the parts <i>join</i>.",
+  "wada": 243
+ },
+ "sb-08-06": {
+  "file": "c08/sb-08-06.json",
+  "repo": "manutej/VERA",
+  "score_self": 0.77,
+  "title": "A <i>gate</i> after every step.",
+  "wada": 279
+ },
+ "sb-08-07": {
+  "file": "c08/sb-08-07.json",
+  "repo": "manutej/maat",
+  "score_self": 0.74,
+  "title": "Let the <i>check</i> only look.",
+  "wada": 84
+ },
+ "sb-08-08": {
+  "file": "c08/sb-08-08.json",
+  "repo": "manutej/aor-ki",
+  "score_self": 0.8,
+  "title": "Some numbers get a <i>pin</i>.",
+  "wada": 296
+ },
+ "sb-08-09": {
+  "file": "c08/sb-08-09.json",
+  "repo": "none",
+  "score_self": 0.79,
+  "title": "Start with the small <i>card</i>.",
+  "wada": 166
+ },
+ "sb-08-10": {
+  "file": "c08/sb-08-10.json",
+  "repo": "none",
+  "score_self": 0.83,
+  "title": "Three runs, one <i>gate</i>.",
+  "wada": 339
+ },
+ "sb-10-01": {
+  "file": "c10/sb-10-01.json",
+  "repo": "manutej/ceti-explainer",
+  "score_self": 0.74,
+  "title": "Every frame lives on the <i>line</i>.",
+  "wada": 296
+ },
+ "sb-10-02": {
+  "file": "c10/sb-10-02.json",
+  "repo": "manutej/ceti-explainer",
+  "score_self": 0.7,
+  "title": "Every <i>join</i> must hold.",
+  "wada": 279
+ },
+ "sb-10-03": {
+  "file": "c10/sb-10-03.json",
+  "repo": "manutej/p5js-explainer-lab",
+  "score_self": 0.78,
+  "title": "Two copies, one <i>card</i>.",
+  "wada": 207
+ },
+ "sb-10-04": {
+  "file": "c10/sb-10-04.json",
+  "repo": "manutej/p5js-explainer-lab",
+  "score_self": 0.72,
+  "title": "Run the <i>ring</i> end to end.",
+  "wada": 339
+ },
+ "sb-10-05": {
+  "file": "c10/sb-10-05.json",
+  "repo": "manutej/craft",
+  "score_self": 0.76,
+  "title": "Nothing fake gets past the <i>door</i>.",
+  "wada": 243
+ },
+ "sb-10-06": {
+  "file": "c10/sb-10-06.json",
+  "repo": "manutej/craft",
+  "score_self": 0.68,
+  "title": "Turn each rule into a <i>door</i>.",
+  "wada": 84
+ },
+ "sb-10-07": {
+  "file": "c10/sb-10-07.json",
+  "repo": "ceti-ai-services/loop-engineering",
+  "score_self": 0.66,
+  "title": "The old bug meets a <i>door</i>.",
+  "wada": 166
+ },
+ "sb-10-08": {
+  "file": "c10/sb-10-08.json",
+  "repo": "tell-apart (skill)",
+  "score_self": 0.7,
+  "title": "Lay the <i>cards</i> side by side.",
+  "wada": 296
+ },
+ "sb-10-09": {
+  "file": "c10/sb-10-09.json",
+  "repo": "provenance ledger (kh/registry)",
+  "score_self": 0.71,
+  "title": "Every version gets a <i>tick</i>.",
+  "wada": 279
+ },
+ "sb-10-10": {
+  "file": "c10/sb-10-10.json",
+  "repo": "Motion Atlas (this studio)",
+  "score_self": 0.73,
+  "title": "Put a <i>ring</i> on every turn.",
+  "wada": 84
+ }
+}

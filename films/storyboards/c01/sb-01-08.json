@@ -1,0 +1,419 @@
+{
+ "schema_version": "sb60-v1",
+ "id": "sb-01-08",
+ "meta_prompt_id": "mp-c01-v1",
+ "cluster": "01 Sheaf memory",
+ "repo": "none",
+ "capability": "Agent memory flags clashes for a person, never overwrites",
+ "audience": "Learners",
+ "wada": 84,
+ "bpm": 132,
+ "dur": 58.48,
+ "title": "Keep both. Mark the <i>join</i>.",
+ "hook": {
+  "kind": "Example",
+  "picture": "Close: a pod writes a new note card onto the memory line, right on top of an older card. The old card is pushed under the line and sinks.",
+  "words": "It remembered. Just the wrong thing."
+ },
+ "problem_in_viewer_words": {
+  "kind": "Fact",
+  "body": "The assistant replaced what my client said in March.",
+  "who": "a consultant using an AI assistant with memory"
+ },
+ "why_it_keeps_happening": {
+  "kind": "Fact",
+  "picture": "Pull back: the memory line is a stack of cards. Three times, every 2 beats, then 1, then half, a new card lands on an old one and the old one sinks.",
+  "words": "New notes land on top of old ones."
+ },
+ "stakes": {
+  "kind": "Fact",
+  "body": "The assistant answers confidently from the newest note, and the client's real words are lost."
+ },
+ "solution_hint": "Keep both. Ask a person which holds.",
+ "metaphor": {
+  "kind": "Example",
+  "body": "Memory is a line of cards. A new card that disagrees with an old one lands beside it, joined by a glowing seam, and a tick goes to a person instead of the old card sinking.",
+  "symbols": [
+   "whale",
+   "line",
+   "seam",
+   "pod",
+   "tick"
+  ]
+ },
+ "mechanism_beats": {
+  "kind": "Method",
+  "steps": [
+   {
+    "t": 18.182,
+    "picture": "The new card lands beside the old one, not on top. A dashed join links them; they disagree, so the join glows copper.",
+    "words": "Keep both. Ask a person which holds.",
+    "sound": "Two tones, old and new, beating."
+   },
+   {
+    "t": 20.909,
+    "picture": "A tick card floats from the copper join to the whale, now the person. The pod is held: two answers, not settled yet.",
+    "words": "Clashes go to a person, not a guess.",
+    "sound": "A soft ping as the tick arrives."
+   },
+   {
+    "t": 23.636,
+    "picture": "Push-in: the whale reads both cards, keeps the March one as current and files the new one with a note. The join turns teal. Both cards stay on the line.",
+    "words": "You decide. Both stay on record.",
+    "sound": "The pair glides to unison."
+   },
+   {
+    "t": 26.364,
+    "picture": "Labels slide on: the join is a seam, the copper glow is discord.",
+    "words": "A lit seam means discord. Shown, not hidden.",
+    "sound": "Beating pair, then unison, once more."
+   }
+  ]
+ },
+ "real_case": {
+  "kind": "Evidence",
+  "claim": "From the design, not a run: the memory system glues locally consistent sections, and per-edge discord flags conflicts for human review. Consistency is not truth.",
+  "numbers": [],
+  "source": {
+   "kind": "notion",
+   "title": "Memory System Design (FRONTIER Meta Layer)",
+   "url": "https://app.notion.com/p/3fbd50cfaf9381e7a330f435e03d30e3"
+  },
+  "verified": true,
+  "illustrative": true
+ },
+ "honest_limit": {
+  "kind": "Constraint",
+  "picture": "Push to the queue: ticks pile up faster than the whale clears them. The oldest tick fades, still unread, while the pod keeps answering.",
+  "words": "Nobody reads the queue. Clashes wait forever."
+ },
+ "not_this": {
+  "kind": "Constraint",
+  "body": "Flagging a clash is not deciding it."
+ },
+ "ending_pattern": {
+  "kind": "Example",
+  "slug": "old-card-surfaces",
+  "body": "The overwritten card rises back from under the line, takes its place beside the new one, and the assistant answers correctly from it.",
+  "callback": "The card that sank under the line in bar 1 rises back in the same framing and is answered from."
+ },
+ "end_belief": {
+  "kind": "Goal",
+  "body": "Never let memory write over. Show the clash."
+ },
+ "beats": [
+  {
+   "t": 0.0,
+   "picture": "Close: a pod writes a new note card onto the memory line, right on top of an older card. The old card is pushed under the line and sinks.",
+   "words": "It remembered. Just the wrong thing.",
+   "sound": "A card slap, then a cut-off tone.",
+   "act": "felt",
+   "bars": "1-2",
+   "camera": "Close, z 1.6 on the whale, small follow pan",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 2.727,
+   "picture": "Later the pod answers from the new card. The whale reads the answer: ✕ on a copper chip.",
+   "words": "",
+   "sound": "Dull thunk on the ✕.",
+   "act": "felt",
+   "bars": "2",
+   "camera": "Close, z 1.6 on the whale, small follow pan",
+   "cue_tags": [
+    "consequence"
+   ]
+  },
+  {
+   "t": 4.545,
+   "picture": "The whale looks along the line for the old card. Only the new one is there.",
+   "words": "The old answer was gone.",
+   "sound": "Search sweep, no answer.",
+   "act": "felt",
+   "bars": "3-4",
+   "camera": "Close, z 1.6 on the whale, small follow pan"
+  },
+  {
+   "t": 7.273,
+   "picture": "The sunken card rests below the line. Hold.",
+   "words": "",
+   "sound": "The problem motif fades. Silence creeps in.",
+   "act": "felt",
+   "bars": "5",
+   "camera": "Close, z 1.6 on the whale, small follow pan"
+  },
+  {
+   "t": 10.0,
+   "picture": "Hinge: half a bar of stillness, then SERIES.open shows the title over the still line.",
+   "words": "",
+   "sound": "Near-silence, then the title tick.",
+   "act": "why",
+   "bars": "6",
+   "camera": "Pull back z 1.6 to 1.0, one reveal",
+   "cue_tags": [
+    "hinge"
+   ]
+  },
+  {
+   "t": 10.909,
+   "picture": "Pull back: the memory line is a stack of cards. Three times, every 2 beats, then 1, then half, a new card lands on an old one and the old one sinks.",
+   "words": "New notes land on top of old ones.",
+   "sound": "Slap and cut-off three times, accelerating.",
+   "act": "why",
+   "bars": "7-9",
+   "camera": "Pull back z 1.6 to 1.0, one reveal",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 16.364,
+   "picture": "The sinking cards freeze mid-water and glow faintly.",
+   "words": "Keep both. Ask a person which holds.",
+   "sound": "Both tones held at once for the first time.",
+   "act": "why",
+   "bars": "10",
+   "camera": "Pull back z 1.6 to 1.0, one reveal",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 18.182,
+   "picture": "The new card lands beside the old one, not on top. A dashed join links them; they disagree, so the join glows copper.",
+   "words": "Keep both. Ask a person which holds.",
+   "sound": "Two tones, old and new, beating.",
+   "act": "move",
+   "bars": "11-12",
+   "camera": "Medium z 1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 20.909,
+   "picture": "A tick card floats from the copper join to the whale, now the person. The pod is held: two answers, not settled yet.",
+   "words": "Clashes go to a person, not a guess.",
+   "sound": "A soft ping as the tick arrives.",
+   "act": "move",
+   "bars": "12-13",
+   "camera": "Medium z 1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 23.636,
+   "picture": "Push-in: the whale reads both cards, keeps the March one as current and files the new one with a note. The join turns teal. Both cards stay on the line.",
+   "words": "You decide. Both stay on record.",
+   "sound": "The pair glides to unison.",
+   "act": "move",
+   "bars": "14",
+   "camera": "Medium z 1.2, the one push-in to z 1.3",
+   "cue_tags": [
+    "mech",
+    "focus"
+   ]
+  },
+  {
+   "t": 26.364,
+   "picture": "Labels slide on: the join is a seam, the copper glow is discord.",
+   "words": "A lit seam means discord. Shown, not hidden.",
+   "sound": "Beating pair, then unison, once more.",
+   "act": "move",
+   "bars": "15-16",
+   "camera": "Medium z 1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 29.091,
+   "picture": "Wide: a memory graph of many cards and joins. A handful glow copper and send ticks to one queue beside the whale.",
+   "words": "The design: clashes queue for review.",
+   "sound": "Pulse bed, soft pings into a queue.",
+   "act": "case",
+   "bars": "17-19",
+   "camera": "Steady wide, slow drift"
+  },
+  {
+   "t": 34.545,
+   "picture": "The whale clears one tick from the queue; that join turns teal.",
+   "words": "Each clash waits for a person.",
+   "sound": "One ping resolves.",
+   "act": "case",
+   "bars": "20-22",
+   "camera": "Steady wide, slow drift"
+  },
+  {
+   "t": 40.0,
+   "picture": "Push to the queue: ticks pile up faster than the whale clears them. The oldest tick fades, still unread, while the pod keeps answering.",
+   "words": "Nobody reads the queue. Clashes wait forever.",
+   "sound": "Pings pile up, unresolved.",
+   "act": "limit",
+   "bars": "23-24",
+   "camera": "Still, then one slow push to the thing that slipped",
+   "cue_tags": [
+    "limit"
+   ]
+  },
+  {
+   "t": 43.636,
+   "picture": "Hold on the tall pile of unread ticks.",
+   "words": "Flagging a clash is not deciding it.",
+   "sound": "Room tone.",
+   "act": "limit",
+   "bars": "25",
+   "camera": "Still"
+  },
+  {
+   "t": 45.455,
+   "picture": "The old card surfaces. FELT framing (z 1.6). The same new card arrives; the March card rises back up from under the line and sits beside it, joined. The pod answers ✓, quoting March.",
+   "words": "",
+   "sound": "Rising bubble, both tones, resolved chord.",
+   "act": "payoff",
+   "bars": "26-29",
+   "camera": "Back to FELT framing z 1.6, then wide reveal",
+   "cue_tags": [
+    "callback"
+   ]
+  },
+  {
+   "t": 52.727,
+   "picture": "Old and new cards side by side on the line, the join teal, whale breathing.",
+   "words": "Never let memory write over. Show the clash.",
+   "sound": "Pad tail only.",
+   "act": "belief",
+   "bars": "30-31",
+   "camera": "Still, breathing only"
+  },
+  {
+   "t": 56.364,
+   "picture": "SERIES.lockup over the still line.",
+   "words": "",
+   "sound": "Lockup tone.",
+   "act": "lockup",
+   "bars": "32",
+   "camera": "Still"
+  }
+ ],
+ "captions": [
+  {
+   "t_in": 0.909,
+   "t_out": 3.636,
+   "text": "It remembered. Just the wrong thing.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 4.545,
+   "t_out": 8.182,
+   "text": "The old answer was gone.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 10.0,
+   "t_out": 12.273,
+   "text": "Keep both. Mark the join.",
+   "kind": "title"
+  },
+  {
+   "t_in": 12.273,
+   "t_out": 15.455,
+   "text": "New notes land on top of old ones.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 15.909,
+   "t_out": 18.636,
+   "text": "Keep both. Ask a person which holds.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 20.909,
+   "t_out": 23.636,
+   "text": "Clashes go to a person, not a guess.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 23.636,
+   "t_out": 26.364,
+   "text": "You decide. Both stay on record.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 26.364,
+   "t_out": 29.091,
+   "text": "A lit seam means discord. Shown, not hidden.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 29.091,
+   "t_out": 31.364,
+   "text": "The design: clashes queue for review.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 30.909,
+   "t_out": 39.091,
+   "text": "Illustration · from the memory design",
+   "kind": "card",
+   "src": "https://app.notion.com/p/3fbd50cfaf9381e7a330f435e03d30e3"
+  },
+  {
+   "t_in": 34.545,
+   "t_out": 38.182,
+   "text": "Each clash waits for a person.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 40.0,
+   "t_out": 43.182,
+   "text": "Nobody reads the queue. Clashes wait forever.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 43.636,
+   "t_out": 46.364,
+   "text": "Flagging a clash is not deciding it.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 52.727,
+   "t_out": 56.364,
+   "text": "Never let memory write over. Show the clash.",
+   "kind": "caption"
+  }
+ ],
+ "terms": [
+  {
+   "term": "seam",
+   "symbol": "seam",
+   "pictured_at": 18.182,
+   "named_at": 26.364
+  },
+  {
+   "term": "discord",
+   "symbol": "seam",
+   "pictured_at": 18.182,
+   "named_at": 26.364
+  }
+ ],
+ "jargon": [
+  "discord",
+  "overwrite",
+  "conflict",
+  "queue"
+ ],
+ "sound": {
+  "signature": "Old and new as two tones that are held together until a person resolves them.",
+  "problem_motif": "The new tone cuts off the old tone mid-ring.",
+  "limit_unresolved": true
+ },
+ "score_self": {
+  "score": 0.75,
+  "reason": "Overwritten AI memory is a fresh and widely felt pain, and the limit (an unread queue) is a real operational edge. The case is a design, not a run, so it is marked Illustration.",
+  "weakest_piece": "real_case"
+ }
+}

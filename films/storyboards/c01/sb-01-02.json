@@ -1,0 +1,418 @@
+{
+ "schema_version": "sb60-v1",
+ "id": "sb-01-02",
+ "meta_prompt_id": "mp-c01-v1",
+ "cluster": "01 Sheaf memory",
+ "repo": "manutej/stalks-and-sections",
+ "capability": "Each note keeps its own space; compare only shared parts",
+ "audience": "Researchers",
+ "wada": 339,
+ "bpm": 128,
+ "dur": 60.3,
+ "title": "Give each note its own <i>card</i>.",
+ "hook": {
+  "kind": "Example",
+  "picture": "Close: the whale pours notes of every size into one flat tray. Each one squashes into the same flat card. A wrong link between two cards hides among the rest.",
+  "words": "I put every note in one box."
+ },
+ "problem_in_viewer_words": {
+  "kind": "Fact",
+  "body": "Everything sits in one space, so nothing ever looks wrong.",
+  "who": "a researcher reviewing a knowledge graph"
+ },
+ "why_it_keeps_happening": {
+  "kind": "Fact",
+  "picture": "Pull back: a vast flat sheet of identical cards. Three times, every 2 beats, then 1, then half, a wrong link drops in and vanishes into the sameness.",
+  "words": "When all notes look alike, errors hide."
+ },
+ "stakes": {
+  "kind": "Fact",
+  "body": "A wrong link survives review, and every answer built on it inherits the error."
+ },
+ "solution_hint": "Let each note keep its own shape.",
+ "metaphor": {
+  "kind": "Example",
+  "body": "Notes are cards of different heights instead of one flat pile. Neighbours are compared only on the part they share, so a wrong link shows up as a visible gap.",
+  "symbols": [
+   "whale",
+   "line",
+   "atom",
+   "seam",
+   "ring"
+  ]
+ },
+ "mechanism_beats": {
+  "kind": "Method",
+  "steps": [
+   {
+    "t": 18.75,
+    "picture": "The cards lift out of the tray and each grows to its own height: small notes short, rich notes tall. The line threads through their tops.",
+    "words": "Let each note keep its own shape.",
+    "sound": "Each card sounds its own pitch, low to high."
+   },
+   {
+    "t": 21.562,
+    "picture": "Between two neighbours a dashed join appears. A small arrow carries only the shared part of each card onto it. Matching parts tick teal.",
+    "words": "Compare only the part two notes share.",
+    "sound": "Unison pairs on each teal join."
+   },
+   {
+    "t": 24.375,
+    "picture": "Push-in: the once hidden wrong link sits on a join whose two arrows miss each other. The gap glows English Red, and its width shows how far apart they are.",
+    "words": "The wrong link cannot hide now.",
+    "sound": "The pair beats, wider gap, faster beat."
+   },
+   {
+    "t": 27.188,
+    "picture": "A label slides onto one tall card: stalk. The whale rings the red gap; it stays lit for review.",
+    "words": "What one note holds: its stalk.",
+    "sound": "Ring tone, then the beating pair holds."
+   }
+  ]
+ },
+ "real_case": {
+  "kind": "Evidence",
+  "claim": "Three independent libraries (Rust, Python, Haskell) gave identical results and edge discord on the 215-node FRONTIER sheaf.",
+  "numbers": [
+   "215-node",
+   "three libraries",
+   "H⁰=588 (notes only)",
+   "≤1e-13 (notes only)"
+  ],
+  "source": {
+   "kind": "notion",
+   "title": "sheaf-memory (FRONTIER topic), gluing notes",
+   "url": "https://app.notion.com/p/3fbd50cfaf93816db95ee314148a8031"
+  },
+  "verified": true,
+  "illustrative": false
+ },
+ "honest_limit": {
+  "kind": "Constraint",
+  "picture": "Push to one join: one card speaks in miles, its neighbour in kilometres. The plain copy arrow cannot translate, so the join glows red though both cards are right.",
+  "words": "Same fact, two units. Marked wrong."
+ },
+ "not_this": {
+  "kind": "Constraint",
+  "body": "Plain copy maps cannot translate meaning."
+ },
+ "ending_pattern": {
+  "kind": "Example",
+  "slug": "nowhere-to-hide",
+  "body": "The same tray, but the cards now stand at their own heights and the once hidden wrong link glows red in plain view as the whale circles it.",
+  "callback": "The link that hid in the flat pile in bar 1 stands out red in the same framing."
+ },
+ "end_belief": {
+  "kind": "Goal",
+  "body": "Let notes differ. Compare them where they meet."
+ },
+ "beats": [
+  {
+   "t": 0.0,
+   "picture": "Close: the whale pours notes of every size into one flat tray. Each one squashes into the same flat card. A wrong link between two cards hides among the rest.",
+   "words": "I put every note in one box.",
+   "sound": "Cards sliding into a tray, one flat drone.",
+   "act": "felt",
+   "bars": "1-2",
+   "camera": "Close, z 1.6 on the whale, small follow pan",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 2.812,
+   "picture": "A pod follows the hidden wrong link and answers ✕ on an English Red chip.",
+   "words": "",
+   "sound": "Muted thunk on the pod ✕.",
+   "act": "felt",
+   "bars": "2",
+   "camera": "Close, z 1.6 on the whale, small follow pan",
+   "cue_tags": [
+    "consequence"
+   ]
+  },
+  {
+   "t": 4.688,
+   "picture": "The whale searches the tray: every card looks the same, so the wrong link cannot be found.",
+   "words": "The wrong link looked like the rest.",
+   "sound": "The flat drone thickens.",
+   "act": "felt",
+   "bars": "3-4",
+   "camera": "Close, z 1.6 on the whale, small follow pan"
+  },
+  {
+   "t": 7.5,
+   "picture": "The whale hovers over the tray, the pod's ✕ still lit. Hold.",
+   "words": "",
+   "sound": "The problem motif fades. Silence creeps in.",
+   "act": "felt",
+   "bars": "5",
+   "camera": "Close, z 1.6 on the whale, small follow pan"
+  },
+  {
+   "t": 10.312,
+   "picture": "Hinge: half a bar of stillness, then SERIES.open shows the title over the still line.",
+   "words": "",
+   "sound": "Near-silence, then the title tick.",
+   "act": "why",
+   "bars": "6",
+   "camera": "Pull back z 1.6 to 1.0, one reveal",
+   "cue_tags": [
+    "hinge"
+   ]
+  },
+  {
+   "t": 11.25,
+   "picture": "Pull back: a vast flat sheet of identical cards. Three times, every 2 beats, then 1, then half, a wrong link drops in and vanishes into the sameness.",
+   "words": "When all notes look alike, errors hide.",
+   "sound": "The buried sour beat three times, accelerating.",
+   "act": "why",
+   "bars": "7-9",
+   "camera": "Pull back z 1.6 to 1.0, one reveal",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 16.875,
+   "picture": "The sheet freezes. Each card faintly shows the height it should have.",
+   "words": "Let each note keep its own shape.",
+   "sound": "Pitches fan out from the drone: the first signature.",
+   "act": "why",
+   "bars": "10",
+   "camera": "Pull back z 1.6 to 1.0, one reveal",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 18.75,
+   "picture": "The cards lift out of the tray and each grows to its own height: small notes short, rich notes tall. The line threads through their tops.",
+   "words": "Let each note keep its own shape.",
+   "sound": "Each card sounds its own pitch, low to high.",
+   "act": "move",
+   "bars": "11-12",
+   "camera": "Medium z 1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 21.562,
+   "picture": "Between two neighbours a dashed join appears. A small arrow carries only the shared part of each card onto it. Matching parts tick teal.",
+   "words": "Compare only the part two notes share.",
+   "sound": "Unison pairs on each teal join.",
+   "act": "move",
+   "bars": "12-13",
+   "camera": "Medium z 1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 24.375,
+   "picture": "Push-in: the once hidden wrong link sits on a join whose two arrows miss each other. The gap glows English Red, and its width shows how far apart they are.",
+   "words": "The wrong link cannot hide now.",
+   "sound": "The pair beats, wider gap, faster beat.",
+   "act": "move",
+   "bars": "14",
+   "camera": "Medium z 1.2, the one push-in to z 1.3",
+   "cue_tags": [
+    "mech",
+    "focus"
+   ]
+  },
+  {
+   "t": 27.188,
+   "picture": "A label slides onto one tall card: stalk. The whale rings the red gap; it stays lit for review.",
+   "words": "What one note holds: its stalk.",
+   "sound": "Ring tone, then the beating pair holds.",
+   "act": "move",
+   "bars": "15-16",
+   "camera": "Medium z 1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 30.0,
+   "picture": "Wide: a large lattice of cards in layers. Three whales, one per tool, each measure every join. Their rings land on the same marks.",
+   "words": "Real run: three tools, one answer.",
+   "sound": "Pulse bed, three rings struck together.",
+   "act": "case",
+   "bars": "17-19",
+   "camera": "Steady wide, slow drift"
+  },
+  {
+   "t": 35.625,
+   "picture": "On every join the three rings stack exactly, including on the joins that glow red.",
+   "words": "Three tools agreed on every gap.",
+   "sound": "Triple ring stacks into one tone.",
+   "act": "case",
+   "bars": "20-22",
+   "camera": "Steady wide, slow drift"
+  },
+  {
+   "t": 41.25,
+   "picture": "Push to one join: one card speaks in miles, its neighbour in kilometres. The plain copy arrow cannot translate, so the join glows red though both cards are right.",
+   "words": "Same fact, two units. Marked wrong.",
+   "sound": "Unison with an unresolved second above.",
+   "act": "limit",
+   "bars": "23-24",
+   "camera": "Still, then one slow push to the thing that slipped",
+   "cue_tags": [
+    "limit"
+   ]
+  },
+  {
+   "t": 45.0,
+   "picture": "Hold on the red join between the two correct cards.",
+   "words": "Plain copy maps cannot translate meaning.",
+   "sound": "Room tone.",
+   "act": "limit",
+   "bars": "25",
+   "camera": "Still"
+  },
+  {
+   "t": 46.875,
+   "picture": "Nowhere to hide. FELT framing (z 1.6, the same tray spot). The cards stand at their own heights; the wrong link from bar 1 now sits on a red join in plain view. The whale circles it. Spout.",
+   "words": "",
+   "sound": "Rising pitches per card, then a resolved chord.",
+   "act": "payoff",
+   "bars": "26-29",
+   "camera": "Back to FELT framing z 1.6, then wide reveal",
+   "cue_tags": [
+    "callback"
+   ]
+  },
+  {
+   "t": 54.375,
+   "picture": "The lattice of cards at their own heights, one red join lit, the whale breathing.",
+   "words": "Let notes differ. Compare them where they meet.",
+   "sound": "Pad tail only.",
+   "act": "belief",
+   "bars": "30-31",
+   "camera": "Still, breathing only"
+  },
+  {
+   "t": 58.125,
+   "picture": "SERIES.lockup over the still line.",
+   "words": "",
+   "sound": "Lockup tone.",
+   "act": "lockup",
+   "bars": "32",
+   "camera": "Still"
+  }
+ ],
+ "captions": [
+  {
+   "t_in": 0.938,
+   "t_out": 3.75,
+   "text": "I put every note in one box.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 4.688,
+   "t_out": 8.438,
+   "text": "The wrong link looked like the rest.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 10.312,
+   "t_out": 12.656,
+   "text": "Give each note its own card.",
+   "kind": "title"
+  },
+  {
+   "t_in": 12.656,
+   "t_out": 15.938,
+   "text": "When all notes look alike, errors hide.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 16.406,
+   "t_out": 19.219,
+   "text": "Let each note keep its own shape.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 21.562,
+   "t_out": 24.375,
+   "text": "Compare only the part two notes share.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 24.375,
+   "t_out": 27.188,
+   "text": "The wrong link cannot hide now.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 27.188,
+   "t_out": 30.0,
+   "text": "What one note holds: its stalk.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 30.0,
+   "t_out": 32.344,
+   "text": "Real run: three tools, one answer.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 31.875,
+   "t_out": 40.312,
+   "text": "215-node graph · 3 libraries · identical result",
+   "kind": "card",
+   "src": "https://app.notion.com/p/3fbd50cfaf93816db95ee314148a8031"
+  },
+  {
+   "t_in": 35.625,
+   "t_out": 39.375,
+   "text": "Three tools agreed on every gap.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 41.25,
+   "t_out": 44.531,
+   "text": "Same fact, two units. Marked wrong.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 45.0,
+   "t_out": 47.812,
+   "text": "Plain copy maps cannot translate meaning.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 54.375,
+   "t_out": 58.125,
+   "text": "Let notes differ. Compare them where they meet.",
+   "kind": "caption"
+  }
+ ],
+ "terms": [
+  {
+   "term": "stalk",
+   "symbol": "atom",
+   "pictured_at": 18.75,
+   "named_at": 27.188
+  }
+ ],
+ "jargon": [
+  "lattice",
+  "residual",
+  "restriction",
+  "libraries"
+ ],
+ "sound": {
+  "signature": "A pitch per card height; shared parts ring in unison across a join.",
+  "problem_motif": "All cards on one flat pitch, smeared together, with one sour beat buried inside.",
+  "limit_unresolved": true
+ },
+ "score_self": {
+  "score": 0.68,
+  "reason": "The flat-pile vs own-height picture is strong. The limit (no translation between units) is honest and caution-backed but may be too subtle at phone size. The case card hides H⁰ correctly.",
+  "weakest_piece": "honest_limit"
+ }
+}

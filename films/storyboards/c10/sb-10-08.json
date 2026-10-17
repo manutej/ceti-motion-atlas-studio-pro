@@ -1,0 +1,477 @@
+{
+  "schema_version": "sb60-v1",
+  "id": "sb-10-08",
+  "meta_prompt_id": "mp-c10-v1",
+  "cluster": "10 Explainers & craft",
+  "repo": "tell-apart (skill)",
+  "capability": "Find two cases your score cannot split",
+  "audience": "Learners",
+  "wada": 296,
+  "bpm": 132,
+  "dur": 58.5,
+  "title": "Lay the <i>cards</i> side by side.",
+  "hook": {
+    "kind": "Example",
+    "picture": "Close: two pods each hand the whale an answer card; one score chip above them reads ✓ for both.",
+    "words": "Same score. Both looked fine."
+  },
+  "problem_in_viewer_words": {
+    "kind": "Fact",
+    "body": "The score said both bots were fine. One was not.",
+    "who": "learner comparing two AI assistants"
+  },
+  "why_it_keeps_happening": {
+    "kind": "Fact",
+    "picture": "Pull back: the score squeezes two different answers into one reading. Three-times device: a good card and a bad card pass under the chip three times, every 2 beats, then 1, then half; ✓ and ✓ each time.",
+    "words": "Two different answers, one same score."
+  },
+  "stakes": {
+    "kind": "Fact",
+    "body": "Any choice built on that score cannot tell the good assistant from the bad one."
+  },
+  "solution_hint": "Find two cases your score cannot split.",
+  "metaphor": {
+    "kind": "Example",
+    "body": "Two answer cards laid side by side under one chip. If the chip reads them the same but they are not the same, that pair shows exactly what the score cannot see.",
+    "symbols": [
+      "whale",
+      "line",
+      "atom",
+      "ring"
+    ]
+  },
+  "mechanism_beats": {
+    "kind": "Method",
+    "steps": [
+      {
+        "t": 18.182,
+        "picture": "The whale lays the two answer cards side by side on the line under the one score chip.",
+        "words": "Find two cases your score cannot split.",
+        "sound": "Cards laid down, two taps"
+      },
+      {
+        "t": 20.909,
+        "picture": "A ring passes over both: the chip shows the same ✓ for each, though one card has a gap in its lines.",
+        "words": "Same mark. Different cards.",
+        "sound": "Drone over the ring"
+      },
+      {
+        "t": 23.636,
+        "picture": "The whale adds a second chip that reads the gap; now the two cards get different marks, ✓ and ✕.",
+        "words": "Add the check that sees the gap.",
+        "sound": "Drone opens into the fifth"
+      },
+      {
+        "t": 26.364,
+        "picture": "The pair is boxed together and labelled.",
+        "words": "The pair that shows it: a witness.",
+        "sound": "The fifth, boxed"
+      }
+    ]
+  },
+  "real_case": {
+    "kind": "Evidence",
+    "claim": "The tell-apart skill's contract was \"calibrated by a 100-case evaluation (20 independent Sonnet testers, 5 adversarial judges)\". The two-shop checkout example is fictional, marked CALIBRATION ONLY.",
+    "numbers": [
+      "100-case",
+      "20 independent Sonnet testers",
+      "5 adversarial judges"
+    ],
+    "source": {
+      "kind": "skill",
+      "title": "tell-apart/SKILL.md",
+      "url": null
+    },
+    "verified": true,
+    "illustrative": false
+  },
+  "honest_limit": {
+    "kind": "Constraint",
+    "picture": "A third pair, never laid out, slips by under the one chip, its gap unseen.",
+    "words": "Pairs you never test stay hidden."
+  },
+  "not_this": {
+    "kind": "Constraint",
+    "body": "More numbers are not the fix."
+  },
+  "ending_pattern": {
+    "kind": "Example",
+    "slug": "two-chips-two-marks",
+    "body": "FELT framing returns. The two pods hand over their cards; now two chips read ✓ and ✕; the whale builds on the good card and its line holds.",
+    "callback": "The line that snapped in bar 2 is built again, in the same framing, on the right card and holds."
+  },
+  "end_belief": {
+    "kind": "Goal",
+    "body": "Test your score on two different cases."
+  },
+  "beats": [
+    {
+      "t": 0.0,
+      "act": "felt",
+      "bars": "1",
+      "picture": "Close: two pods each hand the whale an answer card; one score chip above them reads ✓ for both.",
+      "words": "",
+      "sound": "Two cards slide in",
+      "camera": "Close z 1.6 on the whale",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 0.909,
+      "act": "felt",
+      "bars": "1",
+      "picture": "The whale holds still for a breath, facing the trouble.",
+      "words": "Same score. Both looked fine.",
+      "sound": "Low room tone",
+      "camera": "Close z 1.6 on the whale",
+      "cue_tags": []
+    },
+    {
+      "t": 1.818,
+      "act": "felt",
+      "bars": "2",
+      "picture": "The whale builds on one of the cards and its line snaps: that answer was wrong.",
+      "words": "",
+      "sound": "Snap, then drone",
+      "camera": "Close z 1.6 on the whale",
+      "cue_tags": [
+        "consequence",
+        "focus"
+      ]
+    },
+    {
+      "t": 4.545,
+      "act": "felt",
+      "bars": "3",
+      "picture": "The whale looks back at the chip: still ✓ for both.",
+      "words": "One of them was quietly wrong.",
+      "sound": "Drone, flatter",
+      "camera": "Close z 1.6 on the whale",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 7.273,
+      "act": "felt",
+      "bars": "5",
+      "picture": "The whale looks from the chip to the snapped line. Hold.",
+      "words": "",
+      "sound": "Silence creeps in",
+      "camera": "Close z 1.6 on the whale",
+      "cue_tags": []
+    },
+    {
+      "t": 10.0,
+      "act": "why",
+      "bars": "6",
+      "picture": "Stillness, then the title above the two cards.",
+      "words": "Lay the cards side by side.",
+      "sound": "Half a bar of room tone, then the title tick",
+      "camera": "Pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "hinge"
+      ]
+    },
+    {
+      "t": 11.818,
+      "act": "why",
+      "bars": "7",
+      "picture": "Pull back: the score squeezes two different answers into one reading.",
+      "words": "Two different answers, one same score.",
+      "sound": "Unison drone",
+      "camera": "Pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 13.636,
+      "act": "why",
+      "bars": "8",
+      "picture": "Three-times device: a good card and a bad card pass under the chip three times, every 2 beats, then 1, then half; ✓ and ✓ each time.",
+      "words": "",
+      "sound": "Drone x3, accelerating",
+      "camera": "Pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 16.364,
+      "act": "why",
+      "bars": "10",
+      "picture": "All motion stops. Where the fix will go, a faint outline of it ghosts in.",
+      "words": "Find two cases your score cannot split.",
+      "sound": "The two notes split, the first in tune",
+      "camera": "Pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 18.182,
+      "act": "move",
+      "bars": "11",
+      "picture": "The whale lays the two answer cards side by side on the line under the one score chip.",
+      "words": "Find two cases your score cannot split.",
+      "sound": "Cards laid down, two taps",
+      "camera": "Medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 20.909,
+      "act": "move",
+      "bars": "12",
+      "picture": "A ring passes over both: the chip shows the same ✓ for each, though one card has a gap in its lines.",
+      "words": "Same mark. Different cards.",
+      "sound": "Drone over the ring",
+      "camera": "Medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 23.636,
+      "act": "move",
+      "bars": "14",
+      "picture": "The whale adds a second chip that reads the gap; now the two cards get different marks, ✓ and ✕.",
+      "words": "Add the check that sees the gap.",
+      "sound": "Drone opens into the fifth",
+      "camera": "Push-in z 1.1 to 1.3, the only push",
+      "cue_tags": [
+        "mech",
+        "focus"
+      ]
+    },
+    {
+      "t": 26.364,
+      "act": "move",
+      "bars": "15",
+      "picture": "The pair is boxed together and labelled.",
+      "words": "The pair that shows it: a witness.",
+      "sound": "The fifth, boxed",
+      "camera": "Medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 29.091,
+      "act": "case",
+      "bars": "17",
+      "picture": "Wide: many card pairs in a grid under one big score; the whale tests pair after pair with its ring.",
+      "words": "Real test: the method itself was checked.",
+      "sound": "Pulse bed, quiet fast ticks",
+      "camera": "Steady wide, slow drift",
+      "cue_tags": []
+    },
+    {
+      "t": 30.909,
+      "act": "case",
+      "bars": "18",
+      "picture": "The card fades in on clean paper beside the run; the run keeps moving behind it.",
+      "words": "100 cases · 20 testers · 5 judges",
+      "sound": "One soft card tick",
+      "camera": "Steady wide, slow drift",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 34.545,
+      "act": "case",
+      "bars": "20",
+      "picture": "One pair is shown worked: two shops reading the same green score, one quietly down.",
+      "words": "Illustration: two shops, same green score.",
+      "sound": "Fifths across the grid",
+      "camera": "Steady wide, slow drift",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 40.0,
+      "act": "limit",
+      "bars": "23",
+      "picture": "A third pair, never laid out, slips by under the one chip, its gap unseen.",
+      "words": "Pairs you never test stay hidden.",
+      "sound": "The signature plays once and does not resolve",
+      "camera": "Still, then one slow push in",
+      "cue_tags": [
+        "limit",
+        "focus"
+      ]
+    },
+    {
+      "t": 43.636,
+      "act": "limit",
+      "bars": "25",
+      "picture": "Hold on the untested pair drifting past.",
+      "words": "More numbers are not the fix.",
+      "sound": "Room tone",
+      "camera": "Still",
+      "cue_tags": []
+    },
+    {
+      "t": 45.455,
+      "act": "payoff",
+      "bars": "26",
+      "picture": "FELT framing (z 1.6). Two pods hand over cards; two chips above them read ✓ and ✕.",
+      "words": "",
+      "sound": "The fifth, resolved",
+      "camera": "FELT framing z 1.6, then wide reveal",
+      "cue_tags": [
+        "callback",
+        "focus"
+      ]
+    },
+    {
+      "t": 49.091,
+      "act": "payoff",
+      "bars": "28",
+      "picture": "The whale builds on the ✓ card; the line holds. Spark.",
+      "words": "",
+      "sound": "Full resolution, the signature in tune on every beat",
+      "camera": "FELT framing z 1.6, then wide reveal",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 52.727,
+      "act": "belief",
+      "bars": "30",
+      "picture": "Two cards, two chips, a calm line; the whale breathes.",
+      "words": "Test your score on two different cases.",
+      "sound": "Pad tail only",
+      "camera": "Still, breathing",
+      "cue_tags": []
+    },
+    {
+      "t": 56.364,
+      "act": "lockup",
+      "bars": "32",
+      "picture": "SERIES.lockup over the chart ground.",
+      "words": "",
+      "sound": "Pad tail fades",
+      "camera": "Still",
+      "cue_tags": []
+    }
+  ],
+  "captions": [
+    {
+      "t_in": 0.909,
+      "t_out": 3.636,
+      "text": "Same score. Both looked fine.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 4.545,
+      "t_out": 7.727,
+      "text": "One of them was quietly wrong.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 10.0,
+      "t_out": 11.818,
+      "text": "Lay the cards side by side.",
+      "kind": "title"
+    },
+    {
+      "t_in": 11.818,
+      "t_out": 15.454,
+      "text": "Two different answers, one same score.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 16.364,
+      "t_out": 18.637,
+      "text": "Find two cases your score cannot split.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 20.909,
+      "t_out": 22.727,
+      "text": "Same mark. Different cards.",
+      "kind": "label"
+    },
+    {
+      "t_in": 23.636,
+      "t_out": 26.363,
+      "text": "Add the check that sees the gap.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 26.364,
+      "t_out": 29.091,
+      "text": "The pair that shows it: a witness.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 29.091,
+      "t_out": 31.818,
+      "text": "Real test: the method itself was checked.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 30.909,
+      "t_out": 38.182,
+      "text": "100 cases · 20 testers · 5 judges",
+      "kind": "card",
+      "src": "tell-apart skill, SKILL.md contract"
+    },
+    {
+      "t_in": 34.545,
+      "t_out": 38.181,
+      "text": "Illustration: two shops, same green score.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 40.0,
+      "t_out": 42.727,
+      "text": "Pairs you never test stay hidden.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 43.636,
+      "t_out": 46.363,
+      "text": "More numbers are not the fix.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 52.727,
+      "t_out": 56.363,
+      "text": "Test your score on two different cases.",
+      "kind": "caption"
+    }
+  ],
+  "terms": [
+    {
+      "term": "witness",
+      "symbol": "atom",
+      "pictured_at": 20.909,
+      "named_at": 26.364
+    }
+  ],
+  "jargon": [
+    "metric",
+    "eval",
+    "benchmark",
+    "accuracy",
+    "aggregate"
+  ],
+  "sound": {
+    "signature": "Two distinct notes, a clear fifth apart",
+    "problem_motif": "The same two notes collapsed onto one unison drone",
+    "limit_unresolved": true
+  },
+  "score_self": {
+    "score": 0.7,
+    "reason": "The collapse picture is clear, and the calibration numbers are real. Weak: \"witness\" is an unusual word for a lay viewer, and the CASE card measures the method, not a real-world catch.",
+    "weakest_piece": "terms"
+  }
+}

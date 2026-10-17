@@ -1,0 +1,462 @@
+{
+  "schema_version": "sb60-v1",
+  "id": "sb-08-07",
+  "meta_prompt_id": "mp-c08-v1",
+  "cluster": "08 Memory & agent harnesses",
+  "repo": "manutej/maat",
+  "capability": "A health checker that only looks",
+  "audience": "Leaders",
+  "wada": 84,
+  "bpm": 120,
+  "dur": 64.3,
+  "title": "Let the <i>check</i> only look.",
+  "hook": {
+    "kind": "Example",
+    "picture": "Close on the whale reading a report card from a checker pod. Behind it, the pod's fin is bending the line it is checking. The report and the line disagree: copper ✕.",
+    "words": "The report says all is well."
+  },
+  "problem_in_viewer_words": {
+    "kind": "Fact",
+    "body": "The health check fixed things while it checked them. Now nothing matches.",
+    "who": "ops lead reading the Monday report"
+  },
+  "why_it_keeps_happening": {
+    "kind": "Fact",
+    "picture": "Pull back: three checker runs. The first reaches into the line while reading; its report describes a line that is no longer there (2 beats). It repeats, faster each time.",
+    "words": "Looking and fixing got mixed up."
+  },
+  "stakes": {
+    "kind": "Fact",
+    "body": "A report nobody can repeat. Leaders act on numbers that describe a workspace that no longer exists."
+  },
+  "solution_hint": "Keep looking apart from changing.",
+  "metaphor": {
+    "kind": "Example",
+    "body": "A gate splits the checker in two: a reading part inside that only rings the line, and a thin outer layer, behind the gate, that is the only part allowed to touch files. Copper alarm.",
+    "symbols": [
+      "whale",
+      "line",
+      "gate",
+      "ring",
+      "counter"
+    ]
+  },
+  "mechanism_beats": {
+    "kind": "Method",
+    "steps": [
+      {
+        "t": 20.0,
+        "picture": "A gate drops between the checker and the line. On the inside, the reading part has no fins, only a ring.",
+        "words": "Look first. Change nothing while looking.",
+        "sound": "Clean sonar ping"
+      },
+      {
+        "t": 24.0,
+        "picture": "The reading part rings each repo on the line and writes a score. The line does not move at all.",
+        "words": "Same line in, same score out.",
+        "sound": "Ping returns unchanged"
+      },
+      {
+        "t": 26.0,
+        "picture": "Push-in: the reading part reaches toward a file. There is no door on its side of the gate. Only the thin outer layer can open files.",
+        "words": "No hands inside.",
+        "sound": "Soft thud, then a ping"
+      },
+      {
+        "t": 28.0,
+        "picture": "Labels: the inside is the pure core, the outside the shell.",
+        "words": "A pure core inside a thin shell.",
+        "sound": "Two pings, in tune"
+      }
+    ]
+  },
+  "real_case": {
+    "kind": "Evidence",
+    "claim": "maat replaces a hard-to-test bash script (hard-coded paths, side effects mixed with logic) with a pure core and an I/O shell. README example test: calculateHealthScore(7, 10) gives 70.",
+    "numbers": [
+      "7, 10",
+      "70"
+    ],
+    "source": {
+      "kind": "repo",
+      "title": "manutej/maat README",
+      "url": "https://github.com/manutej/maat"
+    },
+    "verified": true,
+    "illustrative": true
+  },
+  "honest_limit": {
+    "kind": "Constraint",
+    "picture": "A repo with a problem the ideal never names (a stale branch nobody owns) gets rung and scores full marks. The counter glows. The problem sits in plain view.",
+    "words": "It only scores what the ideal names."
+  },
+  "not_this": {
+    "kind": "Constraint",
+    "body": "A high score is not good code."
+  },
+  "ending_pattern": {
+    "kind": "Example",
+    "slug": "still-water-report",
+    "body": "The same report-reading shot as act 1, but the water behind the card is perfectly still. The report and the line match.",
+    "callback": "Act 1's line bending behind the report now lies still and matches it."
+  },
+  "end_belief": {
+    "kind": "Goal",
+    "body": "A checker should never change what it checks."
+  },
+  "beats": [
+    {
+      "t": 0.0,
+      "picture": "Close on the whale reading a checker pod's report card: all well. Behind the card, the pod's fin is bending the line as it reads.",
+      "words": "The report says all is well.",
+      "sound": "Sonar ping that returns warped",
+      "act": "felt",
+      "bars": "1",
+      "camera": "Close, z 1.6, on the whale",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 2.0,
+      "picture": "The whale looks up: the line no longer matches the report. Copper ✕ on the card.",
+      "words": "",
+      "sound": "Dull thunk",
+      "act": "felt",
+      "bars": "2",
+      "camera": "Close, z 1.6, on the whale",
+      "cue_tags": [
+        "consequence",
+        "focus"
+      ]
+    },
+    {
+      "t": 4.0,
+      "picture": "Slow-motion replay: the checker reads a little, nudges a little, reads again.",
+      "words": "It changed things while it looked.",
+      "sound": "Warped ping twice",
+      "act": "felt",
+      "bars": "3-4",
+      "camera": "Close, z 1.6, on the whale",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 8.0,
+      "picture": "Hold on the report and the bent line, side by side.",
+      "words": "",
+      "sound": "Silence creeps in",
+      "act": "felt",
+      "bars": "5",
+      "camera": "Close, z 1.6, on the whale",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 11.0,
+      "picture": "Hinge: half a bar of stillness, then SERIES.open shows the title.",
+      "words": "Let the check only look.",
+      "sound": "Near-silence, then the title tick",
+      "act": "why",
+      "bars": "6",
+      "camera": "Still, z 1.6",
+      "cue_tags": [
+        "hinge"
+      ]
+    },
+    {
+      "t": 12.0,
+      "picture": "Pull back: three checker runs. The first reaches into the line while reading; its report describes a line that is no longer there (2 beats).",
+      "words": "",
+      "sound": "Problem motif: warped ping",
+      "act": "why",
+      "bars": "7",
+      "camera": "Pull back to z 1.0, revealing the pattern",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 14.0,
+      "picture": "Second run, same reach (1 beat).",
+      "words": "Looking and fixing got mixed up.",
+      "sound": "Warped ping, faster",
+      "act": "why",
+      "bars": "8",
+      "camera": "Pull back to z 1.0, revealing the pattern",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 16.0,
+      "picture": "Third run (half a beat). Three reports, three different lines.",
+      "words": "",
+      "sound": "Warped ping, fastest",
+      "act": "why",
+      "bars": "9",
+      "camera": "Pull back to z 1.0, revealing the pattern",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 18.0,
+      "picture": "Freeze. A faint gate outline appears between the checker and the line.",
+      "words": "Keep looking apart from changing.",
+      "sound": "One clean ping: the signature",
+      "act": "why",
+      "bars": "10",
+      "camera": "Still, z 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 20.0,
+      "picture": "A gate drops between the checker and the line. On the inside, the reading part has no fins, only a ring.",
+      "words": "Look first. Change nothing while looking.",
+      "sound": "Clean sonar ping",
+      "act": "move",
+      "bars": "11",
+      "camera": "Medium, z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 24.0,
+      "picture": "The reading part rings each repo on the line and writes a score. The line does not move at all.",
+      "words": "Same line in, same score out.",
+      "sound": "Ping returns unchanged",
+      "act": "move",
+      "bars": "13",
+      "camera": "Medium, z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 26.0,
+      "picture": "Push-in: the reading part reaches toward a file. There is no door on its side of the gate. Only the thin outer layer can open files.",
+      "words": "No hands inside.",
+      "sound": "Soft thud, then a ping",
+      "act": "move",
+      "bars": "14",
+      "camera": "Push-in to z 1.3 on the decisive moment",
+      "cue_tags": [
+        "mech",
+        "focus"
+      ]
+    },
+    {
+      "t": 28.0,
+      "picture": "Labels: the inside is the pure core, the outside the shell.",
+      "words": "A pure core inside a thin shell.",
+      "sound": "Two pings, in tune",
+      "act": "move",
+      "bars": "15",
+      "camera": "Medium, z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 32.0,
+      "picture": "Wide: a workspace of many repo lines. The reading part sweeps over them, ringing each one. A counter fills toward a score.",
+      "words": "It scores each repo against an ideal.",
+      "sound": "Pulse bed, pings",
+      "act": "case",
+      "bars": "17-19",
+      "camera": "Steady wide, slow drift",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 38.0,
+      "picture": "The sweep runs a second time over the same lines. The counter lands on the same score; no line has moved.",
+      "words": "Run it twice. The score holds still.",
+      "sound": "Two identical pings",
+      "act": "case",
+      "bars": "20-22",
+      "camera": "Steady wide, slow drift",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 44.0,
+      "picture": "A repo with a problem the ideal never names (a stale branch nobody owns) gets rung and scores full marks. The counter glows. The problem sits in plain view.",
+      "words": "It only scores what the ideal names.",
+      "sound": "Signature ping once, unresolved",
+      "act": "limit",
+      "bars": "23-24",
+      "camera": "Still, then one slow push to what slipped",
+      "cue_tags": [
+        "limit",
+        "focus"
+      ]
+    },
+    {
+      "t": 47.0,
+      "picture": "Slow push to the stale branch beside the full counter.",
+      "words": "A high score is not good code.",
+      "sound": "Room tone",
+      "act": "limit",
+      "bars": "24-25",
+      "camera": "Still"
+    },
+    {
+      "t": 50.0,
+      "picture": "FELT framing: the whale reads the checker's report again. Behind it, the line is untouched and matches the report exactly. The copper ✕ fades to ✓.",
+      "words": "",
+      "sound": "Pings return in unison, resolved",
+      "act": "payoff",
+      "bars": "26-29",
+      "camera": "FELT framing restored, z 1.6, then a slow wide reveal",
+      "cue_tags": [
+        "callback"
+      ]
+    },
+    {
+      "t": 58.0,
+      "picture": "Still line, the gate between checker and line, whale breathing.",
+      "words": "A checker should never change what it checks.",
+      "sound": "Pad tail only",
+      "act": "belief",
+      "bars": "30-31",
+      "camera": "Still, breathing only"
+    },
+    {
+      "t": 62.0,
+      "picture": "SERIES.lockup over the still line.",
+      "words": "",
+      "sound": "Final tick, then room tone",
+      "act": "lockup",
+      "bars": "32",
+      "camera": "Still"
+    }
+  ],
+  "captions": [
+    {
+      "t_in": 1.0,
+      "t_out": 4.0,
+      "text": "The report says all is well.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 4.0,
+      "t_out": 7.5,
+      "text": "It changed things while it looked.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 11.0,
+      "t_out": 13.5,
+      "text": "Let the check only look.",
+      "kind": "title"
+    },
+    {
+      "t_in": 14.0,
+      "t_out": 17.0,
+      "text": "Looking and fixing got mixed up.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 18.0,
+      "t_out": 20.5,
+      "text": "Keep looking apart from changing.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 20.0,
+      "t_out": 23.0,
+      "text": "Look first. Change nothing while looking.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 24.0,
+      "t_out": 27.0,
+      "text": "Same line in, same score out.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 26.0,
+      "t_out": 28.0,
+      "text": "No hands inside.",
+      "kind": "label"
+    },
+    {
+      "t_in": 28.0,
+      "t_out": 31.5,
+      "text": "A pure core inside a thin shell.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 32.0,
+      "t_out": 35.0,
+      "text": "It scores each repo against an ideal.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 34.0,
+      "t_out": 42.0,
+      "text": "README example · 7 of 10 → 70",
+      "kind": "card",
+      "src": "https://github.com/manutej/maat"
+    },
+    {
+      "t_in": 38.0,
+      "t_out": 41.0,
+      "text": "Run it twice. The score holds still.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 44.0,
+      "t_out": 47.0,
+      "text": "It only scores what the ideal names.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 47.0,
+      "t_out": 50.0,
+      "text": "A high score is not good code.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 58.0,
+      "t_out": 61.5,
+      "text": "A checker should never change what it checks.",
+      "kind": "caption"
+    }
+  ],
+  "terms": [
+    {
+      "term": "pure core",
+      "symbol": "reading part behind the gate",
+      "pictured_at": 20.0,
+      "named_at": 28.0
+    }
+  ],
+  "jargon": [
+    "comonad",
+    "side effect",
+    "pure",
+    "shell",
+    "I/O",
+    "functional"
+  ],
+  "sound": {
+    "signature": "A soft sonar ping that returns unchanged",
+    "problem_motif": "The same ping returning warped",
+    "limit_unresolved": true
+  },
+  "score_self": {
+    "score": 0.74,
+    "reason": "\"The checker changed what it checked\" is a real and vivid pain. The case number is only a README example, so it is labelled Illustration. \"Pure core\" is precise but may not land with leaders.",
+    "weakest_piece": "terms"
+  }
+}

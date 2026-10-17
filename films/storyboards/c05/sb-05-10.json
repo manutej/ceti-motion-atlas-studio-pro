@@ -1,0 +1,456 @@
+{
+ "schema_version": "sb60-v1",
+ "id": "sb-05-10",
+ "meta_prompt_id": "mp-c05-v1",
+ "cluster": "05 Meta-prompting & RSI",
+ "repo": "manutej/meta-prompting-plugin",
+ "capability": "Ask the model to draft the prompt first",
+ "audience": "Everyone",
+ "wada": 84,
+ "bpm": 120,
+ "dur": 64.3,
+ "title": "Let it draft the <i>cards</i> first.",
+ "hook": {
+  "kind": "Example",
+  "picture": "Close on a blank card; the whale scribbles a short line, deletes it, scribbles again, and sends; a pod answers a vague ✕ (copper chip).",
+  "words": "I never know what to write."
+ },
+ "problem_in_viewer_words": {
+  "kind": "Fact",
+  "body": "I never know what to write in the box.",
+  "who": "anyone new to AI at work"
+ },
+ "why_it_keeps_happening": {
+  "kind": "Fact",
+  "picture": "Three-times device: three scrawls sent, every 2 beats, then 1, then ½; three vague ✕.",
+  "words": "One line in, one guess out."
+ },
+ "stakes": {
+  "kind": "Fact",
+  "body": "Vague one-line asks get vague answers, so people give up on the tool or trust a guess."
+ },
+ "solution_hint": "Ask it to write the prompt first.",
+ "metaphor": {
+  "kind": "Example",
+  "body": "The whale hands the pod its rough line; the pod sends back a stack of tabbed cards (goal, context, check); the whale fixes one and adds its facts.",
+  "symbols": [
+   "whale",
+   "line",
+   "atom",
+   "pod"
+  ]
+ },
+ "mechanism_beats": {
+  "kind": "Method",
+  "steps": [
+   {
+    "t": 20.0,
+    "picture": "The whale hands the pod its rough line; the pod sends back a stack of cards with coloured tabs: goal, context, check.",
+    "words": "First, ask for the prompt.",
+    "sound": "phrase answered, fuller"
+   },
+   {
+    "t": 24.0,
+    "picture": "Push-in: the whale reads the cards and fixes one (the goal card), tab re-coloured.",
+    "words": "You read it and fix one card.",
+    "sound": "one note corrected"
+   },
+   {
+    "t": 28.0,
+    "picture": "The whale sends the stack; the pod answers ✓.",
+    "words": "Then send the better prompt.",
+    "sound": "phrase resolves"
+   },
+   {
+    "t": 30.0,
+    "picture": "The stack of cards sits labelled beside the pod.",
+    "words": "A prompt about prompts: a meta-prompt.",
+    "sound": "soft chord"
+   }
+  ]
+ },
+ "real_case": {
+  "kind": "Evidence",
+  "claim": "Manu's storyboard method (Explainer Lab): for any stage, first ask the model to write the best prompt for that stage; the plugin does this with one command, /meta.",
+  "numbers": [],
+  "source": {
+   "kind": "notion",
+   "title": "Storyboarding with meta-prompting",
+   "url": "https://app.notion.com/p/3f3d50cfaf9381b8b492d3bfb867efb8"
+  },
+  "verified": true,
+  "illustrative": false
+ },
+ "honest_limit": {
+  "kind": "Constraint",
+  "picture": "The drafted stack looks complete but has no card for the fact only the whale knows; the pod answers with the wrong name, ✕.",
+  "words": "It can't ask for what it doesn't know."
+ },
+ "not_this": {
+  "kind": "Constraint",
+  "body": "It drafts the shape. You bring the facts."
+ },
+ "ending_pattern": {
+  "kind": "Example",
+  "slug": "blank-box-gets-cards",
+  "body": "FELT close shot on the same blank card: this time a drafted stack arrives; the whale adds the one missing fact card and sends; pod ✓.",
+  "callback": "In FELT the blank card got a scribble and a vague ✕; the same blank card now becomes a stack of cards and a ✓."
+ },
+ "end_belief": {
+  "kind": "Goal",
+  "body": "Ask for the prompt first. Then add facts."
+ },
+ "beats": [
+  {
+   "t": 0.0,
+   "picture": "Close on a blank card; the whale hovers, scribbles a short line, deletes it.",
+   "words": "",
+   "sound": "two-note question",
+   "act": "felt",
+   "bars": "1",
+   "camera": "close z1.6 on the whale",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 2.0,
+   "picture": "It sends a one-line scrawl; a pod answers with a vague ✕ (copper chip).",
+   "words": "I never know what to write.",
+   "sound": "question, unanswered",
+   "act": "felt",
+   "bars": "2-3",
+   "camera": "close z1.6 on the whale",
+   "cue_tags": [
+    "consequence",
+    "focus"
+   ]
+  },
+  {
+   "t": 6.0,
+   "picture": "Another scrawl, slightly different; another vague ✕.",
+   "words": "So I guess, and it guesses back.",
+   "sound": "question twice",
+   "act": "felt",
+   "bars": "4",
+   "camera": "close z1.6 on the whale",
+   "cue_tags": [
+    "consequence",
+    "focus"
+   ]
+  },
+  {
+   "t": 8.0,
+   "picture": "The whale stuck over the blank card. Hold.",
+   "words": "",
+   "sound": "room tone",
+   "act": "felt",
+   "bars": "5",
+   "camera": "close z1.6 on the whale",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 11.0,
+   "picture": "Half a bar of stillness, then the title.",
+   "words": "Let it draft the cards first.",
+   "sound": "near-silence, then title tick",
+   "act": "why",
+   "bars": "6",
+   "camera": "pull back z1.6 to 1.0, revealing the pattern",
+   "cue_tags": [
+    "hinge"
+   ]
+  },
+  {
+   "t": 12.0,
+   "picture": "Pull back: a row of one-line scrawls, each sent once and thrown away.",
+   "words": "",
+   "sound": "problem motif once",
+   "act": "why",
+   "bars": "7",
+   "camera": "pull back z1.6 to 1.0, revealing the pattern",
+   "cue_tags": []
+  },
+  {
+   "t": 14.0,
+   "picture": "Three-times device: three scrawls sent, every 2 beats, then 1, then ½; three vague ✕.",
+   "words": "One line in, one guess out.",
+   "sound": "problem motif x3, accelerating",
+   "act": "why",
+   "bars": "8-9",
+   "camera": "pull back z1.6 to 1.0, revealing the pattern",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 18.0,
+   "picture": "Motion stops. The pod turns toward the whale, as if to ask.",
+   "words": "Ask it to write the prompt first.",
+   "sound": "first answered phrase",
+   "act": "why",
+   "bars": "10",
+   "camera": "pull back z1.6 to 1.0, revealing the pattern",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 20.0,
+   "picture": "The whale hands the pod its rough line; the pod sends back a stack of cards with coloured tabs: goal, context, check.",
+   "words": "First, ask for the prompt.",
+   "sound": "phrase answered, fuller",
+   "act": "move",
+   "bars": "11-12",
+   "camera": "medium z1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 24.0,
+   "picture": "Push-in: the whale reads the cards and fixes one (the goal card), tab re-coloured.",
+   "words": "You read it and fix one card.",
+   "sound": "one note corrected",
+   "act": "move",
+   "bars": "13-14",
+   "camera": "medium z1.2; one push-in to z1.3",
+   "cue_tags": [
+    "mech",
+    "focus"
+   ]
+  },
+  {
+   "t": 28.0,
+   "picture": "The whale sends the stack; the pod answers ✓.",
+   "words": "Then send the better prompt.",
+   "sound": "phrase resolves",
+   "act": "move",
+   "bars": "15",
+   "camera": "medium z1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 30.0,
+   "picture": "The stack of cards sits labelled beside the pod.",
+   "words": "A prompt about prompts: a meta-prompt.",
+   "sound": "soft chord",
+   "act": "move",
+   "bars": "16",
+   "camera": "medium z1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 32.0,
+   "picture": "Wide: a long line of stages; at each stage the whale first asks a pod for that stage's cards, then runs them.",
+   "words": "Real use: a prompt first, at every stage.",
+   "sound": "pulse bed, phrase per stage",
+   "act": "case",
+   "bars": "17-19",
+   "camera": "steady wide, slow drift",
+   "cue_tags": []
+  },
+  {
+   "t": 38.0,
+   "picture": "A single short command card does the asking for each stage.",
+   "words": "In the plugin, one short command.",
+   "sound": "one bright click",
+   "act": "case",
+   "bars": "20-22",
+   "camera": "steady wide, slow drift",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 44.0,
+   "picture": "The drafted stack looks complete but has no card for the fact only the whale knows; the pod answers with the wrong name, ✕.",
+   "words": "It can't ask for what it doesn't know.",
+   "sound": "phrase once, unresolved",
+   "act": "limit",
+   "bars": "23-24",
+   "camera": "still, then one slow push to what slipped",
+   "cue_tags": [
+    "limit",
+    "focus"
+   ]
+  },
+  {
+   "t": 48.0,
+   "picture": "Slow push to the gap in the stack.",
+   "words": "It drafts the shape. You bring the facts.",
+   "sound": "room tone",
+   "act": "limit",
+   "bars": "25",
+   "camera": "still, then one slow push to what slipped",
+   "cue_tags": []
+  },
+  {
+   "t": 50.0,
+   "picture": "FELT close shot on the same blank card: a drafted stack arrives; the whale adds the one missing fact card.",
+   "words": "",
+   "sound": "phrase answered",
+   "act": "payoff",
+   "bars": "26-27",
+   "camera": "FELT framing z1.6 (callback), then wide reveal",
+   "cue_tags": [
+    "callback",
+    "focus"
+   ]
+  },
+  {
+   "t": 54.0,
+   "picture": "It sends; the pod answers ✓; whale spark; wide reveal.",
+   "words": "",
+   "sound": "full resolution",
+   "act": "payoff",
+   "bars": "28-29",
+   "camera": "FELT framing z1.6 (callback), then wide reveal",
+   "cue_tags": []
+  },
+  {
+   "t": 58.0,
+   "picture": "Still stack of cards, whale breathing.",
+   "words": "Ask for the prompt first. Then add facts.",
+   "sound": "pad tail only",
+   "act": "belief",
+   "bars": "30-31",
+   "camera": "still, breathing",
+   "cue_tags": []
+  },
+  {
+   "t": 62.0,
+   "picture": "SERIES.lockup over the still chart ground",
+   "words": "",
+   "sound": "lockup sting",
+   "act": "lockup",
+   "bars": "32",
+   "camera": "still",
+   "cue_tags": []
+  }
+ ],
+ "captions": [
+  {
+   "t_in": 2.0,
+   "t_out": 6.0,
+   "text": "I never know what to write.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 6.0,
+   "t_out": 10.0,
+   "text": "So I guess, and it guesses back.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 11.0,
+   "t_out": 14.0,
+   "text": "Let it draft the cards first.",
+   "kind": "title"
+  },
+  {
+   "t_in": 14.0,
+   "t_out": 18.0,
+   "text": "One line in, one guess out.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 18.0,
+   "t_out": 20.5,
+   "text": "Ask it to write the prompt first.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 20.0,
+   "t_out": 24.0,
+   "text": "First, ask for the prompt.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 24.0,
+   "t_out": 28.0,
+   "text": "You read it and fix one card.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 28.0,
+   "t_out": 31.0,
+   "text": "Then send the better prompt.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 30.0,
+   "t_out": 33.0,
+   "text": "A prompt about prompts: a meta-prompt.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 32.0,
+   "t_out": 35.0,
+   "text": "Real use: a prompt first, at every stage.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 35.0,
+   "t_out": 42.0,
+   "text": "Source · Storyboarding with meta-prompting",
+   "kind": "card"
+  },
+  {
+   "t_in": 38.0,
+   "t_out": 44.0,
+   "text": "In the plugin, one short command.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 44.0,
+   "t_out": 48.0,
+   "text": "It can't ask for what it doesn't know.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 48.0,
+   "t_out": 51.0,
+   "text": "It drafts the shape. You bring the facts.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 58.0,
+   "t_out": 62.0,
+   "text": "Ask for the prompt first. Then add facts.",
+   "kind": "caption"
+  }
+ ],
+ "terms": [
+  {
+   "term": "meta-prompt",
+   "symbol": "pod returns a stack of tabbed cards",
+   "pictured_at": 20.0,
+   "named_at": 30.0
+  }
+ ],
+ "jargon": [
+  "meta-prompt",
+  "template",
+  "slot",
+  "system prompt",
+  "command",
+  "prompt engineering"
+ ],
+ "sound": {
+  "signature": "a short phrase answered by a fuller version of itself",
+  "problem_motif": "a two-note question with no answer",
+  "limit_unresolved": true
+ },
+ "score_self": {
+  "score": 0.77,
+  "reason": "The broadest pain (the blank box) and an actionable belief. There are no numbers, and the move is close to sb-05-01; the difference is authorship versus reuse.",
+  "weakest_piece": "real_case"
+ }
+}

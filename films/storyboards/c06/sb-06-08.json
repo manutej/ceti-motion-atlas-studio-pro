@@ -1,0 +1,435 @@
+{
+  "schema_version": "sb60-v1",
+  "id": "sb-06-08",
+  "meta_prompt_id": "mp-c06-v1",
+  "cluster": "06 JEV decisions & evidence",
+  "repo": "manutej/jev-elder",
+  "capability": "Keep every mismatch visible, never smoothed",
+  "audience": "Researchers",
+  "wada": 84,
+  "bpm": 124,
+  "dur": 62.2,
+  "title": "Leave the <i>flag</i> where it is.",
+  "hook": {
+    "kind": "Example",
+    "picture": "Close on the whale reading a pinned card ('works') above a stretch of line with a visible gap. The whale smooths over the gap with one flat fin stroke. It looks fine.",
+    "words": "The readme says it is done."
+  },
+  "problem_in_viewer_words": {
+    "kind": "Fact",
+    "body": "The readme says it works. The code says no.",
+    "who": "engineer on day one of a project"
+  },
+  "why_it_keeps_happening": {
+    "kind": "Fact",
+    "picture": "Pull back: pinned cards above a long line, each with a smoothed-over gap below. Three pods trip on them, every 2 beats, then 1, then ½.",
+    "words": "Each mismatch got smoothed over and lost."
+  },
+  "stakes": {
+    "kind": "Fact",
+    "body": "Every smoothed-over mismatch becomes a trap for the next person. Hours are lost rediscovering what someone already saw."
+  },
+  "solution_hint": "Mark every mismatch. Do not smooth it.",
+  "metaphor": {
+    "kind": "Example",
+    "body": "Pins above the line are written promises. Where a piece of the line disagrees with its pin, the joint glows copper and a flag is planted and left standing until someone really fixes it. The done lamp stays dark while any flag stands.",
+    "symbols": [
+      "whale",
+      "line",
+      "pin",
+      "seam",
+      "flag"
+    ]
+  },
+  "mechanism_beats": {
+    "kind": "Method",
+    "steps": [
+      {
+        "t": 19.355,
+        "picture": "Each pinned promise drops a thread to the line. Where the line agrees the joint ticks teal, and where it does not, it glows copper.",
+        "words": "Compare each promise to what is there.",
+        "sound": "Teal ticks, then one copper bell left ringing"
+      },
+      {
+        "t": 23.226,
+        "picture": "Push-in (z 1.28): at each copper joint a small flag is planted, and it stays. The whale does not smooth it.",
+        "words": "Disagreement gets a flag, not a patch.",
+        "sound": "A flag snap, the bell still ringing"
+      },
+      {
+        "t": 27.097,
+        "picture": "A 'done' lamp at the end of the line stays dark while any flag stands.",
+        "words": "Done stays off while a flag stands.",
+        "sound": "A low held drone"
+      },
+      {
+        "t": 29.032,
+        "picture": "Pull back to the joints. The copper ones pulse once.",
+        "words": "Joints that disagree: copper seams.",
+        "sound": "Copper bells pulse once"
+      }
+    ]
+  },
+  "real_case": {
+    "kind": "Evidence",
+    "claim": "The jev-elder collector pack keeps eight residuals (δ1–δ8) with \"do not fold\". δ1: the README lists docs the tree does not contain. \"Φ is false until δ2 and δ3 close.\"",
+    "numbers": [
+      "δ1–δ8"
+    ],
+    "source": {
+      "kind": "notion",
+      "title": "JEV ELDER — collector pack (20 Sep 2026)",
+      "url": "https://app.notion.com/p/3e1d50cfaf938136b66ff87c7039ebac"
+    },
+    "verified": true,
+    "illustrative": false
+  },
+  "honest_limit": {
+    "kind": "Constraint",
+    "picture": "Still. A stretch of line with no pin above it sags badly: no thread, no glow, no flag. A pod trips there anyway.",
+    "words": "No promise written, so no flag."
+  },
+  "not_this": {
+    "kind": "Constraint",
+    "body": "It only checks what you pinned down."
+  },
+  "ending_pattern": {
+    "kind": "Example",
+    "slug": "flag-not-paddle",
+    "body": "A flag, not a paddle: at the same gap the whale plants a flag instead of smoothing it over, and the next pod gets through.",
+    "callback": "The gap the whale smoothed over in bar 1 now carries a standing flag that the pod sees."
+  },
+  "end_belief": {
+    "kind": "Goal",
+    "body": "Keep the mismatch visible until it is fixed."
+  },
+  "beats": [
+    {
+      "t": 0.0,
+      "picture": "Close on the whale reading a pinned card ('works') above a stretch of line with a visible gap. The whale smooths over the gap with one flat fin stroke. It looks fine.",
+      "words": "The readme says it is done.",
+      "sound": "A bell muffled by a hand",
+      "act": "felt",
+      "bars": "1",
+      "camera": "Close, z 1.6, on the whale; small follow pan",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 1.935,
+      "picture": "A pod swims along the line, hits the hidden gap, and stops: copper ✕.",
+      "words": "The code says it is not.",
+      "sound": "Dull thunk",
+      "act": "felt",
+      "bars": "2-3",
+      "camera": "Close, z 1.6, on the whale; small follow pan",
+      "cue_tags": [
+        "consequence"
+      ]
+    },
+    {
+      "t": 5.806,
+      "picture": "The whale lifts its fin. The gap is still there underneath.",
+      "words": "",
+      "sound": "Silence",
+      "act": "felt",
+      "bars": "4",
+      "camera": "Close, z 1.6, on the whale; small follow pan",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 7.742,
+      "picture": "A second pod hits the same smoothed gap. Another ✕.",
+      "words": "",
+      "sound": "The muffled bell again",
+      "act": "felt",
+      "bars": "5",
+      "camera": "Close, z 1.6, on the whale; small follow pan",
+      "cue_tags": [
+        "consequence"
+      ]
+    },
+    {
+      "t": 10.645,
+      "picture": "Hinge: half a bar of stillness, then the title card.",
+      "words": "Leave the <i>flag</i> where it is.",
+      "sound": "Half a bar of room tone, then the title tick",
+      "act": "why",
+      "bars": "6",
+      "camera": "Pull back z 1.6 to 1.0 to reveal the pattern",
+      "cue_tags": [
+        "hinge"
+      ]
+    },
+    {
+      "t": 11.613,
+      "picture": "Pull back: pinned cards above a long line, each with a smoothed-over gap below. Three pods trip on them, every 2 beats, then 1, then ½.",
+      "words": "Each mismatch got smoothed over and lost.",
+      "sound": "Problem motif three times, accelerating",
+      "act": "why",
+      "bars": "7-9",
+      "camera": "Pull back z 1.6 to 1.0 to reveal the pattern",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 17.419,
+      "picture": "Freeze. Where each pinned card meets the line, a faint glow appears.",
+      "words": "",
+      "sound": "First clean statement of the signature sound",
+      "act": "why",
+      "bars": "10",
+      "camera": "Pull back z 1.6 to 1.0 to reveal the pattern",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 19.355,
+      "picture": "Each pinned promise drops a thread to the line. Where the line agrees the joint ticks teal, and where it does not, it glows copper.",
+      "words": "Compare each promise to what is there.",
+      "sound": "Teal ticks, then one copper bell left ringing",
+      "act": "move",
+      "bars": "11-12",
+      "camera": "Medium, z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 23.226,
+      "picture": "Push-in (z 1.28): at each copper joint a small flag is planted, and it stays. The whale does not smooth it.",
+      "words": "Disagreement gets a flag, not a patch.",
+      "sound": "A flag snap, the bell still ringing",
+      "act": "move",
+      "bars": "13-14",
+      "camera": "Medium, z 1.2, one push-in to z 1.28 here",
+      "cue_tags": [
+        "mech",
+        "focus"
+      ]
+    },
+    {
+      "t": 27.097,
+      "picture": "A 'done' lamp at the end of the line stays dark while any flag stands.",
+      "words": "Done stays off while a flag stands.",
+      "sound": "A low held drone",
+      "act": "move",
+      "bars": "15",
+      "camera": "Medium, z 1.2",
+      "cue_tags": [
+        "mech",
+        "focus"
+      ]
+    },
+    {
+      "t": 29.032,
+      "picture": "Pull back to the joints. The copper ones pulse once.",
+      "words": "Joints that disagree: copper seams.",
+      "sound": "Copper bells pulse once",
+      "act": "move",
+      "bars": "16",
+      "camera": "Medium, z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 30.968,
+      "picture": "Wide: a row of 8 copper flags along a real project line, each with a tiny label. The card fades in.",
+      "words": "jev-elder: 8 mismatches kept in plain view.",
+      "sound": "Pulse bed, fast quiet ticks",
+      "act": "case",
+      "bars": "17-19",
+      "camera": "Steady wide, slow drift under 40 px/s",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 36.774,
+      "picture": "Two of the flags pulse. The done lamp at the end stays dark.",
+      "words": "Not done until two key flags close.",
+      "sound": "Two bells pulse over the drone",
+      "act": "case",
+      "bars": "20-22",
+      "camera": "Steady wide, slow drift under 40 px/s",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 42.581,
+      "picture": "Still. A stretch of line with no pin above it sags badly: no thread, no glow, no flag. A pod trips there anyway.",
+      "words": "No promise written, so no flag.",
+      "sound": "The bell sounds once and is not resolved",
+      "act": "limit",
+      "bars": "23-24",
+      "camera": "Still, then one slow push to what slipped",
+      "cue_tags": [
+        "limit"
+      ]
+    },
+    {
+      "t": 46.452,
+      "picture": "Slow push to the unpinned sag.",
+      "words": "",
+      "sound": "Room tone",
+      "act": "limit",
+      "bars": "25",
+      "camera": "Still, then one slow push to what slipped",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 48.387,
+      "picture": "FELT framing (z 1.6): the whale is about to smooth the gap, stops, and plants a flag instead. The next pod sees the flag, routes around it, and answers ✓.",
+      "words": "",
+      "sound": "Signature fully resolved",
+      "act": "payoff",
+      "bars": "26-29",
+      "camera": "FELT framing restored, z 1.6, then a wide reveal",
+      "cue_tags": [
+        "callback"
+      ]
+    },
+    {
+      "t": 56.129,
+      "picture": "A standing flag over the gap, the whale breathing beside it.",
+      "words": "Keep the mismatch visible until it is fixed.",
+      "sound": "Pad tail only",
+      "act": "belief",
+      "bars": "30-31",
+      "camera": "Still, breathing only"
+    },
+    {
+      "t": 60.0,
+      "picture": "SERIES.lockup over the settled chart ground.",
+      "words": "",
+      "sound": "Lockup sting, pad out",
+      "act": "lockup",
+      "bars": "32",
+      "camera": "Still"
+    }
+  ],
+  "captions": [
+    {
+      "t_in": 0.968,
+      "t_out": 3.871,
+      "text": "The readme says it is done.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 4.839,
+      "t_out": 8.71,
+      "text": "The code says it is not.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 10.645,
+      "t_out": 13.065,
+      "text": "Leave the <i>flag</i> where it is.",
+      "kind": "title"
+    },
+    {
+      "t_in": 13.548,
+      "t_out": 16.935,
+      "text": "Each mismatch got smoothed over and lost.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 16.935,
+      "t_out": 19.839,
+      "text": "Mark every mismatch. Do not smooth it.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 20.323,
+      "t_out": 23.226,
+      "text": "Compare each promise to what is there.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 24.194,
+      "t_out": 27.097,
+      "text": "Disagreement gets a flag, not a patch.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 28.065,
+      "t_out": 30.968,
+      "text": "Done stays off while a flag stands.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 29.516,
+      "t_out": 31.935,
+      "text": "Joints that disagree: copper seams.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 31.935,
+      "t_out": 36.774,
+      "text": "jev-elder: 8 mismatches kept in plain view.",
+      "kind": "card",
+      "src": "https://app.notion.com/p/3e1d50cfaf938136b66ff87c7039ebac"
+    },
+    {
+      "t_in": 32.903,
+      "t_out": 36.774,
+      "text": "First flag: the readme lists missing docs.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 37.742,
+      "t_out": 42.097,
+      "text": "Not done until two key flags close.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 43.065,
+      "t_out": 45.484,
+      "text": "No promise written, so no flag.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 45.484,
+      "t_out": 48.387,
+      "text": "It only checks what you pinned down.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 56.129,
+      "t_out": 60.0,
+      "text": "Keep the mismatch visible until it is fixed.",
+      "kind": "caption"
+    }
+  ],
+  "terms": [
+    {
+      "term": "seam",
+      "symbol": "seam",
+      "pictured_at": 19.355,
+      "named_at": 29.516
+    }
+  ],
+  "jargon": [
+    "contract",
+    "collector"
+  ],
+  "sound": {
+    "signature": "A struck bell left ringing, not damped",
+    "problem_motif": "The same bell muffled by a hand",
+    "limit_unresolved": true
+  },
+  "score_self": {
+    "score": 0.7,
+    "reason": "An original honesty move (do not fold) with a real pack. Risk: \"readme\" is a dev word for a Researchers board, and pins as promises plus a flag sits close to the Conserve-60 imagery.",
+    "weakest_piece": "why_it_keeps_happening"
+  }
+}

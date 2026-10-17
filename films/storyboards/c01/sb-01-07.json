@@ -1,0 +1,413 @@
+{
+ "schema_version": "sb60-v1",
+ "id": "sb-01-07",
+ "meta_prompt_id": "mp-c01-v1",
+ "cluster": "01 Sheaf memory",
+ "repo": "none",
+ "capability": "Neighbours nudge each other to agree, no central boss",
+ "audience": "Leaders",
+ "wada": 279,
+ "bpm": 120,
+ "dur": 64.3,
+ "title": "Seven opinions, one <i>line</i>.",
+ "hook": {
+  "kind": "Example",
+  "picture": "Close: seven pods in a ring around the whale, each holding up a different number chip. The whale waits for a boss pod. None comes.",
+  "words": "Seven teams. Seven numbers."
+ },
+ "problem_in_viewer_words": {
+  "kind": "Fact",
+  "body": "Seven teams sent seven numbers, and nobody owns the answer.",
+  "who": "an operations lead before the board meeting"
+ },
+ "why_it_keeps_happening": {
+  "kind": "Fact",
+  "picture": "Pull back: this ring is one of many. Three times, every 2 beats, then 1, then half, a boss pod is called in, gets swamped by chips, and leaves.",
+  "words": "Everyone waits for one boss to decide."
+ },
+ "stakes": {
+  "kind": "Fact",
+  "body": "The meeting stalls, someone picks a number by rank, and the rest stop reporting honestly."
+ },
+ "solution_hint": "Let each one check with its neighbours.",
+ "metaphor": {
+  "kind": "Example",
+  "body": "Seven pods sit in a ring, each joined to its neighbours. Every beat each nudges toward the others, and the ring settles into one line without a boss.",
+  "symbols": [
+   "whale",
+   "line",
+   "pod",
+   "seam",
+   "counter"
+  ]
+ },
+ "mechanism_beats": {
+  "kind": "Method",
+  "steps": [
+   {
+    "t": 20.0,
+    "picture": "Each pod links to its two neighbours by a short join. Each compares its chip with theirs; the gap shows as a raw sienna stretch on the join.",
+    "words": "Let each one check with its neighbours.",
+    "sound": "Two tones per join, beating by the gap."
+   },
+   {
+    "t": 23.0,
+    "picture": "Every beat, each pod nudges its number a little toward its neighbours. The stretches shrink together, all at once, with no centre.",
+    "words": "Each nudges toward its neighbours. Again.",
+    "sound": "The beats slow together on every join."
+   },
+   {
+    "t": 26.0,
+    "picture": "Push-in on one stubborn pair: their stretch shrinks last. The whale rings it, and it closes.",
+    "words": "Small steps. No boss needed.",
+    "sound": "Last beating pair settles to unison."
+   },
+   {
+    "t": 29.0,
+    "picture": "The joins settle teal; the ring becomes one smooth closed line. A label slides onto the arrows: diffusion.",
+    "words": "Step by step agreeing is called diffusion.",
+    "sound": "A soft bell for the closed ring."
+   }
+  ]
+ },
+ "real_case": {
+  "kind": "Evidence",
+  "claim": "Planned explainer, not a run: \"Sheaf Diffusion: How Local Data Learns to Agree. Seven sensors disagree, and one equation makes them consistent without a central boss.\"",
+  "numbers": [],
+  "source": {
+   "kind": "notion",
+   "title": "Video ideas (p5.js Explainer Lab), idea #2",
+   "url": "https://app.notion.com/p/3f3d50cfaf938103991de635a7d029ba"
+  },
+  "verified": true,
+  "illustrative": true
+ },
+ "honest_limit": {
+  "kind": "Constraint",
+  "picture": "Push to the settled ring: all seven chips show one number. The board pod outside reads it and still answers ✕. They agreed on a wrong number.",
+  "words": "All seven agree. All seven are wrong."
+ },
+ "not_this": {
+  "kind": "Constraint",
+  "body": "Agreement is not the same as truth."
+ },
+ "ending_pattern": {
+  "kind": "Example",
+  "slug": "ring-settles",
+  "body": "Seven clashing chips slide together and the ring of pods closes into one smooth line around the whale, then a checker compares it against the books.",
+  "callback": "The seven clashing pods of bar 1, in the same ring and framing, are now joined by one settled line."
+ },
+ "end_belief": {
+  "kind": "Goal",
+  "body": "Let neighbours agree. Then check the answer."
+ },
+ "beats": [
+  {
+   "t": 0.0,
+   "picture": "Close: seven pods in a ring around the whale, each holding up a different number chip. The whale waits for a boss pod. None comes.",
+   "words": "Seven teams. Seven numbers.",
+   "sound": "Seven-note cluster, held.",
+   "act": "felt",
+   "bars": "1-2",
+   "camera": "Close, z 1.6 on the whale, small follow pan",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 3.0,
+   "picture": "A board pod outside the ring reads the spread and answers ✕ on a raw sienna chip.",
+   "words": "",
+   "sound": "Dull thud on the board ✕.",
+   "act": "felt",
+   "bars": "2",
+   "camera": "Close, z 1.6 on the whale, small follow pan",
+   "cue_tags": [
+    "consequence"
+   ]
+  },
+  {
+   "t": 5.0,
+   "picture": "The whale turns from pod to pod; every chip shows something different.",
+   "words": "Nobody is in charge of the answer.",
+   "sound": "Cluster swells as the whale turns.",
+   "act": "felt",
+   "bars": "3-4",
+   "camera": "Close, z 1.6 on the whale, small follow pan"
+  },
+  {
+   "t": 8.0,
+   "picture": "The ring of mismatched chips, the board pod's ✕ lit. Hold.",
+   "words": "",
+   "sound": "The problem motif fades. Silence creeps in.",
+   "act": "felt",
+   "bars": "5",
+   "camera": "Close, z 1.6 on the whale, small follow pan"
+  },
+  {
+   "t": 11.0,
+   "picture": "Hinge: half a bar of stillness, then SERIES.open shows the title over the still line.",
+   "words": "",
+   "sound": "Near-silence, then the title tick.",
+   "act": "why",
+   "bars": "6",
+   "camera": "Pull back z 1.6 to 1.0, one reveal",
+   "cue_tags": [
+    "hinge"
+   ]
+  },
+  {
+   "t": 12.0,
+   "picture": "Pull back: this ring is one of many. Three times, every 2 beats, then 1, then half, a boss pod is called in, gets swamped by chips, and leaves.",
+   "words": "Everyone waits for one boss to decide.",
+   "sound": "Boss-pod gong swamped three times, accelerating.",
+   "act": "why",
+   "bars": "7-9",
+   "camera": "Pull back z 1.6 to 1.0, one reveal",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 18.0,
+   "picture": "The rings freeze. Faint links ghost between each pod and its two neighbours.",
+   "words": "Let each one check with its neighbours.",
+   "sound": "Two neighbour tones lean together.",
+   "act": "why",
+   "bars": "10",
+   "camera": "Pull back z 1.6 to 1.0, one reveal",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 20.0,
+   "picture": "Each pod links to its two neighbours by a short join. Each compares its chip with theirs; the gap shows as a raw sienna stretch on the join.",
+   "words": "Let each one check with its neighbours.",
+   "sound": "Two tones per join, beating by the gap.",
+   "act": "move",
+   "bars": "11-12",
+   "camera": "Medium z 1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 23.0,
+   "picture": "Every beat, each pod nudges its number a little toward its neighbours. The stretches shrink together, all at once, with no centre.",
+   "words": "Each nudges toward its neighbours. Again.",
+   "sound": "The beats slow together on every join.",
+   "act": "move",
+   "bars": "12-13",
+   "camera": "Medium z 1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 26.0,
+   "picture": "Push-in on one stubborn pair: their stretch shrinks last. The whale rings it, and it closes.",
+   "words": "Small steps. No boss needed.",
+   "sound": "Last beating pair settles to unison.",
+   "act": "move",
+   "bars": "14",
+   "camera": "Medium z 1.2, the one push-in to z 1.3",
+   "cue_tags": [
+    "mech",
+    "focus"
+   ]
+  },
+  {
+   "t": 29.0,
+   "picture": "The joins settle teal; the ring becomes one smooth closed line. A label slides onto the arrows: diffusion.",
+   "words": "Step by step agreeing is called diffusion.",
+   "sound": "A soft bell for the closed ring.",
+   "act": "move",
+   "bars": "15-16",
+   "camera": "Medium z 1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 32.0,
+   "picture": "Wide: a bigger web of many pods, each linked to a few neighbours. The stretches shrink everywhere at once.",
+   "words": "Bigger webs settle the same way.",
+   "sound": "Many clusters narrowing at once.",
+   "act": "case",
+   "bars": "17-19",
+   "camera": "Steady wide, slow drift"
+  },
+  {
+   "t": 38.0,
+   "picture": "A counter by the whale ticks rounds until every stretch is gone. No pod ever took charge.",
+   "words": "No one decided. They settled.",
+   "sound": "Round ticks, then quiet.",
+   "act": "case",
+   "bars": "20-22",
+   "camera": "Steady wide, slow drift"
+  },
+  {
+   "t": 44.0,
+   "picture": "Push to the settled ring: all seven chips show one number. The board pod outside reads it and still answers ✕. They agreed on a wrong number.",
+   "words": "All seven agree. All seven are wrong.",
+   "sound": "Unison chord with one unresolved note above.",
+   "act": "limit",
+   "bars": "23-24",
+   "camera": "Still, then one slow push to the thing that slipped",
+   "cue_tags": [
+    "limit"
+   ]
+  },
+  {
+   "t": 48.0,
+   "picture": "Hold on the teal ring and the board pod's ✕.",
+   "words": "Agreement is not the same as truth.",
+   "sound": "Room tone.",
+   "act": "limit",
+   "bars": "25",
+   "camera": "Still"
+  },
+  {
+   "t": 50.0,
+   "picture": "The ring settles. FELT framing (z 1.6, the same seven pods). Chips slide together, the joins fall teal, and the ring closes into one smooth line around the whale. A checker pod then compares it against the books. Spout.",
+   "words": "",
+   "sound": "Seven tones meet in one chord, bell.",
+   "act": "payoff",
+   "bars": "26-29",
+   "camera": "Back to FELT framing z 1.6, then wide reveal",
+   "cue_tags": [
+    "callback"
+   ]
+  },
+  {
+   "t": 58.0,
+   "picture": "One closed ring of pods, whale breathing in the middle.",
+   "words": "Let neighbours agree. Then check the answer.",
+   "sound": "Pad tail only.",
+   "act": "belief",
+   "bars": "30-31",
+   "camera": "Still, breathing only"
+  },
+  {
+   "t": 62.0,
+   "picture": "SERIES.lockup over the still line.",
+   "words": "",
+   "sound": "Lockup tone.",
+   "act": "lockup",
+   "bars": "32",
+   "camera": "Still"
+  }
+ ],
+ "captions": [
+  {
+   "t_in": 1.0,
+   "t_out": 4.0,
+   "text": "Seven teams. Seven numbers.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 5.0,
+   "t_out": 9.0,
+   "text": "Nobody is in charge of the answer.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 11.0,
+   "t_out": 13.5,
+   "text": "Seven opinions, one line.",
+   "kind": "title"
+  },
+  {
+   "t_in": 13.5,
+   "t_out": 17.0,
+   "text": "Everyone waits for one boss to decide.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 17.5,
+   "t_out": 20.5,
+   "text": "Let each one check with its neighbours.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 23.0,
+   "t_out": 26.0,
+   "text": "Each nudges toward its neighbours. Again.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 26.0,
+   "t_out": 29.0,
+   "text": "Small steps. No boss needed.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 29.0,
+   "t_out": 32.0,
+   "text": "Step by step agreeing is called diffusion.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 32.0,
+   "t_out": 34.5,
+   "text": "Bigger webs settle the same way.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 34.0,
+   "t_out": 43.0,
+   "text": "Illustration · a planned explainer, not a run",
+   "kind": "card",
+   "src": "https://app.notion.com/p/3f3d50cfaf938103991de635a7d029ba"
+  },
+  {
+   "t_in": 38.0,
+   "t_out": 42.0,
+   "text": "No one decided. They settled.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 44.0,
+   "t_out": 47.5,
+   "text": "All seven agree. All seven are wrong.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 48.0,
+   "t_out": 51.0,
+   "text": "Agreement is not the same as truth.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 58.0,
+   "t_out": 62.0,
+   "text": "Let neighbours agree. Then check the answer.",
+   "kind": "caption"
+  }
+ ],
+ "terms": [
+  {
+   "term": "diffusion",
+   "symbol": "seam",
+   "pictured_at": 23.0,
+   "named_at": 29.0
+  }
+ ],
+ "jargon": [
+  "diffusion",
+  "converge",
+  "equation",
+  "consensus"
+ ],
+ "sound": {
+  "signature": "Seven tones that drift toward each other until they ring as one chord.",
+  "problem_motif": "Seven tones held apart, an uneasy cluster.",
+  "limit_unresolved": true
+ },
+ "score_self": {
+  "score": 0.7,
+  "reason": "A boss-less ring is a vivid leadership picture, and the limit (agree but wrong) honours caution T5. But it is an Illustration, and the ending still celebrates agreement right after the limit.",
+  "weakest_piece": "ending_pattern"
+ }
+}

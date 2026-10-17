@@ -1,0 +1,476 @@
+{
+  "schema_version": "sb60-v1",
+  "id": "sb-10-01",
+  "meta_prompt_id": "mp-c10-v1",
+  "cluster": "10 Explainers & craft",
+  "repo": "manutej/ceti-explainer",
+  "capability": "One clock: pause anywhere, see one clean picture",
+  "audience": "Engineers",
+  "wada": 296,
+  "bpm": 128,
+  "dur": 60.3,
+  "title": "Every frame lives on the <i>line</i>.",
+  "hook": {
+    "kind": "Example",
+    "picture": "Close on the whale beside the line, mid-explanation. It taps pause and the line freezes mid-wave; two half-faded cards overlap into a smear above it.",
+    "words": "Let me pause here and point."
+  },
+  "problem_in_viewer_words": {
+    "kind": "Fact",
+    "body": "I paused it to explain, and the frame was mush.",
+    "who": "instructor pausing an explainer mid-class"
+  },
+  "why_it_keeps_happening": {
+    "kind": "Fact",
+    "picture": "Pull back: three replays of the same film stacked as ghost lines; each freezes at the same moment with the cards in different places.",
+    "words": "Each play draws its own slightly different film."
+  },
+  "stakes": {
+    "kind": "Fact",
+    "body": "A frame you cannot pause on is a frame you cannot teach from; screenshots, reviews and replays all disagree."
+  },
+  "solution_hint": "Draw each moment from the clock alone.",
+  "metaphor": {
+    "kind": "Example",
+    "body": "The line is the clock. Each tick on it names one exact picture, so the whale can land on any tick, any number of times, and find the same frame.",
+    "symbols": [
+      "whale",
+      "line",
+      "tick",
+      "gate"
+    ]
+  },
+  "mechanism_beats": {
+    "kind": "Method",
+    "steps": [
+      {
+        "t": 18.75,
+        "picture": "Ticks drop along the line at even steps. The whale lands on one, and the frame above it draws cleanly, card by card.",
+        "words": "Draw each moment from the clock alone.",
+        "sound": "Clean tick on each landing"
+      },
+      {
+        "t": 21.562,
+        "picture": "The whale hops back three ticks, then forward again; the frame above each tick is identical both times, and a ring flashes on each match.",
+        "words": "Same picture, both ways.",
+        "sound": "Clean tick plus soft chime per match"
+      },
+      {
+        "t": 24.375,
+        "picture": "Two cards try to light in the same spot; a small gate on the line closes; one card fades out before the other arrives.",
+        "words": "Two scenes at once? Stopped.",
+        "sound": "Muted thud, then clean tick"
+      },
+      {
+        "t": 27.188,
+        "picture": "The gate steps across the whole line, every tick, and glows; its name lands on its post.",
+        "words": "A machine checks every frame: a gate.",
+        "sound": "Tick run sweeping up the scale"
+      }
+    ]
+  },
+  "real_case": {
+    "kind": "Evidence",
+    "claim": "The ceti-explainer repo lists 15 shipped films, and one script rebuilds and gates every film and demo in about 10 minutes.",
+    "numbers": [
+      "15 shipped",
+      "about 10 minutes"
+    ],
+    "source": {
+      "kind": "repo",
+      "title": "manutej/ceti-explainer README",
+      "url": "https://github.com/manutej/ceti-explainer"
+    },
+    "verified": true,
+    "illustrative": false
+  },
+  "honest_limit": {
+    "kind": "Constraint",
+    "picture": "Push into one clean frame: an arrow points the wrong way, drawn exactly the same on every replay, and the gate glows pass.",
+    "words": "Wrong can be the same every time."
+  },
+  "not_this": {
+    "kind": "Constraint",
+    "body": "Same every time is not right."
+  },
+  "ending_pattern": {
+    "kind": "Example",
+    "slug": "pause-anywhere",
+    "body": "FELT framing returns. The whale taps pause at three random ticks in a row; each time the frame is clean and identical to its last visit. Spark.",
+    "callback": "The pause that smeared in bar 1 now lands, in the same framing, on one clean frame."
+  },
+  "end_belief": {
+    "kind": "Goal",
+    "body": "Build films you can pause anywhere."
+  },
+  "beats": [
+    {
+      "t": 0.0,
+      "act": "felt",
+      "bars": "1",
+      "picture": "Close on the whale beside the line, mid-explanation. It taps pause and the line freezes mid-wave; two half-faded cards overlap into a smear above it.",
+      "words": "",
+      "sound": "Smeared tick, off the beat",
+      "camera": "Close z 1.6 on the whale",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 0.938,
+      "act": "felt",
+      "bars": "1",
+      "picture": "The whale holds still for a breath, facing the trouble.",
+      "words": "Let me pause here and point.",
+      "sound": "Low room tone",
+      "camera": "Close z 1.6 on the whale",
+      "cue_tags": []
+    },
+    {
+      "t": 1.875,
+      "act": "felt",
+      "bars": "2",
+      "picture": "The whale points at the smear and it shifts: the two cards are lit at once, so the picture it meant to show is unreadable.",
+      "words": "",
+      "sound": "Smeared double tick",
+      "camera": "Close z 1.6 on the whale",
+      "cue_tags": [
+        "consequence",
+        "focus"
+      ]
+    },
+    {
+      "t": 4.688,
+      "act": "felt",
+      "bars": "3",
+      "picture": "It plays again; the same pause lands on a different smear in a new spot.",
+      "words": "Each replay looks a bit different.",
+      "sound": "Smear echo, flatter",
+      "camera": "Close z 1.6 on the whale",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 7.5,
+      "act": "felt",
+      "bars": "5",
+      "picture": "The whale stares at the smear. Hold.",
+      "words": "",
+      "sound": "Silence creeps in",
+      "camera": "Close z 1.6 on the whale",
+      "cue_tags": []
+    },
+    {
+      "t": 10.312,
+      "act": "why",
+      "bars": "6",
+      "picture": "Stillness, then the title settles above the frozen line.",
+      "words": "Every frame lives on the line.",
+      "sound": "Half a bar of room tone, then the title tick",
+      "camera": "Pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "hinge"
+      ]
+    },
+    {
+      "t": 12.188,
+      "act": "why",
+      "bars": "7",
+      "picture": "Pull back: three replays of the same film stacked as ghost lines; each freezes at the same moment with the cards in different places.",
+      "words": "Each play draws its own slightly different film.",
+      "sound": "Smeared tick",
+      "camera": "Pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 14.062,
+      "act": "why",
+      "bars": "8",
+      "picture": "Three-times device: pause, smear; pause, smear; pause, smear, every 2 beats, then 1, then half, each smear in a new spot.",
+      "words": "",
+      "sound": "Smear x3, accelerating",
+      "camera": "Pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 16.875,
+      "act": "why",
+      "bars": "10",
+      "picture": "All motion stops. Where the fix will go, a faint outline of it ghosts in.",
+      "words": "Draw each moment from the clock alone.",
+      "sound": "One clean tick, the first in tune",
+      "camera": "Pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 18.75,
+      "act": "move",
+      "bars": "11",
+      "picture": "Ticks drop along the line at even steps. The whale lands on one, and the frame above it draws cleanly, card by card.",
+      "words": "Draw each moment from the clock alone.",
+      "sound": "Clean tick on each landing",
+      "camera": "Medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 21.562,
+      "act": "move",
+      "bars": "12",
+      "picture": "The whale hops back three ticks, then forward again; the frame above each tick is identical both times, and a ring flashes on each match.",
+      "words": "Same picture, both ways.",
+      "sound": "Clean tick plus soft chime per match",
+      "camera": "Medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 24.375,
+      "act": "move",
+      "bars": "14",
+      "picture": "Two cards try to light in the same spot; a small gate on the line closes; one card fades out before the other arrives.",
+      "words": "Two scenes at once? Stopped.",
+      "sound": "Muted thud, then clean tick",
+      "camera": "Push-in z 1.1 to 1.3, the only push",
+      "cue_tags": [
+        "mech",
+        "focus"
+      ]
+    },
+    {
+      "t": 27.188,
+      "act": "move",
+      "bars": "15",
+      "picture": "The gate steps across the whole line, every tick, and glows; its name lands on its post.",
+      "words": "A machine checks every frame: a gate.",
+      "sound": "Tick run sweeping up the scale",
+      "camera": "Medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 30.0,
+      "act": "case",
+      "bars": "17",
+      "picture": "Wide: fifteen short lines in a row, each with its ticks; one gate sweeps them left to right and each glows in turn.",
+      "words": "Real run: every film rebuilt and checked.",
+      "sound": "Pulse bed, quiet fast ticks",
+      "camera": "Steady wide, slow drift",
+      "cue_tags": []
+    },
+    {
+      "t": 31.875,
+      "act": "case",
+      "bars": "18",
+      "picture": "The card fades in on clean paper beside the run; the run keeps moving behind it.",
+      "words": "15 shipped films · rebuilt by one script",
+      "sound": "One soft card tick",
+      "camera": "Steady wide, slow drift",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 35.625,
+      "act": "case",
+      "bars": "20",
+      "picture": "The whale pauses film nine at a random tick: one scene lit, nothing overlapping.",
+      "words": "Pause anywhere. One clean picture.",
+      "sound": "One clean tick",
+      "camera": "Steady wide, slow drift",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 41.25,
+      "act": "limit",
+      "bars": "23",
+      "picture": "Push into one clean frame: an arrow points the wrong way, drawn exactly the same on every replay, and the gate glows pass.",
+      "words": "Wrong can be the same every time.",
+      "sound": "The signature plays once and does not resolve",
+      "camera": "Still, then one slow push in",
+      "cue_tags": [
+        "limit",
+        "focus"
+      ]
+    },
+    {
+      "t": 45.0,
+      "act": "limit",
+      "bars": "25",
+      "picture": "Hold on the wrong arrow; the gate stays lit.",
+      "words": "Same every time is not right.",
+      "sound": "Room tone",
+      "camera": "Still",
+      "cue_tags": []
+    },
+    {
+      "t": 46.875,
+      "act": "payoff",
+      "bars": "26",
+      "picture": "FELT framing (z 1.6). The whale taps pause, and one clean frame sits above the line.",
+      "words": "",
+      "sound": "Three clean ticks, resolved",
+      "camera": "FELT framing z 1.6, then wide reveal",
+      "cue_tags": [
+        "callback",
+        "focus"
+      ]
+    },
+    {
+      "t": 50.625,
+      "act": "payoff",
+      "bars": "28",
+      "picture": "Two more pauses at random ticks show the same clean frames; the whale sparks.",
+      "words": "",
+      "sound": "Full resolution, the signature in tune on every beat",
+      "camera": "FELT framing z 1.6, then wide reveal",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 54.375,
+      "act": "belief",
+      "bars": "30",
+      "picture": "Still line with even ticks; the whale breathes.",
+      "words": "Build films you can pause anywhere.",
+      "sound": "Pad tail only",
+      "camera": "Still, breathing",
+      "cue_tags": []
+    },
+    {
+      "t": 58.125,
+      "act": "lockup",
+      "bars": "32",
+      "picture": "SERIES.lockup over the chart ground.",
+      "words": "",
+      "sound": "Pad tail fades",
+      "camera": "Still",
+      "cue_tags": []
+    }
+  ],
+  "captions": [
+    {
+      "t_in": 0.938,
+      "t_out": 3.75,
+      "text": "Let me pause here and point.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 4.688,
+      "t_out": 7.969,
+      "text": "Each replay looks a bit different.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 10.312,
+      "t_out": 12.187,
+      "text": "Every frame lives on the line.",
+      "kind": "title"
+    },
+    {
+      "t_in": 12.188,
+      "t_out": 15.938,
+      "text": "Each play draws its own slightly different film.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 16.875,
+      "t_out": 19.219,
+      "text": "Draw each moment from the clock alone.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 21.562,
+      "t_out": 23.437,
+      "text": "Same picture, both ways.",
+      "kind": "label"
+    },
+    {
+      "t_in": 24.375,
+      "t_out": 27.188,
+      "text": "Two scenes at once? Stopped.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 27.188,
+      "t_out": 30.0,
+      "text": "A machine checks every frame: a gate.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 30.0,
+      "t_out": 32.812,
+      "text": "Real run: every film rebuilt and checked.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 31.875,
+      "t_out": 39.375,
+      "text": "15 shipped films · rebuilt by one script",
+      "kind": "card",
+      "src": "https://github.com/manutej/ceti-explainer"
+    },
+    {
+      "t_in": 35.625,
+      "t_out": 39.375,
+      "text": "Pause anywhere. One clean picture.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 41.25,
+      "t_out": 44.062,
+      "text": "Wrong can be the same every time.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 45.0,
+      "t_out": 47.812,
+      "text": "Same every time is not right.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 54.375,
+      "t_out": 58.125,
+      "text": "Build films you can pause anywhere.",
+      "kind": "caption"
+    }
+  ],
+  "terms": [
+    {
+      "term": "gate",
+      "symbol": "gate",
+      "pictured_at": 24.375,
+      "named_at": 27.188
+    }
+  ],
+  "jargon": [
+    "render",
+    "timeline",
+    "deterministic",
+    "scrub",
+    "frame-rate"
+  ],
+  "sound": {
+    "signature": "A clean wood-block tick that lands exactly on the beat",
+    "problem_motif": "The same tick smeared by a short, off-beat echo",
+    "limit_unresolved": true
+  },
+  "score_self": {
+    "score": 0.74,
+    "reason": "Problem and move read from pictures; the smear is a vivid felt pain. Risk: a phone viewer may not read \"frame\" as the teaching moment, and the CASE card number is about films, not pauses.",
+    "weakest_piece": "real_case"
+  }
+}

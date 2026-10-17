@@ -1,0 +1,429 @@
+{
+  "schema_version": "sb60-v1",
+  "id": "sb-06-06",
+  "meta_prompt_id": "mp-c06-v1",
+  "cluster": "06 JEV decisions & evidence",
+  "repo": "manutej/JEV-works",
+  "capability": "Check the measuring tool before the score",
+  "audience": "Learners",
+  "wada": 207,
+  "bpm": 124,
+  "dur": 62.2,
+  "title": "First, check the <i>ruler</i>.",
+  "hook": {
+    "kind": "Example",
+    "picture": "Close on the whale measuring the line with a ruler-ticked ring. The ring reads high and a little bar in the corner leaps up. The whale sparks.",
+    "words": "Our score jumped overnight."
+  },
+  "problem_in_viewer_words": {
+    "kind": "Fact",
+    "body": "Our score jumped, but nothing had actually changed.",
+    "who": "analyst presenting results to her cohort"
+  },
+  "why_it_keeps_happening": {
+    "kind": "Fact",
+    "picture": "Pull back: three different lines, each measured with the same smudged ring. Each reading jumps for no reason, every 2 beats, then 1, then ½.",
+    "words": "The ruler was broken. Nobody checked it."
+  },
+  "stakes": {
+    "kind": "Fact",
+    "body": "Decisions get made on a number that moved because the ruler broke, not because the work changed."
+  },
+  "solution_hint": "Check the ruler before you trust the score.",
+  "metaphor": {
+    "kind": "Example",
+    "body": "Before measuring real work, the whale runs the ring over a pinned card whose answer is already known. Only when the ring reads it right does it touch the real line.",
+    "symbols": [
+      "whale",
+      "line",
+      "ring",
+      "pin",
+      "flag"
+    ]
+  },
+  "mechanism_beats": {
+    "kind": "Method",
+    "steps": [
+      {
+        "t": 19.355,
+        "picture": "A pinned card with a known answer sits on the line. The whale runs the ring over it first.",
+        "words": "Measure something you already know first.",
+        "sound": "A fork struck once, a steady tone"
+      },
+      {
+        "t": 23.226,
+        "picture": "The smudged ring misreads the known card. A flag pops up on the ring itself, not on the work.",
+        "words": "Wrong on a known answer? Fix the ruler.",
+        "sound": "The steady tone against a sour one"
+      },
+      {
+        "t": 27.097,
+        "picture": "Push-in (z 1.28): the whale swaps in a clean ring. It reads the pinned card right. A tick.",
+        "words": "Checking the ruler is called calibrating.",
+        "sound": "Two forks settle into unison"
+      },
+      {
+        "t": 29.032,
+        "picture": "The clean ring now measures the real line. The corner bar stays level.",
+        "words": "",
+        "sound": "A soft tick"
+      }
+    ]
+  },
+  "real_case": {
+    "kind": "Evidence",
+    "claim": "In JEV-works, 117/119 triage verdicts matched between the two backends. The lab says broken instruments produced most of the misleading results it found.",
+    "numbers": [
+      "117/119"
+    ],
+    "source": {
+      "kind": "repo",
+      "title": "manutej/JEV-works README",
+      "url": "https://github.com/manutej/JEV-works"
+    },
+    "verified": true,
+    "illustrative": false
+  },
+  "honest_limit": {
+    "kind": "Constraint",
+    "picture": "Still. Both clean rings read one card the same way, and both are wrong. A flag rises behind them that neither ring can see.",
+    "words": "Two rulers can agree and both be wrong."
+  },
+  "not_this": {
+    "kind": "Constraint",
+    "body": "Agreement is not the same as truth."
+  },
+  "ending_pattern": {
+    "kind": "Example",
+    "slug": "level-bar-after-calibration",
+    "body": "The level bar: the same corner bar that leapt now stays level, because the ring was checked on a known card first.",
+    "callback": "The bar that leapt for no reason in bar 1 stays level in the same frame."
+  },
+  "end_belief": {
+    "kind": "Goal",
+    "body": "Test the test first. Then trust the score."
+  },
+  "beats": [
+    {
+      "t": 0.0,
+      "picture": "Close on the whale measuring the line with a ruler-ticked ring. The ring reads high and a little bar in the corner leaps up. The whale sparks.",
+      "words": "Our score jumped overnight.",
+      "sound": "A tuning fork struck on wood, wavering",
+      "act": "felt",
+      "bars": "1",
+      "camera": "Close, z 1.6, on the whale; small follow pan",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 1.935,
+      "picture": "A pod carries the good news to a decision. Next day its chip turns rust ✕: the work was the same as before.",
+      "words": "Nothing in the work had changed.",
+      "sound": "Dull thunk",
+      "act": "felt",
+      "bars": "2-3",
+      "camera": "Close, z 1.6, on the whale; small follow pan",
+      "cue_tags": [
+        "consequence"
+      ]
+    },
+    {
+      "t": 5.806,
+      "picture": "The whale measures again. The bar leaps again, but the line has not moved.",
+      "words": "",
+      "sound": "The wavering fork again",
+      "act": "felt",
+      "bars": "4",
+      "camera": "Close, z 1.6, on the whale; small follow pan",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 7.742,
+      "picture": "Hold on the ring. Its ruler ticks are smudged and uneven.",
+      "words": "",
+      "sound": "Silence",
+      "act": "felt",
+      "bars": "5",
+      "camera": "Close, z 1.6, on the whale; small follow pan",
+      "cue_tags": [
+        "consequence"
+      ]
+    },
+    {
+      "t": 10.645,
+      "picture": "Hinge: half a bar of stillness, then the title card.",
+      "words": "First, check the <i>ruler</i>.",
+      "sound": "Half a bar of room tone, then the title tick",
+      "act": "why",
+      "bars": "6",
+      "camera": "Pull back z 1.6 to 1.0 to reveal the pattern",
+      "cue_tags": [
+        "hinge"
+      ]
+    },
+    {
+      "t": 11.613,
+      "picture": "Pull back: three different lines, each measured with the same smudged ring. Each reading jumps for no reason, every 2 beats, then 1, then ½.",
+      "words": "The ruler was broken. Nobody checked it.",
+      "sound": "Problem motif three times, accelerating",
+      "act": "why",
+      "bars": "7-9",
+      "camera": "Pull back z 1.6 to 1.0 to reveal the pattern",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 17.419,
+      "picture": "Freeze. Beside the ring, a faint pinned card with a known answer ghosts in.",
+      "words": "",
+      "sound": "First clean statement of the signature sound",
+      "act": "why",
+      "bars": "10",
+      "camera": "Pull back z 1.6 to 1.0 to reveal the pattern",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 19.355,
+      "picture": "A pinned card with a known answer sits on the line. The whale runs the ring over it first.",
+      "words": "Measure something you already know first.",
+      "sound": "A fork struck once, a steady tone",
+      "act": "move",
+      "bars": "11-12",
+      "camera": "Medium, z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 23.226,
+      "picture": "The smudged ring misreads the known card. A flag pops up on the ring itself, not on the work.",
+      "words": "Wrong on a known answer? Fix the ruler.",
+      "sound": "The steady tone against a sour one",
+      "act": "move",
+      "bars": "13-14",
+      "camera": "Medium, z 1.2",
+      "cue_tags": [
+        "mech",
+        "focus"
+      ]
+    },
+    {
+      "t": 27.097,
+      "picture": "Push-in (z 1.28): the whale swaps in a clean ring. It reads the pinned card right. A tick.",
+      "words": "Checking the ruler is called calibrating.",
+      "sound": "Two forks settle into unison",
+      "act": "move",
+      "bars": "15",
+      "camera": "Medium, z 1.2, one push-in to z 1.28 here",
+      "cue_tags": [
+        "mech",
+        "focus"
+      ]
+    },
+    {
+      "t": 29.032,
+      "picture": "The clean ring now measures the real line. The corner bar stays level.",
+      "words": "",
+      "sound": "A soft tick",
+      "act": "move",
+      "bars": "16",
+      "camera": "Medium, z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 30.968,
+      "picture": "Wide: two rings from two different machines measure the same row of cards side by side. Their lamps match almost everywhere. The card fades in.",
+      "words": "Triage: 117/119 verdicts matched.",
+      "sound": "Pulse bed, fast quiet ticks",
+      "act": "case",
+      "bars": "17-19",
+      "camera": "Steady wide, slow drift under 40 px/s",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 36.774,
+      "picture": "A row of smudged rings is lined up on the lab wall, each with a small flag.",
+      "words": "Most misleading results came from broken rulers.",
+      "sound": "Muted wooden knocks",
+      "act": "case",
+      "bars": "20-22",
+      "camera": "Steady wide, slow drift under 40 px/s",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 42.581,
+      "picture": "Still. Both clean rings read one card the same way, and both are wrong. A flag rises behind them that neither ring can see.",
+      "words": "Two rulers can agree and both be wrong.",
+      "sound": "Two forks in unison, but the chord does not resolve",
+      "act": "limit",
+      "bars": "23-24",
+      "camera": "Still, then one slow push to what slipped",
+      "cue_tags": [
+        "limit"
+      ]
+    },
+    {
+      "t": 46.452,
+      "picture": "Slow push to the hidden flag.",
+      "words": "",
+      "sound": "Room tone",
+      "act": "limit",
+      "bars": "25",
+      "camera": "Still, then one slow push to what slipped",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 48.387,
+      "picture": "FELT framing (z 1.6): the whale measures the same line. The ring passes over the pinned card first ✓, the corner bar barely moves, and the whale nods.",
+      "words": "",
+      "sound": "Signature fully resolved",
+      "act": "payoff",
+      "bars": "26-29",
+      "camera": "FELT framing restored, z 1.6, then a wide reveal",
+      "cue_tags": [
+        "callback"
+      ]
+    },
+    {
+      "t": 56.129,
+      "picture": "A level bar, a clean ring, the whale breathing.",
+      "words": "Test the test first. Then trust the score.",
+      "sound": "Pad tail only",
+      "act": "belief",
+      "bars": "30-31",
+      "camera": "Still, breathing only"
+    },
+    {
+      "t": 60.0,
+      "picture": "SERIES.lockup over the settled chart ground.",
+      "words": "",
+      "sound": "Lockup sting, pad out",
+      "act": "lockup",
+      "bars": "32",
+      "camera": "Still"
+    }
+  ],
+  "captions": [
+    {
+      "t_in": 0.968,
+      "t_out": 3.871,
+      "text": "Our score jumped overnight.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 4.839,
+      "t_out": 8.71,
+      "text": "Nothing in the work had changed.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 10.645,
+      "t_out": 13.065,
+      "text": "First, check the <i>ruler</i>.",
+      "kind": "title"
+    },
+    {
+      "t_in": 13.548,
+      "t_out": 16.935,
+      "text": "The ruler was broken. Nobody checked it.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 16.935,
+      "t_out": 19.839,
+      "text": "Check the ruler before you trust the score.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 20.323,
+      "t_out": 23.226,
+      "text": "Measure something you already know first.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 24.194,
+      "t_out": 27.097,
+      "text": "Wrong on a known answer? Fix the ruler.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 28.065,
+      "t_out": 30.968,
+      "text": "Checking the ruler is called calibrating.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 31.935,
+      "t_out": 36.774,
+      "text": "Triage: 117/119 verdicts matched.",
+      "kind": "card",
+      "src": "https://github.com/manutej/JEV-works"
+    },
+    {
+      "t_in": 32.903,
+      "t_out": 36.774,
+      "text": "Two rulers, same cards, same answers.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 37.742,
+      "t_out": 42.097,
+      "text": "Most misleading results came from broken rulers.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 43.065,
+      "t_out": 45.484,
+      "text": "Two rulers can agree and both be wrong.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 45.484,
+      "t_out": 48.387,
+      "text": "Agreement is not the same as truth.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 56.129,
+      "t_out": 60.0,
+      "text": "Test the test first. Then trust the score.",
+      "kind": "caption"
+    }
+  ],
+  "terms": [
+    {
+      "term": "calibrating",
+      "symbol": "ring",
+      "pictured_at": 23.226,
+      "named_at": 28.065
+    }
+  ],
+  "jargon": [
+    "triage",
+    "backend"
+  ],
+  "sound": {
+    "signature": "A tuning fork struck once, a steady sine",
+    "problem_motif": "The fork struck on wood, wavering",
+    "limit_unresolved": true
+  },
+  "score_self": {
+    "score": 0.74,
+    "reason": "An unusual and true lesson (measure the measurer) with a grounded case. Risk: the ruler is a ring, which a viewer may not read at once, and \"verdicts\" on the card is jargon.",
+    "weakest_piece": "metaphor"
+  }
+}

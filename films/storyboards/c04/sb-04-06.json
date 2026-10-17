@@ -1,0 +1,503 @@
+{
+ "schema_version": "sb60-v1",
+ "id": "sb-04-06",
+ "meta_prompt_id": "mp-c04-v1",
+ "cluster": "04 Operads & composition",
+ "repo": "manutej/discopy",
+ "capability": "Same parts, any grouping, same whole (engine only)",
+ "audience": "Researchers",
+ "wada": 207,
+ "bpm": 124,
+ "dur": 62.2,
+ "title": "Draw the <i>sockets</i> first.",
+ "hook": {
+  "kind": "Example",
+  "picture": "Close on the whale rebuilding the right half of a small tree of grey cards hanging from the line.",
+  "words": ""
+ },
+ "problem_in_viewer_words": {
+  "kind": "Fact",
+  "body": "We reran one step and got a different result.",
+  "who": "researcher rerunning half a pipeline"
+ },
+ "why_it_keeps_happening": {
+  "kind": "Fact",
+  "picture": "Pull back: grey cards loosely stacked with no visible joins. Three reruns, every 2 beats, then 1, then half; each makes a different result card.",
+  "words": "Nobody wrote down how the steps joined."
+ },
+ "stakes": {
+  "kind": "Fact",
+  "body": "Results cannot be reproduced, so every rerun costs a full rebuild and a week of doubt."
+ },
+ "solution_hint": "Draw each step with its sockets.",
+ "metaphor": {
+  "kind": "Example",
+  "body": "Each step is a card with sockets and wires, like a circuit drawing; because the wires say exactly how steps join, joining left-first or right-first gives the same tree, and any branch can be rebuilt alone.",
+  "symbols": [
+   "whale",
+   "line",
+   "atom",
+   "seam",
+   "pod"
+  ]
+ },
+ "mechanism_beats": {
+  "kind": "Method",
+  "steps": [
+   {
+    "t": 19.355,
+    "picture": "Each grey card grows input sockets on its left and an output socket on its right; wires join them.",
+    "words": "",
+    "sound": "A tuned knock per socket"
+   },
+   {
+    "t": 21.29,
+    "picture": "The tree is now a clean drawing of cards and wires.",
+    "words": "Each step: a card, its sockets, its wires.",
+    "sound": "The knocks form a chord"
+   },
+   {
+    "t": 23.226,
+    "picture": "Two assembly orders play side by side, left pair first and right pair first, and morph into one identical tree.",
+    "words": "",
+    "sound": "Two phrases that land on the same note"
+   },
+   {
+    "t": 25.161,
+    "picture": "Push-in: only the right branch is rebuilt from its saved inputs; the new root card matches yesterday's and gets a teal tick.",
+    "words": "Join them in any order. Same tree.",
+    "sound": "The echo now matches"
+   },
+   {
+    "t": 27.097,
+    "picture": "Every card's output drops a small tick: saved.",
+    "words": "",
+    "sound": "Soft ticks"
+   },
+   {
+    "t": 29.032,
+    "picture": "The whole drawing glows once.",
+    "words": "Same parts, any grouping: composed.",
+    "sound": "The chord held"
+   }
+  ]
+ },
+ "real_case": {
+  "kind": "Evidence",
+  "claim": "Operad of design units, Law 2: \"Associativity = recomputability. Every colour is a file; any subtree re-runs from its inputs.\" (manutej/discopy itself could not be read; not used as a source.)",
+  "numbers": [],
+  "source": {
+   "kind": "notion",
+   "title": "The operad of design units (GenUI Studio Research Wiki)",
+   "url": "https://app.notion.com/p/3f2d50cfaf93816a83bccc20dda6ae05"
+  },
+  "verified": true,
+  "illustrative": false
+ },
+ "honest_limit": {
+  "kind": "Constraint",
+  "picture": "A pod card (an AI step) sits inside the tree. The two assembly orders play again; this time they end in two different root cards, one rust.",
+  "words": "Add an AI step. The orders disagree."
+ },
+ "not_this": {
+  "kind": "Constraint",
+  "body": "The joins regroup. AI answers don't."
+ },
+ "ending_pattern": {
+  "kind": "Example",
+  "slug": "two-roots-merge",
+  "body": "FELT framing: the two result cards side by side, as in bar 2. They slide together and become one identical card with a teal tick.",
+  "callback": "The mismatched pair of result cards from bar 2 merge into one, in the same close framing."
+ },
+ "end_belief": {
+  "kind": "Goal",
+  "body": "Save each step's inputs. Rerun only what changed."
+ },
+ "beats": [
+  {
+   "t": 0.0,
+   "picture": "Close on the whale rebuilding the right half of a small tree of grey cards hanging from the line.",
+   "words": "",
+   "sound": "Two hollow knocks",
+   "act": "felt",
+   "bars": "1",
+   "camera": "Close, z 1.6 on the whale, small follow pan",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 1.935,
+   "picture": "A new result card appears at the root, next to yesterday's; they differ, one has a rust mark. Pod chip turns to a cross.",
+   "words": "We reran one step. New result.",
+   "sound": "A note that will not match its echo",
+   "act": "felt",
+   "bars": "2",
+   "camera": "Close, z 1.6 on the whale, small follow pan",
+   "cue_tags": [
+    "consequence",
+    "focus"
+   ]
+  },
+  {
+   "t": 5.806,
+   "picture": "The whale flips between the two result cards, back and forth.",
+   "words": "Nobody knows which one is right.",
+   "sound": "The two notes alternate",
+   "act": "felt",
+   "bars": "3-4",
+   "camera": "Close, z 1.6 on the whale, small follow pan",
+   "cue_tags": [
+    "consequence",
+    "focus"
+   ]
+  },
+  {
+   "t": 7.742,
+   "picture": "The whale floats between them. Hold.",
+   "words": "",
+   "sound": "Room tone",
+   "act": "felt",
+   "bars": "5",
+   "camera": "Close, z 1.6 on the whale, small follow pan",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 10.645,
+   "picture": "Hinge: half a bar of stillness, then SERIES.open with the title; the accent word is drawn in the law colour.",
+   "words": "Draw the sockets first.",
+   "sound": "Near-silence, then the title tick",
+   "act": "why",
+   "bars": "6",
+   "camera": "Still",
+   "cue_tags": [
+    "hinge"
+   ]
+  },
+  {
+   "t": 12.581,
+   "picture": "Pull back: grey cards loosely stacked with no visible joins. Three reruns, every 2 beats, then 1, then half; each makes a different result card.",
+   "words": "Nobody wrote down how the steps joined.",
+   "sound": "The problem motif, once",
+   "act": "why",
+   "bars": "7",
+   "camera": "Pull back z 1.6 to 1.0, revealing the pattern",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 13.548,
+   "picture": "Three-times device: the failure repeats every 2 beats, then 1, then half a beat.",
+   "words": "",
+   "sound": "The problem motif three times, accelerating",
+   "act": "why",
+   "bars": "8-9",
+   "camera": "Pull back z 1.6 to 1.0, revealing the pattern",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 17.419,
+   "picture": "All motion stops; the fix ghosts in faintly where it will act.",
+   "words": "Draw each step with its sockets.",
+   "sound": "One clean, in-tune note: first signature",
+   "act": "why",
+   "bars": "10",
+   "camera": "Still at z 1.0",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 19.355,
+   "picture": "Each grey card grows input sockets on its left and an output socket on its right; wires join them.",
+   "words": "",
+   "sound": "A tuned knock per socket",
+   "act": "move",
+   "bars": "11",
+   "camera": "Medium z 1.2",
+   "cue_tags": [
+    "mech",
+    "focus"
+   ]
+  },
+  {
+   "t": 21.29,
+   "picture": "The tree is now a clean drawing of cards and wires.",
+   "words": "Each step: a card, its sockets, its wires.",
+   "sound": "The knocks form a chord",
+   "act": "move",
+   "bars": "12",
+   "camera": "Medium z 1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 23.226,
+   "picture": "Two assembly orders play side by side, left pair first and right pair first, and morph into one identical tree.",
+   "words": "",
+   "sound": "Two phrases that land on the same note",
+   "act": "move",
+   "bars": "13",
+   "camera": "Medium z 1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 25.161,
+   "picture": "Push-in: only the right branch is rebuilt from its saved inputs; the new root card matches yesterday's and gets a teal tick.",
+   "words": "Join them in any order. Same tree.",
+   "sound": "The echo now matches",
+   "act": "move",
+   "bars": "14",
+   "camera": "Medium, one push-in to z 1.3 on this moment",
+   "cue_tags": [
+    "mech",
+    "focus"
+   ]
+  },
+  {
+   "t": 27.097,
+   "picture": "Every card's output drops a small tick: saved.",
+   "words": "",
+   "sound": "Soft ticks",
+   "act": "move",
+   "bars": "15",
+   "camera": "Medium z 1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 29.032,
+   "picture": "The whole drawing glows once.",
+   "words": "Same parts, any grouping: composed.",
+   "sound": "The chord held",
+   "act": "move",
+   "bars": "16",
+   "camera": "Medium z 1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 30.968,
+   "picture": "Wide: a large drawing; one branch is rebuilt in isolation and its saved ticks light, the rest untouched. The card fades in: Every output is a file. Any branch reruns.",
+   "words": "",
+   "sound": "Pulse bed starts, quiet ticks",
+   "act": "case",
+   "bars": "17",
+   "camera": "Steady wide, slow drift, card framed in clean paper",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 32.903,
+   "picture": "The case picture holds and drifts; ticks stream.",
+   "words": "Rerun one branch. The rest stays put.",
+   "sound": "Pulse bed, ticks",
+   "act": "case",
+   "bars": "18-19",
+   "camera": "Steady wide, slow drift, card framed in clean paper",
+   "cue_tags": []
+  },
+  {
+   "t": 36.774,
+   "picture": "The drawing reads as one clean diagram, every join visible.",
+   "words": "Drawn wires make the joins easy to check.",
+   "sound": "A steady two-note figure",
+   "act": "case",
+   "bars": "20-22",
+   "camera": "Steady wide, slow drift, card framed in clean paper",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 42.581,
+   "picture": "A pod card (an AI step) sits inside the tree. The two assembly orders play again; this time they end in two different root cards, one rust.",
+   "words": "Add an AI step. The orders disagree.",
+   "sound": "The signature plays once and does not resolve",
+   "act": "limit",
+   "bars": "23-24",
+   "camera": "Still, then one slow push to the part that slipped",
+   "cue_tags": [
+    "limit",
+    "focus"
+   ]
+  },
+  {
+   "t": 46.452,
+   "picture": "Slow push onto the pod card between the two different roots.",
+   "words": "The joins regroup. AI answers don't.",
+   "sound": "Room tone",
+   "act": "limit",
+   "bars": "25",
+   "camera": "Still, then one slow push to the part that slipped",
+   "cue_tags": [
+    "limit"
+   ]
+  },
+  {
+   "t": 48.387,
+   "picture": "FELT framing: the two result cards side by side, as in bar 2. They slide together and become one identical card with a teal tick.",
+   "words": "",
+   "sound": "The signature returns, resolved on every 8th",
+   "act": "payoff",
+   "bars": "26-27",
+   "camera": "FELT framing restored, z 1.6, same position",
+   "cue_tags": [
+    "callback",
+    "focus"
+   ]
+  },
+  {
+   "t": 52.258,
+   "picture": "The whale taps the single root card; the drawing above it glows.",
+   "words": "",
+   "sound": "Full resolution, a spark",
+   "act": "payoff",
+   "bars": "28-29",
+   "camera": "Gentle wide reveal from the FELT framing",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 56.129,
+   "picture": "The settled image; the whale breathes and spouts once.",
+   "words": "Save each step's inputs. Rerun only what changed.",
+   "sound": "Pad tail only",
+   "act": "belief",
+   "bars": "30-31",
+   "camera": "Still, breathing only",
+   "cue_tags": []
+  },
+  {
+   "t": 60.0,
+   "picture": "SERIES.lockup",
+   "words": "",
+   "sound": "Pad tail fades",
+   "act": "lockup",
+   "bars": "32",
+   "camera": "Still",
+   "cue_tags": []
+  }
+ ],
+ "captions": [
+  {
+   "t_in": 1.935,
+   "t_out": 5.323,
+   "text": "We reran one step. New result.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 5.806,
+   "t_out": 9.194,
+   "text": "Nobody knows which one is right.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 10.645,
+   "t_out": 13.065,
+   "text": "Draw the sockets first.",
+   "kind": "title"
+  },
+  {
+   "t_in": 12.581,
+   "t_out": 16.452,
+   "text": "Nobody wrote down how the steps joined.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 17.419,
+   "t_out": 19.839,
+   "text": "Draw each step with its sockets.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 21.29,
+   "t_out": 24.677,
+   "text": "Each step: a card, its sockets, its wires.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 25.161,
+   "t_out": 28.548,
+   "text": "Join them in any order. Same tree.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 29.032,
+   "t_out": 32.419,
+   "text": "Same parts, any grouping: composed.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 31.452,
+   "t_out": 40.645,
+   "text": "Every output is a file. Any branch reruns.",
+   "kind": "card",
+   "src": "https://app.notion.com/p/3f2d50cfaf93816a83bccc20dda6ae05"
+  },
+  {
+   "t_in": 32.903,
+   "t_out": 36.29,
+   "text": "Rerun one branch. The rest stays put.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 36.774,
+   "t_out": 40.161,
+   "text": "Drawn wires make the joins easy to check.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 42.581,
+   "t_out": 45.968,
+   "text": "Add an AI step. The orders disagree.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 46.452,
+   "t_out": 48.871,
+   "text": "The joins regroup. AI answers don't.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 56.129,
+   "t_out": 60.0,
+   "text": "Save each step's inputs. Rerun only what changed.",
+   "kind": "caption"
+  }
+ ],
+ "terms": [
+  {
+   "term": "composed",
+   "symbol": "regrouping tree",
+   "pictured_at": 23.226,
+   "named_at": 29.032
+  }
+ ],
+ "jargon": [
+  "associative",
+  "pipeline"
+ ],
+ "sound": {
+  "signature": "a tuned knock per socket, two phrases landing on one note",
+  "problem_motif": "a note that never matches its echo",
+  "limit_unresolved": true
+ },
+ "score_self": {
+  "score": 0.66,
+  "reason": "The regroup picture is elegant for researchers and the limit (AI steps do not regroup) is honest and visual. The repo could not be read, so the case leans on the design wiki, and reproducibility pain is narrower.",
+  "weakest_piece": "real_case"
+ }
+}

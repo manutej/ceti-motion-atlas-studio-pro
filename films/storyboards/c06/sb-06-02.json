@@ -1,0 +1,430 @@
+{
+  "schema_version": "sb60-v1",
+  "id": "sb-06-02",
+  "meta_prompt_id": "mp-c06-v1",
+  "cluster": "06 JEV decisions & evidence",
+  "repo": "manutej/jev",
+  "capability": "Fail closed: unsure means stop",
+  "audience": "Leaders",
+  "wada": 84,
+  "bpm": 124,
+  "dur": 62.2,
+  "title": "When unsure, the <i>gate</i> stays shut.",
+  "hook": {
+    "kind": "Example",
+    "picture": "Close on the whale at a door in fog on the line. A pod's answer card arrives with a blank grey tab (unsure). The door swings open by itself and the card drifts through.",
+    "words": "It was not sure either way."
+  },
+  "problem_in_viewer_words": {
+    "kind": "Fact",
+    "body": "It wasn't sure, so it just went ahead.",
+    "who": "operations director in an incident review"
+  },
+  "why_it_keeps_happening": {
+    "kind": "Fact",
+    "picture": "Pull back: a long row of fog doors, all hinged to swing open when nobody answers. Three blank cards pass, every 2 beats, then 1, then ½. ✕, ✕, ✕.",
+    "words": "No answer gets treated as yes."
+  },
+  "stakes": {
+    "kind": "Fact",
+    "body": "Every \"don't know\" quietly becomes a yes. Wrong orders go out, and the incident report reads \"the system was not sure\"."
+  },
+  "solution_hint": "When unsure, stop. Go only on clear yes.",
+  "metaphor": {
+    "kind": "Example",
+    "body": "A gate with three lamps sits on the line. It opens only for a clear yes, stays shut on an unsure card, and slams on harm. Shut is its resting state.",
+    "symbols": [
+      "whale",
+      "line",
+      "gate",
+      "atom",
+      "pod"
+    ]
+  },
+  "mechanism_beats": {
+    "kind": "Method",
+    "steps": [
+      {
+        "t": 19.355,
+        "picture": "The fog door becomes a gate, shut at rest. A clear green 'yes' card arrives, the top lamp glows, and the gate opens.",
+        "words": "Shut until a clear yes arrives.",
+        "sound": "A wooden latch, then a warm chime on go"
+      },
+      {
+        "t": 23.226,
+        "picture": "A blank 'unsure' card arrives. The middle lamp lights, the gate stays shut, and the card is set aside on a small pile.",
+        "words": "Unsure means it stays shut.",
+        "sound": "The latch holds, a soft held note"
+      },
+      {
+        "t": 27.097,
+        "picture": "Push-in (z 1.28): a card tabbed 'yes' but with a copper smudge (harm) arrives. The bottom lamp flashes copper, the gate slams, and the card drops.",
+        "words": "Harm shuts it. This is fail closed.",
+        "sound": "A hard latch slam, then silence"
+      },
+      {
+        "t": 29.032,
+        "picture": "Three ticks land on the line, one per decision: go, hold, stop.",
+        "words": "",
+        "sound": "Three soft ticks"
+      }
+    ]
+  },
+  "real_case": {
+    "kind": "Evidence",
+    "claim": "The jev score_fill gate weighs allowed mass against toxin mass using the thresholds τ_g=0.72 and τ_t=0.12. Toxin above τ_t is always RED.",
+    "numbers": [
+      "τ_g=0.72",
+      "τ_t=0.12"
+    ],
+    "source": {
+      "kind": "notion",
+      "title": "JEV × JAX × The Twenty",
+      "url": "https://app.notion.com/p/3e1d50cfaf93819ea721c14fae4c777e"
+    },
+    "verified": true,
+    "illustrative": false
+  },
+  "honest_limit": {
+    "kind": "Constraint",
+    "picture": "Still. Unsure cards keep arriving. The set-aside pile rises behind the gate until it buries the whale to the eyes.",
+    "words": "Real test: 94% handed back to people."
+  },
+  "not_this": {
+    "kind": "Constraint",
+    "body": "Stopping everything is not safety either."
+  },
+  "ending_pattern": {
+    "kind": "Example",
+    "slug": "fog-door-stays-shut",
+    "body": "The fog door stays shut: the same door in the same fog no longer swings by itself, and a person opens it on purpose.",
+    "callback": "The door that swung open by itself in bar 1 now stays shut until the whale chooses."
+  },
+  "end_belief": {
+    "kind": "Goal",
+    "body": "Make unsure mean stop, not go."
+  },
+  "beats": [
+    {
+      "t": 0.0,
+      "picture": "Close on the whale at a door in fog on the line. A pod's answer card arrives with a blank grey tab (unsure). The door swings open by itself and the card drifts through.",
+      "words": "It was not sure either way.",
+      "sound": "A hinge creaking open with no latch",
+      "act": "felt",
+      "bars": "1",
+      "camera": "Close, z 1.6, on the whale; small follow pan",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 1.935,
+      "picture": "Past the door an action card fires. A pod downstream receives a wrong order: copper ✕.",
+      "words": "So it went ahead anyway.",
+      "sound": "Dull thunk for the ✕",
+      "act": "felt",
+      "bars": "2-3",
+      "camera": "Close, z 1.6, on the whale; small follow pan",
+      "cue_tags": [
+        "consequence"
+      ]
+    },
+    {
+      "t": 5.806,
+      "picture": "The whale peers at the blank-tabbed card. Nothing on it said yes.",
+      "words": "",
+      "sound": "Fog hush",
+      "act": "felt",
+      "bars": "4",
+      "camera": "Close, z 1.6, on the whale; small follow pan",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 7.742,
+      "picture": "Another blank card drifts in and the door opens again by itself. A second copper ✕.",
+      "words": "",
+      "sound": "The creak again, shorter",
+      "act": "felt",
+      "bars": "5",
+      "camera": "Close, z 1.6, on the whale; small follow pan",
+      "cue_tags": [
+        "consequence"
+      ]
+    },
+    {
+      "t": 10.645,
+      "picture": "Hinge: half a bar of stillness, then the title card.",
+      "words": "When unsure, the <i>gate</i> stays shut.",
+      "sound": "Half a bar of room tone, then the title tick",
+      "act": "why",
+      "bars": "6",
+      "camera": "Pull back z 1.6 to 1.0 to reveal the pattern",
+      "cue_tags": [
+        "hinge"
+      ]
+    },
+    {
+      "t": 11.613,
+      "picture": "Pull back: a long row of fog doors, all hinged to swing open when nobody answers. Three blank cards pass, every 2 beats, then 1, then ½. ✕, ✕, ✕.",
+      "words": "No answer gets treated as yes.",
+      "sound": "Problem motif three times, accelerating",
+      "act": "why",
+      "bars": "7-9",
+      "camera": "Pull back z 1.6 to 1.0 to reveal the pattern",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 17.419,
+      "picture": "Freeze. Each door grows three small lamps, all dark.",
+      "words": "",
+      "sound": "First clean statement of the signature sound",
+      "act": "why",
+      "bars": "10",
+      "camera": "Pull back z 1.6 to 1.0 to reveal the pattern",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 19.355,
+      "picture": "The fog door becomes a gate, shut at rest. A clear green 'yes' card arrives, the top lamp glows, and the gate opens.",
+      "words": "Shut until a clear yes arrives.",
+      "sound": "A wooden latch, then a warm chime on go",
+      "act": "move",
+      "bars": "11-12",
+      "camera": "Medium, z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 23.226,
+      "picture": "A blank 'unsure' card arrives. The middle lamp lights, the gate stays shut, and the card is set aside on a small pile.",
+      "words": "Unsure means it stays shut.",
+      "sound": "The latch holds, a soft held note",
+      "act": "move",
+      "bars": "13-14",
+      "camera": "Medium, z 1.2",
+      "cue_tags": [
+        "mech",
+        "focus"
+      ]
+    },
+    {
+      "t": 27.097,
+      "picture": "Push-in (z 1.28): a card tabbed 'yes' but with a copper smudge (harm) arrives. The bottom lamp flashes copper, the gate slams, and the card drops.",
+      "words": "Harm shuts it. This is fail closed.",
+      "sound": "A hard latch slam, then silence",
+      "act": "move",
+      "bars": "15",
+      "camera": "Medium, z 1.2, one push-in to z 1.28 here",
+      "cue_tags": [
+        "mech",
+        "focus"
+      ]
+    },
+    {
+      "t": 29.032,
+      "picture": "Three ticks land on the line, one per decision: go, hold, stop.",
+      "words": "",
+      "sound": "Three soft ticks",
+      "act": "move",
+      "bars": "16",
+      "camera": "Medium, z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 30.968,
+      "picture": "Wide: cards stream toward the gate. A meter beside it shows the pass line high and the harm line low. The card fades in.",
+      "words": "Pass needs 0.72 · harm over 0.12 stops.",
+      "sound": "Pulse bed, fast quiet ticks",
+      "act": "case",
+      "bars": "17-19",
+      "camera": "Steady wide, slow drift under 40 px/s",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 36.774,
+      "picture": "A card reads strong yes with a sliver of harm above the low line. The gate stays shut anyway.",
+      "words": "Any harm over the line always stops.",
+      "sound": "The latch holds against a rising note",
+      "act": "case",
+      "bars": "20-22",
+      "camera": "Steady wide, slow drift under 40 px/s",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 42.581,
+      "picture": "Still. Unsure cards keep arriving. The set-aside pile rises behind the gate until it buries the whale to the eyes.",
+      "words": "Real test: 94% handed back to people.",
+      "sound": "The warm chime plays once and never resolves",
+      "act": "limit",
+      "bars": "23-24",
+      "camera": "Still, then one slow push to what slipped",
+      "cue_tags": [
+        "limit"
+      ]
+    },
+    {
+      "t": 46.452,
+      "picture": "Slow push to the whale, peeking over the pile.",
+      "words": "",
+      "sound": "Room tone",
+      "act": "limit",
+      "bars": "25",
+      "camera": "Still, then one slow push to what slipped",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 48.387,
+      "picture": "FELT framing (z 1.6): fog, the same door. A blank card drifts in. The gate stays shut, and the whale opens it by hand with one tick. Downstream the pod answers ✓.",
+      "words": "",
+      "sound": "Signature fully resolved",
+      "act": "payoff",
+      "bars": "26-29",
+      "camera": "FELT framing restored, z 1.6, then a wide reveal",
+      "cue_tags": [
+        "callback"
+      ]
+    },
+    {
+      "t": 56.129,
+      "picture": "The shut gate in clearing fog. The whale breathing beside it.",
+      "words": "Make unsure mean stop, not go.",
+      "sound": "Pad tail only",
+      "act": "belief",
+      "bars": "30-31",
+      "camera": "Still, breathing only"
+    },
+    {
+      "t": 60.0,
+      "picture": "SERIES.lockup over the settled chart ground.",
+      "words": "",
+      "sound": "Lockup sting, pad out",
+      "act": "lockup",
+      "bars": "32",
+      "camera": "Still"
+    }
+  ],
+  "captions": [
+    {
+      "t_in": 0.968,
+      "t_out": 3.871,
+      "text": "It was not sure either way.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 4.839,
+      "t_out": 8.71,
+      "text": "So it went ahead anyway.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 10.645,
+      "t_out": 13.065,
+      "text": "When unsure, the <i>gate</i> stays shut.",
+      "kind": "title"
+    },
+    {
+      "t_in": 13.548,
+      "t_out": 16.935,
+      "text": "No answer gets treated as yes.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 16.935,
+      "t_out": 19.839,
+      "text": "When unsure, stop. Go only on clear yes.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 20.323,
+      "t_out": 23.226,
+      "text": "Shut until a clear yes arrives.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 24.194,
+      "t_out": 27.097,
+      "text": "Unsure means it stays shut.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 28.065,
+      "t_out": 30.968,
+      "text": "Harm shuts it. This is fail closed.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 31.935,
+      "t_out": 36.774,
+      "text": "Pass needs 0.72 · harm over 0.12 stops.",
+      "kind": "card",
+      "src": "https://app.notion.com/p/3e1d50cfaf93819ea721c14fae4c777e"
+    },
+    {
+      "t_in": 32.903,
+      "t_out": 36.774,
+      "text": "We set the lines. The gate keeps them.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 37.742,
+      "t_out": 42.097,
+      "text": "Any harm over the line always stops.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 43.065,
+      "t_out": 45.484,
+      "text": "Real test: 94% handed back to people.",
+      "kind": "card",
+      "src": "https://github.com/manutej/JEV-works"
+    },
+    {
+      "t_in": 45.484,
+      "t_out": 48.387,
+      "text": "Stopping everything is not safety either.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 56.129,
+      "t_out": 60.0,
+      "text": "Make unsure mean stop, not go.",
+      "kind": "caption"
+    }
+  ],
+  "terms": [
+    {
+      "term": "fail closed",
+      "symbol": "gate",
+      "pictured_at": 19.355,
+      "named_at": 28.065
+    }
+  ],
+  "jargon": [
+    "lamp"
+  ],
+  "sound": {
+    "signature": "A wooden latch clicking shut, then a warm chime",
+    "problem_motif": "A creaking hinge that swings open with no latch",
+    "limit_unresolved": true
+  },
+  "score_self": {
+    "score": 0.78,
+    "reason": "The fog door to gate is a clear, single picture. The limit (the pile buries the whale, 94%) is drawn and honest. Risk: the 0.72/0.12 card is abstract for leaders.",
+    "weakest_piece": "real_case"
+  }
+}

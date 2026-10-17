@@ -1,0 +1,487 @@
+{
+  "schema_version": "sb60-v1",
+  "id": "sb-08-08",
+  "meta_prompt_id": "mp-c08-v1",
+  "cluster": "08 Memory & agent harnesses",
+  "repo": "manutej/aor-ki",
+  "capability": "Agents redesign freely, but locked numbers hold",
+  "audience": "Everyone",
+  "wada": 296,
+  "bpm": 128,
+  "dur": 60.3,
+  "title": "Some numbers get a <i>pin</i>.",
+  "hook": {
+    "kind": "Example",
+    "picture": "Close on the whale holding a baton-shaped line. A pod returns a smoother redesign and the whale's fin sinks under its weight. A hand pod turns copper ✕.",
+    "words": "I only asked for a nicer grip."
+  },
+  "problem_in_viewer_words": {
+    "kind": "Fact",
+    "body": "I asked for a nicer grip. It came back twice as heavy.",
+    "who": "product designer reviewing an AI redesign"
+  },
+  "why_it_keeps_happening": {
+    "kind": "Fact",
+    "picture": "Pull back: three redesigns in a row. The first quietly moves the weight (2 beats). It repeats, faster each time.",
+    "words": "Nobody said which numbers must stay."
+  },
+  "stakes": {
+    "kind": "Fact",
+    "body": "Each AI redesign drifts a safety or comfort number, and someone has to catch it by hand, every time."
+  },
+  "solution_hint": "Lock the numbers that must not move.",
+  "metaphor": {
+    "kind": "Example",
+    "body": "Three pins hold the baton line at its weight, light and size. The pod can bend the shape however it likes between them, and any tug on a pin is measured and snapped back. Copper alarm.",
+    "symbols": [
+      "whale",
+      "line",
+      "pin",
+      "ring",
+      "pod"
+    ]
+  },
+  "mechanism_beats": {
+    "kind": "Method",
+    "steps": [
+      {
+        "t": 18.75,
+        "picture": "Three hollow pins drop onto the baton line and fill: weight, laser, size. Strip: Lock · Change · Check.",
+        "words": "Lock the numbers that must not move.",
+        "sound": "Bamboo note, in tune, per pin"
+      },
+      {
+        "t": 22.5,
+        "picture": "The pod reshapes the grip freely. The line bends wildly between the pins, and every pin holds.",
+        "words": "Change the shape. The pins stay put.",
+        "sound": "Note plucked with varied brightness"
+      },
+      {
+        "t": 24.375,
+        "picture": "Push-in: a redesign tugs the weight pin. It glows copper, a ring measures it, and the pin snaps home.",
+        "words": "Too heavy? Sent back.",
+        "sound": "Note bends, then snaps into tune"
+      },
+      {
+        "t": 26.25,
+        "picture": "The three pins glow together, labelled.",
+        "words": "The pins together are the spec.",
+        "sound": "Three notes in a chord"
+      },
+      {
+        "t": 28.125,
+        "picture": "A mode chip flips to DRIVE. The laser pin turns solid: off.",
+        "words": "Driving? Laser off.",
+        "sound": "Short muted note"
+      }
+    ]
+  },
+  "real_case": {
+    "kind": "Evidence",
+    "claim": "aor-ki locks envelope parameters for any agent using its SKILL.md: feel=light 64–72 g, feel=planted 100–110 g, laser Class 2 or lower, laser off in DRIVE mode.",
+    "numbers": [
+      "64–72 g",
+      "100–110 g",
+      "Class 2"
+    ],
+    "source": {
+      "kind": "repo",
+      "title": "manutej/aor-ki README",
+      "url": "https://github.com/manutej/aor-ki"
+    },
+    "verified": true,
+    "illustrative": false
+  },
+  "honest_limit": {
+    "kind": "Constraint",
+    "picture": "A redesign sits inside every pin, but its grip edge is sharp. All pins glow fine. The hand pod winces ✕.",
+    "words": "Inside every limit. Still feels wrong."
+  },
+  "not_this": {
+    "kind": "Constraint",
+    "body": "Locked numbers do not make it feel right."
+  },
+  "ending_pattern": {
+    "kind": "Example",
+    "slug": "hand-it-back-level",
+    "body": "The same hand-over as act 1. This time the fin stays level, because the weight pin never moved through the redesign.",
+    "callback": "Act 1's fin sinking under the weight now stays level, with the pin unmoved."
+  },
+  "end_belief": {
+    "kind": "Goal",
+    "body": "Name the numbers no redesign may move."
+  },
+  "beats": [
+    {
+      "t": 0.0,
+      "picture": "Close on the whale holding a baton-shaped line. A pod swims in with a smoother, rounder redesign.",
+      "words": "I only asked for a nicer grip.",
+      "sound": "Bamboo note, bending flat",
+      "act": "felt",
+      "bars": "1",
+      "camera": "Close, z 1.6, on the whale",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 1.875,
+      "picture": "The whale takes it and its fin sinks under the weight. A hand pod turns copper ✕.",
+      "words": "",
+      "sound": "Low thud",
+      "act": "felt",
+      "bars": "2",
+      "camera": "Close, z 1.6, on the whale",
+      "cue_tags": [
+        "consequence",
+        "focus"
+      ]
+    },
+    {
+      "t": 3.75,
+      "picture": "The whale weighs it again: heavier, and a small light on its tip glows too bright.",
+      "words": "It came back far too heavy.",
+      "sound": "Flat note twice",
+      "act": "felt",
+      "bars": "3-4",
+      "camera": "Close, z 1.6, on the whale",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 7.5,
+      "picture": "Hold on the sagging fin.",
+      "words": "",
+      "sound": "Silence creeps in",
+      "act": "felt",
+      "bars": "5",
+      "camera": "Close, z 1.6, on the whale",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 10.312,
+      "picture": "Hinge: half a bar of stillness, then SERIES.open shows the title.",
+      "words": "Some numbers get a pin.",
+      "sound": "Near-silence, then the title tick",
+      "act": "why",
+      "bars": "6",
+      "camera": "Still, z 1.6",
+      "cue_tags": [
+        "hinge"
+      ]
+    },
+    {
+      "t": 11.25,
+      "picture": "Pull back: three redesigns in a row. The first quietly moves the weight (2 beats).",
+      "words": "",
+      "sound": "Problem motif: bent bamboo note",
+      "act": "why",
+      "bars": "7",
+      "camera": "Pull back to z 1.0, revealing the pattern",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 13.125,
+      "picture": "The second moves the light's power (1 beat).",
+      "words": "Nobody said which numbers must stay.",
+      "sound": "Bent note, faster",
+      "act": "why",
+      "bars": "8",
+      "camera": "Pull back to z 1.0, revealing the pattern",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 15.0,
+      "picture": "The third changes the size (half a beat). Each looks nicer; each breaks a number.",
+      "words": "",
+      "sound": "Bent note, fastest",
+      "act": "why",
+      "bars": "9",
+      "camera": "Pull back to z 1.0, revealing the pattern",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 16.875,
+      "picture": "Freeze. Three hollow pins ghost onto the baton line.",
+      "words": "Lock the numbers that must not move.",
+      "sound": "One clean bamboo note: the signature",
+      "act": "why",
+      "bars": "10",
+      "camera": "Still, z 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 18.75,
+      "picture": "Three hollow pins drop onto the baton line and fill: weight, laser, size. Strip: Lock · Change · Check.",
+      "words": "Lock the numbers that must not move.",
+      "sound": "Bamboo note, in tune, per pin",
+      "act": "move",
+      "bars": "11",
+      "camera": "Medium, z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 22.5,
+      "picture": "The pod reshapes the grip freely. The line bends wildly between the pins, and every pin holds.",
+      "words": "Change the shape. The pins stay put.",
+      "sound": "Note plucked with varied brightness",
+      "act": "move",
+      "bars": "13",
+      "camera": "Medium, z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 24.375,
+      "picture": "Push-in: a redesign tugs the weight pin. It glows copper, a ring measures it, and the pin snaps home.",
+      "words": "Too heavy? Sent back.",
+      "sound": "Note bends, then snaps into tune",
+      "act": "move",
+      "bars": "14",
+      "camera": "Push-in to z 1.3 on the decisive moment",
+      "cue_tags": [
+        "mech",
+        "focus"
+      ]
+    },
+    {
+      "t": 26.25,
+      "picture": "The three pins glow together, labelled.",
+      "words": "The pins together are the spec.",
+      "sound": "Three notes in a chord",
+      "act": "move",
+      "bars": "15",
+      "camera": "Medium, z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 28.125,
+      "picture": "A mode chip flips to DRIVE. The laser pin turns solid: off.",
+      "words": "Driving? Laser off.",
+      "sound": "Short muted note",
+      "act": "move",
+      "bars": "16",
+      "camera": "Medium, z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 30.0,
+      "picture": "Wide: the baton line with its locked pins. Three different pods (three agents) take turns reshaping it. The pins never move.",
+      "words": "A real spec for a voice-first baton.",
+      "sound": "Pulse bed, bamboo notes",
+      "act": "case",
+      "bars": "17-19",
+      "camera": "Steady wide, slow drift",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 35.625,
+      "picture": "Each pod hands back a different shape. A ring measures each one against the same pins.",
+      "words": "Three agents, one set of locked numbers.",
+      "sound": "Three notes, same pitch",
+      "act": "case",
+      "bars": "20-22",
+      "camera": "Steady wide, slow drift",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 41.25,
+      "picture": "A redesign sits inside every pin, but its grip edge is sharp. All pins glow fine. The hand pod winces ✕.",
+      "words": "Inside every limit. Still feels wrong.",
+      "sound": "Signature note once, unresolved",
+      "act": "limit",
+      "bars": "23-24",
+      "camera": "Still, then one slow push to what slipped",
+      "cue_tags": [
+        "limit",
+        "focus"
+      ]
+    },
+    {
+      "t": 44.062,
+      "picture": "Slow push to the sharp edge.",
+      "words": "Locked numbers do not make it feel right.",
+      "sound": "Room tone",
+      "act": "limit",
+      "bars": "24-25",
+      "camera": "Still"
+    },
+    {
+      "t": 46.875,
+      "picture": "FELT framing: the pod returns a new grip. The whale's fin holds it level and the weight pin has not moved. The hand pod turns ✓.",
+      "words": "",
+      "sound": "Bamboo notes strummed, then resolved",
+      "act": "payoff",
+      "bars": "26-29",
+      "camera": "FELT framing restored, z 1.6, then a slow wide reveal",
+      "cue_tags": [
+        "callback"
+      ]
+    },
+    {
+      "t": 54.375,
+      "picture": "Still baton line with three pins, whale breathing.",
+      "words": "Name the numbers no redesign may move.",
+      "sound": "Pad tail only",
+      "act": "belief",
+      "bars": "30-31",
+      "camera": "Still, breathing only"
+    },
+    {
+      "t": 58.125,
+      "picture": "SERIES.lockup over the still line.",
+      "words": "",
+      "sound": "Final tick, then room tone",
+      "act": "lockup",
+      "bars": "32",
+      "camera": "Still"
+    }
+  ],
+  "captions": [
+    {
+      "t_in": 0.938,
+      "t_out": 3.75,
+      "text": "I only asked for a nicer grip.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 3.75,
+      "t_out": 7.031,
+      "text": "It came back far too heavy.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 10.312,
+      "t_out": 12.656,
+      "text": "Some numbers get a pin.",
+      "kind": "title"
+    },
+    {
+      "t_in": 13.125,
+      "t_out": 15.938,
+      "text": "Nobody said which numbers must stay.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 16.875,
+      "t_out": 19.219,
+      "text": "Lock the numbers that must not move.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 18.75,
+      "t_out": 21.562,
+      "text": "Lock the numbers that must not move.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 22.5,
+      "t_out": 25.312,
+      "text": "Change the shape. The pins stay put.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 24.375,
+      "t_out": 26.25,
+      "text": "Too heavy? Sent back.",
+      "kind": "label"
+    },
+    {
+      "t_in": 26.25,
+      "t_out": 29.531,
+      "text": "The pins together are the spec.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 28.125,
+      "t_out": 30.0,
+      "text": "Driving? Laser off.",
+      "kind": "label"
+    },
+    {
+      "t_in": 30.0,
+      "t_out": 32.812,
+      "text": "A real spec for a voice-first baton.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 31.875,
+      "t_out": 39.375,
+      "text": "Light 64–72 g · laser Class 2",
+      "kind": "card",
+      "src": "https://github.com/manutej/aor-ki"
+    },
+    {
+      "t_in": 35.625,
+      "t_out": 38.438,
+      "text": "Three agents, one set of locked numbers.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 41.25,
+      "t_out": 44.062,
+      "text": "Inside every limit. Still feels wrong.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 44.062,
+      "t_out": 46.875,
+      "text": "Locked numbers do not make it feel right.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 54.375,
+      "t_out": 57.656,
+      "text": "Name the numbers no redesign may move.",
+      "kind": "caption"
+    }
+  ],
+  "terms": [
+    {
+      "term": "spec",
+      "symbol": "three pins together",
+      "pictured_at": 18.75,
+      "named_at": 26.25
+    }
+  ],
+  "jargon": [
+    "envelope",
+    "parameter",
+    "OpenSCAD",
+    "haptic",
+    "DriveLock",
+    "HID"
+  ],
+  "sound": {
+    "signature": "A plucked bamboo note, in tune on each pin",
+    "problem_motif": "The same bamboo note bent flat under load",
+    "limit_unresolved": true
+  },
+  "score_self": {
+    "score": 0.8,
+    "reason": "The \"came back twice as heavy\" pain is concrete and funny, and pins map perfectly. The numbers come from a real spec. It is a hardware story in a memory and harness cluster, so it reads more like a guardrails film.",
+    "weakest_piece": "capability"
+  }
+}

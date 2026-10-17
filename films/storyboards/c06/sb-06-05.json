@@ -1,0 +1,438 @@
+{
+  "schema_version": "sb60-v1",
+  "id": "sb-06-05",
+  "meta_prompt_id": "mp-c06-v1",
+  "cluster": "06 JEV decisions & evidence",
+  "repo": "manutej/JEV-works",
+  "capability": "Split one blurry question into small ones",
+  "audience": "Researchers",
+  "wada": 339,
+  "bpm": 132,
+  "dur": 58.5,
+  "title": "Five small <i>gates</i>, not one.",
+  "hook": {
+    "kind": "Example",
+    "picture": "Close on the whale holding up one big card to a pod: 'scam?'. The pod's answer ring wobbles between yes and no.",
+    "words": "Is this email a scam? Maybe."
+  },
+  "problem_in_viewer_words": {
+    "kind": "Fact",
+    "body": "We asked one big question and got mush.",
+    "who": "ML researcher reading an eval sheet"
+  },
+  "why_it_keeps_happening": {
+    "kind": "Fact",
+    "picture": "Pull back: one huge question card feeds one wobbling ring. Three mixed emails hit it, every 2 beats, then 1, then ½. Each lands on the wrong side.",
+    "words": "One question hides five different ones."
+  },
+  "stakes": {
+    "kind": "Fact",
+    "body": "Real emails are flagged and real scams pass. The score looks like a model problem when it is really a question problem."
+  },
+  "solution_hint": "Ask five small questions, not one big one.",
+  "metaphor": {
+    "kind": "Example",
+    "body": "The big question card splits along its folds into five small cards. Each passes its own small gate, and the decision is read off five clear lamps instead of one blurry ring.",
+    "symbols": [
+      "whale",
+      "line",
+      "atom",
+      "gate",
+      "ring"
+    ]
+  },
+  "mechanism_beats": {
+    "kind": "Method",
+    "steps": [
+      {
+        "t": 18.182,
+        "picture": "The big card splits along its folds into five small cards. Each slides to its own small gate on the line.",
+        "words": "One big question becomes five small ones.",
+        "sound": "A paper tear into five"
+      },
+      {
+        "t": 21.818,
+        "picture": "Each small gate lights crisply: four pass and one shuts. No lamp wobbles.",
+        "words": "Each small answer is easy to check.",
+        "sound": "Five short tuned pings, a pentatonic run"
+      },
+      {
+        "t": 25.455,
+        "picture": "Push-in (z 1.28): the decision card reads the five lamps in a row. One shut lamp is enough to hold it.",
+        "words": "Decompose the question, then decide.",
+        "sound": "The five pings land as one chord"
+      },
+      {
+        "t": 27.273,
+        "picture": "A tick lands under each small gate.",
+        "words": "",
+        "sound": "Five soft ticks"
+      }
+    ]
+  },
+  "real_case": {
+    "kind": "Evidence",
+    "claim": "In JEV-works, a phishing task scored 62.6% as one question and 95.1% when decomposed into five narrow questions. A two-line regex scored 91.8%.",
+    "numbers": [
+      "62.6%",
+      "95.1%",
+      "91.8%"
+    ],
+    "source": {
+      "kind": "repo",
+      "title": "manutej/JEV-works README",
+      "url": "https://github.com/manutej/JEV-works"
+    },
+    "verified": true,
+    "illustrative": false
+  },
+  "honest_limit": {
+    "kind": "Constraint",
+    "picture": "Still. A blank card (an empty email) slides into a small gate. The ring reads high, and the gate passes it with a confident glow.",
+    "words": "Empty input still scored 0.82–0.91."
+  },
+  "not_this": {
+    "kind": "Constraint",
+    "body": "Sure-sounding is not the same as right."
+  },
+  "ending_pattern": {
+    "kind": "Example",
+    "slug": "five-steady-lamps",
+    "body": "Five steady lamps: the single wobbling ring is replaced by five crisp lamps in the same frame, and the right email passes.",
+    "callback": "The single wobbling ring of bar 1 is replaced by five steady lamps in the same frame."
+  },
+  "end_belief": {
+    "kind": "Goal",
+    "body": "Split the question until each answer is checkable."
+  },
+  "beats": [
+    {
+      "t": 0.0,
+      "picture": "Close on the whale holding up one big card to a pod: 'scam?'. The pod's answer ring wobbles between yes and no.",
+      "words": "Is this email a scam? Maybe.",
+      "sound": "One long note bending sharp and flat",
+      "act": "felt",
+      "bars": "1",
+      "camera": "Close, z 1.6, on the whale; small follow pan",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 1.818,
+      "picture": "A real invoice card is stamped scam and dropped. The sender pod downstream answers ✕ in English Red.",
+      "words": "It flagged the real one again.",
+      "sound": "A dull stamp",
+      "act": "felt",
+      "bars": "2-3",
+      "camera": "Close, z 1.6, on the whale; small follow pan",
+      "cue_tags": [
+        "consequence"
+      ]
+    },
+    {
+      "t": 5.455,
+      "picture": "The whale tilts the big card. Inside it are five tangled threads.",
+      "words": "",
+      "sound": "Tangled pizzicato",
+      "act": "felt",
+      "bars": "4",
+      "camera": "Close, z 1.6, on the whale; small follow pan",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 7.273,
+      "picture": "A real scam card slips through on the same wobble.",
+      "words": "",
+      "sound": "The bending note again",
+      "act": "felt",
+      "bars": "5",
+      "camera": "Close, z 1.6, on the whale; small follow pan",
+      "cue_tags": [
+        "consequence"
+      ]
+    },
+    {
+      "t": 10.0,
+      "picture": "Hinge: half a bar of stillness, then the title card.",
+      "words": "Five small <i>gates</i>, not one.",
+      "sound": "Half a bar of room tone, then the title tick",
+      "act": "why",
+      "bars": "6",
+      "camera": "Pull back z 1.6 to 1.0 to reveal the pattern",
+      "cue_tags": [
+        "hinge"
+      ]
+    },
+    {
+      "t": 10.909,
+      "picture": "Pull back: one huge question card feeds one wobbling ring. Three mixed emails hit it, every 2 beats, then 1, then ½. Each lands on the wrong side.",
+      "words": "One question hides five different ones.",
+      "sound": "Problem motif three times, accelerating",
+      "act": "why",
+      "bars": "7-9",
+      "camera": "Pull back z 1.6 to 1.0 to reveal the pattern",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 16.364,
+      "picture": "Freeze. The big card shows five faint fold lines.",
+      "words": "",
+      "sound": "First clean statement of the signature sound",
+      "act": "why",
+      "bars": "10",
+      "camera": "Pull back z 1.6 to 1.0 to reveal the pattern",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 18.182,
+      "picture": "The big card splits along its folds into five small cards. Each slides to its own small gate on the line.",
+      "words": "One big question becomes five small ones.",
+      "sound": "A paper tear into five",
+      "act": "move",
+      "bars": "11-12",
+      "camera": "Medium, z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 21.818,
+      "picture": "Each small gate lights crisply: four pass and one shuts. No lamp wobbles.",
+      "words": "Each small answer is easy to check.",
+      "sound": "Five short tuned pings, a pentatonic run",
+      "act": "move",
+      "bars": "13-14",
+      "camera": "Medium, z 1.2, one push-in to z 1.28 here",
+      "cue_tags": [
+        "mech",
+        "focus"
+      ]
+    },
+    {
+      "t": 25.455,
+      "picture": "Push-in (z 1.28): the decision card reads the five lamps in a row. One shut lamp is enough to hold it.",
+      "words": "Decompose the question, then decide.",
+      "sound": "The five pings land as one chord",
+      "act": "move",
+      "bars": "15",
+      "camera": "Medium, z 1.2",
+      "cue_tags": [
+        "mech",
+        "focus"
+      ]
+    },
+    {
+      "t": 27.273,
+      "picture": "A tick lands under each small gate.",
+      "words": "",
+      "sound": "Five soft ticks",
+      "act": "move",
+      "bars": "16",
+      "camera": "Medium, z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 29.091,
+      "picture": "Wide: a stream of emails splits five ways and the lamps read clean. The card fades in.",
+      "words": "Phishing: one question 62.6% · five 95.1%",
+      "sound": "Pulse bed, fast quiet ticks",
+      "act": "case",
+      "bars": "17-19",
+      "camera": "Steady wide, slow drift under 40 px/s",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 34.545,
+      "picture": "A plain two-line rule card beside the gates gets its own lamp. It glows almost as bright.",
+      "words": "A two-line regex scored 91.8%.",
+      "sound": "One plain ping, nearly as bright",
+      "act": "case",
+      "bars": "20-22",
+      "camera": "Steady wide, slow drift under 40 px/s",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 40.0,
+      "picture": "Still. A blank card (an empty email) slides into a small gate. The ring reads high, and the gate passes it with a confident glow.",
+      "words": "Empty input still scored 0.82–0.91.",
+      "sound": "The five-ping run plays and stops on an open note",
+      "act": "limit",
+      "bars": "23-24",
+      "camera": "Still, then one slow push to what slipped",
+      "cue_tags": [
+        "limit"
+      ]
+    },
+    {
+      "t": 43.636,
+      "picture": "Slow push to the blank card under its bright ring.",
+      "words": "",
+      "sound": "Room tone",
+      "act": "limit",
+      "bars": "25",
+      "camera": "Still, then one slow push to what slipped",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 45.455,
+      "picture": "FELT framing (z 1.6): the whale holds up the same email, now as five small cards. Five crisp lamps light, the real invoice passes, and the sender pod answers ✓.",
+      "words": "",
+      "sound": "Signature fully resolved",
+      "act": "payoff",
+      "bars": "26-29",
+      "camera": "FELT framing restored, z 1.6, then a wide reveal",
+      "cue_tags": [
+        "callback"
+      ]
+    },
+    {
+      "t": 52.727,
+      "picture": "Five steady lamps on the line, the whale still.",
+      "words": "Split the question until each answer is checkable.",
+      "sound": "Pad tail only",
+      "act": "belief",
+      "bars": "30-31",
+      "camera": "Still, breathing only"
+    },
+    {
+      "t": 56.364,
+      "picture": "SERIES.lockup over the settled chart ground.",
+      "words": "",
+      "sound": "Lockup sting, pad out",
+      "act": "lockup",
+      "bars": "32",
+      "camera": "Still"
+    }
+  ],
+  "captions": [
+    {
+      "t_in": 0.909,
+      "t_out": 3.636,
+      "text": "Is this email a scam? Maybe.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 4.545,
+      "t_out": 8.182,
+      "text": "It flagged the real one again.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 10.0,
+      "t_out": 12.273,
+      "text": "Five small <i>gates</i>, not one.",
+      "kind": "title"
+    },
+    {
+      "t_in": 12.727,
+      "t_out": 15.909,
+      "text": "One question hides five different ones.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 15.909,
+      "t_out": 18.636,
+      "text": "Ask five small questions, not one big one.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 19.091,
+      "t_out": 21.818,
+      "text": "One big question becomes five small ones.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 22.727,
+      "t_out": 25.455,
+      "text": "Each small answer is easy to check.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 26.364,
+      "t_out": 29.091,
+      "text": "Decompose the question, then decide.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 30.0,
+      "t_out": 34.545,
+      "text": "Phishing: one question 62.6% · five 95.1%",
+      "kind": "card",
+      "src": "https://github.com/manutej/JEV-works"
+    },
+    {
+      "t_in": 30.909,
+      "t_out": 34.545,
+      "text": "Same model. Smaller questions.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 35.455,
+      "t_out": 39.545,
+      "text": "A two-line regex scored 91.8%.",
+      "kind": "caption",
+      "src": "https://github.com/manutej/JEV-works"
+    },
+    {
+      "t_in": 40.455,
+      "t_out": 42.727,
+      "text": "Empty input still scored 0.82–0.91.",
+      "kind": "card",
+      "src": "https://github.com/manutej/JEV-works"
+    },
+    {
+      "t_in": 42.727,
+      "t_out": 45.455,
+      "text": "Sure-sounding is not the same as right.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 52.727,
+      "t_out": 56.364,
+      "text": "Split the question until each answer is checkable.",
+      "kind": "caption"
+    }
+  ],
+  "terms": [
+    {
+      "term": "decompose",
+      "symbol": "atom",
+      "pictured_at": 18.182,
+      "named_at": 26.364
+    },
+    {
+      "term": "regex",
+      "symbol": "atom",
+      "pictured_at": 34.545,
+      "named_at": 35.455
+    }
+  ],
+  "jargon": [
+    "phishing"
+  ],
+  "sound": {
+    "signature": "Five short tuned pings, a pentatonic run",
+    "problem_motif": "One long note bending sharp and flat",
+    "limit_unresolved": true
+  },
+  "score_self": {
+    "score": 0.82,
+    "reason": "Strong real numbers (62.6 to 95.1). The honest regex counterpoint and the empty-input limit are both sourced and drawn. Risk: two digit cards in CASE plus one in LIMIT is a lot of numbers.",
+    "weakest_piece": "captions"
+  }
+}

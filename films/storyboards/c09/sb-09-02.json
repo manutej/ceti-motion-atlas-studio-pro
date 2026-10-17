@@ -1,0 +1,443 @@
+{
+ "schema_version": "sb60-v1",
+ "id": "sb-09-02",
+ "meta_prompt_id": "mp-c09-v1",
+ "cluster": "09 Generative art & sound",
+ "repo": "manutej/orpheum-studio-pro",
+ "capability": "Any colours, but the reading pair stays pinned",
+ "audience": "Leaders",
+ "wada": 84,
+ "bpm": 124,
+ "dur": 62.2,
+ "title": "Keep the reading pair <i>pinned</i>.",
+ "hook": {
+  "kind": "Example",
+  "picture": "Close on the whale painting the line in soft pastel cards. The words written on the line fade into the paper as each card goes down.",
+  "words": "These colours are perfect."
+ },
+ "problem_in_viewer_words": {
+  "kind": "Fact",
+  "body": "The brand colours are gorgeous. Nobody can read the slides.",
+  "who": "marketing lead after the all-hands"
+ },
+ "why_it_keeps_happening": {
+  "kind": "Fact",
+  "picture": "Pull back: each new brand colour arrives and the text colour is picked again by eye. Three times, faster, and each time the words get fainter.",
+  "words": "New colours arrive. The words get fainter."
+ },
+ "stakes": {
+  "kind": "Fact",
+  "body": "Leaders present to a room that can't read the screen, and the message is lost."
+ },
+ "solution_hint": "Pin the reading pair. Check it every time.",
+ "metaphor": {
+  "kind": "Example",
+  "body": "Two pins hold the ink and the paper apart. Every colour set passes a gate that checks ink against paper, so the colours can change while the words stay sharp.",
+  "symbols": [
+   "whale",
+   "line",
+   "pin",
+   "gate",
+   "pod"
+  ]
+ },
+ "mechanism_beats": {
+  "kind": "Method",
+  "steps": [
+   {
+    "t": 19.355,
+    "picture": "Two pins drop: one fixes the paper tone, one fixes the ink tone. They sit at either end of the line.",
+    "words": "Ink · paper.",
+    "sound": "Two tuned plucks, low and high."
+   },
+   {
+    "t": 23.226,
+    "picture": "The whale swaps colour sets wildly. Each set passes a gate that measures ink against paper and glows. The words stay crisp.",
+    "words": "Change any colour. The words stay sharp.",
+    "sound": "Plucks with varied brightness, always in tune."
+   },
+   {
+    "t": 27.097,
+    "picture": "Push-in: the whale tries a pastel ink. The gate closes on it with a copper flag. The whale picks a darker ink and the gate glows.",
+    "words": "Too faint to read? It never ships.",
+    "sound": "Sour clunk on the stop, clean click on the pass."
+   },
+   {
+    "t": 29.032,
+    "picture": "A tick lands for the pass.",
+    "words": "",
+    "sound": "Soft tick."
+   }
+  ]
+ },
+ "real_case": {
+  "kind": "Evidence",
+  "claim": "The studio's Wada engine holds 348 colour combinations (Haishoku Soukan, 1933) and enforces WCAG AAA ink-on-paper contrast, with the lowest reported pair at 7.65:1.",
+  "numbers": [
+   "348",
+   "≥ 7.0:1",
+   "min = 7.65:1"
+  ],
+  "source": {
+   "kind": "repo",
+   "title": "CETI Motion Atlas Studio Pro README (gates G01-G02)",
+   "url": null
+  },
+  "verified": true,
+  "illustrative": false
+ },
+ "honest_limit": {
+  "kind": "Constraint",
+  "picture": "A slide passes the reading-pair gate with crisp words, but two of its chart colours are the same grey to the pod. The contrast check never looked at them.",
+  "words": "Readable words. Two chart colours look the same."
+ },
+ "not_this": {
+  "kind": "Constraint",
+  "body": "Readable is not the same as clear."
+ },
+ "ending_pattern": {
+  "kind": "Example",
+  "slug": "back-row-reads",
+  "body": "The FELT shot returns: bold new colours, the pins hold, and the back-row pod reads the slide and answers ✓.",
+  "callback": "Same back-row pod that squinted in bar 2 now reads the slide."
+ },
+ "end_belief": {
+  "kind": "Goal",
+  "body": "Pick any colours. Pin the reading pair."
+ },
+ "beats": [
+  {
+   "t": 0.0,
+   "picture": "Close: the whale lays soft pastel cards along the line, admiring each one. The words on the line grow paler with every card.",
+   "words": "These colours are perfect.",
+   "sound": "Soft brushed pad, a little sour.",
+   "act": "felt",
+   "bars": "1",
+   "camera": "Close z 1.6 on the whale",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 2.903,
+   "picture": "A pod in the back row squints at the line and answers with a copper ✕ chip.",
+   "words": "Nobody in the back row could read it.",
+   "sound": "A dull thunk.",
+   "act": "felt",
+   "bars": "2-3",
+   "camera": "Close z 1.6, small follow pan",
+   "cue_tags": [
+    "consequence"
+   ]
+  },
+  {
+   "t": 5.806,
+   "picture": "The whale adds a brighter pastel. The words almost disappear.",
+   "words": "",
+   "sound": "Pad goes thinner.",
+   "act": "felt",
+   "bars": "4",
+   "camera": "Close z 1.6",
+   "cue_tags": []
+  },
+  {
+   "t": 7.742,
+   "picture": "The whale looks at the back-row pod. Hold.",
+   "words": "",
+   "sound": "Near silence.",
+   "act": "felt",
+   "bars": "5",
+   "camera": "Close z 1.7, hold on the whale's face",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 9.677,
+   "picture": "Half a bar of stillness, then the title.",
+   "words": "Keep the reading pair pinned.",
+   "sound": "Near-silence, then the title tick.",
+   "act": "why",
+   "bars": "6",
+   "camera": "Still z 1.6, half bar of stillness",
+   "cue_tags": [
+    "hinge"
+   ]
+  },
+  {
+   "t": 11.613,
+   "picture": "Pull back: a wall of past decks. Each new colour set brings a text colour picked by eye.",
+   "words": "New colours arrive. The words get fainter.",
+   "sound": "Problem motif: two notes sliding too close together.",
+   "act": "why",
+   "bars": "7-8",
+   "camera": "Pull back z 1.6 to 1.0",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 15.484,
+   "picture": "Three new colour sets drop in, every 2 beats, then 1, then half. Each time the words fade more.",
+   "words": "",
+   "sound": "Problem motif three times, accelerating.",
+   "act": "why",
+   "bars": "9",
+   "camera": "Wide z 1.0, pattern revealed",
+   "cue_tags": []
+  },
+  {
+   "t": 17.419,
+   "picture": "Motion stops. Two hollow pins ghost in at the ink and paper.",
+   "words": "Pin the reading pair. Check it every time.",
+   "sound": "Two clean notes a fifth apart.",
+   "act": "why",
+   "bars": "10",
+   "camera": "Wide z 1.0, all motion stops",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 19.355,
+   "picture": "Two pins drop: one fixes the paper tone, one fixes the ink tone. They sit at either end of the line.",
+   "words": "Ink · paper.",
+   "sound": "Two tuned plucks, low and high.",
+   "act": "move",
+   "bars": "11-12",
+   "camera": "Medium z 1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 23.226,
+   "picture": "The whale swaps colour sets wildly. Each set passes a gate that measures ink against paper and glows. The words stay crisp.",
+   "words": "Change any colour. The words stay sharp.",
+   "sound": "Plucks with varied brightness, always in tune.",
+   "act": "move",
+   "bars": "13-14",
+   "camera": "Medium z 1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 27.097,
+   "picture": "Push-in: the whale tries a pastel ink. The gate closes on it with a copper flag. The whale picks a darker ink and the gate glows.",
+   "words": "Too faint to read? It never ships.",
+   "sound": "Sour clunk on the stop, clean click on the pass.",
+   "act": "move",
+   "bars": "15",
+   "camera": "One push-in z 1.2 to 1.3",
+   "cue_tags": [
+    "mech",
+    "focus"
+   ]
+  },
+  {
+   "t": 29.032,
+   "picture": "A tick lands for the pass.",
+   "words": "",
+   "sound": "Soft tick.",
+   "act": "move",
+   "bars": "16",
+   "camera": "Medium z 1.3 easing back to 1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 30.968,
+   "picture": "Wide: a long stream of old colour sets flows toward the gate. Each is paired with the nearest house colour and passes with a glow.",
+   "words": "Real run: hundreds of old colour sets.",
+   "sound": "Pulse bed, quick ticks.",
+   "act": "case",
+   "bars": "17-19",
+   "camera": "Steady wide, slow drift",
+   "cue_tags": []
+  },
+  {
+   "t": 36.774,
+   "picture": "The gate's bar is drawn as a line at seven to one. Nothing slips under it.",
+   "words": "The bar is set at seven to one.",
+   "sound": "Steady pulse.",
+   "act": "case",
+   "bars": "20-22",
+   "camera": "Steady wide, slow drift",
+   "cue_tags": []
+  },
+  {
+   "t": 42.581,
+   "picture": "A slide passes the gate with sharp words, but its two chart colours sit side by side as the same grey. The pod points at them: ✕.",
+   "words": "Readable words. Two chart colours look the same.",
+   "sound": "The two-note figure plays once, unresolved.",
+   "act": "limit",
+   "bars": "23-24",
+   "camera": "Still",
+   "cue_tags": [
+    "limit"
+   ]
+  },
+  {
+   "t": 46.452,
+   "picture": "Slow push to the two grey chart bars.",
+   "words": "",
+   "sound": "Room tone.",
+   "act": "limit",
+   "bars": "25",
+   "camera": "One slow push to the thing that slipped",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 48.387,
+   "picture": "FELT framing: the whale lays bold new brand cards on the line. The pins hold and the words stay crisp.",
+   "words": "",
+   "sound": "Plucks in tune.",
+   "act": "payoff",
+   "bars": "26-27",
+   "camera": "Close z 1.6, the FELT framing restored",
+   "cue_tags": [
+    "callback"
+   ]
+  },
+  {
+   "t": 52.258,
+   "picture": "The back-row pod reads the slide and answers ✓. The whale sparks.",
+   "words": "",
+   "sound": "Resolved fifth.",
+   "act": "payoff",
+   "bars": "28-29",
+   "camera": "Wide reveal z 1.0",
+   "cue_tags": []
+  },
+  {
+   "t": 56.129,
+   "picture": "The pinned pair on the line, the whale breathing.",
+   "words": "Pick any colours. Pin the reading pair.",
+   "sound": "Pad tail.",
+   "act": "belief",
+   "bars": "30-31",
+   "camera": "Still, breathing only",
+   "cue_tags": []
+  },
+  {
+   "t": 60.0,
+   "picture": "SERIES.lockup.",
+   "words": "",
+   "sound": "Pad tail ends, lockup tick.",
+   "act": "lockup",
+   "bars": "32",
+   "camera": "Still",
+   "cue_tags": []
+  }
+ ],
+ "captions": [
+  {
+   "t_in": 0.968,
+   "t_out": 3.871,
+   "text": "These colours are perfect.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 4.839,
+   "t_out": 8.71,
+   "text": "Nobody in the back row could read it.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 10.645,
+   "t_out": 13.548,
+   "text": "Keep the reading pair pinned.",
+   "kind": "title"
+  },
+  {
+   "t_in": 13.548,
+   "t_out": 17.419,
+   "text": "New colours arrive. The words get fainter.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 17.419,
+   "t_out": 19.839,
+   "text": "Pin the reading pair. Check it every time.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 20.323,
+   "t_out": 22.742,
+   "text": "Ink · paper.",
+   "kind": "label"
+  },
+  {
+   "t_in": 23.226,
+   "t_out": 26.613,
+   "text": "Change any colour. The words stay sharp.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 27.097,
+   "t_out": 30.484,
+   "text": "Too faint to read? It never ships.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 30.968,
+   "t_out": 34.839,
+   "text": "Real run: hundreds of old colour sets.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 31.935,
+   "t_out": 42.097,
+   "text": "Real run · lowest reading pair 7.65:1.",
+   "kind": "card",
+   "src": "ceti-motion-atlas-studio-pro/README.md (Orpheum/GEOME engine), gates G01-G02"
+  },
+  {
+   "t_in": 36.774,
+   "t_out": 40.645,
+   "text": "The bar is set at seven to one.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 42.581,
+   "t_out": 45.484,
+   "text": "Readable words. Two chart colours look the same.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 45.484,
+   "t_out": 48.145,
+   "text": "Readable is not the same as clear.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 56.129,
+   "t_out": 60.0,
+   "text": "Pick any colours. Pin the reading pair.",
+   "kind": "caption"
+  }
+ ],
+ "terms": [],
+ "jargon": [
+  "contrast",
+  "WCAG",
+  "AAA",
+  "Wada",
+  "palette",
+  "hex"
+ ],
+ "sound": {
+  "signature": "A low ink note and a high paper note, a clean fifth apart.",
+  "problem_motif": "The same two notes slid close together, beating.",
+  "limit_unresolved": true
+ },
+ "score_self": {
+  "score": 0.71,
+  "reason": "Very clear pain for leaders, and the pin maps well to a fixed pair. The case numbers are real but self-reported. The limit, chart colours alike, is honest but needs a clear picture.",
+  "weakest_piece": "real_case"
+ }
+}

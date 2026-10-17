@@ -1,0 +1,507 @@
+{
+ "schema_version": "sb60-v1",
+ "id": "sb-04-02",
+ "meta_prompt_id": "mp-c04-v1",
+ "cluster": "04 Operads & composition",
+ "repo": "operadic-stitch (Context Atoms)",
+ "capability": "Each helper sees only what its job needs",
+ "audience": "Everyone",
+ "wada": 279,
+ "bpm": 124,
+ "dur": 62.2,
+ "title": "Hand over only the right <i>cards</i>.",
+ "hook": {
+  "kind": "Example",
+  "picture": "Close on the whale tipping a whole drawer of grey cards onto a pod; one small card with a faint mark slides to the very bottom of the heap.",
+  "words": ""
+ },
+ "problem_in_viewer_words": {
+  "kind": "Fact",
+  "body": "I gave it the whole folder. It missed the one rule.",
+  "who": "marketing manager briefing an AI helper"
+ },
+ "why_it_keeps_happening": {
+  "kind": "Fact",
+  "picture": "Pull back: the heap is huge. Three more drawers tip in, every 2 beats, then 1, then half; each time the small card sinks deeper and the pod's cross count climbs.",
+  "words": "The rule drowns under everything else."
+ },
+ "stakes": {
+  "kind": "Fact",
+  "body": "The one rule that mattered is broken in public, and the fix is to read everything yourself next time."
+ },
+ "solution_hint": "Give it only what this job needs.",
+ "metaphor": {
+  "kind": "Example",
+  "body": "Cards hang from the line in tiers, from rules for everyone down to this one job; a helper standing at its job sees its own tier and the tiers above, never a neighbour's.",
+  "symbols": [
+   "whale",
+   "line",
+   "atom",
+   "pod",
+   "seam"
+  ]
+ },
+ "mechanism_beats": {
+  "kind": "Method",
+  "steps": [
+   {
+    "t": 19.355,
+    "picture": "The heap lifts into three tiers hanging from the line: a top tier for everyone, a team tier, a job tier. The small rule card rises to the top tier.",
+    "words": "",
+    "sound": "Three tuned chimes, high to low"
+   },
+   {
+    "t": 21.29,
+    "picture": "The pod swims to the job tier; only its tier and the tiers above light up, the rest dim.",
+    "words": "Only this job, plus the rules above.",
+    "sound": "The chime that matches its tier"
+   },
+   {
+    "t": 23.226,
+    "picture": "The pod's stack is short; the rule card sits on top of it.",
+    "words": "",
+    "sound": "A single clean chime"
+   },
+   {
+    "t": 25.161,
+    "picture": "Push-in: a card from a neighbouring team's tier drifts toward the pod and is refused at the joint between tiers, a raw sienna cross, a small drop.",
+    "words": "Other teams' cards stay out.",
+    "sound": "A muted thud"
+   },
+   {
+    "t": 27.097,
+    "picture": "A second pod at a different job swims in and gets a different short stack, same top tier.",
+    "words": "",
+    "sound": "Two chimes in unison"
+   },
+   {
+    "t": 29.032,
+    "picture": "Both pods hold their short stacks; the tiers glow faintly.",
+    "words": "Where a card applies is its scope.",
+    "sound": "Held chime"
+   }
+  ]
+ },
+ "real_case": {
+  "kind": "Evidence",
+  "claim": "Context Atoms: an agent at a scope sees that scope and everything above it; the first three jobs share a spine of 9 atoms, to be verified first.",
+  "numbers": [
+   "9 atoms",
+   "3 prompts"
+  ],
+  "source": {
+   "kind": "notion",
+   "title": "Context Atoms — operadic stitch",
+   "url": "https://app.notion.com/p/3fbd50cfaf9381048ffaecd94c9f8264"
+  },
+  "verified": true,
+  "illustrative": false
+ },
+ "honest_limit": {
+  "kind": "Constraint",
+  "picture": "A card with a dashed outline (still a draft, never agreed) sits in the job tier, lights up like the others and lands in the pod's short stack.",
+  "words": "Unchecked notes get through just as easily."
+ },
+ "not_this": {
+  "kind": "Constraint",
+  "body": "Short is not the same as checked."
+ },
+ "ending_pattern": {
+  "kind": "Example",
+  "slug": "rule-on-top",
+  "body": "FELT framing: the whale and the same pod. Instead of a drawer, a short stack slides over with the small rule card on top; the pod answers, nothing is circled, its chip shows a tick.",
+  "callback": "The rule card that sank to the bottom in bar 1 now arrives first, in the same close framing."
+ },
+ "end_belief": {
+  "kind": "Goal",
+  "body": "Give each helper only what its job needs."
+ },
+ "beats": [
+  {
+   "t": 0.0,
+   "picture": "Close on the whale tipping a whole drawer of grey cards onto a pod; one small card with a faint mark slides to the very bottom of the heap.",
+   "words": "",
+   "sound": "A heavy paper avalanche, low",
+   "act": "felt",
+   "bars": "1",
+   "camera": "Close, z 1.6 on the whale, small follow pan",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 1.935,
+   "picture": "The pod answers; its answer card has one word circled in raw sienna, the word the bottom card banned. Pod chip turns to a cross.",
+   "words": "I gave it the whole folder.",
+   "sound": "A bright note bends flat",
+   "act": "felt",
+   "bars": "2",
+   "camera": "Close, z 1.6 on the whale, small follow pan",
+   "cue_tags": [
+    "consequence",
+    "focus"
+   ]
+  },
+  {
+   "t": 5.806,
+   "picture": "The whale digs, finds the small card at the bottom, holds it up to the pod.",
+   "words": "It missed the one rule.",
+   "sound": "The flat note again, quieter",
+   "act": "felt",
+   "bars": "3-4",
+   "camera": "Close, z 1.6 on the whale, small follow pan",
+   "cue_tags": [
+    "consequence",
+    "focus"
+   ]
+  },
+  {
+   "t": 7.742,
+   "picture": "The whale and the pod look at each other. Hold.",
+   "words": "",
+   "sound": "Room tone",
+   "act": "felt",
+   "bars": "5",
+   "camera": "Close, z 1.6 on the whale, small follow pan",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 10.645,
+   "picture": "Hinge: half a bar of stillness, then SERIES.open with the title; the accent word is drawn in the law colour.",
+   "words": "Hand over only the right cards.",
+   "sound": "Near-silence, then the title tick",
+   "act": "why",
+   "bars": "6",
+   "camera": "Still",
+   "cue_tags": [
+    "hinge"
+   ]
+  },
+  {
+   "t": 12.581,
+   "picture": "Pull back: the heap is huge. Three more drawers tip in, every 2 beats, then 1, then half; each time the small card sinks deeper and the pod's cross count climbs.",
+   "words": "The rule drowns under everything else.",
+   "sound": "The problem motif, once",
+   "act": "why",
+   "bars": "7",
+   "camera": "Pull back z 1.6 to 1.0, revealing the pattern",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 13.548,
+   "picture": "Three-times device: the failure repeats every 2 beats, then 1, then half a beat.",
+   "words": "",
+   "sound": "The problem motif three times, accelerating",
+   "act": "why",
+   "bars": "8-9",
+   "camera": "Pull back z 1.6 to 1.0, revealing the pattern",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 17.419,
+   "picture": "All motion stops; the fix ghosts in faintly where it will act.",
+   "words": "Give it only what this job needs.",
+   "sound": "One clean, in-tune note: first signature",
+   "act": "why",
+   "bars": "10",
+   "camera": "Still at z 1.0",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 19.355,
+   "picture": "The heap lifts into three tiers hanging from the line: a top tier for everyone, a team tier, a job tier. The small rule card rises to the top tier.",
+   "words": "",
+   "sound": "Three tuned chimes, high to low",
+   "act": "move",
+   "bars": "11",
+   "camera": "Medium z 1.2",
+   "cue_tags": [
+    "mech",
+    "focus"
+   ]
+  },
+  {
+   "t": 21.29,
+   "picture": "The pod swims to the job tier; only its tier and the tiers above light up, the rest dim.",
+   "words": "Only this job, plus the rules above.",
+   "sound": "The chime that matches its tier",
+   "act": "move",
+   "bars": "12",
+   "camera": "Medium z 1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 23.226,
+   "picture": "The pod's stack is short; the rule card sits on top of it.",
+   "words": "",
+   "sound": "A single clean chime",
+   "act": "move",
+   "bars": "13",
+   "camera": "Medium z 1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 25.161,
+   "picture": "Push-in: a card from a neighbouring team's tier drifts toward the pod and is refused at the joint between tiers, a raw sienna cross, a small drop.",
+   "words": "Other teams' cards stay out.",
+   "sound": "A muted thud",
+   "act": "move",
+   "bars": "14",
+   "camera": "Medium, one push-in to z 1.3 on this moment",
+   "cue_tags": [
+    "mech",
+    "focus"
+   ]
+  },
+  {
+   "t": 27.097,
+   "picture": "A second pod at a different job swims in and gets a different short stack, same top tier.",
+   "words": "",
+   "sound": "Two chimes in unison",
+   "act": "move",
+   "bars": "15",
+   "camera": "Medium z 1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 29.032,
+   "picture": "Both pods hold their short stacks; the tiers glow faintly.",
+   "words": "Where a card applies is its scope.",
+   "sound": "Held chime",
+   "act": "move",
+   "bars": "16",
+   "camera": "Medium z 1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 30.968,
+   "picture": "Wide: three real jobs, each with its own short stack; the same nine top-tier cards sit at the head of all three. The card fades in: Real run: 9 cards shared by 3 jobs.",
+   "words": "",
+   "sound": "Pulse bed starts, quiet ticks",
+   "act": "case",
+   "bars": "17",
+   "camera": "Steady wide, slow drift, card framed in clean paper",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 32.903,
+   "picture": "The case picture holds and drifts; ticks stream.",
+   "words": "Three real jobs, three short stacks.",
+   "sound": "Pulse bed, quiet ticks",
+   "act": "case",
+   "bars": "18-19",
+   "camera": "Steady wide, slow drift, card framed in clean paper",
+   "cue_tags": []
+  },
+  {
+   "t": 36.774,
+   "picture": "The nine shared cards flip from dashed to solid outlines, one by one.",
+   "words": "The shared nine get checked first.",
+   "sound": "Nine soft ticks",
+   "act": "case",
+   "bars": "20-22",
+   "camera": "Steady wide, slow drift, card framed in clean paper",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 42.581,
+   "picture": "A card with a dashed outline (still a draft, never agreed) sits in the job tier, lights up like the others and lands in the pod's short stack.",
+   "words": "Unchecked notes get through just as easily.",
+   "sound": "The signature plays once and does not resolve",
+   "act": "limit",
+   "bars": "23-24",
+   "camera": "Still, then one slow push to the part that slipped",
+   "cue_tags": [
+    "limit",
+    "focus"
+   ]
+  },
+  {
+   "t": 46.452,
+   "picture": "Slow push onto the dashed card inside the pod's stack.",
+   "words": "Short is not the same as checked.",
+   "sound": "Room tone",
+   "act": "limit",
+   "bars": "25",
+   "camera": "Still, then one slow push to the part that slipped",
+   "cue_tags": [
+    "limit"
+   ]
+  },
+  {
+   "t": 48.387,
+   "picture": "FELT framing: the whale and the same pod. Instead of a drawer, a short stack slides over with the small rule card on top; the pod answers, nothing is circled, its chip shows a tick.",
+   "words": "",
+   "sound": "The signature returns, resolved on every 8th",
+   "act": "payoff",
+   "bars": "26-27",
+   "camera": "FELT framing restored, z 1.6, same position",
+   "cue_tags": [
+    "callback",
+    "focus"
+   ]
+  },
+  {
+   "t": 52.258,
+   "picture": "The whale taps the rule card on top of the stack; it glows once.",
+   "words": "",
+   "sound": "Full resolution, a spark",
+   "act": "payoff",
+   "bars": "28-29",
+   "camera": "Gentle wide reveal from the FELT framing",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 56.129,
+   "picture": "The settled image; the whale breathes and spouts once.",
+   "words": "Give each helper only what its job needs.",
+   "sound": "Pad tail only",
+   "act": "belief",
+   "bars": "30-31",
+   "camera": "Still, breathing only",
+   "cue_tags": []
+  },
+  {
+   "t": 60.0,
+   "picture": "SERIES.lockup",
+   "words": "",
+   "sound": "Pad tail fades",
+   "act": "lockup",
+   "bars": "32",
+   "camera": "Still",
+   "cue_tags": []
+  }
+ ],
+ "captions": [
+  {
+   "t_in": 1.935,
+   "t_out": 5.323,
+   "text": "I gave it the whole folder.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 5.806,
+   "t_out": 9.194,
+   "text": "It missed the one rule.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 10.645,
+   "t_out": 13.065,
+   "text": "Hand over only the right cards.",
+   "kind": "title"
+  },
+  {
+   "t_in": 12.581,
+   "t_out": 16.452,
+   "text": "The rule drowns under everything else.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 17.419,
+   "t_out": 19.839,
+   "text": "Give it only what this job needs.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 21.29,
+   "t_out": 24.677,
+   "text": "Only this job, plus the rules above.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 25.161,
+   "t_out": 28.548,
+   "text": "Other teams' cards stay out.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 29.032,
+   "t_out": 32.419,
+   "text": "Where a card applies is its scope.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 31.452,
+   "t_out": 40.645,
+   "text": "Real run: 9 cards shared by 3 jobs.",
+   "kind": "card",
+   "src": "https://app.notion.com/p/3fbd50cfaf9381048ffaecd94c9f8264"
+  },
+  {
+   "t_in": 32.903,
+   "t_out": 36.29,
+   "text": "Three real jobs, three short stacks.",
+   "kind": "caption",
+   "src": "https://app.notion.com/p/3fbd50cfaf9381048ffaecd94c9f8264"
+  },
+  {
+   "t_in": 36.774,
+   "t_out": 40.161,
+   "text": "The shared nine get checked first.",
+   "kind": "caption",
+   "src": "https://app.notion.com/p/3fbd50cfaf9381048ffaecd94c9f8264"
+  },
+  {
+   "t_in": 42.581,
+   "t_out": 45.968,
+   "text": "Unchecked notes get through just as easily.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 46.452,
+   "t_out": 48.871,
+   "text": "Short is not the same as checked.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 56.129,
+   "t_out": 60.0,
+   "text": "Give each helper only what its job needs.",
+   "kind": "caption"
+  }
+ ],
+ "terms": [
+  {
+   "term": "scope",
+   "symbol": "tiers of atoms",
+   "pictured_at": 19.355,
+   "named_at": 29.032
+  }
+ ],
+ "jargon": [
+  "folder-dump"
+ ],
+ "sound": {
+  "signature": "a tuned chime per tier, high for everyone, low for the job",
+  "problem_motif": "the chime buried under paper noise, flat",
+  "limit_unresolved": true
+ },
+ "score_self": {
+  "score": 0.74,
+  "reason": "Pain is very common and the tier picture is simple. The tier-scope idea needs the pull-back to read; risk that viewers read the tiers as a folder tree.",
+  "weakest_piece": "mechanism_beats"
+ }
+}

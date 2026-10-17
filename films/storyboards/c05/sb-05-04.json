@@ -1,0 +1,461 @@
+{
+ "schema_version": "sb60-v1",
+ "id": "sb-05-04",
+ "meta_prompt_id": "mp-c05-v1",
+ "cluster": "05 Meta-prompting & RSI",
+ "repo": "manutej/categorical-meta-prompting",
+ "capability": "Ask for one method, not one answer",
+ "audience": "Researchers",
+ "wada": 339,
+ "bpm": 132,
+ "dur": 58.48,
+ "title": "One <i>line</i> for every puzzle.",
+ "hook": {
+  "kind": "Example",
+  "picture": "Close on puzzle cards; the whale improvises a wavering line through the first one and a pod answers ✕ (rust chip).",
+  "words": "Wrong again, and wrong a new way."
+ },
+ "problem_in_viewer_words": {
+  "kind": "Fact",
+  "body": "It gets the same kind of puzzle wrong, differently each time.",
+  "who": "researcher rerunning the same puzzle set"
+ },
+ "why_it_keeps_happening": {
+  "kind": "Fact",
+  "picture": "Three-times device: three new cards, three new improvised lines, every 2 beats, then 1, then ½; two answer ✕.",
+  "words": "It guesses each one from scratch."
+ },
+ "stakes": {
+  "kind": "Fact",
+  "body": "Results change run to run, so nothing can be compared or trusted."
+ },
+ "solution_hint": "Ask for one method that solves all.",
+ "metaphor": {
+  "kind": "Example",
+  "body": "Instead of a fresh wavering line per card, the whale draws one careful line once, and every card runs along it and comes out ticked.",
+  "symbols": [
+   "whale",
+   "line",
+   "atom",
+   "tick"
+  ]
+ },
+ "mechanism_beats": {
+  "kind": "Method",
+  "steps": [
+   {
+    "t": 18.182,
+    "picture": "The whale draws one careful line once, slowly, from edge to edge.",
+    "words": "One method, written once.",
+    "sound": "steady arpeggio"
+   },
+   {
+    "t": 21.818,
+    "picture": "Push-in: the cards slide onto the line one after another; each comes out the far end with a tick.",
+    "words": "Every puzzle runs through the same line.",
+    "sound": "same arpeggio on each card"
+   },
+   {
+    "t": 25.455,
+    "picture": "The line itself shows as a small program the pod wrote once, not an answer per card.",
+    "words": "Here the method is a small program.",
+    "sound": "arpeggio holds"
+   },
+   {
+    "t": 27.273,
+    "picture": "The line sits labelled under the ticked cards.",
+    "words": "The prompt asked for a method: meta-prompting.",
+    "sound": "arpeggio resolves"
+   }
+  ]
+ },
+ "real_case": {
+  "kind": "Evidence",
+  "claim": "The repo README reports Game of 24 results: GPT-4 zero-shot 4%, chain-of-thought 36%, categorical meta-prompting 100%. No method is shown for the 100%.",
+  "numbers": [
+   "4%",
+   "36%",
+   "100%"
+  ],
+  "source": {
+   "kind": "repo",
+   "title": "categorical-meta-prompting README",
+   "url": "https://github.com/manutej/categorical-meta-prompting"
+  },
+  "verified": true,
+  "illustrative": false
+ },
+ "honest_limit": {
+  "kind": "Constraint",
+  "picture": "An open question card (wavy lines inside, no dots) slides toward the method line, does not fit, and gets no tick. The whale is guessing again.",
+  "words": "Open questions have no single method."
+ },
+ "not_this": {
+  "kind": "Constraint",
+  "body": "Not a fix for questions without checks."
+ },
+ "ending_pattern": {
+  "kind": "Example",
+  "slug": "four-cards-four-ticks",
+  "body": "FELT close shot: the same four puzzle cards from bar 1 slide along the one line; four ticks land in a row, on the beat.",
+  "callback": "In FELT each card got its own wavering guess and two failed; the same four cards now share one line and all tick."
+ },
+ "end_belief": {
+  "kind": "Goal",
+  "body": "Checkable task? Ask for the method, not answers."
+ },
+ "beats": [
+  {
+   "t": 0.0,
+   "picture": "Close on four puzzle cards, each with four dots. The whale improvises a wavering line through the first.",
+   "words": "",
+   "sound": "broken arpeggio",
+   "act": "felt",
+   "bars": "1",
+   "camera": "close z1.6 on the whale",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 1.818,
+   "picture": "A pod reads it and answers ✕ (rust chip).",
+   "words": "Wrong again, and wrong a new way.",
+   "sound": "thunk",
+   "act": "felt",
+   "bars": "2-3",
+   "camera": "close z1.6 on the whale",
+   "cue_tags": [
+    "consequence",
+    "focus"
+   ]
+  },
+  {
+   "t": 5.455,
+   "picture": "Second card: a different wavering route; ✓. Third: yet another route; ✕.",
+   "words": "Every puzzle gets a fresh guess.",
+   "sound": "two different broken arpeggios",
+   "act": "felt",
+   "bars": "4",
+   "camera": "close z1.6 on the whale",
+   "cue_tags": [
+    "consequence",
+    "focus"
+   ]
+  },
+  {
+   "t": 7.273,
+   "picture": "The whale stares at the cards piling up. Hold.",
+   "words": "",
+   "sound": "room tone",
+   "act": "felt",
+   "bars": "5",
+   "camera": "close z1.6 on the whale",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 10.0,
+   "picture": "Half a bar of stillness, then the title.",
+   "words": "One line for every puzzle.",
+   "sound": "near-silence, then title tick",
+   "act": "why",
+   "bars": "6",
+   "camera": "pull back z1.6 to 1.0, revealing the pattern",
+   "cue_tags": [
+    "hinge"
+   ]
+  },
+  {
+   "t": 10.909,
+   "picture": "Pull back: every card wears its own improvised line, all different shapes.",
+   "words": "",
+   "sound": "problem motif once",
+   "act": "why",
+   "bars": "7",
+   "camera": "pull back z1.6 to 1.0, revealing the pattern",
+   "cue_tags": []
+  },
+  {
+   "t": 12.727,
+   "picture": "Three-times device: three new cards, three new improvised lines, every 2 beats, then 1, then ½; two answer ✕.",
+   "words": "It guesses each one from scratch.",
+   "sound": "problem motif x3, accelerating",
+   "act": "why",
+   "bars": "8-9",
+   "camera": "pull back z1.6 to 1.0, revealing the pattern",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 16.364,
+   "picture": "Motion stops. One faint straight line ghosts beneath all the cards.",
+   "words": "Ask for one method that solves all.",
+   "sound": "first clean arpeggio",
+   "act": "why",
+   "bars": "10",
+   "camera": "pull back z1.6 to 1.0, revealing the pattern",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 18.182,
+   "picture": "The whale draws one careful line once, slowly, from edge to edge.",
+   "words": "One method, written once.",
+   "sound": "steady arpeggio",
+   "act": "move",
+   "bars": "11-12",
+   "camera": "medium z1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 21.818,
+   "picture": "Push-in: the cards slide onto the line one after another; each comes out the far end with a tick.",
+   "words": "Every puzzle runs through the same line.",
+   "sound": "same arpeggio on each card",
+   "act": "move",
+   "bars": "13-14",
+   "camera": "medium z1.2; one push-in to z1.3",
+   "cue_tags": [
+    "mech",
+    "focus"
+   ]
+  },
+  {
+   "t": 25.455,
+   "picture": "The line itself shows as a small program the pod wrote once, not an answer per card.",
+   "words": "Here the method is a small program.",
+   "sound": "arpeggio holds",
+   "act": "move",
+   "bars": "15",
+   "camera": "medium z1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 27.273,
+   "picture": "The line sits labelled under the ticked cards.",
+   "words": "The prompt asked for a method: meta-prompting.",
+   "sound": "arpeggio resolves",
+   "act": "move",
+   "bars": "16",
+   "camera": "medium z1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 29.091,
+   "picture": "Wide: three lines side by side: a short wavering one, a stepwise one, and the one method line; ticks stack under each.",
+   "words": "Guess, step by step, or one method.",
+   "sound": "pulse bed, three tick rhythms",
+   "act": "case",
+   "bars": "17-19",
+   "camera": "steady wide, slow drift",
+   "cue_tags": []
+  },
+  {
+   "t": 34.545,
+   "picture": "Hold on the method line's card; a small dashed outline marks what the page does not show.",
+   "words": "Reported by the repo. Method not shown.",
+   "sound": "two quiet notes",
+   "act": "case",
+   "bars": "20-22",
+   "camera": "steady wide, slow drift",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 40.0,
+   "picture": "An open question card (wavy lines inside, no dots) slides toward the method line, does not fit, and gets no tick. The whale is guessing again.",
+   "words": "Open questions have no single method.",
+   "sound": "arpeggio once, unresolved",
+   "act": "limit",
+   "bars": "23-24",
+   "camera": "still, then one slow push to what slipped",
+   "cue_tags": [
+    "limit",
+    "focus"
+   ]
+  },
+  {
+   "t": 43.636,
+   "picture": "Hold on the unticked card.",
+   "words": "Not a fix for questions without checks.",
+   "sound": "room tone",
+   "act": "limit",
+   "bars": "25",
+   "camera": "still, then one slow push to what slipped",
+   "cue_tags": []
+  },
+  {
+   "t": 45.455,
+   "picture": "FELT close shot: the same four cards from bar 1 slide along the one line; four ticks land in a row.",
+   "words": "",
+   "sound": "four even arpeggios",
+   "act": "payoff",
+   "bars": "26-27",
+   "camera": "FELT framing z1.6 (callback), then wide reveal",
+   "cue_tags": [
+    "callback",
+    "focus"
+   ]
+  },
+  {
+   "t": 49.091,
+   "picture": "Wide reveal: one line under a long row of ticked cards; whale spark.",
+   "words": "",
+   "sound": "full resolution",
+   "act": "payoff",
+   "bars": "28-29",
+   "camera": "FELT framing z1.6 (callback), then wide reveal",
+   "cue_tags": []
+  },
+  {
+   "t": 52.727,
+   "picture": "Still line, ticked cards, whale breathing.",
+   "words": "Checkable task? Ask for the method, not answers.",
+   "sound": "pad tail only",
+   "act": "belief",
+   "bars": "30-31",
+   "camera": "still, breathing",
+   "cue_tags": []
+  },
+  {
+   "t": 56.364,
+   "picture": "SERIES.lockup over the still chart ground",
+   "words": "",
+   "sound": "lockup sting",
+   "act": "lockup",
+   "bars": "32",
+   "camera": "still",
+   "cue_tags": []
+  }
+ ],
+ "captions": [
+  {
+   "t_in": 1.818,
+   "t_out": 5.455,
+   "text": "Wrong again, and wrong a new way.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 5.455,
+   "t_out": 9.091,
+   "text": "Every puzzle gets a fresh guess.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 10.0,
+   "t_out": 12.727,
+   "text": "One line for every puzzle.",
+   "kind": "title"
+  },
+  {
+   "t_in": 12.727,
+   "t_out": 16.364,
+   "text": "It guesses each one from scratch.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 16.364,
+   "t_out": 18.636,
+   "text": "Ask for one method that solves all.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 18.182,
+   "t_out": 21.818,
+   "text": "One method, written once.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 21.818,
+   "t_out": 25.455,
+   "text": "Every puzzle runs through the same line.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 25.455,
+   "t_out": 28.182,
+   "text": "Here the method is a small program.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 27.273,
+   "t_out": 30.0,
+   "text": "The prompt asked for a method: meta-prompting.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 29.091,
+   "t_out": 31.818,
+   "text": "Guess, step by step, or one method.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 31.818,
+   "t_out": 38.182,
+   "text": "Reported · 4% · 36% · 100%",
+   "kind": "card",
+   "src": "https://github.com/manutej/categorical-meta-prompting"
+  },
+  {
+   "t_in": 34.545,
+   "t_out": 40.0,
+   "text": "Reported by the repo. Method not shown.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 40.0,
+   "t_out": 43.636,
+   "text": "Open questions have no single method.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 43.636,
+   "t_out": 46.364,
+   "text": "Not a fix for questions without checks.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 52.727,
+   "t_out": 56.364,
+   "text": "Checkable task? Ask for the method, not answers.",
+   "kind": "caption"
+  }
+ ],
+ "terms": [
+  {
+   "term": "meta-prompting",
+   "symbol": "one line drawn once for all cards",
+   "pictured_at": 18.182,
+   "named_at": 27.273
+  }
+ ],
+ "jargon": [
+  "benchmark",
+  "zero-shot",
+  "chain-of-thought",
+  "meta-prompting",
+  "solver",
+  "program"
+ ],
+ "sound": {
+  "signature": "one steady arpeggio, identical on every card",
+  "problem_motif": "a different broken arpeggio each time",
+  "limit_unresolved": true
+ },
+ "score_self": {
+  "score": 0.72,
+  "reason": "A striking contrast and an honest evidence caveat on screen. The 100% is a repo report with no method, and \"method = program\" may need more than one beat for a cold viewer.",
+  "weakest_piece": "real_case"
+ }
+}

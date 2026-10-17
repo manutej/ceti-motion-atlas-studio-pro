@@ -1,0 +1,510 @@
+{
+ "schema_version": "sb60-v1",
+ "id": "sb-04-07",
+ "meta_prompt_id": "mp-c04-v1",
+ "cluster": "04 Operads & composition",
+ "repo": "manutej/catreview-go",
+ "capability": "Map every part and what it calls",
+ "audience": "Leaders",
+ "wada": 243,
+ "bpm": 128,
+ "dur": 60.3,
+ "title": "See every <i>joint</i> first.",
+ "hook": {
+  "kind": "Example",
+  "picture": "Close on the whale nudging one small card in a tangle of grey cards and threads.",
+  "words": ""
+ },
+ "problem_in_viewer_words": {
+  "kind": "Fact",
+  "body": "We changed one small module and five teams broke.",
+  "who": "engineering director the morning after a release"
+ },
+ "why_it_keeps_happening": {
+  "kind": "Fact",
+  "picture": "Pull back: the tangle fills the frame. Three more small changes, every 2 beats, then 1, then half; each sends crosses somewhere new.",
+  "words": "Nobody can see what leans on what."
+ },
+ "stakes": {
+  "kind": "Fact",
+  "body": "Every release becomes a gamble, and teams stop changing anything at all."
+ },
+ "solution_hint": "Map every part and what it calls.",
+ "metaphor": {
+  "kind": "Example",
+  "body": "The codebase is a web of cards hanging from the line; draw every link as an arrow from the part that calls to the part it needs, and the knots and loops stand out like snags in a net.",
+  "symbols": [
+   "whale",
+   "line",
+   "atom",
+   "seam",
+   "flag"
+  ]
+ },
+ "mechanism_beats": {
+  "kind": "Method",
+  "steps": [
+   {
+    "t": 18.75,
+    "picture": "The tangle spreads out: cards placed apart, each link redrawn as a straight arrow from caller to called.",
+    "words": "",
+    "sound": "Tuned plucks, one per arrow"
+   },
+   {
+    "t": 20.625,
+    "picture": "The web is now readable.",
+    "words": "Every part. Every link it calls.",
+    "sound": "The plucks form a chord"
+   },
+   {
+    "t": 22.5,
+    "picture": "Three cards whose arrows run in a circle light up; a raw sienna flag rises on the loop.",
+    "words": "",
+    "sound": "Three notes that never resolve"
+   },
+   {
+    "t": 24.375,
+    "picture": "Push-in on the loop.",
+    "words": "A loop means nothing changes alone.",
+    "sound": "The unresolved figure, louder"
+   },
+   {
+    "t": 26.25,
+    "picture": "The whale moves one arrow; the circle opens and the flag lowers.",
+    "words": "",
+    "sound": "The figure resolves"
+   },
+   {
+    "t": 28.125,
+    "picture": "One card with many arrows out and none in glows heavy: it leans on everything.",
+    "words": "Arrows between parts: dependencies.",
+    "sound": "A low held note"
+   }
+  ]
+ },
+ "real_case": {
+  "kind": "Evidence",
+  "claim": "catreview-go: 5 real-world repositories analyzed (5,055 objects, 8,141 morphisms); objects are modules, packages, types and functions, morphisms are dependencies, calls and imports. Example run: Cycle",
+  "numbers": [
+   "5",
+   "5,055",
+   "8,141",
+   "0"
+  ],
+  "source": {
+   "kind": "repo",
+   "title": "manutej/catreview-go README",
+   "url": "https://github.com/manutej/catreview-go"
+  },
+  "verified": true,
+  "illustrative": false
+ },
+ "honest_limit": {
+  "kind": "Constraint",
+  "picture": "A second line of cards in another language drifts past; its cards stay grey, no arrows are drawn, and a pod reads it anyway.",
+  "words": "Only Go code gets mapped today."
+ },
+ "not_this": {
+  "kind": "Constraint",
+  "body": "A clean map is not working code."
+ },
+ "ending_pattern": {
+  "kind": "Example",
+  "slug": "one-ripple",
+  "body": "FELT framing: the whale nudges the same small card. One arrow lights to its single neighbour, whose pod blinks once and stays green; the other four pods keep their ticks.",
+  "callback": "The cascade of five crosses in bar 3 becomes one warned neighbour, in the same close framing."
+ },
+ "end_belief": {
+  "kind": "Goal",
+  "body": "Check what leans on it before changing."
+ },
+ "beats": [
+  {
+   "t": 0.0,
+   "picture": "Close on the whale nudging one small card in a tangle of grey cards and threads.",
+   "words": "",
+   "sound": "A single string pluck",
+   "act": "felt",
+   "bars": "1",
+   "camera": "Close, z 1.6 on the whale, small follow pan",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 1.875,
+   "picture": "Threads twang outward; across the frame, pods answer with crosses one after another.",
+   "words": "We changed one small part.",
+   "sound": "The pluck sets off a cascade of flat notes",
+   "act": "felt",
+   "bars": "2",
+   "camera": "Close, z 1.6 on the whale, small follow pan",
+   "cue_tags": [
+    "consequence",
+    "focus"
+   ]
+  },
+  {
+   "t": 5.625,
+   "picture": "Five crosses glow at once at the edges of the frame.",
+   "words": "Five teams broke by lunch.",
+   "sound": "A low chord, sour",
+   "act": "felt",
+   "bars": "3-4",
+   "camera": "Close, z 1.6 on the whale, small follow pan",
+   "cue_tags": [
+    "consequence",
+    "focus"
+   ]
+  },
+  {
+   "t": 7.5,
+   "picture": "The whale looks at the tangle, unable to tell which thread went where. Hold.",
+   "words": "",
+   "sound": "Room tone",
+   "act": "felt",
+   "bars": "5",
+   "camera": "Close, z 1.6 on the whale, small follow pan",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 10.312,
+   "picture": "Hinge: half a bar of stillness, then SERIES.open with the title; the accent word is drawn in the law colour.",
+   "words": "See every joint first.",
+   "sound": "Near-silence, then the title tick",
+   "act": "why",
+   "bars": "6",
+   "camera": "Still",
+   "cue_tags": [
+    "hinge"
+   ]
+  },
+  {
+   "t": 12.188,
+   "picture": "Pull back: the tangle fills the frame. Three more small changes, every 2 beats, then 1, then half; each sends crosses somewhere new.",
+   "words": "Nobody can see what leans on what.",
+   "sound": "The problem motif, once",
+   "act": "why",
+   "bars": "7",
+   "camera": "Pull back z 1.6 to 1.0, revealing the pattern",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 13.125,
+   "picture": "Three-times device: the failure repeats every 2 beats, then 1, then half a beat.",
+   "words": "",
+   "sound": "The problem motif three times, accelerating",
+   "act": "why",
+   "bars": "8-9",
+   "camera": "Pull back z 1.6 to 1.0, revealing the pattern",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 16.875,
+   "picture": "All motion stops; the fix ghosts in faintly where it will act.",
+   "words": "Map every part and what it calls.",
+   "sound": "One clean, in-tune note: first signature",
+   "act": "why",
+   "bars": "10",
+   "camera": "Still at z 1.0",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 18.75,
+   "picture": "The tangle spreads out: cards placed apart, each link redrawn as a straight arrow from caller to called.",
+   "words": "",
+   "sound": "Tuned plucks, one per arrow",
+   "act": "move",
+   "bars": "11",
+   "camera": "Medium z 1.2",
+   "cue_tags": [
+    "mech",
+    "focus"
+   ]
+  },
+  {
+   "t": 20.625,
+   "picture": "The web is now readable.",
+   "words": "Every part. Every link it calls.",
+   "sound": "The plucks form a chord",
+   "act": "move",
+   "bars": "12",
+   "camera": "Medium z 1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 22.5,
+   "picture": "Three cards whose arrows run in a circle light up; a raw sienna flag rises on the loop.",
+   "words": "",
+   "sound": "Three notes that never resolve",
+   "act": "move",
+   "bars": "13",
+   "camera": "Medium z 1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 24.375,
+   "picture": "Push-in on the loop.",
+   "words": "A loop means nothing changes alone.",
+   "sound": "The unresolved figure, louder",
+   "act": "move",
+   "bars": "14",
+   "camera": "Medium, one push-in to z 1.3 on this moment",
+   "cue_tags": [
+    "mech",
+    "focus"
+   ]
+  },
+  {
+   "t": 26.25,
+   "picture": "The whale moves one arrow; the circle opens and the flag lowers.",
+   "words": "",
+   "sound": "The figure resolves",
+   "act": "move",
+   "bars": "15",
+   "camera": "Medium z 1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 28.125,
+   "picture": "One card with many arrows out and none in glows heavy: it leans on everything.",
+   "words": "Arrows between parts: dependencies.",
+   "sound": "A low held note",
+   "act": "move",
+   "bars": "16",
+   "camera": "Medium z 1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 30.0,
+   "picture": "Wide: five maps of real codebases side by side, each a web of cards and arrows. The card fades in: Real run: 5 repos, 5,055 parts, 8,141 links.",
+   "words": "",
+   "sound": "Pulse bed starts, quiet ticks",
+   "act": "case",
+   "bars": "17",
+   "camera": "Steady wide, slow drift, card framed in clean paper",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 31.875,
+   "picture": "The case picture holds and drifts; ticks stream.",
+   "words": "Real tool: maps of five open codebases.",
+   "sound": "Pulse bed, ticks",
+   "act": "case",
+   "bars": "18-19",
+   "camera": "Steady wide, slow drift, card framed in clean paper",
+   "cue_tags": []
+  },
+  {
+   "t": 35.625,
+   "picture": "Zoom to one map: its loop counter reads zero.",
+   "words": "One example run found no loops.",
+   "sound": "A clean single tick",
+   "act": "case",
+   "bars": "20-22",
+   "camera": "Steady wide, slow drift, card framed in clean paper",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 41.25,
+   "picture": "A second line of cards in another language drifts past; its cards stay grey, no arrows are drawn, and a pod reads it anyway.",
+   "words": "Only Go code gets mapped today.",
+   "sound": "The signature plays once and does not resolve",
+   "act": "limit",
+   "bars": "23-24",
+   "camera": "Still, then one slow push to the part that slipped",
+   "cue_tags": [
+    "limit",
+    "focus"
+   ]
+  },
+  {
+   "t": 45.0,
+   "picture": "Slow push onto the grey unmapped cards.",
+   "words": "A clean map is not working code.",
+   "sound": "Room tone",
+   "act": "limit",
+   "bars": "25",
+   "camera": "Still, then one slow push to the part that slipped",
+   "cue_tags": [
+    "limit"
+   ]
+  },
+  {
+   "t": 46.875,
+   "picture": "FELT framing: the whale nudges the same small card. One arrow lights to its single neighbour, whose pod blinks once and stays green; the other four pods keep their ticks.",
+   "words": "",
+   "sound": "The signature returns, resolved on every 8th",
+   "act": "payoff",
+   "bars": "26-27",
+   "camera": "FELT framing restored, z 1.6, same position",
+   "cue_tags": [
+    "callback",
+    "focus"
+   ]
+  },
+  {
+   "t": 50.625,
+   "picture": "The whale nods to the neighbour pod; the map breathes.",
+   "words": "",
+   "sound": "Full resolution, a spark",
+   "act": "payoff",
+   "bars": "28-29",
+   "camera": "Gentle wide reveal from the FELT framing",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 54.375,
+   "picture": "The settled image; the whale breathes and spouts once.",
+   "words": "Check what leans on it before changing.",
+   "sound": "Pad tail only",
+   "act": "belief",
+   "bars": "30-31",
+   "camera": "Still, breathing only",
+   "cue_tags": []
+  },
+  {
+   "t": 58.125,
+   "picture": "SERIES.lockup",
+   "words": "",
+   "sound": "Pad tail fades",
+   "act": "lockup",
+   "bars": "32",
+   "camera": "Still",
+   "cue_tags": []
+  }
+ ],
+ "captions": [
+  {
+   "t_in": 1.875,
+   "t_out": 5.156,
+   "text": "We changed one small part.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 5.625,
+   "t_out": 8.906,
+   "text": "Five teams broke by lunch.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 10.312,
+   "t_out": 12.656,
+   "text": "See every joint first.",
+   "kind": "title"
+  },
+  {
+   "t_in": 12.188,
+   "t_out": 15.938,
+   "text": "Nobody can see what leans on what.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 16.875,
+   "t_out": 19.219,
+   "text": "Map every part and what it calls.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 20.625,
+   "t_out": 23.906,
+   "text": "Every part. Every link it calls.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 24.375,
+   "t_out": 27.656,
+   "text": "A loop means nothing changes alone.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 28.125,
+   "t_out": 31.406,
+   "text": "Arrows between parts: dependencies.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 30.469,
+   "t_out": 39.375,
+   "text": "Real run: 5 repos, 5,055 parts, 8,141 links.",
+   "kind": "card",
+   "src": "https://github.com/manutej/catreview-go"
+  },
+  {
+   "t_in": 31.875,
+   "t_out": 35.156,
+   "text": "Real tool: maps of five open codebases.",
+   "kind": "caption",
+   "src": "https://github.com/manutej/catreview-go"
+  },
+  {
+   "t_in": 35.625,
+   "t_out": 38.906,
+   "text": "One example run found no loops.",
+   "kind": "caption",
+   "src": "https://github.com/manutej/catreview-go"
+  },
+  {
+   "t_in": 41.25,
+   "t_out": 44.531,
+   "text": "Only Go code gets mapped today.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 45.0,
+   "t_out": 47.344,
+   "text": "A clean map is not working code.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 54.375,
+   "t_out": 58.125,
+   "text": "Check what leans on it before changing.",
+   "kind": "caption"
+  }
+ ],
+ "terms": [
+  {
+   "term": "dependencies",
+   "symbol": "arrows between atoms",
+   "pictured_at": 18.75,
+   "named_at": 28.125
+  }
+ ],
+ "jargon": [
+  "coupling",
+  "module graph"
+ ],
+ "sound": {
+  "signature": "a tuned pluck per arrow",
+  "problem_motif": "a pluck that cascades into flat notes",
+  "limit_unresolved": true
+ },
+ "score_self": {
+  "score": 0.7,
+  "reason": "Leaders feel the five-teams-broke pain directly; the map picture is clear. Weakness: card numbers use plain words for objects and morphisms, and the limit (Go only) is a tool limit more than a concept limit.",
+  "weakest_piece": "honest_limit"
+ }
+}

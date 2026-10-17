@@ -1,0 +1,509 @@
+{
+ "schema_version": "sb60-v1",
+ "id": "sb-04-09",
+ "meta_prompt_id": "mp-c04-v1",
+ "cluster": "04 Operads & composition",
+ "repo": "manutej/operadic-compositionality-course",
+ "capability": "Helpers owning separate parts never collide",
+ "audience": "Leaders",
+ "wada": 279,
+ "bpm": 132,
+ "dur": 58.5,
+ "title": "Each helper gets its own <i>part</i>.",
+ "hook": {
+  "kind": "Example",
+  "picture": "Close on one stretch of line; three pods arrive at the same spot and start writing.",
+  "words": ""
+ },
+ "problem_in_viewer_words": {
+  "kind": "Fact",
+  "body": "Three AI helpers, and they kept undoing each other.",
+  "who": "operations lead running several agents on one document"
+ },
+ "why_it_keeps_happening": {
+  "kind": "Fact",
+  "picture": "Pull back: the scribble spreads along the line. Three more rounds, every 2 beats, then 1, then half; each time the pods land on the same spot.",
+  "words": "Everyone edits the same spot."
+ },
+ "stakes": {
+  "kind": "Fact",
+  "body": "Work is done three times and undone twice, and the bill for helpers grows while nothing ships."
+ },
+ "solution_hint": "Give each helper its own separate part.",
+ "metaphor": {
+  "kind": "Example",
+  "body": "One document is one line; split it at marked joints into separate stretches, one per helper, and helpers can work at the same moment without touching each other's ink.",
+  "symbols": [
+   "whale",
+   "line",
+   "pod",
+   "seam",
+   "tick"
+  ]
+ },
+ "mechanism_beats": {
+  "kind": "Method",
+  "steps": [
+   {
+    "t": 18.182,
+    "picture": "The line splits into three marked stretches with small joints between them; each pod is sent to one stretch.",
+    "words": "",
+    "sound": "Three tuned pens, one note each"
+   },
+   {
+    "t": 20.0,
+    "picture": "Each pod settles on its own stretch.",
+    "words": "One part each. No shared spots.",
+    "sound": "A chord of the three notes"
+   },
+   {
+    "t": 21.818,
+    "picture": "All three pods write at the same moment; pulses run along three stretches in unison.",
+    "words": "",
+    "sound": "The chord, rhythmic"
+   },
+   {
+    "t": 23.636,
+    "picture": "Push-in on a joint between two stretches: the edges meet cleanly and a tick lands.",
+    "words": "Separate parts can run at once.",
+    "sound": "A clean click"
+   },
+   {
+    "t": 25.455,
+    "picture": "One pod reaches across a joint into its neighbour's stretch and is refused, a raw sienna cross, a small drop.",
+    "words": "",
+    "sound": "A muted thud"
+   },
+   {
+    "t": 27.273,
+    "picture": "Ticks glow at every joint.",
+    "words": "Checks at the joins between parts: seams.",
+    "sound": "The chord held"
+   }
+  ]
+ },
+ "real_case": {
+  "kind": "Evidence",
+  "claim": "The jury: fixers working on disjoint files went 0/22 → 22/22, 0/15 → 15/15 and 0/16 → 16/16; the operad page says this was disjoint file ownership with no merge conflicts.",
+  "numbers": [
+   "0/22 → 22/22",
+   "0/15 → 15/15",
+   "0/16 → 16/16"
+  ],
+  "source": {
+   "kind": "research_md",
+   "title": "RESEARCH.md §7 (The jury) and The operad of design units",
+   "url": "https://app.notion.com/p/3f2d50cfaf93816a83bccc20dda6ae05"
+  },
+  "verified": true,
+  "illustrative": false
+ },
+ "honest_limit": {
+  "kind": "Constraint",
+  "picture": "Each stretch is clean and every joint ticks, but two pods have written different names for the same thing; the two names glow raw sienna at opposite ends of the line.",
+  "words": "Separate parts. Two names for one thing."
+ },
+ "not_this": {
+  "kind": "Constraint",
+  "body": "No collisions is not agreement."
+ },
+ "ending_pattern": {
+  "kind": "Example",
+  "slug": "three-stretches-close",
+  "body": "FELT framing: the same stretch where the scribble formed. Three pods write side by side in their own stretches; the joints tick and the stretches close into one clean line.",
+  "callback": "The scribble of bar 2 never forms; the same spot now holds three clean stretches, in the same close framing."
+ },
+ "end_belief": {
+  "kind": "Goal",
+  "body": "Split work so no helpers share a spot."
+ },
+ "beats": [
+  {
+   "t": 0.0,
+   "picture": "Close on one stretch of line; three pods arrive at the same spot and start writing.",
+   "words": "",
+   "sound": "Three pens scratching at once",
+   "act": "felt",
+   "bars": "1",
+   "camera": "Close, z 1.6 on the whale, small follow pan",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 1.818,
+   "picture": "Their marks overwrite each other into a raw sienna scribble; one pod's chip turns to a cross.",
+   "words": "We put three helpers on one document.",
+   "sound": "The scratches clash",
+   "act": "felt",
+   "bars": "2",
+   "camera": "Close, z 1.6 on the whale, small follow pan",
+   "cue_tags": [
+    "consequence",
+    "focus"
+   ]
+  },
+  {
+   "t": 5.455,
+   "picture": "A pod erases what the other wrote; the scribble grows.",
+   "words": "They kept undoing each other.",
+   "sound": "An eraser rub, harsh",
+   "act": "felt",
+   "bars": "3-4",
+   "camera": "Close, z 1.6 on the whale, small follow pan",
+   "cue_tags": [
+    "consequence",
+    "focus"
+   ]
+  },
+  {
+   "t": 7.273,
+   "picture": "The whale looks at the scribble. Hold.",
+   "words": "",
+   "sound": "Room tone",
+   "act": "felt",
+   "bars": "5",
+   "camera": "Close, z 1.6 on the whale, small follow pan",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 10.0,
+   "picture": "Hinge: half a bar of stillness, then SERIES.open with the title; the accent word is drawn in the law colour.",
+   "words": "Each helper gets its own part.",
+   "sound": "Near-silence, then the title tick",
+   "act": "why",
+   "bars": "6",
+   "camera": "Still",
+   "cue_tags": [
+    "hinge"
+   ]
+  },
+  {
+   "t": 11.818,
+   "picture": "Pull back: the scribble spreads along the line. Three more rounds, every 2 beats, then 1, then half; each time the pods land on the same spot.",
+   "words": "Everyone edits the same spot.",
+   "sound": "The problem motif, once",
+   "act": "why",
+   "bars": "7",
+   "camera": "Pull back z 1.6 to 1.0, revealing the pattern",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 12.727,
+   "picture": "Three-times device: the failure repeats every 2 beats, then 1, then half a beat.",
+   "words": "",
+   "sound": "The problem motif three times, accelerating",
+   "act": "why",
+   "bars": "8-9",
+   "camera": "Pull back z 1.6 to 1.0, revealing the pattern",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 16.364,
+   "picture": "All motion stops; the fix ghosts in faintly where it will act.",
+   "words": "Give each helper its own separate part.",
+   "sound": "One clean, in-tune note: first signature",
+   "act": "why",
+   "bars": "10",
+   "camera": "Still at z 1.0",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 18.182,
+   "picture": "The line splits into three marked stretches with small joints between them; each pod is sent to one stretch.",
+   "words": "",
+   "sound": "Three tuned pens, one note each",
+   "act": "move",
+   "bars": "11",
+   "camera": "Medium z 1.2",
+   "cue_tags": [
+    "mech",
+    "focus"
+   ]
+  },
+  {
+   "t": 20.0,
+   "picture": "Each pod settles on its own stretch.",
+   "words": "One part each. No shared spots.",
+   "sound": "A chord of the three notes",
+   "act": "move",
+   "bars": "12",
+   "camera": "Medium z 1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 21.818,
+   "picture": "All three pods write at the same moment; pulses run along three stretches in unison.",
+   "words": "",
+   "sound": "The chord, rhythmic",
+   "act": "move",
+   "bars": "13",
+   "camera": "Medium z 1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 23.636,
+   "picture": "Push-in on a joint between two stretches: the edges meet cleanly and a tick lands.",
+   "words": "Separate parts can run at once.",
+   "sound": "A clean click",
+   "act": "move",
+   "bars": "14",
+   "camera": "Medium, one push-in to z 1.3 on this moment",
+   "cue_tags": [
+    "mech",
+    "focus"
+   ]
+  },
+  {
+   "t": 25.455,
+   "picture": "One pod reaches across a joint into its neighbour's stretch and is refused, a raw sienna cross, a small drop.",
+   "words": "",
+   "sound": "A muted thud",
+   "act": "move",
+   "bars": "15",
+   "camera": "Medium z 1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 27.273,
+   "picture": "Ticks glow at every joint.",
+   "words": "Checks at the joins between parts: seams.",
+   "sound": "The chord held",
+   "act": "move",
+   "bars": "16",
+   "camera": "Medium z 1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 29.091,
+   "picture": "Wide: three real fixers, each on its own set of files; their progress bars fill side by side. The card fades in: Real run: 0/22 → 22/22, 0/15 → 15/15.",
+   "words": "",
+   "sound": "Pulse bed starts, quiet ticks",
+   "act": "case",
+   "bars": "17",
+   "camera": "Steady wide, slow drift, card framed in clean paper",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 30.909,
+   "picture": "The case picture holds and drifts; ticks stream.",
+   "words": "Real run: fixers each owned their files.",
+   "sound": "Pulse bed, ticks",
+   "act": "case",
+   "bars": "18-19",
+   "camera": "Steady wide, slow drift, card framed in clean paper",
+   "cue_tags": []
+  },
+  {
+   "t": 34.545,
+   "picture": "The three stretches join into one line with no scribble.",
+   "words": "No merge conflicts across the three.",
+   "sound": "A steady two-note figure",
+   "act": "case",
+   "bars": "20-22",
+   "camera": "Steady wide, slow drift, card framed in clean paper",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 40.0,
+   "picture": "Each stretch is clean and every joint ticks, but two pods have written different names for the same thing; the two names glow raw sienna at opposite ends of the line.",
+   "words": "Separate parts. Two names for one thing.",
+   "sound": "The signature plays once and does not resolve",
+   "act": "limit",
+   "bars": "23-24",
+   "camera": "Still, then one slow push to the part that slipped",
+   "cue_tags": [
+    "limit",
+    "focus"
+   ]
+  },
+  {
+   "t": 43.636,
+   "picture": "Slow push from one name to the other along the clean line.",
+   "words": "No collisions is not agreement.",
+   "sound": "Room tone",
+   "act": "limit",
+   "bars": "25",
+   "camera": "Still, then one slow push to the part that slipped",
+   "cue_tags": [
+    "limit"
+   ]
+  },
+  {
+   "t": 45.455,
+   "picture": "FELT framing: the same stretch where the scribble formed. Three pods write side by side in their own stretches; the joints tick and the stretches close into one clean line.",
+   "words": "",
+   "sound": "The signature returns, resolved on every 8th",
+   "act": "payoff",
+   "bars": "26-27",
+   "camera": "FELT framing restored, z 1.6, same position",
+   "cue_tags": [
+    "callback",
+    "focus"
+   ]
+  },
+  {
+   "t": 49.091,
+   "picture": "The whale swims along the clean line and spouts.",
+   "words": "",
+   "sound": "Full resolution, a spark",
+   "act": "payoff",
+   "bars": "28-29",
+   "camera": "Gentle wide reveal from the FELT framing",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 52.727,
+   "picture": "The settled image; the whale breathes and spouts once.",
+   "words": "Split work so no helpers share a spot.",
+   "sound": "Pad tail only",
+   "act": "belief",
+   "bars": "30-31",
+   "camera": "Still, breathing only",
+   "cue_tags": []
+  },
+  {
+   "t": 56.364,
+   "picture": "SERIES.lockup",
+   "words": "",
+   "sound": "Pad tail fades",
+   "act": "lockup",
+   "bars": "32",
+   "camera": "Still",
+   "cue_tags": []
+  }
+ ],
+ "captions": [
+  {
+   "t_in": 1.818,
+   "t_out": 5.0,
+   "text": "We put three helpers on one document.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 5.455,
+   "t_out": 8.636,
+   "text": "They kept undoing each other.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 10.0,
+   "t_out": 12.273,
+   "text": "Each helper gets its own part.",
+   "kind": "title"
+  },
+  {
+   "t_in": 11.818,
+   "t_out": 15.455,
+   "text": "Everyone edits the same spot.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 16.364,
+   "t_out": 18.636,
+   "text": "Give each helper its own separate part.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 20.0,
+   "t_out": 23.182,
+   "text": "One part each. No shared spots.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 23.636,
+   "t_out": 26.818,
+   "text": "Separate parts can run at once.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 27.273,
+   "t_out": 30.455,
+   "text": "Checks at the joins between parts: seams.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 29.545,
+   "t_out": 38.182,
+   "text": "Real run: 0/22 → 22/22, 0/15 → 15/15.",
+   "kind": "card",
+   "src": "films/kh/caps/RESEARCH.md §7 (The jury)"
+  },
+  {
+   "t_in": 30.909,
+   "t_out": 34.091,
+   "text": "Real run: fixers each owned their files.",
+   "kind": "caption",
+   "src": "films/kh/caps/RESEARCH.md §7 (The jury)"
+  },
+  {
+   "t_in": 34.545,
+   "t_out": 37.727,
+   "text": "No merge conflicts across the three.",
+   "kind": "caption",
+   "src": "https://app.notion.com/p/3f2d50cfaf93816a83bccc20dda6ae05"
+  },
+  {
+   "t_in": 40.0,
+   "t_out": 43.182,
+   "text": "Separate parts. Two names for one thing.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 43.636,
+   "t_out": 45.909,
+   "text": "No collisions is not agreement.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 52.727,
+   "t_out": 56.364,
+   "text": "Split work so no helpers share a spot.",
+   "kind": "caption"
+  }
+ ],
+ "terms": [
+  {
+   "term": "seams",
+   "symbol": "seam",
+   "pictured_at": 23.636,
+   "named_at": 27.273
+  }
+ ],
+ "jargon": [
+  "merge conflict",
+  "parallelism"
+ ],
+ "sound": {
+  "signature": "three tuned pens that form a chord",
+  "problem_motif": "three pens scratching against each other",
+  "limit_unresolved": true
+ },
+ "score_self": {
+  "score": 0.72,
+  "reason": "Agents overwriting each other is a fresh leader pain and the split picture is simple. The card mixes two sources (jury numbers, operad no-conflicts line), and the third fixer row is left off for length.",
+  "weakest_piece": "real_case"
+ }
+}

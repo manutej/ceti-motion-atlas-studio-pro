@@ -1,0 +1,477 @@
+{
+  "schema_version": "sb60-v1",
+  "id": "sb-10-03",
+  "meta_prompt_id": "mp-c10-v1",
+  "cluster": "10 Explainers & craft",
+  "repo": "manutej/p5js-explainer-lab",
+  "capability": "One owner for each fact that two copies share",
+  "audience": "Researchers",
+  "wada": 207,
+  "bpm": 120,
+  "dur": 64.3,
+  "title": "Two copies, one <i>card</i>.",
+  "hook": {
+    "kind": "Example",
+    "picture": "Close on the whale holding two cards, one marked script, one marked screen; it reads the same caption on both and the words differ.",
+    "words": "Wait, that is not what we wrote."
+  },
+  "problem_in_viewer_words": {
+    "kind": "Fact",
+    "body": "The script says one thing. The screen says another.",
+    "who": "researcher checking a film against its script"
+  },
+  "why_it_keeps_happening": {
+    "kind": "Fact",
+    "picture": "Pull back: the same caption lives on two cards; each edit fixes only the one in reach. Three-times device: three edits land, every 2 beats, then 1, then half, each on one card only; the copies drift further apart.",
+    "words": "Each fix only changes one copy."
+  },
+  "stakes": {
+    "kind": "Fact",
+    "body": "Learners read the screen, reviewers read the script, and neither knows the other is wrong."
+  },
+  "solution_hint": "Give each shared part one owner.",
+  "metaphor": {
+    "kind": "Example",
+    "body": "Script, data, code and screen are four cards on one line. Wherever two repeat the same words is a join, and one owner card at each join is the copy the others follow.",
+    "symbols": [
+      "whale",
+      "line",
+      "atom",
+      "seam"
+    ]
+  },
+  "mechanism_beats": {
+    "kind": "Method",
+    "steps": [
+      {
+        "t": 20.0,
+        "picture": "Four cards ride the line, script, data, code and screen, with dashed joins between neighbours that repeat a caption.",
+        "words": "Give each shared part one owner.",
+        "sound": "Unison note per card"
+      },
+      {
+        "t": 23.0,
+        "picture": "The whale gives the data card an owner tab; at its join with the script, the dashed line glows terracotta where the words differ.",
+        "words": "Owner: the data card.",
+        "sound": "Rub on the terracotta join"
+      },
+      {
+        "t": 26.0,
+        "picture": "The script card's caption is rewritten from the owner; the join turns teal with a tick.",
+        "words": "The copy follows the owner.",
+        "sound": "The rub slides into unison"
+      },
+      {
+        "t": 29.0,
+        "picture": "All three joins tick teal, and the name lands on the last one.",
+        "words": "Where copies meet, check: a seam.",
+        "sound": "Three unisons"
+      }
+    ]
+  },
+  "real_case": {
+    "kind": "Evidence",
+    "claim": "p5.js Explainer Lab audit R1, storyboard captions vs data.js captions: \"Type-safe fails: 18 vs 20, with 6 text and 3 timing mismatches.\" The check (G7) is proposed, not yet built.",
+    "numbers": [
+      "18 vs 20",
+      "6 text",
+      "3 timing mismatches"
+    ],
+    "source": {
+      "kind": "notion",
+      "title": "p5.js Explainer Lab: Research agenda",
+      "url": "https://app.notion.com/p/3f3d50cfaf9381eb9151e006efd3aba6"
+    },
+    "verified": true,
+    "illustrative": false
+  },
+  "honest_limit": {
+    "kind": "Constraint",
+    "picture": "Push in: both cards now match exactly, and both carry the same confusing sentence; the join ticks teal anyway.",
+    "words": "Both copies agree. Both can be wrong."
+  },
+  "not_this": {
+    "kind": "Constraint",
+    "body": "Matching copies can both be wrong."
+  },
+  "ending_pattern": {
+    "kind": "Example",
+    "slug": "two-cards-one-voice",
+    "body": "FELT framing returns: the whale holds the script and screen cards; their words are identical; the pod quotes the screen and answers ✓.",
+    "callback": "The two cards that disagreed in bar 1 are back in the same hands, now saying the same words."
+  },
+  "end_belief": {
+    "kind": "Goal",
+    "body": "One owner per fact. Copy from it."
+  },
+  "beats": [
+    {
+      "t": 0.0,
+      "act": "felt",
+      "bars": "1",
+      "picture": "Close on the whale holding two cards, one marked script, one marked screen; it reads the same caption on both and the words differ.",
+      "words": "",
+      "sound": "Paper flick, two notes apart",
+      "camera": "Close z 1.6 on the whale",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 1.0,
+      "act": "felt",
+      "bars": "1",
+      "picture": "The whale holds still for a breath, facing the trouble.",
+      "words": "Wait, that is not what we wrote.",
+      "sound": "Low room tone",
+      "camera": "Close z 1.6 on the whale",
+      "cue_tags": []
+    },
+    {
+      "t": 2.0,
+      "act": "felt",
+      "bars": "2",
+      "picture": "A pod quotes the screen card back and answers ✕: it learned the wrong sentence.",
+      "words": "",
+      "sound": "Dull thunk on the ✕",
+      "camera": "Close z 1.6 on the whale",
+      "cue_tags": [
+        "consequence",
+        "focus"
+      ]
+    },
+    {
+      "t": 5.0,
+      "act": "felt",
+      "bars": "3",
+      "picture": "The whale fixes the script card; the screen card still shows the old words.",
+      "words": "Which one is the real caption?",
+      "sound": "Two notes further apart",
+      "camera": "Close z 1.6 on the whale",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 8.0,
+      "act": "felt",
+      "bars": "5",
+      "picture": "The two cards hang side by side, still different. Hold.",
+      "words": "",
+      "sound": "Silence creeps in",
+      "camera": "Close z 1.6 on the whale",
+      "cue_tags": []
+    },
+    {
+      "t": 11.0,
+      "act": "why",
+      "bars": "6",
+      "picture": "Stillness, then the title between the two cards.",
+      "words": "Two copies, one card.",
+      "sound": "Half a bar of room tone, then the title tick",
+      "camera": "Pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "hinge"
+      ]
+    },
+    {
+      "t": 13.0,
+      "act": "why",
+      "bars": "7",
+      "picture": "Pull back: the same caption lives on two cards; each edit fixes only the one in reach.",
+      "words": "Each fix only changes one copy.",
+      "sound": "Half-step rub",
+      "camera": "Pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 15.0,
+      "act": "why",
+      "bars": "8",
+      "picture": "Three-times device: three edits land, every 2 beats, then 1, then half, each on one card only; the copies drift further apart.",
+      "words": "",
+      "sound": "Rub x3, accelerating",
+      "camera": "Pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 18.0,
+      "act": "why",
+      "bars": "10",
+      "picture": "All motion stops. Where the fix will go, a faint outline of it ghosts in.",
+      "words": "Give each shared part one owner.",
+      "sound": "Unison note, once",
+      "camera": "Pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 20.0,
+      "act": "move",
+      "bars": "11",
+      "picture": "Four cards ride the line, script, data, code and screen, with dashed joins between neighbours that repeat a caption.",
+      "words": "Give each shared part one owner.",
+      "sound": "Unison note per card",
+      "camera": "Medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 23.0,
+      "act": "move",
+      "bars": "12",
+      "picture": "The whale gives the data card an owner tab; at its join with the script, the dashed line glows terracotta where the words differ.",
+      "words": "Owner: the data card.",
+      "sound": "Rub on the terracotta join",
+      "camera": "Medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 26.0,
+      "act": "move",
+      "bars": "14",
+      "picture": "The script card's caption is rewritten from the owner; the join turns teal with a tick.",
+      "words": "The copy follows the owner.",
+      "sound": "The rub slides into unison",
+      "camera": "Push-in z 1.1 to 1.3, the only push",
+      "cue_tags": [
+        "mech",
+        "focus"
+      ]
+    },
+    {
+      "t": 29.0,
+      "act": "move",
+      "bars": "15",
+      "picture": "All three joins tick teal, and the name lands on the last one.",
+      "words": "Where copies meet, check: a seam.",
+      "sound": "Three unisons",
+      "camera": "Medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 32.0,
+      "act": "case",
+      "bars": "17",
+      "picture": "Wide: two long rows of caption cards, the script row above, the data row below; nine pairs glow terracotta at their joins.",
+      "words": "Real audit: one film, two caption lists.",
+      "sound": "Pulse bed, quiet fast ticks",
+      "camera": "Steady wide, slow drift",
+      "cue_tags": []
+    },
+    {
+      "t": 34.0,
+      "act": "case",
+      "bars": "18",
+      "picture": "The card fades in on clean paper beside the run; the run keeps moving behind it.",
+      "words": "6 text · 3 timing mismatches",
+      "sound": "One soft card tick",
+      "camera": "Steady wide, slow drift",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 38.0,
+      "act": "case",
+      "bars": "20",
+      "picture": "The data row gets the owner tab; the script row is rebuilt from it, and every join ticks teal.",
+      "words": "Proposed fix: one owner, copied everywhere.",
+      "sound": "Unison rising",
+      "camera": "Steady wide, slow drift",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 44.0,
+      "act": "limit",
+      "bars": "23",
+      "picture": "Push in: both cards now match exactly, and both carry the same confusing sentence; the join ticks teal anyway.",
+      "words": "Both copies agree. Both can be wrong.",
+      "sound": "The signature plays once and does not resolve",
+      "camera": "Still, then one slow push in",
+      "cue_tags": [
+        "limit",
+        "focus"
+      ]
+    },
+    {
+      "t": 48.0,
+      "act": "limit",
+      "bars": "25",
+      "picture": "Hold on the two matching, muddled cards.",
+      "words": "Matching copies can both be wrong.",
+      "sound": "Room tone",
+      "camera": "Still",
+      "cue_tags": []
+    },
+    {
+      "t": 50.0,
+      "act": "payoff",
+      "bars": "26",
+      "picture": "FELT framing (z 1.6). The whale holds both cards up; the words match, letter for letter.",
+      "words": "",
+      "sound": "Unison chord, resolved",
+      "camera": "FELT framing z 1.6, then wide reveal",
+      "cue_tags": [
+        "callback",
+        "focus"
+      ]
+    },
+    {
+      "t": 54.0,
+      "act": "payoff",
+      "bars": "28",
+      "picture": "The pod quotes the screen card and answers ✓; a teal tick joins the two cards. Spark.",
+      "words": "",
+      "sound": "Full resolution, the signature in tune on every beat",
+      "camera": "FELT framing z 1.6, then wide reveal",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 58.0,
+      "act": "belief",
+      "bars": "30",
+      "picture": "Two matching cards above a calm line; the whale breathes.",
+      "words": "One owner per fact. Copy from it.",
+      "sound": "Pad tail only",
+      "camera": "Still, breathing",
+      "cue_tags": []
+    },
+    {
+      "t": 62.0,
+      "act": "lockup",
+      "bars": "32",
+      "picture": "SERIES.lockup over the chart ground.",
+      "words": "",
+      "sound": "Pad tail fades",
+      "camera": "Still",
+      "cue_tags": []
+    }
+  ],
+  "captions": [
+    {
+      "t_in": 1.0,
+      "t_out": 4.0,
+      "text": "Wait, that is not what we wrote.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 5.0,
+      "t_out": 8.5,
+      "text": "Which one is the real caption?",
+      "kind": "caption"
+    },
+    {
+      "t_in": 11.0,
+      "t_out": 13.0,
+      "text": "Two copies, one card.",
+      "kind": "title"
+    },
+    {
+      "t_in": 13.0,
+      "t_out": 17.0,
+      "text": "Each fix only changes one copy.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 18.0,
+      "t_out": 20.5,
+      "text": "Give each shared part one owner.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 23.0,
+      "t_out": 25.0,
+      "text": "Owner: the data card.",
+      "kind": "label"
+    },
+    {
+      "t_in": 26.0,
+      "t_out": 29.0,
+      "text": "The copy follows the owner.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 29.0,
+      "t_out": 32.0,
+      "text": "Where copies meet, check: a seam.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 32.0,
+      "t_out": 35.0,
+      "text": "Real audit: one film, two caption lists.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 34.0,
+      "t_out": 42.0,
+      "text": "6 text · 3 timing mismatches",
+      "kind": "card",
+      "src": "https://app.notion.com/p/3f3d50cfaf9381eb9151e006efd3aba6"
+    },
+    {
+      "t_in": 38.0,
+      "t_out": 42.0,
+      "text": "Proposed fix: one owner, copied everywhere.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 44.0,
+      "t_out": 47.0,
+      "text": "Both copies agree. Both can be wrong.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 48.0,
+      "t_out": 51.0,
+      "text": "Matching copies can both be wrong.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 58.0,
+      "t_out": 62.0,
+      "text": "One owner per fact. Copy from it.",
+      "kind": "caption"
+    }
+  ],
+  "terms": [
+    {
+      "term": "seam",
+      "symbol": "seam",
+      "pictured_at": 23.0,
+      "named_at": 29.0
+    }
+  ],
+  "jargon": [
+    "data",
+    "sync",
+    "source",
+    "render",
+    "storyboard"
+  ],
+  "sound": {
+    "signature": "Two voices singing one note in unison",
+    "problem_motif": "The same two voices a half-step apart",
+    "limit_unresolved": true
+  },
+  "score_self": {
+    "score": 0.78,
+    "reason": "Strongest felt pain in the cluster for anyone making course material; the audit numbers are real and labelled as an audit. Risk: four cards plus joins nears the 7-element cap in MOVE.",
+    "weakest_piece": "mechanism_beats"
+  }
+}

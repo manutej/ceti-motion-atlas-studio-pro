@@ -1,0 +1,443 @@
+{
+ "schema_version": "sb60-v1",
+ "id": "sb-09-05",
+ "meta_prompt_id": "mp-c09-v1",
+ "cluster": "09 Generative art & sound",
+ "repo": "manutej/glyph-foundry-studio-pro",
+ "capability": "Shrink a mark step by step until it still reads",
+ "audience": "Learners",
+ "wada": 207,
+ "bpm": 120,
+ "dur": 64.3,
+ "title": "Shrink it through the <i>gates</i>.",
+ "hook": {
+  "kind": "Example",
+  "picture": "Close on the whale proudly holding a detailed mark full of fine lines. It drops the mark into a tiny tab square and it becomes a grey smudge.",
+  "words": "Looks great on the big screen."
+ },
+ "problem_in_viewer_words": {
+  "kind": "Fact",
+  "body": "Our logo turns to mush as a tiny icon.",
+  "who": "founder looking at the browser tab"
+ },
+ "why_it_keeps_happening": {
+  "kind": "Fact",
+  "picture": "Pull back: the same detailed mark shrunk three times, faster each time. Each shrink loses the fine lines all at once, never by choice.",
+  "words": "Shrinking throws away the wrong details."
+ },
+ "stakes": {
+  "kind": "Fact",
+  "body": "The brand vanishes exactly where people see it most: tabs, phones, feeds."
+ },
+ "solution_hint": "Remove one thing at a time. Check each.",
+ "metaphor": {
+  "kind": "Example",
+  "body": "Five gates along the line, each smaller than the last. At each one the mark drops one detail by choice, and a ring checks it still reads at tab size.",
+  "symbols": [
+   "whale",
+   "line",
+   "gate",
+   "ring",
+   "pod"
+  ]
+ },
+ "mechanism_beats": {
+  "kind": "Method",
+  "steps": [
+   {
+    "t": 20.0,
+    "picture": "The mark passes the first gate and drops one detail, a thin fin line, by choice.",
+    "words": "Drop one detail.",
+    "sound": "One pluck, a step lower."
+   },
+   {
+    "t": 24.0,
+    "picture": "At each gate a ring checks the mark at tab size. It glows, and the mark drops the next detail.",
+    "words": "Each step must still read when tiny.",
+    "sound": "Pluck per gate, stepping down in tune."
+   },
+   {
+    "t": 28.0,
+    "picture": "Push-in: at gate four the whale drops the eye. The ring shows it no longer reads as a whale and the gate closes. The eye goes back and a fin goes instead.",
+    "words": "Lose the wrong part? The gate says no.",
+    "sound": "A sour clunk, then the pluck in tune."
+   },
+   {
+    "t": 30.0,
+    "picture": "Gate five: one single stroke that still reads as the whale. The tab-size ring glows.",
+    "words": "",
+    "sound": "A single clean pluck, held."
+   }
+  ]
+ },
+ "real_case": {
+  "kind": "Evidence",
+  "claim": "Glyph Foundry's README lists a Saul Bass 5-rung reduction ladder ending at a 16px cut; the studio README adds a 4-test emblem gauntlet (favicon, silhouette, one-move, cut-out).",
+  "numbers": [
+   "5-Rung",
+   "16px",
+   "4-Test"
+  ],
+  "source": {
+   "kind": "repo",
+   "title": "manutej/glyph-foundry-studio-pro README",
+   "url": "https://github.com/manutej/glyph-foundry-studio-pro"
+  },
+  "verified": true,
+  "illustrative": false
+ },
+ "honest_limit": {
+  "kind": "Constraint",
+  "picture": "The single stroke passes every gate and reads crisply at tab size, but a new viewer names it a wave, not a whale. Readable is not the same as recognised.",
+  "words": "It reads. But it reads as something else."
+ },
+ "not_this": {
+  "kind": "Constraint",
+  "body": "Readable at any size is not recognisable."
+ },
+ "ending_pattern": {
+  "kind": "Example",
+  "slug": "tab-stays-crisp",
+  "body": "The whale drops the mark into the same tiny tab square as in FELT, and this time the one-stroke mark stays crisp. The pod answers ✓.",
+  "callback": "Same tab square and drop gesture as bar 2, the smudge replaced by a crisp stroke."
+ },
+ "end_belief": {
+  "kind": "Goal",
+  "body": "Shrink on purpose, one step at a time."
+ },
+ "beats": [
+  {
+   "t": 0.0,
+   "picture": "Close: the whale holds up a detailed mark with fine fin lines and an eye.",
+   "words": "Looks great on the big screen.",
+   "sound": "A bright, rich chord.",
+   "act": "felt",
+   "bars": "1",
+   "camera": "Close z 1.6 on the whale",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 3.0,
+   "picture": "It drops the mark into a tiny tab square, where it becomes a grey smudge. A pod glancing at the tab answers ✕.",
+   "words": "On a tab, it's just a smudge.",
+   "sound": "The chord collapses to a muddy hum.",
+   "act": "felt",
+   "bars": "2-3",
+   "camera": "Close z 1.6, small follow pan",
+   "cue_tags": [
+    "consequence"
+   ]
+  },
+  {
+   "t": 6.0,
+   "picture": "The whale tries a smaller copy. Same smudge.",
+   "words": "",
+   "sound": "Hum again.",
+   "act": "felt",
+   "bars": "4",
+   "camera": "Close z 1.6",
+   "cue_tags": []
+  },
+  {
+   "t": 8.0,
+   "picture": "The whale peers into the tiny tab. Hold.",
+   "words": "",
+   "sound": "Silence.",
+   "act": "felt",
+   "bars": "5",
+   "camera": "Close z 1.7, hold on the whale's face",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 10.0,
+   "picture": "Half a bar of stillness, then the title.",
+   "words": "Shrink it through the gates.",
+   "sound": "Near-silence, then the title tick.",
+   "act": "why",
+   "bars": "6",
+   "camera": "Still z 1.6, half bar of stillness",
+   "cue_tags": [
+    "hinge"
+   ]
+  },
+  {
+   "t": 12.0,
+   "picture": "Pull back: the mark shrinks in one jump and every fine line blurs together.",
+   "words": "Shrinking throws away the wrong details.",
+   "sound": "Problem motif: a chord squeezed into a hum.",
+   "act": "why",
+   "bars": "7-8",
+   "camera": "Pull back z 1.6 to 1.0",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 16.0,
+   "picture": "Two more jumps, faster, every 1 beat then half. Each one smears a different part.",
+   "words": "",
+   "sound": "Problem motif three times, accelerating.",
+   "act": "why",
+   "bars": "9",
+   "camera": "Wide z 1.0, pattern revealed",
+   "cue_tags": []
+  },
+  {
+   "t": 18.0,
+   "picture": "Motion stops. Five gate outlines ghost along the line, each smaller.",
+   "words": "Remove one thing at a time. Check each.",
+   "sound": "One clean pluck: the signature.",
+   "act": "why",
+   "bars": "10",
+   "camera": "Wide z 1.0, all motion stops",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 20.0,
+   "picture": "The mark passes the first gate and drops one detail, a thin fin line, by choice.",
+   "words": "Drop one detail.",
+   "sound": "One pluck, a step lower.",
+   "act": "move",
+   "bars": "11-12",
+   "camera": "Medium z 1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 24.0,
+   "picture": "At each gate a ring checks the mark at tab size. It glows, and the mark drops the next detail.",
+   "words": "Each step must still read when tiny.",
+   "sound": "Pluck per gate, stepping down in tune.",
+   "act": "move",
+   "bars": "13-14",
+   "camera": "Medium z 1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 28.0,
+   "picture": "Push-in: at gate four the whale drops the eye. The ring shows it no longer reads as a whale and the gate closes. The eye goes back and a fin goes instead.",
+   "words": "Lose the wrong part? The gate says no.",
+   "sound": "A sour clunk, then the pluck in tune.",
+   "act": "move",
+   "bars": "15",
+   "camera": "One push-in z 1.2 to 1.3",
+   "cue_tags": [
+    "mech",
+    "focus"
+   ]
+  },
+  {
+   "t": 30.0,
+   "picture": "Gate five: one single stroke that still reads as the whale. The tab-size ring glows.",
+   "words": "",
+   "sound": "A single clean pluck, held.",
+   "act": "move",
+   "bars": "16",
+   "camera": "Medium z 1.3 easing back to 1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 32.0,
+   "picture": "Wide: the five steps laid out left to right, from full mark to one stroke.",
+   "words": "Real run: a ladder borrowed from Saul Bass.",
+   "sound": "Pulse bed.",
+   "act": "case",
+   "bars": "17-19",
+   "camera": "Steady wide, slow drift",
+   "cue_tags": []
+  },
+  {
+   "t": 38.0,
+   "picture": "Four small rings test the last stroke: tab, shadow, one move, paper cut-out. All four tick.",
+   "words": "Four tests at the smallest size.",
+   "sound": "Four quick ticks.",
+   "act": "case",
+   "bars": "20-22",
+   "camera": "Steady wide, slow drift",
+   "cue_tags": []
+  },
+  {
+   "t": 44.0,
+   "picture": "A new pod sees the single stroke. It reads cleanly, but the pod's chip says 'wave', not 'whale'. ✕.",
+   "words": "It reads. But it reads as something else.",
+   "sound": "The pluck plays once, unresolved.",
+   "act": "limit",
+   "bars": "23-24",
+   "camera": "Still",
+   "cue_tags": [
+    "limit"
+   ]
+  },
+  {
+   "t": 48.0,
+   "picture": "Slow push to the pod's 'wave' chip.",
+   "words": "",
+   "sound": "Room tone.",
+   "act": "limit",
+   "bars": "25",
+   "camera": "One slow push to the thing that slipped",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 50.0,
+   "picture": "FELT framing: the whale drops the mark into the tiny tab square again. This time the single stroke sits crisp.",
+   "words": "",
+   "sound": "The pluck rings clear.",
+   "act": "payoff",
+   "bars": "26-27",
+   "camera": "Close z 1.6, the FELT framing restored",
+   "cue_tags": [
+    "callback"
+   ]
+  },
+  {
+   "t": 54.0,
+   "picture": "The pod glancing at the tab answers ✓. The whale sparks.",
+   "words": "",
+   "sound": "Chord resolves from the single note.",
+   "act": "payoff",
+   "bars": "28-29",
+   "camera": "Wide reveal z 1.0",
+   "cue_tags": []
+  },
+  {
+   "t": 58.0,
+   "picture": "The five steps fading behind the tab, the whale breathing.",
+   "words": "Shrink on purpose, one step at a time.",
+   "sound": "Pad tail.",
+   "act": "belief",
+   "bars": "30-31",
+   "camera": "Still, breathing only",
+   "cue_tags": []
+  },
+  {
+   "t": 62.0,
+   "picture": "SERIES.lockup.",
+   "words": "",
+   "sound": "Pad tail ends, lockup tick.",
+   "act": "lockup",
+   "bars": "32",
+   "camera": "Still",
+   "cue_tags": []
+  }
+ ],
+ "captions": [
+  {
+   "t_in": 1.0,
+   "t_out": 4.0,
+   "text": "Looks great on the big screen.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 5.0,
+   "t_out": 9.0,
+   "text": "On a tab, it's just a smudge.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 11.0,
+   "t_out": 14.0,
+   "text": "Shrink it through the gates.",
+   "kind": "title"
+  },
+  {
+   "t_in": 14.0,
+   "t_out": 18.0,
+   "text": "Shrinking throws away the wrong details.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 18.0,
+   "t_out": 20.5,
+   "text": "Remove one thing at a time. Check each.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 21.0,
+   "t_out": 23.5,
+   "text": "Drop one detail.",
+   "kind": "label"
+  },
+  {
+   "t_in": 24.0,
+   "t_out": 27.5,
+   "text": "Each step must still read when tiny.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 28.0,
+   "t_out": 31.5,
+   "text": "Lose the wrong part? The gate says no.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 32.0,
+   "t_out": 36.0,
+   "text": "Real run: a ladder borrowed from Saul Bass.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 33.0,
+   "t_out": 43.5,
+   "text": "Real run · 5 steps to tab size.",
+   "kind": "card",
+   "src": "https://github.com/manutej/glyph-foundry-studio-pro"
+  },
+  {
+   "t_in": 38.0,
+   "t_out": 42.0,
+   "text": "Four tests at the smallest size.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 44.0,
+   "t_out": 47.0,
+   "text": "It reads. But it reads as something else.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 47.0,
+   "t_out": 49.75,
+   "text": "Readable at any size is not recognisable.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 58.0,
+   "t_out": 62.0,
+   "text": "Shrink on purpose, one step at a time.",
+   "kind": "caption"
+  }
+ ],
+ "terms": [],
+ "jargon": [
+  "rung",
+  "favicon",
+  "silhouette",
+  "emblem",
+  "glyph",
+  "px"
+ ],
+ "sound": {
+  "signature": "A pluck that steps down in tune, one note per gate.",
+  "problem_motif": "A rich chord squeezed into a muddy hum.",
+  "limit_unresolved": true
+ },
+ "score_self": {
+  "score": 0.75,
+  "reason": "A concrete, visual pain everyone has seen. The step-down mechanism draws easily, the limit is pictured and fair, and the case numbers are on the card. Weakest is the second case beat, four tests in one beat.",
+  "weakest_piece": "beats"
+ }
+}

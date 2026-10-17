@@ -1,0 +1,475 @@
+{
+  "schema_version": "sb60-v1",
+  "id": "sb-10-09",
+  "meta_prompt_id": "mp-c10-v1",
+  "cluster": "10 Explainers & craft",
+  "repo": "provenance ledger (kh/registry)",
+  "capability": "Stamp each version and chain it to the last",
+  "audience": "Researchers",
+  "wada": 279,
+  "bpm": 120,
+  "dur": 64.3,
+  "title": "Every version gets a <i>tick</i>.",
+  "hook": {
+    "kind": "Example",
+    "picture": "Close: two almost identical lines lie side by side; the whale looks from one to the other and back.",
+    "words": "Was it this one, or that?"
+  },
+  "problem_in_viewer_words": {
+    "kind": "Fact",
+    "body": "Which version did the client actually see?",
+    "who": "researcher preparing a client follow-up"
+  },
+  "why_it_keeps_happening": {
+    "kind": "Fact",
+    "picture": "Pull back: lines get redrawn over themselves, in place, leaving no trace of what they were. Three-times device: three silent redraws, every 2 beats, then 1, then half, each wiping the last shape away.",
+    "words": "Edits write over the old one."
+  },
+  "stakes": {
+    "kind": "Fact",
+    "body": "You cannot stand behind work you cannot trace, and a silent change becomes your mistake in front of a client."
+  },
+  "solution_hint": "Stamp each version and link it back.",
+  "metaphor": {
+    "kind": "Example",
+    "body": "Each finished version gets a tick tied to it by a thread to the tick before; tug any old version and every later thread goes taut.",
+    "symbols": [
+      "whale",
+      "line",
+      "tick",
+      "flag"
+    ]
+  },
+  "mechanism_beats": {
+    "kind": "Method",
+    "steps": [
+      {
+        "t": 20.0,
+        "picture": "Each time the whale finishes a version, a tick is tied to the line, holding a thin thread to the tick before it.",
+        "words": "Stamp each version and link it back.",
+        "sound": "Knot tick"
+      },
+      {
+        "t": 23.0,
+        "picture": "A new version is a new line with its own tick, linked to the last; the old line stays where it was.",
+        "words": "New line, new tick.",
+        "sound": "Two knot ticks, linked"
+      },
+      {
+        "t": 26.0,
+        "picture": "Someone tugs an old line to change it in place; the thread to every later tick goes taut and glows copper; a flag rises.",
+        "words": "A silent change? Every later tick shows it.",
+        "sound": "Taut thread hum, copper"
+      },
+      {
+        "t": 29.0,
+        "picture": "The chain of ticks gets its name.",
+        "words": "A chain of stamps: the ledger.",
+        "sound": "Run of ticks"
+      }
+    ]
+  },
+  "real_case": {
+    "kind": "Evidence",
+    "claim": "The Motion Atlas registry ledger holds 25 entries (counted 2026-10-17). It is append-only, and each entry carries the hash of the one before.",
+    "numbers": [
+      "25 entries"
+    ],
+    "source": {
+      "kind": "repo",
+      "title": "kh/registry/ledger.jsonl + How to register a design",
+      "url": "https://app.notion.com/p/3fbd50cfaf9381ad9dcaeb45bad02d5c"
+    },
+    "verified": true,
+    "illustrative": false
+  },
+  "honest_limit": {
+    "kind": "Constraint",
+    "picture": "A smudged, wrong design is stamped and chained like any other; its tick glows fine.",
+    "words": "A wrong design gets stamped just fine."
+  },
+  "not_this": {
+    "kind": "Constraint",
+    "body": "A stamp shows unchanged, not good."
+  },
+  "ending_pattern": {
+    "kind": "Example",
+    "slug": "tug-and-tell",
+    "body": "FELT framing returns: the two near-identical lines. The whale tugs one; its thread lights to the tick marked sent; the other stays dark; the pod quotes the lit one and answers ✓.",
+    "callback": "The two lines the whale could not tell apart in bar 1 now each answer to their own tick."
+  },
+  "end_belief": {
+    "kind": "Goal",
+    "body": "Never edit in place. Make a version."
+  },
+  "beats": [
+    {
+      "t": 0.0,
+      "act": "felt",
+      "bars": "1",
+      "picture": "Close: two almost identical lines lie side by side; the whale looks from one to the other and back.",
+      "words": "",
+      "sound": "Soft paper slide",
+      "camera": "Close z 1.6 on the whale",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 1.0,
+      "act": "felt",
+      "bars": "1",
+      "picture": "The whale holds still for a breath, facing the trouble.",
+      "words": "Was it this one, or that?",
+      "sound": "Low room tone",
+      "camera": "Close z 1.6 on the whale",
+      "cue_tags": []
+    },
+    {
+      "t": 2.0,
+      "act": "felt",
+      "bars": "2",
+      "picture": "A pod, the client's, quotes a line that matches neither; ✕.",
+      "words": "",
+      "sound": "Frayed slack thread",
+      "camera": "Close z 1.6 on the whale",
+      "cue_tags": [
+        "consequence",
+        "focus"
+      ]
+    },
+    {
+      "t": 5.0,
+      "act": "felt",
+      "bars": "3",
+      "picture": "The whale searches for a mark on either line; there is none.",
+      "words": "Someone changed it. Nobody knows when.",
+      "sound": "Slack thread, longer",
+      "camera": "Close z 1.6 on the whale",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 8.0,
+      "act": "felt",
+      "bars": "5",
+      "picture": "The two unmarked lines, side by side. Hold.",
+      "words": "",
+      "sound": "Silence creeps in",
+      "camera": "Close z 1.6 on the whale",
+      "cue_tags": []
+    },
+    {
+      "t": 11.0,
+      "act": "why",
+      "bars": "6",
+      "picture": "Stillness, then the title between the two lines.",
+      "words": "Every version gets a tick.",
+      "sound": "Half a bar of room tone, then the title tick",
+      "camera": "Pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "hinge"
+      ]
+    },
+    {
+      "t": 13.0,
+      "act": "why",
+      "bars": "7",
+      "picture": "Pull back: lines get redrawn over themselves, in place, leaving no trace of what they were.",
+      "words": "Edits write over the old one.",
+      "sound": "Eraser rub",
+      "camera": "Pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 15.0,
+      "act": "why",
+      "bars": "8",
+      "picture": "Three-times device: three silent redraws, every 2 beats, then 1, then half, each wiping the last shape away.",
+      "words": "",
+      "sound": "Rub x3, accelerating",
+      "camera": "Pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 18.0,
+      "act": "why",
+      "bars": "10",
+      "picture": "All motion stops. Where the fix will go, a faint outline of it ghosts in.",
+      "words": "Stamp each version and link it back.",
+      "sound": "One clean knot tick, the first in tune",
+      "camera": "Pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 20.0,
+      "act": "move",
+      "bars": "11",
+      "picture": "Each time the whale finishes a version, a tick is tied to the line, holding a thin thread to the tick before it.",
+      "words": "Stamp each version and link it back.",
+      "sound": "Knot tick",
+      "camera": "Medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 23.0,
+      "act": "move",
+      "bars": "12",
+      "picture": "A new version is a new line with its own tick, linked to the last; the old line stays where it was.",
+      "words": "New line, new tick.",
+      "sound": "Two knot ticks, linked",
+      "camera": "Medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 26.0,
+      "act": "move",
+      "bars": "14",
+      "picture": "Someone tugs an old line to change it in place; the thread to every later tick goes taut and glows copper; a flag rises.",
+      "words": "A silent change? Every later tick shows it.",
+      "sound": "Taut thread hum, copper",
+      "camera": "Push-in z 1.1 to 1.3, the only push",
+      "cue_tags": [
+        "mech",
+        "focus"
+      ]
+    },
+    {
+      "t": 29.0,
+      "act": "move",
+      "bars": "15",
+      "picture": "The chain of ticks gets its name.",
+      "words": "A chain of stamps: the ledger.",
+      "sound": "Run of ticks",
+      "camera": "Medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 32.0,
+      "act": "case",
+      "bars": "17",
+      "picture": "Wide: a long chain of ticks runs across the chart ground, each design hanging from its tick.",
+      "words": "Real run: our film designs, chained.",
+      "sound": "Pulse bed, quiet fast ticks",
+      "camera": "Steady wide, slow drift",
+      "cue_tags": []
+    },
+    {
+      "t": 34.0,
+      "act": "case",
+      "bars": "18",
+      "picture": "The card fades in on clean paper beside the run; the run keeps moving behind it.",
+      "words": "25 entries · each linked to the last",
+      "sound": "One soft card tick",
+      "camera": "Steady wide, slow drift",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 38.0,
+      "act": "case",
+      "bars": "20",
+      "picture": "The whale re-checks the chain from end to end; each tick glows in turn.",
+      "words": "Re-check the whole chain any time.",
+      "sound": "Ticks sweeping end to end",
+      "camera": "Steady wide, slow drift",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 44.0,
+      "act": "limit",
+      "bars": "23",
+      "picture": "A smudged, wrong design is stamped and chained like any other; its tick glows fine.",
+      "words": "A wrong design gets stamped just fine.",
+      "sound": "The signature plays once and does not resolve",
+      "camera": "Still, then one slow push in",
+      "cue_tags": [
+        "limit",
+        "focus"
+      ]
+    },
+    {
+      "t": 48.0,
+      "act": "limit",
+      "bars": "25",
+      "picture": "Hold on the smudged design hanging from its good tick.",
+      "words": "A stamp shows unchanged, not good.",
+      "sound": "Room tone",
+      "camera": "Still",
+      "cue_tags": []
+    },
+    {
+      "t": 50.0,
+      "act": "payoff",
+      "bars": "26",
+      "picture": "FELT framing (z 1.6). The same two lines, now each tied to a tick.",
+      "words": "",
+      "sound": "Knot tick, resolved",
+      "camera": "FELT framing z 1.6, then wide reveal",
+      "cue_tags": [
+        "callback",
+        "focus"
+      ]
+    },
+    {
+      "t": 54.0,
+      "act": "payoff",
+      "bars": "28",
+      "picture": "The whale tugs one; its thread lights to the sent tick; the pod answers ✓. Spark.",
+      "words": "",
+      "sound": "Full resolution, the signature in tune on every beat",
+      "camera": "FELT framing z 1.6, then wide reveal",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 58.0,
+      "act": "belief",
+      "bars": "30",
+      "picture": "The chain of ticks, calm; the whale breathes.",
+      "words": "Never edit in place. Make a version.",
+      "sound": "Pad tail only",
+      "camera": "Still, breathing",
+      "cue_tags": []
+    },
+    {
+      "t": 62.0,
+      "act": "lockup",
+      "bars": "32",
+      "picture": "SERIES.lockup over the chart ground.",
+      "words": "",
+      "sound": "Pad tail fades",
+      "camera": "Still",
+      "cue_tags": []
+    }
+  ],
+  "captions": [
+    {
+      "t_in": 1.0,
+      "t_out": 4.0,
+      "text": "Was it this one, or that?",
+      "kind": "caption"
+    },
+    {
+      "t_in": 5.0,
+      "t_out": 8.5,
+      "text": "Someone changed it. Nobody knows when.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 11.0,
+      "t_out": 13.0,
+      "text": "Every version gets a tick.",
+      "kind": "title"
+    },
+    {
+      "t_in": 13.0,
+      "t_out": 17.0,
+      "text": "Edits write over the old one.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 18.0,
+      "t_out": 20.5,
+      "text": "Stamp each version and link it back.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 23.0,
+      "t_out": 25.0,
+      "text": "New line, new tick.",
+      "kind": "label"
+    },
+    {
+      "t_in": 26.0,
+      "t_out": 29.0,
+      "text": "A silent change? Every later tick shows it.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 29.0,
+      "t_out": 32.0,
+      "text": "A chain of stamps: the ledger.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 32.0,
+      "t_out": 35.0,
+      "text": "Real run: our film designs, chained.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 34.0,
+      "t_out": 42.0,
+      "text": "25 entries · each linked to the last",
+      "kind": "card",
+      "src": "films/kh/registry/ledger.jsonl"
+    },
+    {
+      "t_in": 38.0,
+      "t_out": 42.0,
+      "text": "Re-check the whole chain any time.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 44.0,
+      "t_out": 47.0,
+      "text": "A wrong design gets stamped just fine.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 48.0,
+      "t_out": 51.0,
+      "text": "A stamp shows unchanged, not good.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 58.0,
+      "t_out": 62.0,
+      "text": "Never edit in place. Make a version.",
+      "kind": "caption"
+    }
+  ],
+  "terms": [
+    {
+      "term": "ledger",
+      "symbol": "tick",
+      "pictured_at": 20.0,
+      "named_at": 29.0
+    }
+  ],
+  "jargon": [
+    "hash",
+    "fingerprint",
+    "registry",
+    "commit",
+    "audit"
+  ],
+  "sound": {
+    "signature": "A short knot-pull sound with a clean tick",
+    "problem_motif": "The same pull, with a frayed, slack thread",
+    "limit_unresolved": true
+  },
+  "score_self": {
+    "score": 0.71,
+    "reason": "Vivid felt question for any freelancer; the case is a real local count. Weak: the stamp metaphor needs the pull-back to read as a chain, and \"ledger\" lands late.",
+    "weakest_piece": "metaphor"
+  }
+}

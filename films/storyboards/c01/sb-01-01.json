@@ -1,0 +1,424 @@
+{
+ "schema_version": "sb60-v1",
+ "id": "sb-01-01",
+ "meta_prompt_id": "mp-c01-v1",
+ "cluster": "01 Sheaf memory",
+ "repo": "manutej/sheaf-knowledge-studio",
+ "capability": "Study notes checked against each other where they overlap",
+ "audience": "Learners",
+ "wada": 296,
+ "bpm": 124,
+ "dur": 62.24,
+ "title": "Notes must agree at the <i>joins</i>.",
+ "hook": {
+  "kind": "Example",
+  "picture": "Close on the whale writing a note card from chapter two onto the line. Far down the line sits a chapter-nine card about the same word. Their two little arrows point different ways.",
+  "words": "Chapter two says one thing."
+ },
+ "problem_in_viewer_words": {
+  "kind": "Fact",
+  "body": "My notes from chapter two and chapter nine disagree.",
+  "who": "a learner the night before the exam"
+ },
+ "why_it_keeps_happening": {
+  "kind": "Fact",
+  "picture": "Pull back: a long line of cards from a 600-page book. Three times, every 2 beats, then 1, then half, a new card lands far from its twin and the pod flashes ✕.",
+  "words": "No one reads both pages side by side."
+ },
+ "stakes": {
+  "kind": "Fact",
+  "body": "You revise the wrong version, lose marks, and stop trusting your own notes."
+ },
+ "solution_hint": "Check each note where it meets another.",
+ "metaphor": {
+  "kind": "Example",
+  "body": "Each chapter note is a card on one line. Wherever two cards cover the same idea, a seam joins them. It is read from both sides, and it glows when they disagree.",
+  "symbols": [
+   "whale",
+   "line",
+   "seam",
+   "atom",
+   "pod"
+  ]
+ },
+ "mechanism_beats": {
+  "kind": "Method",
+  "steps": [
+   {
+    "t": 19.355,
+    "picture": "The whale slides the two cards end to end. Where both cover the same word, a dashed join appears, with one chevron reading each side.",
+    "words": "Check each note where it meets another.",
+    "sound": "Two tones, one per card, struck together."
+   },
+   {
+    "t": 22.258,
+    "picture": "Every pair of cards sharing a word gets a dashed join. Each join is read both ways. Most turn teal with a soft tick.",
+    "words": "Read both ends of every join.",
+    "sound": "Unison pairs ring, one per teal join."
+   },
+   {
+    "t": 25.161,
+    "picture": "Push-in on the chapter two and nine join: it glows copper. The whale erases neither card. Both stay, and the join stays lit.",
+    "words": "This one disagrees. It stays lit.",
+    "sound": "The pair beats, detuned, with the glow."
+   },
+   {
+    "t": 28.065,
+    "picture": "The learner fixes the card that misread its page; both ends move to meet and the join turns teal. A label slides onto it: seam.",
+    "words": "Where two notes meet: a seam.",
+    "sound": "The two tones glide into one note."
+   }
+  ]
+ },
+ "real_case": {
+  "kind": "Evidence",
+  "claim": "sheaf-knowledge-studio built a page-cited study base from Marinov (377 pp., 291 declarations); all 3 builds cleared 30/30 binary gates.",
+  "numbers": [
+   "377 pp.",
+   "291",
+   "30/30",
+   "3 builds"
+  ],
+  "source": {
+   "kind": "repo",
+   "title": "manutej/sheaf-knowledge-studio README",
+   "url": "https://github.com/manutej/sheaf-knowledge-studio"
+  },
+  "verified": true,
+  "illustrative": false
+ },
+ "honest_limit": {
+  "kind": "Constraint",
+  "picture": "Push into one teal join: both cards carry the same misreading, copied from one page. The join agrees and turns teal anyway. The pod reads it and answers ✕.",
+  "words": "Both notes copied one mistake. It passes."
+ },
+ "not_this": {
+  "kind": "Constraint",
+  "body": "Agreeing notes can share one mistake."
+ },
+ "ending_pattern": {
+  "kind": "Example",
+  "slug": "the-bound-book",
+  "body": "The cards of a whole course fold shut into one bound book whose spine carries a tick, and the exam pod answers ✓.",
+  "callback": "The two cards that disagreed in bar 1 sit in the same framing, joined teal, inside one bound book."
+ },
+ "end_belief": {
+  "kind": "Goal",
+  "body": "Compare notes where they overlap. Keep the warnings."
+ },
+ "beats": [
+  {
+   "t": 0.0,
+   "picture": "Close on the whale writing a note card from chapter two onto the line. Far down the line sits a chapter-nine card about the same word. Their two little arrows point different ways.",
+   "words": "Chapter two says one thing.",
+   "sound": "Single pencil scratch, then a soft low tone.",
+   "act": "felt",
+   "bars": "1-2",
+   "camera": "Close, z 1.6 on the whale, small follow pan",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 2.903,
+   "picture": "A pod (the exam) reads both cards and answers ✕ on a copper chip.",
+   "words": "",
+   "sound": "Dull thunk on the pod ✕.",
+   "act": "felt",
+   "bars": "2",
+   "camera": "Close, z 1.6 on the whale, small follow pan",
+   "cue_tags": [
+    "consequence"
+   ]
+  },
+  {
+   "t": 4.839,
+   "picture": "The whale flips between the two cards; each arrow tilts a different way. The pod's ✕ stays lit.",
+   "words": "Chapter nine says another.",
+   "sound": "The detuned pair, plucked once.",
+   "act": "felt",
+   "bars": "3-4",
+   "camera": "Close, z 1.6 on the whale, small follow pan"
+  },
+  {
+   "t": 7.742,
+   "picture": "The whale stares at the copper ✕. Hold.",
+   "words": "",
+   "sound": "The problem motif fades. Silence creeps in.",
+   "act": "felt",
+   "bars": "5",
+   "camera": "Close, z 1.6 on the whale, small follow pan"
+  },
+  {
+   "t": 10.645,
+   "picture": "Hinge: half a bar of stillness, then SERIES.open shows the title over the still line.",
+   "words": "",
+   "sound": "Near-silence, then the title tick.",
+   "act": "why",
+   "bars": "6",
+   "camera": "Pull back z 1.6 to 1.0, one reveal",
+   "cue_tags": [
+    "hinge"
+   ]
+  },
+  {
+   "t": 11.613,
+   "picture": "Pull back: a long line of cards from a 600-page book. Three times, every 2 beats, then 1, then half, a new card lands far from its twin and the pod flashes ✕.",
+   "words": "No one reads both pages side by side.",
+   "sound": "The detuned pair three times, accelerating.",
+   "act": "why",
+   "bars": "7-9",
+   "camera": "Pull back z 1.6 to 1.0, one reveal",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 17.419,
+   "picture": "All motion stops. Faint dashed links ghost in between every pair of cards that share a word.",
+   "words": "Check each note where it meets another.",
+   "sound": "One clean unison: the first in-tune signature.",
+   "act": "why",
+   "bars": "10",
+   "camera": "Pull back z 1.6 to 1.0, one reveal",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 19.355,
+   "picture": "The whale slides the two cards end to end. Where both cover the same word, a dashed join appears, with one chevron reading each side.",
+   "words": "Check each note where it meets another.",
+   "sound": "Two tones, one per card, struck together.",
+   "act": "move",
+   "bars": "11-12",
+   "camera": "Medium z 1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 22.258,
+   "picture": "Every pair of cards sharing a word gets a dashed join. Each join is read both ways. Most turn teal with a soft tick.",
+   "words": "Read both ends of every join.",
+   "sound": "Unison pairs ring, one per teal join.",
+   "act": "move",
+   "bars": "12-13",
+   "camera": "Medium z 1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 25.161,
+   "picture": "Push-in on the chapter two and nine join: it glows copper. The whale erases neither card. Both stay, and the join stays lit.",
+   "words": "This one disagrees. It stays lit.",
+   "sound": "The pair beats, detuned, with the glow.",
+   "act": "move",
+   "bars": "14",
+   "camera": "Medium z 1.2, the one push-in to z 1.3",
+   "cue_tags": [
+    "mech",
+    "focus"
+   ]
+  },
+  {
+   "t": 28.065,
+   "picture": "The learner fixes the card that misread its page; both ends move to meet and the join turns teal. A label slides onto it: seam.",
+   "words": "Where two notes meet: a seam.",
+   "sound": "The two tones glide into one note.",
+   "act": "move",
+   "bars": "15-16",
+   "camera": "Medium z 1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 30.968,
+   "picture": "Wide: a whole textbook becomes a line of cards with joins. The joins tick teal one after another; ticks stream along the line.",
+   "words": "Real run: a whole textbook, checked.",
+   "sound": "Pulse bed with fast quiet ticks.",
+   "act": "case",
+   "bars": "17-19",
+   "camera": "Steady wide, slow drift"
+  },
+  {
+   "t": 36.774,
+   "picture": "Three built lines sit side by side, each passing through its row of gates with a pass glow.",
+   "words": "Every build passed every gate.",
+   "sound": "Three soft pass glows, one per build.",
+   "act": "case",
+   "bars": "20-22",
+   "camera": "Steady wide, slow drift"
+  },
+  {
+   "t": 42.581,
+   "picture": "Push into one teal join: both cards carry the same misreading, copied from one page. The join agrees and turns teal anyway. The pod reads it and answers ✕.",
+   "words": "Both notes copied one mistake. It passes.",
+   "sound": "Unison plays, an unresolved third hangs above it.",
+   "act": "limit",
+   "bars": "23-24",
+   "camera": "Still, then one slow push to the thing that slipped",
+   "cue_tags": [
+    "limit"
+   ]
+  },
+  {
+   "t": 46.452,
+   "picture": "Hold on the teal join with the shared smudge inside both cards.",
+   "words": "Agreeing notes can share one mistake.",
+   "sound": "Room tone.",
+   "act": "limit",
+   "bars": "25",
+   "camera": "Still"
+  },
+  {
+   "t": 48.387,
+   "picture": "The bound book. FELT framing (z 1.6, the same two cards). Their join is teal now. The whole line of cards folds shut into one bound book, its spine ticked. The pod answers ✓. Spout.",
+   "words": "",
+   "sound": "Page riffle, a bound thump, then the resolved chord.",
+   "act": "payoff",
+   "bars": "26-29",
+   "camera": "Back to FELT framing z 1.6, then wide reveal",
+   "cue_tags": [
+    "callback"
+   ]
+  },
+  {
+   "t": 56.129,
+   "picture": "The closed book on the line, the whale breathing above it.",
+   "words": "Compare notes where they overlap. Keep the warnings.",
+   "sound": "Pad tail only.",
+   "act": "belief",
+   "bars": "30-31",
+   "camera": "Still, breathing only"
+  },
+  {
+   "t": 60.0,
+   "picture": "SERIES.lockup over the still line.",
+   "words": "",
+   "sound": "Lockup tone.",
+   "act": "lockup",
+   "bars": "32",
+   "camera": "Still"
+  }
+ ],
+ "captions": [
+  {
+   "t_in": 0.968,
+   "t_out": 3.871,
+   "text": "Chapter two says one thing.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 4.839,
+   "t_out": 8.71,
+   "text": "Chapter nine says another.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 10.645,
+   "t_out": 13.065,
+   "text": "Notes must agree at the joins.",
+   "kind": "title"
+  },
+  {
+   "t_in": 13.065,
+   "t_out": 16.452,
+   "text": "No one reads both pages side by side.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 16.935,
+   "t_out": 19.839,
+   "text": "Check each note where it meets another.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 22.258,
+   "t_out": 25.161,
+   "text": "Read both ends of every join.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 25.161,
+   "t_out": 28.065,
+   "text": "This one disagrees. It stays lit.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 28.065,
+   "t_out": 30.968,
+   "text": "Where two notes meet: a seam.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 30.968,
+   "t_out": 33.387,
+   "text": "Real run: a whole textbook, checked.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 32.903,
+   "t_out": 36.774,
+   "text": "Marinov textbook · 377 pp. · 291 declarations",
+   "kind": "card",
+   "src": "https://github.com/manutej/sheaf-knowledge-studio"
+  },
+  {
+   "t_in": 36.774,
+   "t_out": 41.613,
+   "text": "30/30 binary gates · 3 builds",
+   "kind": "card",
+   "src": "https://github.com/manutej/sheaf-knowledge-studio"
+  },
+  {
+   "t_in": 36.774,
+   "t_out": 40.645,
+   "text": "Every build passed every gate.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 42.581,
+   "t_out": 45.968,
+   "text": "Both notes copied one mistake. It passes.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 46.452,
+   "t_out": 49.355,
+   "text": "Agreeing notes can share one mistake.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 56.129,
+   "t_out": 60.0,
+   "text": "Compare notes where they overlap. Keep the warnings.",
+   "kind": "caption"
+  }
+ ],
+ "terms": [
+  {
+   "term": "seam",
+   "symbol": "seam",
+   "pictured_at": 19.355,
+   "named_at": 28.065
+  }
+ ],
+ "jargon": [
+  "declarations",
+  "binary",
+  "gates"
+ ],
+ "sound": {
+  "signature": "Each join is two struck tones that ring in unison when the cards agree.",
+  "problem_motif": "The same two tones a quarter-tone apart, beating like a wrong chord.",
+  "limit_unresolved": true
+ },
+ "score_self": {
+  "score": 0.74,
+  "reason": "Pain and move read clearly from pictures. The case card says declarations, which a learner may not parse. The limit (a shared mistake) is shown, not just said.",
+  "weakest_piece": "real_case"
+ }
+}

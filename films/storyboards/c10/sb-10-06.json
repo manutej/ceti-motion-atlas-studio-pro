@@ -1,0 +1,472 @@
+{
+  "schema_version": "sb60-v1",
+  "id": "sb-10-06",
+  "meta_prompt_id": "mp-c10-v1",
+  "cluster": "10 Explainers & craft",
+  "repo": "manutej/craft",
+  "capability": "Rules on paper are advice; a check can stop the merge",
+  "audience": "Leaders",
+  "wada": 84,
+  "bpm": 124,
+  "dur": 62.2,
+  "title": "Turn each rule into a <i>door</i>.",
+  "hook": {
+    "kind": "Example",
+    "picture": "Close on the whale holding up a long paper scroll of rules beside the line; the line wobbles past it.",
+    "words": "We wrote it all down."
+  },
+  "problem_in_viewer_words": {
+    "kind": "Fact",
+    "body": "We wrote the rules down. The AI ignored them.",
+    "who": "engineering manager after a sprint"
+  },
+  "why_it_keeps_happening": {
+    "kind": "Fact",
+    "picture": "Pull back: the scroll stands beside the line like a sign; lines pass it, some wobbly, and nothing stops them. Three-times device: three lines pass the scroll, every 2 beats, then 1, then half, each wobbling a little more.",
+    "words": "Paper asks. Nothing makes it stop."
+  },
+  "stakes": {
+    "kind": "Fact",
+    "body": "Teams lose trust in the AI and in their own rules, and review turns into rereading everything."
+  },
+  "solution_hint": "Turn each rule into a check.",
+  "metaphor": {
+    "kind": "Example",
+    "body": "A rule on a scroll is a sign by the road. Torn off and planted on the line, it becomes a door the work has to pass through.",
+    "symbols": [
+      "whale",
+      "line",
+      "gate",
+      "tick"
+    ]
+  },
+  "mechanism_beats": {
+    "kind": "Method",
+    "steps": [
+      {
+        "t": 19.355,
+        "picture": "The whale tears one line off the scroll and plants it on the line, where it grows into a small gate.",
+        "words": "Turn each rule into a check.",
+        "sound": "Paper tear, then latch click"
+      },
+      {
+        "t": 22.258,
+        "picture": "The wobbly line hits the gate and stops; the whale smooths it; it passes, and a tick drops.",
+        "words": "Stopped. Fixed. Passed.",
+        "sound": "Click, then a tick"
+      },
+      {
+        "t": 25.161,
+        "picture": "Two more scroll lines become gates; the scroll shrinks as the row of gates grows, and each pass drops a tick.",
+        "words": "Fewer words. More checks.",
+        "sound": "Three clicks with ticks"
+      },
+      {
+        "t": 28.065,
+        "picture": "The row of gates gets its name.",
+        "words": "Each rule that stops work: a gate.",
+        "sound": "Clicks in a row"
+      }
+    ]
+  },
+  "real_case": {
+    "kind": "Evidence",
+    "claim": "The craft README says rules written as prose get far lower compliance than mechanical gates, but it gives no source for its figures, so they stay off screen and the card says Illustration. Its /senior-review gate \"can block a merge alongside a CI check\".",
+    "numbers": [],
+    "source": {
+      "kind": "repo",
+      "title": "manutej/craft README",
+      "url": "https://github.com/manutej/craft"
+    },
+    "verified": false,
+    "illustrative": true
+  },
+  "honest_limit": {
+    "kind": "Constraint",
+    "picture": "A smooth line passes every gate, but it is wildly over-built: a huge loop that no gate measures.",
+    "words": "No check for it? It walks through."
+  },
+  "not_this": {
+    "kind": "Constraint",
+    "body": "A gate only checks what you wrote."
+  },
+  "ending_pattern": {
+    "kind": "Example",
+    "slug": "scroll-becomes-gates",
+    "body": "FELT framing returns. The whale holds up the scroll and it folds into a row of small gates on the line; the next line passes straight through; the pod answers ✓.",
+    "callback": "The scroll the line wobbled past in bar 1 is now the gates it passes through, same framing."
+  },
+  "end_belief": {
+    "kind": "Goal",
+    "body": "If it matters, make it a check."
+  },
+  "beats": [
+    {
+      "t": 0.0,
+      "act": "felt",
+      "bars": "1",
+      "picture": "Close on the whale holding up a long paper scroll of rules beside the line; the line wobbles past it.",
+      "words": "",
+      "sound": "Paper unrolling",
+      "camera": "Close z 1.6 on the whale",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 0.968,
+      "act": "felt",
+      "bars": "1",
+      "picture": "The whale holds still for a breath, facing the trouble.",
+      "words": "We wrote it all down.",
+      "sound": "Low room tone",
+      "camera": "Close z 1.6 on the whale",
+      "cue_tags": []
+    },
+    {
+      "t": 1.935,
+      "act": "felt",
+      "bars": "2",
+      "picture": "A pod receives the wobbly line and answers ✕.",
+      "words": "",
+      "sound": "Dull thunk on the ✕",
+      "camera": "Close z 1.6 on the whale",
+      "cue_tags": [
+        "consequence",
+        "focus"
+      ]
+    },
+    {
+      "t": 4.839,
+      "act": "felt",
+      "bars": "3",
+      "picture": "The whale points at the scroll; the next line wobbles past it too.",
+      "words": "It still did the opposite.",
+      "sound": "Paper rustle",
+      "camera": "Close z 1.6 on the whale",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 7.742,
+      "act": "felt",
+      "bars": "5",
+      "picture": "The scroll hangs beside the wobbly line. Hold.",
+      "words": "",
+      "sound": "Silence creeps in",
+      "camera": "Close z 1.6 on the whale",
+      "cue_tags": []
+    },
+    {
+      "t": 10.645,
+      "act": "why",
+      "bars": "6",
+      "picture": "Stillness, then the title beside the scroll.",
+      "words": "Turn each rule into a door.",
+      "sound": "Half a bar of room tone, then the title tick",
+      "camera": "Pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "hinge"
+      ]
+    },
+    {
+      "t": 12.581,
+      "act": "why",
+      "bars": "7",
+      "picture": "Pull back: the scroll stands beside the line like a sign; lines pass it, some wobbly, and nothing stops them.",
+      "words": "Paper asks. Nothing makes it stop.",
+      "sound": "Paper rustle, longer",
+      "camera": "Pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 14.516,
+      "act": "why",
+      "bars": "8",
+      "picture": "Three-times device: three lines pass the scroll, every 2 beats, then 1, then half, each wobbling a little more.",
+      "words": "",
+      "sound": "Rustle x3, accelerating",
+      "camera": "Pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 17.419,
+      "act": "why",
+      "bars": "10",
+      "picture": "All motion stops. Where the fix will go, a faint outline of it ghosts in.",
+      "words": "Turn each rule into a check.",
+      "sound": "One latch click, the first in tune",
+      "camera": "Pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 19.355,
+      "act": "move",
+      "bars": "11",
+      "picture": "The whale tears one line off the scroll and plants it on the line, where it grows into a small gate.",
+      "words": "Turn each rule into a check.",
+      "sound": "Paper tear, then latch click",
+      "camera": "Medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 22.258,
+      "act": "move",
+      "bars": "12",
+      "picture": "The wobbly line hits the gate and stops; the whale smooths it; it passes, and a tick drops.",
+      "words": "Stopped. Fixed. Passed.",
+      "sound": "Click, then a tick",
+      "camera": "Medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 25.161,
+      "act": "move",
+      "bars": "14",
+      "picture": "Two more scroll lines become gates; the scroll shrinks as the row of gates grows, and each pass drops a tick.",
+      "words": "Fewer words. More checks.",
+      "sound": "Three clicks with ticks",
+      "camera": "Push-in z 1.1 to 1.3, the only push",
+      "cue_tags": [
+        "mech",
+        "focus"
+      ]
+    },
+    {
+      "t": 28.065,
+      "act": "move",
+      "bars": "15",
+      "picture": "The row of gates gets its name.",
+      "words": "Each rule that stops work: a gate.",
+      "sound": "Clicks in a row",
+      "camera": "Medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 30.968,
+      "act": "case",
+      "bars": "17",
+      "picture": "Wide: two lanes. Top: a scroll beside the lane, wobbly lines pass. Bottom: a row of gates, and the lines come out straight.",
+      "words": "Paper rules versus checks, side by side.",
+      "sound": "Pulse bed, quiet fast ticks",
+      "camera": "Steady wide, slow drift",
+      "cue_tags": []
+    },
+    {
+      "t": 32.903,
+      "act": "case",
+      "bars": "18",
+      "picture": "The card fades in on clean paper beside the run; the run keeps moving behind it.",
+      "words": "Illustration · claim in craft README, unsourced",
+      "sound": "One soft card tick",
+      "camera": "Steady wide, slow drift",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 36.774,
+      "act": "case",
+      "bars": "20",
+      "picture": "In the bottom lane the last gate is the review step; one wobbly line is held there and does not merge.",
+      "words": "The review step can block a merge.",
+      "sound": "A held latch click",
+      "camera": "Steady wide, slow drift",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 42.581,
+      "act": "limit",
+      "bars": "23",
+      "picture": "A smooth line passes every gate, but it is wildly over-built: a huge loop that no gate measures.",
+      "words": "No check for it? It walks through.",
+      "sound": "The signature plays once and does not resolve",
+      "camera": "Still, then one slow push in",
+      "cue_tags": [
+        "limit",
+        "focus"
+      ]
+    },
+    {
+      "t": 46.452,
+      "act": "limit",
+      "bars": "25",
+      "picture": "Hold on the over-built loop past the last gate.",
+      "words": "A gate only checks what you wrote.",
+      "sound": "Room tone",
+      "camera": "Still",
+      "cue_tags": []
+    },
+    {
+      "t": 48.387,
+      "act": "payoff",
+      "bars": "26",
+      "picture": "FELT framing (z 1.6). The whale lifts the scroll; it folds, line by line, into small gates.",
+      "words": "",
+      "sound": "Clicks resolve into a chord",
+      "camera": "FELT framing z 1.6, then wide reveal",
+      "cue_tags": [
+        "callback",
+        "focus"
+      ]
+    },
+    {
+      "t": 52.258,
+      "act": "payoff",
+      "bars": "28",
+      "picture": "A straight line threads the gates; the pod answers ✓. Spark.",
+      "words": "",
+      "sound": "Full resolution, the signature in tune on every beat",
+      "camera": "FELT framing z 1.6, then wide reveal",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 56.129,
+      "act": "belief",
+      "bars": "30",
+      "picture": "The row of gates, a straight line; the whale breathes.",
+      "words": "If it matters, make it a check.",
+      "sound": "Pad tail only",
+      "camera": "Still, breathing",
+      "cue_tags": []
+    },
+    {
+      "t": 60.0,
+      "act": "lockup",
+      "bars": "32",
+      "picture": "SERIES.lockup over the chart ground.",
+      "words": "",
+      "sound": "Pad tail fades",
+      "camera": "Still",
+      "cue_tags": []
+    }
+  ],
+  "captions": [
+    {
+      "t_in": 0.968,
+      "t_out": 3.871,
+      "text": "We wrote it all down.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 4.839,
+      "t_out": 8.226,
+      "text": "It still did the opposite.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 10.645,
+      "t_out": 12.58,
+      "text": "Turn each rule into a door.",
+      "kind": "title"
+    },
+    {
+      "t_in": 12.581,
+      "t_out": 16.452,
+      "text": "Paper asks. Nothing makes it stop.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 17.419,
+      "t_out": 19.838,
+      "text": "Turn each rule into a check.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 22.258,
+      "t_out": 24.193,
+      "text": "Stopped. Fixed. Passed.",
+      "kind": "label"
+    },
+    {
+      "t_in": 25.161,
+      "t_out": 28.064,
+      "text": "Fewer words. More checks.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 28.065,
+      "t_out": 30.968,
+      "text": "Each rule that stops work: a gate.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 30.968,
+      "t_out": 33.871,
+      "text": "Paper rules versus checks, side by side.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 32.903,
+      "t_out": 40.645,
+      "text": "Illustration · claim in craft README, unsourced",
+      "kind": "card"
+    },
+    {
+      "t_in": 36.774,
+      "t_out": 40.645,
+      "text": "The review step can block a merge.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 42.581,
+      "t_out": 45.484,
+      "text": "No check for it? It walks through.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 46.452,
+      "t_out": 49.355,
+      "text": "A gate only checks what you wrote.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 56.129,
+      "t_out": 60.0,
+      "text": "If it matters, make it a check.",
+      "kind": "caption"
+    }
+  ],
+  "terms": [
+    {
+      "term": "gate",
+      "symbol": "gate",
+      "pictured_at": 22.258,
+      "named_at": 28.065
+    }
+  ],
+  "jargon": [
+    "compliance",
+    "policy",
+    "prompt",
+    "merge",
+    "pipeline"
+  ],
+  "sound": {
+    "signature": "A firm latch click as a door shuts",
+    "problem_motif": "Rustling paper, the same click missing",
+    "limit_unresolved": true
+  },
+  "score_self": {
+    "score": 0.68,
+    "reason": "A leader-level pain stated plainly, with a clear move. Weak: CASE is an Illustration because the README figure is unsourced, so the scale-up proof is the weakest in the cluster.",
+    "weakest_piece": "real_case"
+  }
+}

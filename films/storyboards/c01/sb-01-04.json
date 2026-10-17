@@ -1,0 +1,424 @@
+{
+ "schema_version": "sb60-v1",
+ "id": "sb-01-04",
+ "meta_prompt_id": "mp-c01-v1",
+ "cluster": "01 Sheaf memory",
+ "repo": "manutej/sheaf-port",
+ "capability": "Map every part and link before moving a folder",
+ "audience": "Engineers",
+ "wada": 243,
+ "bpm": 132,
+ "dur": 58.48,
+ "title": "Map the <i>joins</i>, then merge.",
+ "hook": {
+  "kind": "Example",
+  "picture": "Close: the whale drags a small folder, a short line of six cards, onto a bigger line. On the drop, threads between the cards stretch.",
+  "words": "Just merge it. It will be fine."
+ },
+ "problem_in_viewer_words": {
+  "kind": "Fact",
+  "body": "I merged the folder and half the links point nowhere.",
+  "who": "an engineer after a Friday repo merge"
+ },
+ "why_it_keeps_happening": {
+  "kind": "Fact",
+  "picture": "Pull back: folders moved by hand across a big codebase. Three times, every 2 beats, then 1, then half, a move leaves loose thread ends where links used to land.",
+  "words": "Nobody knows which parts depend on which."
+ },
+ "stakes": {
+  "kind": "Fact",
+  "body": "Broken imports and dead links ship, and a weekend goes to tracing them by hand."
+ },
+ "solution_hint": "Draw each link before you move a thing.",
+ "metaphor": {
+  "kind": "Example",
+  "body": "A folder is a row of cards tied by threads. Mapping draws every thread as a checked join before anything moves, so a thread with no far end is caught on the map.",
+  "symbols": [
+   "whale",
+   "line",
+   "atom",
+   "seam",
+   "flag"
+  ]
+ },
+ "mechanism_beats": {
+  "kind": "Method",
+  "steps": [
+   {
+    "t": 18.182,
+    "picture": "Before any drag, the whale reads the folder: each part becomes a card, each link a dashed join drawn between two cards. Six cards, four joins.",
+    "words": "Draw each link before you move a thing.",
+    "sound": "Two tones per join, struck as it is drawn."
+   },
+   {
+    "t": 20.909,
+    "picture": "Each join is checked: does the far end exist? Four joins resolve and turn teal; the whale rings each one.",
+    "words": "Each link is checked. Does it land?",
+    "sound": "Four unison pairs, one per teal join."
+   },
+   {
+    "t": 23.636,
+    "picture": "Push-in: on a second folder, one join's far end is empty. It glows raw sienna and a flag stands on it, before any move happens.",
+    "words": "Broken before the move, not after.",
+    "sound": "The pair beats against an empty end."
+   },
+   {
+    "t": 26.364,
+    "picture": "The map settles beside the folder as a small lattice, saved to reuse on the next folder. A label slides onto a join: seam.",
+    "words": "Each checked link is a seam.",
+    "sound": "A soft save tick."
+   }
+  ]
+ },
+ "real_case": {
+  "kind": "Evidence",
+  "claim": "sheaf-port builds a typed index of a folder's parts and links. Its sanity check prints 6 parts and 4 teal links, and it caps at 120 parts. It does not decide merge safety.",
+  "numbers": [
+   "6 parts",
+   "4 teal links",
+   "Cap 120 parts"
+  ],
+  "source": {
+   "kind": "repo",
+   "title": "manutej/sheaf-port README",
+   "url": "https://github.com/manutej/sheaf-port"
+  },
+  "verified": true,
+  "illustrative": false
+ },
+ "honest_limit": {
+  "kind": "Constraint",
+  "picture": "Push to a merged line: every join is teal, yet a pod runs the merged code and answers ✕. The links land, but on cards from the wrong version.",
+  "words": "Every link landed. The merge still broke."
+ },
+ "not_this": {
+  "kind": "Constraint",
+  "body": "A clean map is not a safe merge."
+ },
+ "ending_pattern": {
+  "kind": "Example",
+  "slug": "map-then-merge",
+  "body": "The same drop as the cold open, made after the map: the one bad join is fixed first, the folder lands, and every thread holds.",
+  "callback": "The drop that snapped four threads in bar 1 repeats in the same framing, and every thread holds."
+ },
+ "end_belief": {
+  "kind": "Goal",
+  "body": "Map the links first. Then decide to merge."
+ },
+ "beats": [
+  {
+   "t": 0.0,
+   "picture": "Close: the whale drags a small folder, a short line of six cards, onto a bigger line. On the drop, threads between the cards stretch.",
+   "words": "Just merge it. It will be fine.",
+   "sound": "Drag swoosh, a low hum.",
+   "act": "felt",
+   "bars": "1-2",
+   "camera": "Close, z 1.6 on the whale, small follow pan",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 2.727,
+   "picture": "Four threads snap on the drop. A pod follows one loose end and answers ✕ on a raw sienna chip.",
+   "words": "",
+   "sound": "Four snaps, then the dead buzz under the ✕.",
+   "act": "felt",
+   "bars": "2",
+   "camera": "Close, z 1.6 on the whale, small follow pan",
+   "cue_tags": [
+    "consequence"
+   ]
+  },
+  {
+   "t": 4.545,
+   "picture": "The whale tugs a loose thread end. It leads nowhere; the far card is gone.",
+   "words": "Half the links now point nowhere.",
+   "sound": "One buzz as the end is tugged.",
+   "act": "felt",
+   "bars": "3-4",
+   "camera": "Close, z 1.6 on the whale, small follow pan"
+  },
+  {
+   "t": 7.273,
+   "picture": "Loose thread ends dangle off the merged line. Hold.",
+   "words": "",
+   "sound": "The problem motif fades. Silence creeps in.",
+   "act": "felt",
+   "bars": "5",
+   "camera": "Close, z 1.6 on the whale, small follow pan"
+  },
+  {
+   "t": 10.0,
+   "picture": "Hinge: half a bar of stillness, then SERIES.open shows the title over the still line.",
+   "words": "",
+   "sound": "Near-silence, then the title tick.",
+   "act": "why",
+   "bars": "6",
+   "camera": "Pull back z 1.6 to 1.0, one reveal",
+   "cue_tags": [
+    "hinge"
+   ]
+  },
+  {
+   "t": 10.909,
+   "picture": "Pull back: folders moved by hand across a big codebase. Three times, every 2 beats, then 1, then half, a move leaves loose thread ends where links used to land.",
+   "words": "Nobody knows which parts depend on which.",
+   "sound": "Snap and buzz three times, accelerating.",
+   "act": "why",
+   "bars": "7-9",
+   "camera": "Pull back z 1.6 to 1.0, one reveal",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 16.364,
+   "picture": "Motion stops. Faint dashed lines ghost between the cards that used to be linked.",
+   "words": "Draw each link before you move a thing.",
+   "sound": "The first clean plucked pair.",
+   "act": "why",
+   "bars": "10",
+   "camera": "Pull back z 1.6 to 1.0, one reveal",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 18.182,
+   "picture": "Before any drag, the whale reads the folder: each part becomes a card, each link a dashed join drawn between two cards. Six cards, four joins.",
+   "words": "Draw each link before you move a thing.",
+   "sound": "Two tones per join, struck as it is drawn.",
+   "act": "move",
+   "bars": "11-12",
+   "camera": "Medium z 1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 20.909,
+   "picture": "Each join is checked: does the far end exist? Four joins resolve and turn teal; the whale rings each one.",
+   "words": "Each link is checked. Does it land?",
+   "sound": "Four unison pairs, one per teal join.",
+   "act": "move",
+   "bars": "12-13",
+   "camera": "Medium z 1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 23.636,
+   "picture": "Push-in: on a second folder, one join's far end is empty. It glows raw sienna and a flag stands on it, before any move happens.",
+   "words": "Broken before the move, not after.",
+   "sound": "The pair beats against an empty end.",
+   "act": "move",
+   "bars": "14",
+   "camera": "Medium z 1.2, the one push-in to z 1.3",
+   "cue_tags": [
+    "mech",
+    "focus"
+   ]
+  },
+  {
+   "t": 26.364,
+   "picture": "The map settles beside the folder as a small lattice, saved to reuse on the next folder. A label slides onto a join: seam.",
+   "words": "Each checked link is a seam.",
+   "sound": "A soft save tick.",
+   "act": "move",
+   "bars": "15-16",
+   "camera": "Medium z 1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 29.091,
+   "picture": "Wide, steady: the tool's own six-card test folder sits mapped, four teal joins glowing. The map is saved for the next folder.",
+   "words": "Real run: the tool's own test folder.",
+   "sound": "Pulse bed, four quiet plucks.",
+   "act": "case",
+   "bars": "17-19",
+   "camera": "Steady wide, slow drift"
+  },
+  {
+   "t": 34.545,
+   "picture": "A bigger folder slides in. The map grows card by card and stops at its limit instead of guessing.",
+   "words": "It maps up to a set limit.",
+   "sound": "Plucks accumulate, then stop cleanly.",
+   "act": "case",
+   "bars": "20-22",
+   "camera": "Steady wide, slow drift"
+  },
+  {
+   "t": 40.0,
+   "picture": "Push to a merged line: every join is teal, yet a pod runs the merged code and answers ✕. The links land, but on cards from the wrong version.",
+   "words": "Every link landed. The merge still broke.",
+   "sound": "Unison with an unresolved fourth above.",
+   "act": "limit",
+   "bars": "23-24",
+   "camera": "Still, then one slow push to the thing that slipped",
+   "cue_tags": [
+    "limit"
+   ]
+  },
+  {
+   "t": 43.636,
+   "picture": "Hold on the all-teal map beside the pod's ✕.",
+   "words": "A clean map is not a safe merge.",
+   "sound": "Room tone.",
+   "act": "limit",
+   "bars": "25",
+   "camera": "Still"
+  },
+  {
+   "t": 45.455,
+   "picture": "Map, then merge. FELT framing (z 1.6, the same six cards). This time the map is laid first, the whale fixes the one sienna join, then drops the folder. No thread snaps; the pod answers ✓.",
+   "words": "",
+   "sound": "A soft drop, no snap, a resolved chord.",
+   "act": "payoff",
+   "bars": "26-29",
+   "camera": "Back to FELT framing z 1.6, then wide reveal",
+   "cue_tags": [
+    "callback"
+   ]
+  },
+  {
+   "t": 52.727,
+   "picture": "The mapped folder sitting on the bigger line, threads intact, whale breathing.",
+   "words": "Map the links first. Then decide to merge.",
+   "sound": "Pad tail only.",
+   "act": "belief",
+   "bars": "30-31",
+   "camera": "Still, breathing only"
+  },
+  {
+   "t": 56.364,
+   "picture": "SERIES.lockup over the still line.",
+   "words": "",
+   "sound": "Lockup tone.",
+   "act": "lockup",
+   "bars": "32",
+   "camera": "Still"
+  }
+ ],
+ "captions": [
+  {
+   "t_in": 0.909,
+   "t_out": 3.636,
+   "text": "Just merge it. It will be fine.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 4.545,
+   "t_out": 8.182,
+   "text": "Half the links now point nowhere.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 10.0,
+   "t_out": 12.273,
+   "text": "Map the joins, then merge.",
+   "kind": "title"
+  },
+  {
+   "t_in": 12.273,
+   "t_out": 15.455,
+   "text": "Nobody knows which parts depend on which.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 15.909,
+   "t_out": 18.636,
+   "text": "Draw each link before you move a thing.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 20.909,
+   "t_out": 23.636,
+   "text": "Each link is checked. Does it land?",
+   "kind": "caption"
+  },
+  {
+   "t_in": 23.636,
+   "t_out": 26.364,
+   "text": "Broken before the move, not after.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 26.364,
+   "t_out": 29.091,
+   "text": "Each checked link is a seam.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 29.091,
+   "t_out": 31.364,
+   "text": "Real run: the tool's own test folder.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 30.909,
+   "t_out": 34.545,
+   "text": "Sanity check · 6 parts, 4 teal links",
+   "kind": "card",
+   "src": "https://github.com/manutej/sheaf-port"
+  },
+  {
+   "t_in": 34.545,
+   "t_out": 39.091,
+   "text": "Cap 120 parts",
+   "kind": "card",
+   "src": "https://github.com/manutej/sheaf-port"
+  },
+  {
+   "t_in": 34.545,
+   "t_out": 38.182,
+   "text": "It maps up to a set limit.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 40.0,
+   "t_out": 43.182,
+   "text": "Every link landed. The merge still broke.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 43.636,
+   "t_out": 46.364,
+   "text": "A clean map is not a safe merge.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 52.727,
+   "t_out": 56.364,
+   "text": "Map the links first. Then decide to merge.",
+   "kind": "caption"
+  }
+ ],
+ "terms": [
+  {
+   "term": "seam",
+   "symbol": "seam",
+   "pictured_at": 18.182,
+   "named_at": 26.364
+  }
+ ],
+ "jargon": [
+  "lattice",
+  "index",
+  "port",
+  "imports"
+ ],
+ "sound": {
+  "signature": "Each link is a plucked pair that rings in unison when its far end exists.",
+  "problem_motif": "A plucked string that snaps to a dead buzz.",
+  "limit_unresolved": true
+ },
+ "score_self": {
+  "score": 0.79,
+  "reason": "A very common engineer pain, a literal picture, a real README test, and a limit taken from the README itself (\"does not decide safe to merge\").",
+  "weakest_piece": "case2"
+ }
+}

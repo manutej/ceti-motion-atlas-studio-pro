@@ -1,0 +1,436 @@
+{
+  "schema_version": "sb60-v1",
+  "id": "sb-06-09",
+  "meta_prompt_id": "mp-c06-v1",
+  "cluster": "06 JEV decisions & evidence",
+  "repo": "manutej/the-twenty-nesy",
+  "capability": "Run every claim through the same few tests",
+  "audience": "Learners",
+  "wada": 279,
+  "bpm": 120,
+  "dur": 64.3,
+  "title": "Every claim faces the same <i>gates</i>.",
+  "hook": {
+    "kind": "Example",
+    "picture": "Close on the whale under an avalanche of paper cards, each stamped 'reasoning' with the same bright tab. More keep falling.",
+    "words": "Every paper says it reasons."
+  },
+  "problem_in_viewer_words": {
+    "kind": "Fact",
+    "body": "Every paper says it reasons. Which ones actually do?",
+    "who": "learner in a CETI cohort"
+  },
+  "why_it_keeps_happening": {
+    "kind": "Fact",
+    "picture": "Pull back: a mountain of cards, all tabbed the same. Three more land on top, every 2 beats, then 1, then ½, each with the same stamp.",
+    "words": "The title says it. Nobody tests it."
+  },
+  "stakes": {
+    "kind": "Fact",
+    "body": "Weeks spent reading hype, and a team picks a tool because of a title."
+  },
+  "solution_hint": "Test every paper the same few ways.",
+  "metaphor": {
+    "kind": "Example",
+    "body": "Five small gates stand on the line, each testing one thing (a reusable part, a real leap, a principle, a first, reuse by others). Every card runs the same five, and only those that pass reach a short shelf.",
+    "symbols": [
+      "whale",
+      "line",
+      "atom",
+      "gate",
+      "counter"
+    ]
+  },
+  "mechanism_beats": {
+    "kind": "Method",
+    "steps": [
+      {
+        "t": 20.0,
+        "picture": "A card leaves the pile and runs the five gates. Three glow and two stay dark.",
+        "words": "Same five tests for every paper.",
+        "sound": "Five stepped marimba notes, one per gate"
+      },
+      {
+        "t": 24.0,
+        "picture": "Push-in (z 1.28): a card stamped 'reasoning' turns out to be a chatbot plus a calculator. The first gate shuts on it.",
+        "words": "Chatbot plus calculator? Out.",
+        "sound": "A low wooden block on the shut gate"
+      },
+      {
+        "t": 28.0,
+        "picture": "Cards that pass slide to a short shelf and show two marks: a rule mark and a wave mark. A counter by the shelf ticks up slowly.",
+        "words": "Only what passes reaches the shelf.",
+        "sound": "Marimba notes settle, counter clicks"
+      },
+      {
+        "t": 30.0,
+        "picture": "The two marks on the shelf cards glow together.",
+        "words": "Logic plus learning: neurosymbolic.",
+        "sound": "Two notes in harmony"
+      }
+    ]
+  },
+  "real_case": {
+    "kind": "Evidence",
+    "claim": "the-twenty-nesy keeps 20 filtered neurosymbolic reasoning papers plus an NLM harvest of 223 links. Manu's own JEV, scored on the same axes, \"would not enter the Twenty today.\"",
+    "numbers": [
+      "20",
+      "223 links"
+    ],
+    "source": {
+      "kind": "repo",
+      "title": "manutej/the-twenty-nesy; Notion JEV × JAX × The Twenty",
+      "url": "https://github.com/manutej/the-twenty-nesy"
+    },
+    "verified": true,
+    "illustrative": false
+  },
+  "honest_limit": {
+    "kind": "Constraint",
+    "picture": "Still. A card that would shine on a sixth test nobody runs is turned away at the gates. It drifts off the line under a raw sienna flag.",
+    "words": "A great idea we don't test drops."
+  },
+  "not_this": {
+    "kind": "Constraint",
+    "body": "A filter keeps our picks, not the truth."
+  },
+  "ending_pattern": {
+    "kind": "Example",
+    "slug": "shelf-not-avalanche",
+    "body": "A shelf, not an avalanche: the falling cards now meet the gates first, and the whale reads one card from a short shelf.",
+    "callback": "The avalanche that buried the whale in bar 1 now lands on the gates, and the whale reads from a short shelf."
+  },
+  "end_belief": {
+    "kind": "Goal",
+    "body": "Judge claims by tests, including your own."
+  },
+  "beats": [
+    {
+      "t": 0.0,
+      "picture": "Close on the whale under an avalanche of paper cards, each stamped 'reasoning' with the same bright tab. More keep falling.",
+      "words": "Every paper says it reasons.",
+      "sound": "A paper avalanche hiss with a dull thud",
+      "act": "felt",
+      "bars": "1",
+      "camera": "Close, z 1.6, on the whale; small follow pan",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 2.0,
+      "picture": "The whale passes one card to a pod as 'the best'. The pod opens it: just a chatbot plus a calculator. Raw sienna ✕.",
+      "words": "I read ten. I learned nothing.",
+      "sound": "Hollow thunk",
+      "act": "felt",
+      "bars": "2-3",
+      "camera": "Close, z 1.6, on the whale; small follow pan",
+      "cue_tags": [
+        "consequence"
+      ]
+    },
+    {
+      "t": 6.0,
+      "picture": "The whale digs out another. The same stamp, and the same empty inside.",
+      "words": "",
+      "sound": "Paper rustle",
+      "act": "felt",
+      "bars": "4",
+      "camera": "Close, z 1.6, on the whale; small follow pan",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 8.0,
+      "picture": "The pile keeps growing over the whale's head.",
+      "words": "",
+      "sound": "The hiss rising",
+      "act": "felt",
+      "bars": "5",
+      "camera": "Close, z 1.6, on the whale; small follow pan",
+      "cue_tags": [
+        "consequence"
+      ]
+    },
+    {
+      "t": 11.0,
+      "picture": "Hinge: half a bar of stillness, then the title card.",
+      "words": "Every claim faces the same <i>gates</i>.",
+      "sound": "Half a bar of room tone, then the title tick",
+      "act": "why",
+      "bars": "6",
+      "camera": "Pull back z 1.6 to 1.0 to reveal the pattern",
+      "cue_tags": [
+        "hinge"
+      ]
+    },
+    {
+      "t": 12.0,
+      "picture": "Pull back: a mountain of cards, all tabbed the same. Three more land on top, every 2 beats, then 1, then ½, each with the same stamp.",
+      "words": "The title says it. Nobody tests it.",
+      "sound": "Problem motif three times, accelerating",
+      "act": "why",
+      "bars": "7-9",
+      "camera": "Pull back z 1.6 to 1.0 to reveal the pattern",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 18.0,
+      "picture": "Freeze. Five small empty gates ghost along the line beside the pile.",
+      "words": "",
+      "sound": "First clean statement of the signature sound",
+      "act": "why",
+      "bars": "10",
+      "camera": "Pull back z 1.6 to 1.0 to reveal the pattern",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 20.0,
+      "picture": "A card leaves the pile and runs the five gates. Three glow and two stay dark.",
+      "words": "Same five tests for every paper.",
+      "sound": "Five stepped marimba notes, one per gate",
+      "act": "move",
+      "bars": "11-12",
+      "camera": "Medium, z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 24.0,
+      "picture": "Push-in (z 1.28): a card stamped 'reasoning' turns out to be a chatbot plus a calculator. The first gate shuts on it.",
+      "words": "Chatbot plus calculator? Out.",
+      "sound": "A low wooden block on the shut gate",
+      "act": "move",
+      "bars": "13-14",
+      "camera": "Medium, z 1.2, one push-in to z 1.28 here",
+      "cue_tags": [
+        "mech",
+        "focus"
+      ]
+    },
+    {
+      "t": 28.0,
+      "picture": "Cards that pass slide to a short shelf and show two marks: a rule mark and a wave mark. A counter by the shelf ticks up slowly.",
+      "words": "Only what passes reaches the shelf.",
+      "sound": "Marimba notes settle, counter clicks",
+      "act": "move",
+      "bars": "15",
+      "camera": "Medium, z 1.2",
+      "cue_tags": [
+        "mech",
+        "focus"
+      ]
+    },
+    {
+      "t": 30.0,
+      "picture": "The two marks on the shelf cards glow together.",
+      "words": "Logic plus learning: neurosymbolic.",
+      "sound": "Two notes in harmony",
+      "act": "move",
+      "bars": "16",
+      "camera": "Medium, z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 32.0,
+      "picture": "Wide: the pile shrinks to a shelf of 20 cards, with a thread of small link ticks behind them. The card fades in.",
+      "words": "20 papers kept · 223 links gathered.",
+      "sound": "Pulse bed, fast quiet ticks",
+      "act": "case",
+      "bars": "17-19",
+      "camera": "Steady wide, slow drift under 40 px/s",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 38.0,
+      "picture": "The whale's own card runs the five gates. Two glow, three stay dark, and it does not reach the shelf.",
+      "words": "Our own work did not make it.",
+      "sound": "Two notes, then three muted blocks",
+      "act": "case",
+      "bars": "20-22",
+      "camera": "Steady wide, slow drift under 40 px/s",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 44.0,
+      "picture": "Still. A card that would shine on a sixth test nobody runs is turned away at the gates. It drifts off the line under a raw sienna flag.",
+      "words": "A great idea we don't test drops.",
+      "sound": "The five-note run plays and stops a step short",
+      "act": "limit",
+      "bars": "23-24",
+      "camera": "Still, then one slow push to what slipped",
+      "cue_tags": [
+        "limit"
+      ]
+    },
+    {
+      "t": 48.0,
+      "picture": "Slow push to the drifting card.",
+      "words": "",
+      "sound": "Room tone",
+      "act": "limit",
+      "bars": "25",
+      "camera": "Still, then one slow push to what slipped",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 50.0,
+      "picture": "FELT framing (z 1.6): cards fall again, but each one hits the gates first. The whale sits by a short shelf, reading one card. Delight.",
+      "words": "",
+      "sound": "Signature fully resolved",
+      "act": "payoff",
+      "bars": "26-29",
+      "camera": "FELT framing restored, z 1.6, then a wide reveal",
+      "cue_tags": [
+        "callback"
+      ]
+    },
+    {
+      "t": 58.0,
+      "picture": "The short shelf, the whale reading, the counter still.",
+      "words": "Judge claims by tests, including your own.",
+      "sound": "Pad tail only",
+      "act": "belief",
+      "bars": "30-31",
+      "camera": "Still, breathing only"
+    },
+    {
+      "t": 62.0,
+      "picture": "SERIES.lockup over the settled chart ground.",
+      "words": "",
+      "sound": "Lockup sting, pad out",
+      "act": "lockup",
+      "bars": "32",
+      "camera": "Still"
+    }
+  ],
+  "captions": [
+    {
+      "t_in": 1.0,
+      "t_out": 4.0,
+      "text": "Every paper says it reasons.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 5.0,
+      "t_out": 9.0,
+      "text": "I read ten. I learned nothing.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 11.0,
+      "t_out": 13.5,
+      "text": "Every claim faces the same <i>gates</i>.",
+      "kind": "title"
+    },
+    {
+      "t_in": 14.0,
+      "t_out": 17.5,
+      "text": "The title says it. Nobody tests it.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 17.5,
+      "t_out": 20.5,
+      "text": "Test every paper the same few ways.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 21.0,
+      "t_out": 24.0,
+      "text": "Same five tests for every paper.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 25.0,
+      "t_out": 28.0,
+      "text": "Chatbot plus calculator? Out.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 29.0,
+      "t_out": 32.0,
+      "text": "Only what passes reaches the shelf.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 30.5,
+      "t_out": 33.0,
+      "text": "Logic plus learning: neurosymbolic.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 33.0,
+      "t_out": 38.0,
+      "text": "20 papers kept · 223 links gathered.",
+      "kind": "card",
+      "src": "https://github.com/manutej/the-twenty-nesy"
+    },
+    {
+      "t_in": 34.0,
+      "t_out": 38.0,
+      "text": "A short shelf you can actually read.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 39.0,
+      "t_out": 43.5,
+      "text": "Our own work did not make it.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 44.5,
+      "t_out": 47.0,
+      "text": "A great idea we don't test drops.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 47.0,
+      "t_out": 50.0,
+      "text": "A filter keeps our picks, not the truth.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 58.0,
+      "t_out": 62.0,
+      "text": "Judge claims by tests, including your own.",
+      "kind": "caption"
+    }
+  ],
+  "terms": [
+    {
+      "term": "neurosymbolic",
+      "symbol": "atom",
+      "pictured_at": 28.0,
+      "named_at": 30.5
+    }
+  ],
+  "jargon": [
+    "axis",
+    "veto"
+  ],
+  "sound": {
+    "signature": "Five stepped marimba notes, one per gate",
+    "problem_motif": "A paper avalanche hiss with a dull thud",
+    "limit_unresolved": true
+  },
+  "score_self": {
+    "score": 0.77,
+    "reason": "An honest self-score (\"our own work did not make it\") is a memorable CASE beat, and the avalanche-to-shelf callback is strong. Risk: the five axes are hard to show without labels, and \"neurosymbolic\" is a heavy word for learners.",
+    "weakest_piece": "mechanism_beats"
+  }
+}

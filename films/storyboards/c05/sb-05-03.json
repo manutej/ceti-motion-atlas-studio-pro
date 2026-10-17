@@ -1,0 +1,455 @@
+{
+ "schema_version": "sb60-v1",
+ "id": "sb-05-03",
+ "meta_prompt_id": "mp-c05-v1",
+ "cluster": "05 Meta-prompting & RSI",
+ "repo": "manutej/categorical-meta-prompting",
+ "capability": "Score every answer; send only above a bar",
+ "audience": "Engineers",
+ "wada": 296,
+ "bpm": 120,
+ "dur": 64.3,
+ "title": "Send only what clears the <i>gate</i>.",
+ "hook": {
+  "kind": "Example",
+  "picture": "Close on two finished lines that look the same; the whale pushes one to a pod, which answers ✕ (copper chip).",
+  "words": "It looked fine when I sent it."
+ },
+ "problem_in_viewer_words": {
+  "kind": "Fact",
+  "body": "Is this answer good enough? Honestly, I can't tell.",
+  "who": "engineer about to paste an AI answer into a ticket"
+ },
+ "why_it_keeps_happening": {
+  "kind": "Fact",
+  "picture": "Three-times device: three lines sent by eye, every 2 beats, then 1, then ½; the third pod answers ✕.",
+  "words": "Nothing measures it before it goes out."
+ },
+ "stakes": {
+  "kind": "Fact",
+  "body": "Wrong answers shipped on gut feel, then found by a customer or a reviewer."
+ },
+ "solution_hint": "Score every answer. Send only above the bar.",
+ "metaphor": {
+  "kind": "Example",
+  "body": "A gate on the line with a mark on its lintel; a ring scores each line as it arrives; below the mark it goes back for another pass.",
+  "symbols": [
+   "whale",
+   "line",
+   "gate",
+   "ring",
+   "counter"
+  ]
+ },
+ "mechanism_beats": {
+  "kind": "Method",
+  "steps": [
+   {
+    "t": 20.0,
+    "picture": "A gate rises on the line with a mark on its lintel; a ring pulses round each arriving line and a counter shows its reading.",
+    "words": "Score every answer first.",
+    "sound": "ring chime"
+   },
+   {
+    "t": 24.0,
+    "picture": "Push-in: a line rings low; the gate stays shut; the line goes back, the whale reworks it, it returns and rings higher.",
+    "words": "Too low? Back for another pass.",
+    "sound": "tone stops short, then rises"
+   },
+   {
+    "t": 28.0,
+    "picture": "The line clears the mark; the gate opens; a pod answers ✓.",
+    "words": "That mark is your threshold.",
+    "sound": "tone locks into chord"
+   },
+   {
+    "t": 30.0,
+    "picture": "The gate mark glows; the counter holds its passing reading.",
+    "words": "",
+    "sound": "chord sustains"
+   }
+  ]
+ },
+ "real_case": {
+  "kind": "Evidence",
+  "claim": "The categorical-meta-prompting README scores every output 0 to 1 and refines to a threshold; its example run climbs 0.65, 0.78, 0.91 (an illustration in the README).",
+  "numbers": [
+   "0.65",
+   "0.78",
+   "0.91"
+  ],
+  "source": {
+   "kind": "repo",
+   "title": "categorical-meta-prompting README",
+   "url": "https://github.com/manutej/categorical-meta-prompting"
+  },
+  "verified": true,
+  "illustrative": true
+ },
+ "honest_limit": {
+  "kind": "Constraint",
+  "picture": "A smooth line of the wrong colour rings high and slides through the gate; a pod downstream answers ✕.",
+  "words": "A confident wrong answer can score high."
+ },
+ "not_this": {
+  "kind": "Constraint",
+  "body": "A high score is not a true answer."
+ },
+ "ending_pattern": {
+  "kind": "Example",
+  "slug": "two-lines-now-differ",
+  "body": "FELT close shot of the two look-alike lines; now each wears its ring score. One sits under the mark, one above. The whale sends only the one above; pod ✓.",
+  "callback": "In FELT two lines looked identical and the wrong one shipped; the same shot now shows them different, and the right one goes."
+ },
+ "end_belief": {
+  "kind": "Goal",
+  "body": "Set a bar. Score it. Then send."
+ },
+ "beats": [
+  {
+   "t": 0.0,
+   "picture": "Close on the whale finishing a smooth line and nudging it toward a waiting pod.",
+   "words": "",
+   "sound": "a tone rising, then stopping",
+   "act": "felt",
+   "bars": "1",
+   "camera": "close z1.6 on the whale",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 2.0,
+   "picture": "The pod reads it and answers ✕ (copper chip).",
+   "words": "It looked fine when I sent it.",
+   "sound": "dull thunk",
+   "act": "felt",
+   "bars": "2-3",
+   "camera": "close z1.6 on the whale",
+   "cue_tags": [
+    "consequence",
+    "focus"
+   ]
+  },
+  {
+   "t": 6.0,
+   "picture": "Two more lines, one smooth, one a bit wobbly; the wobbly one gets ✓, the smooth one ✕.",
+   "words": "Good and bad look the same.",
+   "sound": "two thunks, mismatched",
+   "act": "felt",
+   "bars": "4",
+   "camera": "close z1.6 on the whale",
+   "cue_tags": [
+    "consequence",
+    "focus"
+   ]
+  },
+  {
+   "t": 8.0,
+   "picture": "The whale between two look-alike lines, unable to pick. Hold.",
+   "words": "",
+   "sound": "room tone",
+   "act": "felt",
+   "bars": "5",
+   "camera": "close z1.6 on the whale",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 11.0,
+   "picture": "Half a bar of stillness, then the title.",
+   "words": "Send only what clears the gate.",
+   "sound": "near-silence, then title tick",
+   "act": "why",
+   "bars": "6",
+   "camera": "pull back z1.6 to 1.0, revealing the pattern",
+   "cue_tags": [
+    "hinge"
+   ]
+  },
+  {
+   "t": 12.0,
+   "picture": "Pull back: lines going out to pods with nothing in between.",
+   "words": "",
+   "sound": "problem motif once",
+   "act": "why",
+   "bars": "7",
+   "camera": "pull back z1.6 to 1.0, revealing the pattern",
+   "cue_tags": []
+  },
+  {
+   "t": 14.0,
+   "picture": "Three-times device: three lines sent by eye, every 2 beats, then 1, then ½; the third pod answers ✕.",
+   "words": "Nothing measures it before it goes out.",
+   "sound": "problem motif x3, accelerating",
+   "act": "why",
+   "bars": "8-9",
+   "camera": "pull back z1.6 to 1.0, revealing the pattern",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 18.0,
+   "picture": "Motion stops. A faint gate outline ghosts onto the line before the pods.",
+   "words": "Score every answer. Send only above the bar.",
+   "sound": "first clean rising tone",
+   "act": "why",
+   "bars": "10",
+   "camera": "pull back z1.6 to 1.0, revealing the pattern",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 20.0,
+   "picture": "A gate rises on the line with a mark on its lintel; a ring pulses round each arriving line and a counter shows its reading.",
+   "words": "Score every answer first.",
+   "sound": "ring chime",
+   "act": "move",
+   "bars": "11-12",
+   "camera": "medium z1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 24.0,
+   "picture": "Push-in: a line rings low; the gate stays shut; the line goes back, the whale reworks it, it returns and rings higher.",
+   "words": "Too low? Back for another pass.",
+   "sound": "tone stops short, then rises",
+   "act": "move",
+   "bars": "13-14",
+   "camera": "medium z1.2; one push-in to z1.3",
+   "cue_tags": [
+    "mech",
+    "focus"
+   ]
+  },
+  {
+   "t": 28.0,
+   "picture": "The line clears the mark; the gate opens; a pod answers ✓.",
+   "words": "That mark is your threshold.",
+   "sound": "tone locks into chord",
+   "act": "move",
+   "bars": "15",
+   "camera": "medium z1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 30.0,
+   "picture": "The gate mark glows; the counter holds its passing reading.",
+   "words": "",
+   "sound": "chord sustains",
+   "act": "move",
+   "bars": "16",
+   "camera": "medium z1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 32.0,
+   "picture": "Wide: one line runs three passes through the gate; the ring reading climbs each pass until it clears.",
+   "words": "Each pass scored. Stop above the bar.",
+   "sound": "pulse bed, three chimes rising",
+   "act": "case",
+   "bars": "17-19",
+   "camera": "steady wide, slow drift",
+   "cue_tags": []
+  },
+  {
+   "t": 38.0,
+   "picture": "The whale slides the mark on the lintel higher for a harder job, lower for a draft.",
+   "words": "You choose where the bar sits.",
+   "sound": "a deliberate two-note figure",
+   "act": "case",
+   "bars": "20-22",
+   "camera": "steady wide, slow drift",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 44.0,
+   "picture": "A smooth line of the wrong colour rings high and slides through the gate; a pod downstream answers ✕.",
+   "words": "A confident wrong answer can score high.",
+   "sound": "chord plays once, unresolved",
+   "act": "limit",
+   "bars": "23-24",
+   "camera": "still, then one slow push to what slipped",
+   "cue_tags": [
+    "limit",
+    "focus"
+   ]
+  },
+  {
+   "t": 48.0,
+   "picture": "Slow push to the wrong-coloured line.",
+   "words": "A high score is not a true answer.",
+   "sound": "room tone",
+   "act": "limit",
+   "bars": "25",
+   "camera": "still, then one slow push to what slipped",
+   "cue_tags": []
+  },
+  {
+   "t": 50.0,
+   "picture": "FELT close shot of the two look-alike lines; now each wears its ring score. The whale sends only the one above the mark.",
+   "words": "",
+   "sound": "tone rises and locks",
+   "act": "payoff",
+   "bars": "26-27",
+   "camera": "FELT framing z1.6 (callback), then wide reveal",
+   "cue_tags": [
+    "callback",
+    "focus"
+   ]
+  },
+  {
+   "t": 54.0,
+   "picture": "The pod answers ✓; whale delight; wide reveal of the gate.",
+   "words": "",
+   "sound": "full resolution",
+   "act": "payoff",
+   "bars": "28-29",
+   "camera": "FELT framing z1.6 (callback), then wide reveal",
+   "cue_tags": []
+  },
+  {
+   "t": 58.0,
+   "picture": "Still gate, whale breathing.",
+   "words": "Set a bar. Score it. Then send.",
+   "sound": "pad tail only",
+   "act": "belief",
+   "bars": "30-31",
+   "camera": "still, breathing",
+   "cue_tags": []
+  },
+  {
+   "t": 62.0,
+   "picture": "SERIES.lockup over the still chart ground",
+   "words": "",
+   "sound": "lockup sting",
+   "act": "lockup",
+   "bars": "32",
+   "camera": "still",
+   "cue_tags": []
+  }
+ ],
+ "captions": [
+  {
+   "t_in": 2.0,
+   "t_out": 6.0,
+   "text": "It looked fine when I sent it.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 6.0,
+   "t_out": 10.0,
+   "text": "Good and bad look the same.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 11.0,
+   "t_out": 14.0,
+   "text": "Send only what clears the gate.",
+   "kind": "title"
+  },
+  {
+   "t_in": 14.0,
+   "t_out": 18.0,
+   "text": "Nothing measures it before it goes out.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 18.0,
+   "t_out": 20.5,
+   "text": "Score every answer. Send only above the bar.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 20.0,
+   "t_out": 24.0,
+   "text": "Score every answer first.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 24.0,
+   "t_out": 28.0,
+   "text": "Too low? Back for another pass.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 28.0,
+   "t_out": 31.0,
+   "text": "That mark is your threshold.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 32.0,
+   "t_out": 35.0,
+   "text": "Each pass scored. Stop above the bar.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 35.0,
+   "t_out": 42.0,
+   "text": "Illustration · 0.65 → 0.78 → 0.91",
+   "kind": "card",
+   "src": "https://github.com/manutej/categorical-meta-prompting"
+  },
+  {
+   "t_in": 38.0,
+   "t_out": 44.0,
+   "text": "You choose where the bar sits.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 44.0,
+   "t_out": 48.0,
+   "text": "A confident wrong answer can score high.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 48.0,
+   "t_out": 51.0,
+   "text": "A high score is not a true answer.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 58.0,
+   "t_out": 62.0,
+   "text": "Set a bar. Score it. Then send.",
+   "kind": "caption"
+  }
+ ],
+ "terms": [
+  {
+   "term": "threshold",
+   "symbol": "mark on the gate lintel",
+   "pictured_at": 24.0,
+   "named_at": 28.0
+  }
+ ],
+ "jargon": [
+  "threshold",
+  "quality score",
+  "metric",
+  "evaluator",
+  "iteration"
+ ],
+ "sound": {
+  "signature": "a rising tone that locks into a chord when it clears the mark",
+  "problem_motif": "the same tone stopping short, unresolved",
+  "limit_unresolved": true
+ },
+ "score_self": {
+  "score": 0.75,
+  "reason": "Strong everyday pain and a clean gate picture. The numbers are only a README illustration, and \"who scores it\" stays vague, which the limit partly covers.",
+  "weakest_piece": "real_case"
+ }
+}

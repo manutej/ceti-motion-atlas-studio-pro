@@ -1,0 +1,424 @@
+{
+ "schema_version": "sb60-v1",
+ "id": "sb-01-09",
+ "meta_prompt_id": "mp-c01-v1",
+ "cluster": "01 Sheaf memory",
+ "repo": "manutej/sheaf-knowledge-studio",
+ "capability": "Plant faults on purpose to prove the checker looks",
+ "audience": "Researchers",
+ "wada": 339,
+ "bpm": 124,
+ "dur": 62.24,
+ "title": "Test the <i>gate</i> by breaking it.",
+ "hook": {
+  "kind": "Example",
+  "picture": "Close: the whale walks a line of cards through a gate. The gate glows pass for every card, even one with a visibly crooked join.",
+  "words": "All green. Every single time."
+ },
+ "problem_in_viewer_words": {
+  "kind": "Fact",
+  "body": "The checker said all clear. Was it even looking?",
+  "who": "a researcher reading a green test report"
+ },
+ "why_it_keeps_happening": {
+  "kind": "Fact",
+  "picture": "Pull back: a row of gates, all glowing pass. Three times, every 2 beats, then 1, then half, a crooked card slides through unnoticed.",
+  "words": "A check that never fails tells you nothing."
+ },
+ "stakes": {
+  "kind": "Fact",
+  "body": "A checker that cannot fail gives false comfort, and the gaps reach readers."
+ },
+ "solution_hint": "Break it on purpose. See if it notices.",
+ "metaphor": {
+  "kind": "Example",
+  "body": "The checker is a gate. The whale bends cards on purpose and fires them at it, and each bounce earns a tick, so a gate that never stops anything is exposed.",
+  "symbols": [
+   "whale",
+   "line",
+   "gate",
+   "seam",
+   "tick"
+  ]
+ },
+ "mechanism_beats": {
+  "kind": "Method",
+  "steps": [
+   {
+    "t": 19.355,
+    "picture": "The whale takes a good card and bends its join on purpose, a planted fault, then sends it at the gate.",
+    "words": "Break it on purpose. See if it notices.",
+    "sound": "A deliberate bent note."
+   },
+   {
+    "t": 22.258,
+    "picture": "The gate closes English Red on the bent card and it bounces back. A tick lands beside the gate.",
+    "words": "It caught the planted break.",
+    "sound": "A stop tone, then a tick."
+   },
+   {
+    "t": 25.161,
+    "picture": "Push-in: the whale plants a different fault, a card with a missing join. The gate closes again and a second tick lands.",
+    "words": "A different break. Caught again.",
+    "sound": "A second stop tone, a second tick."
+   },
+   {
+    "t": 28.065,
+    "picture": "A row of planted cards, each with its own tick, lines up beside the gate. A label slides on: negative tests.",
+    "words": "Planted faults are called negative tests.",
+    "sound": "Ticks in a row, like a ledger."
+   }
+  ]
+ },
+ "real_case": {
+  "kind": "Evidence",
+  "claim": "sheaf-knowledge-studio passes 33/33 negative mutation self-tests, and all 3 builds clear 30/30 binary gates.",
+  "numbers": [
+   "33/33",
+   "30/30",
+   "3 builds"
+  ],
+  "source": {
+   "kind": "repo",
+   "title": "manutej/sheaf-knowledge-studio README",
+   "url": "https://github.com/manutej/sheaf-knowledge-studio"
+  },
+  "verified": true,
+  "illustrative": false
+ },
+ "honest_limit": {
+  "kind": "Constraint",
+  "picture": "Push to the end of the row: a card with a new kind of fault (wrong colour, joins fine) passes every gate. Nobody planted that kind.",
+  "words": "A new kind of fault walked through."
+ },
+ "not_this": {
+  "kind": "Constraint",
+  "body": "Catching planted faults is not catching all."
+ },
+ "ending_pattern": {
+  "kind": "Example",
+  "slug": "planted-break-bounces",
+  "body": "The crooked card that once slid through is fired at the same gate and bounces off red, while the reader pod answers ✓.",
+  "callback": "The crooked card that slid through the glowing gate in bar 1 is stopped at the same gate."
+ },
+ "end_belief": {
+  "kind": "Goal",
+  "body": "Trust a check only after it fails once."
+ },
+ "beats": [
+  {
+   "t": 0.0,
+   "picture": "Close: the whale walks a line of cards through a gate. The gate glows pass for every card, even one with a visibly crooked join.",
+   "words": "All green. Every single time.",
+   "sound": "Pass chimes, all identical.",
+   "act": "felt",
+   "bars": "1-2",
+   "camera": "Close, z 1.6 on the whale, small follow pan",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 2.903,
+   "picture": "A reader pod downstream picks up the crooked card and answers ✕ on an English Red chip.",
+   "words": "",
+   "sound": "Dull thud on the reader ✕.",
+   "act": "felt",
+   "bars": "2",
+   "camera": "Close, z 1.6 on the whale, small follow pan",
+   "cue_tags": [
+    "consequence"
+   ]
+  },
+  {
+   "t": 4.839,
+   "picture": "The whale looks back at the gate: still glowing pass.",
+   "words": "Then a reader found a gap.",
+   "sound": "One more identical chime.",
+   "act": "felt",
+   "bars": "3-4",
+   "camera": "Close, z 1.6 on the whale, small follow pan"
+  },
+  {
+   "t": 7.742,
+   "picture": "The gate glows calmly next to the pod's ✕. Hold.",
+   "words": "",
+   "sound": "The problem motif fades. Silence creeps in.",
+   "act": "felt",
+   "bars": "5",
+   "camera": "Close, z 1.6 on the whale, small follow pan"
+  },
+  {
+   "t": 10.645,
+   "picture": "Hinge: half a bar of stillness, then SERIES.open shows the title over the still line.",
+   "words": "",
+   "sound": "Near-silence, then the title tick.",
+   "act": "why",
+   "bars": "6",
+   "camera": "Pull back z 1.6 to 1.0, one reveal",
+   "cue_tags": [
+    "hinge"
+   ]
+  },
+  {
+   "t": 11.613,
+   "picture": "Pull back: a row of gates, all glowing pass. Three times, every 2 beats, then 1, then half, a crooked card slides through unnoticed.",
+   "words": "A check that never fails tells you nothing.",
+   "sound": "Identical chimes three times, accelerating.",
+   "act": "why",
+   "bars": "7-9",
+   "camera": "Pull back z 1.6 to 1.0, one reveal",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 17.419,
+   "picture": "The gates freeze. The whale holds up a good card and a bent one.",
+   "words": "Break it on purpose. See if it notices.",
+   "sound": "A bent note: the first deliberate break.",
+   "act": "why",
+   "bars": "10",
+   "camera": "Pull back z 1.6 to 1.0, one reveal",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 19.355,
+   "picture": "The whale takes a good card and bends its join on purpose, a planted fault, then sends it at the gate.",
+   "words": "Break it on purpose. See if it notices.",
+   "sound": "A deliberate bent note.",
+   "act": "move",
+   "bars": "11-12",
+   "camera": "Medium z 1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 22.258,
+   "picture": "The gate closes English Red on the bent card and it bounces back. A tick lands beside the gate.",
+   "words": "It caught the planted break.",
+   "sound": "A stop tone, then a tick.",
+   "act": "move",
+   "bars": "12-13",
+   "camera": "Medium z 1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 25.161,
+   "picture": "Push-in: the whale plants a different fault, a card with a missing join. The gate closes again and a second tick lands.",
+   "words": "A different break. Caught again.",
+   "sound": "A second stop tone, a second tick.",
+   "act": "move",
+   "bars": "14",
+   "camera": "Medium z 1.2, the one push-in to z 1.3",
+   "cue_tags": [
+    "mech",
+    "focus"
+   ]
+  },
+  {
+   "t": 28.065,
+   "picture": "A row of planted cards, each with its own tick, lines up beside the gate. A label slides on: negative tests.",
+   "words": "Planted faults are called negative tests.",
+   "sound": "Ticks in a row, like a ledger.",
+   "act": "move",
+   "bars": "15-16",
+   "camera": "Medium z 1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 30.968,
+   "picture": "Wide: three builds side by side, each with a row of gates. Dozens of planted cards fire at them, and every one bounces off red.",
+   "words": "Real run: every planted fault caught.",
+   "sound": "Pulse bed, rapid stop tones.",
+   "act": "case",
+   "bars": "17-19",
+   "camera": "Steady wide, slow drift"
+  },
+  {
+   "t": 36.774,
+   "picture": "Then the real cards walk through the same gates and pass with a glow.",
+   "words": "And every real build still passed.",
+   "sound": "Pass glows, three soft chimes.",
+   "act": "case",
+   "bars": "20-22",
+   "camera": "Steady wide, slow drift"
+  },
+  {
+   "t": 42.581,
+   "picture": "Push to the end of the row: a card with a new kind of fault (wrong colour, joins fine) passes every gate. Nobody planted that kind.",
+   "words": "A new kind of fault walked through.",
+   "sound": "Pass chime on the bad card, unresolved.",
+   "act": "limit",
+   "bars": "23-24",
+   "camera": "Still, then one slow push to the thing that slipped",
+   "cue_tags": [
+    "limit"
+   ]
+  },
+  {
+   "t": 46.452,
+   "picture": "Hold on the wrong-colour card past the last gate.",
+   "words": "Catching planted faults is not catching all.",
+   "sound": "Room tone.",
+   "act": "limit",
+   "bars": "25",
+   "camera": "Still"
+  },
+  {
+   "t": 48.387,
+   "picture": "The planted break bounces. FELT framing (z 1.6, the same gate). The crooked card from bar 1 is sent again: the gate closes red, the card bounces, and the reader pod answers ✓.",
+   "words": "",
+   "sound": "Stop tone, bounce, resolved chord.",
+   "act": "payoff",
+   "bars": "26-29",
+   "camera": "Back to FELT framing z 1.6, then wide reveal",
+   "cue_tags": [
+    "callback"
+   ]
+  },
+  {
+   "t": 56.129,
+   "picture": "The gate with its row of ticks, whale breathing.",
+   "words": "Trust a check only after it fails once.",
+   "sound": "Pad tail only.",
+   "act": "belief",
+   "bars": "30-31",
+   "camera": "Still, breathing only"
+  },
+  {
+   "t": 60.0,
+   "picture": "SERIES.lockup over the still line.",
+   "words": "",
+   "sound": "Lockup tone.",
+   "act": "lockup",
+   "bars": "32",
+   "camera": "Still"
+  }
+ ],
+ "captions": [
+  {
+   "t_in": 0.968,
+   "t_out": 3.871,
+   "text": "All green. Every single time.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 4.839,
+   "t_out": 8.71,
+   "text": "Then a reader found a gap.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 10.645,
+   "t_out": 13.065,
+   "text": "Test the gate by breaking it.",
+   "kind": "title"
+  },
+  {
+   "t_in": 13.065,
+   "t_out": 16.452,
+   "text": "A check that never fails tells you nothing.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 16.935,
+   "t_out": 19.839,
+   "text": "Break it on purpose. See if it notices.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 22.258,
+   "t_out": 25.161,
+   "text": "It caught the planted break.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 25.161,
+   "t_out": 28.065,
+   "text": "A different break. Caught again.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 28.065,
+   "t_out": 30.968,
+   "text": "Planted faults are called negative tests.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 30.968,
+   "t_out": 33.387,
+   "text": "Real run: every planted fault caught.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 32.903,
+   "t_out": 36.774,
+   "text": "33/33 negative mutation self-tests passing",
+   "kind": "card",
+   "src": "https://github.com/manutej/sheaf-knowledge-studio"
+  },
+  {
+   "t_in": 36.774,
+   "t_out": 41.613,
+   "text": "30/30 binary gates · 3 builds",
+   "kind": "card",
+   "src": "https://github.com/manutej/sheaf-knowledge-studio"
+  },
+  {
+   "t_in": 36.774,
+   "t_out": 40.645,
+   "text": "And every real build still passed.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 42.581,
+   "t_out": 45.968,
+   "text": "A new kind of fault walked through.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 46.452,
+   "t_out": 49.355,
+   "text": "Catching planted faults is not catching all.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 56.129,
+   "t_out": 60.0,
+   "text": "Trust a check only after it fails once.",
+   "kind": "caption"
+  }
+ ],
+ "terms": [
+  {
+   "term": "negative tests",
+   "symbol": "tick",
+   "pictured_at": 19.355,
+   "named_at": 28.065
+  }
+ ],
+ "jargon": [
+  "mutation",
+  "negative",
+  "binary",
+  "self-tests"
+ ],
+ "sound": {
+  "signature": "A clean stop tone each time the gate catches a planted break.",
+  "problem_motif": "A pass chime that rings the same for good and bad cards.",
+  "limit_unresolved": true
+ },
+ "score_self": {
+  "score": 0.76,
+  "reason": "Testing the checker is a researcher-grade idea with a clear picture and real 33/33 numbers. Risk: \"negative tests\" is new jargon in this series, and the wrong-colour limit echoes the gate film.",
+  "weakest_piece": "honest_limit"
+ }
+}

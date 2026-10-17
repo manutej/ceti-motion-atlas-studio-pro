@@ -1,0 +1,462 @@
+{
+ "schema_version": "sb60-v1",
+ "id": "sb-05-06",
+ "meta_prompt_id": "mp-c05-v1",
+ "cluster": "05 Meta-prompting & RSI",
+ "repo": "manutej/meta-prompting-framework",
+ "capability": "Size the task first, then pick the road",
+ "audience": "Leaders",
+ "wada": 243,
+ "bpm": 122,
+ "dur": 63.25,
+ "title": "A small <i>gate</i> picks the road.",
+ "hook": {
+  "kind": "Example",
+  "picture": "Close on a tiny line entering a huge looping road, coiling round and round while a cost counter climbs.",
+  "words": "A yes or no took ten minutes."
+ },
+ "problem_in_viewer_words": {
+  "kind": "Fact",
+  "body": "A yes-or-no question took ten minutes and cost us.",
+  "who": "team lead reading this month's AI bill"
+ },
+ "why_it_keeps_happening": {
+  "kind": "Fact",
+  "picture": "Three-times device: three lines of different sizes, every 2 beats, then 1, then ½, all down one road.",
+  "words": "Every task takes the same road."
+ },
+ "stakes": {
+  "kind": "Fact",
+  "body": "Money and minutes burned on easy questions; hard questions rushed."
+ },
+ "solution_hint": "Size the task first. Then pick the road.",
+ "metaphor": {
+  "kind": "Example",
+  "body": "A gate at the start rings each line to size it, then sends it down one of three roads: short, branching or looping.",
+  "symbols": [
+   "whale",
+   "line",
+   "gate",
+   "ring",
+   "counter"
+  ]
+ },
+ "mechanism_beats": {
+  "kind": "Method",
+  "steps": [
+   {
+    "t": 19.672,
+    "picture": "A gate at the start; a ring sizes each arriving line; behind it the road splits: short, branching, looping.",
+    "words": "Size it first.",
+    "sound": "ring chime"
+   },
+   {
+    "t": 23.607,
+    "picture": "Push-in: the small line takes the short road, pod ✓ fast; the big knotted line takes the looping road, pod ✓.",
+    "words": "Small goes direct. Hard gets the loop.",
+    "sound": "low note short, high note held"
+   },
+   {
+    "t": 27.541,
+    "picture": "A middle-sized line takes the branching road and tries a few ways at once.",
+    "words": "In between? Try a few ways.",
+    "sound": "middle note, arpeggiated"
+   },
+   {
+    "t": 29.508,
+    "picture": "The gate and its three roads sit labelled.",
+    "words": "Sizing first is called routing.",
+    "sound": "chord resolves"
+   }
+  ]
+ },
+ "real_case": {
+  "kind": "Evidence",
+  "claim": "meta-prompting-framework scores each task 0 to 1 for complexity: under 0.3 goes direct, 0.3 to 0.7 tries several approaches, over 0.7 iterates.",
+  "numbers": [
+   "< 0.3 (Simple)",
+   "0.3-0.7 (Medium)",
+   "> 0.7 (Complex)"
+  ],
+  "source": {
+   "kind": "repo",
+   "title": "meta-prompting-framework README",
+   "url": "https://github.com/manutej/meta-prompting-framework"
+  },
+  "verified": true,
+  "illustrative": false
+ },
+ "honest_limit": {
+  "kind": "Constraint",
+  "picture": "A short-looking line with a deep knot inside is ringed small, sent down the short road; the pod answers ✕.",
+  "words": "Short questions can hide hard ones."
+ },
+ "not_this": {
+  "kind": "Constraint",
+  "body": "The size guess can be wrong, too."
+ },
+ "ending_pattern": {
+  "kind": "Example",
+  "slug": "tiny-question-short-road",
+  "body": "FELT close shot: the same tiny line meets the gate, takes the short road and is answered ✓ in one beat; the cost counter barely moves.",
+  "callback": "In FELT the tiny line coiled through the big loop while cost climbed; now in the same shot it takes the short road and the counter stays still."
+ },
+ "end_belief": {
+  "kind": "Goal",
+  "body": "Ask how hard it is before you start."
+ },
+ "beats": [
+  {
+   "t": 0.0,
+   "picture": "Close on a tiny line (a yes or no) entering a huge looping road; it coils round and round.",
+   "words": "",
+   "sound": "one long dragging note",
+   "act": "felt",
+   "bars": "1",
+   "camera": "close z1.6 on the whale",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 1.967,
+   "picture": "A pod finally answers ✓ after a long wait; a cost counter beside it has climbed fast.",
+   "words": "A yes or no took ten minutes.",
+   "sound": "note drags on",
+   "act": "felt",
+   "bars": "2-3",
+   "camera": "close z1.6 on the whale",
+   "cue_tags": [
+    "consequence",
+    "focus"
+   ]
+  },
+  {
+   "t": 5.902,
+   "picture": "A big knotted line takes a quick short road and comes out ✕ (raw sienna chip), rushed.",
+   "words": "The hard one got a rushed answer.",
+   "sound": "clipped thunk",
+   "act": "felt",
+   "bars": "4",
+   "camera": "close z1.6 on the whale",
+   "cue_tags": [
+    "consequence",
+    "focus"
+   ]
+  },
+  {
+   "t": 7.869,
+   "picture": "Two pods: one still waiting, one holding ✕. Hold.",
+   "words": "",
+   "sound": "room tone",
+   "act": "felt",
+   "bars": "5",
+   "camera": "close z1.6 on the whale",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 10.82,
+   "picture": "Half a bar of stillness, then the title.",
+   "words": "A small gate picks the road.",
+   "sound": "near-silence, then title tick",
+   "act": "why",
+   "bars": "6",
+   "camera": "pull back z1.6 to 1.0, revealing the pattern",
+   "cue_tags": [
+    "hinge"
+   ]
+  },
+  {
+   "t": 11.803,
+   "picture": "Pull back: every line, small or big, is forced down the same single road.",
+   "words": "",
+   "sound": "problem motif once",
+   "act": "why",
+   "bars": "7",
+   "camera": "pull back z1.6 to 1.0, revealing the pattern",
+   "cue_tags": []
+  },
+  {
+   "t": 13.77,
+   "picture": "Three-times device: three lines of different sizes, every 2 beats, then 1, then ½, all down one road.",
+   "words": "Every task takes the same road.",
+   "sound": "problem motif x3, accelerating",
+   "act": "why",
+   "bars": "8-9",
+   "camera": "pull back z1.6 to 1.0, revealing the pattern",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 17.705,
+   "picture": "Motion stops. The road faintly splits in three ahead of the lines.",
+   "words": "Size the task first. Then pick the road.",
+   "sound": "first clean three-note chord",
+   "act": "why",
+   "bars": "10",
+   "camera": "pull back z1.6 to 1.0, revealing the pattern",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 19.672,
+   "picture": "A gate at the start; a ring sizes each arriving line; behind it the road splits: short, branching, looping.",
+   "words": "Size it first.",
+   "sound": "ring chime",
+   "act": "move",
+   "bars": "11-12",
+   "camera": "medium z1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 23.607,
+   "picture": "Push-in: the small line takes the short road, pod ✓ fast; the big knotted line takes the looping road, pod ✓.",
+   "words": "Small goes direct. Hard gets the loop.",
+   "sound": "low note short, high note held",
+   "act": "move",
+   "bars": "13-14",
+   "camera": "medium z1.2; one push-in to z1.3",
+   "cue_tags": [
+    "mech",
+    "focus"
+   ]
+  },
+  {
+   "t": 27.541,
+   "picture": "A middle-sized line takes the branching road and tries a few ways at once.",
+   "words": "In between? Try a few ways.",
+   "sound": "middle note, arpeggiated",
+   "act": "move",
+   "bars": "15",
+   "camera": "medium z1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 29.508,
+   "picture": "The gate and its three roads sit labelled.",
+   "words": "Sizing first is called routing.",
+   "sound": "chord resolves",
+   "act": "move",
+   "bars": "16",
+   "camera": "medium z1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 31.475,
+   "picture": "Wide: the gate ring shows marks for small and big; lines flow to their roads.",
+   "words": "Real setting: each task scored for size.",
+   "sound": "pulse bed, three-road rhythm",
+   "act": "case",
+   "bars": "17-19",
+   "camera": "steady wide, slow drift",
+   "cue_tags": []
+  },
+  {
+   "t": 37.377,
+   "picture": "Three lines run their three roads at once; the small one finishes long before the others.",
+   "words": "Cheap tasks stay cheap. Hard ones get time.",
+   "sound": "staggered resolutions",
+   "act": "case",
+   "bars": "20-22",
+   "camera": "steady wide, slow drift",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 43.279,
+   "picture": "A short-looking line with a deep knot inside is ringed small, sent down the short road; the pod answers ✕.",
+   "words": "Short questions can hide hard ones.",
+   "sound": "chord once, unresolved",
+   "act": "limit",
+   "bars": "23-24",
+   "camera": "still, then one slow push to what slipped",
+   "cue_tags": [
+    "limit",
+    "focus"
+   ]
+  },
+  {
+   "t": 47.213,
+   "picture": "Slow push to the hidden knot.",
+   "words": "The size guess can be wrong, too.",
+   "sound": "room tone",
+   "act": "limit",
+   "bars": "25",
+   "camera": "still, then one slow push to what slipped",
+   "cue_tags": []
+  },
+  {
+   "t": 49.18,
+   "picture": "FELT close shot: the same tiny line meets the gate and takes the short road; pod ✓ in one beat; cost counter barely moves.",
+   "words": "",
+   "sound": "one short clean note",
+   "act": "payoff",
+   "bars": "26-27",
+   "camera": "FELT framing z1.6 (callback), then wide reveal",
+   "cue_tags": [
+    "callback",
+    "focus"
+   ]
+  },
+  {
+   "t": 53.115,
+   "picture": "Wide reveal: three roads busy, each line where it belongs; whale spark.",
+   "words": "",
+   "sound": "full chord",
+   "act": "payoff",
+   "bars": "28-29",
+   "camera": "FELT framing z1.6 (callback), then wide reveal",
+   "cue_tags": []
+  },
+  {
+   "t": 57.049,
+   "picture": "Still gate and roads, whale breathing.",
+   "words": "Ask how hard it is before you start.",
+   "sound": "pad tail only",
+   "act": "belief",
+   "bars": "30-31",
+   "camera": "still, breathing",
+   "cue_tags": []
+  },
+  {
+   "t": 60.984,
+   "picture": "SERIES.lockup over the still chart ground",
+   "words": "",
+   "sound": "lockup sting",
+   "act": "lockup",
+   "bars": "32",
+   "camera": "still",
+   "cue_tags": []
+  }
+ ],
+ "captions": [
+  {
+   "t_in": 1.967,
+   "t_out": 5.902,
+   "text": "A yes or no took ten minutes.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 5.902,
+   "t_out": 9.836,
+   "text": "The hard one got a rushed answer.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 10.82,
+   "t_out": 13.77,
+   "text": "A small gate picks the road.",
+   "kind": "title"
+  },
+  {
+   "t_in": 13.77,
+   "t_out": 17.705,
+   "text": "Every task takes the same road.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 17.705,
+   "t_out": 20.164,
+   "text": "Size the task first. Then pick the road.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 19.672,
+   "t_out": 23.607,
+   "text": "Size it first.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 23.607,
+   "t_out": 27.541,
+   "text": "Small goes direct. Hard gets the loop.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 27.541,
+   "t_out": 30.492,
+   "text": "In between? Try a few ways.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 29.508,
+   "t_out": 32.459,
+   "text": "Sizing first is called routing.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 31.475,
+   "t_out": 34.426,
+   "text": "Real setting: each task scored for size.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 34.426,
+   "t_out": 41.311,
+   "text": "Under 0.3 direct · over 0.7 loop",
+   "kind": "card",
+   "src": "https://github.com/manutej/meta-prompting-framework"
+  },
+  {
+   "t_in": 37.377,
+   "t_out": 43.279,
+   "text": "Cheap tasks stay cheap. Hard ones get time.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 43.279,
+   "t_out": 47.213,
+   "text": "Short questions can hide hard ones.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 47.213,
+   "t_out": 50.164,
+   "text": "The size guess can be wrong, too.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 57.049,
+   "t_out": 60.984,
+   "text": "Ask how hard it is before you start.",
+   "kind": "caption"
+  }
+ ],
+ "terms": [
+  {
+   "term": "routing",
+   "symbol": "gate splitting the line into three roads",
+   "pictured_at": 19.672,
+   "named_at": 29.508
+  }
+ ],
+ "jargon": [
+  "routing",
+  "complexity",
+  "orchestration",
+  "iterative",
+  "multi-approach",
+  "threshold"
+ ],
+ "sound": {
+  "signature": "a three-note chord, one note per road, struck once",
+  "problem_motif": "one long dragging note, the same for every task",
+  "limit_unresolved": true
+ },
+ "score_self": {
+  "score": 0.7,
+  "reason": "A leader-friendly cost pain and a good callback. The case is a configured setting, not a measured saving, so the \"cheap stays cheap\" claim is illustrative in spirit.",
+  "weakest_piece": "real_case"
+ }
+}

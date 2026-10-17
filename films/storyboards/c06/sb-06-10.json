@@ -1,0 +1,440 @@
+{
+  "schema_version": "sb60-v1",
+  "id": "sb-06-10",
+  "meta_prompt_id": "mp-c06-v1",
+  "cluster": "06 JEV decisions & evidence",
+  "repo": "manutej/jev-tape-wiki",
+  "capability": "Let people read without the keys",
+  "audience": "Everyone",
+  "wada": 166,
+  "bpm": 132,
+  "dur": 58.5,
+  "title": "Readers pass a one-way <i>gate</i>.",
+  "hook": {
+    "kind": "Example",
+    "picture": "Close on the whale leaning in to read the live line. Its fin brushes a lever on the line, and the line jerks into a new shape.",
+    "words": "I only clicked to look."
+  },
+  "problem_in_viewer_words": {
+    "kind": "Fact",
+    "body": "I only wanted to look, and I broke production.",
+    "who": "new team member in their first week"
+  },
+  "why_it_keeps_happening": {
+    "kind": "Fact",
+    "picture": "Pull back: many people peer at the same live line, each within reach of its levers. Three brush them, every 2 beats, then 1, then ½.",
+    "words": "Looking and changing use the same door."
+  },
+  "stakes": {
+    "kind": "Fact",
+    "body": "Curious people break live systems, so teams stop sharing, and the people who need to understand the system never see it."
+  },
+  "solution_hint": "Give readers a copy with no keys.",
+  "metaphor": {
+    "kind": "Example",
+    "body": "The live line gets a read-only twin behind a one-way gate. Readers can see every page, but the gate has no keyhole: a key card bounces off and nothing changes from the reading side.",
+    "symbols": [
+      "whale",
+      "line",
+      "gate",
+      "atom",
+      "pod"
+    ]
+  },
+  "mechanism_beats": {
+    "kind": "Method",
+    "steps": [
+      {
+        "t": 18.182,
+        "picture": "The live line is copied into one flat page behind a gate. The gate has no keyhole.",
+        "words": "Copy the pages. Leave the keys out.",
+        "sound": "A paper copy whisper"
+      },
+      {
+        "t": 21.818,
+        "picture": "Push-in (z 1.28): a key card slides toward the copy's gate and bounces off. The live line does not move.",
+        "words": "Keys bounce off. Nothing changes from here.",
+        "sound": "A soft glass tap, clear and dry"
+      },
+      {
+        "t": 25.455,
+        "picture": "Pods line up and read the copy. Each answers ✓ and leaves.",
+        "words": "Anyone can read. No one can break.",
+        "sound": "Gentle reading clicks, one per pod"
+      },
+      {
+        "t": 27.273,
+        "picture": "The glass pane brightens once over the copy.",
+        "words": "This copy is read-only.",
+        "sound": "A glass shimmer"
+      }
+    ]
+  },
+  "real_case": {
+    "kind": "Evidence",
+    "claim": "jev-tape-wiki is a static review site: 43 pages compiled into index.html. It is \"Not a live TypeSafe qualifier. No API keys.\"",
+    "numbers": [
+      "43 pages"
+    ],
+    "source": {
+      "kind": "repo",
+      "title": "manutej/jev-tape-wiki README",
+      "url": "https://github.com/manutej/jev-tape-wiki"
+    },
+    "verified": true,
+    "illustrative": false
+  },
+  "honest_limit": {
+    "kind": "Constraint",
+    "picture": "Still. The live line bends into a new shape, but the copy behind the glass keeps yesterday's shape. A reader pod acts on the old shape: rust flag.",
+    "words": "The live system moved. The copy didn't."
+  },
+  "not_this": {
+    "kind": "Constraint",
+    "body": "A safe copy can still be old."
+  },
+  "ending_pattern": {
+    "kind": "Example",
+    "slug": "fin-touches-glass",
+    "body": "The fin touches glass: the same curious lean now meets glass instead of a lever, and the live line stays calm.",
+    "callback": "The fin that jerked the lever in bar 1 now touches only glass."
+  },
+  "end_belief": {
+    "kind": "Goal",
+    "body": "Let people read without the keys."
+  },
+  "beats": [
+    {
+      "t": 0.0,
+      "picture": "Close on the whale leaning in to read the live line. Its fin brushes a lever on the line, and the line jerks into a new shape.",
+      "words": "I only clicked to look.",
+      "sound": "A lever clack followed by a rattle",
+      "act": "felt",
+      "bars": "1",
+      "camera": "Close, z 1.6, on the whale; small follow pan",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 1.818,
+      "picture": "A pod downstream receives the jerked line: rust ✕.",
+      "words": "It changed the live system.",
+      "sound": "Dull thunk",
+      "act": "felt",
+      "bars": "2-3",
+      "camera": "Close, z 1.6, on the whale; small follow pan",
+      "cue_tags": [
+        "consequence"
+      ]
+    },
+    {
+      "t": 5.455,
+      "picture": "The whale pulls its fin back. The lever is now in the wrong place.",
+      "words": "",
+      "sound": "Small scrape",
+      "act": "felt",
+      "bars": "4",
+      "camera": "Close, z 1.6, on the whale; small follow pan",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 7.273,
+      "picture": "Hold on the whale's alarmed face and the lever.",
+      "words": "",
+      "sound": "Silence",
+      "act": "felt",
+      "bars": "5",
+      "camera": "Close, z 1.6, on the whale; small follow pan",
+      "cue_tags": [
+        "consequence"
+      ]
+    },
+    {
+      "t": 10.0,
+      "picture": "Hinge: half a bar of stillness, then the title card.",
+      "words": "Readers pass a one-way <i>gate</i>.",
+      "sound": "Half a bar of room tone, then the title tick",
+      "act": "why",
+      "bars": "6",
+      "camera": "Pull back z 1.6 to 1.0 to reveal the pattern",
+      "cue_tags": [
+        "hinge"
+      ]
+    },
+    {
+      "t": 10.909,
+      "picture": "Pull back: many people peer at the same live line, each within reach of its levers. Three brush them, every 2 beats, then 1, then ½.",
+      "words": "Looking and changing use the same door.",
+      "sound": "Problem motif three times, accelerating",
+      "act": "why",
+      "bars": "7-9",
+      "camera": "Pull back z 1.6 to 1.0 to reveal the pattern",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 16.364,
+      "picture": "Freeze. A faint pane of glass ghosts between the viewers and the levers.",
+      "words": "",
+      "sound": "First clean statement of the signature sound",
+      "act": "why",
+      "bars": "10",
+      "camera": "Pull back z 1.6 to 1.0 to reveal the pattern",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 18.182,
+      "picture": "The live line is copied into one flat page behind a gate. The gate has no keyhole.",
+      "words": "Copy the pages. Leave the keys out.",
+      "sound": "A paper copy whisper",
+      "act": "move",
+      "bars": "11-12",
+      "camera": "Medium, z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 21.818,
+      "picture": "Push-in (z 1.28): a key card slides toward the copy's gate and bounces off. The live line does not move.",
+      "words": "Keys bounce off. Nothing changes from here.",
+      "sound": "A soft glass tap, clear and dry",
+      "act": "move",
+      "bars": "13-14",
+      "camera": "Medium, z 1.2, one push-in to z 1.28 here",
+      "cue_tags": [
+        "mech",
+        "focus"
+      ]
+    },
+    {
+      "t": 25.455,
+      "picture": "Pods line up and read the copy. Each answers ✓ and leaves.",
+      "words": "Anyone can read. No one can break.",
+      "sound": "Gentle reading clicks, one per pod",
+      "act": "move",
+      "bars": "15",
+      "camera": "Medium, z 1.2",
+      "cue_tags": [
+        "mech",
+        "focus"
+      ]
+    },
+    {
+      "t": 27.273,
+      "picture": "The glass pane brightens once over the copy.",
+      "words": "This copy is read-only.",
+      "sound": "A glass shimmer",
+      "act": "move",
+      "bars": "16",
+      "camera": "Medium, z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 29.091,
+      "picture": "Wide: one flat page unfolds into a stack of 43 thin pages, all behind the same keyless gate. Cards tabbed rules, course and spec. The card fades in.",
+      "words": "jev-tape-wiki: 43 pages, one file.",
+      "sound": "Pulse bed, fast quiet ticks",
+      "act": "case",
+      "bars": "17-19",
+      "camera": "Steady wide, slow drift under 40 px/s",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 34.545,
+      "picture": "A chip on the gate reads 'no keys'. A pod tries to call the live judge from the copy, but no line runs there.",
+      "words": "No keys inside. No live calls.",
+      "sound": "The glass tap again",
+      "act": "case",
+      "bars": "20-22",
+      "camera": "Steady wide, slow drift under 40 px/s",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 40.0,
+      "picture": "Still. The live line bends into a new shape, but the copy behind the glass keeps yesterday's shape. A reader pod acts on the old shape: rust flag.",
+      "words": "The live system moved. The copy didn't.",
+      "sound": "The glass tap rings once, unresolved",
+      "act": "limit",
+      "bars": "23-24",
+      "camera": "Still, then one slow push to what slipped",
+      "cue_tags": [
+        "limit"
+      ]
+    },
+    {
+      "t": 43.636,
+      "picture": "Slow push to the gap between the two shapes.",
+      "words": "",
+      "sound": "Room tone",
+      "act": "limit",
+      "bars": "25",
+      "camera": "Still, then one slow push to what slipped",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 45.455,
+      "picture": "FELT framing (z 1.6): the whale leans in to read. Its fin brushes the glass, not a lever, and the live line stays still. The pod downstream answers ✓.",
+      "words": "",
+      "sound": "Signature fully resolved",
+      "act": "payoff",
+      "bars": "26-29",
+      "camera": "FELT framing restored, z 1.6, then a wide reveal",
+      "cue_tags": [
+        "callback"
+      ]
+    },
+    {
+      "t": 52.727,
+      "picture": "The whale reading behind the glass, the live line calm.",
+      "words": "Let people read without the keys.",
+      "sound": "Pad tail only",
+      "act": "belief",
+      "bars": "30-31",
+      "camera": "Still, breathing only"
+    },
+    {
+      "t": 56.364,
+      "picture": "SERIES.lockup over the settled chart ground.",
+      "words": "",
+      "sound": "Lockup sting, pad out",
+      "act": "lockup",
+      "bars": "32",
+      "camera": "Still"
+    }
+  ],
+  "captions": [
+    {
+      "t_in": 0.909,
+      "t_out": 3.636,
+      "text": "I only clicked to look.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 4.545,
+      "t_out": 8.182,
+      "text": "It changed the live system.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 10.0,
+      "t_out": 12.273,
+      "text": "Readers pass a one-way <i>gate</i>.",
+      "kind": "title"
+    },
+    {
+      "t_in": 12.727,
+      "t_out": 15.909,
+      "text": "Looking and changing use the same door.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 15.909,
+      "t_out": 18.636,
+      "text": "Give readers a copy with no keys.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 19.091,
+      "t_out": 21.818,
+      "text": "Copy the pages. Leave the keys out.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 22.727,
+      "t_out": 25.455,
+      "text": "Keys bounce off. Nothing changes from here.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 26.364,
+      "t_out": 29.091,
+      "text": "Anyone can read. No one can break.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 27.727,
+      "t_out": 30.0,
+      "text": "This copy is read-only.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 30.0,
+      "t_out": 34.545,
+      "text": "jev-tape-wiki: 43 pages, one file.",
+      "kind": "card",
+      "src": "https://github.com/manutej/jev-tape-wiki"
+    },
+    {
+      "t_in": 30.909,
+      "t_out": 34.545,
+      "text": "Spec, rules and course, all readable.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 35.455,
+      "t_out": 39.545,
+      "text": "No keys inside. No live calls.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 40.455,
+      "t_out": 42.727,
+      "text": "The live system moved. The copy didn't.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 42.727,
+      "t_out": 45.455,
+      "text": "A safe copy can still be old.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 52.727,
+      "t_out": 56.364,
+      "text": "Let people read without the keys.",
+      "kind": "caption"
+    }
+  ],
+  "terms": [
+    {
+      "term": "read-only",
+      "symbol": "gate",
+      "pictured_at": 21.818,
+      "named_at": 27.727
+    },
+    {
+      "term": "spec",
+      "symbol": "atom",
+      "pictured_at": 29.091,
+      "named_at": 30.909
+    }
+  ],
+  "jargon": [
+    "production"
+  ],
+  "sound": {
+    "signature": "A soft glass tap, clear and dry",
+    "problem_motif": "A lever clack followed by a rattle",
+    "limit_unresolved": true
+  },
+  "score_self": {
+    "score": 0.71,
+    "reason": "An everyday pain with a simple glass image and an honest stale-copy limit. Risk: it is the least JEV-specific board (read-only is general hygiene), and the CASE number is small.",
+    "weakest_piece": "real_case"
+  }
+}

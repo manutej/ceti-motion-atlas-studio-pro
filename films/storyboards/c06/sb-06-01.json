@@ -1,0 +1,434 @@
+{
+  "schema_version": "sb60-v1",
+  "id": "sb-06-01",
+  "meta_prompt_id": "mp-c06-v1",
+  "cluster": "06 JEV decisions & evidence",
+  "repo": "manutej/jev",
+  "capability": "A guess cannot fill an evidence slot",
+  "audience": "Engineers",
+  "wada": 166,
+  "bpm": 128,
+  "dur": 60.3,
+  "title": "Hunches don't fit the <i>slot</i>.",
+  "hook": {
+    "kind": "Example",
+    "picture": "Close on the whale beside a ship lever on the line. A pink speech card, 'looks fine', slides onto the lever and the lever drops.",
+    "words": "It looked fine in the chat."
+  },
+  "problem_in_viewer_words": {
+    "kind": "Fact",
+    "body": "Someone said it looked fine, so the bot shipped it.",
+    "who": "release manager after a bad deploy"
+  },
+  "why_it_keeps_happening": {
+    "kind": "Fact",
+    "picture": "Pull back: three ship levers along the line. A pink 'sounds right' card drops each one, every 2 beats, then 1, then ½. Pods ✕ downstream.",
+    "words": "A guess and a test look alike."
+  },
+  "stakes": {
+    "kind": "Fact",
+    "body": "Releases ship on somebody's say-so, and afterwards nobody can tell what the ship decision actually rested on."
+  },
+  "solution_hint": "Let only real test results ship it.",
+  "metaphor": {
+    "kind": "Example",
+    "body": "The ship lever sits behind a socket shaped for evidence. A pink guess card bounces off it, and only a green test card snaps in. Only then does the lever move.",
+    "symbols": [
+      "whale",
+      "line",
+      "atom",
+      "seam",
+      "pod"
+    ]
+  },
+  "mechanism_beats": {
+    "kind": "Method",
+    "steps": [
+      {
+        "t": 18.75,
+        "picture": "Tabs colour in on every card: pink guess, green test result, navy action. A green socket appears in front of the lever.",
+        "words": "Each card now shows its kind.",
+        "sound": "Three tuned taps, one per tab colour"
+      },
+      {
+        "t": 22.5,
+        "picture": "Push-in (z 1.28): the whale nudges the pink guess card into the green socket. Refused at the joint: rust ✕, a small shake, a drop. The lever stays up.",
+        "words": "Wrong kind of card. The lever stays.",
+        "sound": "A muted thud on the refusal"
+      },
+      {
+        "t": 26.25,
+        "picture": "A green test card slides in and snaps with a clean click. Only now does the navy action card pass and the lever drop.",
+        "words": "Right kind fits. Then it ships.",
+        "sound": "A clean click, then the lever in tune"
+      },
+      {
+        "t": 28.125,
+        "picture": "The socket rim glows teal around the green card. A tick lands on the line under the lever.",
+        "words": "That socket is a port.",
+        "sound": "Soft tick"
+      }
+    ]
+  },
+  "real_case": {
+    "kind": "Evidence",
+    "claim": "JEV's coloured operad has five colours. Joining is defined only on a colour match, and a claim cannot occupy an evidence port.",
+    "numbers": [
+      "five colors"
+    ],
+    "source": {
+      "kind": "repo",
+      "title": "manutej/jev README; Notion JEV × JAX × The Twenty",
+      "url": "https://github.com/manutej/jev"
+    },
+    "verified": true,
+    "illustrative": false
+  },
+  "honest_limit": {
+    "kind": "Constraint",
+    "picture": "Still. A pod paints a green tab onto a card whose inside lines are smudged rust (a test that never ran). It snaps in cleanly and the lever drops.",
+    "words": "The pod wrote the label itself."
+  },
+  "not_this": {
+    "kind": "Constraint",
+    "body": "A matching label can still lie."
+  },
+  "ending_pattern": {
+    "kind": "Example",
+    "slug": "lever-waits-for-evidence",
+    "body": "The lever waits for evidence: the same lever ignores the speech card and moves only when a green test card seats.",
+    "callback": "The speech card that dropped the lever in bar 1 now bounces off. The lever moves only for a test card."
+  },
+  "end_belief": {
+    "kind": "Goal",
+    "body": "Let only evidence pull the ship lever."
+  },
+  "beats": [
+    {
+      "t": 0.0,
+      "picture": "Close on the whale beside a ship lever on the line. A pink speech card, 'looks fine', slides onto the lever and the lever drops.",
+      "words": "It looked fine in the chat.",
+      "sound": "A dull wooden clack as the lever drops too easily",
+      "act": "felt",
+      "bars": "1",
+      "camera": "Close, z 1.6, on the whale; small follow pan",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 1.875,
+      "picture": "A navy action card slides down the line to a pod. The pod opens it: a broken release. Rust ✕ on its chip.",
+      "words": "Nobody had run the tests.",
+      "sound": "Low thunk for the pod's ✕",
+      "act": "felt",
+      "bars": "2-3",
+      "camera": "Close, z 1.6, on the whale; small follow pan",
+      "cue_tags": [
+        "consequence"
+      ]
+    },
+    {
+      "t": 5.625,
+      "picture": "The whale turns back to the pink 'looks fine' card. Its inside lines are empty.",
+      "words": "",
+      "sound": "Silence, one breath",
+      "act": "felt",
+      "bars": "4",
+      "camera": "Close, z 1.6, on the whale; small follow pan",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 7.5,
+      "picture": "A second pod swims in with the same rust ✕. Hold on the whale's focus face.",
+      "words": "",
+      "sound": "The dull clack again, flatter",
+      "act": "felt",
+      "bars": "5",
+      "camera": "Close, z 1.6, on the whale; small follow pan",
+      "cue_tags": [
+        "consequence"
+      ]
+    },
+    {
+      "t": 10.312,
+      "picture": "Hinge: half a bar of stillness, then the title card.",
+      "words": "Hunches don't fit the <i>slot</i>.",
+      "sound": "Half a bar of room tone, then the title tick",
+      "act": "why",
+      "bars": "6",
+      "camera": "Pull back z 1.6 to 1.0 to reveal the pattern",
+      "cue_tags": [
+        "hinge"
+      ]
+    },
+    {
+      "t": 11.25,
+      "picture": "Pull back: three ship levers along the line. A pink 'sounds right' card drops each one, every 2 beats, then 1, then ½. Pods ✕ downstream.",
+      "words": "A guess and a test look alike.",
+      "sound": "Problem motif three times, accelerating",
+      "act": "why",
+      "bars": "7-9",
+      "camera": "Pull back z 1.6 to 1.0 to reveal the pattern",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 16.875,
+      "picture": "Everything freezes. A faint green socket ghosts in front of each lever.",
+      "words": "",
+      "sound": "First clean statement of the signature sound",
+      "act": "why",
+      "bars": "10",
+      "camera": "Pull back z 1.6 to 1.0 to reveal the pattern",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 18.75,
+      "picture": "Tabs colour in on every card: pink guess, green test result, navy action. A green socket appears in front of the lever.",
+      "words": "Each card now shows its kind.",
+      "sound": "Three tuned taps, one per tab colour",
+      "act": "move",
+      "bars": "11-12",
+      "camera": "Medium, z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 22.5,
+      "picture": "Push-in (z 1.28): the whale nudges the pink guess card into the green socket. Refused at the joint: rust ✕, a small shake, a drop. The lever stays up.",
+      "words": "Wrong kind of card. The lever stays.",
+      "sound": "A muted thud on the refusal",
+      "act": "move",
+      "bars": "13-14",
+      "camera": "Medium, z 1.2, one push-in to z 1.28 here",
+      "cue_tags": [
+        "mech",
+        "focus"
+      ]
+    },
+    {
+      "t": 26.25,
+      "picture": "A green test card slides in and snaps with a clean click. Only now does the navy action card pass and the lever drop.",
+      "words": "Right kind fits. Then it ships.",
+      "sound": "A clean click, then the lever in tune",
+      "act": "move",
+      "bars": "15",
+      "camera": "Medium, z 1.2",
+      "cue_tags": [
+        "mech",
+        "focus"
+      ]
+    },
+    {
+      "t": 28.125,
+      "picture": "The socket rim glows teal around the green card. A tick lands on the line under the lever.",
+      "words": "That socket is a port.",
+      "sound": "Soft tick",
+      "act": "move",
+      "bars": "16",
+      "camera": "Medium, z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 30.0,
+      "picture": "Wide: the line carries many sockets in five colours. Cards stream in and snap only on a colour match. The card fades in.",
+      "words": "jev: five kinds, joined only on match.",
+      "sound": "Pulse bed, fast quiet ticks",
+      "act": "case",
+      "bars": "17-19",
+      "camera": "Steady wide, slow drift under 40 px/s",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 35.625,
+      "picture": "Zoom to one green socket. A pod's answer card arrives tabbed 'claim' and is refused at the joint, with the chip 'claim ≠ evidence'.",
+      "words": "A claim cannot take an evidence port.",
+      "sound": "Muted thud, then a click",
+      "act": "case",
+      "bars": "20-22",
+      "camera": "Steady wide, slow drift under 40 px/s",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 41.25,
+      "picture": "Still. A pod paints a green tab onto a card whose inside lines are smudged rust (a test that never ran). It snaps in cleanly and the lever drops.",
+      "words": "The pod wrote the label itself.",
+      "sound": "The clean click plays, but the chord does not resolve",
+      "act": "limit",
+      "bars": "23-24",
+      "camera": "Still, then one slow push to what slipped",
+      "cue_tags": [
+        "limit"
+      ]
+    },
+    {
+      "t": 45.0,
+      "picture": "Slow push to the smudged card, seated in its socket.",
+      "words": "",
+      "sound": "Room tone",
+      "act": "limit",
+      "bars": "25",
+      "camera": "Still, then one slow push to what slipped",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 46.875,
+      "picture": "FELT framing (z 1.6). The pink 'looks fine' card slides at the lever and bounces off the socket. A clean green card snaps in, the lever drops, and the pod answers ✓.",
+      "words": "",
+      "sound": "Signature fully resolved",
+      "act": "payoff",
+      "bars": "26-29",
+      "camera": "FELT framing restored, z 1.6, then a wide reveal",
+      "cue_tags": [
+        "callback"
+      ]
+    },
+    {
+      "t": 54.375,
+      "picture": "Still lever, a seated green card, the whale breathing beside it.",
+      "words": "Let only evidence pull the ship lever.",
+      "sound": "Pad tail only",
+      "act": "belief",
+      "bars": "30-31",
+      "camera": "Still, breathing only"
+    },
+    {
+      "t": 58.125,
+      "picture": "SERIES.lockup over the settled chart ground.",
+      "words": "",
+      "sound": "Lockup sting, pad out",
+      "act": "lockup",
+      "bars": "32",
+      "camera": "Still"
+    }
+  ],
+  "captions": [
+    {
+      "t_in": 0.938,
+      "t_out": 3.75,
+      "text": "It looked fine in the chat.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 4.688,
+      "t_out": 8.438,
+      "text": "Nobody had run the tests.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 10.312,
+      "t_out": 12.656,
+      "text": "Hunches don't fit the <i>slot</i>.",
+      "kind": "title"
+    },
+    {
+      "t_in": 13.125,
+      "t_out": 16.406,
+      "text": "A guess and a test look alike.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 16.406,
+      "t_out": 19.219,
+      "text": "Let only real test results ship it.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 19.688,
+      "t_out": 22.5,
+      "text": "Each card now shows its kind.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 23.438,
+      "t_out": 26.25,
+      "text": "Wrong kind of card. The lever stays.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 27.188,
+      "t_out": 30.0,
+      "text": "Right kind fits. Then it ships.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 28.594,
+      "t_out": 30.938,
+      "text": "That socket is a port.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 30.938,
+      "t_out": 35.625,
+      "text": "jev: five kinds, joined only on match.",
+      "kind": "card",
+      "src": "https://github.com/manutej/jev"
+    },
+    {
+      "t_in": 31.875,
+      "t_out": 35.625,
+      "text": "Every join checks the kind first.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 36.562,
+      "t_out": 40.781,
+      "text": "A claim cannot take an evidence port.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 41.719,
+      "t_out": 44.062,
+      "text": "The pod wrote the label itself.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 44.062,
+      "t_out": 46.875,
+      "text": "A matching label can still lie.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 54.375,
+      "t_out": 58.125,
+      "text": "Let only evidence pull the ship lever.",
+      "kind": "caption"
+    }
+  ],
+  "terms": [
+    {
+      "term": "port",
+      "symbol": "seam",
+      "pictured_at": 18.75,
+      "named_at": 28.594
+    }
+  ],
+  "jargon": [
+    "evidence port"
+  ],
+  "sound": {
+    "signature": "A clean wooden click when a card seats",
+    "problem_motif": "The same click, dull and late, like a loose lever",
+    "limit_unresolved": true
+  },
+  "score_self": {
+    "score": 0.72,
+    "reason": "The problem and the move read sound-off from lever + socket. Words are short. Risk: the socket refusal image overlaps Stitch-60, and \"port\" is a weak term for a lay viewer.",
+    "weakest_piece": "metaphor"
+  }
+}

@@ -1,0 +1,462 @@
+{
+ "schema_version": "sb60-v1",
+ "id": "sb-05-05",
+ "meta_prompt_id": "mp-c05-v1",
+ "cluster": "05 Meta-prompting & RSI",
+ "repo": "manutej/meta-prompting-framework",
+ "capability": "Record every try so any version can return",
+ "audience": "Engineers",
+ "wada": 207,
+ "bpm": 126,
+ "dur": 61.25,
+ "title": "Every try gets a <i>tick</i>.",
+ "hook": {
+  "kind": "Example",
+  "picture": "Close on the whale reshaping a line; a pod answers ✓; the whale reshapes again and the good shape and its ✓ vanish.",
+  "words": "It worked an hour ago."
+ },
+ "problem_in_viewer_words": {
+  "kind": "Fact",
+  "body": "Which version actually worked? I overwrote it last night.",
+  "who": "engineer the morning after a prompt session"
+ },
+ "why_it_keeps_happening": {
+  "kind": "Fact",
+  "picture": "Three-times device: three overwrites, every 2 beats, then 1, then ½, each erasing a ✓.",
+  "words": "Each try paints over the last one."
+ },
+ "stakes": {
+  "kind": "Fact",
+  "body": "The good version is lost; hours redone; nobody can say what changed."
+ },
+ "solution_hint": "Write down every try and its result.",
+ "metaphor": {
+  "kind": "Example",
+  "body": "Each new shape of the line drops a tick on a strip below, carrying a tiny copy of the shape and its result, so any tick brings that shape back.",
+  "symbols": [
+   "whale",
+   "line",
+   "tick",
+   "gate"
+  ]
+ },
+ "mechanism_beats": {
+  "kind": "Method",
+  "steps": [
+   {
+    "t": 19.048,
+    "picture": "Each new shape of the line drops a tick on the strip, with a tiny copy of the shape and its ✓ or ✕.",
+    "words": "Every try leaves a tick.",
+    "sound": "a pitched click per tick"
+   },
+   {
+    "t": 22.857,
+    "picture": "Push-in: the loop runs on its own: line, pod, result, reshape, tick; it stops when a reading clears a gate.",
+    "words": "It loops until the bar is met.",
+    "sound": "clicks in rhythm, then a chord"
+   },
+   {
+    "t": 26.667,
+    "picture": "The whale taps an old tick; that exact old shape returns to the line.",
+    "words": "Any tick brings that try back.",
+    "sound": "click reversed, then resolved"
+   },
+   {
+    "t": 28.571,
+    "picture": "The strip lies under the line, ticks in a row.",
+    "words": "The tick strip is a ledger.",
+    "sound": "soft ledger tick"
+   }
+  ]
+ },
+ "real_case": {
+  "kind": "Evidence",
+  "claim": "One logged test of meta-prompting-framework: 6 real API calls, 3,998 tokens, 89.7 seconds, 2 complete iterations, with strict and lenient variants kept.",
+  "numbers": [
+   "6 real API calls",
+   "3,998 tokens",
+   "89.7 seconds",
+   "2 complete iterations"
+  ],
+  "source": {
+   "kind": "repo",
+   "title": "meta-prompting-framework README",
+   "url": "https://github.com/manutej/meta-prompting-framework"
+  },
+  "verified": true,
+  "illustrative": false
+ },
+ "honest_limit": {
+  "kind": "Constraint",
+  "picture": "A tick records a shape with a hidden kink; its reading cleared the gate. Slow push to the kink.",
+  "words": "The record is perfect. The run is not."
+ },
+ "not_this": {
+  "kind": "Constraint",
+  "body": "A full record is not a good result."
+ },
+ "ending_pattern": {
+  "kind": "Example",
+  "slug": "tap-the-tick-restore",
+  "body": "FELT close shot after many reshapes; the whale taps the tick with the ✓ and the exact line from bar 2 snaps back; pod ✓.",
+  "callback": "In FELT the good shape vanished under the next edit; in the same shot it now returns from its tick."
+ },
+ "end_belief": {
+  "kind": "Goal",
+  "body": "Keep every try. Then you can go back."
+ },
+ "beats": [
+  {
+   "t": 0.0,
+   "picture": "Close on the whale reshaping a line; each new shape replaces the last, the old one vanishing.",
+   "words": "",
+   "sound": "click, swallowed",
+   "act": "felt",
+   "bars": "1",
+   "camera": "close z1.6 on the whale",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 1.905,
+   "picture": "A pod answers ✓ on one shape; the whale reshapes again and the ✓ disappears with it.",
+   "words": "It worked an hour ago.",
+   "sound": "click swallowed by reverb",
+   "act": "felt",
+   "bars": "2-3",
+   "camera": "close z1.6 on the whale",
+   "cue_tags": [
+    "consequence",
+    "focus"
+   ]
+  },
+  {
+   "t": 5.714,
+   "picture": "The whale tries to redraw the good shape from memory; each attempt is a little off; ✕.",
+   "words": "Now I can't get it back.",
+   "sound": "two swallowed clicks",
+   "act": "felt",
+   "bars": "4",
+   "camera": "close z1.6 on the whale",
+   "cue_tags": [
+    "consequence",
+    "focus"
+   ]
+  },
+  {
+   "t": 7.619,
+   "picture": "The whale stares at an unfamiliar line. Hold.",
+   "words": "",
+   "sound": "room tone",
+   "act": "felt",
+   "bars": "5",
+   "camera": "close z1.6 on the whale",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 10.476,
+   "picture": "Half a bar of stillness, then the title.",
+   "words": "Every try gets a tick.",
+   "sound": "near-silence, then title tick",
+   "act": "why",
+   "bars": "6",
+   "camera": "pull back z1.6 to 1.0, revealing the pattern",
+   "cue_tags": [
+    "hinge"
+   ]
+  },
+  {
+   "t": 11.429,
+   "picture": "Pull back: one line, painted over many times, faint smears beneath.",
+   "words": "",
+   "sound": "problem motif once",
+   "act": "why",
+   "bars": "7",
+   "camera": "pull back z1.6 to 1.0, revealing the pattern",
+   "cue_tags": []
+  },
+  {
+   "t": 13.333,
+   "picture": "Three-times device: three overwrites, every 2 beats, then 1, then ½, each erasing a ✓.",
+   "words": "Each try paints over the last one.",
+   "sound": "problem motif x3, accelerating",
+   "act": "why",
+   "bars": "8-9",
+   "camera": "pull back z1.6 to 1.0, revealing the pattern",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 17.143,
+   "picture": "Motion stops. A faint empty strip ghosts in below the line.",
+   "words": "Write down every try and its result.",
+   "sound": "first clean click",
+   "act": "why",
+   "bars": "10",
+   "camera": "pull back z1.6 to 1.0, revealing the pattern",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 19.048,
+   "picture": "Each new shape of the line drops a tick on the strip, with a tiny copy of the shape and its ✓ or ✕.",
+   "words": "Every try leaves a tick.",
+   "sound": "a pitched click per tick",
+   "act": "move",
+   "bars": "11-12",
+   "camera": "medium z1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 22.857,
+   "picture": "Push-in: the loop runs on its own: line, pod, result, reshape, tick; it stops when a reading clears a gate.",
+   "words": "It loops until the bar is met.",
+   "sound": "clicks in rhythm, then a chord",
+   "act": "move",
+   "bars": "13-14",
+   "camera": "medium z1.2; one push-in to z1.3",
+   "cue_tags": [
+    "mech",
+    "focus"
+   ]
+  },
+  {
+   "t": 26.667,
+   "picture": "The whale taps an old tick; that exact old shape returns to the line.",
+   "words": "Any tick brings that try back.",
+   "sound": "click reversed, then resolved",
+   "act": "move",
+   "bars": "15",
+   "camera": "medium z1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 28.571,
+   "picture": "The strip lies under the line, ticks in a row.",
+   "words": "The tick strip is a ledger.",
+   "sound": "soft ledger tick",
+   "act": "move",
+   "bars": "16",
+   "camera": "medium z1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 30.476,
+   "picture": "Wide: a strip with six ticks in two groups (two loops); tiny shapes inside each tick.",
+   "words": "Real test: two full loops, every call logged.",
+   "sound": "pulse bed, six clicks",
+   "act": "case",
+   "bars": "17-19",
+   "camera": "steady wide, slow drift",
+   "cue_tags": []
+  },
+  {
+   "t": 36.19,
+   "picture": "Two finished lines kept side by side, a strict one and a lenient one, each with its tick.",
+   "words": "Both variants kept, side by side.",
+   "sound": "two clicks, a fifth apart",
+   "act": "case",
+   "bars": "20-22",
+   "camera": "steady wide, slow drift",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 41.905,
+   "picture": "A tick records a shape with a hidden kink; its reading cleared the gate. Slow push to the kink.",
+   "words": "The record is perfect. The run is not.",
+   "sound": "click, chord left unresolved",
+   "act": "limit",
+   "bars": "23-24",
+   "camera": "still, then one slow push to what slipped",
+   "cue_tags": [
+    "limit",
+    "focus"
+   ]
+  },
+  {
+   "t": 45.714,
+   "picture": "Hold on the kink inside the ticked copy.",
+   "words": "A full record is not a good result.",
+   "sound": "room tone",
+   "act": "limit",
+   "bars": "25",
+   "camera": "still, then one slow push to what slipped",
+   "cue_tags": []
+  },
+  {
+   "t": 47.619,
+   "picture": "FELT close shot after many reshapes; the whale taps the tick with the ✓ and the exact line from bar 2 snaps back.",
+   "words": "",
+   "sound": "reversed click, resolving",
+   "act": "payoff",
+   "bars": "26-27",
+   "camera": "FELT framing z1.6 (callback), then wide reveal",
+   "cue_tags": [
+    "callback",
+    "focus"
+   ]
+  },
+  {
+   "t": 51.429,
+   "picture": "The pod answers ✓; wide reveal of the strip; whale delight.",
+   "words": "",
+   "sound": "full resolution",
+   "act": "payoff",
+   "bars": "28-29",
+   "camera": "FELT framing z1.6 (callback), then wide reveal",
+   "cue_tags": []
+  },
+  {
+   "t": 55.238,
+   "picture": "Still line over its tick strip, whale breathing.",
+   "words": "Keep every try. Then you can go back.",
+   "sound": "pad tail only",
+   "act": "belief",
+   "bars": "30-31",
+   "camera": "still, breathing",
+   "cue_tags": []
+  },
+  {
+   "t": 59.048,
+   "picture": "SERIES.lockup over the still chart ground",
+   "words": "",
+   "sound": "lockup sting",
+   "act": "lockup",
+   "bars": "32",
+   "camera": "still",
+   "cue_tags": []
+  }
+ ],
+ "captions": [
+  {
+   "t_in": 1.905,
+   "t_out": 5.714,
+   "text": "It worked an hour ago.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 5.714,
+   "t_out": 9.524,
+   "text": "Now I can't get it back.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 10.476,
+   "t_out": 13.333,
+   "text": "Every try gets a tick.",
+   "kind": "title"
+  },
+  {
+   "t_in": 13.333,
+   "t_out": 17.143,
+   "text": "Each try paints over the last one.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 17.143,
+   "t_out": 19.524,
+   "text": "Write down every try and its result.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 19.048,
+   "t_out": 22.857,
+   "text": "Every try leaves a tick.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 22.857,
+   "t_out": 26.667,
+   "text": "It loops until the bar is met.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 26.667,
+   "t_out": 29.524,
+   "text": "Any tick brings that try back.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 28.571,
+   "t_out": 31.429,
+   "text": "The tick strip is a ledger.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 30.476,
+   "t_out": 33.333,
+   "text": "Real test: two full loops, every call logged.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 33.333,
+   "t_out": 40.0,
+   "text": "6 calls · 3,998 tokens · 89.7 seconds",
+   "kind": "card",
+   "src": "https://github.com/manutej/meta-prompting-framework"
+  },
+  {
+   "t_in": 36.19,
+   "t_out": 41.905,
+   "text": "Both variants kept, side by side.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 41.905,
+   "t_out": 45.714,
+   "text": "The record is perfect. The run is not.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 45.714,
+   "t_out": 48.571,
+   "text": "A full record is not a good result.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 55.238,
+   "t_out": 59.048,
+   "text": "Keep every try. Then you can go back.",
+   "kind": "caption"
+  }
+ ],
+ "terms": [
+  {
+   "term": "ledger",
+   "symbol": "strip of ticks",
+   "pictured_at": 19.048,
+   "named_at": 28.571
+  }
+ ],
+ "jargon": [
+  "call history",
+  "iteration",
+  "token",
+  "loop",
+  "ledger",
+  "version control"
+ ],
+ "sound": {
+  "signature": "a soft click per tick, pitched by its result",
+  "problem_motif": "a click swallowed by reverb",
+  "limit_unresolved": true
+ },
+ "score_self": {
+  "score": 0.78,
+  "reason": "A very relatable pain and a clean restore callback. The case numbers come from a single test run (the README says so), and the gate in M2 adds a second idea.",
+  "weakest_piece": "mechanism_beats"
+ }
+}

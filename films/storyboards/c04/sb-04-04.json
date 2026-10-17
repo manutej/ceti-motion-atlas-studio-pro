@@ -1,0 +1,503 @@
+{
+ "schema_version": "sb60-v1",
+ "id": "sb-04-04",
+ "meta_prompt_id": "mp-c04-v1",
+ "cluster": "04 Operads & composition",
+ "repo": "operadic-stitch (Context Atoms)",
+ "capability": "Private parts stay sealed when a brief is reused",
+ "audience": "Learners",
+ "wada": 339,
+ "bpm": 120,
+ "dur": 64.3,
+ "title": "Private <i>cards</i> stay home.",
+ "hook": {
+  "kind": "Example",
+  "picture": "Close on the whale copying last week's big brief card and changing only the name at the top; inside, a grey card from the old client is still there.",
+  "words": ""
+ },
+ "problem_in_viewer_words": {
+  "kind": "Fact",
+  "body": "I didn't mean to send the client's notes.",
+  "who": "consultant reusing last week's prompt for a new client"
+ },
+ "why_it_keeps_happening": {
+  "kind": "Fact",
+  "picture": "Pull back: a row of reused briefs, each made from the one before. Three more are copied, every 2 beats, then 1, then half; each still carries a grey card from someone else.",
+  "words": "Old briefs carry old secrets inside."
+ },
+ "stakes": {
+  "kind": "Fact",
+  "body": "A client's private detail lands in someone else's work, and trust is gone for good."
+ },
+ "solution_hint": "Mark private notes. Check before they leave.",
+ "metaphor": {
+  "kind": "Example",
+  "body": "A brief is a stack of cards on the line; a private card carries a sealed tab, and a send gate at the end of the line only opens for cards that belong to the client receiving the brief.",
+  "symbols": [
+   "whale",
+   "line",
+   "atom",
+   "gate",
+   "pod"
+  ]
+ },
+ "mechanism_beats": {
+  "kind": "Method",
+  "steps": [
+   {
+    "t": 20.0,
+    "picture": "One card's tab fills violet with a small closed clasp: private to the old client.",
+    "words": "",
+    "sound": "A soft metal clasp"
+   },
+   {
+    "t": 22.0,
+    "picture": "The private card slides onto a short side branch of the line that belongs to that client only.",
+    "words": "Mark the private card. Seal it.",
+    "sound": "Two notes, a closed interval"
+   },
+   {
+    "t": 24.0,
+    "picture": "The reused brief rides the line toward a gate at the send point; ordinary cards pass through with a glow.",
+    "words": "",
+    "sound": "Light passing chimes"
+   },
+   {
+    "t": 26.0,
+    "picture": "Push-in: the sealed card reaches the gate on a brief for the new client; the gate closes, rust, and holds it back.",
+    "words": "Sealed cards can't leave their client.",
+    "sound": "A firm low stop"
+   },
+   {
+    "t": 28.0,
+    "picture": "The brief goes on without it; the new client's pod reads and answers with a tick.",
+    "words": "",
+    "sound": "A resolved chime"
+   },
+   {
+    "t": 30.0,
+    "picture": "The side branch glows: one per client.",
+    "words": "Each client gets its own sealed scope.",
+    "sound": "The clasp sound, held"
+   }
+  ]
+ },
+ "real_case": {
+  "kind": "Evidence",
+  "claim": "Context Atoms checks confidentiality before anything is sent; confidential scopes are sealed, and client work gets one child scope per client with Confidential ticked.",
+  "numbers": [],
+  "source": {
+   "kind": "notion",
+   "title": "Context Atoms — operadic stitch",
+   "url": "https://app.notion.com/p/3fbd50cfaf9381048ffaecd94c9f8264"
+  },
+  "verified": true,
+  "illustrative": false
+ },
+ "honest_limit": {
+  "kind": "Constraint",
+  "picture": "The whale types the old client's name into the body of an ordinary card with a plain tab; it passes the gate with a glow and reaches the new pod.",
+  "words": "Typed into a plain card, it slips through."
+ },
+ "not_this": {
+  "kind": "Constraint",
+  "body": "It checks labels, not what you typed."
+ },
+ "ending_pattern": {
+  "kind": "Example",
+  "slug": "sealed-card-stays",
+  "body": "FELT framing: the whale copies last week's brief again and the other firm's pod swims in. The violet card stays behind at the closed gate; the pod reads, nothing is circled, its chip shows a tick.",
+  "callback": "The card that left with the pod in bar 3 now stays at the gate, in the same close framing."
+ },
+ "end_belief": {
+  "kind": "Goal",
+  "body": "Mark what is private before you reuse it."
+ },
+ "beats": [
+  {
+   "t": 0.0,
+   "picture": "Close on the whale copying last week's big brief card and changing only the name at the top; inside, a grey card from the old client is still there.",
+   "words": "",
+   "sound": "A pen scratch, a paper fold",
+   "act": "felt",
+   "bars": "1",
+   "camera": "Close, z 1.6 on the whale, small follow pan",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 2.0,
+   "picture": "A pod from another firm swims in and reads; its answer quotes one line circled in rust: the old client's private note.",
+   "words": "I reused last week's brief.",
+   "sound": "A bright note, then a sour bend",
+   "act": "felt",
+   "bars": "2",
+   "camera": "Close, z 1.6 on the whale, small follow pan",
+   "cue_tags": [
+    "consequence",
+    "focus"
+   ]
+  },
+  {
+   "t": 6.0,
+   "picture": "The whale reaches for the card, too late; the pod is already leaving with it.",
+   "words": "The old client's notes went too.",
+   "sound": "A door slam, muffled",
+   "act": "felt",
+   "bars": "3-4",
+   "camera": "Close, z 1.6 on the whale, small follow pan",
+   "cue_tags": [
+    "consequence",
+    "focus"
+   ]
+  },
+  {
+   "t": 8.0,
+   "picture": "The whale holds the empty spot where the card was. Hold.",
+   "words": "",
+   "sound": "Room tone",
+   "act": "felt",
+   "bars": "5",
+   "camera": "Close, z 1.6 on the whale, small follow pan",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 11.0,
+   "picture": "Hinge: half a bar of stillness, then SERIES.open with the title; the accent word is drawn in the law colour.",
+   "words": "Private cards stay home.",
+   "sound": "Near-silence, then the title tick",
+   "act": "why",
+   "bars": "6",
+   "camera": "Still",
+   "cue_tags": [
+    "hinge"
+   ]
+  },
+  {
+   "t": 13.0,
+   "picture": "Pull back: a row of reused briefs, each made from the one before. Three more are copied, every 2 beats, then 1, then half; each still carries a grey card from someone else.",
+   "words": "Old briefs carry old secrets inside.",
+   "sound": "The problem motif, once",
+   "act": "why",
+   "bars": "7",
+   "camera": "Pull back z 1.6 to 1.0, revealing the pattern",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 14.0,
+   "picture": "Three-times device: the failure repeats every 2 beats, then 1, then half a beat.",
+   "words": "",
+   "sound": "The problem motif three times, accelerating",
+   "act": "why",
+   "bars": "8-9",
+   "camera": "Pull back z 1.6 to 1.0, revealing the pattern",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 18.0,
+   "picture": "All motion stops; the fix ghosts in faintly where it will act.",
+   "words": "Mark private notes. Check before they leave.",
+   "sound": "One clean, in-tune note: first signature",
+   "act": "why",
+   "bars": "10",
+   "camera": "Still at z 1.0",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 20.0,
+   "picture": "One card's tab fills violet with a small closed clasp: private to the old client.",
+   "words": "",
+   "sound": "A soft metal clasp",
+   "act": "move",
+   "bars": "11",
+   "camera": "Medium z 1.2",
+   "cue_tags": [
+    "mech",
+    "focus"
+   ]
+  },
+  {
+   "t": 22.0,
+   "picture": "The private card slides onto a short side branch of the line that belongs to that client only.",
+   "words": "Mark the private card. Seal it.",
+   "sound": "Two notes, a closed interval",
+   "act": "move",
+   "bars": "12",
+   "camera": "Medium z 1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 24.0,
+   "picture": "The reused brief rides the line toward a gate at the send point; ordinary cards pass through with a glow.",
+   "words": "",
+   "sound": "Light passing chimes",
+   "act": "move",
+   "bars": "13",
+   "camera": "Medium z 1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 26.0,
+   "picture": "Push-in: the sealed card reaches the gate on a brief for the new client; the gate closes, rust, and holds it back.",
+   "words": "Sealed cards can't leave their client.",
+   "sound": "A firm low stop",
+   "act": "move",
+   "bars": "14",
+   "camera": "Medium, one push-in to z 1.3 on this moment",
+   "cue_tags": [
+    "mech",
+    "focus"
+   ]
+  },
+  {
+   "t": 28.0,
+   "picture": "The brief goes on without it; the new client's pod reads and answers with a tick.",
+   "words": "",
+   "sound": "A resolved chime",
+   "act": "move",
+   "bars": "15",
+   "camera": "Medium z 1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 30.0,
+   "picture": "The side branch glows: one per client.",
+   "words": "Each client gets its own sealed scope.",
+   "sound": "The clasp sound, held",
+   "act": "move",
+   "bars": "16",
+   "camera": "Medium z 1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 32.0,
+   "picture": "Wide: a client branch on the line for each client, every private card held on its own branch. The card fades in: Context Atoms checks private notes before sending.",
+   "words": "",
+   "sound": "Pulse bed starts, quiet ticks",
+   "act": "case",
+   "bars": "17",
+   "camera": "Steady wide, slow drift, card framed in clean paper",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 34.0,
+   "picture": "The case picture holds and drifts; ticks stream.",
+   "words": "Real tool: one sealed branch per client.",
+   "sound": "Pulse bed, clasps ticking",
+   "act": "case",
+   "bars": "18-19",
+   "camera": "Steady wide, slow drift, card framed in clean paper",
+   "cue_tags": []
+  },
+  {
+   "t": 38.0,
+   "picture": "The whale reuses a brief again; the sealed cards stay on their branches as it passes the gate.",
+   "words": "Reuse the brief. The seal stays put.",
+   "sound": "A steady two-note figure",
+   "act": "case",
+   "bars": "20-22",
+   "camera": "Steady wide, slow drift, card framed in clean paper",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 44.0,
+   "picture": "The whale types the old client's name into the body of an ordinary card with a plain tab; it passes the gate with a glow and reaches the new pod.",
+   "words": "Typed into a plain card, it slips through.",
+   "sound": "The signature plays once and does not resolve",
+   "act": "limit",
+   "bars": "23-24",
+   "camera": "Still, then one slow push to the part that slipped",
+   "cue_tags": [
+    "limit",
+    "focus"
+   ]
+  },
+  {
+   "t": 48.0,
+   "picture": "Slow push onto the plain card inside the new pod's stack; the name in its body shows in rust.",
+   "words": "It checks labels, not what you typed.",
+   "sound": "Room tone",
+   "act": "limit",
+   "bars": "25",
+   "camera": "Still, then one slow push to the part that slipped",
+   "cue_tags": [
+    "limit"
+   ]
+  },
+  {
+   "t": 50.0,
+   "picture": "FELT framing: the whale copies last week's brief again and the other firm's pod swims in. The violet card stays behind at the closed gate; the pod reads, nothing is circled, its chip shows a tick.",
+   "words": "",
+   "sound": "The signature returns, resolved on every 8th",
+   "act": "payoff",
+   "bars": "26-27",
+   "camera": "FELT framing restored, z 1.6, same position",
+   "cue_tags": [
+    "callback",
+    "focus"
+   ]
+  },
+  {
+   "t": 54.0,
+   "picture": "The whale pats the violet card on its own branch; the gate opens again for the rest.",
+   "words": "",
+   "sound": "Full resolution, a spark",
+   "act": "payoff",
+   "bars": "28-29",
+   "camera": "Gentle wide reveal from the FELT framing",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 58.0,
+   "picture": "The settled image; the whale breathes and spouts once.",
+   "words": "Mark what is private before you reuse it.",
+   "sound": "Pad tail only",
+   "act": "belief",
+   "bars": "30-31",
+   "camera": "Still, breathing only",
+   "cue_tags": []
+  },
+  {
+   "t": 62.0,
+   "picture": "SERIES.lockup",
+   "words": "",
+   "sound": "Pad tail fades",
+   "act": "lockup",
+   "bars": "32",
+   "camera": "Still",
+   "cue_tags": []
+  }
+ ],
+ "captions": [
+  {
+   "t_in": 2.0,
+   "t_out": 5.5,
+   "text": "I reused last week's brief.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 6.0,
+   "t_out": 9.5,
+   "text": "The old client's notes went too.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 11.0,
+   "t_out": 13.5,
+   "text": "Private cards stay home.",
+   "kind": "title"
+  },
+  {
+   "t_in": 13.0,
+   "t_out": 17.0,
+   "text": "Old briefs carry old secrets inside.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 18.0,
+   "t_out": 20.5,
+   "text": "Mark private notes. Check before they leave.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 22.0,
+   "t_out": 25.5,
+   "text": "Mark the private card. Seal it.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 26.0,
+   "t_out": 29.5,
+   "text": "Sealed cards can't leave their client.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 30.0,
+   "t_out": 33.5,
+   "text": "Each client gets its own sealed scope.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 32.5,
+   "t_out": 42.0,
+   "text": "Context Atoms checks private notes before sending.",
+   "kind": "card",
+   "src": "https://app.notion.com/p/3fbd50cfaf9381048ffaecd94c9f8264"
+  },
+  {
+   "t_in": 34.0,
+   "t_out": 37.5,
+   "text": "Real tool: one sealed branch per client.",
+   "kind": "caption",
+   "src": "https://app.notion.com/p/3fbd50cfaf9381048ffaecd94c9f8264"
+  },
+  {
+   "t_in": 38.0,
+   "t_out": 41.5,
+   "text": "Reuse the brief. The seal stays put.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 44.0,
+   "t_out": 47.5,
+   "text": "Typed into a plain card, it slips through.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 48.0,
+   "t_out": 50.5,
+   "text": "It checks labels, not what you typed.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 58.0,
+   "t_out": 62.0,
+   "text": "Mark what is private before you reuse it.",
+   "kind": "caption"
+  }
+ ],
+ "terms": [
+  {
+   "term": "scope",
+   "symbol": "sealed branch",
+   "pictured_at": 22.0,
+   "named_at": 30.0
+  }
+ ],
+ "jargon": [
+  "leak"
+ ],
+ "sound": {
+  "signature": "a soft metal clasp that closes in tune",
+  "problem_motif": "the clasp left open, rattling",
+  "limit_unresolved": true
+ },
+ "score_self": {
+  "score": 0.76,
+  "reason": "Leaking a client note by reusing a prompt is felt by every consultant. The limit (typing into a plain card) is honest and pictured. Gate plus seal is two ideas; may crowd MOVE.",
+  "weakest_piece": "mechanism_beats"
+ }
+}

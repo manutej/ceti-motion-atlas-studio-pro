@@ -1,0 +1,510 @@
+{
+ "schema_version": "sb60-v1",
+ "id": "sb-04-05",
+ "meta_prompt_id": "mp-c04-v1",
+ "cluster": "04 Operads & composition",
+ "repo": "manutej/wiring-and-the-whole",
+ "capability": "Send the wiring of the code, not every file",
+ "audience": "Engineers",
+ "wada": 84,
+ "bpm": 132,
+ "dur": 58.5,
+ "title": "Send the <i>wiring</i>, not the pile.",
+ "hook": {
+  "kind": "Example",
+  "picture": "Close on the whale pushing a towering stack of file cards toward a pod; a cut line at the pod's mouth slices the stack, and most of it falls away.",
+  "words": ""
+ },
+ "problem_in_viewer_words": {
+  "kind": "Fact",
+  "body": "Our codebase doesn't fit, so it guesses how things connect.",
+  "who": "engineer asking an AI about a large repo"
+ },
+ "why_it_keeps_happening": {
+  "kind": "Fact",
+  "picture": "Pull back: the pile is enormous. Three more questions come, every 2 beats, then 1, then half; each time the cut lands above the card that holds the answer.",
+  "words": "Most of the pile never gets read."
+ },
+ "stakes": {
+  "kind": "Fact",
+  "body": "Answers about how parts connect are guessed, and changes made on those answers break things."
+ },
+ "solution_hint": "Send how parts connect, not every line.",
+ "metaphor": {
+  "kind": "Example",
+  "body": "Each file becomes a small card that keeps only its sockets and the wires between them; repeated wiring shapes fold into one pattern card with a key, so the whole map fits where the pile never did.",
+  "symbols": [
+   "whale",
+   "line",
+   "atom",
+   "seam",
+   "pod"
+  ]
+ },
+ "mechanism_beats": {
+  "kind": "Method",
+  "steps": [
+   {
+    "t": 18.182,
+    "picture": "Each file card shrinks to a small card that shows only its sockets: what goes in, what comes out. The wires between sockets stay.",
+    "words": "",
+    "sound": "A tuned pluck per card, quick"
+   },
+   {
+    "t": 20.0,
+    "picture": "The pile is now a small wiring map of cards and wires.",
+    "words": "Keep each part's sockets. Drop the insides.",
+    "sound": "The plucks settle into a chord"
+   },
+   {
+    "t": 21.818,
+    "picture": "Five identical wiring shapes fold into one pattern card, with a small key card beside it.",
+    "words": "",
+    "sound": "Five plucks collapse into one"
+   },
+   {
+    "t": 23.636,
+    "picture": "Push-in: the whole small map passes the cut line with room to spare; the pod reads it and answers the link question with a tick.",
+    "words": "Same question. Now it sees the joints.",
+    "sound": "A clean resolved pluck"
+   },
+   {
+    "t": 25.455,
+    "picture": "The pod asks for one file's insides; just that one card unfolds.",
+    "words": "",
+    "sound": "A single soft unfold"
+   },
+   {
+    "t": 27.273,
+    "picture": "The sockets glow with their labels.",
+    "words": "Every socket says what it takes: typed.",
+    "sound": "The chord held"
+   }
+  ]
+ },
+ "real_case": {
+  "kind": "Evidence",
+  "claim": "wiring-and-the-whole E3 pilot: A 93.8% vs B 95.3% vs C 0% on the wiring pool; B uses 63% of A's tokens. Conditions A, B and C are not defined on the README; not repo-scale savings.",
+  "numbers": [
+   "93.8%",
+   "95.3%",
+   "0%",
+   "63%"
+  ],
+  "source": {
+   "kind": "repo",
+   "title": "manutej/wiring-and-the-whole README (E3)",
+   "url": "https://github.com/manutej/wiring-and-the-whole"
+  },
+  "verified": true,
+  "illustrative": false
+ },
+ "honest_limit": {
+  "kind": "Constraint",
+  "picture": "A pattern card carries one mark the key card never defines; the pod reads the whole small map, stops at that mark and answers with a cross.",
+  "words": "Everything is there. The key is missing."
+ },
+ "not_this": {
+  "kind": "Constraint",
+  "body": "Complete can still be unreadable."
+ },
+ "ending_pattern": {
+  "kind": "Example",
+  "slug": "pack-clears-the-cut",
+  "body": "FELT framing: the same pod and the same cut line at its mouth. The small wiring pack slides in and the cut falls on open water; nothing is sliced, the pod answers with a tick.",
+  "callback": "The cut that sliced the pile in bar 1 now cuts nothing, in the same close framing."
+ },
+ "end_belief": {
+  "kind": "Goal",
+  "body": "Send the shape. Add files when asked."
+ },
+ "beats": [
+  {
+   "t": 0.0,
+   "picture": "Close on the whale pushing a towering stack of file cards toward a pod; a cut line at the pod's mouth slices the stack, and most of it falls away.",
+   "words": "",
+   "sound": "Paper tearing, low",
+   "act": "felt",
+   "bars": "1",
+   "camera": "Close, z 1.6 on the whale, small follow pan",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 1.818,
+   "picture": "The pod answers about how two parts connect; the answer card has the link circled in copper: it never saw the second part. Cross.",
+   "words": "It only read the top of our code.",
+   "sound": "A plucked note, flat",
+   "act": "felt",
+   "bars": "2",
+   "camera": "Close, z 1.6 on the whale, small follow pan",
+   "cue_tags": [
+    "consequence",
+    "focus"
+   ]
+  },
+  {
+   "t": 5.455,
+   "picture": "The whale points to the fallen half; the card the pod needed is lying there.",
+   "words": "The answer was in the part it skipped.",
+   "sound": "The flat note, quieter",
+   "act": "felt",
+   "bars": "3-4",
+   "camera": "Close, z 1.6 on the whale, small follow pan",
+   "cue_tags": [
+    "consequence",
+    "focus"
+   ]
+  },
+  {
+   "t": 7.273,
+   "picture": "The whale looks at the cut line. Hold.",
+   "words": "",
+   "sound": "Room tone",
+   "act": "felt",
+   "bars": "5",
+   "camera": "Close, z 1.6 on the whale, small follow pan",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 10.0,
+   "picture": "Hinge: half a bar of stillness, then SERIES.open with the title; the accent word is drawn in the law colour.",
+   "words": "Send the wiring, not the pile.",
+   "sound": "Near-silence, then the title tick",
+   "act": "why",
+   "bars": "6",
+   "camera": "Still",
+   "cue_tags": [
+    "hinge"
+   ]
+  },
+  {
+   "t": 11.818,
+   "picture": "Pull back: the pile is enormous. Three more questions come, every 2 beats, then 1, then half; each time the cut lands above the card that holds the answer.",
+   "words": "Most of the pile never gets read.",
+   "sound": "The problem motif, once",
+   "act": "why",
+   "bars": "7",
+   "camera": "Pull back z 1.6 to 1.0, revealing the pattern",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 12.727,
+   "picture": "Three-times device: the failure repeats every 2 beats, then 1, then half a beat.",
+   "words": "",
+   "sound": "The problem motif three times, accelerating",
+   "act": "why",
+   "bars": "8-9",
+   "camera": "Pull back z 1.6 to 1.0, revealing the pattern",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 16.364,
+   "picture": "All motion stops; the fix ghosts in faintly where it will act.",
+   "words": "Send how parts connect, not every line.",
+   "sound": "One clean, in-tune note: first signature",
+   "act": "why",
+   "bars": "10",
+   "camera": "Still at z 1.0",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 18.182,
+   "picture": "Each file card shrinks to a small card that shows only its sockets: what goes in, what comes out. The wires between sockets stay.",
+   "words": "",
+   "sound": "A tuned pluck per card, quick",
+   "act": "move",
+   "bars": "11",
+   "camera": "Medium z 1.2",
+   "cue_tags": [
+    "mech",
+    "focus"
+   ]
+  },
+  {
+   "t": 20.0,
+   "picture": "The pile is now a small wiring map of cards and wires.",
+   "words": "Keep each part's sockets. Drop the insides.",
+   "sound": "The plucks settle into a chord",
+   "act": "move",
+   "bars": "12",
+   "camera": "Medium z 1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 21.818,
+   "picture": "Five identical wiring shapes fold into one pattern card, with a small key card beside it.",
+   "words": "",
+   "sound": "Five plucks collapse into one",
+   "act": "move",
+   "bars": "13",
+   "camera": "Medium z 1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 23.636,
+   "picture": "Push-in: the whole small map passes the cut line with room to spare; the pod reads it and answers the link question with a tick.",
+   "words": "Same question. Now it sees the joints.",
+   "sound": "A clean resolved pluck",
+   "act": "move",
+   "bars": "14",
+   "camera": "Medium, one push-in to z 1.3 on this moment",
+   "cue_tags": [
+    "mech",
+    "focus"
+   ]
+  },
+  {
+   "t": 25.455,
+   "picture": "The pod asks for one file's insides; just that one card unfolds.",
+   "words": "",
+   "sound": "A single soft unfold",
+   "act": "move",
+   "bars": "15",
+   "camera": "Medium z 1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 27.273,
+   "picture": "The sockets glow with their labels.",
+   "words": "Every socket says what it takes: typed.",
+   "sound": "The chord held",
+   "act": "move",
+   "bars": "16",
+   "camera": "Medium z 1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 29.091,
+   "picture": "Wide: two packs side by side on the line, a bigger one and a smaller wiring pack; the smaller one's answer ring fills slightly further. The card fades in: Pilot: 95.3% vs 93.8%, 63% of tokens.",
+   "words": "",
+   "sound": "Pulse bed starts, quiet ticks",
+   "act": "case",
+   "bars": "17",
+   "camera": "Steady wide, slow drift, card framed in clean paper",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 30.909,
+   "picture": "The case picture holds and drifts; ticks stream.",
+   "words": "Real pilot: smaller pack, better score.",
+   "sound": "Pulse bed, ticks",
+   "act": "case",
+   "bars": "18-19",
+   "camera": "Steady wide, slow drift, card framed in clean paper",
+   "cue_tags": []
+  },
+  {
+   "t": 34.545,
+   "picture": "The card dims to show its scope: one question pool, a pilot.",
+   "words": "A pilot on one question set.",
+   "sound": "A quiet two-note figure",
+   "act": "case",
+   "bars": "20-22",
+   "camera": "Steady wide, slow drift, card framed in clean paper",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 40.0,
+   "picture": "A pattern card carries one mark the key card never defines; the pod reads the whole small map, stops at that mark and answers with a cross.",
+   "words": "Everything is there. The key is missing.",
+   "sound": "The signature plays once and does not resolve",
+   "act": "limit",
+   "bars": "23-24",
+   "camera": "Still, then one slow push to the part that slipped",
+   "cue_tags": [
+    "limit",
+    "focus"
+   ]
+  },
+  {
+   "t": 43.636,
+   "picture": "Slow push onto the undefined mark and the key card with its empty row.",
+   "words": "Complete can still be unreadable.",
+   "sound": "Room tone",
+   "act": "limit",
+   "bars": "25",
+   "camera": "Still, then one slow push to the part that slipped",
+   "cue_tags": [
+    "limit"
+   ]
+  },
+  {
+   "t": 45.455,
+   "picture": "FELT framing: the same pod and the same cut line at its mouth. The small wiring pack slides in and the cut falls on open water; nothing is sliced, the pod answers with a tick.",
+   "words": "",
+   "sound": "The signature returns, resolved on every 8th",
+   "act": "payoff",
+   "bars": "26-27",
+   "camera": "FELT framing restored, z 1.6, same position",
+   "cue_tags": [
+    "callback",
+    "focus"
+   ]
+  },
+  {
+   "t": 49.091,
+   "picture": "The whale swims past the cut line, which fades.",
+   "words": "",
+   "sound": "Full resolution, a spark",
+   "act": "payoff",
+   "bars": "28-29",
+   "camera": "Gentle wide reveal from the FELT framing",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 52.727,
+   "picture": "The settled image; the whale breathes and spouts once.",
+   "words": "Send the shape. Add files when asked.",
+   "sound": "Pad tail only",
+   "act": "belief",
+   "bars": "30-31",
+   "camera": "Still, breathing only",
+   "cue_tags": []
+  },
+  {
+   "t": 56.364,
+   "picture": "SERIES.lockup",
+   "words": "",
+   "sound": "Pad tail fades",
+   "act": "lockup",
+   "bars": "32",
+   "camera": "Still",
+   "cue_tags": []
+  }
+ ],
+ "captions": [
+  {
+   "t_in": 1.818,
+   "t_out": 5.0,
+   "text": "It only read the top of our code.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 5.455,
+   "t_out": 8.636,
+   "text": "The answer was in the part it skipped.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 10.0,
+   "t_out": 12.273,
+   "text": "Send the wiring, not the pile.",
+   "kind": "title"
+  },
+  {
+   "t_in": 11.818,
+   "t_out": 15.455,
+   "text": "Most of the pile never gets read.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 16.364,
+   "t_out": 18.636,
+   "text": "Send how parts connect, not every line.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 20.0,
+   "t_out": 23.182,
+   "text": "Keep each part's sockets. Drop the insides.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 23.636,
+   "t_out": 26.818,
+   "text": "Same question. Now it sees the joints.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 27.273,
+   "t_out": 30.455,
+   "text": "Every socket says what it takes: typed.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 29.545,
+   "t_out": 38.182,
+   "text": "Pilot: 95.3% vs 93.8%, 63% of tokens.",
+   "kind": "card",
+   "src": "https://github.com/manutej/wiring-and-the-whole"
+  },
+  {
+   "t_in": 30.909,
+   "t_out": 34.091,
+   "text": "Real pilot: smaller pack, better score.",
+   "kind": "caption",
+   "src": "https://github.com/manutej/wiring-and-the-whole"
+  },
+  {
+   "t_in": 34.545,
+   "t_out": 37.727,
+   "text": "A pilot on one question set.",
+   "kind": "caption",
+   "src": "https://github.com/manutej/wiring-and-the-whole"
+  },
+  {
+   "t_in": 40.0,
+   "t_out": 43.182,
+   "text": "Everything is there. The key is missing.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 43.636,
+   "t_out": 45.909,
+   "text": "Complete can still be unreadable.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 52.727,
+   "t_out": 56.364,
+   "text": "Send the shape. Add files when asked.",
+   "kind": "caption"
+  }
+ ],
+ "terms": [
+  {
+   "term": "typed",
+   "symbol": "labelled sockets",
+   "pictured_at": 18.182,
+   "named_at": 27.273
+  }
+ ],
+ "jargon": [
+  "context window",
+  "token"
+ ],
+ "sound": {
+  "signature": "a tuned pluck per socket that settles into one chord",
+  "problem_motif": "the pluck cut off mid-note, flat",
+  "limit_unresolved": true
+ },
+ "score_self": {
+  "score": 0.72,
+  "reason": "Real engineer pain and a real pilot number. The pilot's A/B/C are undefined on the README, so the card must stay vague about what A is; viewers may still read it as full source.",
+  "weakest_piece": "real_case"
+ }
+}

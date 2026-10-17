@@ -1,0 +1,423 @@
+{
+ "schema_version": "sb60-v1",
+ "id": "sb-01-10",
+ "meta_prompt_id": "mp-c01-v1",
+ "cluster": "01 Sheaf memory",
+ "repo": "manutej/stalks-and-sections",
+ "capability": "Trust only the parts that agree with their neighbours",
+ "audience": "Everyone",
+ "wada": 296,
+ "bpm": 128,
+ "dur": 60.3,
+ "title": "Trust the <i>parts</i> that agree.",
+ "hook": {
+  "kind": "Example",
+  "picture": "Close: a pod hands the whale one long answer line made of cards, all in the same bold ink. One card is cracked inside but looks the same as the others.",
+  "words": "It sounded sure about all of it."
+ },
+ "problem_in_viewer_words": {
+  "kind": "Fact",
+  "body": "It sounded sure about everything. Which parts can I trust?",
+  "who": "anyone reading an AI answer at work"
+ },
+ "why_it_keeps_happening": {
+  "kind": "Fact",
+  "picture": "Pull back: many answer lines, every card in the same bold ink. Three times, every 2 beats, then 1, then half, a cracked card is acted on.",
+  "words": "Sure and right look the same."
+ },
+ "stakes": {
+  "kind": "Fact",
+  "body": "You repeat a made-up detail to a client because it sounded as sure as the rest."
+ },
+ "solution_hint": "Check each part against its neighbours.",
+ "metaphor": {
+  "kind": "Example",
+  "body": "An AI answer is a line of cards. Each card is checked against its neighbours: those that fit go solid, a card that fits nothing stays dashed, and nothing looks sure by default.",
+  "symbols": [
+   "whale",
+   "line",
+   "atom",
+   "seam",
+   "tick"
+  ]
+ },
+ "mechanism_beats": {
+  "kind": "Method",
+  "steps": [
+   {
+    "t": 18.75,
+    "picture": "The answer line splits into its cards. Between neighbours, dashed joins appear, and each is read both ways.",
+    "words": "Check each part against its neighbours.",
+    "sound": "Two tones per join."
+   },
+   {
+    "t": 21.562,
+    "picture": "Joins that match turn teal and their cards go solid. A lonely card with no matching neighbour stays dashed and pale.",
+    "words": "Parts that fit go solid.",
+    "sound": "Unison pairs; one tone left hanging."
+   },
+   {
+    "t": 24.375,
+    "picture": "Push-in: the cracked card's joins glow copper on both sides. It stays dashed: marked, not removed.",
+    "words": "The made-up part stands out.",
+    "sound": "The pair beats on both sides."
+   },
+   {
+    "t": 27.188,
+    "picture": "The solid teal run of cards gets a label: section.",
+    "words": "The parts that all fit: a section.",
+    "sound": "A held chord across the solid run."
+   }
+  ]
+ },
+ "real_case": {
+  "kind": "Evidence",
+  "claim": "stalks-and-sections lets each node keep its own space (dim 2–16) across four hierarchy planes, shows residuals, and treats only approximate global sections as trusted.",
+  "numbers": [
+   "dim 2–16",
+   "Four hierarchy planes"
+  ],
+  "source": {
+   "kind": "repo",
+   "title": "manutej/stalks-and-sections README",
+   "url": "https://github.com/manutej/stalks-and-sections"
+  },
+  "verified": true,
+  "illustrative": false
+ },
+ "honest_limit": {
+  "kind": "Constraint",
+  "picture": "Push to a solid teal run: its cards' source ticks open into a grid of sixty. Most turn teal, some copper. They agreed, yet some sources do not say it.",
+  "words": "They agreed. Some sources did not."
+ },
+ "not_this": {
+  "kind": "Constraint",
+  "body": "Agreeing is not the same as true."
+ },
+ "ending_pattern": {
+  "kind": "Example",
+  "slug": "solid-and-dashed",
+  "body": "The answer line reads at a glance: solid teal where parts fit, one dashed copper gap where the made-up part sits, and the whale steps over it.",
+  "callback": "The made-up card the whale acted on in bar 1 is visibly dashed in the same framing, and the whale passes it by."
+ },
+ "end_belief": {
+  "kind": "Goal",
+  "body": "Trust what fits its neighbours. Check the rest."
+ },
+ "beats": [
+  {
+   "t": 0.0,
+   "picture": "Close: a pod hands the whale one long answer line made of cards, all in the same bold ink. One card is cracked inside but looks the same as the others.",
+   "words": "It sounded sure about all of it.",
+   "sound": "One loud repeated note.",
+   "act": "felt",
+   "bars": "1-2",
+   "camera": "Close, z 1.6 on the whale, small follow pan",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 2.812,
+   "picture": "The whale acts on the cracked card; a second pod answers ✕ on a copper chip.",
+   "words": "",
+   "sound": "Thud on the ✕.",
+   "act": "felt",
+   "bars": "2",
+   "camera": "Close, z 1.6 on the whale, small follow pan",
+   "cue_tags": [
+    "consequence"
+   ]
+  },
+  {
+   "t": 4.688,
+   "picture": "The whale holds the answer line up; every card looks equally sure.",
+   "words": "One part was made up.",
+   "sound": "The loud note again, flat.",
+   "act": "felt",
+   "bars": "3-4",
+   "camera": "Close, z 1.6 on the whale, small follow pan"
+  },
+  {
+   "t": 7.5,
+   "picture": "The cracked card sits among the others, the ✕ lit. Hold.",
+   "words": "",
+   "sound": "The problem motif fades. Silence creeps in.",
+   "act": "felt",
+   "bars": "5",
+   "camera": "Close, z 1.6 on the whale, small follow pan"
+  },
+  {
+   "t": 10.312,
+   "picture": "Hinge: half a bar of stillness, then SERIES.open shows the title over the still line.",
+   "words": "",
+   "sound": "Near-silence, then the title tick.",
+   "act": "why",
+   "bars": "6",
+   "camera": "Pull back z 1.6 to 1.0, one reveal",
+   "cue_tags": [
+    "hinge"
+   ]
+  },
+  {
+   "t": 11.25,
+   "picture": "Pull back: many answer lines, every card in the same bold ink. Three times, every 2 beats, then 1, then half, a cracked card is acted on.",
+   "words": "Sure and right look the same.",
+   "sound": "Loud note and thud three times, accelerating.",
+   "act": "why",
+   "bars": "7-9",
+   "camera": "Pull back z 1.6 to 1.0, one reveal",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 16.875,
+   "picture": "The cards freeze. Faint dashed links ghost between neighbouring cards.",
+   "words": "Check each part against its neighbours.",
+   "sound": "Notes split into a chord.",
+   "act": "why",
+   "bars": "10",
+   "camera": "Pull back z 1.6 to 1.0, one reveal",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 18.75,
+   "picture": "The answer line splits into its cards. Between neighbours, dashed joins appear, and each is read both ways.",
+   "words": "Check each part against its neighbours.",
+   "sound": "Two tones per join.",
+   "act": "move",
+   "bars": "11-12",
+   "camera": "Medium z 1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 21.562,
+   "picture": "Joins that match turn teal and their cards go solid. A lonely card with no matching neighbour stays dashed and pale.",
+   "words": "Parts that fit go solid.",
+   "sound": "Unison pairs; one tone left hanging.",
+   "act": "move",
+   "bars": "12-13",
+   "camera": "Medium z 1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 24.375,
+   "picture": "Push-in: the cracked card's joins glow copper on both sides. It stays dashed: marked, not removed.",
+   "words": "The made-up part stands out.",
+   "sound": "The pair beats on both sides.",
+   "act": "move",
+   "bars": "14",
+   "camera": "Medium z 1.2, the one push-in to z 1.3",
+   "cue_tags": [
+    "mech",
+    "focus"
+   ]
+  },
+  {
+   "t": 27.188,
+   "picture": "The solid teal run of cards gets a label: section.",
+   "words": "The parts that all fit: a section.",
+   "sound": "A held chord across the solid run.",
+   "act": "move",
+   "bars": "15-16",
+   "camera": "Medium z 1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 30.0,
+   "picture": "Wide: a lattice of notes in layers, each note its own size. Most joins teal, a few copper, shown, not hidden.",
+   "words": "Real build: an explorer that shows this.",
+   "sound": "Pulse bed, chord across the lattice.",
+   "act": "case",
+   "bars": "17-19",
+   "camera": "Steady wide, slow drift"
+  },
+  {
+   "t": 35.625,
+   "picture": "The whale crosses the lattice. Only solid teal regions light as trusted; copper joins stay visible.",
+   "words": "Only what agrees is marked trusted.",
+   "sound": "Trusted regions chime.",
+   "act": "case",
+   "bars": "20-22",
+   "camera": "Steady wide, slow drift"
+  },
+  {
+   "t": 41.25,
+   "picture": "Push to a solid teal run: its cards' source ticks open into a grid of sixty. Most turn teal, some copper. They agreed, yet some sources do not say it.",
+   "words": "They agreed. Some sources did not.",
+   "sound": "Chord with one unresolved note.",
+   "act": "limit",
+   "bars": "23-24",
+   "camera": "Still, then one slow push to the thing that slipped",
+   "cue_tags": [
+    "limit"
+   ]
+  },
+  {
+   "t": 45.0,
+   "picture": "Hold on the grid with its copper ticks.",
+   "words": "Agreeing is not the same as true.",
+   "sound": "Room tone.",
+   "act": "limit",
+   "bars": "25",
+   "camera": "Still"
+  },
+  {
+   "t": 46.875,
+   "picture": "Solid and dashed. FELT framing (z 1.6, the same answer line). The cards stand solid teal except the made-up one, which stays dashed and copper. The whale steps over it; the pod answers ✓.",
+   "words": "",
+   "sound": "Chord holds, a gap of silence where the dashed card is.",
+   "act": "payoff",
+   "bars": "26-29",
+   "camera": "Back to FELT framing z 1.6, then wide reveal",
+   "cue_tags": [
+    "callback"
+   ]
+  },
+  {
+   "t": 54.375,
+   "picture": "The answer line, solid with one dashed gap, whale breathing.",
+   "words": "Trust what fits its neighbours. Check the rest.",
+   "sound": "Pad tail only.",
+   "act": "belief",
+   "bars": "30-31",
+   "camera": "Still, breathing only"
+  },
+  {
+   "t": 58.125,
+   "picture": "SERIES.lockup over the still line.",
+   "words": "",
+   "sound": "Lockup tone.",
+   "act": "lockup",
+   "bars": "32",
+   "camera": "Still"
+  }
+ ],
+ "captions": [
+  {
+   "t_in": 0.938,
+   "t_out": 3.75,
+   "text": "It sounded sure about all of it.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 4.688,
+   "t_out": 8.438,
+   "text": "One part was made up.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 10.312,
+   "t_out": 12.656,
+   "text": "Trust the parts that agree.",
+   "kind": "title"
+  },
+  {
+   "t_in": 12.656,
+   "t_out": 15.938,
+   "text": "Sure and right look the same.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 16.406,
+   "t_out": 19.219,
+   "text": "Check each part against its neighbours.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 21.562,
+   "t_out": 24.375,
+   "text": "Parts that fit go solid.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 24.375,
+   "t_out": 27.188,
+   "text": "The made-up part stands out.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 27.188,
+   "t_out": 30.0,
+   "text": "The parts that all fit: a section.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 30.0,
+   "t_out": 32.344,
+   "text": "Real build: an explorer that shows this.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 31.875,
+   "t_out": 40.312,
+   "text": "4 hierarchy planes · own sizes 2–16",
+   "kind": "card",
+   "src": "https://github.com/manutej/stalks-and-sections"
+  },
+  {
+   "t_in": 35.625,
+   "t_out": 39.375,
+   "text": "Only what agrees is marked trusted.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 41.25,
+   "t_out": 44.531,
+   "text": "They agreed. Some sources did not.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 42.188,
+   "t_out": 45.0,
+   "text": "Citation audit · 47 of 60 faithful",
+   "kind": "card",
+   "src": "https://app.notion.com/p/3f3d50cfaf93813b8cfce21490365024"
+  },
+  {
+   "t_in": 45.0,
+   "t_out": 47.812,
+   "text": "Agreeing is not the same as true.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 54.375,
+   "t_out": 58.125,
+   "text": "Trust what fits its neighbours. Check the rest.",
+   "kind": "caption"
+  }
+ ],
+ "terms": [
+  {
+   "term": "section",
+   "symbol": "seam",
+   "pictured_at": 21.562,
+   "named_at": 27.188
+  }
+ ],
+ "jargon": [
+  "global",
+  "lattice",
+  "hierarchy",
+  "citation"
+ ],
+ "sound": {
+  "signature": "A held chord that only the fitting parts join.",
+  "problem_motif": "Every card the same loud note, even the cracked one.",
+  "limit_unresolved": true
+ },
+ "score_self": {
+  "score": 0.72,
+  "reason": "The most broadly useful belief. The case is a real build, not a run, which is weaker evidence. The 47 of 60 audit limit is strong and sourced. Two cards in late acts make it text-heavy.",
+  "weakest_piece": "real_case"
+ }
+}

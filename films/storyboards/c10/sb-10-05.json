@@ -1,0 +1,477 @@
+{
+  "schema_version": "sb60-v1",
+  "id": "sb-10-05",
+  "meta_prompt_id": "mp-c10-v1",
+  "cluster": "10 Explainers & craft",
+  "repo": "manutej/craft",
+  "capability": "Check a suggested package exists before install",
+  "audience": "Engineers",
+  "wada": 243,
+  "bpm": 128,
+  "dur": 60.3,
+  "title": "Nothing fake gets past the <i>door</i>.",
+  "hook": {
+    "kind": "Example",
+    "picture": "Close on the whale dropping a card labelled with a package name onto the line, quick and confident.",
+    "words": "It even wrote the install line."
+  },
+  "problem_in_viewer_words": {
+    "kind": "Fact",
+    "body": "The AI added a package that does not even exist.",
+    "who": "engineer at code review"
+  },
+  "why_it_keeps_happening": {
+    "kind": "Fact",
+    "picture": "Pull back: cards are named from memory and dropped straight onto the line; nothing looks inside before they land. Three-times device: three cards drop in, every 2 beats, then 1, then half; each time one comes up hollow at the pod.",
+    "words": "It sounds right, so nobody checks."
+  },
+  "stakes": {
+    "kind": "Fact",
+    "body": "A build breaks at best. At worst, someone registers that fake name with bad code inside."
+  },
+  "solution_hint": "Check every package is real first.",
+  "metaphor": {
+    "kind": "Example",
+    "body": "Each package is a card that must pass a door on the line before the pod opens it; the door looks inside, and a hollow card never gets through.",
+    "symbols": [
+      "whale",
+      "line",
+      "gate",
+      "atom",
+      "flag"
+    ]
+  },
+  "mechanism_beats": {
+    "kind": "Method",
+    "steps": [
+      {
+        "t": 18.75,
+        "picture": "A gate rises on the line in front of the pod; each package card must pass through it.",
+        "words": "Check every package is real first.",
+        "sound": "Gate rising, solid knock"
+      },
+      {
+        "t": 21.562,
+        "picture": "A full card passes; the gate glows; a ring on its tab shows it was looked up.",
+        "words": "Looked up. Real.",
+        "sound": "Solid knock plus soft chime"
+      },
+      {
+        "t": 24.375,
+        "picture": "A hollow card reaches the gate; it closes, and the card is refused and drops away before the pod.",
+        "words": "Not real? It never reaches the build.",
+        "sound": "Gate latch, hollow card falls"
+      },
+      {
+        "t": 27.188,
+        "picture": "Three more cards pass; the post gets its name.",
+        "words": "That check at the door: a gate.",
+        "sound": "Three solid knocks"
+      }
+    ]
+  },
+  "real_case": {
+    "kind": "Evidence",
+    "claim": "The craft README states \"~19.7% of AI-suggested packages don't\" exist, attributing the figure to USENIX Security 2025. Its supply-chain-hygiene skill checks that dependencies exist and that APIs are real.",
+    "numbers": [
+      "~19.7%"
+    ],
+    "source": {
+      "kind": "repo",
+      "title": "manutej/craft README (citing USENIX Security 2025)",
+      "url": "https://github.com/manutej/craft"
+    },
+    "verified": true,
+    "illustrative": false
+  },
+  "honest_limit": {
+    "kind": "Constraint",
+    "picture": "A full, real card passes the gate cleanly, but inside its lines there is a rust smudge: a real package with bad code inside.",
+    "words": "Real is not the same as safe."
+  },
+  "not_this": {
+    "kind": "Constraint",
+    "body": "Still read what you install."
+  },
+  "ending_pattern": {
+    "kind": "Example",
+    "slug": "no-hollow-boxes",
+    "body": "FELT framing returns. The pod opens every card it receives and each one is full; behind the gate a small pile of hollow cards lies where they were stopped.",
+    "callback": "The hollow card the pod opened in bar 2 now lies behind the gate, never reaching it."
+  },
+  "end_belief": {
+    "kind": "Goal",
+    "body": "Check the name exists before you install."
+  },
+  "beats": [
+    {
+      "t": 0.0,
+      "act": "felt",
+      "bars": "1",
+      "picture": "Close on the whale dropping a card labelled with a package name onto the line, quick and confident.",
+      "words": "",
+      "sound": "Card drop, light",
+      "camera": "Close z 1.6 on the whale",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 0.938,
+      "act": "felt",
+      "bars": "1",
+      "picture": "The whale holds still for a breath, facing the trouble.",
+      "words": "It even wrote the install line.",
+      "sound": "Low room tone",
+      "camera": "Close z 1.6 on the whale",
+      "cue_tags": []
+    },
+    {
+      "t": 1.875,
+      "act": "felt",
+      "bars": "2",
+      "picture": "A pod downstream opens the card: it is hollow, nothing inside. ✕.",
+      "words": "",
+      "sound": "Hollow knock",
+      "camera": "Close z 1.6 on the whale",
+      "cue_tags": [
+        "consequence",
+        "focus"
+      ]
+    },
+    {
+      "t": 4.688,
+      "act": "felt",
+      "bars": "3",
+      "picture": "The whale looks closer: the name on the card sounds real.",
+      "words": "The package is not real.",
+      "sound": "Hollow knock, thinner",
+      "camera": "Close z 1.6 on the whale",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 7.5,
+      "act": "felt",
+      "bars": "5",
+      "picture": "The hollow card sits open on the line. Hold.",
+      "words": "",
+      "sound": "Silence creeps in",
+      "camera": "Close z 1.6 on the whale",
+      "cue_tags": []
+    },
+    {
+      "t": 10.312,
+      "act": "why",
+      "bars": "6",
+      "picture": "Stillness, then the title over the hollow card.",
+      "words": "Nothing fake gets past the door.",
+      "sound": "Half a bar of room tone, then the title tick",
+      "camera": "Pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "hinge"
+      ]
+    },
+    {
+      "t": 12.188,
+      "act": "why",
+      "bars": "7",
+      "picture": "Pull back: cards are named from memory and dropped straight onto the line; nothing looks inside before they land.",
+      "words": "It sounds right, so nobody checks.",
+      "sound": "Card drop",
+      "camera": "Pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 14.062,
+      "act": "why",
+      "bars": "8",
+      "picture": "Three-times device: three cards drop in, every 2 beats, then 1, then half; each time one comes up hollow at the pod.",
+      "words": "",
+      "sound": "Hollow knock x3, accelerating",
+      "camera": "Pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 16.875,
+      "act": "why",
+      "bars": "10",
+      "picture": "All motion stops. Where the fix will go, a faint outline of it ghosts in.",
+      "words": "Check every package is real first.",
+      "sound": "One solid knock, the first in tune",
+      "camera": "Pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 18.75,
+      "act": "move",
+      "bars": "11",
+      "picture": "A gate rises on the line in front of the pod; each package card must pass through it.",
+      "words": "Check every package is real first.",
+      "sound": "Gate rising, solid knock",
+      "camera": "Medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 21.562,
+      "act": "move",
+      "bars": "12",
+      "picture": "A full card passes; the gate glows; a ring on its tab shows it was looked up.",
+      "words": "Looked up. Real.",
+      "sound": "Solid knock plus soft chime",
+      "camera": "Medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 24.375,
+      "act": "move",
+      "bars": "14",
+      "picture": "A hollow card reaches the gate; it closes, and the card is refused and drops away before the pod.",
+      "words": "Not real? It never reaches the build.",
+      "sound": "Gate latch, hollow card falls",
+      "camera": "Push-in z 1.1 to 1.3, the only push",
+      "cue_tags": [
+        "mech",
+        "focus"
+      ]
+    },
+    {
+      "t": 27.188,
+      "act": "move",
+      "bars": "15",
+      "picture": "Three more cards pass; the post gets its name.",
+      "words": "That check at the door: a gate.",
+      "sound": "Three solid knocks",
+      "camera": "Medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 30.0,
+      "act": "case",
+      "bars": "17",
+      "picture": "Wide: a long stream of package cards flows toward the gate; the hollow ones are refused, one by one.",
+      "words": "Studies say this happens a lot.",
+      "sound": "Pulse bed, quiet fast ticks",
+      "camera": "Steady wide, slow drift",
+      "cue_tags": []
+    },
+    {
+      "t": 31.875,
+      "act": "case",
+      "bars": "18",
+      "picture": "The card fades in on clean paper beside the run; the run keeps moving behind it.",
+      "words": "~19.7% of suggested packages do not exist",
+      "sound": "One soft card tick",
+      "camera": "Steady wide, slow drift",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 35.625,
+      "act": "case",
+      "bars": "20",
+      "picture": "The gate post is labelled with craft's supply-chain check; one more hollow card drops away.",
+      "words": "The craft rules check before install.",
+      "sound": "Hollow card falls, distant",
+      "camera": "Steady wide, slow drift",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 41.25,
+      "act": "limit",
+      "bars": "23",
+      "picture": "A full, real card passes the gate cleanly, but inside its lines there is a rust smudge: a real package with bad code inside.",
+      "words": "Real is not the same as safe.",
+      "sound": "The signature plays once and does not resolve",
+      "camera": "Still, then one slow push in",
+      "cue_tags": [
+        "limit",
+        "focus"
+      ]
+    },
+    {
+      "t": 45.0,
+      "act": "limit",
+      "bars": "25",
+      "picture": "Hold on the smudged card, already through.",
+      "words": "Still read what you install.",
+      "sound": "Room tone",
+      "camera": "Still",
+      "cue_tags": []
+    },
+    {
+      "t": 46.875,
+      "act": "payoff",
+      "bars": "26",
+      "picture": "FELT framing (z 1.6). The whale drops a card; it passes the gate; the pod opens it and it is full.",
+      "words": "",
+      "sound": "Solid knocks, resolved",
+      "camera": "FELT framing z 1.6, then wide reveal",
+      "cue_tags": [
+        "callback",
+        "focus"
+      ]
+    },
+    {
+      "t": 50.625,
+      "act": "payoff",
+      "bars": "28",
+      "picture": "The pod answers ✓; the hollow cards stay piled behind the gate. Spark.",
+      "words": "",
+      "sound": "Full resolution, the signature in tune on every beat",
+      "camera": "FELT framing z 1.6, then wide reveal",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 54.375,
+      "act": "belief",
+      "bars": "30",
+      "picture": "The calm line with its one gate; the whale breathes.",
+      "words": "Check the name exists before you install.",
+      "sound": "Pad tail only",
+      "camera": "Still, breathing",
+      "cue_tags": []
+    },
+    {
+      "t": 58.125,
+      "act": "lockup",
+      "bars": "32",
+      "picture": "SERIES.lockup over the chart ground.",
+      "words": "",
+      "sound": "Pad tail fades",
+      "camera": "Still",
+      "cue_tags": []
+    }
+  ],
+  "captions": [
+    {
+      "t_in": 0.938,
+      "t_out": 3.75,
+      "text": "It even wrote the install line.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 4.688,
+      "t_out": 7.969,
+      "text": "The package is not real.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 10.312,
+      "t_out": 12.187,
+      "text": "Nothing fake gets past the door.",
+      "kind": "title"
+    },
+    {
+      "t_in": 12.188,
+      "t_out": 15.938,
+      "text": "It sounds right, so nobody checks.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 16.875,
+      "t_out": 19.219,
+      "text": "Check every package is real first.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 21.562,
+      "t_out": 23.437,
+      "text": "Looked up. Real.",
+      "kind": "label"
+    },
+    {
+      "t_in": 24.375,
+      "t_out": 27.188,
+      "text": "Not real? It never reaches the build.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 27.188,
+      "t_out": 30.0,
+      "text": "That check at the door: a gate.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 30.0,
+      "t_out": 32.812,
+      "text": "Studies say this happens a lot.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 31.875,
+      "t_out": 39.375,
+      "text": "~19.7% of suggested packages do not exist",
+      "kind": "card",
+      "src": "https://github.com/manutej/craft (citing USENIX Security 2025)"
+    },
+    {
+      "t_in": 35.625,
+      "t_out": 39.375,
+      "text": "The craft rules check before install.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 41.25,
+      "t_out": 44.062,
+      "text": "Real is not the same as safe.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 45.0,
+      "t_out": 47.812,
+      "text": "Still read what you install.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 54.375,
+      "t_out": 58.125,
+      "text": "Check the name exists before you install.",
+      "kind": "caption"
+    }
+  ],
+  "terms": [
+    {
+      "term": "gate",
+      "symbol": "gate",
+      "pictured_at": 21.562,
+      "named_at": 27.188
+    }
+  ],
+  "jargon": [
+    "dependency",
+    "hallucinate",
+    "registry",
+    "supply",
+    "npm",
+    "pip"
+  ],
+  "sound": {
+    "signature": "A solid wooden knock: something is there",
+    "problem_motif": "The same knock on a hollow box, with a thin echo",
+    "limit_unresolved": true
+  },
+  "score_self": {
+    "score": 0.76,
+    "reason": "Concrete, very common engineer pain with an attributed number. Weak spot: the number is second-hand (the README cites a paper), so the card must keep the attribution visible.",
+    "weakest_piece": "real_case"
+  }
+}

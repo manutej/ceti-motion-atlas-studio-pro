@@ -1,0 +1,442 @@
+{
+ "schema_version": "sb60-v1",
+ "id": "sb-09-07",
+ "meta_prompt_id": "mp-c09-v1",
+ "cluster": "09 Generative art & sound",
+ "repo": "manutej/kochi",
+ "capability": "See how your notes connect, as one map",
+ "audience": "Everyone",
+ "wada": 296,
+ "bpm": 124,
+ "dur": 62.2,
+ "title": "Pull every <i>thread</i> into view.",
+ "hook": {
+  "kind": "Example",
+  "picture": "Close on the whale digging through a tall stack of note cards, flipping one at a time. The card it needs is three down, unseen.",
+  "words": "I know I wrote this somewhere."
+ },
+ "problem_in_viewer_words": {
+  "kind": "Fact",
+  "body": "I have years of notes and can't see how they connect.",
+  "who": "consultant prepping a client talk"
+ },
+ "why_it_keeps_happening": {
+  "kind": "Fact",
+  "picture": "Pull back: cards in folders. Three times a card in one folder points to a card in another, and the thread is cut at the folder wall.",
+  "words": "Folders hide the links between ideas."
+ },
+ "stakes": {
+  "kind": "Fact",
+  "body": "You repeat old work, and miss the idea that ties a talk together."
+ },
+ "solution_hint": "Draw the links, not just the notes.",
+ "metaphor": {
+  "kind": "Example",
+  "body": "The cards lift out of their folders and become points on a sphere, with threads between linked cards. Groups gather, and the card many threads pass through swells.",
+  "symbols": [
+   "whale",
+   "line",
+   "atom",
+   "ring",
+   "pod"
+  ]
+ },
+ "mechanism_beats": {
+  "kind": "Method",
+  "steps": [
+   {
+    "t": 19.355,
+    "picture": "Cards lift out of the folders and become points on a sphere, spaced in a sunflower spiral. Threads draw between linked cards.",
+    "words": "Every note, a point.",
+    "sound": "Notes bloom one by one, in tune."
+   },
+   {
+    "t": 23.226,
+    "picture": "Points that link a lot drift together into four coloured groups.",
+    "words": "Linked ideas gather into groups.",
+    "sound": "Four chords, one per group."
+   },
+   {
+    "t": 27.097,
+    "picture": "Push-in on one small card that many threads run through. It swells: the bridge the whale forgot.",
+    "words": "The bridge note grows. Now you see it.",
+    "sound": "A low note under all four groups."
+   },
+   {
+    "t": 29.032,
+    "picture": "The whole sphere folds into one small file card, and the whale tucks it under its fin.",
+    "words": "",
+    "sound": "A soft fold sound."
+   }
+  ]
+ },
+ "real_case": {
+  "kind": "Evidence",
+  "claim": "KOCHI turns a markdown or Obsidian vault into a 3D graph with Louvain clusters and centrality sizing, built as a single offline HTML file of about 400KB; the vault stays local.",
+  "numbers": [
+   "~400KB"
+  ],
+  "source": {
+   "kind": "repo",
+   "title": "manutej/kochi README",
+   "url": "https://github.com/manutej/kochi"
+  },
+  "verified": true,
+  "illustrative": false
+ },
+ "honest_limit": {
+  "kind": "Constraint",
+  "picture": "Two notes that contradict each other sit in the same group, joined by a thread. The map shows that they link, not that they agree.",
+  "words": "Linked is not the same as agreeing."
+ },
+ "not_this": {
+  "kind": "Constraint",
+  "body": "The map shows links, not who's right."
+ },
+ "ending_pattern": {
+  "kind": "Example",
+  "slug": "bridge-card-found",
+  "body": "The pod asks the same question as in FELT. This time the whale spins the sphere, finds the swollen bridge card at once, and the pod answers ✓.",
+  "callback": "Same pod, same question as bar 2, and the right card arrives before the meeting."
+ },
+ "end_belief": {
+  "kind": "Goal",
+  "body": "Look at the links between your notes."
+ },
+ "beats": [
+  {
+   "t": 0.0,
+   "picture": "Close: the whale flips cards off a tall stack, one by one.",
+   "words": "I know I wrote this somewhere.",
+   "sound": "Paper flicks, one muted note each.",
+   "act": "felt",
+   "bars": "1",
+   "camera": "Close z 1.6 on the whale",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 2.903,
+   "picture": "A pod asks a question. The whale hands it the wrong card, and the pod answers with a copper ✕ chip.",
+   "words": "I found it after the meeting.",
+   "sound": "A dull thunk.",
+   "act": "felt",
+   "bars": "2-3",
+   "camera": "Close z 1.6, small follow pan",
+   "cue_tags": [
+    "consequence"
+   ]
+  },
+  {
+   "t": 5.806,
+   "picture": "The right card slides out of the stack as the pod leaves.",
+   "words": "",
+   "sound": "A late, sour note.",
+   "act": "felt",
+   "bars": "4",
+   "camera": "Close z 1.6",
+   "cue_tags": []
+  },
+  {
+   "t": 7.742,
+   "picture": "The whale looks at the card, too late. Hold.",
+   "words": "",
+   "sound": "Silence.",
+   "act": "felt",
+   "bars": "5",
+   "camera": "Close z 1.7, hold on the whale's face",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 9.677,
+   "picture": "Half a bar of stillness, then the title.",
+   "words": "Pull every thread into view.",
+   "sound": "Near-silence, then the title tick.",
+   "act": "why",
+   "bars": "6",
+   "camera": "Still z 1.6, half bar of stillness",
+   "cue_tags": [
+    "hinge"
+   ]
+  },
+  {
+   "t": 11.613,
+   "picture": "Pull back: rows of folders. A thread from one card stops dead at its folder wall.",
+   "words": "Folders hide the links between ideas.",
+   "sound": "Problem motif: a note that cuts off.",
+   "act": "why",
+   "bars": "7-8",
+   "camera": "Pull back z 1.6 to 1.0",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 15.484,
+   "picture": "Two more threads cut at folder walls, every 1 beat then half.",
+   "words": "",
+   "sound": "Problem motif three times, accelerating.",
+   "act": "why",
+   "bars": "9",
+   "camera": "Wide z 1.0, pattern revealed",
+   "cue_tags": []
+  },
+  {
+   "t": 17.419,
+   "picture": "Motion stops. Faint threads ghost through the folder walls.",
+   "words": "Draw the links, not just the notes.",
+   "sound": "One sustained, clean note: the signature.",
+   "act": "why",
+   "bars": "10",
+   "camera": "Wide z 1.0, all motion stops",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 19.355,
+   "picture": "Cards lift out of the folders and become points on a sphere, spaced in a sunflower spiral. Threads draw between linked cards.",
+   "words": "Every note, a point.",
+   "sound": "Notes bloom one by one, in tune.",
+   "act": "move",
+   "bars": "11-12",
+   "camera": "Medium z 1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 23.226,
+   "picture": "Points that link a lot drift together into four coloured groups.",
+   "words": "Linked ideas gather into groups.",
+   "sound": "Four chords, one per group.",
+   "act": "move",
+   "bars": "13-14",
+   "camera": "Medium z 1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 27.097,
+   "picture": "Push-in on one small card that many threads run through. It swells: the bridge the whale forgot.",
+   "words": "The bridge note grows. Now you see it.",
+   "sound": "A low note under all four groups.",
+   "act": "move",
+   "bars": "15",
+   "camera": "One push-in z 1.2 to 1.3",
+   "cue_tags": [
+    "mech",
+    "focus"
+   ]
+  },
+  {
+   "t": 29.032,
+   "picture": "The whole sphere folds into one small file card, and the whale tucks it under its fin.",
+   "words": "",
+   "sound": "A soft fold sound.",
+   "act": "move",
+   "bars": "16",
+   "camera": "Medium z 1.3 easing back to 1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 30.968,
+   "picture": "Wide: a pile of plain note cards flows in and comes out as one small file card holding the sphere.",
+   "words": "Real notes in, one file out.",
+   "sound": "Pulse bed, quick ticks.",
+   "act": "case",
+   "bars": "17-19",
+   "camera": "Steady wide, slow drift",
+   "cue_tags": []
+  },
+  {
+   "t": 36.774,
+   "picture": "The file card stays inside a circle around the whale. No line leaves the circle.",
+   "words": "Your notes stay on your machine.",
+   "sound": "Steady pulse.",
+   "act": "case",
+   "bars": "20-22",
+   "camera": "Steady wide, slow drift",
+   "cue_tags": []
+  },
+  {
+   "t": 42.581,
+   "picture": "Two cards that say opposite things sit in the same coloured group. The thread between them glows teal as if they agree.",
+   "words": "Linked is not the same as agreeing.",
+   "sound": "Signature plays once, unresolved.",
+   "act": "limit",
+   "bars": "23-24",
+   "camera": "Still",
+   "cue_tags": [
+    "limit"
+   ]
+  },
+  {
+   "t": 46.452,
+   "picture": "Slow push to the two clashing cards.",
+   "words": "",
+   "sound": "Room tone.",
+   "act": "limit",
+   "bars": "25",
+   "camera": "One slow push to the thing that slipped",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 48.387,
+   "picture": "FELT framing: the pod asks again. The whale spins the sphere, the bridge card lights, and the whale hands it over.",
+   "words": "",
+   "sound": "The low bridge note.",
+   "act": "payoff",
+   "bars": "26-27",
+   "camera": "Close z 1.6, the FELT framing restored",
+   "cue_tags": [
+    "callback"
+   ]
+  },
+  {
+   "t": 52.258,
+   "picture": "The pod answers ✓. The sphere hangs over the line.",
+   "words": "",
+   "sound": "Resolved chord.",
+   "act": "payoff",
+   "bars": "28-29",
+   "camera": "Wide reveal z 1.0",
+   "cue_tags": []
+  },
+  {
+   "t": 56.129,
+   "picture": "The sphere slowly turning, the whale breathing.",
+   "words": "Look at the links between your notes.",
+   "sound": "Pad tail.",
+   "act": "belief",
+   "bars": "30-31",
+   "camera": "Still, breathing only",
+   "cue_tags": []
+  },
+  {
+   "t": 60.0,
+   "picture": "SERIES.lockup.",
+   "words": "",
+   "sound": "Pad tail ends, lockup tick.",
+   "act": "lockup",
+   "bars": "32",
+   "camera": "Still",
+   "cue_tags": []
+  }
+ ],
+ "captions": [
+  {
+   "t_in": 0.968,
+   "t_out": 3.871,
+   "text": "I know I wrote this somewhere.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 4.839,
+   "t_out": 8.71,
+   "text": "I found it after the meeting.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 10.645,
+   "t_out": 13.548,
+   "text": "Pull every thread into view.",
+   "kind": "title"
+  },
+  {
+   "t_in": 13.548,
+   "t_out": 17.419,
+   "text": "Folders hide the links between ideas.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 17.419,
+   "t_out": 19.839,
+   "text": "Draw the links, not just the notes.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 20.323,
+   "t_out": 22.742,
+   "text": "Every note, a point.",
+   "kind": "label"
+  },
+  {
+   "t_in": 23.226,
+   "t_out": 26.613,
+   "text": "Linked ideas gather into groups.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 27.097,
+   "t_out": 30.484,
+   "text": "The bridge note grows. Now you see it.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 30.968,
+   "t_out": 34.839,
+   "text": "Real notes in, one file out.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 31.935,
+   "t_out": 42.097,
+   "text": "Repo README · one offline file, ~400KB.",
+   "kind": "card",
+   "src": "https://github.com/manutej/kochi"
+  },
+  {
+   "t_in": 36.774,
+   "t_out": 40.645,
+   "text": "Your notes stay on your machine.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 42.581,
+   "t_out": 45.484,
+   "text": "Linked is not the same as agreeing.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 45.484,
+   "t_out": 48.145,
+   "text": "The map shows links, not who's right.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 56.129,
+   "t_out": 60.0,
+   "text": "Look at the links between your notes.",
+   "kind": "caption"
+  }
+ ],
+ "terms": [],
+ "jargon": [
+  "graph",
+  "node",
+  "Louvain",
+  "centrality",
+  "vault",
+  "markdown",
+  "Obsidian"
+ ],
+ "sound": {
+  "signature": "A sustained clean note per linked card, blooming into chords.",
+  "problem_motif": "A note that cuts off mid-sustain.",
+  "limit_unresolved": true
+ },
+ "score_self": {
+  "score": 0.72,
+  "reason": "Everyone has this pain, and the sphere-of-points picture is very visual. The case card is a spec rather than a run, which is honest but weak. The limit is pictured well.",
+  "weakest_piece": "real_case"
+ }
+}

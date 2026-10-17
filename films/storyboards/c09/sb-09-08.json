@@ -1,0 +1,438 @@
+{
+ "schema_version": "sb60-v1",
+ "id": "sb-09-08",
+ "meta_prompt_id": "mp-c09-v1",
+ "cluster": "09 Generative art & sound",
+ "repo": "manutej/visual-elements",
+ "capability": "Give every shape one fixed meaning",
+ "audience": "Learners",
+ "wada": 166,
+ "bpm": 128,
+ "dur": 60.3,
+ "title": "Every shape gets one <i>pin</i>.",
+ "hook": {
+  "kind": "Example",
+  "picture": "Close on the whale drawing a circle on slide one to mean a team, then drawing another circle on slide two to mean a step.",
+  "words": "This circle is the team."
+ },
+ "problem_in_viewer_words": {
+  "kind": "Fact",
+  "body": "In my slides a circle means three different things.",
+  "who": "trainer rebuilding a course deck"
+ },
+ "why_it_keeps_happening": {
+  "kind": "Fact",
+  "picture": "Pull back: twelve slides. Each time the whale redraws a shape from scratch, it picks up a new meaning (every 2 beats, then 1, then half).",
+  "words": "Each redraw adds a new meaning."
+ },
+ "stakes": {
+  "kind": "Fact",
+  "body": "Learners decode your shapes instead of your ideas, and they learn the wrong thing."
+ },
+ "solution_hint": "One shape, one meaning. Keep a shelf.",
+ "metaphor": {
+  "kind": "Example",
+  "body": "A shelf above the line holds a few shape cards, each pinned to one word. The whale takes shapes from the shelf instead of drawing, so a circle always means the same thing.",
+  "symbols": [
+   "whale",
+   "line",
+   "atom",
+   "pin",
+   "pod"
+  ]
+ },
+ "mechanism_beats": {
+  "kind": "Method",
+  "steps": [
+   {
+    "t": 18.75,
+    "picture": "Shape cards appear on the shelf, each pinned to one word: circle = team, square = changed, double border = step.",
+    "words": "Circle = team.",
+    "sound": "One tuned pluck per pin."
+   },
+   {
+    "t": 22.5,
+    "picture": "The whale takes shapes from the shelf instead of drawing. Every slide reuses the same card, with a tick each time.",
+    "words": "Take it from the shelf. Never redraw.",
+    "sound": "The same pluck on each reuse."
+   },
+   {
+    "t": 26.25,
+    "picture": "Push-in: the whale tries to make the circle mean a risk. The pin holds and refuses. The whale makes a new triangle and pins it to risk.",
+    "words": "New idea? New shape. Old pins hold.",
+    "sound": "A blocked thud, then a new tuned pluck."
+   },
+   {
+    "t": 28.125,
+    "picture": "The shelf grows by one card. The strip of slides reads the same top to bottom.",
+    "words": "",
+    "sound": "Plucks in a clean row."
+   }
+  ]
+ },
+ "real_case": {
+  "kind": "Evidence",
+  "claim": "The Motion Atlas node 'Whiteboard vector diagram' says: give each shape a fixed meaning, save finished objects to a stencil library, and run a render-export-compare loop.",
+  "numbers": [],
+  "source": {
+   "kind": "notion",
+   "title": "Whiteboard vector diagram (Motion Atlas node)",
+   "url": "https://app.notion.com/p/3fbd50cfaf9381808566f4e0a8df1e44"
+  },
+  "verified": true,
+  "illustrative": false
+ },
+ "honest_limit": {
+  "kind": "Constraint",
+  "picture": "A shape used exactly by its pinned meaning still carries a wrong claim next to it. Consistent symbols do not make a true slide.",
+  "words": "The right shape can carry a wrong claim."
+ },
+ "not_this": {
+  "kind": "Constraint",
+  "body": "Consistent shapes are not a true story."
+ },
+ "ending_pattern": {
+  "kind": "Example",
+  "slug": "shelf-reveal",
+  "body": "The FELT slides return with both circles meaning team, then the camera pulls back to reveal this film's own symbol shelf.",
+  "callback": "Same two slides as bars 1 to 3, the clashing circle meanings now one."
+ },
+ "end_belief": {
+  "kind": "Goal",
+  "body": "Give each shape one job. Reuse it."
+ },
+ "beats": [
+  {
+   "t": 0.0,
+   "picture": "Close: the whale draws a circle on slide one and labels it a team.",
+   "words": "This circle is the team.",
+   "sound": "A pencil scratch, one plucked note.",
+   "act": "felt",
+   "bars": "1",
+   "camera": "Close z 1.6 on the whale",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 2.812,
+   "picture": "On slide two it draws another circle for a step. A pod reading both mixes them up and answers with a rust ✕ chip.",
+   "words": "Now the same circle means a step.",
+   "sound": "The note returns, detuned.",
+   "act": "felt",
+   "bars": "2-3",
+   "camera": "Close z 1.6, small follow pan",
+   "cue_tags": [
+    "consequence"
+   ]
+  },
+  {
+   "t": 5.625,
+   "picture": "A third circle appears for a risk. The pod's ✕ count goes to 2.",
+   "words": "",
+   "sound": "Detuned note twice.",
+   "act": "felt",
+   "bars": "4",
+   "camera": "Close z 1.6",
+   "cue_tags": []
+  },
+  {
+   "t": 7.5,
+   "picture": "The whale looks between the three circles. Hold.",
+   "words": "",
+   "sound": "Silence.",
+   "act": "felt",
+   "bars": "5",
+   "camera": "Close z 1.7, hold on the whale's face",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 9.375,
+   "picture": "Half a bar of stillness, then the title.",
+   "words": "Every shape gets one pin.",
+   "sound": "Near-silence, then the title tick.",
+   "act": "why",
+   "bars": "6",
+   "camera": "Still z 1.6, half bar of stillness",
+   "cue_tags": [
+    "hinge"
+   ]
+  },
+  {
+   "t": 11.25,
+   "picture": "Pull back: twelve slides in a strip, circles everywhere, each with a different label.",
+   "words": "Each redraw adds a new meaning.",
+   "sound": "Problem motif: a pluck that drifts in pitch.",
+   "act": "why",
+   "bars": "7-8",
+   "camera": "Pull back z 1.6 to 1.0",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 15.0,
+   "picture": "Three more redraws, every 2 beats, then 1, then half, each with a new meaning.",
+   "words": "",
+   "sound": "Problem motif three times, accelerating.",
+   "act": "why",
+   "bars": "9",
+   "camera": "Wide z 1.0, pattern revealed",
+   "cue_tags": []
+  },
+  {
+   "t": 16.875,
+   "picture": "Motion stops. An empty shelf ghosts in above the line.",
+   "words": "One shape, one meaning. Keep a shelf.",
+   "sound": "One clean pluck: the signature.",
+   "act": "why",
+   "bars": "10",
+   "camera": "Wide z 1.0, all motion stops",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 18.75,
+   "picture": "Shape cards appear on the shelf, each pinned to one word: circle = team, square = changed, double border = step.",
+   "words": "Circle = team.",
+   "sound": "One tuned pluck per pin.",
+   "act": "move",
+   "bars": "11-12",
+   "camera": "Medium z 1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 22.5,
+   "picture": "The whale takes shapes from the shelf instead of drawing. Every slide reuses the same card, with a tick each time.",
+   "words": "Take it from the shelf. Never redraw.",
+   "sound": "The same pluck on each reuse.",
+   "act": "move",
+   "bars": "13-14",
+   "camera": "Medium z 1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 26.25,
+   "picture": "Push-in: the whale tries to make the circle mean a risk. The pin holds and refuses. The whale makes a new triangle and pins it to risk.",
+   "words": "New idea? New shape. Old pins hold.",
+   "sound": "A blocked thud, then a new tuned pluck.",
+   "act": "move",
+   "bars": "15",
+   "camera": "One push-in z 1.2 to 1.3",
+   "cue_tags": [
+    "mech",
+    "focus"
+   ]
+  },
+  {
+   "t": 28.125,
+   "picture": "The shelf grows by one card. The strip of slides reads the same top to bottom.",
+   "words": "",
+   "sound": "Plucks in a clean row.",
+   "act": "move",
+   "bars": "16",
+   "camera": "Medium z 1.3 easing back to 1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 30.0,
+   "picture": "Wide: a shelf of saved shapes beside a deck being built from it.",
+   "words": "Real practice: a shelf of fixed shapes.",
+   "sound": "Pulse bed, quick ticks.",
+   "act": "case",
+   "bars": "17-19",
+   "camera": "Steady wide, slow drift",
+   "cue_tags": []
+  },
+  {
+   "t": 35.625,
+   "picture": "The whale renders a slide, compares it with the target, adjusts, renders again. The two frames converge.",
+   "words": "Draw, export, compare, until they match.",
+   "sound": "Two notes slide into unison.",
+   "act": "case",
+   "bars": "20-22",
+   "camera": "Steady wide, slow drift",
+   "cue_tags": []
+  },
+  {
+   "t": 41.25,
+   "picture": "A pinned circle is used correctly on a slide, but the claim written beside it is wrong. The pod answers ✕ anyway.",
+   "words": "The right shape can carry a wrong claim.",
+   "sound": "Signature pluck once, unresolved.",
+   "act": "limit",
+   "bars": "23-24",
+   "camera": "Still",
+   "cue_tags": [
+    "limit"
+   ]
+  },
+  {
+   "t": 45.0,
+   "picture": "Slow push to the wrong claim beside the correct circle.",
+   "words": "",
+   "sound": "Room tone.",
+   "act": "limit",
+   "bars": "25",
+   "camera": "One slow push to the thing that slipped",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 46.875,
+   "picture": "FELT framing: slide one and slide two again. Both circles mean team, taken from the shelf, and the pod reads both and answers ✓.",
+   "words": "",
+   "sound": "The same pluck twice, in tune.",
+   "act": "payoff",
+   "bars": "26-27",
+   "camera": "Close z 1.6, the FELT framing restored",
+   "cue_tags": [
+    "callback"
+   ]
+  },
+  {
+   "t": 50.625,
+   "picture": "Pull back to reveal this film's own shelf: whale, line, pin, card, pod, each with one meaning.",
+   "words": "",
+   "sound": "Resolved chord.",
+   "act": "payoff",
+   "bars": "28-29",
+   "camera": "Wide reveal z 1.0",
+   "cue_tags": []
+  },
+  {
+   "t": 54.375,
+   "picture": "The shelf above the line, the whale breathing.",
+   "words": "Give each shape one job. Reuse it.",
+   "sound": "Pad tail.",
+   "act": "belief",
+   "bars": "30-31",
+   "camera": "Still, breathing only",
+   "cue_tags": []
+  },
+  {
+   "t": 58.125,
+   "picture": "SERIES.lockup.",
+   "words": "",
+   "sound": "Pad tail ends, lockup tick.",
+   "act": "lockup",
+   "bars": "32",
+   "camera": "Still",
+   "cue_tags": []
+  }
+ ],
+ "captions": [
+  {
+   "t_in": 0.938,
+   "t_out": 3.75,
+   "text": "This circle is the team.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 4.688,
+   "t_out": 8.438,
+   "text": "Now the same circle means a step.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 10.312,
+   "t_out": 13.125,
+   "text": "Every shape gets one pin.",
+   "kind": "title"
+  },
+  {
+   "t_in": 13.125,
+   "t_out": 16.875,
+   "text": "Each redraw adds a new meaning.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 16.875,
+   "t_out": 19.219,
+   "text": "One shape, one meaning. Keep a shelf.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 19.688,
+   "t_out": 22.031,
+   "text": "Circle = team.",
+   "kind": "label"
+  },
+  {
+   "t_in": 22.5,
+   "t_out": 25.781,
+   "text": "Take it from the shelf. Never redraw.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 26.25,
+   "t_out": 29.531,
+   "text": "New idea? New shape. Old pins hold.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 30.0,
+   "t_out": 33.75,
+   "text": "Real practice: a shelf of fixed shapes.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 30.938,
+   "t_out": 40.781,
+   "text": "Field note · fixed shapes, saved and reused.",
+   "kind": "card",
+   "src": "https://app.notion.com/p/3fbd50cfaf9381808566f4e0a8df1e44"
+  },
+  {
+   "t_in": 35.625,
+   "t_out": 39.375,
+   "text": "Draw, export, compare, until they match.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 41.25,
+   "t_out": 44.062,
+   "text": "The right shape can carry a wrong claim.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 44.062,
+   "t_out": 46.641,
+   "text": "Consistent shapes are not a true story.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 54.375,
+   "t_out": 58.125,
+   "text": "Give each shape one job. Reuse it.",
+   "kind": "caption"
+  }
+ ],
+ "terms": [],
+ "jargon": [
+  "stencil",
+  "vector",
+  "glyph",
+  "icon",
+  "library"
+ ],
+ "sound": {
+  "signature": "One tuned pluck per pinned shape, repeated on each reuse.",
+  "problem_motif": "The pluck drifting in pitch on each redraw.",
+  "limit_unresolved": true
+ },
+ "score_self": {
+  "score": 0.68,
+  "reason": "Pain for learners and trainers is real, and the self-referential payoff (the film's own shelf) is strong. The repo is unread, so the case rests on a Notion practice note. The hint uses 'shelf', which is fine.",
+  "weakest_piece": "real_case"
+ }
+}

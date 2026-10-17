@@ -1,0 +1,458 @@
+{
+  "schema_version": "sb60-v1",
+  "id": "sb-08-09",
+  "meta_prompt_id": "mp-c08-v1",
+  "cluster": "08 Memory & agent harnesses",
+  "repo": "none",
+  "capability": "Open memory in layers, summary first",
+  "audience": "Learners",
+  "wada": 166,
+  "bpm": 132,
+  "dur": 58.48,
+  "title": "Start with the small <i>card</i>.",
+  "hook": {
+    "kind": "Example",
+    "picture": "Close on the whale pouring a huge stack of note cards onto a pod. The pod staggers, reads, and turns a rust ✕. The one key card lies at the bottom.",
+    "words": "I gave it all my notes."
+  },
+  "problem_in_viewer_words": {
+    "kind": "Fact",
+    "body": "I gave it all my notes, and it missed the key fact.",
+    "who": "student feeding course notes to a chatbot"
+  },
+  "why_it_keeps_happening": {
+    "kind": "Fact",
+    "picture": "Pull back: three tries. Each pours more cards on the pod; the key card sinks deeper (2 beats). It repeats, faster each time.",
+    "words": "More pages bury the one you need."
+  },
+  "stakes": {
+    "kind": "Fact",
+    "body": "More context costs more and answers worse, and the one fact that mattered never gets read."
+  },
+  "solution_hint": "Start small. Open more only if needed.",
+  "metaphor": {
+    "kind": "Example",
+    "body": "The cards stack into four layers on the line: one small summary card on top, then notes, full text, the original. The pod goes down one layer at a time, only as far as it needs. Rust alarm.",
+    "symbols": [
+      "whale",
+      "line",
+      "atom",
+      "pod",
+      "ring"
+    ]
+  },
+  "mechanism_beats": {
+    "kind": "Method",
+    "steps": [
+      {
+        "t": 18.182,
+        "picture": "The cards settle into four layers on the line: one small summary card on top, then source notes, then full text, then the original page.",
+        "words": "Start with the short summary card.",
+        "sound": "Soft rising step, in tune"
+      },
+      {
+        "t": 21.818,
+        "picture": "The pod reads only the top card. A ring marks the one topic it needs.",
+        "words": "Read the top. Pick what you need.",
+        "sound": "One step up, resolved"
+      },
+      {
+        "t": 23.636,
+        "picture": "Push-in: the pod goes down one layer, opens one source note, and finds the key fact. Every other layer stays closed.",
+        "words": "One layer down.",
+        "sound": "Two rising steps"
+      },
+      {
+        "t": 25.455,
+        "picture": "The four layers are labelled: Summary · Notes · Full text · Original.",
+        "words": "Open in layers: progressive disclosure.",
+        "sound": "Four steps, a gentle scale"
+      }
+    ]
+  },
+  "real_case": {
+    "kind": "Evidence",
+    "claim": "Levels: topic summary, source notes, full fetched text, original URL; agents descend only as needed. Status: design / speculation, partly validated.",
+    "numbers": [],
+    "source": {
+      "kind": "notion",
+      "title": "Memory System Design (FRONTIER Research Graph, Meta Layer)",
+      "url": "https://app.notion.com/p/3fbd50cfaf9381e7a330f435e03d30e3"
+    },
+    "verified": true,
+    "illustrative": false
+  },
+  "honest_limit": {
+    "kind": "Constraint",
+    "picture": "A summary card leaves out one small detail. The top looks complete, so the pod never goes down. The detail stays in layer three, and the pod turns rust ✕.",
+    "words": "If the summary drops it, nobody looks."
+  },
+  "not_this": {
+    "kind": "Constraint",
+    "body": "A short summary is not the whole."
+  },
+  "ending_pattern": {
+    "kind": "Example",
+    "slug": "one-card-lift",
+    "body": "The heap from act 1 is replaced by one small card; the pod lifts the key fact up from one layer down.",
+    "callback": "Act 1's heap with the key card at the bottom becomes one card, with the key fact lifted to the top."
+  },
+  "end_belief": {
+    "kind": "Goal",
+    "body": "Give the short version first. Then go deeper."
+  },
+  "beats": [
+    {
+      "t": 0.0,
+      "picture": "Close on the whale pouring a tall stack of note cards onto a pod. The pod staggers under them.",
+      "words": "I gave it all my notes.",
+      "sound": "Muddy low thud of a heap landing",
+      "act": "felt",
+      "bars": "1",
+      "camera": "Close, z 1.6, on the whale",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 1.818,
+      "picture": "The pod answers and turns a rust ✕. At the bottom of the heap, one card glows faintly: the key fact.",
+      "words": "",
+      "sound": "Dull thunk",
+      "act": "felt",
+      "bars": "2",
+      "camera": "Close, z 1.6, on the whale",
+      "cue_tags": [
+        "consequence",
+        "focus"
+      ]
+    },
+    {
+      "t": 3.636,
+      "picture": "The whale digs: the key card is buried under everything else.",
+      "words": "It missed the one that mattered.",
+      "sound": "Low thud twice",
+      "act": "felt",
+      "bars": "3-4",
+      "camera": "Close, z 1.6, on the whale",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 7.273,
+      "picture": "Hold on the buried card.",
+      "words": "",
+      "sound": "Silence creeps in",
+      "act": "felt",
+      "bars": "5",
+      "camera": "Close, z 1.6, on the whale",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 10.0,
+      "picture": "Hinge: half a bar of stillness, then SERIES.open shows the title.",
+      "words": "Start with the small card.",
+      "sound": "Near-silence, then the title tick",
+      "act": "why",
+      "bars": "6",
+      "camera": "Still, z 1.6",
+      "cue_tags": [
+        "hinge"
+      ]
+    },
+    {
+      "t": 10.909,
+      "picture": "Pull back: three tries. Each pours more cards on the pod; the key card sinks deeper (2 beats).",
+      "words": "",
+      "sound": "Problem motif: heap thud",
+      "act": "why",
+      "bars": "7",
+      "camera": "Pull back to z 1.0, revealing the pattern",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 12.727,
+      "picture": "Second try, deeper (1 beat).",
+      "words": "More pages bury the one you need.",
+      "sound": "Heap thud, faster",
+      "act": "why",
+      "bars": "8",
+      "camera": "Pull back to z 1.0, revealing the pattern",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 14.545,
+      "picture": "Third try (half a beat). The heap is taller, and the answer is still wrong.",
+      "words": "",
+      "sound": "Heap thud, fastest",
+      "act": "why",
+      "bars": "9",
+      "camera": "Pull back to z 1.0, revealing the pattern",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 16.364,
+      "picture": "Freeze. The heap shimmers and sorts into faint layers.",
+      "words": "Start small. Open more only if needed.",
+      "sound": "One soft rising step: the signature",
+      "act": "why",
+      "bars": "10",
+      "camera": "Still, z 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 18.182,
+      "picture": "The cards settle into four layers on the line: one small summary card on top, then source notes, then full text, then the original page.",
+      "words": "Start with the short summary card.",
+      "sound": "Soft rising step, in tune",
+      "act": "move",
+      "bars": "11",
+      "camera": "Medium, z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 21.818,
+      "picture": "The pod reads only the top card. A ring marks the one topic it needs.",
+      "words": "Read the top. Pick what you need.",
+      "sound": "One step up, resolved",
+      "act": "move",
+      "bars": "13",
+      "camera": "Medium, z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 23.636,
+      "picture": "Push-in: the pod goes down one layer, opens one source note, and finds the key fact. Every other layer stays closed.",
+      "words": "One layer down.",
+      "sound": "Two rising steps",
+      "act": "move",
+      "bars": "14",
+      "camera": "Push-in to z 1.3 on the decisive moment",
+      "cue_tags": [
+        "mech",
+        "focus"
+      ]
+    },
+    {
+      "t": 25.455,
+      "picture": "The four layers are labelled: Summary · Notes · Full text · Original.",
+      "words": "Open in layers: progressive disclosure.",
+      "sound": "Four steps, a gentle scale",
+      "act": "move",
+      "bars": "15",
+      "camera": "Medium, z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 29.091,
+      "picture": "Wide: a large research memory drawn as many small four-layer stacks. Pods descend into a few of them, never all.",
+      "words": "Our research memory opens in four layers.",
+      "sound": "Pulse bed, soft steps",
+      "act": "case",
+      "bars": "17-19",
+      "camera": "Steady wide, slow drift",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 34.545,
+      "picture": "Most stacks stay closed at the summary. Only the stacks a pod needs open deeper.",
+      "words": "Agents go down only as needed.",
+      "sound": "Sparse steps, resolved",
+      "act": "case",
+      "bars": "20-22",
+      "camera": "Steady wide, slow drift",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 40.0,
+      "picture": "A summary card leaves out one small detail. The top looks complete, so the pod never goes down. The detail stays in layer three, and the pod turns rust ✕.",
+      "words": "If the summary drops it, nobody looks.",
+      "sound": "Signature step once, unresolved",
+      "act": "limit",
+      "bars": "23-24",
+      "camera": "Still, then one slow push to what slipped",
+      "cue_tags": [
+        "limit",
+        "focus"
+      ]
+    },
+    {
+      "t": 42.727,
+      "picture": "Slow push down through the layers to the unread detail.",
+      "words": "A short summary is not the whole.",
+      "sound": "Room tone",
+      "act": "limit",
+      "bars": "24-25",
+      "camera": "Still"
+    },
+    {
+      "t": 45.455,
+      "picture": "FELT framing: the whale hands the pod one small card instead of the heap. The pod goes down one layer, lifts the key card to the top, and turns ✓.",
+      "words": "",
+      "sound": "Steps rise and resolve",
+      "act": "payoff",
+      "bars": "26-29",
+      "camera": "FELT framing restored, z 1.6, then a slow wide reveal",
+      "cue_tags": [
+        "callback"
+      ]
+    },
+    {
+      "t": 52.727,
+      "picture": "Still four-layer stack, whale breathing above it.",
+      "words": "Give the short version first. Then go deeper.",
+      "sound": "Pad tail only",
+      "act": "belief",
+      "bars": "30-31",
+      "camera": "Still, breathing only"
+    },
+    {
+      "t": 56.364,
+      "picture": "SERIES.lockup over the still line.",
+      "words": "",
+      "sound": "Final tick, then room tone",
+      "act": "lockup",
+      "bars": "32",
+      "camera": "Still"
+    }
+  ],
+  "captions": [
+    {
+      "t_in": 0.909,
+      "t_out": 3.636,
+      "text": "I gave it all my notes.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 3.636,
+      "t_out": 6.818,
+      "text": "It missed the one that mattered.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 10.0,
+      "t_out": 12.273,
+      "text": "Start with the small card.",
+      "kind": "title"
+    },
+    {
+      "t_in": 12.727,
+      "t_out": 15.455,
+      "text": "More pages bury the one you need.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 16.364,
+      "t_out": 18.636,
+      "text": "Start small. Open more only if needed.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 18.182,
+      "t_out": 20.909,
+      "text": "Start with the short summary card.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 21.818,
+      "t_out": 24.545,
+      "text": "Read the top. Pick what you need.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 23.636,
+      "t_out": 25.455,
+      "text": "One layer down.",
+      "kind": "label"
+    },
+    {
+      "t_in": 25.455,
+      "t_out": 28.636,
+      "text": "Open in layers: progressive disclosure.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 29.091,
+      "t_out": 31.818,
+      "text": "Our research memory opens in four layers.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 30.909,
+      "t_out": 38.182,
+      "text": "Research memory design · partly tested",
+      "kind": "card",
+      "src": "https://app.notion.com/p/3fbd50cfaf9381e7a330f435e03d30e3"
+    },
+    {
+      "t_in": 34.545,
+      "t_out": 37.273,
+      "text": "Agents go down only as needed.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 40.0,
+      "t_out": 42.727,
+      "text": "If the summary drops it, nobody looks.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 42.727,
+      "t_out": 45.455,
+      "text": "A short summary is not the whole.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 52.727,
+      "t_out": 55.909,
+      "text": "Give the short version first. Then go deeper.",
+      "kind": "caption"
+    }
+  ],
+  "terms": [
+    {
+      "term": "progressive disclosure",
+      "symbol": "four stacked card layers",
+      "pictured_at": 18.182,
+      "named_at": 25.455
+    }
+  ],
+  "jargon": [
+    "context window",
+    "token",
+    "retrieval",
+    "progressive disclosure",
+    "layer"
+  ],
+  "sound": {
+    "signature": "A soft rising step, one per layer, in tune",
+    "problem_motif": "The muddy thud of a heap landing",
+    "limit_unresolved": true
+  },
+  "score_self": {
+    "score": 0.79,
+    "reason": "Every learner has dumped notes into a chatbot, so the felt pain lands. The layer picture is simple. The case is a design that is partly tested, and the card says so. The limit is honest.",
+    "weakest_piece": "real_case"
+  }
+}

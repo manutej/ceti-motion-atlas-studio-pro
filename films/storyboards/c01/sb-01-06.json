@@ -1,0 +1,423 @@
+{
+ "schema_version": "sb60-v1",
+ "id": "sb-01-06",
+ "meta_prompt_id": "mp-c01-v1",
+ "cluster": "01 Sheaf memory",
+ "repo": "none",
+ "capability": "Each overlap between artefacts gets one owner",
+ "audience": "Engineers",
+ "wada": 166,
+ "bpm": 128,
+ "dur": 60.3,
+ "title": "One owner for every <i>join</i>.",
+ "hook": {
+  "kind": "Example",
+  "picture": "Close: four short lines in a row, the plan, the data, the code and the output. A caption card on line one reads differently on line two.",
+  "words": "The plan and the build disagree."
+ },
+ "problem_in_viewer_words": {
+  "kind": "Fact",
+  "body": "The storyboard says one thing, the build says another.",
+  "who": "an engineer shipping a film or a doc site"
+ },
+ "why_it_keeps_happening": {
+  "kind": "Fact",
+  "picture": "Pull back: the same caption copied across four lines. Three times, every 2 beats, then 1, then half, an edit lands on one copy only and the copies fall out of step.",
+  "words": "Each copy gets edited on its own."
+ },
+ "stakes": {
+  "kind": "Fact",
+  "body": "The shipped version contradicts the plan, and nobody can say which copy was meant."
+ },
+ "solution_hint": "Pick one owner for each shared piece.",
+ "metaphor": {
+  "kind": "Example",
+  "body": "The plan, data, code and output are four lines that share pieces. Every shared piece is a join with one owner tick and a gate that checks each copy against the owner.",
+  "symbols": [
+   "whale",
+   "line",
+   "seam",
+   "gate",
+   "tick"
+  ]
+ },
+ "mechanism_beats": {
+  "kind": "Method",
+  "steps": [
+   {
+    "t": 18.75,
+    "picture": "Where two lines share a piece (captions, timing), a dashed join appears. The whale puts a tick on one side of it: the owner.",
+    "words": "Pick one owner for each shared piece.",
+    "sound": "Two tones per join; the owner tone louder."
+   },
+   {
+    "t": 21.562,
+    "picture": "A gate sits on each join: the copy is checked against its owner. Matching copies pass through with a glow.",
+    "words": "Copies are checked against the owner.",
+    "sound": "Pass chime per matching copy."
+   },
+   {
+    "t": 24.375,
+    "picture": "Push-in: one caption copy differs from its owner. The gate closes rust; the copy is rewritten from the owner, never the other way round.",
+    "words": "A wrong copy is stopped and fixed.",
+    "sound": "The pair beats, then the copy snaps to the owner tone."
+   },
+   {
+    "t": 27.188,
+    "picture": "The four lines sit joined, each join carrying a gate and an owner tick. A label slides onto one: seam.",
+    "words": "Shared pieces meet at a seam.",
+    "sound": "Four quiet owner ticks."
+   }
+  ]
+ },
+ "real_case": {
+  "kind": "Evidence",
+  "claim": "Film gate check R1 (storyboard captions vs data.js captions) on the Type-safe film fails: 18 vs 20, with 6 text and 3 timing mismatches. Rule: each overlap gets one authority.",
+  "numbers": [
+   "18 vs 20",
+   "6 text",
+   "3 timing mismatches"
+  ],
+  "source": {
+   "kind": "research_md",
+   "title": "RESEARCH.md §3, quoting Research agenda (p5.js Explainer Lab)",
+   "url": "https://app.notion.com/p/3f3d50cfaf9381eb9151e006efd3aba6"
+  },
+  "verified": true,
+  "illustrative": false
+ },
+ "honest_limit": {
+  "kind": "Constraint",
+  "picture": "Push to the output line: a caption that exists only in the output. No other line holds it, so there is no join and no gate. It goes out unchecked.",
+  "words": "Nothing shared it. Nothing checked it."
+ },
+ "not_this": {
+  "kind": "Constraint",
+  "body": "Only the overlaps you name get checked."
+ },
+ "ending_pattern": {
+  "kind": "Example",
+  "slug": "owner-ticks",
+  "body": "Every shared piece carries its owner tick, every copy matches, and the output ships to a pod that answers ✓.",
+  "callback": "The mismatched caption copy from bar 1 now matches its owner in the same framing, and the pod's ✕ turns ✓."
+ },
+ "end_belief": {
+  "kind": "Goal",
+  "body": "Give each shared piece one owner. Check copies."
+ },
+ "beats": [
+  {
+   "t": 0.0,
+   "picture": "Close: four short lines in a row, the plan, the data, the code and the output. A caption card on line one reads differently on line two.",
+   "words": "The plan and the build disagree.",
+   "sound": "Two melodies, slightly apart.",
+   "act": "felt",
+   "bars": "1-2",
+   "camera": "Close, z 1.6 on the whale, small follow pan",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 2.812,
+   "picture": "The output ships. A pod reads it and answers ✕ on a rust chip.",
+   "words": "",
+   "sound": "Rust thud on the ✕.",
+   "act": "felt",
+   "bars": "2",
+   "camera": "Close, z 1.6 on the whale, small follow pan",
+   "cue_tags": [
+    "consequence"
+   ]
+  },
+  {
+   "t": 4.688,
+   "picture": "The whale holds the two caption copies side by side; neither says which is right.",
+   "words": "Which one is right? Nobody knows.",
+   "sound": "The two melodies clash once.",
+   "act": "felt",
+   "bars": "3-4",
+   "camera": "Close, z 1.6 on the whale, small follow pan"
+  },
+  {
+   "t": 7.5,
+   "picture": "The two copies hover, the pod's ✕ lit. Hold.",
+   "words": "",
+   "sound": "The problem motif fades. Silence creeps in.",
+   "act": "felt",
+   "bars": "5",
+   "camera": "Close, z 1.6 on the whale, small follow pan"
+  },
+  {
+   "t": 10.312,
+   "picture": "Hinge: half a bar of stillness, then SERIES.open shows the title over the still line.",
+   "words": "",
+   "sound": "Near-silence, then the title tick.",
+   "act": "why",
+   "bars": "6",
+   "camera": "Pull back z 1.6 to 1.0, one reveal",
+   "cue_tags": [
+    "hinge"
+   ]
+  },
+  {
+   "t": 11.25,
+   "picture": "Pull back: the same caption copied across four lines. Three times, every 2 beats, then 1, then half, an edit lands on one copy only and the copies fall out of step.",
+   "words": "Each copy gets edited on its own.",
+   "sound": "Drift clash three times, accelerating.",
+   "act": "why",
+   "bars": "7-9",
+   "camera": "Pull back z 1.6 to 1.0, one reveal",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 16.875,
+   "picture": "The copies freeze. A faint tick hovers over the first one.",
+   "words": "Pick one owner for each shared piece.",
+   "sound": "One owner tone sounds alone.",
+   "act": "why",
+   "bars": "10",
+   "camera": "Pull back z 1.6 to 1.0, one reveal",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 18.75,
+   "picture": "Where two lines share a piece (captions, timing), a dashed join appears. The whale puts a tick on one side of it: the owner.",
+   "words": "Pick one owner for each shared piece.",
+   "sound": "Two tones per join; the owner tone louder.",
+   "act": "move",
+   "bars": "11-12",
+   "camera": "Medium z 1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 21.562,
+   "picture": "A gate sits on each join: the copy is checked against its owner. Matching copies pass through with a glow.",
+   "words": "Copies are checked against the owner.",
+   "sound": "Pass chime per matching copy.",
+   "act": "move",
+   "bars": "12-13",
+   "camera": "Medium z 1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 24.375,
+   "picture": "Push-in: one caption copy differs from its owner. The gate closes rust; the copy is rewritten from the owner, never the other way round.",
+   "words": "A wrong copy is stopped and fixed.",
+   "sound": "The pair beats, then the copy snaps to the owner tone.",
+   "act": "move",
+   "bars": "14",
+   "camera": "Medium z 1.2, the one push-in to z 1.3",
+   "cue_tags": [
+    "mech",
+    "focus"
+   ]
+  },
+  {
+   "t": 27.188,
+   "picture": "The four lines sit joined, each join carrying a gate and an owner tick. A label slides onto one: seam.",
+   "words": "Shared pieces meet at a seam.",
+   "sound": "Four quiet owner ticks.",
+   "act": "move",
+   "bars": "15-16",
+   "camera": "Medium z 1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 30.0,
+   "picture": "Wide: the four lines of a real CETI film. The gate on the plan-to-data join closes rust; a counter shows the mismatch.",
+   "words": "Real run: our own film failed this.",
+   "sound": "Pulse bed, a rust stop tone.",
+   "act": "case",
+   "bars": "17-19",
+   "camera": "Steady wide, slow drift"
+  },
+  {
+   "t": 35.625,
+   "picture": "Each mismatch gets its own small rust tick on the join; the owner side is marked.",
+   "words": "The check counted each mismatch.",
+   "sound": "Nine quiet ticks.",
+   "act": "case",
+   "bars": "20-22",
+   "camera": "Steady wide, slow drift"
+  },
+  {
+   "t": 41.25,
+   "picture": "Push to the output line: a caption that exists only in the output. No other line holds it, so there is no join and no gate. It goes out unchecked.",
+   "words": "Nothing shared it. Nothing checked it.",
+   "sound": "Owner tone with no answer, unresolved.",
+   "act": "limit",
+   "bars": "23-24",
+   "camera": "Still, then one slow push to the thing that slipped",
+   "cue_tags": [
+    "limit"
+   ]
+  },
+  {
+   "t": 45.0,
+   "picture": "Hold on the lone caption with no join around it.",
+   "words": "Only the overlaps you name get checked.",
+   "sound": "Room tone.",
+   "act": "limit",
+   "bars": "25",
+   "camera": "Still"
+  },
+  {
+   "t": 46.875,
+   "picture": "Owner ticks. FELT framing (z 1.6, the same first two lines). The caption card carries an owner tick, the copy on line two matches it, the output ships, and the pod answers ✓.",
+   "words": "",
+   "sound": "All copies tune to the owner; resolved chord.",
+   "act": "payoff",
+   "bars": "26-29",
+   "camera": "Back to FELT framing z 1.6, then wide reveal",
+   "cue_tags": [
+    "callback"
+   ]
+  },
+  {
+   "t": 54.375,
+   "picture": "Four joined lines, owner ticks glowing, whale breathing.",
+   "words": "Give each shared piece one owner. Check copies.",
+   "sound": "Pad tail only.",
+   "act": "belief",
+   "bars": "30-31",
+   "camera": "Still, breathing only"
+  },
+  {
+   "t": 58.125,
+   "picture": "SERIES.lockup over the still line.",
+   "words": "",
+   "sound": "Lockup tone.",
+   "act": "lockup",
+   "bars": "32",
+   "camera": "Still"
+  }
+ ],
+ "captions": [
+  {
+   "t_in": 0.938,
+   "t_out": 3.75,
+   "text": "The plan and the build disagree.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 4.688,
+   "t_out": 8.438,
+   "text": "Which one is right? Nobody knows.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 10.312,
+   "t_out": 12.656,
+   "text": "One owner for every join.",
+   "kind": "title"
+  },
+  {
+   "t_in": 12.656,
+   "t_out": 15.938,
+   "text": "Each copy gets edited on its own.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 16.406,
+   "t_out": 19.219,
+   "text": "Pick one owner for each shared piece.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 21.562,
+   "t_out": 24.375,
+   "text": "Copies are checked against the owner.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 24.375,
+   "t_out": 27.188,
+   "text": "A wrong copy is stopped and fixed.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 27.188,
+   "t_out": 30.0,
+   "text": "Shared pieces meet at a seam.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 30.0,
+   "t_out": 32.344,
+   "text": "Real run: our own film failed this.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 31.875,
+   "t_out": 35.625,
+   "text": "Film check R1 · 18 vs 20 captions",
+   "kind": "card",
+   "src": "https://app.notion.com/p/3f3d50cfaf9381eb9151e006efd3aba6"
+  },
+  {
+   "t_in": 35.625,
+   "t_out": 40.312,
+   "text": "6 text · 3 timing mismatches",
+   "kind": "card",
+   "src": "https://app.notion.com/p/3f3d50cfaf9381eb9151e006efd3aba6"
+  },
+  {
+   "t_in": 35.625,
+   "t_out": 39.375,
+   "text": "The check counted each mismatch.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 41.25,
+   "t_out": 44.531,
+   "text": "Nothing shared it. Nothing checked it.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 45.0,
+   "t_out": 47.812,
+   "text": "Only the overlaps you name get checked.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 54.375,
+   "t_out": 58.125,
+   "text": "Give each shared piece one owner. Check copies.",
+   "kind": "caption"
+  }
+ ],
+ "terms": [
+  {
+   "term": "seam",
+   "symbol": "seam",
+   "pictured_at": 18.75,
+   "named_at": 27.188
+  }
+ ],
+ "jargon": [
+  "authority",
+  "artefact",
+  "storyboard"
+ ],
+ "sound": {
+  "signature": "An owner tone that every copy tunes to.",
+  "problem_motif": "Two copies of one melody drifting a semitone apart.",
+  "limit_unresolved": true
+ },
+ "score_self": {
+  "score": 0.8,
+  "reason": "The repo-less capability with the strongest real numbers (our own film failed). The limit, an undeclared overlap, is unusual and honest. The plan and output wording needs icons on the lines to read.",
+  "weakest_piece": "hook"
+ }
+}

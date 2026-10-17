@@ -1,0 +1,437 @@
+{
+  "schema_version": "sb60-v1",
+  "id": "sb-06-03",
+  "meta_prompt_id": "mp-c06-v1",
+  "cluster": "06 JEV decisions & evidence",
+  "repo": "manutej/jev-tape",
+  "capability": "Act once, last, even after a crash",
+  "audience": "Engineers",
+  "wada": 279,
+  "bpm": 128,
+  "dur": 60.3,
+  "title": "Every step gets a <i>tick</i>.",
+  "hook": {
+    "kind": "Example",
+    "picture": "Close on the whale pushing a refund coin along the line toward a pod. Halfway, the line snaps (a crash) and the whale is knocked back to the start.",
+    "words": "The job crashed halfway through."
+  },
+  "problem_in_viewer_words": {
+    "kind": "Fact",
+    "body": "The retry sent the refund twice.",
+    "who": "support engineer reading Monday's tickets"
+  },
+  "why_it_keeps_happening": {
+    "kind": "Fact",
+    "picture": "Pull back: many lines, each snapping somewhere. Every restart repeats the paying step. Three restarts, every 2 beats, then 1, then ½. Each drops an extra coin.",
+    "words": "Every restart does the paying again."
+  },
+  "stakes": {
+    "kind": "Fact",
+    "body": "Double payments, double emails, double merges. Each one costs money and trust, and has to be clawed back by hand."
+  },
+  "solution_hint": "Write down each step. Pay once, last.",
+  "metaphor": {
+    "kind": "Example",
+    "body": "Each finished step drops a tick on the line. After a crash the whale resumes from the last tick, not the start, and the paying card waits at the very end behind a gate, so it fires once.",
+    "symbols": [
+      "whale",
+      "line",
+      "tick",
+      "gate",
+      "atom"
+    ]
+  },
+  "mechanism_beats": {
+    "kind": "Method",
+    "steps": [
+      {
+        "t": 18.75,
+        "picture": "Steps on the line: check, decide, pay. Each finished step drops a tick. The pay card waits at the far end behind a gate.",
+        "words": "Each finished step is written down.",
+        "sound": "A dry tick per step"
+      },
+      {
+        "t": 22.5,
+        "picture": "The line snaps after the second tick. The whale returns, reads the ticks, and resumes from the last one, not the start.",
+        "words": "After a crash, start from the last tick.",
+        "sound": "Snap, then the ticks read back softly"
+      },
+      {
+        "t": 26.25,
+        "picture": "Push-in (z 1.28): the pay card passes the gate once and a tick seals it. A second push finds the sealed tick and stops.",
+        "words": "Paid once, last. The tape remembers.",
+        "sound": "One bright coin chime, then a seal"
+      },
+      {
+        "t": 28.125,
+        "picture": "The ticks gather into one strip under the line.",
+        "words": "",
+        "sound": "A short rising run of ticks"
+      }
+    ]
+  },
+  "real_case": {
+    "kind": "Evidence",
+    "claim": "The jev-tape README says its crash demo (npm run demo:crash) gives 0 duplicate applies, and that a replay of the event history makes 0 TypeSafe POSTs.",
+    "numbers": [
+      "0 duplicate applies",
+      "0 TypeSafe POSTs"
+    ],
+    "source": {
+      "kind": "repo",
+      "title": "manutej/jev-tape README",
+      "url": "https://github.com/manutej/jev-tape"
+    },
+    "verified": true,
+    "illustrative": false
+  },
+  "honest_limit": {
+    "kind": "Constraint",
+    "picture": "Still. A pod gives a wrong 'pay' answer at step two. It gets a tick like any other, and the whole run redraws it perfectly, every time.",
+    "words": "A wrong answer gets written down too."
+  },
+  "not_this": {
+    "kind": "Constraint",
+    "body": "Written down is not the same as right."
+  },
+  "ending_pattern": {
+    "kind": "Example",
+    "slug": "one-coin-after-crash",
+    "body": "One coin after a crash: the same snapped line now ends with exactly one coin in the pod's fin.",
+    "callback": "The crash that caused a double payment in bar 1 now ends with one coin."
+  },
+  "end_belief": {
+    "kind": "Goal",
+    "body": "Write down each step. Act once, last."
+  },
+  "beats": [
+    {
+      "t": 0.0,
+      "picture": "Close on the whale pushing a refund coin along the line toward a pod. Halfway, the line snaps (a crash) and the whale is knocked back to the start.",
+      "words": "The job crashed halfway through.",
+      "sound": "A coin chime, then a snap",
+      "act": "felt",
+      "bars": "1",
+      "camera": "Close, z 1.6, on the whale; small follow pan",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 1.875,
+      "picture": "The whale starts over and pushes again. The pod receives two coins: raw sienna ✕ on its chip.",
+      "words": "The retry paid them twice.",
+      "sound": "The coin chime doubled, slightly out of time",
+      "act": "felt",
+      "bars": "2-3",
+      "camera": "Close, z 1.6, on the whale; small follow pan",
+      "cue_tags": [
+        "consequence"
+      ]
+    },
+    {
+      "t": 5.625,
+      "picture": "The whale stares at the two coins in the pod's fin.",
+      "words": "",
+      "sound": "Silence",
+      "act": "felt",
+      "bars": "4",
+      "camera": "Close, z 1.6, on the whale; small follow pan",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 7.5,
+      "picture": "A second customer's line snaps, and the whale starts over again from the beginning.",
+      "words": "",
+      "sound": "Snap, a scrape back",
+      "act": "felt",
+      "bars": "5",
+      "camera": "Close, z 1.6, on the whale; small follow pan",
+      "cue_tags": [
+        "consequence"
+      ]
+    },
+    {
+      "t": 10.312,
+      "picture": "Hinge: half a bar of stillness, then the title card.",
+      "words": "Every step gets a <i>tick</i>.",
+      "sound": "Half a bar of room tone, then the title tick",
+      "act": "why",
+      "bars": "6",
+      "camera": "Pull back z 1.6 to 1.0 to reveal the pattern",
+      "cue_tags": [
+        "hinge"
+      ]
+    },
+    {
+      "t": 11.25,
+      "picture": "Pull back: many lines, each snapping somewhere. Every restart repeats the paying step. Three restarts, every 2 beats, then 1, then ½. Each drops an extra coin.",
+      "words": "Every restart does the paying again.",
+      "sound": "Problem motif three times, accelerating",
+      "act": "why",
+      "bars": "7-9",
+      "camera": "Pull back z 1.6 to 1.0 to reveal the pattern",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 16.875,
+      "picture": "Freeze. Faint tick marks ghost along each line, one at every step.",
+      "words": "",
+      "sound": "First clean statement of the signature sound",
+      "act": "why",
+      "bars": "10",
+      "camera": "Pull back z 1.6 to 1.0 to reveal the pattern",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 18.75,
+      "picture": "Steps on the line: check, decide, pay. Each finished step drops a tick. The pay card waits at the far end behind a gate.",
+      "words": "Each finished step is written down.",
+      "sound": "A dry tick per step",
+      "act": "move",
+      "bars": "11-12",
+      "camera": "Medium, z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 22.5,
+      "picture": "The line snaps after the second tick. The whale returns, reads the ticks, and resumes from the last one, not the start.",
+      "words": "After a crash, start from the last tick.",
+      "sound": "Snap, then the ticks read back softly",
+      "act": "move",
+      "bars": "13-14",
+      "camera": "Medium, z 1.2",
+      "cue_tags": [
+        "mech",
+        "focus"
+      ]
+    },
+    {
+      "t": 26.25,
+      "picture": "Push-in (z 1.28): the pay card passes the gate once and a tick seals it. A second push finds the sealed tick and stops.",
+      "words": "Paid once, last. The tape remembers.",
+      "sound": "One bright coin chime, then a seal",
+      "act": "move",
+      "bars": "15",
+      "camera": "Medium, z 1.2, one push-in to z 1.28 here",
+      "cue_tags": [
+        "mech",
+        "focus"
+      ]
+    },
+    {
+      "t": 28.125,
+      "picture": "The ticks gather into one strip under the line.",
+      "words": "",
+      "sound": "A short rising run of ticks",
+      "act": "move",
+      "bars": "16",
+      "camera": "Medium, z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 30.0,
+      "picture": "Wide: a long line of many steps. A deliberate crash snaps it mid-way, the whale resumes from the last tick, and the pay card fires once. The card fades in.",
+      "words": "Crash demo: 0 duplicate applies.",
+      "sound": "Pulse bed, fast quiet ticks",
+      "act": "case",
+      "bars": "17-19",
+      "camera": "Steady wide, slow drift under 40 px/s",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 35.625,
+      "picture": "The whale runs the strip backwards. The line redraws from ticks alone, and the pods stay dark: nobody is asked again.",
+      "words": "Replay: 0 new calls to the judge.",
+      "sound": "Ticks in reverse, no chime",
+      "act": "case",
+      "bars": "20-22",
+      "camera": "Steady wide, slow drift under 40 px/s",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 41.25,
+      "picture": "Still. A pod gives a wrong 'pay' answer at step two. It gets a tick like any other, and the whole run redraws it perfectly, every time.",
+      "words": "A wrong answer gets written down too.",
+      "sound": "The coin chime plays once and hangs unresolved",
+      "act": "limit",
+      "bars": "23-24",
+      "camera": "Still, then one slow push to what slipped",
+      "cue_tags": [
+        "limit"
+      ]
+    },
+    {
+      "t": 45.0,
+      "picture": "Slow push to the wrong tick, sitting neatly in the strip.",
+      "words": "",
+      "sound": "Room tone",
+      "act": "limit",
+      "bars": "25",
+      "camera": "Still, then one slow push to what slipped",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 46.875,
+      "picture": "FELT framing (z 1.6): the whale pushes the coin, the line snaps halfway, the whale resumes from the last tick, and the pod receives exactly one coin. ✓.",
+      "words": "",
+      "sound": "Signature fully resolved",
+      "act": "payoff",
+      "bars": "26-29",
+      "camera": "FELT framing restored, z 1.6, then a wide reveal",
+      "cue_tags": [
+        "callback"
+      ]
+    },
+    {
+      "t": 54.375,
+      "picture": "One coin in the pod's fin. The tick strip under the line.",
+      "words": "Write down each step. Act once, last.",
+      "sound": "Pad tail only",
+      "act": "belief",
+      "bars": "30-31",
+      "camera": "Still, breathing only"
+    },
+    {
+      "t": 58.125,
+      "picture": "SERIES.lockup over the settled chart ground.",
+      "words": "",
+      "sound": "Lockup sting, pad out",
+      "act": "lockup",
+      "bars": "32",
+      "camera": "Still"
+    }
+  ],
+  "captions": [
+    {
+      "t_in": 0.938,
+      "t_out": 3.75,
+      "text": "The job crashed halfway through.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 4.688,
+      "t_out": 8.438,
+      "text": "The retry paid them twice.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 10.312,
+      "t_out": 12.656,
+      "text": "Every step gets a <i>tick</i>.",
+      "kind": "title"
+    },
+    {
+      "t_in": 13.125,
+      "t_out": 16.406,
+      "text": "Every restart does the paying again.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 16.406,
+      "t_out": 19.219,
+      "text": "Write down each step. Pay once, last.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 19.688,
+      "t_out": 22.5,
+      "text": "Each finished step is written down.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 23.438,
+      "t_out": 26.25,
+      "text": "After a crash, start from the last tick.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 27.188,
+      "t_out": 30.0,
+      "text": "Paid once, last. The tape remembers.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 30.938,
+      "t_out": 35.625,
+      "text": "Crash demo: 0 duplicate applies.",
+      "kind": "card",
+      "src": "https://github.com/manutej/jev-tape"
+    },
+    {
+      "t_in": 31.875,
+      "t_out": 35.625,
+      "text": "We crashed it on purpose.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 36.562,
+      "t_out": 40.781,
+      "text": "Replay: 0 new calls to the judge.",
+      "kind": "caption",
+      "src": "https://github.com/manutej/jev-tape"
+    },
+    {
+      "t_in": 41.719,
+      "t_out": 44.062,
+      "text": "A wrong answer gets written down too.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 44.062,
+      "t_out": 46.875,
+      "text": "Written down is not the same as right.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 54.375,
+      "t_out": 58.125,
+      "text": "Write down each step. Act once, last.",
+      "kind": "caption"
+    }
+  ],
+  "terms": [
+    {
+      "term": "tape",
+      "symbol": "tick",
+      "pictured_at": 18.75,
+      "named_at": 27.188
+    },
+    {
+      "term": "replay",
+      "symbol": "tick",
+      "pictured_at": 35.625,
+      "named_at": 36.562
+    }
+  ],
+  "jargon": [
+    "apply",
+    "workflow"
+  ],
+  "sound": {
+    "signature": "A dry tick, then one bright coin chime",
+    "problem_motif": "The coin chime doubled and out of time",
+    "limit_unresolved": true
+  },
+  "score_self": {
+    "score": 0.8,
+    "reason": "A double refund is an instantly felt pain. The resume-from-last-tick picture is simple, and the numbers are the repo's own. Note: \"0 duplicate applies\" is the README's claim, not an independent test.",
+    "weakest_piece": "real_case"
+  }
+}

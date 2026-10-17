@@ -1,0 +1,460 @@
+{
+ "schema_version": "sb60-v1",
+ "id": "sb-05-01",
+ "meta_prompt_id": "mp-c05-v1",
+ "cluster": "05 Meta-prompting & RSI",
+ "repo": "manutej/meta-suite",
+ "capability": "A reusable frame for a whole kind of job",
+ "audience": "Leaders",
+ "wada": 279,
+ "bpm": 124,
+ "dur": 62.24,
+ "title": "Build it once, with <i>slots</i>.",
+ "hook": {
+  "kind": "Example",
+  "picture": "Close on the whale finishing a long careful line; a pod reads it and answers ✓, then the whole line wipes away to blank paper.",
+  "words": "Every new client, I start from zero."
+ },
+ "problem_in_viewer_words": {
+  "kind": "Fact",
+  "body": "Every new client, I start the prompt from zero.",
+  "who": "consultant opening a blank chat on Monday"
+ },
+ "why_it_keeps_happening": {
+  "kind": "Fact",
+  "picture": "Three-times device: three new lines drawn and wiped, every 2 beats, then 1, then ½. Each one differs a little.",
+  "words": "Each prompt fits one case, then dies."
+ },
+ "stakes": {
+  "kind": "Fact",
+  "body": "Hours of prompt writing redone per client, and each rewrite forgets something the last one had."
+ },
+ "solution_hint": "Write the steps once. Leave blanks for facts.",
+ "metaphor": {
+  "kind": "Example",
+  "body": "One line drawn once with blank cards hanging on it; each new job only drops its facts into the blanks.",
+  "symbols": [
+   "whale",
+   "line",
+   "atom",
+   "pod"
+  ]
+ },
+ "mechanism_beats": {
+  "kind": "Method",
+  "steps": [
+   {
+    "t": 19.355,
+    "picture": "The whale draws one line, slowly, with four hollow cards hanging from it, tabs blank.",
+    "words": "Steps once. Blanks for facts.",
+    "sound": "the phrase in tune, one note per card"
+   },
+   {
+    "t": 23.226,
+    "picture": "Push-in: a client pod drops its facts in; the blank tabs fill with colour; the pod reads the line and answers ✓. A second pod, different colours, ✓.",
+    "words": "New client. Same steps. New facts.",
+    "sound": "same phrase, new top note each pod"
+   },
+   {
+    "t": 27.097,
+    "picture": "The whale tries to send with one card still blank; the line will not leave and the empty card blinks.",
+    "words": "An empty blank shows up at once.",
+    "sound": "a single held note, waiting"
+   },
+   {
+    "t": 29.032,
+    "picture": "The line with its blank cards sits labelled, whale beside it.",
+    "words": "A prompt that makes prompts: a meta-prompt.",
+    "sound": "phrase resolves"
+   }
+  ]
+ },
+ "real_case": {
+  "kind": "Evidence",
+  "claim": "meta-suite ships nine task-agnostic meta-skills that build reusable structures; four of them take an idea to a shipped deliverable.",
+  "numbers": [
+   "Nine task-agnostic meta-skills",
+   "Four skills"
+  ],
+  "source": {
+   "kind": "repo",
+   "title": "meta-suite README",
+   "url": "https://github.com/manutej/meta-suite"
+  },
+  "verified": true,
+  "illustrative": false
+ },
+ "honest_limit": {
+  "kind": "Constraint",
+  "picture": "A client drops a wrong fact into a blank (raw sienna smudge in the tab). The line runs perfectly; the pod answers ✕.",
+  "words": "Good steps, wrong fact, wrong answer."
+ },
+ "not_this": {
+  "kind": "Constraint",
+  "body": "A good frame does not make facts true."
+ },
+ "ending_pattern": {
+  "kind": "Example",
+  "slug": "blank-paper-stays-filled",
+  "body": "The FELT close shot returns: the same paper, the same finished line. A third client arrives; only its cards change colour in one beat; the line stays.",
+  "callback": "In bar 2 the finished line was wiped to blank paper; now the same line stays on the paper and only its cards change."
+ },
+ "end_belief": {
+  "kind": "Goal",
+  "body": "Write the steps once. Fill them each time."
+ },
+ "beats": [
+  {
+   "t": 0.0,
+   "picture": "Close on the whale drawing a long careful line across paper, hop by hop; a pod swims in and reads it.",
+   "words": "",
+   "sound": "sparse plucks, the four-note phrase",
+   "act": "felt",
+   "bars": "1",
+   "camera": "close z1.6 on the whale",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 1.935,
+   "picture": "The pod answers ✓, then the whole line fades to blank paper. A new pod waits. The whale starts over from the left edge.",
+   "words": "Every new client, I start from zero.",
+   "sound": "phrase cut after two notes",
+   "act": "felt",
+   "bars": "2-3",
+   "camera": "close z1.6 on the whale",
+   "cue_tags": [
+    "consequence",
+    "focus"
+   ]
+  },
+  {
+   "t": 5.806,
+   "picture": "Second line, drawn faster; one bend from the first line is missing. The new pod answers ✕ (raw sienna chip).",
+   "words": "This time I forgot the checking step.",
+   "sound": "dull thunk on the ✕",
+   "act": "felt",
+   "bars": "4",
+   "camera": "close z1.6 on the whale",
+   "cue_tags": [
+    "consequence",
+    "focus"
+   ]
+  },
+  {
+   "t": 7.742,
+   "picture": "The whale hovers over blank paper, squashed with effort. Hold.",
+   "words": "",
+   "sound": "room tone creeps in",
+   "act": "felt",
+   "bars": "5",
+   "camera": "close z1.6 on the whale",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 10.645,
+   "picture": "Half a bar of stillness, then the title.",
+   "words": "Build it once, with slots.",
+   "sound": "near-silence, then the title tick",
+   "act": "why",
+   "bars": "6",
+   "camera": "pull back z1.6 to 1.0, revealing the pattern",
+   "cue_tags": [
+    "hinge"
+   ]
+  },
+  {
+   "t": 11.613,
+   "picture": "Pull back: a stack of faded lines, each drawn once and thrown away.",
+   "words": "",
+   "sound": "problem motif, once",
+   "act": "why",
+   "bars": "7",
+   "camera": "pull back z1.6 to 1.0, revealing the pattern",
+   "cue_tags": []
+  },
+  {
+   "t": 13.548,
+   "picture": "Three-times device: three new lines drawn and wiped, every 2 beats, then 1, then ½. Each one differs a little.",
+   "words": "Each prompt fits one case, then dies.",
+   "sound": "problem motif x3, accelerating",
+   "act": "why",
+   "bars": "8-9",
+   "camera": "pull back z1.6 to 1.0, revealing the pattern",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 17.419,
+   "picture": "All motion stops. Faint hollow cards ghost onto the points every old line shared.",
+   "words": "Write the steps once. Leave blanks for facts.",
+   "sound": "first clean, complete four-note phrase",
+   "act": "why",
+   "bars": "10",
+   "camera": "pull back z1.6 to 1.0, revealing the pattern",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 19.355,
+   "picture": "The whale draws one line, slowly, with four hollow cards hanging from it, tabs blank.",
+   "words": "Steps once. Blanks for facts.",
+   "sound": "the phrase in tune, one note per card",
+   "act": "move",
+   "bars": "11-12",
+   "camera": "medium z1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 23.226,
+   "picture": "Push-in: a client pod drops its facts in; the blank tabs fill with colour; the pod reads the line and answers ✓. A second pod, different colours, ✓.",
+   "words": "New client. Same steps. New facts.",
+   "sound": "same phrase, new top note each pod",
+   "act": "move",
+   "bars": "13-14",
+   "camera": "medium z1.2; one push-in to z1.3",
+   "cue_tags": [
+    "mech",
+    "focus"
+   ]
+  },
+  {
+   "t": 27.097,
+   "picture": "The whale tries to send with one card still blank; the line will not leave and the empty card blinks.",
+   "words": "An empty blank shows up at once.",
+   "sound": "a single held note, waiting",
+   "act": "move",
+   "bars": "15",
+   "camera": "medium z1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 29.032,
+   "picture": "The line with its blank cards sits labelled, whale beside it.",
+   "words": "A prompt that makes prompts: a meta-prompt.",
+   "sound": "phrase resolves",
+   "act": "move",
+   "bars": "16",
+   "camera": "medium z1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 30.968,
+   "picture": "Wide: nine lines with blank cards stand in a row like a shelf, each a different shape; pods visit each one.",
+   "words": "Real kit: nine of these, for different jobs.",
+   "sound": "pulse bed, quiet ticks",
+   "act": "case",
+   "bars": "17-19",
+   "camera": "steady wide, slow drift",
+   "cue_tags": []
+  },
+  {
+   "t": 36.774,
+   "picture": "Four of the lines link end to end: one line's filled cards drop into the next line's blanks, down to a finished piece.",
+   "words": "Four of them pass work down a chain.",
+   "sound": "four phrases handing off",
+   "act": "case",
+   "bars": "20-22",
+   "camera": "steady wide, slow drift",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 42.581,
+   "picture": "A client drops a wrong fact into a blank (raw sienna smudge in the tab). The line runs perfectly; the pod answers ✕.",
+   "words": "Good steps, wrong fact, wrong answer.",
+   "sound": "the phrase plays once, unresolved",
+   "act": "limit",
+   "bars": "23-24",
+   "camera": "still, then one slow push to what slipped",
+   "cue_tags": [
+    "limit",
+    "focus"
+   ]
+  },
+  {
+   "t": 46.452,
+   "picture": "Hold on the smudged card; slow push in.",
+   "words": "A good frame does not make facts true.",
+   "sound": "room tone",
+   "act": "limit",
+   "bars": "25",
+   "camera": "still, then one slow push to what slipped",
+   "cue_tags": []
+  },
+  {
+   "t": 48.387,
+   "picture": "FELT framing restored: same paper, same finished line. A third pod arrives; only the cards change colour, in one beat. The line stays.",
+   "words": "",
+   "sound": "the phrase strummed, resolving",
+   "act": "payoff",
+   "bars": "26-27",
+   "camera": "FELT framing z1.6 (callback), then wide reveal",
+   "cue_tags": [
+    "callback",
+    "focus"
+   ]
+  },
+  {
+   "t": 52.258,
+   "picture": "Wide reveal: the one line with many pods leaving ✓; whale delight and a spark.",
+   "words": "",
+   "sound": "full resolution",
+   "act": "payoff",
+   "bars": "28-29",
+   "camera": "FELT framing z1.6 (callback), then wide reveal",
+   "cue_tags": []
+  },
+  {
+   "t": 56.129,
+   "picture": "Still line with blank cards, the whale breathing beside it.",
+   "words": "Write the steps once. Fill them each time.",
+   "sound": "pad tail only",
+   "act": "belief",
+   "bars": "30-31",
+   "camera": "still, breathing",
+   "cue_tags": []
+  },
+  {
+   "t": 60.0,
+   "picture": "SERIES.lockup over the still chart ground",
+   "words": "",
+   "sound": "lockup sting",
+   "act": "lockup",
+   "bars": "32",
+   "camera": "still",
+   "cue_tags": []
+  }
+ ],
+ "captions": [
+  {
+   "t_in": 1.935,
+   "t_out": 5.806,
+   "text": "Every new client, I start from zero.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 5.806,
+   "t_out": 9.677,
+   "text": "This time I forgot the checking step.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 10.645,
+   "t_out": 13.548,
+   "text": "Build it once, with slots.",
+   "kind": "title"
+  },
+  {
+   "t_in": 13.548,
+   "t_out": 17.419,
+   "text": "Each prompt fits one case, then dies.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 17.419,
+   "t_out": 19.839,
+   "text": "Write the steps once. Leave blanks for facts.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 19.355,
+   "t_out": 23.226,
+   "text": "Steps once. Blanks for facts.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 23.226,
+   "t_out": 27.097,
+   "text": "New client. Same steps. New facts.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 27.097,
+   "t_out": 30.0,
+   "text": "An empty blank shows up at once.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 29.032,
+   "t_out": 31.935,
+   "text": "A prompt that makes prompts: a meta-prompt.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 30.968,
+   "t_out": 33.871,
+   "text": "Real kit: nine of these, for different jobs.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 33.871,
+   "t_out": 40.645,
+   "text": "meta-suite · 9 skills, one level up",
+   "kind": "card",
+   "src": "https://github.com/manutej/meta-suite"
+  },
+  {
+   "t_in": 36.774,
+   "t_out": 42.581,
+   "text": "Four of them pass work down a chain.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 42.581,
+   "t_out": 46.452,
+   "text": "Good steps, wrong fact, wrong answer.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 46.452,
+   "t_out": 49.355,
+   "text": "A good frame does not make facts true.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 56.129,
+   "t_out": 60.0,
+   "text": "Write the steps once. Fill them each time.",
+   "kind": "caption"
+  }
+ ],
+ "terms": [
+  {
+   "term": "meta-prompt",
+   "symbol": "line with blank cards",
+   "pictured_at": 19.355,
+   "named_at": 29.032
+  }
+ ],
+ "jargon": [
+  "meta-prompt",
+  "template",
+  "scaffold",
+  "category",
+  "instance",
+  "task-agnostic"
+ ],
+ "sound": {
+  "signature": "a four-note phrase that repeats unchanged while only its top note changes per job",
+  "problem_motif": "the same phrase cut off after two notes and restarted from the first",
+  "limit_unresolved": true
+ },
+ "score_self": {
+  "score": 0.74,
+  "reason": "The pain is common and the blank-paper callback is strong. The case is a capability count (9 skills), not a measured run, so CASE proves little.",
+  "weakest_piece": "real_case"
+ }
+}

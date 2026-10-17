@@ -1,0 +1,442 @@
+{
+ "schema_version": "sb60-v1",
+ "id": "sb-09-06",
+ "meta_prompt_id": "mp-c09-v1",
+ "cluster": "09 Generative art & sound",
+ "repo": "manutej/hekat",
+ "capability": "Write agent work as a short line of arrows",
+ "audience": "Engineers",
+ "wada": 279,
+ "bpm": 128,
+ "dur": 60.3,
+ "title": "Draw the order as one <i>line</i>.",
+ "hook": {
+  "kind": "Example",
+  "picture": "Close on the whale tossing work cards to three pods in whatever order it remembers. Two pods grab the same card.",
+  "words": "Just kick off all three agents."
+ },
+ "problem_in_viewer_words": {
+  "kind": "Fact",
+  "body": "My agents ran in the wrong order and nobody could tell.",
+  "who": "engineer reading the overnight log"
+ },
+ "why_it_keeps_happening": {
+  "kind": "Fact",
+  "picture": "Pull back: three nights of logs. Each night the pods start in a different order, faster each time, and the ✕ lands somewhere new.",
+  "words": "The order lives only in your head."
+ },
+ "stakes": {
+  "kind": "Fact",
+  "body": "Nights of runs wasted, and wrong answers built on half-finished steps."
+ },
+ "solution_hint": "Write the order down before anything runs.",
+ "metaphor": {
+  "kind": "Example",
+  "body": "The whale writes the order as one short line of arrows. Pods line up along it, split where steps run side by side, and a gate checks the line before anything runs.",
+  "symbols": [
+   "whale",
+   "line",
+   "pod",
+   "gate"
+  ]
+ },
+ "mechanism_beats": {
+  "kind": "Method",
+  "steps": [
+   {
+    "t": 18.75,
+    "picture": "The whale writes a short line: three marks joined by arrows. The pods line up along it in that order.",
+    "words": "Arrow means then.",
+    "sound": "Three taps on the beat."
+   },
+   {
+    "t": 22.5,
+    "picture": "The line splits. Two pods sit side by side and work at once, then the line rejoins after both tick.",
+    "words": "Side by side, when nothing waits on it.",
+    "sound": "Two taps in unison, then one."
+   },
+   {
+    "t": 26.25,
+    "picture": "Push-in: before any pod moves, a gate checks the line. A step that needs an answer not yet made is stopped. The whale moves it later.",
+    "words": "Wrong order? Stopped before it runs.",
+    "sound": "A stopped tap, then a clean one."
+   },
+   {
+    "t": 28.125,
+    "picture": "Pod one fails. The line takes its backup branch to a second pod, which answers ✓.",
+    "words": "",
+    "sound": "A miss, then a clean tap."
+   }
+  ]
+ },
+ "real_case": {
+  "kind": "Evidence",
+  "claim": "Hekat's README example: a workflow with side-by-side steps finished in about 10 minutes and 75K tokens, against 30 minutes run one step at a time.",
+  "numbers": [
+   "~10 min",
+   "75K tokens",
+   "30 min"
+  ],
+  "source": {
+   "kind": "repo",
+   "title": "manutej/hekat README (example workflow)",
+   "url": "https://github.com/manutej/hekat"
+  },
+  "verified": true,
+  "illustrative": false
+ },
+ "honest_limit": {
+  "kind": "Constraint",
+  "picture": "Three backup pods share one wrong input card and all fail the same way. Backups only help when failures differ.",
+  "words": "Backups fail together when they share a mistake."
+ },
+ "not_this": {
+  "kind": "Constraint",
+  "body": "Clear order is not a right answer."
+ },
+ "ending_pattern": {
+  "kind": "Example",
+  "slug": "pods-follow-the-line",
+  "body": "The whale tosses work exactly as in FELT, but the pods now follow the written arrow line, take turns, and all answer ✓.",
+  "callback": "Same three pods and tossing gesture as bar 1, with no grab and no early start."
+ },
+ "end_belief": {
+  "kind": "Goal",
+  "body": "Write the order down. Let it check itself."
+ },
+ "beats": [
+  {
+   "t": 0.0,
+   "picture": "Close: the whale tosses work cards to three pods at once, in no fixed order.",
+   "words": "Just kick off all three agents.",
+   "sound": "Three loose taps, out of time.",
+   "act": "felt",
+   "bars": "1",
+   "camera": "Close z 1.6 on the whale",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 2.812,
+   "picture": "Pod three starts before pod one has finished. Its answer card gets a raw sienna ✕ chip.",
+   "words": "Step three ran before step one finished.",
+   "sound": "A tap lands early, sour.",
+   "act": "felt",
+   "bars": "2-3",
+   "camera": "Close z 1.6, small follow pan",
+   "cue_tags": [
+    "consequence"
+   ]
+  },
+  {
+   "t": 5.625,
+   "picture": "Two pods grab the same card and pull.",
+   "words": "",
+   "sound": "Clashing taps.",
+   "act": "felt",
+   "bars": "4",
+   "camera": "Close z 1.6",
+   "cue_tags": []
+  },
+  {
+   "t": 7.5,
+   "picture": "The whale looks at the ✕. Hold.",
+   "words": "",
+   "sound": "Silence.",
+   "act": "felt",
+   "bars": "5",
+   "camera": "Close z 1.7, hold on the whale's face",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 9.375,
+   "picture": "Half a bar of stillness, then the title.",
+   "words": "Draw the order as one line.",
+   "sound": "Near-silence, then the title tick.",
+   "act": "why",
+   "bars": "6",
+   "camera": "Still z 1.6, half bar of stillness",
+   "cue_tags": [
+    "hinge"
+   ]
+  },
+  {
+   "t": 11.25,
+   "picture": "Pull back: three nights of logs stacked. Each night the pods start in a different order.",
+   "words": "The order lives only in your head.",
+   "sound": "Problem motif: taps out of step.",
+   "act": "why",
+   "bars": "7-8",
+   "camera": "Pull back z 1.6 to 1.0",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 15.0,
+   "picture": "Three more nights flash by, every 2 beats, then 1, then half. The ✕ moves each time.",
+   "words": "",
+   "sound": "Problem motif three times, accelerating.",
+   "act": "why",
+   "bars": "9",
+   "camera": "Wide z 1.0, pattern revealed",
+   "cue_tags": []
+  },
+  {
+   "t": 16.875,
+   "picture": "Motion stops. A faint line with arrows ghosts in under the pods.",
+   "words": "Write the order down before anything runs.",
+   "sound": "One clean, steady pulse: the signature.",
+   "act": "why",
+   "bars": "10",
+   "camera": "Wide z 1.0, all motion stops",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 18.75,
+   "picture": "The whale writes a short line: three marks joined by arrows. The pods line up along it in that order.",
+   "words": "Arrow means then.",
+   "sound": "Three taps on the beat.",
+   "act": "move",
+   "bars": "11-12",
+   "camera": "Medium z 1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 22.5,
+   "picture": "The line splits. Two pods sit side by side and work at once, then the line rejoins after both tick.",
+   "words": "Side by side, when nothing waits on it.",
+   "sound": "Two taps in unison, then one.",
+   "act": "move",
+   "bars": "13-14",
+   "camera": "Medium z 1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 26.25,
+   "picture": "Push-in: before any pod moves, a gate checks the line. A step that needs an answer not yet made is stopped. The whale moves it later.",
+   "words": "Wrong order? Stopped before it runs.",
+   "sound": "A stopped tap, then a clean one.",
+   "act": "move",
+   "bars": "15",
+   "camera": "One push-in z 1.2 to 1.3",
+   "cue_tags": [
+    "mech",
+    "focus"
+   ]
+  },
+  {
+   "t": 28.125,
+   "picture": "Pod one fails. The line takes its backup branch to a second pod, which answers ✓.",
+   "words": "",
+   "sound": "A miss, then a clean tap.",
+   "act": "move",
+   "bars": "16",
+   "camera": "Medium z 1.3 easing back to 1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 30.0,
+   "picture": "Wide: the split line next to a long ghost line of the same steps run one by one. The split line finishes first.",
+   "words": "Same three steps, two side by side.",
+   "sound": "Pulse bed, quick ticks.",
+   "act": "case",
+   "bars": "17-19",
+   "camera": "Steady wide, slow drift",
+   "cue_tags": []
+  },
+  {
+   "t": 35.625,
+   "picture": "A chain of three backup pods. The first two answer ✕, the third ✓, and the line never breaks.",
+   "words": "If one fails, the backup tries next.",
+   "sound": "Two misses, one clean tap.",
+   "act": "case",
+   "bars": "20-22",
+   "camera": "Steady wide, slow drift",
+   "cue_tags": []
+  },
+  {
+   "t": 41.25,
+   "picture": "Three backup pods all read the same wrong card. All three answer ✕ in the same way, and the chain of backups does not help.",
+   "words": "Backups fail together when they share a mistake.",
+   "sound": "Signature pulse plays once, unresolved.",
+   "act": "limit",
+   "bars": "23-24",
+   "camera": "Still",
+   "cue_tags": [
+    "limit"
+   ]
+  },
+  {
+   "t": 45.0,
+   "picture": "Slow push to the shared wrong card.",
+   "words": "",
+   "sound": "Room tone.",
+   "act": "limit",
+   "bars": "25",
+   "camera": "One slow push to the thing that slipped",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 46.875,
+   "picture": "FELT framing: the whale tosses work again, but now the pods follow the written line. No two grab the same card.",
+   "words": "",
+   "sound": "Taps on the beat.",
+   "act": "payoff",
+   "bars": "26-27",
+   "camera": "Close z 1.6, the FELT framing restored",
+   "cue_tags": [
+    "callback"
+   ]
+  },
+  {
+   "t": 50.625,
+   "picture": "Every pod answers ✓ in order. The whale sparks.",
+   "words": "",
+   "sound": "Pulse resolves.",
+   "act": "payoff",
+   "bars": "28-29",
+   "camera": "Wide reveal z 1.0",
+   "cue_tags": []
+  },
+  {
+   "t": 54.375,
+   "picture": "The short arrow line on the paper, the whale breathing.",
+   "words": "Write the order down. Let it check itself.",
+   "sound": "Pad tail.",
+   "act": "belief",
+   "bars": "30-31",
+   "camera": "Still, breathing only",
+   "cue_tags": []
+  },
+  {
+   "t": 58.125,
+   "picture": "SERIES.lockup.",
+   "words": "",
+   "sound": "Pad tail ends, lockup tick.",
+   "act": "lockup",
+   "bars": "32",
+   "camera": "Still",
+   "cue_tags": []
+  }
+ ],
+ "captions": [
+  {
+   "t_in": 0.938,
+   "t_out": 3.75,
+   "text": "Just kick off all three agents.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 4.688,
+   "t_out": 8.438,
+   "text": "Step three ran before step one finished.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 10.312,
+   "t_out": 13.125,
+   "text": "Draw the order as one line.",
+   "kind": "title"
+  },
+  {
+   "t_in": 13.125,
+   "t_out": 16.875,
+   "text": "The order lives only in your head.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 16.875,
+   "t_out": 19.219,
+   "text": "Write the order down before anything runs.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 19.688,
+   "t_out": 22.031,
+   "text": "Arrow means then.",
+   "kind": "label"
+  },
+  {
+   "t_in": 22.5,
+   "t_out": 25.781,
+   "text": "Side by side, when nothing waits on it.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 26.25,
+   "t_out": 29.531,
+   "text": "Wrong order? Stopped before it runs.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 30.0,
+   "t_out": 33.75,
+   "text": "Same three steps, two side by side.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 30.938,
+   "t_out": 40.781,
+   "text": "README example · ~10 min vs 30 min.",
+   "kind": "card",
+   "src": "https://github.com/manutej/hekat"
+  },
+  {
+   "t_in": 35.625,
+   "t_out": 39.375,
+   "text": "If one fails, the backup tries next.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 41.25,
+   "t_out": 44.062,
+   "text": "Backups fail together when they share a mistake.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 44.062,
+   "t_out": 46.641,
+   "text": "Clear order is not a right answer.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 54.375,
+   "t_out": 58.125,
+   "text": "Write the order down. Let it check itself.",
+   "kind": "caption"
+  }
+ ],
+ "terms": [],
+ "jargon": [
+  "DSL",
+  "DAG",
+  "orchestration",
+  "parallel",
+  "sequential",
+  "fallback"
+ ],
+ "sound": {
+  "signature": "A steady pulse, one clean tap per step on the beat.",
+  "problem_motif": "The same taps scattered off the beat.",
+  "limit_unresolved": true
+ },
+ "score_self": {
+  "score": 0.7,
+  "reason": "Engineers know this pain. The arrow line is a clean picture and the limit (shared mistakes) is sharp. The case is a README example, not a measured run, and the card says so. Hekat is less 'art' than the rest of the cluster.",
+  "weakest_piece": "real_case"
+ }
+}

@@ -1,0 +1,451 @@
+{
+ "schema_version": "sb60-v1",
+ "id": "sb-09-09",
+ "meta_prompt_id": "mp-c09-v1",
+ "cluster": "09 Generative art & sound",
+ "repo": "manutej/orpheum-trainer",
+ "capability": "Teach a model your taste, one pick at a time",
+ "audience": "Researchers",
+ "wada": 243,
+ "bpm": 120,
+ "dur": 64.3,
+ "title": "Taste, one <i>tick</i> at a time.",
+ "hook": {
+  "kind": "Example",
+  "picture": "Close on the whale typing a long description into a pod. The pod returns a glossy image card, pretty and generic, beside the whale's own sketch.",
+  "words": "Make it look like my work."
+ },
+ "problem_in_viewer_words": {
+  "kind": "Fact",
+  "body": "The AI makes pretty pictures. None of them look like mine.",
+  "who": "artist after a night of prompting"
+ },
+ "why_it_keeps_happening": {
+  "kind": "Fact",
+  "picture": "Pull back: three more descriptions, each longer, and three more generic cards, each the same (every 2 beats, then 1, then half).",
+  "words": "Words can't say what your eye knows."
+ },
+ "stakes": {
+  "kind": "Fact",
+  "body": "Hours of describing, and still nothing that looks like your own work."
+ },
+ "solution_hint": "Pick one of two, again and again.",
+ "metaphor": {
+  "kind": "Example",
+  "body": "The pod offers two small cards, and the whale keeps one. Every pick lands as a tick on a strip, and the next pair drifts toward the whale's own lines and colours.",
+  "symbols": [
+   "whale",
+   "line",
+   "pod",
+   "tick",
+   "counter"
+  ]
+ },
+ "mechanism_beats": {
+  "kind": "Method",
+  "steps": [
+   {
+    "t": 20.0,
+    "picture": "The pod offers two small cards. The whale flicks one aside and keeps the other, and a tick lands on a strip under the line.",
+    "words": "Keep or skip.",
+    "sound": "A pluck per keep, a soft tick."
+   },
+   {
+    "t": 24.0,
+    "picture": "Many quick pairs. Ticks stack on the strip, and the pod's next cards drift toward the whale's own colours and lines.",
+    "words": "Each pick nudges the next pair closer.",
+    "sound": "Plucks speeding up, warming in tone."
+   },
+   {
+    "t": 28.0,
+    "picture": "Push-in: a tired flick keeps the wrong card, and its tick turns raw sienna. The whale finds that tick on the strip and lifts it out.",
+    "words": "A tired pick? Find it and undo it.",
+    "sound": "A sour pluck, then the warm pluck returns."
+   },
+   {
+    "t": 30.0,
+    "picture": "The strip of ticks settles under the line. Every pick is kept in order.",
+    "words": "The ledger.",
+    "sound": "Soft ticks in a row."
+   }
+  ]
+ },
+ "real_case": {
+  "kind": "Evidence",
+  "claim": "Illustration only. The orpheum-trainer repo could not be read; this loop of quick either-or picks is drawn from Manu's stated plan for a swipe-style rating trainer.",
+  "numbers": [],
+  "source": {
+   "kind": "none",
+   "title": "none (repo unreadable, contents UNVERIFIED)",
+   "url": null
+  },
+  "verified": false,
+  "illustrative": true
+ },
+ "honest_limit": {
+  "kind": "Constraint",
+  "picture": "After many picks the pod only offers cards like last month's work. Learning from past choices narrows toward the past.",
+  "words": "It learns what you liked, not what's next."
+ },
+ "not_this": {
+  "kind": "Constraint",
+  "body": "Copying your past is not your taste."
+ },
+ "ending_pattern": {
+  "kind": "Example",
+  "slug": "cards-rhyme",
+  "body": "The FELT side-by-side returns, and the pod's card now rhymes with the sketch. The whale then keeps one deliberately odd card.",
+  "callback": "Same side-by-side of sketch and pod card as bar 2, the mismatch gone."
+ },
+ "end_belief": {
+  "kind": "Goal",
+  "body": "Show your taste with choices, not prompts."
+ },
+ "beats": [
+  {
+   "t": 0.0,
+   "picture": "Close: the whale types a long description into a pod, which returns a glossy, generic image card.",
+   "words": "Make it look like my work.",
+   "sound": "A bright synth stab, a little hollow.",
+   "act": "felt",
+   "bars": "1",
+   "camera": "Close z 1.6 on the whale",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 3.0,
+   "picture": "The glossy card sits beside the whale's own sketch card, nothing alike. A raw sienna ✕ chip appears.",
+   "words": "Pretty, but nothing like mine.",
+   "sound": "The stab goes sour.",
+   "act": "felt",
+   "bars": "2-3",
+   "camera": "Close z 1.6, small follow pan",
+   "cue_tags": [
+    "consequence"
+   ]
+  },
+  {
+   "t": 6.0,
+   "picture": "The whale types an even longer description. Same glossy card.",
+   "words": "",
+   "sound": "Sour stab again.",
+   "act": "felt",
+   "bars": "4",
+   "camera": "Close z 1.6",
+   "cue_tags": []
+  },
+  {
+   "t": 8.0,
+   "picture": "The whale holds its sketch next to the glossy card. Hold.",
+   "words": "",
+   "sound": "Silence.",
+   "act": "felt",
+   "bars": "5",
+   "camera": "Close z 1.7, hold on the whale's face",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 10.0,
+   "picture": "Half a bar of stillness, then the title.",
+   "words": "Taste, one tick at a time.",
+   "sound": "Near-silence, then the title tick.",
+   "act": "why",
+   "bars": "6",
+   "camera": "Still z 1.6, half bar of stillness",
+   "cue_tags": [
+    "hinge"
+   ]
+  },
+  {
+   "t": 12.0,
+   "picture": "Pull back: a stack of long descriptions and a stack of identical glossy cards.",
+   "words": "Words can't say what your eye knows.",
+   "sound": "Problem motif: the hollow stab.",
+   "act": "why",
+   "bars": "7-8",
+   "camera": "Pull back z 1.6 to 1.0",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 16.0,
+   "picture": "Three more descriptions, every 2 beats, then 1, then half. Three more identical cards.",
+   "words": "",
+   "sound": "Problem motif three times, accelerating.",
+   "act": "why",
+   "bars": "9",
+   "camera": "Wide z 1.0, pattern revealed",
+   "cue_tags": []
+  },
+  {
+   "t": 18.0,
+   "picture": "Motion stops. Two small cards ghost side by side in front of the pod.",
+   "words": "Pick one of two, again and again.",
+   "sound": "One warm, clean pluck: the signature.",
+   "act": "why",
+   "bars": "10",
+   "camera": "Wide z 1.0, all motion stops",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 20.0,
+   "picture": "The pod offers two small cards. The whale flicks one aside and keeps the other, and a tick lands on a strip under the line.",
+   "words": "Keep or skip.",
+   "sound": "A pluck per keep, a soft tick.",
+   "act": "move",
+   "bars": "11-12",
+   "camera": "Medium z 1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 24.0,
+   "picture": "Many quick pairs. Ticks stack on the strip, and the pod's next cards drift toward the whale's own colours and lines.",
+   "words": "Each pick nudges the next pair closer.",
+   "sound": "Plucks speeding up, warming in tone.",
+   "act": "move",
+   "bars": "13-14",
+   "camera": "Medium z 1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 28.0,
+   "picture": "Push-in: a tired flick keeps the wrong card, and its tick turns raw sienna. The whale finds that tick on the strip and lifts it out.",
+   "words": "A tired pick? Find it and undo it.",
+   "sound": "A sour pluck, then the warm pluck returns.",
+   "act": "move",
+   "bars": "15",
+   "camera": "One push-in z 1.2 to 1.3",
+   "cue_tags": [
+    "mech",
+    "focus"
+   ]
+  },
+  {
+   "t": 30.0,
+   "picture": "The strip of ticks settles under the line. Every pick is kept in order.",
+   "words": "The ledger.",
+   "sound": "Soft ticks in a row.",
+   "act": "move",
+   "bars": "16",
+   "camera": "Medium z 1.3 easing back to 1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 32.0,
+   "picture": "Wide: a week of picks as a long strip of ticks. The cards above it slowly change from glossy to the whale's style.",
+   "words": "Illustration: a week of quick picks.",
+   "sound": "Pulse bed, quick ticks.",
+   "act": "case",
+   "bars": "17-19",
+   "camera": "Steady wide, slow drift",
+   "cue_tags": []
+  },
+  {
+   "t": 38.0,
+   "picture": "The counter of picks climbs. The pod's cards now rhyme with the sketch.",
+   "words": "Small picks add up to a style.",
+   "sound": "Plucks in tune, rising.",
+   "act": "case",
+   "bars": "20-22",
+   "camera": "Steady wide, slow drift",
+   "cue_tags": []
+  },
+  {
+   "t": 44.0,
+   "picture": "The pod now offers only cards that look like last month's work. A new, odd card the whale might love never appears.",
+   "words": "It learns what you liked, not what's next.",
+   "sound": "Signature pluck once, unresolved.",
+   "act": "limit",
+   "bars": "23-24",
+   "camera": "Still",
+   "cue_tags": [
+    "limit"
+   ]
+  },
+  {
+   "t": 48.0,
+   "picture": "Slow push to the empty place where the odd card should be.",
+   "words": "",
+   "sound": "Room tone.",
+   "act": "limit",
+   "bars": "25",
+   "camera": "One slow push to the thing that slipped",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 50.0,
+   "picture": "FELT framing: the whale's sketch and the pod's card side by side again. Now they rhyme.",
+   "words": "",
+   "sound": "Warm pluck in tune.",
+   "act": "payoff",
+   "bars": "26-27",
+   "camera": "Close z 1.6, the FELT framing restored",
+   "cue_tags": [
+    "callback"
+   ]
+  },
+  {
+   "t": 54.0,
+   "picture": "The whale keeps one deliberately odd card, and a fresh tick lands. Spark.",
+   "words": "",
+   "sound": "Chord resolves, one new note added.",
+   "act": "payoff",
+   "bars": "28-29",
+   "camera": "Wide reveal z 1.0",
+   "cue_tags": []
+  },
+  {
+   "t": 58.0,
+   "picture": "The strip of ticks under the line, the whale breathing.",
+   "words": "Show your taste with choices, not prompts.",
+   "sound": "Pad tail.",
+   "act": "belief",
+   "bars": "30-31",
+   "camera": "Still, breathing only",
+   "cue_tags": []
+  },
+  {
+   "t": 62.0,
+   "picture": "SERIES.lockup.",
+   "words": "",
+   "sound": "Pad tail ends, lockup tick.",
+   "act": "lockup",
+   "bars": "32",
+   "camera": "Still",
+   "cue_tags": []
+  }
+ ],
+ "captions": [
+  {
+   "t_in": 1.0,
+   "t_out": 4.0,
+   "text": "Make it look like my work.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 5.0,
+   "t_out": 9.0,
+   "text": "Pretty, but nothing like mine.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 11.0,
+   "t_out": 14.0,
+   "text": "Taste, one tick at a time.",
+   "kind": "title"
+  },
+  {
+   "t_in": 14.0,
+   "t_out": 18.0,
+   "text": "Words can't say what your eye knows.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 18.0,
+   "t_out": 20.5,
+   "text": "Pick one of two, again and again.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 21.0,
+   "t_out": 23.5,
+   "text": "Keep or skip.",
+   "kind": "label"
+  },
+  {
+   "t_in": 24.0,
+   "t_out": 27.5,
+   "text": "Each pick nudges the next pair closer.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 28.0,
+   "t_out": 31.5,
+   "text": "A tired pick? Find it and undo it.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 30.0,
+   "t_out": 32.0,
+   "text": "The ledger.",
+   "kind": "label"
+  },
+  {
+   "t_in": 32.0,
+   "t_out": 36.0,
+   "text": "Illustration: a week of quick picks.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 33.0,
+   "t_out": 43.5,
+   "text": "Illustration · picks shape the next pair.",
+   "kind": "card"
+  },
+  {
+   "t_in": 38.0,
+   "t_out": 42.0,
+   "text": "Small picks add up to a style.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 44.0,
+   "t_out": 47.0,
+   "text": "It learns what you liked, not what's next.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 47.0,
+   "t_out": 49.75,
+   "text": "Copying your past is not your taste.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 58.0,
+   "t_out": 62.0,
+   "text": "Show your taste with choices, not prompts.",
+   "kind": "caption"
+  }
+ ],
+ "terms": [
+  {
+   "term": "ledger",
+   "symbol": "tick strip",
+   "pictured_at": 20.0,
+   "named_at": 30.0
+  }
+ ],
+ "jargon": [
+  "RL",
+  "reward",
+  "fine-tune",
+  "dataset",
+  "model",
+  "prompt"
+ ],
+ "sound": {
+  "signature": "A warm pluck on each keep, with a soft tick under it.",
+  "problem_motif": "A hollow, glossy synth stab that sours.",
+  "limit_unresolved": true
+ },
+ "score_self": {
+  "score": 0.55,
+  "reason": "The pain lands, and the either-or pick picture is simple. But the repo is unread and there is no source, so it is Illustration only. The capability is inferred from a stated plan. Keep it as raw material, not a lead.",
+  "weakest_piece": "real_case"
+ }
+}

@@ -1,0 +1,459 @@
+{
+  "schema_version": "sb60-v1",
+  "id": "sb-08-05",
+  "meta_prompt_id": "mp-c08-v1",
+  "cluster": "08 Memory & agent harnesses",
+  "repo": "manutej/ceti-clock-tree",
+  "capability": "Test where the clock, page and engine meet",
+  "audience": "Learners",
+  "wada": 243,
+  "bpm": 128,
+  "dur": 60.3,
+  "title": "Test where the parts <i>join</i>.",
+  "hook": {
+    "kind": "Example",
+    "picture": "Close on the whale fitting three pieces on the line: a clock, a page, a small engine. Each has a green tick. Joined, the line stutters, and a viewer pod turns raw sienna ✕.",
+    "words": "All my tests passed. Then it froze."
+  },
+  "problem_in_viewer_words": {
+    "kind": "Fact",
+    "body": "Every part passed its test. Together, the page froze.",
+    "who": "student shipping a first web app"
+  },
+  "why_it_keeps_happening": {
+    "kind": "Fact",
+    "picture": "Pull back: three pairs of parts, each tested alone in its own box. First pair meets: the line jolts at the join (2 beats). It repeats, faster each time.",
+    "words": "Nobody tested the place they meet."
+  },
+  "stakes": {
+    "kind": "Fact",
+    "body": "Green tests ship a page that freezes for real users, and the bug hides between owners."
+  },
+  "solution_hint": "Test the joins, not just the parts.",
+  "metaphor": {
+    "kind": "Example",
+    "body": "The line runs through three parts, and a small gate sits on every join between them. The checks live at the joins, not inside the parts. Raw sienna alarm.",
+    "symbols": [
+      "whale",
+      "line",
+      "seam",
+      "gate",
+      "pod"
+    ]
+  },
+  "mechanism_beats": {
+    "kind": "Method",
+    "steps": [
+      {
+        "t": 18.75,
+        "picture": "Three parts on the line: the clock keeps time, the page holds space, the engine does the work. The joins between them are dashed.",
+        "words": "Find where the parts touch.",
+        "sound": "Metronome click, exact"
+      },
+      {
+        "t": 22.5,
+        "picture": "A gate drops onto each dashed join. A beat from the clock crosses into the engine; the gate rings and turns teal.",
+        "words": "Put the check right at the join.",
+        "sound": "Click plus a bright ring"
+      },
+      {
+        "t": 24.375,
+        "picture": "Push-in: the engine hands the page a change off the beat. The join gate shuts in raw sienna and the line waits.",
+        "words": "Off the beat? Caught.",
+        "sound": "Muted thud, then silence"
+      },
+      {
+        "t": 26.25,
+        "picture": "All joins glow teal with their gates, each labelled.",
+        "words": "These joins are seams. Test them first.",
+        "sound": "Three clicks in time"
+      }
+    ]
+  },
+  "real_case": {
+    "kind": "Evidence",
+    "claim": "ceti-clock-tree explains the browser host/guest stack (the event loop handles time, the DOM handles space, a compiled Wasm guest runs on both) and takes the stance that glue code is the only test.",
+    "numbers": [],
+    "source": {
+      "kind": "repo",
+      "title": "manutej/ceti-clock-tree README",
+      "url": "https://github.com/manutej/ceti-clock-tree"
+    },
+    "verified": true,
+    "illustrative": true
+  },
+  "honest_limit": {
+    "kind": "Constraint",
+    "picture": "A fourth, faint dashed join nobody gated (a slow font file reaching the page) lets a delay through. The page stutters once. No gate rang.",
+    "words": "A join with no check still slips."
+  },
+  "not_this": {
+    "kind": "Constraint",
+    "body": "Tested joins are not every join."
+  },
+  "ending_pattern": {
+    "kind": "Example",
+    "slug": "clockwork-click",
+    "body": "The same three pieces snap together, each join clicking behind its gate, and the line runs in step with the clock.",
+    "callback": "Act 1's stutter at the join is gone: the join is gated, so the same assembly runs smooth."
+  },
+  "end_belief": {
+    "kind": "Goal",
+    "body": "Test where your parts meet, not alone."
+  },
+  "beats": [
+    {
+      "t": 0.0,
+      "picture": "Close on the whale fitting three pieces onto the line: a clock, a page, a small engine. Each one wears its own green tick.",
+      "words": "All my tests passed. Then it froze.",
+      "sound": "Two clicks a hair apart",
+      "act": "felt",
+      "bars": "1",
+      "camera": "Close, z 1.6, on the whale",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 1.875,
+      "picture": "Joined, the line stutters at a join. A viewer pod turns raw sienna ✕.",
+      "words": "",
+      "sound": "Flammed click, dull",
+      "act": "felt",
+      "bars": "2",
+      "camera": "Close, z 1.6, on the whale",
+      "cue_tags": [
+        "consequence",
+        "focus"
+      ]
+    },
+    {
+      "t": 3.75,
+      "picture": "The whale lifts each piece out: each one runs smoothly on its own.",
+      "words": "Each part worked on its own.",
+      "sound": "Flammed clicks twice",
+      "act": "felt",
+      "bars": "3-4",
+      "camera": "Close, z 1.6, on the whale",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 7.5,
+      "picture": "Hold on the three pieces, apart, all green.",
+      "words": "",
+      "sound": "Silence creeps in",
+      "act": "felt",
+      "bars": "5",
+      "camera": "Close, z 1.6, on the whale",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 10.312,
+      "picture": "Hinge: half a bar of stillness, then SERIES.open shows the title.",
+      "words": "Test where the parts join.",
+      "sound": "Near-silence, then the title tick",
+      "act": "why",
+      "bars": "6",
+      "camera": "Still, z 1.6",
+      "cue_tags": [
+        "hinge"
+      ]
+    },
+    {
+      "t": 11.25,
+      "picture": "Pull back: three pairs of parts, each tested alone in its own box. First pair meets: the line jolts at the join (2 beats).",
+      "words": "",
+      "sound": "Problem motif: flammed click",
+      "act": "why",
+      "bars": "7",
+      "camera": "Pull back to z 1.0, revealing the pattern",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 13.125,
+      "picture": "Second pair meets, jolts (1 beat).",
+      "words": "Nobody tested the place they meet.",
+      "sound": "Flammed click, faster",
+      "act": "why",
+      "bars": "8",
+      "camera": "Pull back to z 1.0, revealing the pattern",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 15.0,
+      "picture": "Third pair (half a beat). Every jolt is at a join, never inside a part.",
+      "words": "",
+      "sound": "Flammed click, fastest",
+      "act": "why",
+      "bars": "9",
+      "camera": "Pull back to z 1.0, revealing the pattern",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 16.875,
+      "picture": "Freeze. The joins glow faintly; the parts go quiet.",
+      "words": "Test the joins, not just the parts.",
+      "sound": "One exact click: the signature",
+      "act": "why",
+      "bars": "10",
+      "camera": "Still, z 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 18.75,
+      "picture": "Three parts on the line: the clock keeps time, the page holds space, the engine does the work. The joins between them are dashed.",
+      "words": "Find where the parts touch.",
+      "sound": "Metronome click, exact",
+      "act": "move",
+      "bars": "11",
+      "camera": "Medium, z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 22.5,
+      "picture": "A gate drops onto each dashed join. A beat from the clock crosses into the engine; the gate rings and turns teal.",
+      "words": "Put the check right at the join.",
+      "sound": "Click plus a bright ring",
+      "act": "move",
+      "bars": "13",
+      "camera": "Medium, z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 24.375,
+      "picture": "Push-in: the engine hands the page a change off the beat. The join gate shuts in raw sienna and the line waits.",
+      "words": "Off the beat? Caught.",
+      "sound": "Muted thud, then silence",
+      "act": "move",
+      "bars": "14",
+      "camera": "Push-in to z 1.3 on the decisive moment",
+      "cue_tags": [
+        "mech",
+        "focus"
+      ]
+    },
+    {
+      "t": 26.25,
+      "picture": "All joins glow teal with their gates, each labelled.",
+      "words": "These joins are seams. Test them first.",
+      "sound": "Three clicks in time",
+      "act": "move",
+      "bars": "15",
+      "camera": "Medium, z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 30.0,
+      "picture": "Wide: a clock tree. One clock at the root, branches down to the page and the engine, a gate on every join.",
+      "words": "Its rule: the joins are the test.",
+      "sound": "Pulse bed, metronome",
+      "act": "case",
+      "bars": "17-19",
+      "camera": "Steady wide, slow drift",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 35.625,
+      "picture": "The clock ticks; every branch moves in step through its gate. Nothing moves between ticks.",
+      "words": "One clock keeps time for every part.",
+      "sound": "Clicks in perfect step",
+      "act": "case",
+      "bars": "20-22",
+      "camera": "Steady wide, slow drift",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 41.25,
+      "picture": "A fourth, faint dashed join nobody gated (a slow font file reaching the page) lets a delay through. The page stutters once. No gate rang.",
+      "words": "A join with no check still slips.",
+      "sound": "Signature click once, unresolved",
+      "act": "limit",
+      "bars": "23-24",
+      "camera": "Still, then one slow push to what slipped",
+      "cue_tags": [
+        "limit",
+        "focus"
+      ]
+    },
+    {
+      "t": 44.062,
+      "picture": "Slow push to the ungated dashed join.",
+      "words": "Tested joins are not every join.",
+      "sound": "Room tone",
+      "act": "limit",
+      "bars": "24-25",
+      "camera": "Still"
+    },
+    {
+      "t": 46.875,
+      "picture": "FELT framing: the whale fits the same three pieces on the line. Each join clicks shut behind a teal gate. The line runs smooth and the viewer pod turns ✓.",
+      "words": "",
+      "sound": "Clicks on every eighth, then resolved",
+      "act": "payoff",
+      "bars": "26-29",
+      "camera": "FELT framing restored, z 1.6, then a slow wide reveal",
+      "cue_tags": [
+        "callback"
+      ]
+    },
+    {
+      "t": 54.375,
+      "picture": "Still line with its three parts and gated joins, whale breathing.",
+      "words": "Test where your parts meet, not alone.",
+      "sound": "Pad tail only",
+      "act": "belief",
+      "bars": "30-31",
+      "camera": "Still, breathing only"
+    },
+    {
+      "t": 58.125,
+      "picture": "SERIES.lockup over the still line.",
+      "words": "",
+      "sound": "Final tick, then room tone",
+      "act": "lockup",
+      "bars": "32",
+      "camera": "Still"
+    }
+  ],
+  "captions": [
+    {
+      "t_in": 0.938,
+      "t_out": 3.75,
+      "text": "All my tests passed. Then it froze.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 3.75,
+      "t_out": 7.031,
+      "text": "Each part worked on its own.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 10.312,
+      "t_out": 12.656,
+      "text": "Test where the parts join.",
+      "kind": "title"
+    },
+    {
+      "t_in": 13.125,
+      "t_out": 15.938,
+      "text": "Nobody tested the place they meet.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 16.875,
+      "t_out": 19.219,
+      "text": "Test the joins, not just the parts.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 18.75,
+      "t_out": 21.562,
+      "text": "Find where the parts touch.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 22.5,
+      "t_out": 25.312,
+      "text": "Put the check right at the join.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 24.375,
+      "t_out": 26.25,
+      "text": "Off the beat? Caught.",
+      "kind": "label"
+    },
+    {
+      "t_in": 26.25,
+      "t_out": 29.531,
+      "text": "These joins are seams. Test them first.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 30.0,
+      "t_out": 32.812,
+      "text": "Its rule: the joins are the test.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 31.875,
+      "t_out": 39.375,
+      "text": "From the repo · Illustration",
+      "kind": "card"
+    },
+    {
+      "t_in": 35.625,
+      "t_out": 38.438,
+      "text": "One clock keeps time for every part.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 41.25,
+      "t_out": 44.062,
+      "text": "A join with no check still slips.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 44.062,
+      "t_out": 46.875,
+      "text": "Tested joins are not every join.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 54.375,
+      "t_out": 57.656,
+      "text": "Test where your parts meet, not alone.",
+      "kind": "caption"
+    }
+  ],
+  "terms": [
+    {
+      "term": "seams",
+      "symbol": "dashed join with its gate",
+      "pictured_at": 18.75,
+      "named_at": 26.25
+    }
+  ],
+  "jargon": [
+    "event loop",
+    "DOM",
+    "Wasm",
+    "host",
+    "guest",
+    "glue test",
+    "integration"
+  ],
+  "sound": {
+    "signature": "A metronome click that lands exactly",
+    "problem_motif": "Two clicks a hair apart, flamming",
+    "limit_unresolved": true
+  },
+  "score_self": {
+    "score": 0.75,
+    "reason": "Clear felt pain for learners, and the gate-at-the-join image is simple. The case is a repo stance, not a run, so it is labelled Illustration. \"Clock, page, engine\" may read as abstract without a voice.",
+    "weakest_piece": "real_case"
+  }
+}

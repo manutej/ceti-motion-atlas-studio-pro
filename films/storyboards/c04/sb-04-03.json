@@ -1,0 +1,504 @@
+{
+ "schema_version": "sb60-v1",
+ "id": "sb-04-03",
+ "meta_prompt_id": "mp-c04-v1",
+ "cluster": "04 Operads & composition",
+ "repo": "operadic-stitch (Context Atoms)",
+ "capability": "One fact, the same in every helper's brief",
+ "audience": "Everyone",
+ "wada": 166,
+ "bpm": 128,
+ "dur": 60.3,
+ "title": "One fact at every <i>joint</i>.",
+ "hook": {
+  "kind": "Example",
+  "picture": "Close on the whale splitting the line into two arms toward two pods, and copying a date card onto each arm.",
+  "words": ""
+ },
+ "problem_in_viewer_words": {
+  "kind": "Fact",
+  "body": "My two helpers were told two different deadlines.",
+  "who": "team lead who split one task across two AI helpers"
+ },
+ "why_it_keeps_happening": {
+  "kind": "Fact",
+  "picture": "Pull back: many forks along the line, each with copied cards. Three more forks split off, every 2 beats, then 1, then half; each time one copy drifts and the two answers fail to meet.",
+  "words": "Each copy gets changed on its own."
+ },
+ "stakes": {
+  "kind": "Fact",
+  "body": "Two halves of the work are built for different dates, and nobody notices until they are joined."
+ },
+ "solution_hint": "Send one fact. Check every copy.",
+ "metaphor": {
+  "kind": "Example",
+  "body": "The brief forks into two arms, one per helper; a fact lives once on the trunk and both arms read it through the fork, so a changed copy lights up the fork instead of travelling.",
+  "symbols": [
+   "whale",
+   "line",
+   "pod",
+   "seam",
+   "atom"
+  ]
+ },
+ "mechanism_beats": {
+  "kind": "Method",
+  "steps": [
+   {
+    "t": 18.75,
+    "picture": "The date card lifts off both arms and sits once on the trunk, before the fork.",
+    "words": "",
+    "sound": "One clear pluck"
+   },
+   {
+    "t": 20.625,
+    "picture": "Both arms draw a thin thread from the trunk card through the fork; both pods read the same card.",
+    "words": "One fact. Every helper reads the same card.",
+    "sound": "The pluck doubled, in unison"
+   },
+   {
+    "t": 22.5,
+    "picture": "Both pods start work, pulses climbing both arms together.",
+    "words": "",
+    "sound": "Two clicks in unison"
+   },
+   {
+    "t": 24.375,
+    "picture": "Push-in on the fork: the whale edits one arm's copy. The fork glows rust and the send stops; both pods wait.",
+    "words": "A mismatch stops the send.",
+    "sound": "The unison splits into a beating interval"
+   },
+   {
+    "t": 26.25,
+    "picture": "The whale fixes the trunk card; both copies turn teal and the fork gets a tick.",
+    "words": "",
+    "sound": "The interval resolves"
+   },
+   {
+    "t": 28.125,
+    "picture": "Ticks ripple up both arms to the fork.",
+    "words": "Checks live where parts meet: seams.",
+    "sound": "Rising arpeggio"
+   }
+  ]
+ },
+ "real_case": {
+  "kind": "Evidence",
+  "claim": "Context Atoms checks the composed result (types, fact consistency across delegations, confidentiality, recursion bounds) before anything is sent; a disagreement is a RED finding, never last-write-wins",
+  "numbers": [],
+  "source": {
+   "kind": "notion",
+   "title": "Context Atoms — operadic stitch",
+   "url": "https://app.notion.com/p/3fbd50cfaf9381048ffaecd94c9f8264"
+  },
+  "verified": true,
+  "illustrative": false
+ },
+ "honest_limit": {
+  "kind": "Constraint",
+  "picture": "The trunk card itself carries a rust smudge (the wrong date); both arms read it, the fork glows teal, both pods answer with a tick and the same wrong date.",
+  "words": "Both helpers agree. Both are wrong."
+ },
+ "not_this": {
+  "kind": "Constraint",
+  "body": "Agreement is not the same as true."
+ },
+ "ending_pattern": {
+  "kind": "Example",
+  "slug": "twin-ticks",
+  "body": "FELT framing: the two pods face each other across the fork. Their chips flip to the same tick at the same moment, and the two halves of work meet and join with no gap.",
+  "callback": "The facing tick and cross of bar 2 become two matching ticks, and the gap of bar 3 closes, in the same close framing."
+ },
+ "end_belief": {
+  "kind": "Goal",
+  "body": "Write each fact once. Check every copy."
+ },
+ "beats": [
+  {
+   "t": 0.0,
+   "picture": "Close on the whale splitting the line into two arms toward two pods, and copying a date card onto each arm.",
+   "words": "",
+   "sound": "Two plucks, a little apart",
+   "act": "felt",
+   "bars": "1",
+   "camera": "Close, z 1.6 on the whale, small follow pan",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 1.875,
+   "picture": "The whale edits the date on one arm only. Both pods answer; their chips face each other, one tick, one rust cross.",
+   "words": "I split the task between two helpers.",
+   "sound": "The plucks clash, out of tune",
+   "act": "felt",
+   "bars": "2",
+   "camera": "Close, z 1.6 on the whale, small follow pan",
+   "cue_tags": [
+    "consequence",
+    "focus"
+   ]
+  },
+  {
+   "t": 5.625,
+   "picture": "The two answers meet in the middle and do not join: a gap with a rust edge.",
+   "words": "They worked to two different dates.",
+   "sound": "A low scrape",
+   "act": "felt",
+   "bars": "3-4",
+   "camera": "Close, z 1.6 on the whale, small follow pan",
+   "cue_tags": [
+    "consequence",
+    "focus"
+   ]
+  },
+  {
+   "t": 7.5,
+   "picture": "The whale floats between the two arms, looking from one pod to the other. Hold.",
+   "words": "",
+   "sound": "Room tone",
+   "act": "felt",
+   "bars": "5",
+   "camera": "Close, z 1.6 on the whale, small follow pan",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 10.312,
+   "picture": "Hinge: half a bar of stillness, then SERIES.open with the title; the accent word is drawn in the law colour.",
+   "words": "One fact at every joint.",
+   "sound": "Near-silence, then the title tick",
+   "act": "why",
+   "bars": "6",
+   "camera": "Still",
+   "cue_tags": [
+    "hinge"
+   ]
+  },
+  {
+   "t": 12.188,
+   "picture": "Pull back: many forks along the line, each with copied cards. Three more forks split off, every 2 beats, then 1, then half; each time one copy drifts and the two answers fail to meet.",
+   "words": "Each copy gets changed on its own.",
+   "sound": "The problem motif, once",
+   "act": "why",
+   "bars": "7",
+   "camera": "Pull back z 1.6 to 1.0, revealing the pattern",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 13.125,
+   "picture": "Three-times device: the failure repeats every 2 beats, then 1, then half a beat.",
+   "words": "",
+   "sound": "The problem motif three times, accelerating",
+   "act": "why",
+   "bars": "8-9",
+   "camera": "Pull back z 1.6 to 1.0, revealing the pattern",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 16.875,
+   "picture": "All motion stops; the fix ghosts in faintly where it will act.",
+   "words": "Send one fact. Check every copy.",
+   "sound": "One clean, in-tune note: first signature",
+   "act": "why",
+   "bars": "10",
+   "camera": "Still at z 1.0",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 18.75,
+   "picture": "The date card lifts off both arms and sits once on the trunk, before the fork.",
+   "words": "",
+   "sound": "One clear pluck",
+   "act": "move",
+   "bars": "11",
+   "camera": "Medium z 1.2",
+   "cue_tags": [
+    "mech",
+    "focus"
+   ]
+  },
+  {
+   "t": 20.625,
+   "picture": "Both arms draw a thin thread from the trunk card through the fork; both pods read the same card.",
+   "words": "One fact. Every helper reads the same card.",
+   "sound": "The pluck doubled, in unison",
+   "act": "move",
+   "bars": "12",
+   "camera": "Medium z 1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 22.5,
+   "picture": "Both pods start work, pulses climbing both arms together.",
+   "words": "",
+   "sound": "Two clicks in unison",
+   "act": "move",
+   "bars": "13",
+   "camera": "Medium z 1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 24.375,
+   "picture": "Push-in on the fork: the whale edits one arm's copy. The fork glows rust and the send stops; both pods wait.",
+   "words": "A mismatch stops the send.",
+   "sound": "The unison splits into a beating interval",
+   "act": "move",
+   "bars": "14",
+   "camera": "Medium, one push-in to z 1.3 on this moment",
+   "cue_tags": [
+    "mech",
+    "focus"
+   ]
+  },
+  {
+   "t": 26.25,
+   "picture": "The whale fixes the trunk card; both copies turn teal and the fork gets a tick.",
+   "words": "",
+   "sound": "The interval resolves",
+   "act": "move",
+   "bars": "15",
+   "camera": "Medium z 1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 28.125,
+   "picture": "Ticks ripple up both arms to the fork.",
+   "words": "Checks live where parts meet: seams.",
+   "sound": "Rising arpeggio",
+   "act": "move",
+   "bars": "16",
+   "camera": "Medium z 1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 30.0,
+   "picture": "Wide: one brief fans out to several pods; each fork shows a small teal tick. The card fades in: Context Atoms checks facts across helpers.",
+   "words": "",
+   "sound": "Pulse bed starts, quiet ticks",
+   "act": "case",
+   "bars": "17",
+   "camera": "Steady wide, slow drift, card framed in clean paper",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 31.875,
+   "picture": "The case picture holds and drifts; ticks stream.",
+   "words": "Real tool: facts checked across helpers.",
+   "sound": "Pulse bed, ticks at each fork",
+   "act": "case",
+   "bars": "18-19",
+   "camera": "Steady wide, slow drift, card framed in clean paper",
+   "cue_tags": []
+  },
+  {
+   "t": 35.625,
+   "picture": "Two copies arrive at a fork with different dates; the fork glows rust and holds both, side by side, instead of keeping the newer one.",
+   "words": "A clash is shown, never quietly overwritten.",
+   "sound": "Two notes held together, unresolved, then a click",
+   "act": "case",
+   "bars": "20-22",
+   "camera": "Steady wide, slow drift, card framed in clean paper",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 41.25,
+   "picture": "The trunk card itself carries a rust smudge (the wrong date); both arms read it, the fork glows teal, both pods answer with a tick and the same wrong date.",
+   "words": "Both helpers agree. Both are wrong.",
+   "sound": "The signature plays once and does not resolve",
+   "act": "limit",
+   "bars": "23-24",
+   "camera": "Still, then one slow push to the part that slipped",
+   "cue_tags": [
+    "limit",
+    "focus"
+   ]
+  },
+  {
+   "t": 45.0,
+   "picture": "Slow push onto the smudged trunk card; the teal fork beside it stays calm.",
+   "words": "Agreement is not the same as true.",
+   "sound": "Room tone",
+   "act": "limit",
+   "bars": "25",
+   "camera": "Still, then one slow push to the part that slipped",
+   "cue_tags": [
+    "limit"
+   ]
+  },
+  {
+   "t": 46.875,
+   "picture": "FELT framing: the two pods face each other across the fork. Their chips flip to the same tick at the same moment, and the two halves of work meet and join with no gap.",
+   "words": "",
+   "sound": "The signature returns, resolved on every 8th",
+   "act": "payoff",
+   "bars": "26-27",
+   "camera": "FELT framing restored, z 1.6, same position",
+   "cue_tags": [
+    "callback",
+    "focus"
+   ]
+  },
+  {
+   "t": 50.625,
+   "picture": "The joined line runs on past the whale as one.",
+   "words": "",
+   "sound": "Full resolution, a spark",
+   "act": "payoff",
+   "bars": "28-29",
+   "camera": "Gentle wide reveal from the FELT framing",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 54.375,
+   "picture": "The settled image; the whale breathes and spouts once.",
+   "words": "Write each fact once. Check every copy.",
+   "sound": "Pad tail only",
+   "act": "belief",
+   "bars": "30-31",
+   "camera": "Still, breathing only",
+   "cue_tags": []
+  },
+  {
+   "t": 58.125,
+   "picture": "SERIES.lockup",
+   "words": "",
+   "sound": "Pad tail fades",
+   "act": "lockup",
+   "bars": "32",
+   "camera": "Still",
+   "cue_tags": []
+  }
+ ],
+ "captions": [
+  {
+   "t_in": 1.875,
+   "t_out": 5.156,
+   "text": "I split the task between two helpers.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 5.625,
+   "t_out": 8.906,
+   "text": "They worked to two different dates.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 10.312,
+   "t_out": 12.656,
+   "text": "One fact at every joint.",
+   "kind": "title"
+  },
+  {
+   "t_in": 12.188,
+   "t_out": 15.938,
+   "text": "Each copy gets changed on its own.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 16.875,
+   "t_out": 19.219,
+   "text": "Send one fact. Check every copy.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 20.625,
+   "t_out": 23.906,
+   "text": "One fact. Every helper reads the same card.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 24.375,
+   "t_out": 27.656,
+   "text": "A mismatch stops the send.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 28.125,
+   "t_out": 31.406,
+   "text": "Checks live where parts meet: seams.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 30.469,
+   "t_out": 39.375,
+   "text": "Context Atoms checks facts across helpers.",
+   "kind": "card",
+   "src": "https://app.notion.com/p/3fbd50cfaf9381048ffaecd94c9f8264"
+  },
+  {
+   "t_in": 31.875,
+   "t_out": 35.156,
+   "text": "Real tool: facts checked across helpers.",
+   "kind": "caption",
+   "src": "https://app.notion.com/p/3fbd50cfaf9381048ffaecd94c9f8264"
+  },
+  {
+   "t_in": 35.625,
+   "t_out": 38.906,
+   "text": "A clash is shown, never quietly overwritten.",
+   "kind": "caption",
+   "src": "operadic-stitch skill: Facts must glue; a disagreement is a RED finding, never last-write-wins"
+  },
+  {
+   "t_in": 41.25,
+   "t_out": 44.531,
+   "text": "Both helpers agree. Both are wrong.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 45.0,
+   "t_out": 47.344,
+   "text": "Agreement is not the same as true.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 54.375,
+   "t_out": 58.125,
+   "text": "Write each fact once. Check every copy.",
+   "kind": "caption"
+  }
+ ],
+ "terms": [
+  {
+   "term": "seams",
+   "symbol": "seam",
+   "pictured_at": 24.375,
+   "named_at": 28.125
+  }
+ ],
+ "jargon": [
+  "deadline-drift"
+ ],
+ "sound": {
+  "signature": "a clean pluck that doubles into unison",
+  "problem_motif": "two plucks a quarter-tone apart, beating",
+  "limit_unresolved": true
+ },
+ "score_self": {
+  "score": 0.8,
+  "reason": "Two-helpers-two-deadlines is concrete and broad; the fork picture carries the seam idea well. The limit is honest and shown. CASE has no run numbers, only the tool fact.",
+  "weakest_piece": "real_case"
+ }
+}

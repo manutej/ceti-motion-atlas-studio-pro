@@ -1,0 +1,411 @@
+{
+ "schema_version": "sb60-v1",
+ "id": "sb-01-05",
+ "meta_prompt_id": "mp-c01-v1",
+ "cluster": "01 Sheaf memory",
+ "repo": "manutej/glue",
+ "capability": "When two sources disagree, show both instead of picking",
+ "audience": "Everyone",
+ "wada": 84,
+ "bpm": 124,
+ "dur": 62.24,
+ "title": "Show both sides of the <i>edge</i>.",
+ "hook": {
+  "kind": "Example",
+  "picture": "Close: two lines (two sources) each carry a small date card toward the whale. The cards do not match. The whale quietly drops one into the sea and keeps the other.",
+  "words": "Two sites. Two different dates."
+ },
+ "problem_in_viewer_words": {
+  "kind": "Fact",
+  "body": "Two websites gave me two dates, and I picked one.",
+  "who": "someone planning a trip"
+ },
+ "why_it_keeps_happening": {
+  "kind": "Fact",
+  "picture": "Pull back: many pairs of source lines meet. Three times, every 2 beats, then 1, then half, the whale drops one card unseen; the sea under the line fills with dropped cards.",
+  "words": "We pick one and hide the other."
+ },
+ "stakes": {
+  "kind": "Fact",
+  "body": "You act on the wrong answer and never learn that a second answer existed."
+ },
+ "solution_hint": "Keep both. Show where they disagree.",
+ "metaphor": {
+  "kind": "Example",
+  "body": "Two sources are two lines that meet at a join. Instead of throwing one answer into the sea, both cards sit on the join with their labels, and the join glows if they differ.",
+  "symbols": [
+   "whale",
+   "line",
+   "seam",
+   "atom",
+   "pod"
+  ]
+ },
+ "mechanism_beats": {
+  "kind": "Method",
+  "steps": [
+   {
+    "t": 19.355,
+    "picture": "The two source lines meet at a dashed join. The whale sets both date cards on it side by side instead of dropping one.",
+    "words": "Keep both. Show where they disagree.",
+    "sound": "Two tones, one per source."
+   },
+   {
+    "t": 22.258,
+    "picture": "The join reads both ends; they differ, so it glows copper. A small tag on each card names where it came from.",
+    "words": "Each answer keeps its own label.",
+    "sound": "The pair beats with the copper glow."
+   },
+   {
+    "t": 25.161,
+    "picture": "Push-in: a third line arrives, an official source. Its card matches one of the two; that join turns teal. The other stays copper, still on screen.",
+    "words": "A better source can settle it.",
+    "sound": "One pair resolves to unison; one still beats."
+   },
+   {
+    "t": 28.065,
+    "picture": "A label slides onto the joins where sources meet: seam. Copper and teal both stay visible.",
+    "words": "Where sources meet: the seam.",
+    "sound": "Unison and beat side by side."
+   }
+  ]
+ },
+ "real_case": {
+  "kind": "Evidence",
+  "claim": "Illustration only. manutej/glue could not be read (private or unavailable), so no real run or number is shown for this film.",
+  "numbers": [],
+  "source": {
+   "kind": "none",
+   "title": "No source: manutej/glue not readable from this session",
+   "url": null
+  },
+  "verified": false,
+  "illustrative": true
+ },
+ "honest_limit": {
+  "kind": "Constraint",
+  "picture": "Push to a teal join: both sources agree on one date. A fourth card, the real timetable, floats in with a third date. The join stayed teal anyway.",
+  "words": "Both sites agreed. Both were wrong."
+ },
+ "not_this": {
+  "kind": "Constraint",
+  "body": "Two sources agreeing can both be wrong."
+ },
+ "ending_pattern": {
+  "kind": "Example",
+  "slug": "both-cards-kept",
+  "body": "The two clashing cards both land on the join with their labels, nothing sinks, and the pod checks both before answering ✓.",
+  "callback": "The card the whale threw into the sea in bar 1 now sits on the join beside its rival."
+ },
+ "end_belief": {
+  "kind": "Goal",
+  "body": "When sources disagree, show both. Then check."
+ },
+ "beats": [
+  {
+   "t": 0.0,
+   "picture": "Close: two lines (two sources) each carry a small date card toward the whale. The cards do not match. The whale quietly drops one into the sea and keeps the other.",
+   "words": "Two sites. Two different dates.",
+   "sound": "Two short notes approach, slightly apart.",
+   "act": "felt",
+   "bars": "1-2",
+   "camera": "Close, z 1.6 on the whale, small follow pan",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 2.903,
+   "picture": "A pod reads the kept card and answers ✕ on a copper chip. The dropped card sinks.",
+   "words": "",
+   "sound": "A splash, then a dull thunk on the ✕.",
+   "act": "felt",
+   "bars": "2",
+   "camera": "Close, z 1.6 on the whale, small follow pan",
+   "cue_tags": [
+    "consequence"
+   ]
+  },
+  {
+   "t": 4.839,
+   "picture": "The whale looks down at the sinking card, then back at the ✕.",
+   "words": "I picked one. It was wrong.",
+   "sound": "A low bubble as the card sinks.",
+   "act": "felt",
+   "bars": "3-4",
+   "camera": "Close, z 1.6 on the whale, small follow pan"
+  },
+  {
+   "t": 7.742,
+   "picture": "The dropped card rests on the sea floor. Hold.",
+   "words": "",
+   "sound": "The problem motif fades. Silence creeps in.",
+   "act": "felt",
+   "bars": "5",
+   "camera": "Close, z 1.6 on the whale, small follow pan"
+  },
+  {
+   "t": 10.645,
+   "picture": "Hinge: half a bar of stillness, then SERIES.open shows the title over the still line.",
+   "words": "",
+   "sound": "Near-silence, then the title tick.",
+   "act": "why",
+   "bars": "6",
+   "camera": "Pull back z 1.6 to 1.0, one reveal",
+   "cue_tags": [
+    "hinge"
+   ]
+  },
+  {
+   "t": 11.613,
+   "picture": "Pull back: many pairs of source lines meet. Three times, every 2 beats, then 1, then half, the whale drops one card unseen; the sea under the line fills with dropped cards.",
+   "words": "We pick one and hide the other.",
+   "sound": "Splash and thunk three times, accelerating.",
+   "act": "why",
+   "bars": "7-9",
+   "camera": "Pull back z 1.6 to 1.0, one reveal",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 17.419,
+   "picture": "The dropped cards glow faintly on the sea floor.",
+   "words": "Keep both. Show where they disagree.",
+   "sound": "Both notes held at once: the signature.",
+   "act": "why",
+   "bars": "10",
+   "camera": "Pull back z 1.6 to 1.0, one reveal",
+   "cue_tags": [
+    "focus"
+   ]
+  },
+  {
+   "t": 19.355,
+   "picture": "The two source lines meet at a dashed join. The whale sets both date cards on it side by side instead of dropping one.",
+   "words": "Keep both. Show where they disagree.",
+   "sound": "Two tones, one per source.",
+   "act": "move",
+   "bars": "11-12",
+   "camera": "Medium z 1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 22.258,
+   "picture": "The join reads both ends; they differ, so it glows copper. A small tag on each card names where it came from.",
+   "words": "Each answer keeps its own label.",
+   "sound": "The pair beats with the copper glow.",
+   "act": "move",
+   "bars": "12-13",
+   "camera": "Medium z 1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 25.161,
+   "picture": "Push-in: a third line arrives, an official source. Its card matches one of the two; that join turns teal. The other stays copper, still on screen.",
+   "words": "A better source can settle it.",
+   "sound": "One pair resolves to unison; one still beats.",
+   "act": "move",
+   "bars": "14",
+   "camera": "Medium z 1.2, the one push-in to z 1.3",
+   "cue_tags": [
+    "mech",
+    "focus"
+   ]
+  },
+  {
+   "t": 28.065,
+   "picture": "A label slides onto the joins where sources meet: seam. Copper and teal both stay visible.",
+   "words": "Where sources meet: the seam.",
+   "sound": "Unison and beat side by side.",
+   "act": "move",
+   "bars": "15-16",
+   "camera": "Medium z 1.2",
+   "cue_tags": [
+    "mech"
+   ]
+  },
+  {
+   "t": 30.968,
+   "picture": "Wide: a page of many facts. Each join between sources is lit: most teal, a few copper, kept in view, none dropped.",
+   "words": "Most joins agree. A few stay lit.",
+   "sound": "Pulse bed, many soft pairs.",
+   "act": "case",
+   "bars": "17-19",
+   "camera": "Steady wide, slow drift"
+  },
+  {
+   "t": 36.774,
+   "picture": "The whale taps a copper join; both cards open side by side for a person to judge.",
+   "words": "A person sees both and decides.",
+   "sound": "Two notes opened side by side.",
+   "act": "case",
+   "bars": "20-22",
+   "camera": "Steady wide, slow drift"
+  },
+  {
+   "t": 42.581,
+   "picture": "Push to a teal join: both sources agree on one date. A fourth card, the real timetable, floats in with a third date. The join stayed teal anyway.",
+   "words": "Both sites agreed. Both were wrong.",
+   "sound": "Unison with an unresolved note above.",
+   "act": "limit",
+   "bars": "23-24",
+   "camera": "Still, then one slow push to the thing that slipped",
+   "cue_tags": [
+    "limit"
+   ]
+  },
+  {
+   "t": 46.452,
+   "picture": "Hold on the teal join beside the timetable card.",
+   "words": "Two sources agreeing can both be wrong.",
+   "sound": "Room tone.",
+   "act": "limit",
+   "bars": "25",
+   "camera": "Still"
+  },
+  {
+   "t": 48.387,
+   "picture": "Both cards kept. FELT framing (z 1.6). The same two date cards arrive. Neither drops: they sit on the copper join with their labels, and the pod reads both, checks, and answers ✓.",
+   "words": "",
+   "sound": "Both notes held, then a resolved chord.",
+   "act": "payoff",
+   "bars": "26-29",
+   "camera": "Back to FELT framing z 1.6, then wide reveal",
+   "cue_tags": [
+    "callback"
+   ]
+  },
+  {
+   "t": 56.129,
+   "picture": "The two labelled cards on the join, the sea floor empty, whale breathing.",
+   "words": "When sources disagree, show both. Then check.",
+   "sound": "Pad tail only.",
+   "act": "belief",
+   "bars": "30-31",
+   "camera": "Still, breathing only"
+  },
+  {
+   "t": 60.0,
+   "picture": "SERIES.lockup over the still line.",
+   "words": "",
+   "sound": "Lockup tone.",
+   "act": "lockup",
+   "bars": "32",
+   "camera": "Still"
+  }
+ ],
+ "captions": [
+  {
+   "t_in": 0.968,
+   "t_out": 3.871,
+   "text": "Two sites. Two different dates.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 4.839,
+   "t_out": 8.71,
+   "text": "I picked one. It was wrong.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 10.645,
+   "t_out": 13.065,
+   "text": "Show both sides of the edge.",
+   "kind": "title"
+  },
+  {
+   "t_in": 13.065,
+   "t_out": 16.452,
+   "text": "We pick one and hide the other.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 16.935,
+   "t_out": 19.839,
+   "text": "Keep both. Show where they disagree.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 22.258,
+   "t_out": 25.161,
+   "text": "Each answer keeps its own label.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 25.161,
+   "t_out": 28.065,
+   "text": "A better source can settle it.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 28.065,
+   "t_out": 30.968,
+   "text": "Where sources meet: the seam.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 30.968,
+   "t_out": 33.387,
+   "text": "Most joins agree. A few stay lit.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 32.903,
+   "t_out": 41.613,
+   "text": "Illustration · not a real run",
+   "kind": "card"
+  },
+  {
+   "t_in": 36.774,
+   "t_out": 40.645,
+   "text": "A person sees both and decides.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 42.581,
+   "t_out": 45.968,
+   "text": "Both sites agreed. Both were wrong.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 46.452,
+   "t_out": 49.355,
+   "text": "Two sources agreeing can both be wrong.",
+   "kind": "caption"
+  },
+  {
+   "t_in": 56.129,
+   "t_out": 60.0,
+   "text": "When sources disagree, show both. Then check.",
+   "kind": "caption"
+  }
+ ],
+ "terms": [
+  {
+   "term": "seam",
+   "symbol": "seam",
+   "pictured_at": 19.355,
+   "named_at": 28.065
+  }
+ ],
+ "jargon": [
+  "merge",
+  "conflict",
+  "official"
+ ],
+ "sound": {
+  "signature": "Two voices, one per source, held together without one muting the other.",
+  "problem_motif": "Two voices where one is cut off mid-note.",
+  "limit_unresolved": true
+ },
+ "score_self": {
+  "score": 0.66,
+  "reason": "The most universal pain in the cluster, and a clear picture. But the case is an Illustration, because the glue repo could not be grounded, so CASE carries no real weight.",
+  "weakest_piece": "real_case"
+ }
+}

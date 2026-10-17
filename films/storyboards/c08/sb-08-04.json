@@ -1,0 +1,461 @@
+{
+  "schema_version": "sb60-v1",
+  "id": "sb-08-04",
+  "meta_prompt_id": "mp-c08-v1",
+  "cluster": "08 Memory & agent harnesses",
+  "repo": "Ormus-Solutions/ormus-agent-harness",
+  "capability": "A harness map that shows only real links",
+  "audience": "Leaders",
+  "wada": 207,
+  "bpm": 120,
+  "dur": 64.3,
+  "title": "Draw only the <i>joins</i> you see.",
+  "hook": {
+    "kind": "Example",
+    "picture": "Close on the whale presenting a tidy map of boxes joined by neat lines. A pod follows one line into a box and finds it empty: a copper ✕.",
+    "words": "The map said it was all wired."
+  },
+  "problem_in_viewer_words": {
+    "kind": "Fact",
+    "body": "Our diagram showed it all connected. Half of it was never built.",
+    "who": "engineering director before a board review"
+  },
+  "why_it_keeps_happening": {
+    "kind": "Fact",
+    "picture": "Pull back: three tidy maps side by side. On the first, someone adds a hopeful line and a pod falls through (2 beats). It repeats, faster each time.",
+    "words": "Hopeful lines look the same as real ones."
+  },
+  "stakes": {
+    "kind": "Fact",
+    "body": "Leaders fund, promise and staff against a picture of a system that does not exist yet."
+  },
+  "solution_hint": "Draw what the source shows. Mark the gaps.",
+  "metaphor": {
+    "kind": "Example",
+    "body": "The map keeps only the joins found in the source, drawn teal. Planned but unbuilt joins stay on the map in copper, and the pinned base of rules has no false lines drawn out of it.",
+    "symbols": [
+      "whale",
+      "line",
+      "seam",
+      "pin",
+      "pod"
+    ]
+  },
+  "mechanism_beats": {
+    "kind": "Method",
+    "steps": [
+      {
+        "t": 20.0,
+        "picture": "Lines redraw: only the joins found in the source stay, in teal. A pinned stone at the bottom of the map holds the rules.",
+        "words": "Keep only joins the source shows.",
+        "sound": "Solid woodblock per real join"
+      },
+      {
+        "t": 24.0,
+        "picture": "Six planned joins that are not built turn copper. They stay on the map, plainly marked, not hidden.",
+        "words": "Not built yet? Show it in copper.",
+        "sound": "Six soft knocks, distinct"
+      },
+      {
+        "t": 26.0,
+        "picture": "Push-in on the pinned base: no lines go out of it. The whale reaches to draw one so it looks connected. The pen stops.",
+        "words": "No line for looks.",
+        "sound": "A held note, then nothing"
+      },
+      {
+        "t": 28.0,
+        "picture": "Teal joins get a small check tick; copper joins get a named tag.",
+        "words": "Checked joins are seams. Copper ones are gaps.",
+        "sound": "Woodblock and knock, in tune together"
+      }
+    ]
+  },
+  "real_case": {
+    "kind": "Evidence",
+    "claim": "Harness review: edges only where the source shows them; six first-class facts drawn terracotta as named unbuilt items; the kernel has no outgoing package edges.",
+    "numbers": [
+      "six"
+    ],
+    "source": {
+      "kind": "notion",
+      "title": "OAH 3D sheaf lattice — private review",
+      "url": "https://app.notion.com/p/3d4d50cfaf9381a18059e8085c072932"
+    },
+    "verified": true,
+    "illustrative": false
+  },
+  "honest_limit": {
+    "kind": "Constraint",
+    "picture": "A pod runs through a teal join, so the wiring is real, but it comes out with a copper smudge. The map stays teal.",
+    "words": "Wired does not mean it works."
+  },
+  "not_this": {
+    "kind": "Constraint",
+    "body": "An honest map is not a test."
+  },
+  "ending_pattern": {
+    "kind": "Example",
+    "slug": "map-tells-truth",
+    "body": "The same presentation as act 1, but the map now shows its gaps in copper, so the audience sees what is real before anyone falls through.",
+    "callback": "Act 1's neat line into an empty box is now a copper gap the pod stops at."
+  },
+  "end_belief": {
+    "kind": "Goal",
+    "body": "Show the gaps. Never draw hopeful lines."
+  },
+  "beats": [
+    {
+      "t": 0.0,
+      "picture": "Close on the whale presenting a tidy map: boxes and neat lines, every box joined.",
+      "words": "The map said it was all wired.",
+      "sound": "Low woodblock, slightly hollow",
+      "act": "felt",
+      "bars": "1",
+      "camera": "Close, z 1.6, on the whale",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 2.0,
+      "picture": "A pod swims one neat line into a box. The box is empty. Copper ✕.",
+      "words": "",
+      "sound": "Hollow knock",
+      "act": "felt",
+      "bars": "2",
+      "camera": "Close, z 1.6, on the whale",
+      "cue_tags": [
+        "consequence",
+        "focus"
+      ]
+    },
+    {
+      "t": 4.0,
+      "picture": "The whale taps the line the pod used. It dissolves: it was drawn, never built.",
+      "words": "That part was never built.",
+      "sound": "Hollow knock twice",
+      "act": "felt",
+      "bars": "3-4",
+      "camera": "Close, z 1.6, on the whale",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 8.0,
+      "picture": "Hold on the gap where the line was.",
+      "words": "",
+      "sound": "Silence creeps in",
+      "act": "felt",
+      "bars": "5",
+      "camera": "Close, z 1.6, on the whale",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 11.0,
+      "picture": "Hinge: half a bar of stillness, then SERIES.open shows the title.",
+      "words": "Draw only the joins you see.",
+      "sound": "Near-silence, then the title tick",
+      "act": "why",
+      "bars": "6",
+      "camera": "Still, z 1.6",
+      "cue_tags": [
+        "hinge"
+      ]
+    },
+    {
+      "t": 12.0,
+      "picture": "Pull back: three tidy maps side by side. On the first, someone adds a hopeful line and a pod falls through (2 beats).",
+      "words": "",
+      "sound": "Problem motif: hollow knock",
+      "act": "why",
+      "bars": "7",
+      "camera": "Pull back to z 1.0, revealing the pattern",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 14.0,
+      "picture": "Second map, another hopeful line, another fall (1 beat).",
+      "words": "Hopeful lines look the same as real ones.",
+      "sound": "Hollow knock, faster",
+      "act": "why",
+      "bars": "8",
+      "camera": "Pull back to z 1.0, revealing the pattern",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 16.0,
+      "picture": "Third map (half a beat). The hopeful lines look exactly like the real ones.",
+      "words": "",
+      "sound": "Hollow knock, fastest",
+      "act": "why",
+      "bars": "9",
+      "camera": "Pull back to z 1.0, revealing the pattern",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 18.0,
+      "picture": "Freeze. Some lines glow faintly; the rest fade to dashes.",
+      "words": "Draw what the source shows. Mark the gaps.",
+      "sound": "One solid woodblock: the signature",
+      "act": "why",
+      "bars": "10",
+      "camera": "Still, z 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 20.0,
+      "picture": "Lines redraw: only the joins found in the source stay, in teal. A pinned stone at the bottom of the map holds the rules.",
+      "words": "Keep only joins the source shows.",
+      "sound": "Solid woodblock per real join",
+      "act": "move",
+      "bars": "11",
+      "camera": "Medium, z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 24.0,
+      "picture": "Six planned joins that are not built turn copper. They stay on the map, plainly marked, not hidden.",
+      "words": "Not built yet? Show it in copper.",
+      "sound": "Six soft knocks, distinct",
+      "act": "move",
+      "bars": "13",
+      "camera": "Medium, z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 26.0,
+      "picture": "Push-in on the pinned base: no lines go out of it. The whale reaches to draw one so it looks connected. The pen stops.",
+      "words": "No line for looks.",
+      "sound": "A held note, then nothing",
+      "act": "move",
+      "bars": "14",
+      "camera": "Push-in to z 1.3 on the decisive moment",
+      "cue_tags": [
+        "mech",
+        "focus"
+      ]
+    },
+    {
+      "t": 28.0,
+      "picture": "Teal joins get a small check tick; copper joins get a named tag.",
+      "words": "Checked joins are seams. Copper ones are gaps.",
+      "sound": "Woodblock and knock, in tune together",
+      "act": "move",
+      "bars": "15",
+      "camera": "Medium, z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 32.0,
+      "picture": "Wide: the harness map in four layers (rules at the bottom, then parts, surfaces, named next). Teal wiring, six copper joins.",
+      "words": "A real map of an agent harness.",
+      "sound": "Pulse bed, woodblocks",
+      "act": "case",
+      "bars": "17-19",
+      "camera": "Steady wide, slow drift",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 38.0,
+      "picture": "The camera drifts over the base layer: still no outgoing lines. A pod checks each copper join and reads its name.",
+      "words": "Nobody drew a line to look tidy.",
+      "sound": "Steady woodblock, resolved",
+      "act": "case",
+      "bars": "20-22",
+      "camera": "Steady wide, slow drift",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 44.0,
+      "picture": "A pod runs through a teal join, so the wiring is real, but it comes out with a copper smudge. The map stays teal.",
+      "words": "Wired does not mean it works.",
+      "sound": "Signature woodblock once, unresolved",
+      "act": "limit",
+      "bars": "23-24",
+      "camera": "Still, then one slow push to what slipped",
+      "cue_tags": [
+        "limit",
+        "focus"
+      ]
+    },
+    {
+      "t": 47.0,
+      "picture": "Hold on the smudged pod beside the calm teal join.",
+      "words": "An honest map is not a test.",
+      "sound": "Room tone",
+      "act": "limit",
+      "bars": "24-25",
+      "camera": "Still"
+    },
+    {
+      "t": 50.0,
+      "picture": "FELT framing: the whale presents the map again. The empty box now hangs on a copper join, and the pod stops at it instead of falling through. A board pod turns ✓.",
+      "words": "",
+      "sound": "Woodblocks in a steady row, resolved",
+      "act": "payoff",
+      "bars": "26-29",
+      "camera": "FELT framing restored, z 1.6, then a slow wide reveal",
+      "cue_tags": [
+        "callback"
+      ]
+    },
+    {
+      "t": 58.0,
+      "picture": "Still map, teal and copper, whale breathing.",
+      "words": "Show the gaps. Never draw hopeful lines.",
+      "sound": "Pad tail only",
+      "act": "belief",
+      "bars": "30-31",
+      "camera": "Still, breathing only"
+    },
+    {
+      "t": 62.0,
+      "picture": "SERIES.lockup over the still line.",
+      "words": "",
+      "sound": "Final tick, then room tone",
+      "act": "lockup",
+      "bars": "32",
+      "camera": "Still"
+    }
+  ],
+  "captions": [
+    {
+      "t_in": 1.0,
+      "t_out": 4.0,
+      "text": "The map said it was all wired.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 4.0,
+      "t_out": 7.5,
+      "text": "That part was never built.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 11.0,
+      "t_out": 13.5,
+      "text": "Draw only the joins you see.",
+      "kind": "title"
+    },
+    {
+      "t_in": 14.0,
+      "t_out": 17.0,
+      "text": "Hopeful lines look the same as real ones.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 18.0,
+      "t_out": 20.5,
+      "text": "Draw what the source shows. Mark the gaps.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 20.0,
+      "t_out": 23.0,
+      "text": "Keep only joins the source shows.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 24.0,
+      "t_out": 27.0,
+      "text": "Not built yet? Show it in copper.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 26.0,
+      "t_out": 28.0,
+      "text": "No line for looks.",
+      "kind": "label"
+    },
+    {
+      "t_in": 28.0,
+      "t_out": 31.5,
+      "text": "Checked joins are seams. Copper ones are gaps.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 32.0,
+      "t_out": 35.0,
+      "text": "A real map of an agent harness.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 34.0,
+      "t_out": 42.0,
+      "text": "6 named gaps · shown, not hidden",
+      "kind": "card",
+      "src": "https://app.notion.com/p/3d4d50cfaf9381a18059e8085c072932"
+    },
+    {
+      "t_in": 38.0,
+      "t_out": 41.0,
+      "text": "Nobody drew a line to look tidy.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 44.0,
+      "t_out": 47.0,
+      "text": "Wired does not mean it works.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 47.0,
+      "t_out": 50.0,
+      "text": "An honest map is not a test.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 58.0,
+      "t_out": 61.5,
+      "text": "Show the gaps. Never draw hopeful lines.",
+      "kind": "caption"
+    }
+  ],
+  "terms": [
+    {
+      "term": "seams",
+      "symbol": "teal join with a check tick",
+      "pictured_at": 20.0,
+      "named_at": 28.0
+    }
+  ],
+  "jargon": [
+    "kernel",
+    "lattice",
+    "package",
+    "harness",
+    "architecture",
+    "sheaf"
+  ],
+  "sound": {
+    "signature": "A low woodblock, one per real join",
+    "problem_motif": "A hollow knock, slightly out of tune",
+    "limit_unresolved": true
+  },
+  "score_self": {
+    "score": 0.85,
+    "reason": "The felt pain (a diagram that lies) is universal for leaders. The real case comes from Manu's own review, and the limit (wired is not working) is honest and visible. The callback is exact.",
+    "weakest_piece": "honest_limit"
+  }
+}

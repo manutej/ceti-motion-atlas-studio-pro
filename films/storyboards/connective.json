@@ -1,0 +1,37 @@
+{
+ "invariants": ["style"],
+ "operations": [
+  "(def film60 (goal facts picks) (glue @role.director goal @contract.build-brief facts (bag @c.problem-first @c.symbol-before-word @c.captions-8 @c.sourced-numbers @c.limit-shown @c.kh-style @c.slow-down @c.one-focal) picks))"
+ ],
+ "atoms": [
+  {"id": "role.director", "kind": "Role", "scope": ["ceti/films"], "status": "verified", "version": 1, "priority": 10, "pinned": true,
+   "body": "You are the director-builder of a CETI motion film in Kinetic Hydrography 1.0.0. You turn the stitched pieces below into one storyboard and then into a working film in films/kh/caps/<slug>/ (film.js + score.py + NOTES.md) that passes every gate in films/kh/caps/tool.cjs. The pieces were chosen by a jury from 100 storyboards; keep their intent, make them cohere, and fix what does not glue."},
+  {"id": "contract.build-brief", "kind": "Contract", "scope": ["ceti/films"], "status": "verified", "version": 1, "pinned": true,
+   "body": "Deliver: (1) storyboards/final/<slug>.json validating against films/storyboards/SCHEMA.json; (2) the film in films/kh/caps/<slug>/ per films/kh/caps/AGENT-BRIEF.md and films/kh/caps/LONGFORM-60.md (acts on the 32-bar grid, all gates PASS incl. the new LONGFORM gates you can check mechanically); (3) a contact sheet you have looked at and iterated twice; (4) NOTES.md listing which stitched piece each act came from (atom id) and every change you made to a piece and why."},
+  {"id": "c.problem-first", "kind": "Constraint", "scope": ["ceti/films"], "status": "verified", "version": 1, "priority": 9,
+   "body": "Problem first: the first 4 s show a consequence someone feels, captioned in their words. No title before bar 6."},
+  {"id": "c.symbol-before-word", "kind": "Constraint", "scope": ["ceti/films"], "status": "verified", "version": 1, "priority": 9,
+   "body": "Every jargon word is pictured before it is named; no jargon in FELT or WHY."},
+  {"id": "c.captions-8", "kind": "Constraint", "scope": ["ceti/films"], "status": "verified", "version": 1, "priority": 8,
+   "body": "Captions ≤ 8 words, plain verbs, no units; the last WHY caption states the move in plain words."},
+  {"id": "c.sourced-numbers", "kind": "Constraint", "scope": ["ceti/films"], "status": "verified", "version": 1, "priority": 9,
+   "body": "Numbers only on a 'Real run · source' card with their source, or labelled 'Illustration'. Never invent a statistic."},
+  {"id": "c.limit-shown", "kind": "Constraint", "scope": ["ceti/films"], "status": "verified", "version": 1, "priority": 8,
+   "body": "The honest limit is shown as a picture (something gets through), then the not-this line."},
+  {"id": "c.kh-style", "kind": "Constraint", "scope": ["ceti/films"], "status": "verified", "version": 1, "priority": 7,
+   "body": "Kinetic Hydrography: KH tokens and Wada mixes only (no hex literals), CETI eases only, text ink on paper or on SERIES.chip, chart ground, the whale and one line; ≥ 4.5:1 contrast; phone-legible sizes."},
+  {"id": "c.slow-down", "kind": "Constraint", "scope": ["ceti/films"], "status": "verified", "version": 1, "priority": 7,
+   "body": "Slow down, filter noise: one focal event per bar in FELT and WHY, per beat in MOVE and CASE; the three-times device shows 'keeps happening'."},
+  {"id": "c.one-focal", "kind": "Constraint", "scope": ["ceti/films"], "status": "verified", "version": 1, "priority": 6,
+   "body": "One focal point per moment; nothing overlaps a caption; the whale never covers the word it lands on."},
+  {"id": "goal.conserve60", "kind": "Goal", "scope": ["ceti/films"], "status": "verified", "version": 1, "requires": ["Contract", "key:slug", "key:wada"],
+   "body": "Make Conserve-60: the one-minute, problem-first version of 'Change everything but the laws' — a knowledge base people stop trusting because edits silently break links, duplicate pages and drop sources; the move: name the few things that must never change and check them on every edit (Noether-inspired, never 'Noether's theorem')."},
+  {"id": "goal.stitch60", "kind": "Goal", "scope": ["ceti/films"], "status": "verified", "version": 1, "requires": ["Contract", "key:slug", "key:wada"],
+   "body": "Make Stitch-60: the one-minute, problem-first version of 'Context is composed' — agents given a pasted heap of context quote drafts as decisions and mix sources; the move: build the brief from small labelled parts that only fit where their type matches, checked at every seam, with a receipt."},
+  {"id": "goal.gate-v3", "kind": "Goal", "scope": ["ceti/films"], "status": "verified", "version": 1, "requires": ["Contract", "key:slug", "key:wada"],
+   "body": "Make Gate v3 (25–30 s, the 25-s series format, not 60 s): 'Check it at the gate' made clearer — each gate checks a DIFFERENT kind of thing; the escape is a smooth run of the wrong kind (like a page that declared one font and rendered another); the miss becomes a new KIND of check, not a tighter slot. Apply films/kh/caps/gate/REVIEW-v3.md."},
+  {"id": "fact.conserve60", "kind": "Fact", "scope": ["ceti/films"], "status": "verified", "version": 1, "facts": {"slug": "conserve60", "wada": "84", "bpm": "124", "dur": "62.2"}, "body": "Target: films/kh/caps/conserve60/ · Wada 84 · 124 BPM · 62.2 s."},
+  {"id": "fact.stitch60", "kind": "Fact", "scope": ["ceti/films"], "status": "verified", "version": 1, "facts": {"slug": "stitch60", "wada": "166", "bpm": "128", "dur": "60.3"}, "body": "Target: films/kh/caps/stitch60/ · Wada 166 · 128 BPM · 60.3 s."},
+  {"id": "fact.gate-v3", "kind": "Fact", "scope": ["ceti/films"], "status": "verified", "version": 1, "facts": {"slug": "gate", "wada": "243", "bpm": "128", "dur": "26"}, "body": "Target: films/kh/caps/gate/ (v3 replaces v2; keep v2 as film-v2.js) · Wada 243 · 128 BPM · about 26 s."}
+ ]
+}
