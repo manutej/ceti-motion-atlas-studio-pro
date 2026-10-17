@@ -25,7 +25,7 @@ const BUILT = [-9, -9, T_SET[0] - 0.35, T_SET[1] - 0.35];     // posts rise for 
 
 // ---------- runs: kind decides colour/shape; t1 = time the head is at gate 1 ----------
 const RUNS = [
-  { id: 'e1', kind: 'font', v: 850, t1: 2.21, park: -640, write: [0.45, 1.8] },        // FELT: right spelling, right totals, WRONG FONT: passes both, customer ✕
+  { id: 'e1', kind: 'font', v: 850, t1: 2.21, park: -622, write: [0.45, 1.8] },        // FELT: right spelling, right totals, WRONG FONT: passes both, customer ✕
   { id: 'w', kind: 'spell', v: 850, t1: 9.3 },        // KINDS: a spelling mistake stops at the spelling gate
   { id: 'gp', kind: 'total', v: 850, t1: 10.05 },        // spelling fine, totals wrong: stops at the totals gate
   { id: 'e2', kind: 'font', v: 1046, t1: 11.33 },       // the wrong font again, faster…
@@ -81,7 +81,7 @@ function nose(t) { const p = wworld(t), a = heading(t), f = facing(t), rx = REAC
 // ---------- camera: close on the consequence, pull back under the title, one push-in on the build, release ----------
 function cam(t) {
   const pull = ramp(t, 5.5, 7.8, EASE.rest), push = ramp(t, 14.85, 15.75, EASE.warm), rel = ramp(t, 17.4, 18.1, EASE.warm), end = ramp(t, 26.5, DUR, EASE.rest);
-  let z = lerp(1.08, 1.0, pull), x = lerp(120, 180, pull); z = lerp(z, 1.3, push); x = lerp(x, 160, push); z = lerp(z, 1.0, rel); x = lerp(x, 180, rel);
+  let z = lerp(1.08, 1.0, pull), x = lerp(100, 180, pull); z = lerp(z, 1.3, push); x = lerp(x, 160, push); z = lerp(z, 1.0, rel); x = lerp(x, 180, rel);
   return { x, y: 0, z: z + 0.03 * end, ax: 960, ay: 660 }; }
 const wpos = t => wworld(t);
 

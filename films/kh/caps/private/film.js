@@ -15,7 +15,7 @@ const PAGEEDGE = mix(C.paper, C.slate, 0.55), BOXF = mix(C.paper, C.slate, 0.08)
 const ALARM = mix(RED, INK, 0.1), STAMPC = mix(VIO, INK, 0.1), THREAD = VIO, CROSS = mix(GLAU, INK, 0.45);
 
 // ---------- the world: one desk (the email being written), two client boxes ----------
-const DESK = { x: 0, y: 40 }, PW = 320, PH = 300, CY = [-50, 28, 106], CW = 280, CH = 74;
+const DESK = { x: 0, y: 40 }, PW = 344, PH = 300, CY = [-50, 28, 106], CW = 304, CH = 74;
 const BAK = { x: -480, y: 70 }, CLI = { x: 480, y: 70 }, RIM = -60, BW = 290, BH = 150;
 const ANCH = { x: BAK.x, y: BAK.y + RIM };
 const SLOT = i => ({ x: BAK.x - 50 + 34 * i, y: BAK.y + RIM - 14 - 5 * (i % 2), r: -0.09 + 0.06 * i });
@@ -56,9 +56,9 @@ function sealedCard(L, t) {   // where the stamped card is: in the email, being 
 // ---------- the whale ("you"): Hermite through keys (zero tangents = it settles at each key) ----------
 const WS = 0.8, REACH = 118 * WS + 48;
 // the stamp lands on the card's right half (whale on the right, facing left, so it never covers the words); the scrawl is on the loaf (left)
-const IMP = { x: DESK.x + 66, y: DESK.y + CY[1] + 19 };
-const PERCH0 = [-200, -215], PERCHR = [235, -245], PRESS = [IMP.x + REACH, IMP.y - 49], HOVER = [PRESS[0], PRESS[1] - 62],
-  SCRAWL = [DESK.x - 104 - REACH, DESK.y + CY[1] - 60], WATCH = [40, -250], BAKP = [-480, -175];
+const IMP = { x: DESK.x + 78, y: DESK.y + CY[1] + 19 };
+const PERCH0 = [-150, -180], PERCHR = [235, -245], PRESS = [IMP.x + REACH, IMP.y - 49], HOVER = [PRESS[0], PRESS[1] - 62],
+  SCRAWL = [DESK.x - 116 - REACH, DESK.y + CY[1] - 60], WATCH = [40, -250], BAKP = [-480, -160];
 const K = [[0, ...PERCH0], [2.55, ...PERCH0], [3.4, 120, -235], [4.5, 120, -235], [6.2, ...PERCHR], [6.85, ...PERCHR],
   [7.3, ...HOVER], [7.55, ...PRESS], [7.85, ...HOVER], [8.6, ...PERCHR], [15.4, ...PERCHR], [16.6, ...BAKP], [17.6, ...BAKP],
   [18.7, ...SCRAWL], [19.4, ...SCRAWL], [20.1, ...WATCH], [22.3, ...WATCH], [23.1, ...PERCH0], [DUR + 1, ...PERCH0]];
@@ -73,12 +73,12 @@ function wworld(t) { const p = herm(K, t), q = herm(K, t + 0.01), sp = Math.hypo
 const wvel = t => { const a = wworld(t - 1 / 240), c = wworld(t + 1 / 240); return { x: (c.x - a.x) * 120, y: (c.y - a.y) * 120 }; };
 function heading(t) { let a = 0, s = 0; for (let k = -8; k <= 8; k++) { const v = wvel(t + k * 0.022), w = 1 - Math.abs(k) / 9, sp = Math.hypot(v.x, v.y);
     a += (sp < 40 ? 0 : clamp(Math.atan2(v.y, Math.abs(v.x)), -0.8, 0.8) * clamp(sp / 300)) * w; s += w; } return a / s; }
-const TURNS = [[6.25, -1], [10.1, 1], [15.1, -1], [17.3, 1]];
+const TURNS = [[6.25, -1], [10.1, 1], [12.9, -1], [17.3, 1]];
 function facing(t) { let f = 1; for (const [a, to] of TURNS) f = lerp(f, to, ramp(t, a, a + 0.25, EASE.warm)); return f; }
 function nose(t) { const p = wworld(t), a = heading(t), f = facing(t); return { x: p.x + f * (REACH * Math.cos(a) - 4 * Math.sin(a)), y: p.y + REACH * Math.sin(a) + 4 * Math.cos(a) }; }
 
 // ---------- camera ----------
-const FELT = { x: 300, y: -40, z: 1.55 }, MID = { x: 0, y: -20, z: 1.4 }, STAMP = { x: 70, y: 0, z: 1.65 }, CASE = { x: -90, y: -40, z: 1.3 },
+const FELT = { x: 300, y: -40, z: 1.55 }, MID = { x: 0, y: -20, z: 1.4 }, STAMP = { x: 70, y: 0, z: 1.65 }, CASE = { x: -330, y: -60, z: 1.6 },
   LIM = { x: 330, y: -50, z: 1.6 }, PAY = { x: 0, y: -20, z: 1.42 };
 function cam(t) { let s = { ...FELT };
   const go = (a, b, T, e) => { const k = ramp(t, a, b, e); s = { x: lerp(s.x, T.x, k), y: lerp(s.y, T.y, k), z: lerp(s.z, T.z, k) }; };
@@ -111,7 +111,7 @@ const READ = [
   { id: 'boxC', kind: 'label', in: 0, out: DUR, fi: 0.01, fo: 0, text: 'Client Clinic' },
 ];
 LET.forEach(L => L.hdr.forEach(([s, a, b, fi, fo], k) => READ.push({ id: `${L.id}h${k}`, kind: 'header', in: a, out: b, fi, fo, text: s })));
-LET.forEach(L => { if (L.mid !== 'plain') READ.push({ id: `${L.id}note`, kind: 'note', in: L.in, out: L.pop ? L.pop[1] : DUR, fi: L.in < 0 ? 0.01 : 0.3, fo: L.pop ? 0.3 : 0, text: 'Rent is late' }); });
+LET.forEach(L => { if (L.mid !== 'plain') READ.push({ id: `${L.id}note`, kind: 'note', in: L.in, out: L.pop ? L.pop[1] : DUR, fi: L.in < 0 ? 0.01 : 0.3, fo: L.pop ? 0.3 : 0, text: "Bakery's rent is late" }); });
 LET.filter(L => L.mid === 'sealed').forEach(L => READ.push({ id: `${L.id}priv`, kind: 'stamp', in: L.stamp || L.in, out: DUR, fi: L.stamp ? 0.2 : 0.3, fo: 0, text: 'PRIVATE' }));
 const RD = id => READ.find(r => r.id === id), RA = (t, id) => { const r = RD(id); return win(t, r.in, r.out, r.fi, r.fo); };
 const INTENT = {
@@ -135,15 +135,15 @@ function card(c, X, Y, z, kind, s, r, a, o = {}) {
   c.fillStyle = CARD; c.strokeStyle = CARDEDGE; c.lineWidth = 2 / Math.min(1, k) * 0.8; c.beginPath(); c.roundRect(-CW / 2, -CH / 2, CW, CH, 7); c.fill(); c.stroke();
   const sealed = kind === 'sealed' ? (o.seal ?? 1) : 0;
   c.fillStyle = mix(PTAB, VIO, sealed); c.beginPath(); c.roundRect(-CW / 2, -CH / 2, 13, CH, [7, 0, 0, 7]); c.fill();
-  if (kind === 'plain') { c.strokeStyle = CLINE; c.lineWidth = 7; c.lineCap = 'round'; c.beginPath(); c.moveTo(-100, -12); c.lineTo(110, -12); c.moveTo(-100, 13); c.lineTo(50, 13); c.stroke(); c.restore(); return; }
-  if (kind === 'scrawl') loaf(c, -104, 2, 1.05, null, SOFT, 3.2, o.scrawl ?? 1); else loaf(c, -104, 2, 1.05, SAL, INK, 3);
+  if (kind === 'plain') { c.strokeStyle = CLINE; c.lineWidth = 7; c.lineCap = 'round'; c.beginPath(); c.moveTo(-110, -12); c.lineTo(122, -12); c.moveTo(-110, 13); c.lineTo(56, 13); c.stroke(); c.restore(); return; }
+  if (kind === 'scrawl') loaf(c, -116, 2, 1.0, null, SOFT, 3.2, o.scrawl ?? 1); else loaf(c, -116, 2, 1.0, SAL, INK, 3);
   c.restore();
   if (kind !== 'scrawl' || (o.scrawl ?? 1) > 0.6) { const ta = kind === 'scrawl' ? clamp(((o.scrawl ?? 1) - 0.6) / 0.4) : 1;
-    c.save(); c.translate(X, Y); c.rotate(r); text(c, 'Rent is late', -72 * k, -6 * k, { f: 'sans', size: 25 * k, col: INK, a: a * ta * (o.ta ?? 1) }); c.restore(); }
+    c.save(); c.translate(X, Y); c.rotate(r); text(c, "Bakery's rent is late", -84 * k, -6 * k, { f: 'sans', size: 24 * k, col: INK, a: a * ta * (o.ta ?? 1) }); c.restore(); }
   if (sealed > 0.01) {   // the rubber-stamp impression: a violet box with PRIVATE, pressed over the right half of the card
     const pop = 1 + 0.25 * (1 - sealed); c.save(); c.translate(X, Y); c.rotate(r - 0.06); c.scale(k * pop, k * pop); c.globalAlpha *= a * clamp(sealed * 1.4);
-    c.strokeStyle = STAMPC; c.lineWidth = 4; c.beginPath(); c.roundRect(10, 4, 112, 30, 5); c.stroke(); c.restore();
-    c.save(); c.translate(X, Y); c.rotate(r - 0.06); text(c, 'PRIVATE', 66 * k * pop, 26 * k * pop, { f: 'monoB', size: 17 * k * pop, col: ACC, a: a * clamp(sealed * 1.4), align: 'center', track: 0.12 }); c.restore(); }
+    c.strokeStyle = STAMPC; c.lineWidth = 4; c.beginPath(); c.roundRect(22, 4, 112, 30, 5); c.stroke(); c.restore();
+    c.save(); c.translate(X, Y); c.rotate(r - 0.06); text(c, 'PRIVATE', 78 * k * pop, 26 * k * pop, { f: 'monoB', size: 17 * k * pop, col: ACC, a: a * clamp(sealed * 1.4), align: 'center', track: 0.12 }); c.restore(); }
 }
 
 function drawFrame(c, t) {
@@ -173,7 +173,7 @@ function drawFrame(c, t) {
       if (L.popT && i === 1 && t > L.arr - 0.05) return;
       const seal = L.stamp ? ramp(t, L.stamp, L.stamp + 0.22, EASE.glaser) : 1;
       card(c, px, py + cy * s, 1, kind === 'sealed' && seal <= 0 ? 'bakery' : kind, s, 0, lt.a, { seal, scrawl: L.scrawl ? ramp(t, L.scrawl[0], L.scrawl[1], EASE.warm) : 1 }); });
-    if (L.stamp) { const ring = win(t, L.stamp, L.stamp + 0.7, 0.03, 0.5); if (ring > 0) { const sx = px + 66 * s, sy = py + (CY[1] + 19) * s, rr = (70 + 50 * ramp(t, L.stamp, L.stamp + 0.7)) * s;
+    if (L.stamp) { const ring = win(t, L.stamp, L.stamp + 0.7, 0.03, 0.5); if (ring > 0) { const sx = px + 78 * s, sy = py + (CY[1] + 19) * s, rr = (70 + 50 * ramp(t, L.stamp, L.stamp + 0.7)) * s;
       c.save(); c.strokeStyle = rgba(VIO, 0.45 * ring); c.lineWidth = 5 * s; c.beginPath(); c.arc(sx, sy, rr, 0, Math.PI * 2); c.stroke(); c.restore(); } } }
 
   // stamped cards that have left their email and are on the way home, and the violet threads that tie them home
@@ -264,7 +264,7 @@ function cues() {
     tags: { consequence: [POPS[0].circ], focus: [POPS[0].circ, 7.55, LANDS[0].t, LANDS[3].t], mech: [7.55, 9.05, LET[1].taut, LANDS[0].t], limit: [POPS[1].circ], callback: [LANDS[3].t] } }; }
 const CONTRAST = [['captions / card main (ink on paper chip)', INK, C.paper], ['title (ink on chart ground)', INK, BG], ['title accent on ground', ACC, BG],
   ['title accent on veiled ground (paper)', ACC, C.paper], ['eyebrow / lockup (slate on ground)', SOFT, BG], ['card label + source (slate on paper)', SOFT, C.paper],
-  ['email header (ink on paper page)', INK, C.paper], ['"Rent is late" (ink on note card)', INK, CARD], ['PRIVATE stamp text (accent on note card)', ACC, CARD],
+  ['email header (ink on paper page)', INK, C.paper], ['"Bakery\'s rent is late" (ink on note card)', INK, CARD], ['PRIVATE stamp text (accent on note card)', ACC, CARD],
   ['box name (ink on box front)', INK, BOXF], ['"Client" (slate on box front)', SOFT, BOXF]];
 root.EPISODE = { drawFrame, cues, READ, CONTRAST, INTENT, TERMS, DUR, W, H, fps: 60, wpos, heading, cam,
   shutter: t => LET.some(L => t > L.send && t < (L.land || L.arr)) ? [3, 0.6] : [2, 0.5] };

@@ -1,0 +1,5 @@
+{"episode": "steps", "runs": [{"version": "v3", "sheet": "kh/caps/steps/sheet-v3.png", "verdict": "FAIL (near pass)",
+ "personas": {"teacher": {"q1": 1, "q2": 1, "sure": [8, 8], "unclear": ["Five small gates, not one (gates)", "card % too small; what measured; two-line rule never shown", "our own lab tests: who is our", "Example checks tiny", "Not magic. A plain rule came close.", "whale = you label tiny", "lockup '5K · 5 STEPS'"]},
+  "nurse": {"q1": 0.5, "q2": 1, "sure": [6, 8], "unclear": ["gates", "chart tiny / what % measures / lab tests of emails", "real test", "Your inbox tiny", "whale", "lockup", "first captions fade fast", "was the real bill blocked or unsure"]},
+  "shop owner": {"q1": 0.5, "q2": 1, "sure": [6, 8], "unclear": ["gates picture", "Example checks", "our own lab tests", "two-line rule never shown", "the checker vague", "% tiny", "lockup", "why the real bill gets X at 2-3 s"]}},
+ "why": "Fix understood by all (8/10). Problem half-read by two: 'maybe' drawn like an X. Chart unreadable; 'gates', 'lab tests', 'two-line rule' unclear; lockup episode number bug."}]}
