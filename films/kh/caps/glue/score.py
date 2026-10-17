@@ -29,7 +29,7 @@ def bell(f, d=3.0):
 
 # ---- pulse: soft kick on the beat while the notes are worked; half-time under the glue; gone for the section ----
 n = 0
-while n * B < 17.0:
+while n * B < Q['fuse0']:
     tb = n * B
     if tb >= 2.0 and (tb < Q['glue0'] - 0.2 or tb >= Q['snap'] or n % 2 == 0):
         tt = T(0.3); f = 46 + 70 * np.exp(-tt * 30); put(np.sin(2 * np.pi * np.cumsum(f) / SR) * np.exp(-tt * 9), tb, 0.5 if tb < Q['glue0'] else 0.3)
@@ -40,12 +40,12 @@ put(whoosh(1.2), Q['enter'], 0.12, -0.6, 0.2)
 
 # ---- stalk: each note settles on a pentatonic step, left to right ----
 PENTA = [293.66, 329.63, 369.99, 440.0, 493.88]
-for i, x in enumerate(Q['settle']): put(mallet(PENTA[i], 1.2, 0.7), x, 0.3, -0.6 + 0.3 * i, 0.35)
+for i, x in enumerate(Q['settle']): put(mallet(PENTA[i], 1.2, 0.7), x, 0.3, -0.6 + 0.3 * i, 0.35)   # note i settles; right→left so the line descends
 # ---- overlap: a dry wooden tick as each band draws on ----
 for j, x in enumerate(Q['overlap']): put(lp(tick(1300, 0.05), 3000), x, 0.3, 0.45 - 0.3 * j, 0.1)
 
 # ---- compare: two tones per seam, left end then right end ----
-SEAMF = [440.0, 493.88, 220.0, 587.33]
+SEAMF = [440.0, 493.88, 587.33, 220.0]
 for j, (a, v) in enumerate(zip(Q['arrive'], Q['verdict'])):
     pan = -0.45 + 0.3 * j; f = SEAMF[j]
     put(tick(2200, 0.03), a, 0.18, pan, 0.1)
@@ -66,7 +66,8 @@ hum = (tone(ph1) * env1 + tone(ph2) * env2) * (0.55 + 0.45 * smooth(v, v + 0.3, 
 hum = lp(hum, 1800) * (0.5 + 0.5 * np.exp(-(tt - a) * 3) + 0.4 * smooth(v, v + 0.2, tt) * (1 - conv))
 put(hum, a, 0.13, 0.15, 0.35)
 put(lp(rng.standard_normal(int(0.5 * SR)), 900) * np.exp(-T(0.5) * 7), v, 0.18, 0.15, 0.4)   # the discord lands: low thud
-put(whoosh(0.6, rev=True), Q['back'] - 0.55, 0.1, 0.3, 0.2)
+put(whoosh(1.1, rev=True), Q['pushIn'], 0.1, 0.3, 0.2)            # the camera leans in on the bad seam
+put(whoosh(1.4), Q['pushOut'], 0.08, 0.0, 0.2)
 put(whoosh(0.5, rev=True), sn - 0.5, 0.14, 0.15, 0.2)
 put(mallet(223.0 * 2, 2.2, 1.0) + 0.6 * mallet(223.0 * 3, 2.2, 0.6), sn, 0.3, 0.15, 0.6)          # one note
 put(bell(1174.66 * 223 / 220, 2.4), sn + 0.02, 0.1, 0.15, 0.7)
@@ -85,6 +86,9 @@ for f, gg in [(146.83, 1), (220.0, 0.6), (293.66, 0.5)]: sw += gg * np.sin(2 * n
 sw = lp(sw * swe, 900) * 0.06; BUS[:, 0] += sw; BUS[:, 1] += sw; SEND += sw * 0.5
 for i, f in enumerate([587.33, 739.99, 880.0, 1174.66]): put(bell(f, 3.2), Q['close'] + i * 0.06, 0.12, -0.3 + 0.2 * i, 0.7)
 tt = T(0.9); put(bp(rng.standard_normal(len(tt)), 400, 3500) * np.exp(-tt * 4) * np.minimum(1, tt / 0.02), Q['close'], 0.14, 0, 0.3)
+# the loop-the-loop: a slow rising/falling whoosh; the pulse round the ring: a soft high tick each lap at the top
+put(whoosh(Q['lap1'] - Q['lap0']), Q['lap0'], 0.1, 0, 0.3)
+for x in Q['pulseLaps']: put(mallet(1174.66, 0.8, 0.3), x, 0.07, 0, 0.6)
 
 # ---- pad under the ending; thins out for the not-this line; end chord on the belief; low D under the lockup ----
 pad = np.zeros(N)

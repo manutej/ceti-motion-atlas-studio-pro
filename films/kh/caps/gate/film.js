@@ -59,7 +59,9 @@ function heading(t) { let a = 0, s = 0; for (let k = -8; k <= 8; k++) { const v 
 function cam(t) {
   const fp = win(t, 10.5, 12.5, 0.6, 0.6), pan = ramp(t, 13.3, 14.5, EASE.warm), push = ramp(t, 15.3, 16.4, EASE.warm), k = ramp(t, b(39), 20.1, EASE.rest), d = ramp(t, 20.1, DUR, EASE.rest);
   const zs = lerp(1.38, 1.45, ramp(t, 0, b(10), EASE.warm)) + 0.12 * fp + 0.3 * push, xs = 150 - 50 * fp + 180 * pan + 140 * push;
-  return { x: lerp(xs, -1280, k) + 40 * d, y: 0, z: lerp(zs, 0.40, k) + 0.025 * d, ax: 960, ay: lerp(600, 540, k) };
+  // the pull-back is anchored on gate 07 (where the whale sits), so the whale stays in frame while the row opens out
+  const zk = lerp(zs, 0.40, k), sk = lerp((640 - xs) * zs, (640 + 1280) * 0.40, k);
+  return { x: 640 - sk / zk + 40 * d, y: 0, z: zk + 0.025 * d, ax: 960, ay: lerp(600, 540, k) };
 }
 const zv = z => Math.max(z, 0.85);   // vertical size floor so gates and whale stay readable in the pull-back
 const wpos = t => { const p = wworld(t), c = cam(t); return { x: p.x, y: p.y * zv(c.z) / c.z }; };   // reports the drawn screen position

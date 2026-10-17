@@ -3,20 +3,19 @@
 Wada 207: Sudan Brown = terracotta (discord, unresolved) · Glaucous Green = teal (agrees) · Black = ink accents (the compare chevrons).
 120 BPM (B = 0.5 s). DUR 27.0 s. Ground tint: Glaucous Green.
 
-## Beat sheet
-| t (s) | beat | what happens | text |
-|---|---|---|---|
-| 0.0–2.5 | 0–5 | Opening card (out = 2.5 so the eyebrow passes its read gate). Five note segments fade in from 2.25, scattered, each with its own local wave. Whale enters from the left. | "CETI · Capabilities · 03" / "Memory that *agrees*." |
-| 2.35–4.4 | 5–8 | **Mess.** Five notes bob at different heights and tilts. | "Five notes. Five local views." |
-| 4.0–6.0 | 8–12 | **Stalk.** Whale sweeps left→right; each note settles into the row as it passes (one per beat). | rail: STALK · "Each note keeps its own view." |
-| 6.4–8.3 | 13–16 | **Overlap.** Whale loops back high; each overlap band draws on as it crosses that seam. | rail: OVERLAP · "Where two notes overlap, read both ends." |
-| 8.5–11.75 | 17–23 | **Compare.** Whale hops seam to seam. Black chevrons read each end; seams 1, 2, 4 ring teal; seam 3 glows terracotta (10.75). Counter AGREE n · DISCORD n. | rail: COMPARE, DISCORD |
-| 10.9–14.3 | 22–28 | **Discord.** Terracotta gap bar + glow at seam 3. Framed real case card. Whale hops back to seam 3 (12.6). | "One seam disagrees. Show it." · card "Real case · film check / 18 vs 20 captions / 6 text, 3 timing mismatches" |
-| 13.7–15.0 | 27–30 | **Glue.** Whale focuses; the two ends approach and snap together on beat 30: teal ring ripple, whale squash + spark + delight. Counter → AGREE 4 · DISCORD 0. | rail: GLUE · "Reconcile it, and every overlap agrees." |
-| 17.0–18.0 | 34–36 | **Section.** Fuse spreads outward from the glued seam: segments become one teal line, knobs and bands fade. Whale rises to centre. | rail: SECTION · "The pieces glue into one whole." |
-| 18.7–20.6 | 37–41 | **One wave (ending).** The line bends at uniform curvature into a closed ring around the whale (length preserved, ends meet at the top), ripple calms and travels; close-click + spray at 20.6. | |
-| 21.2–23.5 | 42–47 | Not this. | "Glued is not the same as true." |
-| 23.55–27.0 | 47–54 | End belief, lockup from 24.8. | "Check each note against its neighbours. Show disagreements; never overwrite them." |
+## Beat sheet (v2, phone scale, DUR 24.0 s, z 1.1 base so the line fills the width, amplitude 2x)
+| t (s) | what happens | text |
+|---|---|---|
+| 0–2.5 | Opening card (series default out 2.5). | "CETI · Capabilities · 03" / "Memory that *agrees*." |
+| 2.3–4.6 | Mess: five notes with their own local waves. Whale enters from the right. | "Five notes. Each keeps its own view." |
+| 3.5–5.5 | Stalk: the whale sweeps right to left and each note settles as it passes. Overlap: each band appears once both neighbours are in the row (4.1–5.6). | rail: STALK, OVERLAP |
+| 4.75–8.9 | Compare: hops at 6.5, 7.5, 8.5. Black chevrons read both ends; seams 1–3 ring teal. | "Where two notes overlap, read both ends." |
+| 9.5–12.0 | Discord at seam 4 (9.75): an ~84 px step, terracotta glow, gap bracket. Camera pushes in to z 1.62 (9.7–10.9). Framed real-case card. | "One seam disagrees. Show it." · card |
+| 11.4–12.5 | Glue: the whale focuses, then on beat 25 (12.5) the step closes (glaser) with a squash, spark and delight; the band turns teal; the counter reads discord 0. | "Reconcile it, and every overlap agrees." |
+| 12.95–14.6 | Camera eases out. Fuse from the glued seam outward (13.5–14.5). The line smooths, then bends into a clean ring (14.5–16.0). | "One consistent whole." |
+| 16.0–19.4 | Ring closes: ripple and spout. A teal pulse laps the ring every 2 s; the whale does one loop-the-loop. | "Glued is not the same as true." (16.4–18.7) |
+| 18.8–21.8 | End belief, fully out by the lockup. | "Check each note against its neighbours. Show disagreements; never overwrite them." |
+| 21.8–24.0 | Lockup; the pulse keeps travelling. | |
 
 ## Station words
 Stalk · Overlap · Compare · Discord · Glue · Section (top-left rail; the active one is bold ink with a coloured underline — terracotta for Discord, teal otherwise).
@@ -31,7 +30,6 @@ Stalk · Overlap · Compare · Discord · Glue · Section (top-left rail; the ac
 Signature: each seam is read as two tones (one per end). Agreeing seams ring in unison; the discord seam is a beating dyad (220 vs 226 Hz) that throbs with the glow; on the glue the two pitches glide into one note (223 Hz) on beat 30. Fuse = outward shimmer arpeggio; ring close = D-major bell chord + spout. Loudness normalised in-script to -16 LUFS (BS.1770-style K-weighting, gated), peak about -1.3 dBFS.
 
 ## Known weaknesses
-- The compare/overlap marks (bands, chevrons) are small at full frame; they read at 1080p but not on a phone.
 - The 'Stalk' station is carried only by the settle gesture; there is no explicit 'what each note holds' mark.
-- The ending holds on a still ring for about 5 s (21.5 to 27.0); only the travelling ripple keeps it alive.
-- The lockup's mono line (y 930) sits close above the end-belief chip (y 990), which is a series layout issue.
+- The discord step is already visible (not yet flagged) from the moment the notes settle.
+- The peak whale speed is 24.9 px/frame on the hop into the bad seam, which is within the 30 px gate but brisk.

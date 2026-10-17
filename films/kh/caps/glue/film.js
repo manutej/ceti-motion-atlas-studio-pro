@@ -27,7 +27,7 @@ const segL = i => i === 0 ? -800 : XC[i] - 160 - OV, segR = i => i === 4 ? 800 :
 const SETTLE = [5.5, 5.0, 4.5, 4.0, 3.5];                              // the whale sweeps right → left; each note settles as it passes
 const OVA = [0, 1, 2, 3].map(j => SETTLE[j] + 0.1);                     // an overlap appears once both neighbours sit in the row
 const ARR = [6.5, 7.5, 8.5, 9.5], VER = ARR.map(a => a + 0.25);        // compare: whale lands, then the verdict
-const GL0 = 11.4, SNAP = beat(25), FUSE0 = beat(27), FUSE1 = beat(29), BEND0 = 14.5, CLOSE = beat(32), LAP0 = 16.3, LAP1 = 18.9;
+const GL0 = 11.4, SNAP = beat(25), FUSE0 = beat(27), FUSE1 = beat(29), BEND0 = 14.5, CLOSE = beat(32), LAP0 = 16.4, LAP1 = 19.4, LR = 68;
 const glue = t => ramp(t, SNAP - 0.05, SNAP + 0.4, EASE.glaser);
 
 // discord: note 4's right end sits high, note 5's left end sits low (an ~84 px step); both move to meet — neither overwrites
@@ -62,17 +62,18 @@ function herm(t) { const Q = PK, n = Q.length; if (t <= Q[0].t) return { x: Q[0]
   return { x: a * p1.x + b * h * m1.x + c * p2.x + d * h * m2.x, y: a * p1.y + b * h * m1.y + c * p2.y + d * h * m2.y }; }
 const PERCH = [[ARR[0], ARR[0] + 0.4], [ARR[1], ARR[1] + 0.4], [ARR[2], ARR[2] + 0.4], [ARR[3], 13.4], [14.7, LAP0], [LAP1, DUR]];
 const stillAt = t => PERCH.reduce((m, [a, b]) => Math.max(m, smoothstep(a, a + 0.3, t) * (1 - smoothstep(b - 0.15, b, t))), 0);
-// one lap inside the ring after it closes (an ellipse through the centre)
-function lap(t) { const u = EASE.rest(clamp((t - LAP0) / (LAP1 - LAP0))), a = TAU * u; return { x: 125 * Math.sin(a), y: -70 * (1 - Math.cos(a)) }; }
+// one delighted loop-the-loop inside the ring after it closes (starts heading right, goes up and over)
+const lapA = t => TAU * EASE.rest(clamp((t - LAP0) / (LAP1 - LAP0)));
+function lap(t) { const a = lapA(t); return { x: LR * Math.sin(a), y: -LR * (1 - Math.cos(a)) }; }
 const wpos = t => { const p = herm(t), q = lap(t); return { x: p.x + q.x, y: p.y + q.y + Math.sin(t * 2.4) * 5 * stillAt(t) }; };
 const wvel = t => { const a = wpos(t - 1 / 240), b = wpos(t + 1 / 240); return { x: (b.x - a.x) * 120, y: (b.y - a.y) * 120 }; };
-function heading(t) { let a = 0, s = 0; for (let k = -8; k <= 8; k++) { const v = wvel(t + k * 0.022), w = 1 - Math.abs(k) / 9, sp = Math.hypot(v.x, v.y);
+function heading(t) { if (t > LAP0 && t < LAP1) return -lapA(t); let a = 0, s = 0; for (let k = -8; k <= 8; k++) { const v = wvel(t + k * 0.022), w = 1 - Math.abs(k) / 9, sp = Math.hypot(v.x, v.y);
     a += (sp < 40 ? 0 : clamp(Math.atan2(v.y, Math.abs(v.x)), -0.75, 0.75) * clamp(sp / 300)) * w; s += w; } return a / s; }
 // facing: moving → the way you go; perched → the way you will go next (turn on landing, never mid-hop)
 const FT = []; { const n = DUR * 120, V = []; for (let i = 0; i <= n; i++) V.push(wvel(i / 120).x);
   let f = 1; for (let i = n; i >= 0; i--) { if (Math.abs(V[i]) > 40) f = Math.sign(V[i]); FT[i] = f; } }
 const faceRaw = t => FT[clamp(Math.round(t * 120), 0, FT.length - 1)];
-function facing(t) { let s = 0, n = 0; for (let k = -7; k <= 7; k++) { s += faceRaw(t + k / 120); n++; } return s / n; }
+function facing(t) { if (t > LAP0 - 0.25 && t < LAP1 + 0.25) return 1; let s = 0, n = 0; for (let k = -7; k <= 7; k++) { s += faceRaw(t + k / 120); n++; } return s / n; }
 
 // ---------- camera: line fills the width; push in on the discord seam through the glue; ease out for the ring ----------
 const CB = { x: 0, y: -55, z: 1.1 }, CP = { x: SEAM[BAD], y: g(SEAM[BAD]) - 75, z: 1.62 }, CR = { x: 0, y: -R0 + 85, z: 1.1 };
@@ -166,13 +167,15 @@ function drawFrame(c, t) {
     if (t > CLOSE && t < CLOSE + 1.2) { const u = (t - CLOSE) / 1.2; c.save(); c.globalAlpha = 0.55 * (1 - u); c.strokeStyle = TEAL; c.lineWidth = 3 * z;
       c.beginPath(); c.arc(X(0), Y(-R0), (R0 + 24 + 80 * EASE.glaser(u)) * z, 0, TAU); c.stroke(); c.restore(); }
     const pa = ramp(t, CLOSE, CLOSE + 0.4); if (pa > 0) { const th = -Math.PI / 2 + TAU * (t - CLOSE) / 2.0, cx = X(0), cy = Y(-R0), r = R0 * z;
-      c.save(); c.lineCap = 'round'; for (let k = 0; k < 14; k++) { const a0 = th - k * 0.05; c.strokeStyle = rgba(TEALG, pa * 0.95 * (1 - k / 14)); c.lineWidth = (22 - k) * z;
-        c.beginPath(); c.arc(cx, cy, r, a0 - 0.05, a0); c.stroke(); }
-      c.globalAlpha = pa; c.fillStyle = TEAL; c.beginPath(); c.arc(cx + Math.cos(th) * r, cy + Math.sin(th) * r, 9 * z, 0, TAU); c.fill(); c.restore(); } }
+      c.save(); c.lineCap = 'round'; const core = mix(TEALG, C.paper, 0.55);
+      for (let k = 0; k < 18; k++) { const a0 = th - k * 0.045; c.strokeStyle = rgba(TEALG, pa * (1 - k / 18)); c.lineWidth = (30 - k) * z; c.beginPath(); c.arc(cx, cy, r, a0 - 0.05, a0); c.stroke(); }
+      for (let k = 0; k < 12; k++) { const a0 = th - k * 0.045; c.strokeStyle = rgba(core, pa * (1 - k / 12)); c.lineWidth = 6 * z; c.beginPath(); c.arc(cx, cy, r, a0 - 0.05, a0); c.stroke(); }
+      const hx = cx + Math.cos(th) * r, hy = cy + Math.sin(th) * r; c.globalAlpha = pa; c.fillStyle = TEAL; c.strokeStyle = C.paper; c.lineWidth = 3 * z;
+      c.beginPath(); c.arc(hx, hy, 13 * z, 0, TAU); c.fill(); c.stroke(); c.restore(); } }
 
   // ---------- the whale ----------
   { const p = wpos(t), f = facing(t), ang = heading(t), v = wvel(t), sp = Math.hypot(v.x, v.y), still = sp < 60;
-    let blink = 0; for (const b of [3.0, 6.0, 11.0, 15.2, 19.6, 22.9]) blink = Math.max(blink, 1 - Math.abs(t - b) / 0.07);
+    let blink = 0; for (const b of [3.0, 6.0, 11.0, 15.2, 20.0, 22.9]) blink = Math.max(blink, 1 - Math.abs(t - b) / 0.07);
     const focus = Math.max(win(t, ARR[0] - 0.1, ARR[3] + 0.2, 0.25, 0.15), win(t, GL0 - 0.3, SNAP, 0.3, 0.1), 0.6 * win(t, 16.6, 18.6, 0.4, 0.4) * 0);
     const surprise = win(t, VER[BAD], VER[BAD] + 0.8, 0.08, 0.3), spark = win(t, SNAP, SNAP + 1.3, 0.1, 0.4);
     const delight = (t > SNAP + 0.02 && t < 13.4) || t > CLOSE + 0.05 ? 1 : 0;
