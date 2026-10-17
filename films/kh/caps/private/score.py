@@ -1,7 +1,8 @@
-"""CETI Capabilities 09 · private — score. 120 BPM. Every sound sits on a cue the picture exports (cues.json).
-Signature: a soft metal CLASP that closes in tune (stamp, and every time a stamped card lands back home). The thread goes taut
-with a low plucked string. Problem motif: a bright note that bends sour when the wrong card is circled at the clinic. The clinic's
-tick is a resolved two-note chime. The limit's sour bend is left unresolved; the pad only enters after the payoff lands home."""
+"""CETI Capabilities 09 · private — score (v7). 120 BPM. Every sound sits on a cue the picture exports (cues.json).
+Signature: a soft metal CLASP that closes in tune (the stamp, and every time a stamped note drops into the Bakery folder).
+v7 check: the AI app's reach is a short rising glide; its verdict ("Stamped for Bakery. Not sent.") is a low plucked string,
+held back; the lift is a small whoosh. Problem motif: a bright note that bends sour when the wrong note is circled at the clinic.
+The clinic's tick is a resolved two-note chime. The limit's sour bend is left unresolved; the pad enters after the payoff lands."""
 import json, sys, numpy as np
 from scipy.signal import butter, sosfilt, fftconvolve, resample_poly, lfilter
 from scipy.io import wavfile
@@ -31,7 +32,7 @@ def clasp(t0, gain=1.0, pan=0.0):                 # signature: metal click + a c
     for f, g, dt in [(659.25, 1, 0.0), (880.0, 0.7, 0.06)]:
         tt = T(1.6); s = sum(a * np.sin(2 * np.pi * f * m * tt) * np.exp(-tt * k) for m, a, k in [(1, 1, 3.0), (2.76, 0.3, 7.0), (5.4, 0.12, 12)])
         put(s * np.minimum(1, tt / 0.002), t0 + dt, 0.12 * g * gain, pan, 0.45)
-def pluck(t0, f=98.0, gain=1.0):                  # the thread pulled taut: a low plucked string
+def pluck(t0, f=98.0, gain=1.0):                  # the AI app's verdict: a low plucked string (held back)
     tt = T(1.0); s = sum(np.sin(2 * np.pi * f * m * tt) / m * np.exp(-tt * (3 + 2 * m)) for m in range(1, 7)) * np.minimum(1, tt / 0.003)
     put(s, t0, 0.32 * gain, -0.3, 0.3)
 def sour(t0, gain=1.0):                           # problem motif: a bright note that bends down 1.5 semitones (sour), plus a low knock
@@ -59,10 +60,13 @@ for x in Q['pop']: put(tick(1500, 0.05), x, 0.12, 0.4, 0.2)
 for i, x in enumerate(Q['circle']): sour(x, 1.0 if i == 0 else 0.8)
 # title hinge
 put(tick(4200, 0.03), Q['title'], 0.14, 0, 0.4); put(whoosh(0.7, rev=True), Q['title'] - 0.6, 0.06, 0, 0.3)
-# the move: the stamp (clasp, first time), the thread drawing to the bakery's box (a rising glide), taut (pluck), home (clasp)
+# the move: the stamp (clasp, first time); the check: the AI app reaches (a rising glide), sees the stamp (low pluck, held),
+# lifts the note out (small whoosh); it drops into the Bakery folder (clasp)
 clasp(Q['stamp'], 1.2, 0.1)
-tt = T(Q['thread'][1] - Q['thread'][0]); put(np.sin(2 * np.pi * np.cumsum(330 + 110 * tt / tt[-1]) / SR) * np.sin(np.pi * tt / tt[-1]) ** 2, Q['thread'][0], 0.05, -0.4, 0.4)
-for x in Q['taut']: pluck(x)
+for x in Q['reach']:
+    tt = T(0.45); put(np.sin(2 * np.pi * np.cumsum(330 + 110 * tt / tt[-1]) / SR) * np.sin(np.pi * tt / tt[-1]) ** 2, x, 0.04, 0.3, 0.4)
+for x in Q['refuse']: pluck(x)
+for x in Q['lift']: put(whoosh(0.5), x, 0.06, -0.2, 0.2)
 for i, x in enumerate(Q['home']): clasp(x, 0.9 if i < len(Q['home']) - 1 else 1.15, -0.4)
 for x in Q['ok']: chime(x)
 for x in Q['pat']: put(tick(1200, 0.05), x + 0.1, 0.12, -0.4, 0.2)

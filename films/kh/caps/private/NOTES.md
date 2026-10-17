@@ -1,3 +1,32 @@
+# 09 · private: Private *notes* stay put.  (v7 current; v6 kept as film-v6.js / score-v6.py / NOTES-v6.md; v1–v6 history below)
+
+## v7 (lay jury on v6: mean sure 6.83 < 7; fix confidence stuck at 6: "how the AI app checks is fuzzy", "tied"/"home" are metaphors, thin tether, refusal small and fast)
+The CHECK is now the hero beat. No thread, no "home", no real-example card.
+- **Stamp names the client.** Tapping PRIVATE grows the button into a violet band under the words: **"PRIVATE · BAKERY"** (20.5 px world, monoB). Camera pushes onto the note (z 2.35, 10.95–11.85) under "The stamp says which client it's for." (11.2–13.6).
+- **Refusal, big and slow (≈3.5 s, centre frame, push to z 2.15 at 13.25–14.1).** Header struck "To: Bakery" → "To: Clinic" (13.75–14.6). The AI app (grey fish, labelled, drawn over the email) swims up and touches the note (14.1). Chip on the note, 52 px: **"Stamped for Bakery. Not sent."** (15.0–16.95); the note lifts slightly (held). Camera pulls back (16.15–17.1); the note arcs out and drops into the Bakery folder (16.5–17.45, clasp, glow, whale spark). The email flies to the Clinic with an empty middle slot (17.6–18.5), tick 18.6. Captions: "Your AI app sees the stamp." (14.5) / "It leaves the Bakery note out." (16.55). (The asked-for single line "…It leaves the note out." is 11 words; O1 allows 8, so it is two lines, and "it" follows its referent directly.)
+- **Words.** Title "Private *notes* stay put." Belief "Stamp once. Private notes stay with their client." (8 words; the 9-word "Stamp private notes once. They stay with their client." fails O1.) "Tap PRIVATE to stamp the note." is now up 8.6–11.05, fully visible from before the tap.
+- **Opening slowed.** Strike-through 0.9–1.4, "To: Clinic" from 1.45, send 2.0 (was 0.6/1.0/1.4).
+- **Layout.** Folder tab moved to the folder's back sheet; stamped notes stand higher in the folder, so "Bakery's rent is late" and the stamp clear the rim and nothing covers them. Folders fade out as a push-in nears a frame edge (never cropped). The pod's glow ring (read as a magnifier) is gone; the whale watches the check from above-right, facing the email, never over a word.
+- **Payoff** repeats the check up close (PAY2 z 1.75, 24.0–25.85): stamped email readdressed, AI app reaches, same chip, note drops into the Bakery folder (26.9), email goes, tick (27.1). Lockup 27.2–29.4.
+- Score: thread glide/taut pluck replaced by reach glide (cue `reach`), verdict pluck (`refuse`), lift whoosh (`lift`); the pulse rests through the verdict. −16.1 LUFS / −0.8 dBTP.
+
+| t (s) | beat | caption |
+|---|---|---|
+| 0–5.5 | FELT: Bakery note goes to the Clinic, circled | Same email, new client. · I didn't mean to send the client's notes. |
+| 5.5–8.35 | title | Private *notes* stay put. |
+| 8.4–11.05 | TAP (9.5), "You" on the whale | Tap PRIVATE to stamp the note. |
+| 11.05–13.6 | STAMP SAYS (push onto "PRIVATE · BAKERY") | The stamp says which client it's for. |
+| 13.6–18.6 | CHECK (hero): reach 14.1, chip 15.0, drop 17.45, send 17.6, tick 18.6 | Your AI app sees the stamp. · It leaves the Bakery note out. |
+| 19.8–23.65 | LIMIT: untapped note written by hand goes, circled | Stamp a note the moment you write it. |
+| 22.9–27.15 | PAYOFF: the check again, up close | Stamp once. Private notes stay with their client. |
+| 27.2–29.4 | lockup | |
+
+On-screen lines in order: Same email, new client. / I didn't mean to send the client's notes. / Private notes stay put. / Tap PRIVATE to stamp the note. / The stamp says which client it's for. / Your AI app sees the stamp. / Stamped for Bakery. Not sent. / It leaves the Bakery note out. / Stamp a note the moment you write it. / Stamp once. Private notes stay with their client. (Labels: You, Your AI app, Email, Client folder Bakery/Clinic, PRIVATE, PRIVATE · BAKERY, To: Bakery/To: Clinic.)
+Gate: GATES PASS (plain worst grade 3.7, intent PASS, jump 25.9 px/frame, 0.079 rad/frame, 13 pairs ≥ 6.8:1). **DUR 29.4 s.** Sheet: `sheet-v7.png`.
+Weak spots left: at ~18.0 the whale (above-right) briefly overlaps the email flying to the Clinic; the stamp in the folder stack is ~7 px on a 640-px sheet (readable in the push-ins only); lockup unchanged (shared). True peak −0.8 dBTP (same as v6).
+
+---
+(v6 header follows)
 # 09 · private: Private *notes* stay home.  (v6 current; v1–v5 history below)
 
 Wada 339: Violet Blue = the stamp and the thread (private, tied home) · English Red = the one alarm (the wrong card circled at the clinic) · Ochraceous Salmon = the bakery's loaf icon · Light Glaucous Blue = the whale and the clinic's cross.
