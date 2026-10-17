@@ -1,4 +1,4 @@
-# 09 · private: Private *cards* stay home.
+# 09 · private: Private *notes* stay home.  (v5 current; v1–v4 history below)
 
 Wada 339: Violet Blue = the stamp and the thread (private, tied home) · English Red = the one alarm (the wrong card circled at the clinic) · Ochraceous Salmon = the bakery's loaf icon · Light Glaucous Blue = the whale and the clinic's cross.
 120 BPM (B = 0.5 s). DUR 28.1 s. Source: `storyboards/c04/sb-04-04.json` (Context Atoms), compressed from 64 s.
@@ -50,3 +50,15 @@ Sheets: `sheet-v1.png` (too small, mechanism a thin band), `sheet-v2.png` (×1.4
 - Limit, phrased as "and also" (lesson 8): "Plain cards go too. So stamp them."
 - Camera: no shot crops a folder at rest (STAMP z 1.5, CASE z 1.3, LIM z 1.42).
 - DUR 28.5 s. Gate: GATES PASS (plain worst grade 5.2, intent PASS, jump 22.6 px/frame). Score −16.0 LUFS / −1.2 dBTP. Sheet: `sheet-v4.png`.
+
+## v5 (lay jury on v4: "cards", AI program-or-person, both limit lines, leak never seen landing, tiny True-story card). v4 kept as `film-v4.js`.
+- On screen "cards" → **notes** everywhere. Title "Private *notes* stay home." Belief "Stamp private notes once. They stay home."
+- The grey fish is labelled **"Your AI app"** (software, not a person). Caption 12.05: "Your AI app checks the stamp before sending." "You" is shown again over the whale while it stamps (7.85–9.6).
+- Leak lands visibly: L1 (and the limit email L5) no longer drops into the folder. It flies to just above the Clinic folder (scale 0.92), stays open with "To: Clinic", and the Bakery note is circled in red *inside* that email (2.65). "I didn't mean to send the client's notes." starts after that (3.1).
+- One limit line, "and also" (lesson 8): "No stamp? Then the note can still go." (21.0–23.7), over the hand-written plain note landing circled inside the Clinic email. "It checks the stamp…" and "Plain cards go too…" are cut.
+- True-story card: "True story: in our own AI app," (40 px) / "one folder per client." (66 px), fully up 3.5 s (16.75–20.25). Grounded in Context Atoms (one child scope per client, Confidential sealed); no internal names.
+- CLIENT FOLDER labels 20→27 px (mono), folder names 38→42 px. Title camera shifted left so the landed email sits clear of the title.
+- Lockup: full-res frame reads "CETI · CAPABILITIES · 09 · PRIVATE"; the "00" was the 9-px downscale on the 640-px sheet (shared `SERIES.lockup`, not changed here).
+- Beats (new times): FELT 0–5.4 · title 5.65–7.9 · STAMP 7.9 · TIE 9.9 · CHECK/PULL 12.05 · ×2 14.4 · TRUE STORY 16.5–20.5 · LIMIT 19.85–23.7 · PAYOFF/belief 23.8 · lockup 26.45–28.65.
+- DUR 28.65 s. Gate: GATES PASS (plain worst grade 3.7, intent PASS, jump 25.9 px/frame, 0.117 rad/frame, 11 pairs ≥ 7.6:1). Score −16.0 LUFS / −1.2 dBTP. Sheet: `sheet-v5.png`.
+- Weak spots left: at ~8.0 the stamp hovers over "rent is" for ~0.3 s before pressing; the Bakery folder touches the left edge during the 4.9–5.7 pull-back and the limit shot.
