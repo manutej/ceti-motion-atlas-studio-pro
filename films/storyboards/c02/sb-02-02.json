@@ -1,0 +1,465 @@
+{
+  "schema_version": "sb60-v1",
+  "id": "sb-02-02",
+  "meta_prompt_id": "mp-c02-v1",
+  "cluster": "02 Sheaves in the wild",
+  "repo": "manutej/cell-sheaf-swarm",
+  "capability": "Odd joins wait for a person before they count",
+  "audience": "Leaders",
+  "wada": 279,
+  "bpm": 124,
+  "dur": 62.2,
+  "title": "Odd <i>joins</i> wait for a person.",
+  "hook": {
+    "kind": "Example",
+    "picture": "Close on the whale as pods stream cards onto a fast line. One card is oddly shaped, bent at the corners, and slides in with the rest.",
+    "words": "The bot merged it. Nobody looked."
+  },
+  "problem_in_viewer_words": {
+    "kind": "Fact",
+    "body": "The bot merged something weird, and nobody looked at it.",
+    "who": "ops lead reading the weekly report"
+  },
+  "why_it_keeps_happening": {
+    "kind": "Fact",
+    "picture": "Three more bent cards slip through: every 2 beats, then 1, then a half. Each lands in a report.",
+    "words": "Machines merge anything close enough."
+  },
+  "stakes": {
+    "kind": "Fact",
+    "body": "A strange result reaches a leader's report with no person ever having looked at it, and decisions get made on it."
+  },
+  "solution_hint": "Let odd parts wait for a person.",
+  "metaphor": {
+    "kind": "Example",
+    "body": "A fast line of agent cards. Joins that look odd get set aside on a short side branch with an empty person chip, and they only rejoin after a tick from a reviewer.",
+    "symbols": [
+      "whale",
+      "line",
+      "atom",
+      "seam",
+      "tick"
+    ]
+  },
+  "mechanism_beats": {
+    "kind": "Method",
+    "steps": [
+      {
+        "t": 19.355,
+        "picture": "A dashed join mark appears wherever two cards meet. Matching edges tick teal and pass straight through.",
+        "words": "Odd parts wait. A person looks first.",
+        "sound": "Knock and chord on each tick."
+      },
+      {
+        "t": 23.226,
+        "picture": "The bent card arrives. Its join reads the edges, the chip shows a question shape, and the card is set aside on the side branch beside the empty person chip.",
+        "words": "Where parts meet, a seam sorts them.",
+        "sound": "A knock, then a held, open chord."
+      },
+      {
+        "t": 25.161,
+        "picture": "Push-in. The whale, now the reviewer, swims to the side branch, turns the bent card over, and stamps a tick. Only then does it rejoin the line.",
+        "words": "",
+        "sound": "The open chord resolves on the stamp."
+      },
+      {
+        "t": 27.097,
+        "picture": "Two more joins: a broken one stays shut (raw sienna), a missing one stays empty. Neither card moves on.",
+        "words": "Broken or missing never moves on.",
+        "sound": "Two muted knocks, no chord."
+      }
+    ]
+  },
+  "real_case": {
+    "kind": "Evidence",
+    "claim": "In cell-sheaf-swarm a strange edge (map exists, rank or sort odd) folds into the trunk only after a person; broken and missing never fold.",
+    "numbers": [],
+    "source": {
+      "kind": "repo",
+      "title": "manutej/cell-sheaf-swarm README (Glue table)",
+      "url": "https://github.com/manutej/cell-sheaf-swarm"
+    },
+    "verified": true,
+    "illustrative": false
+  },
+  "honest_limit": {
+    "kind": "Constraint",
+    "picture": "A smooth, normal-looking card with a raw sienna smudge inside meets its join, matches, gets ok, and passes straight to the line. It never visits the person.",
+    "words": "A neat mistake never reaches the person."
+  },
+  "not_this": {
+    "kind": "Constraint",
+    "body": "Only odd shapes get a human look."
+  },
+  "ending_pattern": {
+    "kind": "Example",
+    "slug": "the-waiting-chair",
+    "body": "The bent card from bar 1 now waits on the side branch beside the person chip while the bundle ships clean, then rejoins after a tick.",
+    "callback": "The bent card that slid into the report in bar 1 is held beside the same line, in the same framing."
+  },
+  "end_belief": {
+    "kind": "Goal",
+    "body": "Let odd results wait for a person."
+  },
+  "beats": [
+    {
+      "t": 0.0,
+      "act": "felt",
+      "bars": "1-2",
+      "picture": "Close on the whale beside a fast line. Pods drop cards onto it in a stream. One card has bent corners and the wrong size, and it slides in with the rest.",
+      "words": "The bot merged it. Nobody looked.",
+      "sound": "Quick paper flicks, a clipped woodblock knock.",
+      "camera": "close z 1.6 on the whale",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 1.935,
+      "act": "felt",
+      "bars": "2",
+      "picture": "The bundle ships with the bent card inside. A pod downstream reads it and answers with a raw sienna ✕ chip.",
+      "words": "",
+      "sound": "A knock with no chord after it.",
+      "camera": "close z 1.6, small follow pan",
+      "cue_tags": [
+        "consequence",
+        "focus"
+      ]
+    },
+    {
+      "t": 5.806,
+      "act": "felt",
+      "bars": "3-4",
+      "picture": "A second pod copies the first pod's answer. Two ✕ chips now, on the report card at the end of the line.",
+      "words": "Now the weird bit is in my report.",
+      "sound": "Two clipped knocks.",
+      "camera": "close z 1.5",
+      "cue_tags": [
+        "consequence",
+        "focus"
+      ]
+    },
+    {
+      "t": 7.742,
+      "act": "felt",
+      "bars": "5",
+      "picture": "The whale stares at the bent card, now buried in the report. Hold.",
+      "words": "",
+      "sound": "Silence creeps in.",
+      "camera": "close z 1.6, hold",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 10.645,
+      "act": "why",
+      "bars": "6",
+      "picture": "Half a bar of stillness, then SERIES.open and the title.",
+      "words": "Odd <i>joins</i> wait for a person.",
+      "sound": "Near-silence, then the title tick.",
+      "camera": "still (half a bar of stillness first)",
+      "cue_tags": [
+        "hinge"
+      ]
+    },
+    {
+      "t": 11.613,
+      "act": "why",
+      "bars": "7",
+      "picture": "Pull back. The line is a conveyor with no stops; everything that arrives gets merged.",
+      "words": "",
+      "sound": "Room tone, then the problem motif once.",
+      "camera": "pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 13.548,
+      "act": "why",
+      "bars": "8-9",
+      "picture": "Three more bent cards slip through: every 2 beats, then 1, then a half. Each lands in a report.",
+      "words": "Machines merge anything close enough.",
+      "sound": "Problem motif three times, accelerating.",
+      "camera": "wide z 1.0, the pattern revealed",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 17.419,
+      "act": "why",
+      "bars": "10",
+      "picture": "All motion stops. A short side branch ghosts in beside the line, with an empty person chip on it.",
+      "words": "Let odd parts wait for a person.",
+      "sound": "The first clean signature: a knock and its chord.",
+      "camera": "wide z 1.0, still",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 19.355,
+      "act": "move",
+      "bars": "11-12",
+      "picture": "A dashed join mark appears wherever two cards meet. Matching edges tick teal and pass straight through.",
+      "words": "Odd parts wait. A person looks first.",
+      "sound": "Knock and chord on each tick.",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech",
+        "focus"
+      ]
+    },
+    {
+      "t": 23.226,
+      "act": "move",
+      "bars": "13",
+      "picture": "The bent card arrives. Its join reads the edges, the chip shows a question shape, and the card is set aside on the side branch beside the empty person chip.",
+      "words": "Where parts meet, a seam sorts them.",
+      "sound": "A knock, then a held, open chord.",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech",
+        "focus"
+      ]
+    },
+    {
+      "t": 25.161,
+      "act": "move",
+      "bars": "14",
+      "picture": "Push-in. The whale, now the reviewer, swims to the side branch, turns the bent card over, and stamps a tick. Only then does it rejoin the line.",
+      "words": "",
+      "sound": "The open chord resolves on the stamp.",
+      "camera": "the one push-in, z 1.2 to 1.3",
+      "cue_tags": [
+        "mech",
+        "focus"
+      ]
+    },
+    {
+      "t": 27.097,
+      "act": "move",
+      "bars": "15-16",
+      "picture": "Two more joins: a broken one stays shut (raw sienna), a missing one stays empty. Neither card moves on.",
+      "words": "Broken or missing never moves on.",
+      "sound": "Two muted knocks, no chord.",
+      "camera": "medium z 1.3, settle",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 30.968,
+      "act": "case",
+      "bars": "17-19",
+      "picture": "Wide. The swarm contract: a row of joins with chips; strange ones queue on the side branch. The card fades in on clean paper.",
+      "words": "Real rule: odd joins need a person.",
+      "sound": "Pulse bed with quiet ticks.",
+      "camera": "steady wide z 0.9, slow drift",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 36.774,
+      "act": "case",
+      "bars": "20-22",
+      "picture": "The whale clears the side branch one card at a time; each gets a tick before it rejoins.",
+      "words": "Each one cleared by hand, then kept.",
+      "sound": "One chord per tick, steady.",
+      "camera": "steady wide, slow drift",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 42.581,
+      "act": "limit",
+      "bars": "23-24",
+      "picture": "A smooth, normal-looking card with a raw sienna smudge inside meets its join, matches, gets ok, and passes straight to the line. It never visits the person.",
+      "words": "A neat mistake never reaches the person.",
+      "sound": "The chord plays once and stays unresolved.",
+      "camera": "still",
+      "cue_tags": [
+        "limit",
+        "focus"
+      ]
+    },
+    {
+      "t": 45.484,
+      "act": "limit",
+      "bars": "24-25",
+      "picture": "Slow push into the smudge, now inside the report.",
+      "words": "Only odd shapes get a human look.",
+      "sound": "Room tone.",
+      "camera": "one slow push to the thing that slipped",
+      "cue_tags": [
+        "limit"
+      ]
+    },
+    {
+      "t": 48.387,
+      "act": "payoff",
+      "bars": "26-27",
+      "picture": "Same close framing as bar 1. The bent card arrives again, but it rests on the side branch while the bundle ships without it. The downstream pod answers ✓.",
+      "words": "Weird bit held back.",
+      "sound": "A knock, then a full chord.",
+      "camera": "FELT framing restored, z 1.6",
+      "cue_tags": [
+        "callback",
+        "focus"
+      ]
+    },
+    {
+      "t": 52.258,
+      "act": "payoff",
+      "bars": "28-29",
+      "picture": "The whale reaches it, stamps a tick, and it rejoins. Spark.",
+      "words": "",
+      "sound": "Full resolution.",
+      "camera": "slow pull to z 1.3",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 56.129,
+      "act": "belief",
+      "bars": "30-31",
+      "picture": "The line with its small side branch, the whale breathing.",
+      "words": "Let odd results wait for a person.",
+      "sound": "Pad tail.",
+      "camera": "still, breathing only",
+      "cue_tags": []
+    },
+    {
+      "t": 60.0,
+      "act": "lockup",
+      "bars": "32",
+      "picture": "SERIES.lockup over the settled chart ground.",
+      "words": "",
+      "sound": "Lockup sting, then the room tone tail.",
+      "camera": "still",
+      "cue_tags": []
+    }
+  ],
+  "captions": [
+    {
+      "t_in": 0.968,
+      "t_out": 4.839,
+      "text": "The bot merged it. Nobody looked.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 5.806,
+      "t_out": 9.194,
+      "text": "Now the weird bit is in my report.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 10.645,
+      "t_out": 13.065,
+      "text": "Odd <i>joins</i> wait for a person.",
+      "kind": "title"
+    },
+    {
+      "t_in": 13.548,
+      "t_out": 16.935,
+      "text": "Machines merge anything close enough.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 17.419,
+      "t_out": 19.839,
+      "text": "Let odd parts wait for a person.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 20.323,
+      "t_out": 22.742,
+      "text": "Odd parts wait. A person looks first.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 23.226,
+      "t_out": 25.645,
+      "text": "Where parts meet, a seam sorts them.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 27.097,
+      "t_out": 30.484,
+      "text": "Broken or missing never moves on.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 31.935,
+      "t_out": 40.161,
+      "text": "Real rule · strange: only after a person",
+      "kind": "card"
+    },
+    {
+      "t_in": 32.903,
+      "t_out": 36.29,
+      "text": "Real rule: odd joins need a person.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 36.774,
+      "t_out": 40.645,
+      "text": "Each one cleared by hand, then kept.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 43.065,
+      "t_out": 45.484,
+      "text": "A neat mistake never reaches the person.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 45.968,
+      "t_out": 48.871,
+      "text": "Only odd shapes get a human look.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 49.355,
+      "t_out": 54.194,
+      "text": "Weird bit held back.",
+      "kind": "label"
+    },
+    {
+      "t_in": 56.129,
+      "t_out": 59.758,
+      "text": "Let odd results wait for a person.",
+      "kind": "caption"
+    }
+  ],
+  "terms": [
+    {
+      "term": "seam",
+      "symbol": "seam",
+      "pictured_at": 19.355,
+      "named_at": 23.226
+    }
+  ],
+  "jargon": [
+    "strange",
+    "trunk",
+    "restriction",
+    "swarm"
+  ],
+  "sound": {
+    "signature": "A woodblock knock that resolves into a held chord",
+    "problem_motif": "The same knock, clipped, with no chord after it",
+    "limit_unresolved": true
+  },
+  "score_self": {
+    "score": 0.78,
+    "reason": "A leader feels this one: weird output in a report. The side branch is a clear picture. The risk is that the pod and person roles blur, and the case is a rule rather than a run.",
+    "weakest_piece": "real_case"
+  }
+}

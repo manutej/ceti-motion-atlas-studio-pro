@@ -1,0 +1,474 @@
+{
+  "schema_version": "sb60-v1",
+  "id": "sb-02-04",
+  "meta_prompt_id": "mp-c02-v1",
+  "cluster": "02 Sheaves in the wild",
+  "repo": "manutej/sheaf-dirichlet-protein-3d",
+  "capability": "Touching pairs pull a nudged shape back home",
+  "audience": "Researchers",
+  "wada": 166,
+  "bpm": 120,
+  "dur": 64.3,
+  "title": "Let every <i>join</i> pull back.",
+  "hook": {
+    "kind": "Example",
+    "picture": "Close on the whale nudging a tightly knotted line. The knot springs out of shape and does not come back to its outline.",
+    "words": "One small nudge, and the shape wanders off."
+  },
+  "problem_in_viewer_words": {
+    "kind": "Fact",
+    "body": "I nudged the model, and it never settled back.",
+    "who": "researcher tuning a 3D molecule model"
+  },
+  "why_it_keeps_happening": {
+    "kind": "Fact",
+    "picture": "Three more nudges, every 2 beats, then 1, then a half. Each knot wanders, and nothing pulls its parts back.",
+    "words": "Nothing tells each part where its neighbours are."
+  },
+  "stakes": {
+    "kind": "Fact",
+    "body": "Every small change sends the model wandering, so hours go into hand-fixing shapes that should hold on their own."
+  },
+  "solution_hint": "Let each touching pair pull together.",
+  "metaphor": {
+    "kind": "Example",
+    "body": "The line is a molecule's chain, folded into a knot. Wherever two parts of the chain touch, a join pulls them together; let go, and all the joins pull the knot back into its outline.",
+    "symbols": [
+      "whale",
+      "line",
+      "seam",
+      "pin",
+      "ring"
+    ]
+  },
+  "mechanism_beats": {
+    "kind": "Method",
+    "steps": [
+      {
+        "t": 20.0,
+        "picture": "Dashed joins appear wherever two parts of the chain touch in the outline. Stretched joins glow rust.",
+        "words": "Each touching pair pulls back together.",
+        "sound": "Taut strings, one per join."
+      },
+      {
+        "t": 24.0,
+        "picture": "The whale lets go. Every stretched join tugs its two ends together, with a ring pulse at each. The knot slides inward.",
+        "words": "Where parts touch is a seam.",
+        "sound": "Strings tighten into tune together."
+      },
+      {
+        "t": 26.0,
+        "picture": "Push-in on the last stretched join. Its glow goes from rust to teal, and the knot locks into its outline pin.",
+        "words": "",
+        "sound": "The last string snaps into tune."
+      },
+      {
+        "t": 28.0,
+        "picture": "A small stretch counter falls toward empty as the line goes still.",
+        "words": "Total stretch falls toward zero. Then stillness.",
+        "sound": "A falling glide that lands on the home note."
+      }
+    ]
+  },
+  "real_case": {
+    "kind": "Evidence",
+    "claim": "Six folds were loaded from RCSB. Heat flow on the sheaf-Laplacian energy returns a 0.4 A-perturbed native to E~0 and RMSD < 0.2 A.",
+    "numbers": [
+      "Six folds",
+      "0.4 A-perturbed",
+      "E~0",
+      "RMSD < 0.2 A"
+    ],
+    "source": {
+      "kind": "repo",
+      "title": "manutej/sheaf-dirichlet-protein-3d README (Campaign snapshot)",
+      "url": "https://github.com/manutej/sheaf-dirichlet-protein-3d"
+    },
+    "verified": true,
+    "illustrative": false
+  },
+  "honest_limit": {
+    "kind": "Constraint",
+    "picture": "A loose string of beads with no outline and no joins drawn. The whale lets go, and nothing happens. There are no touching pairs to pull.",
+    "words": "No known shape? There is nothing to pull."
+  },
+  "not_this": {
+    "kind": "Constraint",
+    "body": "Not folding from scratch. Settling a known shape."
+  },
+  "ending_pattern": {
+    "kind": "Example",
+    "slug": "settle-home",
+    "body": "The FELT nudge replays, and now the touching joins pull the knot back into its outline every time, even under a harder push.",
+    "callback": "The loop that sprang loose in bar 2 springs back into the same outline, in the same framing."
+  },
+  "end_belief": {
+    "kind": "Goal",
+    "body": "Know which parts touch. Let them pull."
+  },
+  "beats": [
+    {
+      "t": 0.0,
+      "act": "felt",
+      "bars": "1-2",
+      "picture": "Close on the whale beside a tightly knotted line sitting inside a faint outline (its pinned home shape). The whale nudges one loop.",
+      "words": "One small nudge, and the shape wanders off.",
+      "sound": "A soft tap.",
+      "camera": "close z 1.6 on the whale",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 2.0,
+      "act": "felt",
+      "bars": "2",
+      "picture": "The knot springs out of its outline and stays loose. A pod comparing it to the outline answers with a rust ✕ chip.",
+      "words": "",
+      "sound": "A sagging, detuned spring.",
+      "camera": "close z 1.6, small follow pan",
+      "cue_tags": [
+        "consequence",
+        "focus"
+      ]
+    },
+    {
+      "t": 6.0,
+      "act": "felt",
+      "bars": "3-4",
+      "picture": "The whale nudges again to fix it. The knot drifts further off.",
+      "words": "It never finds its way back.",
+      "sound": "The spring sags lower.",
+      "camera": "close z 1.5",
+      "cue_tags": [
+        "consequence",
+        "focus"
+      ]
+    },
+    {
+      "t": 8.0,
+      "act": "felt",
+      "bars": "5",
+      "picture": "The whale looks at the loose knot outside its outline. Hold.",
+      "words": "",
+      "sound": "Silence creeps in.",
+      "camera": "close z 1.6, hold",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 11.0,
+      "act": "why",
+      "bars": "6",
+      "picture": "Half a bar of stillness, then SERIES.open and the title.",
+      "words": "Let every <i>join</i> pull back.",
+      "sound": "Near-silence, then the title tick.",
+      "camera": "still (half a bar of stillness first)",
+      "cue_tags": [
+        "hinge"
+      ]
+    },
+    {
+      "t": 12.0,
+      "act": "why",
+      "bars": "7",
+      "picture": "Pull back. A row of loose knots, each nudged once, each wandered off from its outline.",
+      "words": "",
+      "sound": "Room tone, then the problem motif once.",
+      "camera": "pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 14.0,
+      "act": "why",
+      "bars": "8-9",
+      "picture": "Three more nudges, every 2 beats, then 1, then a half. Each knot wanders, and nothing pulls its parts back.",
+      "words": "Nothing tells each part where its neighbours are.",
+      "sound": "Problem motif three times, accelerating.",
+      "camera": "wide z 1.0, the pattern revealed",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 18.0,
+      "act": "why",
+      "bars": "10",
+      "picture": "All motion stops. Faint threads ghost in between parts of the chain that should touch.",
+      "words": "Let each touching pair pull together.",
+      "sound": "The first clean signature: a taut, in-tune string.",
+      "camera": "wide z 1.0, still",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 20.0,
+      "act": "move",
+      "bars": "11-12",
+      "picture": "Dashed joins appear wherever two parts of the chain touch in the outline. Stretched joins glow rust.",
+      "words": "Each touching pair pulls back together.",
+      "sound": "Taut strings, one per join.",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech",
+        "focus"
+      ]
+    },
+    {
+      "t": 24.0,
+      "act": "move",
+      "bars": "13",
+      "picture": "The whale lets go. Every stretched join tugs its two ends together, with a ring pulse at each. The knot slides inward.",
+      "words": "Where parts touch is a seam.",
+      "sound": "Strings tighten into tune together.",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech",
+        "focus"
+      ]
+    },
+    {
+      "t": 26.0,
+      "act": "move",
+      "bars": "14",
+      "picture": "Push-in on the last stretched join. Its glow goes from rust to teal, and the knot locks into its outline pin.",
+      "words": "",
+      "sound": "The last string snaps into tune.",
+      "camera": "the one push-in, z 1.2 to 1.3",
+      "cue_tags": [
+        "mech",
+        "focus"
+      ]
+    },
+    {
+      "t": 28.0,
+      "act": "move",
+      "bars": "15-16",
+      "picture": "A small stretch counter falls toward empty as the line goes still.",
+      "words": "Total stretch falls toward zero. Then stillness.",
+      "sound": "A falling glide that lands on the home note.",
+      "camera": "medium z 1.3, settle",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 32.0,
+      "act": "case",
+      "bars": "17-19",
+      "picture": "Wide. Six different knotted lines side by side (six real proteins). The card fades in on clean paper.",
+      "words": "Real proteins, real shapes, public data.",
+      "sound": "Pulse bed, six soft ticks.",
+      "camera": "steady wide z 0.9, slow drift",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 38.0,
+      "act": "case",
+      "bars": "20-22",
+      "picture": "One knot is shaken slightly. Its joins pull, and it settles back into its outline.",
+      "words": "Nudged a little, it settles back home.",
+      "sound": "Strings tighten, then rest.",
+      "camera": "steady wide, slow drift",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 44.0,
+      "act": "limit",
+      "bars": "23-24",
+      "picture": "A loose string of beads with no outline and no joins drawn. The whale lets go, and nothing happens. There are no touching pairs to pull.",
+      "words": "No known shape? There is nothing to pull.",
+      "sound": "The string plays once and stays unresolved.",
+      "camera": "still",
+      "cue_tags": [
+        "limit",
+        "focus"
+      ]
+    },
+    {
+      "t": 47.0,
+      "act": "limit",
+      "bars": "24-25",
+      "picture": "Slow push into the empty space where the joins would be.",
+      "words": "Not folding from scratch. Settling a known shape.",
+      "sound": "Room tone.",
+      "camera": "one slow push to the thing that slipped",
+      "cue_tags": [
+        "limit"
+      ]
+    },
+    {
+      "t": 50.0,
+      "act": "payoff",
+      "bars": "26-27",
+      "picture": "Same close framing as bar 1. The whale nudges the same loop; the joins glow, tug, and the knot slides back into its outline. The pod answers ✓.",
+      "words": "Back in shape.",
+      "sound": "Spring sags, then snaps back in tune.",
+      "camera": "FELT framing restored, z 1.6",
+      "cue_tags": [
+        "callback",
+        "focus"
+      ]
+    },
+    {
+      "t": 54.0,
+      "act": "payoff",
+      "bars": "28-29",
+      "picture": "The whale nudges harder. The knot still returns. Spark.",
+      "words": "",
+      "sound": "Full resolution.",
+      "camera": "slow pull to z 1.3",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 58.0,
+      "act": "belief",
+      "bars": "30-31",
+      "picture": "The knot at rest in its outline, the whale breathing.",
+      "words": "Know which parts touch. Let them pull.",
+      "sound": "Pad tail.",
+      "camera": "still, breathing only",
+      "cue_tags": []
+    },
+    {
+      "t": 62.0,
+      "act": "lockup",
+      "bars": "32",
+      "picture": "SERIES.lockup over the settled chart ground.",
+      "words": "",
+      "sound": "Lockup sting, then the room tone tail.",
+      "camera": "still",
+      "cue_tags": []
+    }
+  ],
+  "captions": [
+    {
+      "t_in": 1.0,
+      "t_out": 5.0,
+      "text": "One small nudge, and the shape wanders off.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 6.0,
+      "t_out": 9.5,
+      "text": "It never finds its way back.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 11.0,
+      "t_out": 13.5,
+      "text": "Let every <i>join</i> pull back.",
+      "kind": "title"
+    },
+    {
+      "t_in": 14.0,
+      "t_out": 17.5,
+      "text": "Nothing tells each part where its neighbours are.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 18.0,
+      "t_out": 20.5,
+      "text": "Let each touching pair pull together.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 21.0,
+      "t_out": 23.5,
+      "text": "Each touching pair pulls back together.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 24.0,
+      "t_out": 26.5,
+      "text": "Where parts touch is a seam.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 28.0,
+      "t_out": 31.5,
+      "text": "Total stretch falls toward zero. Then stillness.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 33.0,
+      "t_out": 41.5,
+      "text": "Real run · 6 real proteins loaded",
+      "kind": "card",
+      "src": "https://github.com/manutej/sheaf-dirichlet-protein-3d"
+    },
+    {
+      "t_in": 34.0,
+      "t_out": 37.5,
+      "text": "Real proteins, real shapes, public data.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 38.0,
+      "t_out": 42.0,
+      "text": "Nudged a little, it settles back home.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 44.5,
+      "t_out": 47.0,
+      "text": "No known shape? There is nothing to pull.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 47.5,
+      "t_out": 50.5,
+      "text": "Not folding from scratch. Settling a known shape.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 51.0,
+      "t_out": 56.0,
+      "text": "Back in shape.",
+      "kind": "label"
+    },
+    {
+      "t_in": 58.0,
+      "t_out": 61.75,
+      "text": "Know which parts touch. Let them pull.",
+      "kind": "caption"
+    }
+  ],
+  "terms": [
+    {
+      "term": "seam",
+      "symbol": "seam",
+      "pictured_at": 20.0,
+      "named_at": 24.0
+    }
+  ],
+  "jargon": [
+    "protein",
+    "fold",
+    "Dirichlet",
+    "Laplacian",
+    "residue",
+    "contact",
+    "energy"
+  ],
+  "sound": {
+    "signature": "A taut string pulled into tune",
+    "problem_motif": "The same string sagging, detuned",
+    "limit_unresolved": true
+  },
+  "score_self": {
+    "score": 0.72,
+    "reason": "The move is a picture anyone can follow. The real numbers (sub-angstrom) stay off screen, so the card says less than the source. The limit uses the repo's own not-sequence-to-fold line. Researchers may want more than six loaded.",
+    "weakest_piece": "real_case"
+  }
+}

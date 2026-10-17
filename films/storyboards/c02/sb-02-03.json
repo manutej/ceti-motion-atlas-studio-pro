@@ -1,0 +1,472 @@
+{
+  "schema_version": "sb60-v1",
+  "id": "sb-02-03",
+  "meta_prompt_id": "mp-c02-v1",
+  "cluster": "02 Sheaves in the wild",
+  "repo": "manutej/cell-sheaf-swarm",
+  "capability": "Check every pushed contract against its shape rules",
+  "audience": "Engineers",
+  "wada": 207,
+  "bpm": 120,
+  "dur": 64.3,
+  "title": "Every push meets the <i>gate</i>.",
+  "hook": {
+    "kind": "Example",
+    "picture": "Close on the whale sliding one new card onto a shared line. It looks fine. A pod reading the line chokes on it.",
+    "words": "My file looked fine to me."
+  },
+  "problem_in_viewer_words": {
+    "kind": "Fact",
+    "body": "My file looked fine to me. Then the viewer broke for everyone.",
+    "who": "engineer pushing a new contract file"
+  },
+  "why_it_keeps_happening": {
+    "kind": "Fact",
+    "picture": "Three badly shaped cards land: every 2 beats, then 1, then a half. Each one stalls a pod.",
+    "words": "Nobody checks the file at the door."
+  },
+  "stakes": {
+    "kind": "Fact",
+    "body": "One badly shaped file breaks the shared viewer for every reader, and nobody knows which push did it."
+  },
+  "solution_hint": "Check every file the moment it lands.",
+  "metaphor": {
+    "kind": "Example",
+    "body": "Every new card passes a gate right where it lands. The gate's lintel shows the card's outline: if the shape does not fit, the gate closes and a flag goes up.",
+    "symbols": [
+      "whale",
+      "line",
+      "gate",
+      "flag",
+      "pod"
+    ]
+  },
+  "mechanism_beats": {
+    "kind": "Method",
+    "steps": [
+      {
+        "t": 20.0,
+        "picture": "A gate stands at the landing spot. Its lintel shows a card outline. A well-shaped card passes and the gate glows.",
+        "words": "Every file is checked as it lands.",
+        "sound": "Latch click on the pass glow."
+      },
+      {
+        "t": 24.0,
+        "picture": "A card with a missing corner reaches the gate. The gate closes and a rust flag goes up beside it.",
+        "words": "The shape rules have a name: schema.",
+        "sound": "A muted latch, then a flag flutter."
+      },
+      {
+        "t": 26.0,
+        "picture": "Push-in. The refused card bounces back to the whale that sent it. The shared line beyond stays clean and the pods keep reading.",
+        "words": "",
+        "sound": "Bounce, then the click resolves."
+      },
+      {
+        "t": 28.0,
+        "picture": "A ring pulses at the gate on every push that follows: pass, pass, stop, pass.",
+        "words": "It runs on every push, every time.",
+        "sound": "Clicks on every ring."
+      }
+    ]
+  },
+  "real_case": {
+    "kind": "Evidence",
+    "claim": "On 22 Sep 2026 the sheaf / validate check failed on main nine times in a row inside six minutes, each failing in 5-8 seconds with 3 annotations; the cause is recorded only as a config or validation error.",
+    "numbers": [
+      "9 consecutive red runs",
+      "inside six minutes",
+      "5-8 seconds",
+      "3 annotations"
+    ],
+    "source": {
+      "kind": "notion",
+      "title": "Fix the failing sheaf / validate CI job on manutej/cell-sheaf-swarm main (9 consecutive red runs)",
+      "url": "https://app.notion.com/p/3e3d50cfaf93816d9f8fc45cb3a403bc"
+    },
+    "verified": true,
+    "illustrative": false
+  },
+  "honest_limit": {
+    "kind": "Constraint",
+    "picture": "A card with perfect corners but the wrong colour inside passes the gate, which glows. Downstream, a pod reads it and answers ✕.",
+    "words": "Right shape, wrong content. It passes."
+  },
+  "not_this": {
+    "kind": "Constraint",
+    "body": "The check reads shape, not meaning."
+  },
+  "ending_pattern": {
+    "kind": "Example",
+    "slug": "bounce-at-the-door",
+    "body": "The same bad card bounces off the gate at the landing spot, the shared line stays clean, and the pods keep reading.",
+    "callback": "The card that stalled three pods in bars 2 to 4 now bounces at the door, in the same framing."
+  },
+  "end_belief": {
+    "kind": "Goal",
+    "body": "Put a shape check on every push."
+  },
+  "beats": [
+    {
+      "t": 0.0,
+      "act": "felt",
+      "bars": "1-2",
+      "picture": "Close on the whale sliding one new card onto a shared line full of cards. It looks like the others.",
+      "words": "My file looked fine to me.",
+      "sound": "A soft paper slide.",
+      "camera": "close z 1.6 on the whale",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 2.0,
+      "act": "felt",
+      "bars": "2",
+      "picture": "A pod reading the line reaches the new card, stalls, and answers with a rust ✕ chip.",
+      "words": "",
+      "sound": "A stalled, buzzing note.",
+      "camera": "close z 1.6, small follow pan",
+      "cue_tags": [
+        "consequence",
+        "focus"
+      ]
+    },
+    {
+      "t": 6.0,
+      "act": "felt",
+      "bars": "3-4",
+      "picture": "Two more pods arrive and stall at the same card. Three ✕ chips in a row.",
+      "words": "Then the viewer broke for everyone.",
+      "sound": "The buzz, twice more.",
+      "camera": "close z 1.5",
+      "cue_tags": [
+        "consequence",
+        "focus"
+      ]
+    },
+    {
+      "t": 8.0,
+      "act": "felt",
+      "bars": "5",
+      "picture": "The whale looks at the row of stalled pods. Hold.",
+      "words": "",
+      "sound": "Silence creeps in.",
+      "camera": "close z 1.6, hold",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 11.0,
+      "act": "why",
+      "bars": "6",
+      "picture": "Half a bar of stillness, then SERIES.open and the title.",
+      "words": "Every push meets the <i>gate</i>.",
+      "sound": "Near-silence, then the title tick.",
+      "camera": "still (half a bar of stillness first)",
+      "cue_tags": [
+        "hinge"
+      ]
+    },
+    {
+      "t": 12.0,
+      "act": "why",
+      "bars": "7",
+      "picture": "Pull back. Many whales push cards onto one shared line. There is nothing at the landing spot.",
+      "words": "",
+      "sound": "Room tone, then the problem motif once.",
+      "camera": "pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 14.0,
+      "act": "why",
+      "bars": "8-9",
+      "picture": "Three badly shaped cards land: every 2 beats, then 1, then a half. Each one stalls a pod.",
+      "words": "Nobody checks the file at the door.",
+      "sound": "Problem motif three times, accelerating.",
+      "camera": "wide z 1.0, the pattern revealed",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 18.0,
+      "act": "why",
+      "bars": "10",
+      "picture": "All motion stops. A faint gate outline ghosts in at the landing spot.",
+      "words": "Check every file the moment it lands.",
+      "sound": "The first clean signature: a bright latch click.",
+      "camera": "wide z 1.0, still",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 20.0,
+      "act": "move",
+      "bars": "11-12",
+      "picture": "A gate stands at the landing spot. Its lintel shows a card outline. A well-shaped card passes and the gate glows.",
+      "words": "Every file is checked as it lands.",
+      "sound": "Latch click on the pass glow.",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech",
+        "focus"
+      ]
+    },
+    {
+      "t": 24.0,
+      "act": "move",
+      "bars": "13",
+      "picture": "A card with a missing corner reaches the gate. The gate closes and a rust flag goes up beside it.",
+      "words": "The shape rules have a name: schema.",
+      "sound": "A muted latch, then a flag flutter.",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech",
+        "focus"
+      ]
+    },
+    {
+      "t": 26.0,
+      "act": "move",
+      "bars": "14",
+      "picture": "Push-in. The refused card bounces back to the whale that sent it. The shared line beyond stays clean and the pods keep reading.",
+      "words": "",
+      "sound": "Bounce, then the click resolves.",
+      "camera": "the one push-in, z 1.2 to 1.3",
+      "cue_tags": [
+        "mech",
+        "focus"
+      ]
+    },
+    {
+      "t": 28.0,
+      "act": "move",
+      "bars": "15-16",
+      "picture": "A ring pulses at the gate on every push that follows: pass, pass, stop, pass.",
+      "words": "It runs on every push, every time.",
+      "sound": "Clicks on every ring.",
+      "camera": "medium z 1.3, settle",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 32.0,
+      "act": "case",
+      "bars": "17-19",
+      "picture": "Wide. Nine pushes arrive in quick succession; each meets the gate and the gate lights red within a heartbeat. The card fades in on clean paper.",
+      "words": "Real run: nine pushes, nine red lights.",
+      "sound": "Pulse bed, nine quick muted latches.",
+      "camera": "steady wide z 0.9, slow drift",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 38.0,
+      "act": "case",
+      "bars": "20-22",
+      "picture": "Nine flags stack beside the gate. The gate stays red until the whale swims back to the card.",
+      "words": "Red stays red until someone fixes it.",
+      "sound": "A held low note under the flags.",
+      "camera": "steady wide, slow drift",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 44.0,
+      "act": "limit",
+      "bars": "23-24",
+      "picture": "A card with perfect corners but the wrong colour inside passes the gate, which glows. Downstream, a pod reads it and answers ✕.",
+      "words": "Right shape, wrong content. It passes.",
+      "sound": "The click plays once and stays unresolved.",
+      "camera": "still",
+      "cue_tags": [
+        "limit",
+        "focus"
+      ]
+    },
+    {
+      "t": 47.0,
+      "act": "limit",
+      "bars": "24-25",
+      "picture": "Slow push into the wrong colour inside the well-shaped card.",
+      "words": "The check reads shape, not meaning.",
+      "sound": "Room tone.",
+      "camera": "one slow push to the thing that slipped",
+      "cue_tags": [
+        "limit"
+      ]
+    },
+    {
+      "t": 50.0,
+      "act": "payoff",
+      "bars": "26-27",
+      "picture": "Same close framing as bar 1. The whale slides the same bad card; it bounces off the gate at the landing spot and the pods behind keep reading ✓.",
+      "words": "Pods still reading.",
+      "sound": "Bounce, then a clean click.",
+      "camera": "FELT framing restored, z 1.6",
+      "cue_tags": [
+        "callback",
+        "focus"
+      ]
+    },
+    {
+      "t": 54.0,
+      "act": "payoff",
+      "bars": "28-29",
+      "picture": "The whale fixes the missing corner; the card passes and the gate glows. Spark.",
+      "words": "",
+      "sound": "Full resolution.",
+      "camera": "slow pull to z 1.3",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 58.0,
+      "act": "belief",
+      "bars": "30-31",
+      "picture": "The gate at the landing spot, pods reading, the whale breathing.",
+      "words": "Put a shape check on every push.",
+      "sound": "Pad tail.",
+      "camera": "still, breathing only",
+      "cue_tags": []
+    },
+    {
+      "t": 62.0,
+      "act": "lockup",
+      "bars": "32",
+      "picture": "SERIES.lockup over the settled chart ground.",
+      "words": "",
+      "sound": "Lockup sting, then the room tone tail.",
+      "camera": "still",
+      "cue_tags": []
+    }
+  ],
+  "captions": [
+    {
+      "t_in": 1.0,
+      "t_out": 5.0,
+      "text": "My file looked fine to me.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 6.0,
+      "t_out": 9.5,
+      "text": "Then the viewer broke for everyone.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 11.0,
+      "t_out": 13.5,
+      "text": "Every push meets the <i>gate</i>.",
+      "kind": "title"
+    },
+    {
+      "t_in": 14.0,
+      "t_out": 17.5,
+      "text": "Nobody checks the file at the door.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 18.0,
+      "t_out": 20.5,
+      "text": "Check every file the moment it lands.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 21.0,
+      "t_out": 23.5,
+      "text": "Every file is checked as it lands.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 24.0,
+      "t_out": 26.5,
+      "text": "The shape rules have a name: schema.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 28.0,
+      "t_out": 31.5,
+      "text": "It runs on every push, every time.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 33.0,
+      "t_out": 41.5,
+      "text": "Real run · 9 reds in 6 minutes",
+      "kind": "card",
+      "src": "https://app.notion.com/p/3e3d50cfaf93816d9f8fc45cb3a403bc"
+    },
+    {
+      "t_in": 34.0,
+      "t_out": 37.5,
+      "text": "Real run: nine pushes, nine red lights.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 38.0,
+      "t_out": 42.0,
+      "text": "Red stays red until someone fixes it.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 44.5,
+      "t_out": 47.0,
+      "text": "Right shape, wrong content. It passes.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 47.5,
+      "t_out": 50.5,
+      "text": "The check reads shape, not meaning.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 51.0,
+      "t_out": 56.0,
+      "text": "Pods still reading.",
+      "kind": "label"
+    },
+    {
+      "t_in": 58.0,
+      "t_out": 61.75,
+      "text": "Put a shape check on every push.",
+      "kind": "caption"
+    }
+  ],
+  "terms": [
+    {
+      "term": "schema",
+      "symbol": "gate",
+      "pictured_at": 20.0,
+      "named_at": 24.0
+    }
+  ],
+  "jargon": [
+    "schema",
+    "validate",
+    "contract",
+    "annotation",
+    "CI"
+  ],
+  "sound": {
+    "signature": "A bright latch click on every pass",
+    "problem_motif": "A stalled, buzzing note that never clicks",
+    "limit_unresolved": true
+  },
+  "score_self": {
+    "score": 0.68,
+    "reason": "The pain and the gate are clear, but they're generic CI. The sheaf is nearly invisible, and the real run shows the check firing, not catching a known bad output. The limit is honest and drawn.",
+    "weakest_piece": "real_case"
+  }
+}

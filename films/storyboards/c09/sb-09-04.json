@@ -395,7 +395,7 @@
   {
    "t_in": 31.935,
    "t_out": 42.097,
-   "text": "Real run · 22 → 52 of 52 checks.",
+   "text": "Real run · checks 22/52 → 52/52.",
    "kind": "card",
    "src": "https://github.com/manutej/glyph-foundry-studio-pro"
   },

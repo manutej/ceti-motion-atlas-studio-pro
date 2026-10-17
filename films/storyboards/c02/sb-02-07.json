@@ -1,0 +1,464 @@
+{
+  "schema_version": "sb60-v1",
+  "id": "sb-02-07",
+  "meta_prompt_id": "mp-c02-v1",
+  "cluster": "02 Sheaves in the wild",
+  "repo": "manutej/sheaf-dep-ethereum",
+  "capability": "Follow the credit share down every link",
+  "audience": "Everyone",
+  "wada": 243,
+  "bpm": 124,
+  "dur": 62.2,
+  "title": "Credit should flow down the <i>links</i>.",
+  "hook": {
+    "kind": "Example",
+    "picture": "Close on the whale as a shower of ticks lands on one big glowing card. Just below it, a small card that holds it up stays grey and raises a flag.",
+    "words": "The app got all the thanks."
+  },
+  "problem_in_viewer_words": {
+    "kind": "Fact",
+    "body": "The app gets thanked. The tiny library under it gets nothing.",
+    "who": "open source maintainer reading a thank-you post"
+  },
+  "why_it_keeps_happening": {
+    "kind": "Fact",
+    "picture": "Three helpers go dark, every 2 beats, then 1, then a half.",
+    "words": "Thanks stop at the top."
+  },
+  "stakes": {
+    "kind": "Fact",
+    "body": "The small projects everything depends on burn out unpaid, and one day the big ones fall with them."
+  },
+  "solution_hint": "Pass a share down every link.",
+  "metaphor": {
+    "kind": "Example",
+    "body": "Every link down from a card carries a share of its credit, shown as the thickness of the stream. A pin on each card keeps what it passes on below what it got.",
+    "symbols": [
+      "whale",
+      "line",
+      "atom",
+      "pin",
+      "tick"
+    ]
+  },
+  "mechanism_beats": {
+    "kind": "Method",
+    "steps": [
+      {
+        "t": 19.355,
+        "picture": "Ticks flow down each link from the big card as a stream; the stream's thickness shows the share.",
+        "words": "Each link passes a share down.",
+        "sound": "Chimes cascade down, in tune."
+      },
+      {
+        "t": 23.226,
+        "picture": "A pin on each card: what flows out must stay below what came in. The rest stays home and glows.",
+        "words": "Never pass on more than you got.",
+        "sound": "A held pin note under the cascade."
+      },
+      {
+        "t": 25.161,
+        "picture": "Push-in. One card tries to pass on more than it holds. Its outflow overflows raw sienna, is refused, and clips back.",
+        "words": "",
+        "sound": "An overflow wobble, then the clip."
+      },
+      {
+        "t": 27.097,
+        "picture": "Ticks trickle all the way to the bottom row. The small cards brighten one by one.",
+        "words": "Credit reaches the bottom row too.",
+        "sound": "The chime run lands on the lowest note."
+      }
+    ]
+  },
+  "real_case": {
+    "kind": "Evidence",
+    "claim": "In the deepfunding graph explored by sheaf-dep-ethereum, each of 14,927 edges carries a weight: the portion of the dependent's credit that belongs to the dependency. Weights leaving a source total less than one.",
+    "numbers": [
+      "14,927"
+    ],
+    "source": {
+      "kind": "repo",
+      "title": "deepfunding/dependency-graph README (data explored by manutej/sheaf-dep-ethereum)",
+      "url": "https://github.com/deepfunding/dependency-graph"
+    },
+    "verified": true,
+    "illustrative": false
+  },
+  "honest_limit": {
+    "kind": "Constraint",
+    "picture": "A hand-written share label on one link. A vital small card gets a thin stream because its share was set low.",
+    "words": "The share is an estimate. Someone set it."
+  },
+  "not_this": {
+    "kind": "Constraint",
+    "body": "A fair rule, not a fair price."
+  },
+  "ending_pattern": {
+    "kind": "Example",
+    "slug": "credit-rain",
+    "body": "The thanks that stopped at the top now rains on down every link to the little library, which brightens and lowers its flag.",
+    "callback": "The grey card with its flag from bar 2 brightens under the same shower, in the same framing."
+  },
+  "end_belief": {
+    "kind": "Goal",
+    "body": "When you thank a project, thank its links."
+  },
+  "beats": [
+    {
+      "t": 0.0,
+      "act": "felt",
+      "bars": "1-2",
+      "picture": "Close on the whale as a shower of ticks rains onto one big glowing card at the top of the line.",
+      "words": "The app got all the thanks.",
+      "sound": "Bright coin-like chimes.",
+      "camera": "close z 1.6 on the whale",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 1.935,
+      "act": "felt",
+      "bars": "2",
+      "picture": "Just below, a small card holding the big one up stays grey. It cracks a little and raises a raw sienna flag.",
+      "words": "",
+      "sound": "One dull, unanswered chime.",
+      "camera": "close z 1.6, small follow pan",
+      "cue_tags": [
+        "consequence",
+        "focus"
+      ]
+    },
+    {
+      "t": 5.806,
+      "act": "felt",
+      "bars": "3-4",
+      "picture": "A second small helper card goes dark beside it.",
+      "words": "The little library under it got nothing.",
+      "sound": "A second dull chime.",
+      "camera": "close z 1.5",
+      "cue_tags": [
+        "consequence",
+        "focus"
+      ]
+    },
+    {
+      "t": 7.742,
+      "act": "felt",
+      "bars": "5",
+      "picture": "The whale looks from the glowing card to the grey ones beneath. Hold.",
+      "words": "",
+      "sound": "Silence creeps in.",
+      "camera": "close z 1.6, hold",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 10.645,
+      "act": "why",
+      "bars": "6",
+      "picture": "Half a bar of stillness, then SERIES.open and the title.",
+      "words": "Credit should flow down the <i>links</i>.",
+      "sound": "Near-silence, then the title tick.",
+      "camera": "still (half a bar of stillness first)",
+      "cue_tags": [
+        "hinge"
+      ]
+    },
+    {
+      "t": 11.613,
+      "act": "why",
+      "bars": "7",
+      "picture": "Pull back. Many big cards collect ticks; under each, unseen helper cards stay grey.",
+      "words": "",
+      "sound": "Room tone, then the problem motif once.",
+      "camera": "pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 13.548,
+      "act": "why",
+      "bars": "8-9",
+      "picture": "Three helpers go dark, every 2 beats, then 1, then a half.",
+      "words": "Thanks stop at the top.",
+      "sound": "Problem motif three times, accelerating.",
+      "camera": "wide z 1.0, the pattern revealed",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 17.419,
+      "act": "why",
+      "bars": "10",
+      "picture": "All motion stops. Faint streams ghost in down each link from the big cards.",
+      "words": "Pass a share down every link.",
+      "sound": "The first clean signature: a falling chime run.",
+      "camera": "wide z 1.0, still",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 19.355,
+      "act": "move",
+      "bars": "11-12",
+      "picture": "Ticks flow down each link from the big card as a stream; the stream's thickness shows the share.",
+      "words": "Each link passes a share down.",
+      "sound": "Chimes cascade down, in tune.",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech",
+        "focus"
+      ]
+    },
+    {
+      "t": 23.226,
+      "act": "move",
+      "bars": "13",
+      "picture": "A pin on each card: what flows out must stay below what came in. The rest stays home and glows.",
+      "words": "Never pass on more than you got.",
+      "sound": "A held pin note under the cascade.",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech",
+        "focus"
+      ]
+    },
+    {
+      "t": 25.161,
+      "act": "move",
+      "bars": "14",
+      "picture": "Push-in. One card tries to pass on more than it holds. Its outflow overflows raw sienna, is refused, and clips back.",
+      "words": "",
+      "sound": "An overflow wobble, then the clip.",
+      "camera": "the one push-in, z 1.2 to 1.3",
+      "cue_tags": [
+        "mech",
+        "focus"
+      ]
+    },
+    {
+      "t": 27.097,
+      "act": "move",
+      "bars": "15-16",
+      "picture": "Ticks trickle all the way to the bottom row. The small cards brighten one by one.",
+      "words": "Credit reaches the bottom row too.",
+      "sound": "The chime run lands on the lowest note.",
+      "camera": "medium z 1.3, settle",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 30.968,
+      "act": "case",
+      "bars": "17-19",
+      "picture": "Wide. The real map, a fan of thousands of cards, with streams flowing down every link. The card fades in on clean paper.",
+      "words": "Real map: each link carries a share.",
+      "sound": "Pulse bed, a soft rain of ticks.",
+      "camera": "steady wide z 0.9, slow drift",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 36.774,
+      "act": "case",
+      "bars": "20-22",
+      "picture": "Drift to one card: its out-streams added up sit just under its own glow.",
+      "words": "Shares out stay below one whole.",
+      "sound": "A held chord, steady.",
+      "camera": "steady wide, slow drift",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 42.581,
+      "act": "limit",
+      "bars": "23-24",
+      "picture": "A hand-written share label on one link. A vital small card gets a thin stream because its share was set low.",
+      "words": "The share is an estimate. Someone set it.",
+      "sound": "The chime plays once and stays unresolved.",
+      "camera": "still",
+      "cue_tags": [
+        "limit",
+        "focus"
+      ]
+    },
+    {
+      "t": 45.484,
+      "act": "limit",
+      "bars": "24-25",
+      "picture": "Slow push into the thin stream and the hand-set label.",
+      "words": "A fair rule, not a fair price.",
+      "sound": "Room tone.",
+      "camera": "one slow push to the thing that slipped",
+      "cue_tags": [
+        "limit"
+      ]
+    },
+    {
+      "t": 48.387,
+      "act": "payoff",
+      "bars": "26-27",
+      "picture": "Same close framing as bar 1. The shower lands on the big card, then rains on through its links to the little library, which brightens and lowers its flag.",
+      "words": "Thanks reached the bottom.",
+      "sound": "Coin chimes, then the cascade resolves.",
+      "camera": "FELT framing restored, z 1.6",
+      "cue_tags": [
+        "callback",
+        "focus"
+      ]
+    },
+    {
+      "t": 52.258,
+      "act": "payoff",
+      "bars": "28-29",
+      "picture": "The helper cards glow in a row under the big one. Spark.",
+      "words": "",
+      "sound": "Full resolution.",
+      "camera": "slow pull to z 1.3",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 56.129,
+      "act": "belief",
+      "bars": "30-31",
+      "picture": "Streams flowing gently down every link, the whale breathing.",
+      "words": "When you thank a project, thank its links.",
+      "sound": "Pad tail.",
+      "camera": "still, breathing only",
+      "cue_tags": []
+    },
+    {
+      "t": 60.0,
+      "act": "lockup",
+      "bars": "32",
+      "picture": "SERIES.lockup over the settled chart ground.",
+      "words": "",
+      "sound": "Lockup sting, then the room tone tail.",
+      "camera": "still",
+      "cue_tags": []
+    }
+  ],
+  "captions": [
+    {
+      "t_in": 0.968,
+      "t_out": 4.839,
+      "text": "The app got all the thanks.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 5.806,
+      "t_out": 9.194,
+      "text": "The little library under it got nothing.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 10.645,
+      "t_out": 13.065,
+      "text": "Credit should flow down the <i>links</i>.",
+      "kind": "title"
+    },
+    {
+      "t_in": 13.548,
+      "t_out": 16.935,
+      "text": "Thanks stop at the top.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 17.419,
+      "t_out": 19.839,
+      "text": "Pass a share down every link.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 20.323,
+      "t_out": 22.742,
+      "text": "Each link passes a share down.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 23.226,
+      "t_out": 25.645,
+      "text": "Never pass on more than you got.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 27.097,
+      "t_out": 30.484,
+      "text": "Credit reaches the bottom row too.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 31.935,
+      "t_out": 40.161,
+      "text": "Real data · 14,927 links, each with a share",
+      "kind": "card",
+      "src": "https://github.com/deepfunding/dependency-graph"
+    },
+    {
+      "t_in": 32.903,
+      "t_out": 36.29,
+      "text": "Real map: each link carries a share.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 36.774,
+      "t_out": 40.645,
+      "text": "Shares out stay below one whole.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 43.065,
+      "t_out": 45.484,
+      "text": "The share is an estimate. Someone set it.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 45.968,
+      "t_out": 48.871,
+      "text": "A fair rule, not a fair price.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 49.355,
+      "t_out": 54.194,
+      "text": "Thanks reached the bottom.",
+      "kind": "label"
+    },
+    {
+      "t_in": 56.129,
+      "t_out": 59.758,
+      "text": "When you thank a project, thank its links.",
+      "kind": "caption"
+    }
+  ],
+  "terms": [],
+  "jargon": [
+    "dependency",
+    "weight",
+    "graph",
+    "node",
+    "edge",
+    "Ethereum",
+    "funding"
+  ],
+  "sound": {
+    "signature": "A falling run of tuned chimes",
+    "problem_motif": "One dull chime with no answer",
+    "limit_unresolved": true
+  },
+  "score_self": {
+    "score": 0.7,
+    "reason": "It's the most universal pain in the cluster, and the credit rain is a strong ending. But the sheaf idea is thin, and the share rule belongs to the dataset, not Manu's repo. The limit says so honestly.",
+    "weakest_piece": "metaphor"
+  }
+}

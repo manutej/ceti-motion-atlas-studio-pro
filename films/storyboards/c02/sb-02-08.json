@@ -1,0 +1,474 @@
+{
+  "schema_version": "sb60-v1",
+  "id": "sb-02-08",
+  "meta_prompt_id": "mp-c02-v1",
+  "cluster": "02 Sheaves in the wild",
+  "repo": "manutej/ormus-harness-sheaf-lattice",
+  "capability": "Draw a link only where the source shows it",
+  "audience": "Researchers",
+  "wada": 296,
+  "bpm": 128,
+  "dur": 60.3,
+  "title": "Draw only <i>links</i> you can show.",
+  "hook": {
+    "kind": "Example",
+    "picture": "Close on the whale drawing a neat diagram, adding an arrow between every pair of boxes so it all looks connected. A pod follows one arrow to nowhere.",
+    "words": "I drew it neat. Every box connected."
+  },
+  "problem_in_viewer_words": {
+    "kind": "Fact",
+    "body": "The diagram looked tidy. Half the arrows were guesses.",
+    "who": "researcher reviewing an agent architecture diagram"
+  },
+  "why_it_keeps_happening": {
+    "kind": "Fact",
+    "picture": "Three pods take three guessed arrows, every 2 beats, then 1, then a half. Three ✕.",
+    "words": "Real and guessed arrows look the same."
+  },
+  "stakes": {
+    "kind": "Fact",
+    "body": "Readers trust links nobody built, so reviews, plans and agents act on wiring that does not exist."
+  },
+  "solution_hint": "Draw a link only where it's written.",
+  "metaphor": {
+    "kind": "Example",
+    "body": "The whale holds the source document as it draws. A link goes in only where the source shows it; guessed arrows fade. A core box with no outgoing links is left alone, because that is what the source says.",
+    "symbols": [
+      "whale",
+      "line",
+      "seam",
+      "pod",
+      "flag"
+    ]
+  },
+  "mechanism_beats": {
+    "kind": "Method",
+    "steps": [
+      {
+        "t": 18.75,
+        "picture": "The whale reads the source card and draws a teal dashed link only where it shows one. The guessed arrows fade out.",
+        "words": "A link goes in only with a source.",
+        "sound": "A pen tick per sourced link."
+      },
+      {
+        "t": 22.5,
+        "picture": "The core box ends up with no outgoing links. The whale starts to add one to make it look tidy, stops, and leaves it alone.",
+        "words": "The core box stays alone. That's honest.",
+        "sound": "A tick lifted mid-stroke, then rest."
+      },
+      {
+        "t": 24.375,
+        "picture": "Push-in. Six known-missing pieces are drawn as terracotta dashed links, each with a small note that it is named in the source as not built yet.",
+        "words": "",
+        "sound": "Six soft muted ticks."
+      },
+      {
+        "t": 26.25,
+        "picture": "The result settles into layers: rules at the top, then parts, surfaces, and named next.",
+        "words": "Each link is a seam with a source.",
+        "sound": "A four-note rising figure."
+      }
+    ]
+  },
+  "real_case": {
+    "kind": "Evidence",
+    "claim": "The OAH digest lattice draws edges only where the source shows them, in four strata (L0 law to L3 named next), with six named unbuilt items as terracotta. The raw ingest (cap 400) hairballs in 3D.",
+    "numbers": [
+      "L0",
+      "L3",
+      "six first-class facts",
+      "cap 400",
+      "225KB"
+    ],
+    "source": {
+      "kind": "notion",
+      "title": "OAH 3D sheaf lattice — private review",
+      "url": "https://app.notion.com/p/3d4d50cfaf9381a18059e8085c072932"
+    },
+    "verified": true,
+    "illustrative": false
+  },
+  "honest_limit": {
+    "kind": "Constraint",
+    "picture": "A real connection exists between two boxes (a faint ghost thread), but the docs never mention it, so the map leaves it out.",
+    "words": "If the docs never said it, it's missing."
+  },
+  "not_this": {
+    "kind": "Constraint",
+    "body": "Written down is not the same as real."
+  },
+  "ending_pattern": {
+    "kind": "Example",
+    "slug": "honest-map",
+    "body": "The diagram is redrawn in the same spot with fewer arrows, the core box standing alone, and gaps in their own colour; every pod arrives somewhere real.",
+    "callback": "The arrow to nowhere from bar 2 is gone, and the pod that failed there now arrives, in the same framing."
+  },
+  "end_belief": {
+    "kind": "Goal",
+    "body": "Every link on your map needs a source."
+  },
+  "beats": [
+    {
+      "t": 0.0,
+      "act": "felt",
+      "bars": "1-2",
+      "picture": "Close on the whale drawing boxes on the line and adding an arrow between every pair, so everything looks connected.",
+      "words": "I drew it neat. Every box connected.",
+      "sound": "Quick pen scratches, pleasantly busy.",
+      "camera": "close z 1.6 on the whale",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 1.875,
+      "act": "felt",
+      "bars": "2",
+      "picture": "A pod follows one of the arrows and reaches a box that is not really joined. It answers with a copper ✕ chip.",
+      "words": "",
+      "sound": "A hollow knock.",
+      "camera": "close z 1.6, small follow pan",
+      "cue_tags": [
+        "consequence",
+        "focus"
+      ]
+    },
+    {
+      "t": 5.625,
+      "act": "felt",
+      "bars": "3-4",
+      "picture": "A second pod takes a different guessed arrow. Another ✕.",
+      "words": "Then someone followed an arrow to nowhere.",
+      "sound": "A second hollow knock.",
+      "camera": "close z 1.5",
+      "cue_tags": [
+        "consequence",
+        "focus"
+      ]
+    },
+    {
+      "t": 7.5,
+      "act": "felt",
+      "bars": "5",
+      "picture": "The whale looks at its neat, crowded diagram. Hold.",
+      "words": "",
+      "sound": "Silence creeps in.",
+      "camera": "close z 1.6, hold",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 10.312,
+      "act": "why",
+      "bars": "6",
+      "picture": "Half a bar of stillness, then SERIES.open and the title.",
+      "words": "Draw only <i>links</i> you can show.",
+      "sound": "Near-silence, then the title tick.",
+      "camera": "still (half a bar of stillness first)",
+      "cue_tags": [
+        "hinge"
+      ]
+    },
+    {
+      "t": 11.25,
+      "act": "why",
+      "bars": "7",
+      "picture": "Pull back. The diagram is crowded with arrows, all the same ink; you can't tell which were seen and which were guessed.",
+      "words": "",
+      "sound": "Room tone, then the problem motif once.",
+      "camera": "pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 13.125,
+      "act": "why",
+      "bars": "8-9",
+      "picture": "Three pods take three guessed arrows, every 2 beats, then 1, then a half. Three ✕.",
+      "words": "Real and guessed arrows look the same.",
+      "sound": "Problem motif three times, accelerating.",
+      "camera": "wide z 1.0, the pattern revealed",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 16.875,
+      "act": "why",
+      "bars": "10",
+      "picture": "All motion stops. A source card ghosts in beside the whale's pen.",
+      "words": "Draw a link only where it's written.",
+      "sound": "The first clean signature: a pen tick on paper.",
+      "camera": "wide z 1.0, still",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 18.75,
+      "act": "move",
+      "bars": "11-12",
+      "picture": "The whale reads the source card and draws a teal dashed link only where it shows one. The guessed arrows fade out.",
+      "words": "A link goes in only with a source.",
+      "sound": "A pen tick per sourced link.",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech",
+        "focus"
+      ]
+    },
+    {
+      "t": 22.5,
+      "act": "move",
+      "bars": "13",
+      "picture": "The core box ends up with no outgoing links. The whale starts to add one to make it look tidy, stops, and leaves it alone.",
+      "words": "The core box stays alone. That's honest.",
+      "sound": "A tick lifted mid-stroke, then rest.",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech",
+        "focus"
+      ]
+    },
+    {
+      "t": 24.375,
+      "act": "move",
+      "bars": "14",
+      "picture": "Push-in. Six known-missing pieces are drawn as terracotta dashed links, each with a small note that it is named in the source as not built yet.",
+      "words": "",
+      "sound": "Six soft muted ticks.",
+      "camera": "the one push-in, z 1.2 to 1.3",
+      "cue_tags": [
+        "mech",
+        "focus"
+      ]
+    },
+    {
+      "t": 26.25,
+      "act": "move",
+      "bars": "15-16",
+      "picture": "The result settles into layers: rules at the top, then parts, surfaces, and named next.",
+      "words": "Each link is a seam with a source.",
+      "sound": "A four-note rising figure.",
+      "camera": "medium z 1.3, settle",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 30.0,
+      "act": "case",
+      "bars": "17-19",
+      "picture": "Wide. The real harness map: four layers, teal links only where the docs show them, six terracotta gaps at the top layer. The card fades in on clean paper.",
+      "words": "Real review of an agent harness map.",
+      "sound": "Pulse bed, quiet ticks.",
+      "camera": "steady wide z 0.9, slow drift",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 35.625,
+      "act": "case",
+      "bars": "20-22",
+      "picture": "Beside it, the raw everything-ingested map: a tangled hairball. It dims away.",
+      "words": "The raw dump was an unreadable hairball.",
+      "sound": "A muddy chord that fades.",
+      "camera": "steady wide, slow drift",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 41.25,
+      "act": "limit",
+      "bars": "23-24",
+      "picture": "A real connection exists between two boxes (a faint ghost thread), but the docs never mention it, so the map leaves it out.",
+      "words": "If the docs never said it, it's missing.",
+      "sound": "The tick plays once and stays unresolved.",
+      "camera": "still",
+      "cue_tags": [
+        "limit",
+        "focus"
+      ]
+    },
+    {
+      "t": 44.062,
+      "act": "limit",
+      "bars": "24-25",
+      "picture": "Slow push into the ghost thread the map can't show.",
+      "words": "Written down is not the same as real.",
+      "sound": "Room tone.",
+      "camera": "one slow push to the thing that slipped",
+      "cue_tags": [
+        "limit"
+      ]
+    },
+    {
+      "t": 46.875,
+      "act": "payoff",
+      "bars": "26-27",
+      "picture": "Same close framing as bar 1. The whale draws again: fewer arrows, the core box alone, gaps in terracotta. Pods follow teal links and answer ✓.",
+      "words": "No arrow to nowhere.",
+      "sound": "Pen ticks, each one answered.",
+      "camera": "FELT framing restored, z 1.6",
+      "cue_tags": [
+        "callback",
+        "focus"
+      ]
+    },
+    {
+      "t": 50.625,
+      "act": "payoff",
+      "bars": "28-29",
+      "picture": "Every pod arrives somewhere real. Spark.",
+      "words": "",
+      "sound": "Full resolution.",
+      "camera": "slow pull to z 1.3",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 54.375,
+      "act": "belief",
+      "bars": "30-31",
+      "picture": "The honest map, the whale breathing beside it.",
+      "words": "Every link on your map needs a source.",
+      "sound": "Pad tail.",
+      "camera": "still, breathing only",
+      "cue_tags": []
+    },
+    {
+      "t": 58.125,
+      "act": "lockup",
+      "bars": "32",
+      "picture": "SERIES.lockup over the settled chart ground.",
+      "words": "",
+      "sound": "Lockup sting, then the room tone tail.",
+      "camera": "still",
+      "cue_tags": []
+    }
+  ],
+  "captions": [
+    {
+      "t_in": 0.938,
+      "t_out": 4.688,
+      "text": "I drew it neat. Every box connected.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 5.625,
+      "t_out": 8.906,
+      "text": "Then someone followed an arrow to nowhere.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 10.312,
+      "t_out": 12.656,
+      "text": "Draw only <i>links</i> you can show.",
+      "kind": "title"
+    },
+    {
+      "t_in": 13.125,
+      "t_out": 16.406,
+      "text": "Real and guessed arrows look the same.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 16.875,
+      "t_out": 19.219,
+      "text": "Draw a link only where it's written.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 19.688,
+      "t_out": 22.031,
+      "text": "A link goes in only with a source.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 22.5,
+      "t_out": 24.844,
+      "text": "The core box stays alone. That's honest.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 26.25,
+      "t_out": 29.531,
+      "text": "Each link is a seam with a source.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 30.938,
+      "t_out": 38.906,
+      "text": "Real review · 4 layers · 6 named gaps",
+      "kind": "card",
+      "src": "https://app.notion.com/p/3d4d50cfaf9381a18059e8085c072932"
+    },
+    {
+      "t_in": 31.875,
+      "t_out": 35.156,
+      "text": "Real review of an agent harness map.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 35.625,
+      "t_out": 39.375,
+      "text": "The raw dump was an unreadable hairball.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 41.719,
+      "t_out": 44.062,
+      "text": "If the docs never said it, it's missing.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 44.531,
+      "t_out": 47.344,
+      "text": "Written down is not the same as real.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 47.812,
+      "t_out": 52.5,
+      "text": "No arrow to nowhere.",
+      "kind": "label"
+    },
+    {
+      "t_in": 54.375,
+      "t_out": 57.891,
+      "text": "Every link on your map needs a source.",
+      "kind": "caption"
+    }
+  ],
+  "terms": [
+    {
+      "term": "seam",
+      "symbol": "seam",
+      "pictured_at": 18.75,
+      "named_at": 26.25
+    }
+  ],
+  "jargon": [
+    "kernel",
+    "lattice",
+    "ingest",
+    "strata",
+    "harness",
+    "digest"
+  ],
+  "sound": {
+    "signature": "A clean pen tick on paper",
+    "problem_motif": "A hollow knock where a link should be",
+    "limit_unresolved": true
+  },
+  "score_self": {
+    "score": 0.82,
+    "reason": "It's distinctive and true to the source ('Do not invent links'). The lonely core box is a memorable honest beat, and the limit is a real blind spot. The only risk is that the four layers in the card are a count, not a printed number.",
+    "weakest_piece": "real_case"
+  }
+}

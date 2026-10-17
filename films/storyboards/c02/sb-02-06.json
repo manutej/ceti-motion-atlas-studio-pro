@@ -1,0 +1,478 @@
+{
+  "schema_version": "sb60-v1",
+  "id": "sb-02-06",
+  "meta_prompt_id": "mp-c02-v1",
+  "cluster": "02 Sheaves in the wild",
+  "repo": "manutej/sheaf-dep-ethereum",
+  "capability": "Lay out every link, row by row, to see what lies below",
+  "audience": "Leaders",
+  "wada": 84,
+  "bpm": 128,
+  "dur": 60.3,
+  "title": "See every <i>link</i> below the top.",
+  "hook": {
+    "kind": "Example",
+    "picture": "Close on the whale tending a few big cards at the top of the line. Far below, unseen, a tiny card cracks and a big card sags.",
+    "words": "We back the big projects we can see."
+  },
+  "problem_in_viewer_words": {
+    "kind": "Fact",
+    "body": "We back the big projects. The break came from below.",
+    "who": "funding lead at a quarterly review"
+  },
+  "why_it_keeps_happening": {
+    "kind": "Fact",
+    "picture": "Three cracks rise from below, every 2 beats, then 1, then a half. Each sags a different top card.",
+    "words": "We only look one step down."
+  },
+  "stakes": {
+    "kind": "Fact",
+    "body": "Money and attention go to what is visible, while the small project everything stands on fails unnoticed."
+  },
+  "solution_hint": "Lay out every link, row by row.",
+  "metaphor": {
+    "kind": "Example",
+    "body": "The web of projects is laid out in rows: what you fund, what they use, what those use. Links run between rows, so a crack two rows down is traced up to every big card that leans on it.",
+    "symbols": [
+      "whale",
+      "line",
+      "atom",
+      "seam",
+      "flag"
+    ]
+  },
+  "mechanism_beats": {
+    "kind": "Method",
+    "steps": [
+      {
+        "t": 18.75,
+        "picture": "The fog lifts row by row: row one the funded cards, row two what they use, row three what those use. Links drawn between rows.",
+        "words": "Every link laid out, row by row.",
+        "sound": "A bell per row, in tune."
+      },
+      {
+        "t": 22.5,
+        "picture": "Links become dashed joins where rows meet. The whale follows one thick link down two rows to the tiny cracked card.",
+        "words": "Follow one link down to the crack.",
+        "sound": "A descending three-note figure."
+      },
+      {
+        "t": 24.375,
+        "picture": "Push-in. The cracked card glows copper, and a thin copper thread lights up through the rows to every top card leaning on it.",
+        "words": "",
+        "sound": "The bell rings once, held."
+      },
+      {
+        "t": 26.25,
+        "picture": "The lit threads show which top cards are exposed. The whale ticks each one.",
+        "words": "Where rows meet, check the seam.",
+        "sound": "Soft ticks on each thread."
+      }
+    ]
+  },
+  "real_case": {
+    "kind": "Evidence",
+    "claim": "The deepfunding dependency graph that sheaf-dep-ethereum explores lists 5,024 Level 2 dependency nodes and 14,927 edges around the Ethereum seed projects.",
+    "numbers": [
+      "5,024",
+      "14,927"
+    ],
+    "source": {
+      "kind": "repo",
+      "title": "deepfunding/dependency-graph README (data explored by manutej/sheaf-dep-ethereum)",
+      "url": "https://github.com/deepfunding/dependency-graph"
+    },
+    "verified": true,
+    "illustrative": false
+  },
+  "honest_limit": {
+    "kind": "Constraint",
+    "picture": "The whale follows a thick link to a healthy card and a thin, faint link to the one that cracks next. The line weight said nothing about which would break.",
+    "words": "A link shows use, not risk."
+  },
+  "not_this": {
+    "kind": "Constraint",
+    "body": "A map of links is not a forecast."
+  },
+  "ending_pattern": {
+    "kind": "Example",
+    "slug": "fog-lifts",
+    "body": "The same top row, but with the rows below now in view: the tiny crack is seen early and patched before anything above sags.",
+    "callback": "The card that sagged in bar 2 stays level, because the crack below it is visible in the same framing."
+  },
+  "end_belief": {
+    "kind": "Goal",
+    "body": "Look two rows down before you fund."
+  },
+  "beats": [
+    {
+      "t": 0.0,
+      "act": "felt",
+      "bars": "1-2",
+      "picture": "Close on the whale polishing three big cards at the top of the line, all glowing.",
+      "words": "We back the big projects we can see.",
+      "sound": "Bright bell taps.",
+      "camera": "close z 1.6 on the whale",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 1.875,
+      "act": "felt",
+      "bars": "2",
+      "picture": "Far below, half in fog, a tiny card cracks. The line under one big card sags, and a pod using it answers with a copper ✕ chip.",
+      "words": "",
+      "sound": "A cracked, flat bell.",
+      "camera": "close z 1.6, small follow pan",
+      "cue_tags": [
+        "consequence",
+        "focus"
+      ]
+    },
+    {
+      "t": 5.625,
+      "act": "felt",
+      "bars": "3-4",
+      "picture": "The sag spreads to a second big card. A second ✕.",
+      "words": "The break came from something below them.",
+      "sound": "The flat bell again, lower.",
+      "camera": "close z 1.5",
+      "cue_tags": [
+        "consequence",
+        "focus"
+      ]
+    },
+    {
+      "t": 7.5,
+      "act": "felt",
+      "bars": "5",
+      "picture": "The whale peers down into the fog and can't see the crack. Hold.",
+      "words": "",
+      "sound": "Silence creeps in.",
+      "camera": "close z 1.6, hold",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 10.312,
+      "act": "why",
+      "bars": "6",
+      "picture": "Half a bar of stillness, then SERIES.open and the title.",
+      "words": "See every <i>link</i> below the top.",
+      "sound": "Near-silence, then the title tick.",
+      "camera": "still (half a bar of stillness first)",
+      "cue_tags": [
+        "hinge"
+      ]
+    },
+    {
+      "t": 11.25,
+      "act": "why",
+      "bars": "7",
+      "picture": "Pull back. The top row sits on a dense mass of smaller cards, mostly hidden in fog.",
+      "words": "",
+      "sound": "Room tone, then the problem motif once.",
+      "camera": "pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 13.125,
+      "act": "why",
+      "bars": "8-9",
+      "picture": "Three cracks rise from below, every 2 beats, then 1, then a half. Each sags a different top card.",
+      "words": "We only look one step down.",
+      "sound": "Problem motif three times, accelerating.",
+      "camera": "wide z 1.0, the pattern revealed",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 16.875,
+      "act": "why",
+      "bars": "10",
+      "picture": "All motion stops. Faint row lines ghost in under the top row.",
+      "words": "Lay out every link, row by row.",
+      "sound": "The first clean signature: a clear bell.",
+      "camera": "wide z 1.0, still",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 18.75,
+      "act": "move",
+      "bars": "11-12",
+      "picture": "The fog lifts row by row: row one the funded cards, row two what they use, row three what those use. Links drawn between rows.",
+      "words": "Every link laid out, row by row.",
+      "sound": "A bell per row, in tune.",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech",
+        "focus"
+      ]
+    },
+    {
+      "t": 22.5,
+      "act": "move",
+      "bars": "13",
+      "picture": "Links become dashed joins where rows meet. The whale follows one thick link down two rows to the tiny cracked card.",
+      "words": "Follow one link down to the crack.",
+      "sound": "A descending three-note figure.",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech",
+        "focus"
+      ]
+    },
+    {
+      "t": 24.375,
+      "act": "move",
+      "bars": "14",
+      "picture": "Push-in. The cracked card glows copper, and a thin copper thread lights up through the rows to every top card leaning on it.",
+      "words": "",
+      "sound": "The bell rings once, held.",
+      "camera": "the one push-in, z 1.2 to 1.3",
+      "cue_tags": [
+        "mech",
+        "focus"
+      ]
+    },
+    {
+      "t": 26.25,
+      "act": "move",
+      "bars": "15-16",
+      "picture": "The lit threads show which top cards are exposed. The whale ticks each one.",
+      "words": "Where rows meet, check the seam.",
+      "sound": "Soft ticks on each thread.",
+      "camera": "medium z 1.3, settle",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 30.0,
+      "act": "case",
+      "bars": "17-19",
+      "picture": "Wide. The real map: a short top row over a fan of thousands of small cards, in rows. The card fades in on clean paper.",
+      "words": "Real map: the Ethereum open source web.",
+      "sound": "Pulse bed, many faint ticks.",
+      "camera": "steady wide z 0.9, slow drift",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 35.625,
+      "act": "case",
+      "bars": "20-22",
+      "picture": "Drift down the fan: most cards sit in the rows below the top.",
+      "words": "Thousands of projects under a few on top.",
+      "sound": "A low drone under the ticks.",
+      "camera": "steady wide, slow drift",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 41.25,
+      "act": "limit",
+      "bars": "23-24",
+      "picture": "The whale follows a thick link to a healthy card and a thin, faint link to the one that cracks next. The line weight said nothing about which would break.",
+      "words": "A link shows use, not risk.",
+      "sound": "The bell plays once and stays unresolved.",
+      "camera": "still",
+      "cue_tags": [
+        "limit",
+        "focus"
+      ]
+    },
+    {
+      "t": 44.062,
+      "act": "limit",
+      "bars": "24-25",
+      "picture": "Slow push into the faint link that broke.",
+      "words": "A map of links is not a forecast.",
+      "sound": "Room tone.",
+      "camera": "one slow push to the thing that slipped",
+      "cue_tags": [
+        "limit"
+      ]
+    },
+    {
+      "t": 46.875,
+      "act": "payoff",
+      "bars": "26-27",
+      "picture": "Same close framing as bar 1. The rows below are now visible; the tiny card's crack shows early, and the whale patches it before the big card sags.",
+      "words": "Seen before it sagged.",
+      "sound": "A cracked bell, then a clear one.",
+      "camera": "FELT framing restored, z 1.6",
+      "cue_tags": [
+        "callback",
+        "focus"
+      ]
+    },
+    {
+      "t": 50.625,
+      "act": "payoff",
+      "bars": "28-29",
+      "picture": "The top cards stay level. Spark.",
+      "words": "",
+      "sound": "Full resolution.",
+      "camera": "slow pull to z 1.3",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 54.375,
+      "act": "belief",
+      "bars": "30-31",
+      "picture": "Three rows in view, the whale breathing above them.",
+      "words": "Look two rows down before you fund.",
+      "sound": "Pad tail.",
+      "camera": "still, breathing only",
+      "cue_tags": []
+    },
+    {
+      "t": 58.125,
+      "act": "lockup",
+      "bars": "32",
+      "picture": "SERIES.lockup over the settled chart ground.",
+      "words": "",
+      "sound": "Lockup sting, then the room tone tail.",
+      "camera": "still",
+      "cue_tags": []
+    }
+  ],
+  "captions": [
+    {
+      "t_in": 0.938,
+      "t_out": 4.688,
+      "text": "We back the big projects we can see.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 5.625,
+      "t_out": 8.906,
+      "text": "The break came from something below them.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 10.312,
+      "t_out": 12.656,
+      "text": "See every <i>link</i> below the top.",
+      "kind": "title"
+    },
+    {
+      "t_in": 13.125,
+      "t_out": 16.406,
+      "text": "We only look one step down.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 16.875,
+      "t_out": 19.219,
+      "text": "Lay out every link, row by row.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 19.688,
+      "t_out": 22.031,
+      "text": "Every link laid out, row by row.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 22.5,
+      "t_out": 24.844,
+      "text": "Follow one link down to the crack.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 26.25,
+      "t_out": 29.531,
+      "text": "Where rows meet, check the seam.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 30.938,
+      "t_out": 38.906,
+      "text": "Real data · 5,024 dependencies · 14,927 links",
+      "kind": "card",
+      "src": "https://github.com/deepfunding/dependency-graph"
+    },
+    {
+      "t_in": 31.875,
+      "t_out": 35.156,
+      "text": "Real map: the Ethereum open source web.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 35.625,
+      "t_out": 39.375,
+      "text": "Thousands of projects under a few on top.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 41.719,
+      "t_out": 44.062,
+      "text": "A link shows use, not risk.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 44.531,
+      "t_out": 47.344,
+      "text": "A map of links is not a forecast.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 47.812,
+      "t_out": 52.5,
+      "text": "Seen before it sagged.",
+      "kind": "label"
+    },
+    {
+      "t_in": 54.375,
+      "t_out": 57.891,
+      "text": "Look two rows down before you fund.",
+      "kind": "caption"
+    }
+  ],
+  "terms": [
+    {
+      "term": "seam",
+      "symbol": "seam",
+      "pictured_at": 22.5,
+      "named_at": 26.25
+    },
+    {
+      "term": "dependencies",
+      "symbol": "atom",
+      "pictured_at": 18.75,
+      "named_at": 30.938
+    }
+  ],
+  "jargon": [
+    "dependency",
+    "dependencies",
+    "transitive",
+    "lattice",
+    "stratum",
+    "graph",
+    "Ethereum"
+  ],
+  "sound": {
+    "signature": "A clear bell, one per row",
+    "problem_motif": "A cracked, flat bell",
+    "limit_unresolved": true
+  },
+  "score_self": {
+    "score": 0.76,
+    "reason": "Leaders feel the 'we fund the top' pain. Rows make the hidden layer visible. The numbers are the dataset's, not a result, and the card says so. The limit (use is not risk) is drawn.",
+    "weakest_piece": "real_case"
+  }
+}

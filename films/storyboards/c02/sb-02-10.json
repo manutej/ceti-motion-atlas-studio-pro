@@ -1,0 +1,473 @@
+{
+  "schema_version": "sb60-v1",
+  "id": "sb-02-10",
+  "meta_prompt_id": "mp-c02-v1",
+  "cluster": "02 Sheaves in the wild",
+  "repo": "manutej/ormus-harness-sheaf-lattice",
+  "capability": "Sort a tangled code map into four readable floors",
+  "audience": "Learners",
+  "wada": 166,
+  "bpm": 120,
+  "dur": 64.3,
+  "title": "Rules on top, <i>parts</i> below.",
+  "hook": {
+    "kind": "Example",
+    "picture": "Close on the whale dumping every file card onto the line, links everywhere, until it is a tangled knot. A pod walks in and spins.",
+    "words": "We mapped every file. All of it."
+  },
+  "problem_in_viewer_words": {
+    "kind": "Fact",
+    "body": "We mapped the whole codebase, and nobody can read it.",
+    "who": "new engineer on day one"
+  },
+  "why_it_keeps_happening": {
+    "kind": "Fact",
+    "picture": "Three more crates tip in, every 2 beats, then 1, then a half. The knot thickens each time.",
+    "words": "Everything sits at the same level."
+  },
+  "stakes": {
+    "kind": "Fact",
+    "body": "New people and new agents can't find their way, so they guess, and the guesses become bugs."
+  },
+  "solution_hint": "Put the rules first. Then the parts.",
+  "metaphor": {
+    "kind": "Example",
+    "body": "The rule cards go on top, pinned. Then the big parts, then what users touch, then what is named as next. Links run only between rows where the docs show them.",
+    "symbols": [
+      "whale",
+      "line",
+      "atom",
+      "pin",
+      "pod"
+    ]
+  },
+  "mechanism_beats": {
+    "kind": "Method",
+    "steps": [
+      {
+        "t": 20.0,
+        "picture": "The whale pulls three rule cards out of the knot, up to the top shelf, and pins them.",
+        "words": "Rules first, pinned at the top.",
+        "sound": "A clack per pinned card."
+      },
+      {
+        "t": 24.0,
+        "picture": "Next shelf: six big part cards. Then a shelf of smaller cards users touch. Then a shelf of flagged 'next' cards.",
+        "words": "Then parts, then what users touch, then next.",
+        "sound": "Clacks stepping down the shelves."
+      },
+      {
+        "t": 26.0,
+        "picture": "Push-in. Links redraw only between shelves where the docs show them; hundreds of threads collapse into a few clear ones.",
+        "words": "",
+        "sound": "A long exhale of strings into one chord."
+      },
+      {
+        "t": 28.0,
+        "picture": "Four clean rows, top to bottom, the pins holding the rules in place.",
+        "words": "Four rows that anyone can read.",
+        "sound": "Four clacks, then a held chord."
+      }
+    ]
+  },
+  "real_case": {
+    "kind": "Evidence",
+    "claim": "The OAH review replaced the 225KB raw ingest (a folder walk, cap 400, that hairballs in 3D) with a digest in four strata: L0 law, L1 packages, L2 surfaces, L3 named next.",
+    "numbers": [
+      "225KB",
+      "cap 400",
+      "L0",
+      "L3"
+    ],
+    "source": {
+      "kind": "notion",
+      "title": "OAH 3D sheaf lattice — private review",
+      "url": "https://app.notion.com/p/3d4d50cfaf9381a18059e8085c072932"
+    },
+    "verified": true,
+    "illustrative": false
+  },
+  "honest_limit": {
+    "kind": "Constraint",
+    "picture": "The whale drops a card on the wrong shelf. It sits there, and no pin, gate or chip reacts.",
+    "words": "Wrong row? Nothing in the map objects."
+  },
+  "not_this": {
+    "kind": "Constraint",
+    "body": "A tidy map, not a checked one."
+  },
+  "ending_pattern": {
+    "kind": "Example",
+    "slug": "four-shelves",
+    "body": "The same crate tips, but every card drops onto its shelf as it lands, and the pod walks straight through, row by row.",
+    "callback": "The knot that trapped the pod in bar 2 never forms; the same tipping gesture now fills four shelves."
+  },
+  "end_belief": {
+    "kind": "Goal",
+    "body": "Sort your map into rows before sharing."
+  },
+  "beats": [
+    {
+      "t": 0.0,
+      "act": "felt",
+      "bars": "1-2",
+      "picture": "Close on the whale tipping a crate of file cards onto the line. Links sprout between all of them until it is one tangled knot.",
+      "words": "We mapped every file. All of it.",
+      "sound": "A rumbling paper avalanche.",
+      "camera": "close z 1.6 on the whale",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 2.0,
+      "act": "felt",
+      "bars": "2",
+      "picture": "A pod (a new teammate) swims into the knot, spins in place, and comes out with a rust ✕ chip.",
+      "words": "",
+      "sound": "A dizzy, wavering tone.",
+      "camera": "close z 1.6, small follow pan",
+      "cue_tags": [
+        "consequence",
+        "focus"
+      ]
+    },
+    {
+      "t": 6.0,
+      "act": "felt",
+      "bars": "3-4",
+      "picture": "The whale tips in more cards. The knot grows thicker.",
+      "words": "Nobody can find their way through.",
+      "sound": "The rumble again, heavier.",
+      "camera": "close z 1.5",
+      "cue_tags": [
+        "consequence",
+        "focus"
+      ]
+    },
+    {
+      "t": 8.0,
+      "act": "felt",
+      "bars": "5",
+      "picture": "The whale looks at the knot. Hold.",
+      "words": "",
+      "sound": "Silence creeps in.",
+      "camera": "close z 1.6, hold",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 11.0,
+      "act": "why",
+      "bars": "6",
+      "picture": "Half a bar of stillness, then SERIES.open and the title.",
+      "words": "Rules on top, <i>parts</i> below.",
+      "sound": "Near-silence, then the title tick.",
+      "camera": "still (half a bar of stillness first)",
+      "cue_tags": [
+        "hinge"
+      ]
+    },
+    {
+      "t": 12.0,
+      "act": "why",
+      "bars": "7",
+      "picture": "Pull back. The knot is a blob: every card the same size and weight, rules and helpers mixed together.",
+      "words": "",
+      "sound": "Room tone, then the problem motif once.",
+      "camera": "pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 14.0,
+      "act": "why",
+      "bars": "8-9",
+      "picture": "Three more crates tip in, every 2 beats, then 1, then a half. The knot thickens each time.",
+      "words": "Everything sits at the same level.",
+      "sound": "Problem motif three times, accelerating.",
+      "camera": "wide z 1.0, the pattern revealed",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 18.0,
+      "act": "why",
+      "bars": "10",
+      "picture": "All motion stops. Four faint shelf lines ghost in across the frame.",
+      "words": "Put the rules first. Then the parts.",
+      "sound": "The first clean signature: a wooden shelf clack.",
+      "camera": "wide z 1.0, still",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 20.0,
+      "act": "move",
+      "bars": "11-12",
+      "picture": "The whale pulls three rule cards out of the knot, up to the top shelf, and pins them.",
+      "words": "Rules first, pinned at the top.",
+      "sound": "A clack per pinned card.",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech",
+        "focus"
+      ]
+    },
+    {
+      "t": 24.0,
+      "act": "move",
+      "bars": "13",
+      "picture": "Next shelf: six big part cards. Then a shelf of smaller cards users touch. Then a shelf of flagged 'next' cards.",
+      "words": "Then parts, then what users touch, then next.",
+      "sound": "Clacks stepping down the shelves.",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech",
+        "focus"
+      ]
+    },
+    {
+      "t": 26.0,
+      "act": "move",
+      "bars": "14",
+      "picture": "Push-in. Links redraw only between shelves where the docs show them; hundreds of threads collapse into a few clear ones.",
+      "words": "",
+      "sound": "A long exhale of strings into one chord.",
+      "camera": "the one push-in, z 1.2 to 1.3",
+      "cue_tags": [
+        "mech",
+        "focus"
+      ]
+    },
+    {
+      "t": 28.0,
+      "act": "move",
+      "bars": "15-16",
+      "picture": "Four clean rows, top to bottom, the pins holding the rules in place.",
+      "words": "Four rows that anyone can read.",
+      "sound": "Four clacks, then a held chord.",
+      "camera": "medium z 1.3, settle",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 32.0,
+      "act": "case",
+      "bars": "17-19",
+      "picture": "Wide. The real raw ingest map, a hairball, on one side. The card fades in on clean paper.",
+      "words": "Real review: the raw dump was a hairball.",
+      "sound": "Pulse bed, a muddy rumble underneath.",
+      "camera": "steady wide z 0.9, slow drift",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 38.0,
+      "act": "case",
+      "bars": "20-22",
+      "picture": "The hairball folds into four shelves: law, packages, surfaces, named next.",
+      "words": "The digest: rules, packages, surfaces, next.",
+      "sound": "The rumble clears into four clacks.",
+      "camera": "steady wide, slow drift",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 44.0,
+      "act": "limit",
+      "bars": "23-24",
+      "picture": "The whale drops a card on the wrong shelf. It sits there, and no pin, gate or chip reacts.",
+      "words": "Wrong row? Nothing in the map objects.",
+      "sound": "The clack plays once and stays unresolved.",
+      "camera": "still",
+      "cue_tags": [
+        "limit",
+        "focus"
+      ]
+    },
+    {
+      "t": 47.0,
+      "act": "limit",
+      "bars": "24-25",
+      "picture": "Slow push into the card on the wrong shelf.",
+      "words": "A tidy map, not a checked one.",
+      "sound": "Room tone.",
+      "camera": "one slow push to the thing that slipped",
+      "cue_tags": [
+        "limit"
+      ]
+    },
+    {
+      "t": 50.0,
+      "act": "payoff",
+      "bars": "26-27",
+      "picture": "Same close framing as bar 1. The crate tips again, but each card drops onto its shelf as it lands. The pod walks down row by row and exits ✓.",
+      "words": "Through in one pass.",
+      "sound": "The avalanche, then clacks in order.",
+      "camera": "FELT framing restored, z 1.6",
+      "cue_tags": [
+        "callback",
+        "focus"
+      ]
+    },
+    {
+      "t": 54.0,
+      "act": "payoff",
+      "bars": "28-29",
+      "picture": "A second pod walks through, first time. Spark.",
+      "words": "",
+      "sound": "Full resolution.",
+      "camera": "slow pull to z 1.3",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 58.0,
+      "act": "belief",
+      "bars": "30-31",
+      "picture": "Four shelves, the whale breathing beside them.",
+      "words": "Sort your map into rows before sharing.",
+      "sound": "Pad tail.",
+      "camera": "still, breathing only",
+      "cue_tags": []
+    },
+    {
+      "t": 62.0,
+      "act": "lockup",
+      "bars": "32",
+      "picture": "SERIES.lockup over the settled chart ground.",
+      "words": "",
+      "sound": "Lockup sting, then the room tone tail.",
+      "camera": "still",
+      "cue_tags": []
+    }
+  ],
+  "captions": [
+    {
+      "t_in": 1.0,
+      "t_out": 5.0,
+      "text": "We mapped every file. All of it.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 6.0,
+      "t_out": 9.5,
+      "text": "Nobody can find their way through.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 11.0,
+      "t_out": 13.5,
+      "text": "Rules on top, <i>parts</i> below.",
+      "kind": "title"
+    },
+    {
+      "t_in": 14.0,
+      "t_out": 17.5,
+      "text": "Everything sits at the same level.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 18.0,
+      "t_out": 20.5,
+      "text": "Put the rules first. Then the parts.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 21.0,
+      "t_out": 23.5,
+      "text": "Rules first, pinned at the top.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 24.0,
+      "t_out": 26.5,
+      "text": "Then parts, then what users touch, then next.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 28.0,
+      "t_out": 31.5,
+      "text": "Four rows that anyone can read.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 33.0,
+      "t_out": 41.5,
+      "text": "Real review · raw dump capped at 400",
+      "kind": "card",
+      "src": "https://app.notion.com/p/3d4d50cfaf9381a18059e8085c072932"
+    },
+    {
+      "t_in": 34.0,
+      "t_out": 37.5,
+      "text": "Real review: the raw dump was a hairball.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 38.0,
+      "t_out": 42.0,
+      "text": "The digest: rules, packages, surfaces, next.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 44.5,
+      "t_out": 47.0,
+      "text": "Wrong row? Nothing in the map objects.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 47.5,
+      "t_out": 50.5,
+      "text": "A tidy map, not a checked one.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 51.0,
+      "t_out": 56.0,
+      "text": "Through in one pass.",
+      "kind": "label"
+    },
+    {
+      "t_in": 58.0,
+      "t_out": 61.75,
+      "text": "Sort your map into rows before sharing.",
+      "kind": "caption"
+    }
+  ],
+  "terms": [
+    {
+      "term": "digest",
+      "symbol": "atom",
+      "pictured_at": 24.0,
+      "named_at": 38.0
+    }
+  ],
+  "jargon": [
+    "kernel",
+    "ingest",
+    "strata",
+    "digest",
+    "lattice",
+    "codebase"
+  ],
+  "sound": {
+    "signature": "A wooden shelf clack",
+    "problem_motif": "A rumbling paper avalanche with a dizzy tone",
+    "limit_unresolved": true
+  },
+  "score_self": {
+    "score": 0.7,
+    "reason": "The pain is vivid and the shelves are easy to read. It overlaps sb-02-08 (same source). The limit is honest: the layers are a reading aid, not a check. 'Capped at 400' may puzzle viewers.",
+    "weakest_piece": "real_case"
+  }
+}

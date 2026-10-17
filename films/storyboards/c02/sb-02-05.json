@@ -1,0 +1,473 @@
+{
+  "schema_version": "sb60-v1",
+  "id": "sb-02-05",
+  "meta_prompt_id": "mp-c02-v1",
+  "cluster": "02 Sheaves in the wild",
+  "repo": "manutej/sheaf-dirichlet-protein-3d",
+  "capability": "Parts held by few neighbours are the floppy ones",
+  "audience": "Learners",
+  "wada": 339,
+  "bpm": 132,
+  "dur": 58.5,
+  "title": "Floppy parts have fewer <i>joins</i>.",
+  "hook": {
+    "kind": "Example",
+    "picture": "Close on the whale propping a pod on one end of a still, knotted line. The end flops and the pod slides off.",
+    "words": "It looks solid in the picture."
+  },
+  "problem_in_viewer_words": {
+    "kind": "Fact",
+    "body": "It looks solid in the picture. I can't tell what wobbles.",
+    "who": "student looking at a molecule diagram"
+  },
+  "why_it_keeps_happening": {
+    "kind": "Fact",
+    "picture": "Three more guesses, every 2 beats, then 1, then a half. Each propped pod slides off.",
+    "words": "A still picture hides what wobbles."
+  },
+  "stakes": {
+    "kind": "Fact",
+    "body": "Guessing which part is firm wastes experiments and leads to building on the floppy end."
+  },
+  "solution_hint": "Count how many neighbours hold each part.",
+  "metaphor": {
+    "kind": "Example",
+    "body": "Count the joins holding each part of the chain. Parts with many joins barely move; parts with few swing wide. A warm-to-cool wash along the line becomes a wobble map.",
+    "symbols": [
+      "whale",
+      "line",
+      "seam",
+      "ring",
+      "pod"
+    ]
+  },
+  "mechanism_beats": {
+    "kind": "Method",
+    "steps": [
+      {
+        "t": 18.182,
+        "picture": "Dashed joins appear between each part and the parts it touches. The dense core has many; the loose tail has two.",
+        "words": "Count the neighbours holding each part.",
+        "sound": "One knock per join, the core dense, the tail sparse."
+      },
+      {
+        "t": 21.818,
+        "picture": "The whale taps the line. Parts with few joins swing wide (rust halo); parts with many barely move (teal).",
+        "words": "Each touching pair is a seam.",
+        "sound": "Firm knocks under the core, loose boings at the tail."
+      },
+      {
+        "t": 23.636,
+        "picture": "Push-in on the loose tail. Two joins, a big swing, and a ring measures it.",
+        "words": "",
+        "sound": "One wide boing, ringed."
+      },
+      {
+        "t": 25.455,
+        "picture": "A warm-to-cool wash spreads along the line: wide swing is warm, still is cool. The wobble map.",
+        "words": "Few seams means a floppy part.",
+        "sound": "A rising scale settles on the firm knock."
+      }
+    ]
+  },
+  "real_case": {
+    "kind": "Evidence",
+    "claim": "Sheaf-Laplacian flexibility was compared with X-ray B-factors on three proteins: 1UBQ r=0.64, 1PGB r=0.50, 1CRN r=0.39 (r=0.69 at 7 A cutoff).",
+    "numbers": [
+      "1UBQ r=0.64",
+      "1PGB r=0.50",
+      "1CRN r=0.39",
+      "r=0.69 at 7 A cutoff"
+    ],
+    "source": {
+      "kind": "repo",
+      "title": "manutej/sheaf-dirichlet-protein-3d README (Campaign snapshot)",
+      "url": "https://github.com/manutej/sheaf-dirichlet-protein-3d"
+    },
+    "verified": true,
+    "illustrative": false
+  },
+  "honest_limit": {
+    "kind": "Constraint",
+    "picture": "On the third knot, a segment held by many joins (cool in the count) glows warm in the X-ray wash. The count said still; it moved.",
+    "words": "Some parts wobble anyway. The count misses them."
+  },
+  "not_this": {
+    "kind": "Constraint",
+    "body": "A good guess, not a measurement."
+  },
+  "ending_pattern": {
+    "kind": "Example",
+    "slug": "wobble-wash",
+    "body": "A warm-to-cool wash appears over the same still knot, and the whale props its pods on the cool end, where they stay.",
+    "callback": "The end that flopped in bar 2 is now shown warm, and the pod sits on the cool end instead, in the same framing."
+  },
+  "end_belief": {
+    "kind": "Goal",
+    "body": "Check what holds a part before trusting it."
+  },
+  "beats": [
+    {
+      "t": 0.0,
+      "act": "felt",
+      "bars": "1-2",
+      "picture": "Close on the whale beside a still, knotted line drawn like a textbook picture. It props a pod on one end.",
+      "words": "It looks solid in the picture.",
+      "sound": "A light wooden tap.",
+      "camera": "close z 1.6 on the whale",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 1.818,
+      "act": "felt",
+      "bars": "2",
+      "picture": "The end flops down and the pod slides off with a rust ✕ chip.",
+      "words": "",
+      "sound": "A wobbling, off-pitch boing.",
+      "camera": "close z 1.6, small follow pan",
+      "cue_tags": [
+        "consequence",
+        "focus"
+      ]
+    },
+    {
+      "t": 5.455,
+      "act": "felt",
+      "bars": "3-4",
+      "picture": "The whale tries the other end. It flops too. A second ✕.",
+      "words": "I guessed the firm end. Wrong again.",
+      "sound": "The boing again, flatter.",
+      "camera": "close z 1.5",
+      "cue_tags": [
+        "consequence",
+        "focus"
+      ]
+    },
+    {
+      "t": 7.273,
+      "act": "felt",
+      "bars": "5",
+      "picture": "The whale stares at the still picture of the knot. Hold.",
+      "words": "",
+      "sound": "Silence creeps in.",
+      "camera": "close z 1.6, hold",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 10.0,
+      "act": "why",
+      "bars": "6",
+      "picture": "Half a bar of stillness, then SERIES.open and the title.",
+      "words": "Floppy parts have fewer <i>joins</i>.",
+      "sound": "Near-silence, then the title tick.",
+      "camera": "still (half a bar of stillness first)",
+      "cue_tags": [
+        "hinge"
+      ]
+    },
+    {
+      "t": 10.909,
+      "act": "why",
+      "bars": "7",
+      "picture": "Pull back. A gallery of still knots, every part drawn equally solid.",
+      "words": "",
+      "sound": "Room tone, then the problem motif once.",
+      "camera": "pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 12.727,
+      "act": "why",
+      "bars": "8-9",
+      "picture": "Three more guesses, every 2 beats, then 1, then a half. Each propped pod slides off.",
+      "words": "A still picture hides what wobbles.",
+      "sound": "Problem motif three times, accelerating.",
+      "camera": "wide z 1.0, the pattern revealed",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 16.364,
+      "act": "why",
+      "bars": "10",
+      "picture": "All motion stops. Faint threads ghost in between touching parts: thick bundles in the core, a few strands at the tail.",
+      "words": "Count how many neighbours hold each part.",
+      "sound": "The first clean signature: a firm wooden knock.",
+      "camera": "wide z 1.0, still",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 18.182,
+      "act": "move",
+      "bars": "11-12",
+      "picture": "Dashed joins appear between each part and the parts it touches. The dense core has many; the loose tail has two.",
+      "words": "Count the neighbours holding each part.",
+      "sound": "One knock per join, the core dense, the tail sparse.",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech",
+        "focus"
+      ]
+    },
+    {
+      "t": 21.818,
+      "act": "move",
+      "bars": "13",
+      "picture": "The whale taps the line. Parts with few joins swing wide (rust halo); parts with many barely move (teal).",
+      "words": "Each touching pair is a seam.",
+      "sound": "Firm knocks under the core, loose boings at the tail.",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech",
+        "focus"
+      ]
+    },
+    {
+      "t": 23.636,
+      "act": "move",
+      "bars": "14",
+      "picture": "Push-in on the loose tail. Two joins, a big swing, and a ring measures it.",
+      "words": "",
+      "sound": "One wide boing, ringed.",
+      "camera": "the one push-in, z 1.2 to 1.3",
+      "cue_tags": [
+        "mech",
+        "focus"
+      ]
+    },
+    {
+      "t": 25.455,
+      "act": "move",
+      "bars": "15-16",
+      "picture": "A warm-to-cool wash spreads along the line: wide swing is warm, still is cool. The wobble map.",
+      "words": "Few seams means a floppy part.",
+      "sound": "A rising scale settles on the firm knock.",
+      "camera": "medium z 1.3, settle",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 29.091,
+      "act": "case",
+      "bars": "17-19",
+      "picture": "Wide. Three knotted lines, each with its wobble wash, beside a second wash taken from X-ray. The card fades in on clean paper.",
+      "words": "Checked against wobble measured by X-ray.",
+      "sound": "Pulse bed, quiet ticks.",
+      "camera": "steady wide z 0.9, slow drift",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 34.545,
+      "act": "case",
+      "bars": "20-22",
+      "picture": "The two washes slide together on one knot. They line up in places and drift apart in others.",
+      "words": "They agree roughly. Not exactly.",
+      "sound": "Two lines in loose harmony.",
+      "camera": "steady wide, slow drift",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 40.0,
+      "act": "limit",
+      "bars": "23-24",
+      "picture": "On the third knot, a segment held by many joins (cool in the count) glows warm in the X-ray wash. The count said still; it moved.",
+      "words": "Some parts wobble anyway. The count misses them.",
+      "sound": "The knock plays once and stays unresolved.",
+      "camera": "still",
+      "cue_tags": [
+        "limit",
+        "focus"
+      ]
+    },
+    {
+      "t": 42.727,
+      "act": "limit",
+      "bars": "24-25",
+      "picture": "Slow push into the mismatched segment.",
+      "words": "A good guess, not a measurement.",
+      "sound": "Room tone.",
+      "camera": "one slow push to the thing that slipped",
+      "cue_tags": [
+        "limit"
+      ]
+    },
+    {
+      "t": 45.455,
+      "act": "payoff",
+      "bars": "26-27",
+      "picture": "Same close framing as bar 1. The wash appears on the still knot; the whale props the pod on the cool, firm end. It stays. ✓.",
+      "words": "Firm end found.",
+      "sound": "A firm knock, then a held chord.",
+      "camera": "FELT framing restored, z 1.6",
+      "cue_tags": [
+        "callback",
+        "focus"
+      ]
+    },
+    {
+      "t": 49.091,
+      "act": "payoff",
+      "bars": "28-29",
+      "picture": "The whale adds a second pod on the firm end. Both stay. Spark.",
+      "words": "",
+      "sound": "Full resolution.",
+      "camera": "slow pull to z 1.3",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 52.727,
+      "act": "belief",
+      "bars": "30-31",
+      "picture": "The knot with its wobble wash, the whale breathing.",
+      "words": "Check what holds a part before trusting it.",
+      "sound": "Pad tail.",
+      "camera": "still, breathing only",
+      "cue_tags": []
+    },
+    {
+      "t": 56.364,
+      "act": "lockup",
+      "bars": "32",
+      "picture": "SERIES.lockup over the settled chart ground.",
+      "words": "",
+      "sound": "Lockup sting, then the room tone tail.",
+      "camera": "still",
+      "cue_tags": []
+    }
+  ],
+  "captions": [
+    {
+      "t_in": 0.909,
+      "t_out": 4.545,
+      "text": "It looks solid in the picture.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 5.455,
+      "t_out": 8.636,
+      "text": "I guessed the firm end. Wrong again.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 10.0,
+      "t_out": 12.273,
+      "text": "Floppy parts have fewer <i>joins</i>.",
+      "kind": "title"
+    },
+    {
+      "t_in": 12.727,
+      "t_out": 15.909,
+      "text": "A still picture hides what wobbles.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 16.364,
+      "t_out": 18.636,
+      "text": "Count how many neighbours hold each part.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 19.091,
+      "t_out": 21.364,
+      "text": "Count the neighbours holding each part.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 21.818,
+      "t_out": 24.091,
+      "text": "Each touching pair is a seam.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 25.455,
+      "t_out": 28.636,
+      "text": "Few seams means a floppy part.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 30.0,
+      "t_out": 37.727,
+      "text": "Real run · 3 proteins vs X-ray wobble",
+      "kind": "card",
+      "src": "https://github.com/manutej/sheaf-dirichlet-protein-3d"
+    },
+    {
+      "t_in": 30.909,
+      "t_out": 34.091,
+      "text": "Checked against wobble measured by X-ray.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 34.545,
+      "t_out": 38.182,
+      "text": "They agree roughly. Not exactly.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 40.455,
+      "t_out": 42.727,
+      "text": "Some parts wobble anyway. The count misses them.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 43.182,
+      "t_out": 45.909,
+      "text": "A good guess, not a measurement.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 46.364,
+      "t_out": 50.909,
+      "text": "Firm end found.",
+      "kind": "label"
+    },
+    {
+      "t_in": 52.727,
+      "t_out": 56.136,
+      "text": "Check what holds a part before trusting it.",
+      "kind": "caption"
+    }
+  ],
+  "terms": [
+    {
+      "term": "seam",
+      "symbol": "seam",
+      "pictured_at": 18.182,
+      "named_at": 21.818
+    }
+  ],
+  "jargon": [
+    "B-factor",
+    "protein",
+    "flexibility",
+    "Laplacian",
+    "residue",
+    "correlation"
+  ],
+  "sound": {
+    "signature": "A firm wooden knock",
+    "problem_motif": "A loose, off-pitch boing",
+    "limit_unresolved": true
+  },
+  "score_self": {
+    "score": 0.76,
+    "reason": "It's a fresh, learner-friendly idea: count what holds a part. The limit is honest because the source correlations are only moderate. The weak spot is that 'roughly' on screen could undersell a 0.64.",
+    "weakest_piece": "real_case"
+  }
+}
