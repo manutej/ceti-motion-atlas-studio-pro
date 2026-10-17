@@ -15,11 +15,11 @@ const PAGEEDGE = mix(C.paper, C.slate, 0.55), BOXF = mix(C.paper, C.slate, 0.08)
 const ALARM = mix(RED, INK, 0.1), STAMPC = mix(VIO, INK, 0.1), THREAD = VIO, CROSS = mix(GLAU, INK, 0.45);
 
 // ---------- the world: one desk (the email being written), two client boxes ----------
-const DESK = { x: 0, y: 170 }, PW = 300, PH = 350, CY = [-40, 40, 120], CW = 236, CH = 66;
-const BAK = { x: -650, y: 175 }, CLI = { x: 650, y: 175 }, RIM = -62, BW = 300, BH = 160;
+const DESK = { x: 0, y: 40 }, PW = 320, PH = 300, CY = [-50, 28, 106], CW = 280, CH = 74;
+const BAK = { x: -480, y: 70 }, CLI = { x: 480, y: 70 }, RIM = -60, BW = 290, BH = 150;
 const ANCH = { x: BAK.x, y: BAK.y + RIM };
-const SLOT = i => ({ x: BAK.x - 54 + 36 * i, y: BAK.y - 70 - 4 * (i % 2), r: -0.1 + 0.07 * i });
-const POP = { x: CLI.x, y: -120 }, TICK = { x: CLI.x, y: -95 };
+const SLOT = i => ({ x: BAK.x - 50 + 34 * i, y: BAK.y + RIM - 14 - 5 * (i % 2), r: -0.09 + 0.06 * i });
+const POP = { x: 440, y: -175 }, TICK = { x: CLI.x, y: -110 };
 
 // ---------- the emails: each has a header (To:), three cards, a send time and a flight time ----------
 const LET = [
@@ -41,7 +41,7 @@ const POPS = LET.filter(L => L.popT).map(L => ({ L, t: L.popT, circ: L.popT + 0.
 function letter(L, t) {   // email page transform: x, y, scale, alpha
   let a = L.in < 0 ? 1 : ramp(t, L.in, L.in + 0.3, EASE.warm);
   const u = ramp(t, L.send, L.arr, EASE.warm);
-  const x = lerp(DESK.x, CLI.x, u), y = lerp(DESK.y, CLI.y - 20, u) - 250 * Math.sin(Math.PI * u), s = lerp(1, 0.4, u);
+  const x = lerp(DESK.x, CLI.x, u), y = lerp(DESK.y, CLI.y - 10, u) - 90 * Math.sin(Math.PI * u), s = lerp(1, 0.4, u);
   a *= 1 - ramp(t, L.arr - 0.1, L.arr + 0.04, EASE.rest);
   return { x, y, s, a: t > L.arr + 0.05 ? 0 : a };
 }
@@ -49,17 +49,19 @@ function sealedCard(L, t) {   // where the stamped card is: in the email, being 
   const lt = letter(L, Math.min(t, L.taut)), p0 = { x: lt.x, y: lt.y + CY[1] * lt.s, s: lt.s };
   if (t <= L.taut) return { ...p0, r: 0, inLetter: true };
   const H0 = SLOT(L.slot), u = ramp(t, L.taut, L.taut + 0.8, EASE.warm), d = ramp(t, L.taut + 0.8, L.land, EASE.glaser);
-  const up = { x: H0.x, y: H0.y - 130 };
+  const up = { x: H0.x, y: H0.y - 120 };
   return { x: lerp(p0.x, up.x, u), y: lerp(p0.y, up.y, u) - 60 * Math.sin(Math.PI * u) + (H0.y - up.y) * d, s: lerp(p0.s, 0.8, u), r: H0.r * u, inLetter: false };
 }
 
 // ---------- the whale ("you"): Hermite through keys (zero tangents = it settles at each key) ----------
 const WS = 0.8, REACH = 118 * WS + 48;
-const PERCH0 = [-260, -70], PERCH = [-390, -170], SEAL = { x: DESK.x - 82, y: DESK.y + CY[1] };
-const PRESS = [SEAL.x - REACH, SEAL.y - 60], HOVER = [PRESS[0], PRESS[1] - 55], SCRAWL = [SEAL.x - REACH, SEAL.y - 66];
-const K = [[0, ...PERCH0], [2.55, ...PERCH0], [3.4, 220, -50], [4.5, 220, -50], [6.3, ...PERCH0], [6.85, ...PERCH0],
-  [7.25, ...HOVER], [7.55, ...PRESS], [7.85, ...HOVER], [8.6, ...PERCH], [15.4, ...PERCH], [16.4, -600, -120], [17.6, -600, -120],
-  [18.75, ...SCRAWL], [19.4, ...SCRAWL], [20.1, ...PERCH], [22.4, ...PERCH], [23.0, ...PERCH0], [DUR + 1, ...PERCH0]];
+// the stamp lands on the card's right half (whale on the right, facing left, so it never covers the words); the scrawl is on the loaf (left)
+const IMP = { x: DESK.x + 66, y: DESK.y + CY[1] + 19 };
+const PERCH0 = [-200, -215], PERCHR = [235, -245], PRESS = [IMP.x + REACH, IMP.y - 49], HOVER = [PRESS[0], PRESS[1] - 62],
+  SCRAWL = [DESK.x - 104 - REACH, DESK.y + CY[1] - 60], WATCH = [40, -250], BAKP = [-480, -175];
+const K = [[0, ...PERCH0], [2.55, ...PERCH0], [3.4, 120, -235], [4.5, 120, -235], [6.2, ...PERCHR], [6.85, ...PERCHR],
+  [7.3, ...HOVER], [7.55, ...PRESS], [7.85, ...HOVER], [8.6, ...PERCHR], [15.4, ...PERCHR], [16.6, ...BAKP], [17.6, ...BAKP],
+  [18.7, ...SCRAWL], [19.4, ...SCRAWL], [20.1, ...WATCH], [22.3, ...WATCH], [23.1, ...PERCH0], [DUR + 1, ...PERCH0]];
 function herm(P, t) { const n = P.length; if (t <= P[0][0]) return { x: P[0][1], y: P[0][2] }; if (t >= P[n - 1][0]) return { x: P[n - 1][1], y: P[n - 1][2] };
   let i = 0; while (P[i + 1][0] < t) i++; const p1 = P[i], p2 = P[i + 1], u = (t - p1[0]) / (p2[0] - p1[0]), A2 = 2 * u * u * u - 3 * u * u + 1, C2 = 1 - A2;
   return { x: A2 * p1[1] + C2 * p2[1], y: A2 * p1[2] + C2 * p2[2] }; }
@@ -71,13 +73,13 @@ function wworld(t) { const p = herm(K, t), q = herm(K, t + 0.01), sp = Math.hypo
 const wvel = t => { const a = wworld(t - 1 / 240), c = wworld(t + 1 / 240); return { x: (c.x - a.x) * 120, y: (c.y - a.y) * 120 }; };
 function heading(t) { let a = 0, s = 0; for (let k = -8; k <= 8; k++) { const v = wvel(t + k * 0.022), w = 1 - Math.abs(k) / 9, sp = Math.hypot(v.x, v.y);
     a += (sp < 40 ? 0 : clamp(Math.atan2(v.y, Math.abs(v.x)), -0.8, 0.8) * clamp(sp / 300)) * w; s += w; } return a / s; }
-const TURNS = [[13.0, -1], [17.7, 1]];
+const TURNS = [[6.25, -1], [10.1, 1], [15.1, -1], [17.3, 1]];
 function facing(t) { let f = 1; for (const [a, to] of TURNS) f = lerp(f, to, ramp(t, a, a + 0.25, EASE.warm)); return f; }
 function nose(t) { const p = wworld(t), a = heading(t), f = facing(t); return { x: p.x + f * (REACH * Math.cos(a) - 4 * Math.sin(a)), y: p.y + REACH * Math.sin(a) + 4 * Math.cos(a) }; }
 
 // ---------- camera ----------
-const FELT = { x: 300, y: 60, z: 1.12 }, MID = { x: 0, y: 30, z: 1.0 }, STAMP = { x: -120, y: 110, z: 1.18 }, CASE = { x: -60, y: 10, z: 0.95 },
-  LIM = { x: 420, y: 40, z: 1.16 }, PAY = { x: 110, y: 40, z: 1.04 };
+const FELT = { x: 300, y: -40, z: 1.55 }, MID = { x: 0, y: -20, z: 1.4 }, STAMP = { x: 70, y: 0, z: 1.65 }, CASE = { x: -90, y: -40, z: 1.3 },
+  LIM = { x: 330, y: -50, z: 1.6 }, PAY = { x: 0, y: -20, z: 1.42 };
 function cam(t) { let s = { ...FELT };
   const go = (a, b, T, e) => { const k = ramp(t, a, b, e); s = { x: lerp(s.x, T.x, k), y: lerp(s.y, T.y, k), z: lerp(s.z, T.z, k) }; };
   go(4.5, 6.4, MID, EASE.rest); go(6.9, 7.45, STAMP, EASE.warm); go(8.1, 8.9, MID, EASE.warm); go(15.3, 16.4, CASE, EASE.rest);
@@ -95,8 +97,8 @@ const READ = [
   { id: 'email', kind: 'label', in: 0, out: 4.6, fi: 0.01, fo: 0.3, text: 'Email' },
   { id: 'eyebrow', kind: 'label', in: T0 + 0.25, out: T0 + 2.47, fi: 0.4, fo: 0.45, text: 'CETI · Capabilities · 09' },
   { id: 'title', kind: 'title', in: T0 + 0.25, out: T0 + 2.47, fi: 0.4, fo: 0.45, text: 'Private cards stay home.' },
-  cap('stamp', 6.95, 8.95, 'Stamp the private card.'),
-  cap('tied', 9.0, 11.05, 'Stamped cards are tied to their client.'),
+  cap('stamp', 6.95, 8.9, 'Stamp the private card.'),
+  cap('tied', 8.95, 11.05, 'Stamped cards are tied to their client.'),
   cap('stays', 11.1, 13.15, 'The stamped card stays home.'),
   cap('remember', 13.2, 15.3, 'No one has to remember.'),
   { id: 'card', kind: 'card', card: true, in: 15.4, out: 18.6, fi: 0.3, fo: 0.3, text: 'One sealed box per client', src: 'https://app.notion.com/p/3fbd50cfaf9381048ffaecd94c9f8264' },
@@ -133,15 +135,15 @@ function card(c, X, Y, z, kind, s, r, a, o = {}) {
   c.fillStyle = CARD; c.strokeStyle = CARDEDGE; c.lineWidth = 2 / Math.min(1, k) * 0.8; c.beginPath(); c.roundRect(-CW / 2, -CH / 2, CW, CH, 7); c.fill(); c.stroke();
   const sealed = kind === 'sealed' ? (o.seal ?? 1) : 0;
   c.fillStyle = mix(PTAB, VIO, sealed); c.beginPath(); c.roundRect(-CW / 2, -CH / 2, 13, CH, [7, 0, 0, 7]); c.fill();
-  if (kind === 'plain') { c.strokeStyle = CLINE; c.lineWidth = 7; c.lineCap = 'round'; c.beginPath(); c.moveTo(-82, -10); c.lineTo(84, -10); c.moveTo(-82, 12); c.lineTo(40, 12); c.stroke(); c.restore(); return; }
-  if (kind === 'scrawl') loaf(c, -74, 3, 1.05, null, SOFT, 3.2, o.scrawl ?? 1); else loaf(c, -74, 3, 1.05, SAL, INK, 3);
+  if (kind === 'plain') { c.strokeStyle = CLINE; c.lineWidth = 7; c.lineCap = 'round'; c.beginPath(); c.moveTo(-100, -12); c.lineTo(110, -12); c.moveTo(-100, 13); c.lineTo(50, 13); c.stroke(); c.restore(); return; }
+  if (kind === 'scrawl') loaf(c, -104, 2, 1.05, null, SOFT, 3.2, o.scrawl ?? 1); else loaf(c, -104, 2, 1.05, SAL, INK, 3);
   c.restore();
   if (kind !== 'scrawl' || (o.scrawl ?? 1) > 0.6) { const ta = kind === 'scrawl' ? clamp(((o.scrawl ?? 1) - 0.6) / 0.4) : 1;
-    c.save(); c.translate(X, Y); c.rotate(r); text(c, 'Rent is late', -38 * k, 9 * k, { f: 'sans', size: 25 * k, col: INK, a: a * ta * (o.ta ?? 1) }); c.restore(); }
+    c.save(); c.translate(X, Y); c.rotate(r); text(c, 'Rent is late', -72 * k, -6 * k, { f: 'sans', size: 25 * k, col: INK, a: a * ta * (o.ta ?? 1) }); c.restore(); }
   if (sealed > 0.01) {   // the rubber-stamp impression: a violet box with PRIVATE, pressed over the right half of the card
     const pop = 1 + 0.25 * (1 - sealed); c.save(); c.translate(X, Y); c.rotate(r - 0.06); c.scale(k * pop, k * pop); c.globalAlpha *= a * clamp(sealed * 1.4);
-    c.strokeStyle = STAMPC; c.lineWidth = 4; c.beginPath(); c.roundRect(-6, -27, 112, 34, 5); c.stroke(); c.restore();
-    c.save(); c.translate(X, Y); c.rotate(r - 0.06); text(c, 'PRIVATE', (50) * k * pop, -2 * k * pop, { f: 'monoB', size: 17 * k * pop, col: ACC, a: a * clamp(sealed * 1.4), align: 'center', track: 0.12 }); c.restore(); }
+    c.strokeStyle = STAMPC; c.lineWidth = 4; c.beginPath(); c.roundRect(10, 4, 112, 30, 5); c.stroke(); c.restore();
+    c.save(); c.translate(X, Y); c.rotate(r - 0.06); text(c, 'PRIVATE', 66 * k * pop, 26 * k * pop, { f: 'monoB', size: 17 * k * pop, col: ACC, a: a * clamp(sealed * 1.4), align: 'center', track: 0.12 }); c.restore(); }
 }
 
 function drawFrame(c, t) {
@@ -159,25 +161,25 @@ function drawFrame(c, t) {
     const s = lt.s * z, px = X(lt.x), py = Y(lt.y);
     c.save(); c.globalAlpha = lt.a; c.fillStyle = C.paper; c.strokeStyle = PAGEEDGE; c.lineWidth = Math.max(2.5, 3 * s);
     c.beginPath(); c.roundRect(px - PW / 2 * s, py - PH / 2 * s, PW * s, PH * s, 10 * s); c.fill(); c.stroke();
-    c.strokeStyle = CLINE; c.lineWidth = 2 * s; c.beginPath(); c.moveTo(px - 125 * s, py - 82 * s); c.lineTo(px + 125 * s, py - 82 * s); c.stroke(); c.restore();
-    if (L.id === 'L1') text(c, 'Email', px - 125 * s, py - 140 * s, { f: 'mono', size: 18 * s, col: SOFT, a: lt.a * RA(t, 'email') });
+    c.strokeStyle = CLINE; c.lineWidth = 2 * s; c.beginPath(); c.moveTo(px - 135 * s, py - 94 * s); c.lineTo(px + 135 * s, py - 94 * s); c.stroke(); c.restore();
+    if (L.id === 'L1') text(c, 'Email', px + 135 * s, py - 110 * s, { f: 'mono', size: 22 * s, align: 'right', col: SOFT, a: lt.a * RA(t, 'email') });
     for (const [hs, a0, b0, fi, fo] of L.hdr) { const ha = win(t, a0, b0, fi, fo) * lt.a; if (ha <= 0.001) continue;
-      const w = text(c, hs, px - 125 * s, py - 100 * s, { f: 'sans', size: 34 * s, col: INK, a: ha });
+      const w = text(c, hs, px - 135 * s, py - 108 * s, { f: 'sans', size: 34 * s, col: INK, a: ha });
       if (hs === 'To: Bakery' && L.hdr.length > 1) { const st = ramp(t, b0 - 0.45, b0 - 0.2, EASE.warm); if (st > 0) {
-        c.save(); c.globalAlpha = ha; c.strokeStyle = INK; c.lineWidth = 4 * s; c.beginPath(); const sx = px - 125 * s + 62 * s;
-        c.moveTo(sx - 4 * s, py - 111 * s); c.lineTo(sx - 4 * s + (w - 58 * s) * st, py - 111 * s); c.stroke(); c.restore(); } } }
+        c.save(); c.globalAlpha = ha; c.strokeStyle = INK; c.lineWidth = 4 * s; c.beginPath(); const sx = px - 135 * s + 62 * s;
+        c.moveTo(sx - 4 * s, py - 119 * s); c.lineTo(sx - 4 * s + (w - 58 * s) * st, py - 119 * s); c.stroke(); c.restore(); } } }
     CY.forEach((cy, i) => { const kind = i === 1 ? L.mid : 'plain';
       if (kind === 'sealed' && t > L.taut) return;
       if (L.popT && i === 1 && t > L.arr - 0.05) return;
       const seal = L.stamp ? ramp(t, L.stamp, L.stamp + 0.22, EASE.glaser) : 1;
       card(c, px, py + cy * s, 1, kind === 'sealed' && seal <= 0 ? 'bakery' : kind, s, 0, lt.a, { seal, scrawl: L.scrawl ? ramp(t, L.scrawl[0], L.scrawl[1], EASE.warm) : 1 }); });
-    if (L.stamp) { const ring = win(t, L.stamp, L.stamp + 0.7, 0.03, 0.5); if (ring > 0) { const sx = px + 50 * s, sy = py + (CY[1] - 10) * s, rr = (70 + 50 * ramp(t, L.stamp, L.stamp + 0.7)) * s;
+    if (L.stamp) { const ring = win(t, L.stamp, L.stamp + 0.7, 0.03, 0.5); if (ring > 0) { const sx = px + 66 * s, sy = py + (CY[1] + 19) * s, rr = (70 + 50 * ramp(t, L.stamp, L.stamp + 0.7)) * s;
       c.save(); c.strokeStyle = rgba(VIO, 0.45 * ring); c.lineWidth = 5 * s; c.beginPath(); c.arc(sx, sy, rr, 0, Math.PI * 2); c.stroke(); c.restore(); } } }
 
   // stamped cards that have left their email and are on the way home, and the violet threads that tie them home
   for (const L of LET) { if (L.mid !== 'sealed') continue;
     const la = L.in < 0 ? 1 : ramp(t, L.in, L.in + 0.3, EASE.warm); if (la <= 0 || t >= L.land + 0.02) continue;
-    const sc = sealedCard(L, t), sx = sc.x + 50 * sc.s, sy = sc.y - 10 * sc.s;   // the thread is tied to the stamp
+    const sc = sealedCard(L, t), sx = sc.x + (-CW / 2 + 6) * sc.s * Math.cos(sc.r), sy = sc.y + (-CW / 2 + 6) * sc.s * Math.sin(sc.r);   // the thread is tied to the violet tab
     let draw = L.thread ? ramp(t, L.thread[0], L.thread[1], EASE.warm) : 1;
     if (draw > 0.001) { const A = { x: X(sx), y: Y(sy) }, Bp = { x: X(ANCH.x), y: Y(ANCH.y) }, slack = (1 - ramp(t, L.send, L.taut, EASE.glaser)) * 130 * z;
       const M = { x: (A.x + Bp.x) / 2, y: (A.y + Bp.y) / 2 + slack };
@@ -194,17 +196,17 @@ function drawFrame(c, t) {
     let glow = 0; for (const Ld of LANDS) if (B === BAK) glow = Math.max(glow, win(t, Ld.t, Ld.t + 0.9, 0.05, 0.6));
     if (glow > 0.01) { c.save(); c.strokeStyle = rgba(VIO, 0.35 * glow); c.lineWidth = 16 * z; c.beginPath(); c.roundRect(x0, y0, w, h, 10 * z); c.stroke(); c.restore(); }
     c.fillStyle = BOXF; c.strokeStyle = INK; c.lineWidth = Math.max(4, 5 * z); c.beginPath(); c.roundRect(x0, y0, w, h, 10 * z); c.fill(); c.stroke();
-    text(c, 'Client', X(B.x), Y(B.y + RIM + 48), { f: 'mono', size: 18 * z, col: SOFT, align: 'center' });
-    if (B === BAK) loaf(c, X(B.x - 70), Y(B.y + RIM + 97), 1.15 * z, SAL, INK, 3 * z); else cross(c, X(B.x - 70), Y(B.y + RIM + 97), z, CROSS);
-    text(c, name, X(B.x + 22), Y(B.y + RIM + 110), { f: 'sans', size: 38 * z, col: INK, align: 'center' });
+    text(c, 'Client', X(B.x), Y(B.y + RIM + 42), { f: 'mono', size: 20 * z, col: SOFT, align: 'center' });
+    if (B === BAK) loaf(c, X(B.x - 70), Y(B.y + RIM + 94), 1.15 * z, SAL, INK, 3 * z); else cross(c, X(B.x - 70), Y(B.y + RIM + 94), z, CROSS);
+    text(c, name, X(B.x + 22), Y(B.y + RIM + 107), { f: 'sans', size: 38 * z, col: INK, align: 'center' });
   }
 
   // the wrong card comes out at the clinic: it rises out of the box and is circled
   for (const P of POPS) { if (t < P.t) continue; const a = 1 - ramp(t, P.fade[0], P.fade[1], EASE.rest); if (a <= 0) continue;
-    const u = ramp(t, P.t, P.t + 0.45, EASE.glaser), x = CLI.x, y = lerp(CLI.y, POP.y, u), s = lerp(0.5, 1.45, u);
+    const u = ramp(t, P.t, P.t + 0.45, EASE.glaser), x = CLI.x, y = lerp(CLI.y, POP.y, u), s = lerp(0.5, 1.25, u);
     c.save(); c.beginPath(); c.rect(0, 0, W, Y(CLI.y + RIM)); c.clip(); card(c, X(x), Y(y), z, P.L.mid === 'scrawl' ? 'scrawl' : 'bakery', s, 0.04 * u, a); c.restore();
     const ci = ramp(t, P.circ, P.circ + 0.4, EASE.warm); if (ci > 0) { c.save(); c.globalAlpha = a; c.strokeStyle = ALARM; c.lineWidth = Math.max(6, 7 * z); c.beginPath();
-      for (let k = 0; k <= 60; k++) { const th = -2.2 + k / 60 * 2 * Math.PI * 1.08 * ci, rr = 1 + 0.06 * k / 60; const px = X(POP.x) + Math.cos(th) * 225 * z * rr, py = Y(POP.y) + Math.sin(th) * 82 * z * rr; k ? c.lineTo(px, py) : c.moveTo(px, py); }
+      for (let k = 0; k <= 60; k++) { const th = -2.2 + k / 60 * 2 * Math.PI * 1.08 * ci, rr = 1 + 0.06 * k / 60; const px = X(POP.x) + Math.cos(th) * 0.62 * CW * 1.25 * z * rr, py = Y(POP.y) + Math.sin(th) * 0.85 * CH * 1.25 * z * rr; k ? c.lineTo(px, py) : c.moveTo(px, py); }
       c.stroke(); c.restore(); } }
   // the clinic's tick: the email arrived with only its own cards
   for (const O of OKS) { const a = win(t, O.t, O.out, 0.08, 0.3); if (a <= 0) continue; const pop = 1 + 0.2 * Math.exp(-(t - O.t) * 8), cx = X(TICK.x), cy = Y(TICK.y), R = 48 * z * pop, m = 20 * z * pop;
@@ -225,7 +227,7 @@ function drawFrame(c, t) {
       blink, squash, focus: delight ? 0 : focus, eye, spark, sparkColor: VIO, delight, blush: 0.6, mouth: delight ? 0.4 : 0.45 * win(t, 2.6, 3.9, 0.06, 0.3) + 0.3 * win(t, 20.5, 21.3, 0.06, 0.3),
       spray: win(t, 26.2, 27.3, 0.2, 0.6), sw: 3.2 });
     c.restore();
-    const ya = RA(t, 'you'); if (ya > 0) S.chip(c, 'You', X(p.x), Y(p.y - 92), { f: 'sans', size: Math.round(30 * z), col: INK, a: ya, align: 'center', pad: 12, border: CARDEDGE });
+    const ya = RA(t, 'you'); if (ya > 0) S.chip(c, 'You', X(p.x), Y(p.y - 98), { f: 'sans', size: Math.round(30 * z), col: INK, a: ya, align: 'center', pad: 12, border: CARDEDGE });
     const st = win(t, 6.95, 8.2, 0.2, 0.3); if (st > 0) { const n = nose(t), nx = X(n.x), ny = Y(n.y), k = z;
       c.save(); c.globalAlpha = st; c.fillStyle = INK; c.beginPath(); c.roundRect(nx - 10 * k, ny + 2 * k, 20 * k, 30 * k, 6 * k); c.fill();
       c.beginPath(); c.arc(nx, ny, 13 * k, 0, Math.PI * 2); c.fill();

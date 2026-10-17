@@ -38,8 +38,8 @@ def pentick(t0, s, gain=1.0):                     # signature: a pencil tick, tw
 def chime(t0, gain=1.0, detune=0.0, pan=0.35):     # the coin: a bright bell, two partials of a struck coin
     put(bell(1318.5 * 2 ** (detune / 1200), 1.6), t0, 0.11 * gain, pan, 0.45); put(mallet(2637 * 2 ** (detune / 1200), 0.5, 0.6), t0, 0.05 * gain, pan, 0.3)
 def snap(t0):                                     # crash: a dry snap, a low thud, a short scrape back
-    put(hp(rng.standard_normal(len(T(0.06))), 1500) * np.exp(-T(0.06) * 70), t0, 0.5, 0.1, 0.15)
-    tt = T(0.45); f = 70 + 60 * np.exp(-tt * 18); put(np.sin(2 * np.pi * np.cumsum(f) / SR) * np.exp(-tt * 9), t0 + 0.01, 0.6, 0)
+    put(bp(rng.standard_normal(len(T(0.06))), 1500, 7000) * np.exp(-T(0.06) * 70) * np.minimum(1, T(0.06) / 0.002), t0, 0.3, 0.1, 0.15)
+    tt = T(0.45); f = 70 + 60 * np.exp(-tt * 18); put(np.sin(2 * np.pi * np.cumsum(f) / SR) * np.exp(-tt * 9) * np.minimum(1, tt / 0.003), t0 + 0.01, 0.42, 0)
     put(whoosh(0.9) * np.linspace(1, 0.2, len(T(0.9))), t0 + 0.08, 0.09, -0.4, 0.2)
 def thunk(t0):                                     # the jar says ✕
     tt = T(0.4); f = 95 + 40 * np.exp(-tt * 20); put(np.sin(2 * np.pi * np.cumsum(f) / SR) * np.exp(-tt * 12), t0, 0.45, 0.4)

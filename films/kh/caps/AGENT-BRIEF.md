@@ -64,3 +64,7 @@ All three viewers got the gist: "every miss becomes a new check". But every one 
 4. **No internal names on cards.** Write "Source: our own error log", not "Limits & escapes register". Keep a card up for at least 3 s at 28 px or larger.
 5. **Banned words for lay viewers:** run, fold, register, escape, pipeline, "here" without a pointer, and "it" without a referent.
 6. **Say what the work is in the first 3 s**, in everyday terms. The viewer must know whether it's a report, an email, a payment or a page.
+7. **Say where AI is, once.** Lay viewers keep asking "where does AI fit?". Name the AI on screen exactly once as an actor, for example "Your AI helper", "AI readers" or "the AI checker".
+8. **The limit must not contradict the move.** Phrase it as "and also", never "but actually". Write "Zero means: these readers found nothing. Add one new kind of reader.", not "Zero does not mean perfect."
+9. **Real-number cards explain themselves in one line.** If a number repeats or looks odd (14, 14, 10, 0), the card says why in plain words ("round 2 found as many as round 1") or the number is left out. The main line is at least 34 px and stays up at least 3.5 s.
+10. **No static stretch longer than 2 s.** Nothing should be cropped at the frame edge, and no label should overlap a card.
