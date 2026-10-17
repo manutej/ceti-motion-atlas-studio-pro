@@ -49,9 +49,10 @@ for x in Q['landings']: put(mallet(110, 0.6, 0.2), x, 0.22, 0, 0.1)
 # measurements: each world launches with its own pitch; on arrival BEFORE the split both ring the same note (one reading);
 # AFTER the split each lands on its own note
 for p in Q['pulses']:
-    pan = -0.55 if p['w'] == 0 else 0.55
-    put(tick(1760 if p['w'] == 0 else 2349, 0.05), p['t0'], 0.2, pan, 0.2)
-    if p['split']: put(mallet(CS5 if p['w'] == 0 else GS5, 1.4, 0.8), p['t1'], 0.24, pan * 0.6, 0.45)
+    pan = -0.55 if p['w'] == 0 else 0.55; late = p['t0'] > Q['green'] + 1.5
+    put(tick(1760 if p['w'] == 0 else 2349, 0.05), p['t0'], 0.1 if late else 0.2, pan, 0.2)
+    late = p['t0'] > Q['green'] + 1.5   # the strands keep reading under the captions: quieter
+    if p['split']: put(mallet(CS5 if p['w'] == 0 else GS5, 1.4, 0.8), p['t1'], 0.12 if late else 0.24, pan * 0.6, 0.45)
     else: put(mallet(E5, 1.4, 0.8), p['t1'], 0.24, 0, 0.45)
 # the dive and the find: a sonar ping, then the difference — a bell with a beating partner a semitone off
 put(whoosh(0.7), Q['dive'], 0.22, 0.3, 0.2)

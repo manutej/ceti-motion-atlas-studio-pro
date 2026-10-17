@@ -8,7 +8,7 @@
 
 | | |
 |---|---|
-| Length | 24–28 s, 60 fps, 1920×1080 |
+| Length | 24–28 s, 60 fps, 1920×1080 (the "not this" beat, belief and lockup in sequence usually need 25–27 s) |
 | Ground | Air mode over the chart ground (`SERIES.ground`): paper, grid, depth contours, soundings, compass. Never bare, never white. |
 | Opening | `SERIES.open`: "CETI · Capabilities · 0N" plus a display title with one accent word, gone by about 2.3 s. Work starts underneath it. |
 | Act 1, the mess (≈ 3–5 s) | The problem, made visible in one gesture. |

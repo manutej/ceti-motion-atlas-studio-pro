@@ -5,7 +5,7 @@
 (function (root) {
 'use strict';
 const KH = root.KH, S = KH.SERIES, { CETI: C, W: WD, clamp, lerp, smoothstep, win, EASE, ramp, mix, rgba, text } = KH;
-const W = 1920, H = 1080, BPM = 132, B = 60 / BPM, DUR = 26.2, beat = n => n * B;
+const W = 1920, H = 1080, BPM = 132, B = 60 / BPM, DUR = 27.65, beat = n => n * B;
 const INK = C.navy, SOFT = C.slate, TINT = WD.violetBlue;
 const GROUND = mix(C.paper, TINT, 0.06);                       // what SERIES.ground actually paints
 let ACC = WD.englishRed; for (let k = 0; k <= 1.0001; k += 0.02) { ACC = mix(WD.englishRed, INK, k); if (KH.contrast(ACC, GROUND) >= 4.7) break; }
@@ -19,14 +19,15 @@ const GX = 470, GW = 34;                                       // the gap in wor
 const CARD = [[-230, 40], [230, 40]], CW = 250, CHH = 132, CHIPX = [-230, 230];
 // ---------- times on the 132 BPM grid ----------
 const T_DEC = beat(6), T_COL = beat(12), T_DIVE = beat(18), T_GAP = beat(21), T_FOUND = beat(22), T_RISE = beat(23), T_CARDS = beat(25);
-const T_SPLIT = beat(30), T_RIDE = beat(32.4), T_CHIPS = beat(32), T_ALERT = beat(34), T_TURN = beat(33.2), T_GREEN = beat(38.5);
-const T_NOT = 19.9, T_END = 22.75, T_LOCK = 23.9;
+const T_SPLIT = beat(28), T_RIDE = beat(30.4), T_CHIPS = beat(30), T_ALERT = beat(32), T_TURN = beat(31.2), T_GREEN = beat(36.5);
+const T_NOT = 18.9, T_END = 21.75, T_LOCK = DUR - 2.3;
 const TRAVEL = 2 * B;                                          // a pulse takes two beats from its world to the reading
-const PULSES = [[0, 10], [1, 12], [0, 14], [1, 15], [1, 32], [0, 33], [1, 36], [0, 39]].map(([w, b]) => ({ w, t0: beat(b), t1: beat(b) + TRAVEL }));
+// pulses 0–3: the collapse; 4–7: after the split (7 = the green check); 8+: the strands keep reading to the end
+const PULSES = [[0, 10], [1, 12], [0, 14], [1, 15], [1, 30], [0, 31], [1, 34], [0, 37], [1, 39], [0, 41], [1, 43], [0, 45], [1, 47], [0, 49], [1, 51], [0, 53], [1, 55]].map(([w, b]) => ({ w, t0: beat(b), t1: beat(b) + TRAVEL }));
 
 // ---------- the whale's path (Hermite through time keys; zero tangent where it perches) ----------
 const KEYS = [[1.1, -1300, -330], [2.0, -620, -430], [T_DEC, -190, -404], [4.9, -190, -404], [5.5, -160, -112], [8.0, -160, -112],
-  [8.55, 40, 110], [9.05, 220, 140], [T_GAP, GX - 88, 128], [T_RISE, GX - 88, 128], [10.95, 380, 10], [T_CARDS, 268, -96], [13.15, 268, -96],
+  [8.55, 40, 110], [9.05, 220, 140], [T_GAP, GX - 88, 128], [T_RISE, GX - 88, 128], [10.95, 380, 10], [T_CARDS, 268, -96], [T_SPLIT - 0.5, 268, -96],
   [T_SPLIT, 0, -12], [T_RIDE + 0.3, 0, -226], [T_TURN, 0, -226], [T_TURN + 0.32, 16, -228], [DUR, 16, -228]];
 const PK = KEYS.map(([t, x, y]) => ({ t, x, y }));
 const near = (a, b) => Math.hypot(a.x - b.x, a.y - b.y) < 1;
@@ -66,8 +67,9 @@ const inGap = x => Math.abs(x - GX) < GW;
 
 // ---------- camera ----------
 function cam(t) {
-  const k1 = ramp(t, 7.9, 9.4, EASE.rest) * (1 - ramp(t, 10.5, 11.7, EASE.rest)), k2 = ramp(t, 18.4, 20.6, EASE.rest);
-  const x = lerp(0, 300, k1), y = lerp(lerp(-10, 100, k1), 0, k2), z = lerp(lerp(1.15, 1.4, k1), 0.92, k2);
+  const k1 = ramp(t, 7.9, 9.4, EASE.rest) * (1 - ramp(t, 10.5, 11.7, EASE.rest)), kS = ramp(t, T_SPLIT - 1.0, T_SPLIT, EASE.rest) * (1 - ramp(t, T_ALERT - 0.3, T_ALERT + 1.0, EASE.rest));
+  const k2 = ramp(t, 17.4, 19.4, EASE.rest), drift = ramp(t, 19.4, DUR, EASE.rest);   // the end keeps breathing in, never a dead hold
+  const x = lerp(lerp(lerp(-70, 300, k1), -60, kS), 0, k2), y = lerp(lerp(lerp(-10, 100, k1), -140, kS), 0, k2), z = lerp(lerp(lerp(1.15, 1.4, k1), 1.35, kS), 0.92 + 0.05 * drift, k2);
   return { x, y, z, ax: 960, ay: lerp(540, 450, k2) };
 }
 
@@ -75,17 +77,18 @@ function cam(t) {
 const ST = [
   { id: 's1', in: 2.6, out: 5.25, word: 'Decision', gloss: 'who acts on it' },
   { id: 's2', in: 5.45, out: 8.7, word: 'Collapse', gloss: 'two realities, one reading' },
-  { id: 's3', in: 8.9, out: 13.45, word: 'Witness', gloss: 'show both side by side' },
-  { id: 's4', in: 13.6, out: 17.3, word: 'Split', gloss: 'add the missing distinction' },
-  { id: 's5', in: 17.5, out: 19.7, word: 'Green', gloss: 'irrelevant change, same reading' },
+  { id: 's3', in: 8.9, out: 12.55, word: 'Witness', gloss: 'show both side by side' },
+  { id: 's4', in: 12.7, out: 16.4, word: 'Split', gloss: 'add the missing distinction' },
+  { id: 's5', in: 16.6, out: 18.8, word: 'Green', gloss: 'irrelevant change, same reading' },
 ].map(s => ({ ...s, fi: 0.3, fo: 0.3, text: `${s.word} — ${s.gloss}` }));
-const R_NOT = { id: 'not', in: T_NOT, out: 22.65, fi: 0.3, fo: 0.3, text: "More metrics isn't the fix — the right distinction is." };
-const R_END = { id: 'end', in: T_END, out: DUR, fi: 0.4, fo: 0, text: 'If two worlds look the same in your numbers, nothing downstream can tell them apart.' };
+const R_NOT = { id: 'not', in: T_NOT, out: T_NOT + 2.75, fi: 0.3, fo: 0.3, text: "More metrics isn't the fix — the right distinction is." };
+const R_END = { id: 'end', in: T_END, out: T_LOCK, fi: 0.4, fo: 0.3, text: 'If two worlds look the same in your numbers, nothing downstream can tell them apart.' };
 const READ = [
   { id: 'eyebrow', in: 0.25, out: 2.5, fi: 0.4, fo: 0.45, text: 'CETI · Capabilities · 05' },
   { id: 'title', in: 0.25, out: 2.5, fi: 0.4, fo: 0.45, text: 'Same reading, different world.' },
   ...ST,
-  { id: 'illus', in: 2.6, out: 22.4, fi: 0.4, fo: 0.4, text: 'checkout success · illustrative' },
+  { id: 'rail', in: 2.6, out: 18.8, fi: 0.4, fo: 0.3, text: 'DECISION COLLAPSE WITNESS SPLIT GREEN' },
+  { id: 'illus', in: 2.6, out: T_LOCK, fi: 0.4, fo: 0.4, text: 'checkout success · illustrative' },
   { id: 'worldA', in: 0.6, out: DUR, fi: 0.6, fo: 0, text: 'world A' },
   { id: 'worldB', in: 0.6, out: DUR, fi: 0.6, fo: 0, text: 'world B' },
   { id: 'down', in: T_FOUND + 0.1, out: DUR, fi: 0.35, fo: 0, text: 'EU lockers down' },
@@ -103,9 +106,9 @@ const RD = Object.fromEntries(READ.map(r => [r.id, r])), A = (id, t) => { const 
 // a reading chip: paper pill, a status dot (a mark), ink text. Several labels may cross-fade inside one pill.
 function pill(c, x, y, labels, dot, a, z, o = {}) { if (a <= 0.001) return; const size = (o.size || 26) * z;
   c.save(); c.font = `${size}px ${KH.FONTS.sans}`; const w = labels.reduce((m, l) => m + c.measureText(l.s).width * l.a, 0) / Math.max(1e-3, labels.reduce((m, l) => m + l.a, 0));
-  const pad = 16 * z, dw = 22 * z, Wd = w + dw + pad * 2, Hh = size * 1.62; c.globalAlpha = a;
+  const pad = 16 * z, dw = 26 * z, Wd = w + dw + pad * 2, Hh = size * 1.62; c.globalAlpha = a;
   c.fillStyle = C.paper; c.beginPath(); c.roundRect(x - Wd / 2, y - Hh / 2, Wd, Hh, 8 * z); c.fill(); c.strokeStyle = o.border || RULE; c.lineWidth = (o.bw || 1.4) * z; c.stroke();
-  c.fillStyle = dot; c.beginPath(); c.arc(x - Wd / 2 + pad + 7 * z, y, 7 * z, 0, Math.PI * 2); c.fill(); c.restore();
+  c.fillStyle = dot; c.beginPath(); c.arc(x - Wd / 2 + pad + 8 * z, y, 9 * z, 0, Math.PI * 2); c.fill(); c.restore();
   for (const l of labels) if (l.a > 0.001) text(c, l.s, x - Wd / 2 + pad + dw, y + size * 0.36, { f: 'sans', size, col: INK, a: a * l.a });
   return Wd; }
 function waveMini(c, x, y, w, k, z, a) { c.save(); c.globalAlpha = a; c.lineWidth = 3 * z; c.lineCap = 'round';
@@ -125,7 +128,7 @@ function drawFrame(c, t) {
   // ---------- the two worlds ----------
   const wIn = ramp(t, 0.5, 1.8, EASE.warm);
   for (let k = 0; k < 2; k++) { const col = k ? COL_B : COL_A, x0 = WX[k] - HW, n = 100, reveal = k ? ramp(t, 0.7, 2.0, EASE.warm) : wIn;
-    c.lineCap = 'round'; c.lineWidth = 4.2 * z;
+    c.lineCap = 'round'; c.lineWidth = 5.2 * z;
     for (let i = 0; i < n; i++) { const xa = x0 + (i / n) * 2 * HW, xb = x0 + ((i + 1) / n) * 2 * HW; if (i / n > reveal) break; if (k && (inGap(xa) || inGap(xb))) continue;
       const edge = Math.min(i / n, 1 - (i + 1) / n); c.strokeStyle = rgba(col, smoothstep(0, 0.12, edge));
       c.beginPath(); c.moveTo(X(xa), Y(waveY(xa, k, t))); c.lineTo(X(xb), Y(waveY(xb, k, t))); c.stroke(); }
@@ -141,7 +144,7 @@ function drawFrame(c, t) {
   // ---------- feeds, stem, strands ----------
   const di = drawIn(t);
   for (let k = 0; k < 2; k++) { const col = k ? COL_B : COL_A, n = 80;
-    c.lineCap = 'round'; c.lineWidth = 3.4 * z;
+    c.lineCap = 'round'; c.lineWidth = 4.6 * z;
     for (let i = 0; i < n; i++) { const s0 = i / n, s1 = (i + 1) / n; if (s0 > di) break;
       const y0 = lerp(BASE, TOP, s0), y1 = lerp(BASE, TOP, Math.min(s1, di)), ym = (y0 + y1) / 2;
       c.strokeStyle = mix(col, INK, drainK(ym, t)); c.beginPath(); c.moveTo(X(strandX(y0, k, t)), Y(y0)); c.lineTo(X(strandX(y1, k, t)), Y(y1)); c.stroke(); }
@@ -153,8 +156,8 @@ function drawFrame(c, t) {
   // ---------- pulses: measurements rising from each world ----------
   for (const p of PULSES) { if (t < p.t0 || t > p.t1 + 0.25) continue; const s = EASE.rest(clamp((t - p.t0) / TRAVEL)), y = lerp(BASE, TOP, s), x = strandX(y, p.w, t);
     const col = mix(p.w ? COL_B : COL_A, SOFT, drainK(y, t)), a = 1 - ramp(t, p.t1, p.t1 + 0.25);
-    c.fillStyle = rgba(col, a); c.beginPath(); c.arc(X(x), Y(y), 11 * z, 0, Math.PI * 2); c.fill();
-    c.strokeStyle = rgba(C.paper, a); c.lineWidth = 2 * z; c.stroke(); }
+    c.fillStyle = rgba(col, a); c.beginPath(); c.arc(X(x), Y(y), 21 * z, 0, Math.PI * 2); c.fill();
+    c.strokeStyle = rgba(C.paper, a); c.lineWidth = 3 * z; c.stroke(); }
 
   // ---------- the reading chip(s) ----------
   const sp = ramp(t, T_CHIPS, T_CHIPS + 0.6, EASE.glaser), swap = ramp(t, T_CHIPS + 0.3, T_CHIPS + 0.7, EASE.warm);
@@ -208,9 +211,14 @@ function drawFrame(c, t) {
   // ---------- station headline (top left, screen-fixed) ----------
   for (const s of ST) { const a = win(t, s.in, s.out, s.fi, s.fo); if (a <= 0) continue; const rise = (1 - EASE.defer(clamp((t - s.in) / s.fi))) * 12;
     text(c, s.word, 150, 196 + rise, { f: 'disp', size: 72, col: INK, a });
-    text(c, s.gloss, 153, 246 + rise, { f: 'sans', size: 28, col: SOFT, a }); }
-  { const pa = win(t, 2.6, 19.7, 0.4, 0.3); if (pa > 0) for (let i = 0; i < 5; i++) { const on = t >= ST[i].in, cur = on && t < (ST[i + 1] ? ST[i + 1].in : 99);
-      c.fillStyle = rgba(cur ? TINT : on ? SOFT : RULE, pa); c.fillRect(152 + i * 34, 274, 24, cur ? 5 : 3); } }
+    text(c, s.gloss, 153, 244 + rise, { f: 'sans', size: 26, col: SOFT, a }); }
+  // station rail: all five words in mono; the active one sits on a paper chip with a Wada underline
+  { const pa = A('rail', t); if (pa > 0) { const RW = ST.reduce((m, s) => m + 15.2 * s.word.length + 30, 0) - 30; let x = 960 - RW / 2;
+    c.save(); c.globalAlpha = pa * 0.94; c.fillStyle = GROUND; c.beginPath(); c.roundRect(x - 26, 978, RW + 52, 56, 12); c.fill(); c.restore();
+    for (let i = 0; i < 5; i++) { const s = ST[i], cur = win(t, s.in, s.out, 0.25, 0.25), w = 15.2 * s.word.length;
+      if (cur > 0.01) { c.save(); c.globalAlpha = pa * cur; c.fillStyle = C.paper; c.beginPath(); c.roundRect(x - 10, 990, w + 14, 32, 6); c.fill();
+        c.fillStyle = TINT; c.fillRect(x - 2, 1018, w - 2, 4); c.restore(); }
+      text(c, s.word, x, 1012, { f: 'mono', size: 19, col: mix(SOFT, INK, cur), a: pa, track: 0.2 }); x += w + 30; } } }
   text(c, 'checkout success · illustrative', 1770, 120, { f: 'mono', size: 14, col: SOFT, align: 'right', a: A('illus', t) });
 
   // ---------- captions, open, lockup ----------
@@ -228,8 +236,8 @@ function cues() { return { bpm: BPM, dur: DUR, title: 0.25, open_rule: 0.3, deci
 const CONTRAST = [
   ['title / station word / labels: ink on ground', INK, GROUND], ['station gloss / world labels / chrome: slate on ground', SOFT, GROUND],
   ['title accent "different"', ACC, GROUND], ['chip and card text: ink on paper', INK, C.paper], ['card letter: slate on paper', SOFT, C.paper],
-  ['caption: ink on paper chip', INK, C.paper], ['lockup: slate on ground', SOFT, GROUND], ['pod decision: ink on ground', INK, GROUND],
+  ['caption: ink on paper chip', INK, C.paper], ['station rail active: ink on paper chip', INK, C.paper], ['station rail idle: slate on ground', SOFT, GROUND], ['lockup: slate on ground', SOFT, GROUND], ['pod decision: ink on ground', INK, GROUND],
 ];
-const shutter = t => (t > 1.1 && t < 2.8) || (t > 8.0 && t < 11.4) || (t > 13.1 && t < 15.0) ? [3, 0.6] : [2, 0.5];
+const shutter = t => (t > 1.1 && t < 2.8) || (t > 8.0 && t < 11.4) || (t > T_SPLIT - 0.6 && t < T_RIDE + 0.5) ? [3, 0.6] : [2, 0.5];
 root.EPISODE = { drawFrame, cues, READ, CONTRAST, DUR, W, H, fps: 60, shutter, wpos, heading, cam };
 })(typeof window !== 'undefined' ? window : globalThis);
