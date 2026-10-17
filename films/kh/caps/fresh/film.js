@@ -209,9 +209,9 @@ function drawFrame(c, t) {
     sayChip(c, 'your report', X(SLOT(5)), Y(-PH / 2 - 40), RA(t, 'report'), { border: EDGE, size: 36 });
     const q = podPos('cust', t); sayChip(c, 'the customer', X(q.x) - 30, Y(q.y + 140), RA(t, 'cust'), { border: EDGE, size: 36 });
     { const f = podPos('fix', t); sayChip(c, 'someone else', X(f.x) + 210 * z, Y(f.y) + 10, RA(t, 'else'), { border: EDGE, size: 36 }); }
-    sayChip(c, '3 different AI checkers', X(300), Y(HY - 160), RA(t, 'fresh'), { border: EDGE, size: 36 });
+    sayChip(c, '3 different AI checkers', X(300), Y(HY - 235), RA(t, 'fresh'), { border: EDGE, size: 36 });
     // the legend: three colour dots, then "different colours = different kinds of checker"
-    const lg = RA(t, 'legend1'); if (lg > 0.01) { const str = 'different colours ' + RD('legend2').text, x0 = X(300), y0 = Y(HY - 160) + 64;
+    const lg = RA(t, 'legend1'); if (lg > 0.01) { const str = 'different colours ' + RD('legend2').text, x0 = X(300), y0 = Y(HY - 235) + 62;
       c.save(); c.font = `30px ${KH.FONTS.sans}`; const w = c.measureText(str).width; c.restore(); const tot = w + 108, lx = x0 - tot / 2;
       c.save(); c.globalAlpha = lg; c.fillStyle = C.paper; c.strokeStyle = EDGE; c.lineWidth = 1.2; c.beginPath(); c.roundRect(lx - 14, y0 - 34, tot + 28, 46, 6); c.fill(); c.stroke();
       ['A', 'B', 'C'].forEach((p, i) => { c.fillStyle = COL[p]; c.strokeStyle = INK; c.lineWidth = 2; c.beginPath(); c.arc(lx + 14 + i * 32, y0 - 11, 11, 0, Math.PI * 2); c.fill(); c.stroke(); }); c.restore();
