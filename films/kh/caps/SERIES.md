@@ -14,7 +14,8 @@
 | Act 1, the mess (≈ 3–5 s) | The problem, made visible in one gesture. |
 | Act 2, the move (≈ 12–15 s) | 4–6 station words from RESEARCH.md, hit on beats. The whale makes each one happen; it doesn't just point at it. |
 | Act 3, the payoff (≈ 4–6 s) | The episode's **own ending pattern** (see the table below). Endings must not repeat across the series. |
-| Close | One-sentence end belief as a caption, then `SERIES.lockup` from about DUR−2.2 s. |
+| Close | One-sentence end belief as a caption, fully out by the lockup start; then `SERIES.lockup` from about DUR−2.2 s. The lockup takes the caption's place at the bottom. |
+| Scale | Phone-legible: main strokes ≥ 4 px, key marks ≥ 40 px, station words ≥ 18 px mono. The mechanism fills the middle of the frame, not a thin band. Push in on the key moment. No static hold longer than about 2 s before the lockup. |
 | Text | Text is ink on paper, or on a paper chip (`SERIES.chip`). Never text on a Wada fill. Colour sits in marks, never in body text. The accent word in the title is the colour mixed toward navy until it passes 4.5:1. |
 | Motion | Fast but legible: the whale is ≤ 30 px and ≤ 0.35 rad per frame on screen. Camera moves are eased with CETI eases; no bounce. |
 | Sound | 120–132 BPM, cue-locked. Every sound sits on an exported cue. Normalised to −16 LUFS, true peak ≤ −1 dBTP. |

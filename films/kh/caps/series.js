@@ -42,7 +42,7 @@ function chip(c, s, x, y, o) { c.save(); c.font = `${o.size}px ${KH.FONTS[o.f]}`
   text(c, s, x, y, o); }
 
 // Opening card: eyebrow + title + a rule that draws on. Returns the alpha so the episode can fade its own work in under it.
-function open(c, t, ep, o = {}) { const a = win(t, 0.25, o.out ?? 2.3, 0.4, 0.45), d = ramp(t, 0.3, 1.2);
+function open(c, t, ep, o = {}) { const a = win(t, 0.25, o.out ?? 2.5, 0.4, 0.45), d = ramp(t, 0.3, 1.2);
   c.save(); c.setTransform(1, 0, 0, 1, 0, 0);
   text(c, `CETI · Capabilities · ${ep.no}`, 960, 430, { f: 'mono', size: 15, col: SOFT, a, align: 'center' });
   c.strokeStyle = rgba(ep.accent, a); c.lineWidth = 2; c.beginPath(); c.moveTo(960 - 160 * d, 462); c.lineTo(960 + 160 * d, 462); c.stroke();
@@ -55,11 +55,12 @@ function caption(c, t, r, o = {}) { const a = win(t, r.in, r.out, r.fi, r.fo); i
   chip(c, r.html || r.text, 960, o.y ?? 990, { f: 'sans', size: o.size ?? 38, col: INK, accent: o.accent || INK, a, align: 'center', pad: 18 });
   c.restore(); }
 
-// Closing lockup: whale mark + series name + episode, on paper. Every episode ends on it after its own ending beat.
+// Closing lockup: whale mark + series name + episode. It takes the caption's place at the bottom, so the
+// end-belief caption must be fully out by t0 (the lockup's start). Every episode ends on it after its own ending beat.
 function lockup(c, t, t0, ep) { const a = ramp(t, t0, t0 + 0.6, EASE.warm);
   if (a <= 0) return; c.save(); c.setTransform(1, 0, 0, 1, 0, 0);
-  whaleMark(c, 960 - 60, 820, 1.2, INK, a);
-  text(c, `CETI · Capabilities · ${ep.no} · ${ep.short}`, 960, 930, { f: 'mono', size: 14, col: SOFT, a, align: 'center' });
+  whaleMark(c, 960 - 60, 900, 1.2, INK, a);
+  text(c, `CETI · Capabilities · ${ep.no} · ${ep.short}`, 960, 1010, { f: 'mono', size: 15, col: SOFT, a, align: 'center' });
   c.restore(); }
 
 KH.SERIES = { name: 'CETI Capabilities', INK, SOFT, ground, chip, open, caption, lockup };
