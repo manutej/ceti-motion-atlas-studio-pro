@@ -29,7 +29,7 @@ const TAP = [bar(11), bar(11) + B, bar(11) + 2 * B], LABEL_T = bar(11) + 3 * B, 
 const FE = [bar(13), bar(13) + 1.5 * B, bar(13) + 3 * B], TUG0 = bar(14) + 2 * B, REP = TUG0 + 3 * B, LAST = bar(16);
 const SLIDE = bar(17), DOCK = bar(18), CARD_T = bar(18) + B, LAB = [bar(20), bar(20) + 2 * B];
 const PUSH = bar(23), GRID_T = bar(23) + 2 * B, PASS_T = bar(24) + B, NOT_T = bar(25), PAN = bar(25) + 1.1 * B;
-const FOLLOW = bar(26), LAND = bar(27), POD2_IN = bar(27) + B, POD_OK = bar(28), POD2_OUT = bar(29), SH0 = bar(29) + B, SH1 = SH0 + 1.5 * B, SH2 = SH1 + 1.0;
+const FOLLOW = bar(26), LAND = bar(27), POD2_IN = bar(27) + B, POD_OK = bar(28), POD2_OUT = bar(29), SH0 = bar(29) + B, SH1 = SH0 + 1.5 * B, SH2 = SH1 + 0.68;
 const BELIEF = bar(30), LOCK = bar(32);
 
 // ---------- content: per-segment sine modes [a, b, c] (px, + is down) ----------
@@ -147,7 +147,7 @@ function evalSeg(s, t) {
     if (s.hover) s.hp = evalSeg(PLAN[i - 1], s.a);
     if (s.to) { s.from = evalSeg(PLAN[i - 1], s.a);
       if (s.to.ride != null) s.to = { x: s.to.ride, y: lineY(s.to.ride, s.b) - LIFT };
-      else if (s.to.lab != null) { const d = labDot(s.to.lab, s.b); s.to = { x: d.x, y: d.y - 96 }; }
+      else if (s.to.lab != null) { const d = labDot(s.to.lab, s.b); s.to = { x: d.x - 20, y: d.y - 132 }; }
       else if (s.to.thread0 != null) { const p = qpt(thread(0, s.b, lineFn(s.b)), s.to.thread0); s.to = { x: p.x, y: p.y + T1OFF }; }
       else if (s.to.dx != null) s.to = { x: s.from.x + s.to.dx, y: s.from.y + s.to.dy };
       if (!s.keep && Math.abs(s.to.x - s.from.x) > 20) face = Math.sign(s.to.x - s.from.x); }
@@ -228,7 +228,7 @@ const CAPS = [
   cap('notthis', NOT_T, FOLLOW + 0.46, 'Checked means no known breaks. Not proven true.', { fi: 0.25, fo: 0.25 }),
   cap('belief', BELIEF, LOCK - 0.2, 'Pick three things your wiki must keep.'),
 ];
-const LABR = { id: 'label', in: LABEL_T, out: FE[0] - 0.25, fi: 0.3, fo: 0.3, text: 'Links must land.', kind: 'label', size: 26 };
+const LABR = { id: 'label', in: LABEL_T, out: FE[0] - 0.25, fi: 0.3, fo: 0.3, text: 'Links must land.', kind: 'label', size: 30 };
 const STRIP = { id: 'strip', in: STRIP_T, out: SLIDE - 0.1, fi: 0.35, fo: 0.35, text: 'Pin. Check. Fix.', kind: 'label', size: 24 };
 const CELLS = [['548', 'entities'], ['2,933', 'links'], ['0', 'laws broken'], ['0.988', 'sourced']];
 const CARDR = { id: 'card', in: CARD_T, out: bar(22) - 0.3, fi: 0.4, fo: 0.4, kind: 'card', size: 56, src: SRC,
@@ -384,14 +384,15 @@ function drawFrame(c, t) {
   // what each pin keeps: icons under the pins (source · link · page); the link pin is labelled once
   { const gridK = ramp(t, GRID_T, GRID_T + 0.4, EASE.glaser) * (1 - ramp(t, PAN - 0.4, PAN, EASE.rest));
     ['source', 'link', 'page'].forEach((kind, i) => { const ia = ramp(t, TAP[i] + 0.1, TAP[i] + 0.5, EASE.warm) * (i === 0 ? 1 - Math.min(1, gridK * 3) : 1); iconChip(c, kind, X(PINX[i]), Y(118), z, ia); });
-    const lab = ra(t, 'label'); if (lab > 0) S.chip(c, LABR.text, X(0), Y(118) + 62 * zz + (1 - EASE.defer(clamp(lab))) * 8, { f: 'sans', size: 26, col: INK, a: lab, align: 'center', pad: 16, border: RULE });
+    const lab = ra(t, 'label'); if (lab > 0) S.chip(c, LABR.text, X(0), Y(118) + 62 * zz + (1 - EASE.defer(clamp(lab))) * 8, { f: 'sans', size: 30, col: INK, a: lab, align: 'center', pad: 16, border: RULE });
     // LIMIT: the source tick opens into the atlas citation audit (60 ticks)
     if (gridK > 0.001) { const cx = X(PINX[0]), top = Y(118) - 23 * zz, wF = 640, hF = 290, w = lerp(46, wF, gridK), h = lerp(46, hF, gridK);
       c.save(); c.fillStyle = C.paper; c.strokeStyle = RULE; c.lineWidth = 1.8; c.beginPath(); c.roundRect(cx - w / 2, top, w, h, 10); c.fill(); c.stroke(); c.restore();
       const ta = ramp(gridK, 0.7, 1, lin); if (ta > 0) { const gx = cx - wF / 2 + 40, gy = top + 40;
         for (const q of AUD) { const k = ramp(t, q.t, q.t + 0.18, EASE.glaser); const col = q.i % 10, row = Math.floor(q.i / 10), x = gx + col * 30, y = gy + row * 36;
           c.save(); c.globalAlpha = ta; c.lineCap = 'round'; c.lineWidth = 7; c.strokeStyle = k > 0.01 ? (q.bad ? COP : DSG) : mix(C.paper, C.slate, 0.25);
-          c.beginPath(); c.moveTo(x, y + 24); c.lineTo(x, y + 24 - 24 * Math.max(k, 0.3)); c.stroke(); c.restore(); }
+          c.beginPath(); c.moveTo(x, y + 24); c.lineTo(x, y + 24 - 24 * Math.max(k, 0.3)); c.stroke();
+          if (q.bad && k > 0.01) { c.fillStyle = COP; c.beginPath(); c.arc(x, y - 6, 4.5 * k, 0, Math.PI * 2); c.fill(); } c.restore(); }
         const aa = ra(t, 'audit'); if (aa > 0) { text(c, 'Atlas citation audit', gx + 318, gy + 22, { f: 'sans', size: 26, col: SOFT, a: aa });
           text(c, '47 of 60', gx + 318, gy + 100, { f: 'monoB', size: 50, col: INK, a: aa, track: 0.02 }); text(c, 'faithful', gx + 318, gy + 146, { f: 'sans', size: 26, col: SOFT, a: aa }); } } } }
 

@@ -59,9 +59,10 @@ put(pluck(207.6, 1.0, 0.5, glide=(200.0, 0.6), damp=0.985), one('bump'), 0.55, 0
 put(pluck(196.0, 0.8, 0.35, glide=(190.0, 0.5), damp=0.98), one('flutter'), 0.32, -0.1, 0.25)
 put(whoosh(0.8, lo=300, hi=3000), one('podIn') - 0.7, 0.07, -0.5, 0.2)
 put(thunk(150), one('podX'), 0.6, 0.2, 0.2); put(thunk(140), one('pulseX'), 0.22, 0.2, 0.3)
-put(whoosh(1.2, lo=250, hi=2500), one('podOut'), 0.08, 0.5, 0.3)
+put(whoosh(1.0, lo=250, hi=2500), one('podOut'), 0.08, 0.5, 0.1)
 # ---------- WHY: hinge silence, title tick, the problem motif three times and accelerating ----------
-ti = one('title'); put(whoosh(0.6, rev=True), ti - 0.55, 0.08, 0, 0.2); put(mallet(A / 2, 2.4, 0.4), ti, 0.2, 0, 0.5); put(tick(2400, 0.04), ti, 0.12, 0, 0.1)
+hg = ACTS['why']['in']; rt = lp(rng.standard_normal(N), 300) * 0.02 * smooth(hg - 0.3, hg, t) * (1 - smooth(hg + 2 * B, hg + 2 * B + 0.4, t)); BUS[:, 0] += rt; BUS[:, 1] += rt
+ti = one('title'); put(mallet(A / 2, 2.4, 0.4), ti, 0.2, 0, 0.5); put(tick(2400, 0.04), ti, 0.12, 0, 0.1)
 put(whoosh(1.6, lo=200, hi=1800), one('pull'), 0.06, 0, 0.3)
 for e in at('edit'):
     i = e['i']; g = [0.45, 0.5, 0.55, 0.4][i]; f = [207.6, 201.0, 214.0, 196.0][i]
