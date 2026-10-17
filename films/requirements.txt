@@ -1,0 +1,8 @@
+# scores + gates
+numpy==2.5.3
+scipy==1.18.1
+# design plates (atlas/design/src) + registry previews
+pillow==12.3.0
+pycairo==1.29.2
+CairoSVG==2.9.1
+scikit-image==0.26.0

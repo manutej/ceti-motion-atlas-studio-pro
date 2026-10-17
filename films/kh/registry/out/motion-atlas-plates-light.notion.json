@@ -1,0 +1,39 @@
+{
+ "properties": {
+  "Name": "Motion Atlas plates \u2014 light (video)",
+  "Kind": "Plate set",
+  "Version": "1.0",
+  "Status": "shipped",
+  "Style": "Kinetic Hydrography 1.0.0",
+  "Fingerprint": "daa2c978a833dd6f",
+  "Passport hash": "11df6c39a3869737",
+  "Wada": [
+   "296",
+   "279",
+   "166",
+   "243",
+   "339",
+   "84",
+   "207"
+  ],
+  "Engine": [
+   "Python (Pillow)"
+  ],
+  "Gates": "Pass",
+  "Gate detail": "contrast: PASS \u2014 min 6.34:1 \u00b7 title_safe: PASS \u2014 5% title-safe on 1080p frames \u00b7 colour_provenance: PASS",
+  "Deviations": "None",
+  "Design ID": "motion-atlas-plates-light",
+  "Derived from": [
+   "3fbd50cfaf9381e88868eccbf1e10d25"
+  ],
+  "Atlas lineage": [
+   "3fbd50cfaf9381238fecc2057f43d49e",
+   "3fbd50cfaf938144b0c4e8f18671fd02"
+  ],
+  "date:Registered:start": "2026-10-16",
+  "date:Registered:is_datetime": 0
+ },
+ "content": "Light twin of the plates for video use: CETI paper ground (not white), Wada accents as fills, plus two 1080p title frames.\n\n## Provenance\n- **Style:** Kinetic Hydrography 1.0.0 \u00b7 passport `11df6c39a3869737`\n- **Fingerprint:** `daa2c978a833dd6f208095775c9e36854121829635c9c4820f0b4d59d474e201`\n- **Parents:** motion-atlas-plates-dark (`1674d3e8f95e`)\n- **Colour provenance:** PASS \u2014 34 literal colours, 34 registered tokens, 0 declared derived\n\n## What changed\nRe-keyed every plate for light mode (\"the colour is the fill\"); added 1920\u00d71080 hero and title frames.\n\n## Gates\n- contrast: PASS \u2014 min 6.34:1\n- title_safe: PASS \u2014 5% title-safe on 1080p frames\n- colour_provenance: PASS\n\n## Deviations from the style\n- None\n\n## Files\n- `atlas/design/light/hero-1920x1080.png` \u00b7 `bf7ffd9fa626` \u00b7 201,002 bytes\n- `atlas/design/light/title-1920x1080.png` \u00b7 `ab42619d9fd5` \u00b7 85,882 bytes\n- `atlas/design/light/plate-hero.png` \u00b7 `db79a8c605bf` \u00b7 275,340 bytes\n- `atlas/design/light/plate-palette.png` \u00b7 `4e202c86e353` \u00b7 196,418 bytes\n- `atlas/design/light/cover-notion.png` \u00b7 `c8c09727ca1d` \u00b7 64,701 bytes\n- `atlas/design/light/motion-atlas-plates-light.pdf` \u00b7 `035565f11d3c` \u00b7 1,140,676 bytes\n- `atlas/design/src/light.py` \u00b7 `9da7eb386a5e` \u00b7 14,110 bytes\n- `atlas/design/src/kit.py` \u00b7 `43ad4feb9cfb` \u00b7 7,788 bytes\n\n## Manifest\n```json\n{\n \"id\": \"motion-atlas-plates-light\",\n \"fingerprint\": \"daa2c978a833dd6f208095775c9e36854121829635c9c4820f0b4d59d474e201\",\n \"style\": {\n  \"name\": \"Kinetic Hydrography\",\n  \"version\": \"1.0.0\",\n  \"passport_sha256\": \"11df6c39a38697375745f2bdb2040780e72f3657a56ab4306338bbfa64913efe\",\n  \"kit_sha256\": null\n },\n \"parents\": {\n  \"motion-atlas-plates-dark\": \"1674d3e8f95eeae8b04d06ce1370b60bc36a6b037e8ebeb1680a270739481716\"\n },\n \"wada\": [\n  296,\n  279,\n  166,\n  243,\n  339,\n  84,\n  207\n ],\n \"atlas\": [\n  \"q:typographic-restraint\",\n  \"q:brand-grounding\"\n ],\n \"gates\": {\n  \"contrast\": \"PASS \\u2014 min 6.34:1\",\n  \"title_safe\": \"PASS \\u2014 5% title-safe on 1080p frames\",\n  \"colour_provenance\": \"PASS\"\n }\n}\n```",
+ "preview": "kh/registry/previews/motion-atlas-plates-light.jpg",
+ "unresolved_parents": []
+}

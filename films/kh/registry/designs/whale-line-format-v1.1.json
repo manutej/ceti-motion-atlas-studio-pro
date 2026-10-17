@@ -1,0 +1,49 @@
+{
+ "id": "whale-line-format-v1.1",
+ "name": "Whale Line \u2014 film format v1.1 (air mode)",
+ "kind": "Format",
+ "version": "1.1",
+ "parents": [
+  "whale-line-format-v1",
+  "character-sheet-v2"
+ ],
+ "wada": [
+  279
+ ],
+ "engine": [
+  "Canvas (skia)",
+  "ffmpeg",
+  "numpy synth"
+ ],
+ "atlas": [
+  "el:kinetic-type",
+  "el:character-rig",
+  "el:camera-move",
+  "q:beat-locked-changes",
+  "q:time-pure-frames",
+  "q:motion-blur",
+  "q:cue-locked-sound",
+  "q:typographic-restraint"
+ ],
+ "sources": [
+  "kh/lines/whaleline.js",
+  "kh/lines/engine.cjs",
+  "kh/lines/tool.cjs",
+  "kh/lines/score.py",
+  "kh/whale-rig.js"
+ ],
+ "outputs": [],
+ "preview": "kh/registry/previews/whale-line-format-v1.1.jpg",
+ "gates": {
+  "contrast": "PASS \u2014 gate added: every text/ground pair \u2265 4.5:1 (water glosses now 14.3:1 on paper labels)",
+  "read_time": "PASS \u2014 built in",
+  "frame_jump": "PASS \u2014 built in"
+ },
+ "summary": "Whale Line, freed from the water: medium \"air\" (no sea, a speed trail instead of splashes), every timing scaled to the station cycle so stories can run at any tempo, and a contrast gate.",
+ "changes": "Air mode; cycleBeats/bpm/intro per story; glosses held until the next landing; water-mode glosses moved onto paper labels after review (blue on blue was ~3:1).",
+ "style": "1.0.0",
+ "status": "shipped",
+ "uses_kit": true,
+ "derived_colours": {},
+ "deviations": []
+}

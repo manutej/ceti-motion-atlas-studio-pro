@@ -1,0 +1,50 @@
+{
+ "properties": {
+  "Name": "Little whale \u2014 film v2",
+  "Kind": "Film",
+  "Version": "2.0",
+  "Status": "shipped",
+  "Style": "Kinetic Hydrography 1.0.0",
+  "Fingerprint": "c39c34cfd5321d9c",
+  "Passport hash": "11df6c39a3869737",
+  "Wada": [
+   "279",
+   "296",
+   "166",
+   "339"
+  ],
+  "Engine": [
+   "Canvas (skia)",
+   "ffmpeg",
+   "numpy synth"
+  ],
+  "Gates": "Pass",
+  "Gate detail": "frame_jump: PASS \u2014 12.8 px and 0.12 rad per frame at 60 fps \u00b7 ffprobe: PASS \u2014 3600 frames, 60.0 s \u00b7 loudness: PASS \u2014 -15.8 LUFS \u00b7 contact_sheet: PASS \u2014 reviewed \u00b7 colour_provenance: PASS",
+  "Deviations": "Volume gradients on the character and light shafts go beyond the brand rule of near-flat fills \u2014 needed for gentle 2.5D \u00b7 Hand-picked shades predate the style kit; each is declared with its parent token",
+  "Design ID": "little-whale-v2",
+  "Derived from": [
+   "3fbd50cfaf9381bdb55dc7553d29f205"
+  ],
+  "Atlas lineage": [
+   "3fbd50cfaf9381159144e6222a7785ef",
+   "3fbd50cfaf93818c8ecfe20f001c91ca",
+   "3fbd50cfaf9381078d70c4da78795394",
+   "3fbd50cfaf9381db9811ff2aa288e3d3",
+   "3fbd50cfaf93818c9148cabe066e555a",
+   "3fbd50cfaf93818da268d8e60efb8eb4",
+   "3fbd50cfaf9381fbb243e1afa8e20b3c",
+   "3fbd50cfaf938164b072d3dbdeed91f5",
+   "3fbd50cfaf938181be57d4e93ef3cc73",
+   "3fbd50cfaf9381bc98b8cbf799d95321",
+   "3fbd50cfaf938109b4d8cdcbc2fc8787",
+   "3fbd50cfaf9381269a41dd50de1c851b",
+   "3fbd50cfaf93810bbfc9fe9ad8c1949d",
+   "3fbd50cfaf9381eb9960f6866c267d59"
+  ],
+  "date:Registered:start": "2026-10-16",
+  "date:Registered:is_datetime": 0
+ },
+ "content": "Second cut at 60 fps with motion blur, layered water depth (seabed, distant whales, light shafts, three particle planes, caustics) and a character with volume.\n\n## Provenance\n- **Style:** Kinetic Hydrography 1.0.0 \u00b7 passport `11df6c39a3869737`\n- **Fingerprint:** `c39c34cfd5321d9c4ee069192483251cab27b5999ef10f751c536e0e67a4c5e6`\n- **Parents:** little-whale-v1 (`b165c94faf0f`)\n- **Colour provenance:** PASS \u2014 31 literal colours, 21 registered tokens, 10 declared derived\n\n## What changed\n60 fps + 2-sub-frame motion blur; bolder swim, flinch and singing poses; bubbles per note; parallax camera; canvas engine (10\u00d7 faster render).\n\n## Gates\n- frame_jump: PASS \u2014 12.8 px and 0.12 rad per frame at 60 fps\n- ffprobe: PASS \u2014 3600 frames, 60.0 s\n- loudness: PASS \u2014 -15.8 LUFS\n- contact_sheet: PASS \u2014 reviewed\n- colour_provenance: PASS\n\n## Deviations from the style\n- Volume gradients on the character and light shafts go beyond the brand rule of near-flat fills \u2014 needed for gentle 2.5D\n- Hand-picked shades predate the style kit; each is declared with its parent token\n\n## Files\n- `whale/little-whale-v2.mp4` \u00b7 `abd8b64c4ddf` \u00b7 37,296,737 bytes\n- `whale/film2.js` \u00b7 `8c1b5e4f2232` \u00b7 34,341 bytes\n- `whale/engine2.cjs` \u00b7 `ce9108589a90` \u00b7 1,335 bytes\n- `whale/render2.cjs` \u00b7 `ee6c5a5e2de6` \u00b7 1,128 bytes\n- `whale/score.json` \u00b7 `f9bbba1a9889` \u00b7 1,506 bytes\n- `whale/synth.py` \u00b7 `4333af563235` \u00b7 7,071 bytes\n- `whale/bubbles.json` \u00b7 `3cd7ac93261d` \u00b7 3,463 bytes\n\n## Manifest\n```json\n{\n \"id\": \"little-whale-v2\",\n \"fingerprint\": \"c39c34cfd5321d9c4ee069192483251cab27b5999ef10f751c536e0e67a4c5e6\",\n \"style\": {\n  \"name\": \"Kinetic Hydrography\",\n  \"version\": \"1.0.0\",\n  \"passport_sha256\": \"11df6c39a38697375745f2bdb2040780e72f3657a56ab4306338bbfa64913efe\",\n  \"kit_sha256\": null\n },\n \"parents\": {\n  \"little-whale-v1\": \"b165c94faf0f0d91e55e6aef122f19144744bf1756aa46f9e023fea641c2f174\"\n },\n \"wada\": [\n  279,\n  296,\n  166,\n  339\n ],\n \"atlas\": [\n  \"q:time-pure-frames\",\n  \"q:seeded-rng\",\n  \"q:motion-blur\",\n  \"q:paint-once-cache\",\n  \"q:cue-locked-sound\",\n  \"q:loudness-normalisation\",\n  \"el:camera-move\",\n  \"el:particle-layer\",\n  \"el:3d-layer\",\n  \"el:paper-finish\",\n  \"el:character-rig\",\n  \"gate:frame-jump-detector\",\n  \"gate:contact-sheet\",\n  \"gate:ffprobe-spec\"\n ],\n \"gates\": {\n  \"frame_jump\": \"PASS \\u2014 12.8 px and 0.12 rad per frame at 60 fps\",\n  \"ffprobe\": \"PASS \\u2014 3600 frames, 60.0 s\",\n  \"loudness\": \"PASS \\u2014 -15.8 LUFS\",\n  \"contact_sheet\": \"PASS \\u2014 reviewed\",\n  \"colour_provenance\": \"PASS\"\n }\n}\n```",
+ "preview": "kh/registry/previews/little-whale-v2.jpg",
+ "unresolved_parents": []
+}

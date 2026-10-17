@@ -1,0 +1,69 @@
+{
+ "id": "little-whale-moodboard",
+ "name": "Little whale \u2014 moodboard",
+ "kind": "Moodboard",
+ "version": "1.0",
+ "status": "shipped",
+ "style": {
+  "name": "Kinetic Hydrography",
+  "version": "1.0.0",
+  "passport_sha256": "11df6c39a38697375745f2bdb2040780e72f3657a56ab4306338bbfa64913efe",
+  "kit_sha256": null
+ },
+ "parents": {
+  "kh-style-1.0.0": "31bf64a419e000b4af1a66d61efd00b6969f293576a98b964a3680cb02a6aa20"
+ },
+ "wada": [
+  279,
+  296,
+  166,
+  339
+ ],
+ "engine": [
+  "SVG + headless Chromium"
+ ],
+ "atlas": [
+  "stg:style-system",
+  "el:character-rig",
+  "stg:key-stills"
+ ],
+ "sources": [
+  {
+   "path": "whale/moodboard.html",
+   "sha256": "ecacf1e6a48899b8fc59ddf79801d263c1c86c499fca4b06906efd082d402609",
+   "bytes": 6008
+  },
+  {
+   "path": "whale/lib.js",
+   "sha256": "b937f7789f441aaae76082a5a0ab6377e5245170fda2066ede131a9189f3a5b5",
+   "bytes": 6349
+  }
+ ],
+ "outputs": [
+  {
+   "path": "whale/moodboard.png",
+   "sha256": "70a4d1bfd794b3529d0e1c8315024a05db5be5a5c138850157b55e8963b91ce9",
+   "bytes": 121869
+  }
+ ],
+ "gates": {
+  "contact_sheet": "PASS \u2014 reviewed",
+  "colour_provenance": "PASS"
+ },
+ "colour_provenance": {
+  "literal_colours": 26,
+  "registered": 25,
+  "declared_derived": [
+   "#1E2536"
+  ],
+  "unregistered": [],
+  "status": "PASS"
+ },
+ "deviations": [
+  "Hand-picked shades predate the style kit; each is declared with its parent token"
+ ],
+ "summary": "Character sheet and colour script for the little whale: four emotional states, a palette per act and the motion vocabulary.",
+ "changes": "First moodboard; the rig was reshaped to calf proportions after review.",
+ "registered_at": "2026-10-16T17:09:47+00:00",
+ "fingerprint": "f8a7036d27e1525a59d150c3aa57eb5ef81e29353b270e3ec0d79f3c45b85934"
+}

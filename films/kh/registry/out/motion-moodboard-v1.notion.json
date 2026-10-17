@@ -1,0 +1,39 @@
+{
+ "properties": {
+  "Name": "Motion moodboard \u2014 Sea of data + Composition",
+  "Kind": "Moodboard",
+  "Version": "1.0",
+  "Status": "shipped",
+  "Style": "Kinetic Hydrography 1.0.0",
+  "Fingerprint": "6214c73719544157",
+  "Passport hash": "11df6c39a3869737",
+  "Wada": [
+   "339",
+   "296",
+   "279"
+  ],
+  "Engine": [
+   "Canvas (skia)",
+   "ffmpeg"
+  ],
+  "Gates": "Pass",
+  "Gate detail": "contact_sheet: PASS \u2014 reviewed \u00b7 ffprobe: PASS \u2014 480 frames, 8.0 s \u00b7 colour_provenance: PASS",
+  "Deviations": "None",
+  "Design ID": "motion-moodboard-v1",
+  "Derived from": [
+   "3fcd50cfaf9381848c4dcc33d67c3235",
+   "3fcd50cfaf93816eb330e17eda7a552d",
+   "3fcd50cfaf938122aadbc11daf15a4f3"
+  ],
+  "Atlas lineage": [
+   "3fbd50cfaf9381468b01c86475b8511a",
+   "3fbd50cfaf938162846cfb00b4863fe9",
+   "3fbd50cfaf93810bbfc9fe9ad8c1949d"
+  ],
+  "date:Registered:start": "2026-10-17",
+  "date:Registered:is_datetime": 0
+ },
+ "content": "A moodboard built from the live engines: six motion moments (sense, sounding, idea, dispatch, typed joints, show its work) as stills and as an 8-second looping board.\n\n## Provenance\n- **Style:** Kinetic Hydrography 1.0.0 \u00b7 passport `11df6c39a3869737` \u00b7 kit `a19e3d258a95aa78`\n- **Fingerprint:** `6214c7371954415792212b1a34c536bd656b34ed5e00603acf46ee36c336bd52`\n- **Parents:** sea-of-data-v1 (`55790cb02b5c`), composition-v2 (`1a97c5be2b80`), whale-line-brief-v2 (`6b3385aa768e`)\n- **Colour provenance:** PASS \u2014 0 literal colours, 0 registered tokens, 0 declared derived\n\n## What changed\nFirst motion moodboard \u2014 cells are true frames, not mock-ups.\n\n## Gates\n- contact_sheet: PASS \u2014 reviewed\n- ffprobe: PASS \u2014 480 frames, 8.0 s\n- colour_provenance: PASS\n\n## Deviations from the style\n- None\n\n## Files\n- `kh/board/motion-moodboard.png` \u00b7 `e1f0e3bc15db` \u00b7 208,747 bytes\n- `kh/board/motion-moodboard.mp4` \u00b7 `9423c61edf69` \u00b7 5,943,533 bytes\n- `kh/board/board.cjs` \u00b7 `093789df4470` \u00b7 4,199 bytes\n\n## Manifest\n```json\n{\n \"id\": \"motion-moodboard-v1\",\n \"fingerprint\": \"6214c7371954415792212b1a34c536bd656b34ed5e00603acf46ee36c336bd52\",\n \"style\": {\n  \"name\": \"Kinetic Hydrography\",\n  \"version\": \"1.0.0\",\n  \"passport_sha256\": \"11df6c39a38697375745f2bdb2040780e72f3657a56ab4306338bbfa64913efe\",\n  \"kit_sha256\": \"a19e3d258a95aa78e3199a8a95645703411e1ff218b262cd087dcf6516312a05\"\n },\n \"parents\": {\n  \"sea-of-data-v1\": \"55790cb02b5c52c6893f971a378c7820db845e310d8533c58820ea3d263dfd66\",\n  \"composition-v2\": \"1a97c5be2b80b382306dc6fea4cd8b37afa93ec46a0b9392db67f9b4dc2f1247\",\n  \"whale-line-brief-v2\": \"6b3385aa768e67a9aeca49b13e3a86e956e5d9dab22b32147ad7c9e8220e8a68\"\n },\n \"wada\": [\n  339,\n  296,\n  279\n ],\n \"atlas\": [\n  \"stg:style-system\",\n  \"stg:key-stills\",\n  \"gate:contact-sheet\"\n ],\n \"gates\": {\n  \"contact_sheet\": \"PASS \\u2014 reviewed\",\n  \"ffprobe\": \"PASS \\u2014 480 frames, 8.0 s\",\n  \"colour_provenance\": \"PASS\"\n }\n}\n```",
+ "preview": "kh/registry/previews/motion-moodboard-v1.jpg",
+ "unresolved_parents": []
+}

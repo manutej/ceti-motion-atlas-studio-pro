@@ -1,0 +1,37 @@
+{
+ "properties": {
+  "Name": "Little whale \u2014 moodboard",
+  "Kind": "Moodboard",
+  "Version": "1.0",
+  "Status": "shipped",
+  "Style": "Kinetic Hydrography 1.0.0",
+  "Fingerprint": "f8a7036d27e1525a",
+  "Passport hash": "11df6c39a3869737",
+  "Wada": [
+   "279",
+   "296",
+   "166",
+   "339"
+  ],
+  "Engine": [
+   "SVG + headless Chromium"
+  ],
+  "Gates": "Pass",
+  "Gate detail": "contact_sheet: PASS \u2014 reviewed \u00b7 colour_provenance: PASS",
+  "Deviations": "Hand-picked shades predate the style kit; each is declared with its parent token",
+  "Design ID": "little-whale-moodboard",
+  "Derived from": [
+   "3fbd50cfaf93811e86ebfd0565a7a2f7"
+  ],
+  "Atlas lineage": [
+   "3fbd50cfaf9381468b01c86475b8511a",
+   "3fbd50cfaf938109b4d8cdcbc2fc8787",
+   "3fbd50cfaf938162846cfb00b4863fe9"
+  ],
+  "date:Registered:start": "2026-10-16",
+  "date:Registered:is_datetime": 0
+ },
+ "content": "Character sheet and colour script for the little whale: four emotional states, a palette per act and the motion vocabulary.\n\n## Provenance\n- **Style:** Kinetic Hydrography 1.0.0 \u00b7 passport `11df6c39a3869737`\n- **Fingerprint:** `f8a7036d27e1525a59d150c3aa57eb5ef81e29353b270e3ec0d79f3c45b85934`\n- **Parents:** kh-style-1.0.0 (`31bf64a419e0`)\n- **Colour provenance:** PASS \u2014 26 literal colours, 25 registered tokens, 1 declared derived\n\n## What changed\nFirst moodboard; the rig was reshaped to calf proportions after review.\n\n## Gates\n- contact_sheet: PASS \u2014 reviewed\n- colour_provenance: PASS\n\n## Deviations from the style\n- Hand-picked shades predate the style kit; each is declared with its parent token\n\n## Files\n- `whale/moodboard.png` \u00b7 `70a4d1bfd794` \u00b7 121,869 bytes\n- `whale/moodboard.html` \u00b7 `ecacf1e6a488` \u00b7 6,008 bytes\n- `whale/lib.js` \u00b7 `b937f7789f44` \u00b7 6,349 bytes\n\n## Manifest\n```json\n{\n \"id\": \"little-whale-moodboard\",\n \"fingerprint\": \"f8a7036d27e1525a59d150c3aa57eb5ef81e29353b270e3ec0d79f3c45b85934\",\n \"style\": {\n  \"name\": \"Kinetic Hydrography\",\n  \"version\": \"1.0.0\",\n  \"passport_sha256\": \"11df6c39a38697375745f2bdb2040780e72f3657a56ab4306338bbfa64913efe\",\n  \"kit_sha256\": null\n },\n \"parents\": {\n  \"kh-style-1.0.0\": \"31bf64a419e000b4af1a66d61efd00b6969f293576a98b964a3680cb02a6aa20\"\n },\n \"wada\": [\n  279,\n  296,\n  166,\n  339\n ],\n \"atlas\": [\n  \"stg:style-system\",\n  \"el:character-rig\",\n  \"stg:key-stills\"\n ],\n \"gates\": {\n  \"contact_sheet\": \"PASS \\u2014 reviewed\",\n  \"colour_provenance\": \"PASS\"\n }\n}\n```",
+ "preview": "kh/registry/previews/little-whale-moodboard.jpg",
+ "unresolved_parents": []
+}

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 60" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="CETI whale mark">
+  
+  <path d="M8 32 C 11 24, 20 20, 32 20 C 50 20, 66 28, 78 34"></path>
+  
+  <path d="M8 32 C 12 40, 24 44, 42 44 C 60 44, 74 42, 82 38"></path>
+  
+  <path d="M36 42 C 42 52, 54 56, 64 56 C 58 50, 50 44, 44 38"></path>
+  
+  <path d="M82 38 C 90 38, 96 32, 96 22 C 90 26, 84 30, 80 34 C 88 30, 94 22, 96 14 C 88 18, 82 24, 78 30"></path>
+</svg>

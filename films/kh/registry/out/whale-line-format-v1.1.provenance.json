@@ -1,0 +1,81 @@
+{
+ "id": "whale-line-format-v1.1",
+ "name": "Whale Line \u2014 film format v1.1 (air mode)",
+ "kind": "Format",
+ "version": "1.1",
+ "status": "shipped",
+ "style": {
+  "name": "Kinetic Hydrography",
+  "version": "1.0.0",
+  "passport_sha256": "11df6c39a38697375745f2bdb2040780e72f3657a56ab4306338bbfa64913efe",
+  "kit_sha256": "a19e3d258a95aa78e3199a8a95645703411e1ff218b262cd087dcf6516312a05"
+ },
+ "parents": {
+  "whale-line-format-v1": "9d5e7a25aef1e59c09b9c7edb60b4bbca322be6a4c2109798b34c7a8439af68f",
+  "character-sheet-v2": "a5642288092cd8896b6dd1efc15fc38dcdb3582115686b78405dae9e0c195247"
+ },
+ "wada": [
+  279
+ ],
+ "engine": [
+  "Canvas (skia)",
+  "ffmpeg",
+  "numpy synth"
+ ],
+ "atlas": [
+  "el:kinetic-type",
+  "el:character-rig",
+  "el:camera-move",
+  "q:beat-locked-changes",
+  "q:time-pure-frames",
+  "q:motion-blur",
+  "q:cue-locked-sound",
+  "q:typographic-restraint"
+ ],
+ "sources": [
+  {
+   "path": "kh/lines/whaleline.js",
+   "sha256": "3e772cc8edf379f5b3be6bfbc8d06b403897236c2f4bc8206de9385b3fbae5d2",
+   "bytes": 16145
+  },
+  {
+   "path": "kh/lines/engine.cjs",
+   "sha256": "427dd0a9b34dc38b97acff46bbe9b27d8f8151865e7a4c2ab0628562283a1410",
+   "bytes": 961
+  },
+  {
+   "path": "kh/lines/tool.cjs",
+   "sha256": "71d961d640eaeea21d46a18f0ea535ba91f79b9689c90c0581c007b979ca8433",
+   "bytes": 3272
+  },
+  {
+   "path": "kh/lines/score.py",
+   "sha256": "bf957f5c151eb56206ab01fe31a50fc58298b797733bbab3a1839df6c82629c1",
+   "bytes": 5076
+  },
+  {
+   "path": "kh/whale-rig.js",
+   "sha256": "5a15b4982f5b7bc30b77a071b560558113342fcb60f46674c218ad99bb2ecff4",
+   "bytes": 6438
+  }
+ ],
+ "outputs": [],
+ "gates": {
+  "contrast": "PASS \u2014 gate added: every text/ground pair \u2265 4.5:1 (water glosses now 14.3:1 on paper labels)",
+  "read_time": "PASS \u2014 built in",
+  "frame_jump": "PASS \u2014 built in",
+  "colour_provenance": "PASS"
+ },
+ "colour_provenance": {
+  "literal_colours": 0,
+  "registered": 0,
+  "declared_derived": [],
+  "unregistered": [],
+  "status": "PASS"
+ },
+ "deviations": [],
+ "summary": "Whale Line, freed from the water: medium \"air\" (no sea, a speed trail instead of splashes), every timing scaled to the station cycle so stories can run at any tempo, and a contrast gate.",
+ "changes": "Air mode; cycleBeats/bpm/intro per story; glosses held until the next landing; water-mode glosses moved onto paper labels after review (blue on blue was ~3:1).",
+ "registered_at": "2026-10-17T01:57:03+00:00",
+ "fingerprint": "982e72b50c3d5797a16e065a264aa5b7cfb630dd4195a3ca83ce617ba752a3a2"
+}

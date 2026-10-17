@@ -1,0 +1,36 @@
+{
+ "properties": {
+  "Name": "Little whale \u2014 character sheet v2",
+  "Kind": "Still",
+  "Version": "2.0",
+  "Status": "shipped",
+  "Style": "Kinetic Hydrography 1.0.0",
+  "Fingerprint": "a5642288092cd889",
+  "Passport hash": "11df6c39a3869737",
+  "Wada": [
+   "279",
+   "339"
+  ],
+  "Engine": [
+   "Canvas (skia)"
+  ],
+  "Gates": "Pass",
+  "Gate detail": "contact_sheet: PASS \u2014 reviewed; pods legible down to 22 px \u00b7 colour_provenance: PASS",
+  "Deviations": "None",
+  "Design ID": "character-sheet-v2",
+  "Derived from": [
+   "3fbd50cfaf9381418697e4d66db9435c",
+   "3fbd50cfaf93811e86ebfd0565a7a2f7"
+  ],
+  "Atlas lineage": [
+   "3fbd50cfaf938109b4d8cdcbc2fc8787",
+   "3fbd50cfaf938155a99bc0fc919e55cb",
+   "3fbd50cfaf938144b0c4e8f18671fd02"
+  ],
+  "date:Registered:start": "2026-10-17",
+  "date:Registered:is_datetime": 0
+ },
+ "content": "The little whale gets a vocabulary of feelings \u2014 cruise, focus, idea (spark), delight, sing, spout \u2014 swims in air, and gains AI pods: small helpers coloured by the job they carry.\n\n## Provenance\n- **Style:** Kinetic Hydrography 1.0.0 \u00b7 passport `11df6c39a3869737` \u00b7 kit `a19e3d258a95aa78`\n- **Fingerprint:** `a5642288092cd8896b6dd1efc15fc38dcdb3582115686b78405dae9e0c195247`\n- **Parents:** little-whale-v2 (`c39c34cfd532`), kh-style-1.0.0 (`31bf64a419e0`)\n- **Colour provenance:** PASS \u2014 0 literal colours, 0 registered tokens, 0 declared derived\n\n## What changed\nRig moved into the kit as kh/whale-rig.js with focus, delight and spark (+ sparkScale); new KH.drawPod. Every colour is a token or a mix of tokens.\n\n## Gates\n- contact_sheet: PASS \u2014 reviewed; pods legible down to 22 px\n- colour_provenance: PASS\n\n## Deviations from the style\n- None\n\n## Files\n- `kh/charsheet-v2.png` \u00b7 `026da584c8bc` \u00b7 168,551 bytes\n- `kh/whale-rig.js` \u00b7 `5a15b4982f5b` \u00b7 6,438 bytes\n- `kh/charsheet.cjs` \u00b7 `f2f65504ac0e` \u00b7 2,388 bytes\n\n## Manifest\n```json\n{\n \"id\": \"character-sheet-v2\",\n \"fingerprint\": \"a5642288092cd8896b6dd1efc15fc38dcdb3582115686b78405dae9e0c195247\",\n \"style\": {\n  \"name\": \"Kinetic Hydrography\",\n  \"version\": \"1.0.0\",\n  \"passport_sha256\": \"11df6c39a38697375745f2bdb2040780e72f3657a56ab4306338bbfa64913efe\",\n  \"kit_sha256\": \"a19e3d258a95aa78e3199a8a95645703411e1ff218b262cd087dcf6516312a05\"\n },\n \"parents\": {\n  \"little-whale-v2\": \"c39c34cfd5321d9c4ee069192483251cab27b5999ef10f751c536e0e67a4c5e6\",\n  \"kh-style-1.0.0\": \"31bf64a419e000b4af1a66d61efd00b6969f293576a98b964a3680cb02a6aa20\"\n },\n \"wada\": [\n  279,\n  339\n ],\n \"atlas\": [\n  \"el:character-rig\",\n  \"el:squash-stretch\",\n  \"q:brand-grounding\"\n ],\n \"gates\": {\n  \"contact_sheet\": \"PASS \\u2014 reviewed; pods legible down to 22 px\",\n  \"colour_provenance\": \"PASS\"\n }\n}\n```",
+ "preview": "kh/registry/previews/character-sheet-v2.jpg",
+ "unresolved_parents": []
+}

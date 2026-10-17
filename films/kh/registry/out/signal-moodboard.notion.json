@@ -1,0 +1,37 @@
+{
+ "properties": {
+  "Name": "Signal \u2014 moodboard",
+  "Kind": "Moodboard",
+  "Version": "1.0",
+  "Status": "shipped",
+  "Style": "Kinetic Hydrography 1.0.0",
+  "Fingerprint": "c47635164388d05f",
+  "Passport hash": "11df6c39a3869737",
+  "Wada": [
+   "339",
+   "166"
+  ],
+  "Engine": [
+   "Canvas (skia)"
+  ],
+  "Gates": "Pass",
+  "Gate detail": "contact_sheet: PASS \u2014 reviewed \u00b7 colour_provenance: PASS",
+  "Deviations": "The feed outruns house durations, on purpose",
+  "Design ID": "signal-moodboard",
+  "Derived from": [
+   "3fbd50cfaf93811e86ebfd0565a7a2f7",
+   "3fbd50cfaf9381418697e4d66db9435c"
+  ],
+  "Atlas lineage": [
+   "3fbd50cfaf9381d88a0af845bedf5df8",
+   "3fbd50cfaf938104bd6dc9ee16ba93f9",
+   "3fbd50cfaf93817a873fefa2714b4f69",
+   "3fbd50cfaf9381468b01c86475b8511a"
+  ],
+  "date:Registered:start": "2026-10-16",
+  "date:Registered:is_datetime": 0
+ },
+ "content": "Direction for a fast kinetic film in the same style: a loud feed on paper (Wada 339), the bearing ring from Little whale reused as a filter, one glaucous line on navy.\n\n## Provenance\n- **Style:** Kinetic Hydrography 1.0.0 \u00b7 passport `11df6c39a3869737` \u00b7 kit `a19e3d258a95aa78`\n- **Fingerprint:** `c47635164388d05fba1068fad2642da295a138fc60f9b8a41e78fb4a982243ff`\n- **Parents:** kh-style-1.0.0 (`31bf64a419e0`), little-whale-v2 (`c39c34cfd532`)\n- **Colour provenance:** PASS \u2014 36 literal colours, 36 registered tokens, 0 declared derived\n\n## What changed\nNew story; inherits the bearing ring and the light/dark grounds from Little whale v2.\n\n## Gates\n- contact_sheet: PASS \u2014 reviewed\n- colour_provenance: PASS\n\n## Deviations from the style\n- The feed outruns house durations, on purpose\n\n## Files\n- `kh/signal/moodboard.png` \u00b7 `2b76655e42b3` \u00b7 279,157 bytes\n- `kh/kh-kit.js` \u00b7 `a19e3d258a95` \u00b7 7,272 bytes\n- `kh/host.cjs` \u00b7 `3ae5933ebf72` \u00b7 693 bytes\n- `kh/signal/moodboard.cjs` \u00b7 `0df585d102a2` \u00b7 8,544 bytes\n\n## Manifest\n```json\n{\n \"id\": \"signal-moodboard\",\n \"fingerprint\": \"c47635164388d05fba1068fad2642da295a138fc60f9b8a41e78fb4a982243ff\",\n \"style\": {\n  \"name\": \"Kinetic Hydrography\",\n  \"version\": \"1.0.0\",\n  \"passport_sha256\": \"11df6c39a38697375745f2bdb2040780e72f3657a56ab4306338bbfa64913efe\",\n  \"kit_sha256\": \"a19e3d258a95aa78e3199a8a95645703411e1ff218b262cd087dcf6516312a05\"\n },\n \"parents\": {\n  \"kh-style-1.0.0\": \"31bf64a419e000b4af1a66d61efd00b6969f293576a98b964a3680cb02a6aa20\",\n  \"little-whale-v2\": \"c39c34cfd5321d9c4ee069192483251cab27b5999ef10f751c536e0e67a4c5e6\"\n },\n \"wada\": [\n  339,\n  166\n ],\n \"atlas\": [\n  \"sty:kinetic-type-showreel\",\n  \"el:kinetic-type\",\n  \"q:beat-locked-changes\",\n  \"stg:style-system\"\n ],\n \"gates\": {\n  \"contact_sheet\": \"PASS \\u2014 reviewed\",\n  \"colour_provenance\": \"PASS\"\n }\n}\n```",
+ "preview": "kh/registry/previews/signal-moodboard.jpg",
+ "unresolved_parents": []
+}

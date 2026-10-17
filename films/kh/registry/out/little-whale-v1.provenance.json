@@ -1,0 +1,99 @@
+{
+ "id": "little-whale-v1",
+ "name": "Little whale \u2014 film v1",
+ "kind": "Film",
+ "version": "1.0",
+ "status": "shipped",
+ "style": {
+  "name": "Kinetic Hydrography",
+  "version": "1.0.0",
+  "passport_sha256": "11df6c39a38697375745f2bdb2040780e72f3657a56ab4306338bbfa64913efe",
+  "kit_sha256": null
+ },
+ "parents": {
+  "little-whale-moodboard": "f8a7036d27e1525a59d150c3aa57eb5ef81e29353b270e3ec0d79f3c45b85934"
+ },
+ "wada": [
+  279,
+  296,
+  166
+ ],
+ "engine": [
+  "SVG + headless Chromium",
+  "ffmpeg",
+  "numpy synth"
+ ],
+ "atlas": [
+  "q:time-pure-frames",
+  "q:seeded-rng",
+  "q:speed-limits",
+  "q:cue-locked-sound",
+  "q:loudness-normalisation",
+  "q:one-object-continuity",
+  "el:character-rig",
+  "el:captions",
+  "el:end-card",
+  "el:sfx-cue",
+  "eng:seek-html",
+  "eng:headless-capture",
+  "eng:ffmpeg",
+  "eng:code-synth-audio",
+  "gate:frame-jump-detector",
+  "gate:contact-sheet",
+  "gate:ffprobe-spec"
+ ],
+ "sources": [
+  {
+   "path": "whale/film.html",
+   "sha256": "68bcf9663e49774fb0bb330f6838df77eb8d1be46cb735721d625582c98ec958",
+   "bytes": 21065
+  },
+  {
+   "path": "whale/lib.js",
+   "sha256": "b937f7789f441aaae76082a5a0ab6377e5245170fda2066ede131a9189f3a5b5",
+   "bytes": 6349
+  },
+  {
+   "path": "whale/score.json",
+   "sha256": "f9bbba1a98890c5a1829ced992b51d161f3d5510be0e39da3e26a8834f881a66",
+   "bytes": 1506
+  },
+  {
+   "path": "whale/synth.py",
+   "sha256": "4333af563235f456e703c37ea7f6771a83f62a999ec114a195acbe0999d8f670",
+   "bytes": 7071
+  }
+ ],
+ "outputs": [
+  {
+   "path": "whale/little-whale.mp4",
+   "sha256": "79ed7860fbb8c5511c5490a9ec56f73455f4e9bf695cc8019138e685588d8778",
+   "bytes": 50967991
+  }
+ ],
+ "gates": {
+  "frame_jump": "PASS \u2014 22.5 px and 0.23 rad per frame at 30 fps",
+  "ffprobe": "PASS \u2014 1800 frames, 60.0 s",
+  "loudness": "PASS \u2014 -15.8 LUFS, -2.8 dBTP",
+  "contact_sheet": "PASS \u2014 reviewed",
+  "colour_provenance": "PASS"
+ },
+ "colour_provenance": {
+  "literal_colours": 28,
+  "registered": 25,
+  "declared_derived": [
+   "#0B0E16",
+   "#1F2638",
+   "#5A5566"
+  ],
+  "unregistered": [],
+  "status": "PASS"
+ },
+ "deviations": [
+  "Hand-picked shades predate the style kit; each is declared with its parent token"
+ ],
+ "summary": "60-second film: a little whale rediscovers its voice, from the silent deep to the surface. 1080p30 with a cue-locked synthesised score.",
+ "changes": "First cut.",
+ "registered_at": "2026-10-16T17:09:47+00:00",
+ "fingerprint": "b165c94faf0f0d91e55e6aef122f19144744bf1756aa46f9e023fea641c2f174"
+}

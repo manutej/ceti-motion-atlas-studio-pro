@@ -1,0 +1,52 @@
+{
+ "properties": {
+  "Name": "Signal \u2014 film v1",
+  "Kind": "Film",
+  "Version": "1.0",
+  "Status": "shipped",
+  "Style": "Kinetic Hydrography 1.0.0",
+  "Fingerprint": "bd9920ea790d0bda",
+  "Passport hash": "11df6c39a3869737",
+  "Wada": [
+   "339",
+   "166"
+  ],
+  "Engine": [
+   "Canvas (skia)",
+   "ffmpeg",
+   "numpy synth"
+  ],
+  "Gates": "Pass",
+  "Gate detail": "read_time: PASS \u2014 every line held \u2265 its need (tightest 1.00 s vs 0.90 s) \u00b7 flash_safety: PASS \u2014 0 flashes; largest luma step 1.8% per frame \u00b7 loudness: PASS \u2014 -16.3 LUFS, -2.2 dBTP \u00b7 ffprobe: PASS \u2014 1800 frames, 30.0 s, 60 fps \u00b7 contact_sheet: PASS \u2014 reviewed \u00b7 colour_provenance: PASS",
+  "Deviations": "The feed outruns house durations (0.18 s whips vs 0.28 s minimum) \u2014 the story needs nervousness \u00b7 270\u00b0 shutter with 4 sub-frames in the feed and filter acts",
+  "Design ID": "signal-v1",
+  "Derived from": [
+   "3fbd50cfaf9381dba368d8ab2d6e2e91"
+  ],
+  "Atlas lineage": [
+   "3fbd50cfaf9381d88a0af845bedf5df8",
+   "3fbd50cfaf938104bd6dc9ee16ba93f9",
+   "3fbd50cfaf9381019bf1e53faa0bf719",
+   "3fbd50cfaf9381299093d47d6e84caba",
+   "3fbd50cfaf938116a1ccdcd9d2a33753",
+   "3fbd50cfaf9381d88bcefce332e397ed",
+   "3fbd50cfaf9381fbb243e1afa8e20b3c",
+   "3fbd50cfaf93817a873fefa2714b4f69",
+   "3fbd50cfaf9381159144e6222a7785ef",
+   "3fbd50cfaf93818c8ecfe20f001c91ca",
+   "3fbd50cfaf9381078d70c4da78795394",
+   "3fbd50cfaf93818c9148cabe066e555a",
+   "3fbd50cfaf93818da268d8e60efb8eb4",
+   "3fbd50cfaf93810bbfc9fe9ad8c1949d",
+   "3fbd50cfaf9381eb9960f6866c267d59",
+   "3fbd50cfaf93813bbd24e9cfe584ebc9",
+   "3fbd50cfaf9381269880f33214682643",
+   "3fbd50cfaf938163b12cf49cec540485"
+  ],
+  "date:Registered:start": "2026-10-16",
+  "date:Registered:is_datetime": 0
+ },
+ "content": "30-second kinetic film at 120 BPM: a loud feed is swept by a bearing-ring filter, 95 items fall away, 5 become a rising line, then a single calm wave \u2014 \"Signal over noise.\"\n\n## Provenance\n- **Style:** Kinetic Hydrography 1.0.0 \u00b7 passport `11df6c39a3869737` \u00b7 kit `a19e3d258a95aa78`\n- **Fingerprint:** `bd9920ea790d0bda7f360bb75945c51a691b3621760f18ef029090657fdb9098`\n- **Parents:** signal-moodboard (`c47635164388`)\n- **Colour provenance:** PASS \u2014 36 literal colours, 36 registered tokens, 0 declared derived\n\n## What changed\nFirst cut. Introduces the read-time and flash-safety gates.\n\n## Gates\n- read_time: PASS \u2014 every line held \u2265 its need (tightest 1.00 s vs 0.90 s)\n- flash_safety: PASS \u2014 0 flashes; largest luma step 1.8% per frame\n- loudness: PASS \u2014 -16.3 LUFS, -2.2 dBTP\n- ffprobe: PASS \u2014 1800 frames, 30.0 s, 60 fps\n- contact_sheet: PASS \u2014 reviewed\n- colour_provenance: PASS\n\n## Deviations from the style\n- The feed outruns house durations (0.18 s whips vs 0.28 s minimum) \u2014 the story needs nervousness\n- 270\u00b0 shutter with 4 sub-frames in the feed and filter acts\n\n## Files\n- `kh/signal/signal.mp4` \u00b7 `70280084e8ec` \u00b7 16,602,407 bytes\n- `kh/kh-kit.js` \u00b7 `a19e3d258a95` \u00b7 7,272 bytes\n- `kh/host.cjs` \u00b7 `3ae5933ebf72` \u00b7 693 bytes\n- `kh/signal/film.js` \u00b7 `93a364587c7c` \u00b7 18,823 bytes\n- `kh/signal/engine.cjs` \u00b7 `f9af14444c1b` \u00b7 777 bytes\n- `kh/signal/render.cjs` \u00b7 `8c27957d285f` \u00b7 1,029 bytes\n- `kh/signal/score.py` \u00b7 `b158fa4ad11e` \u00b7 6,648 bytes\n- `kh/signal/cues.json` \u00b7 `06a65373bf37` \u00b7 2,228 bytes\n- `kh/signal/gate.cjs` \u00b7 `a9940c577f48` \u00b7 1,049 bytes\n\n## Manifest\n```json\n{\n \"id\": \"signal-v1\",\n \"fingerprint\": \"bd9920ea790d0bda7f360bb75945c51a691b3621760f18ef029090657fdb9098\",\n \"style\": {\n  \"name\": \"Kinetic Hydrography\",\n  \"version\": \"1.0.0\",\n  \"passport_sha256\": \"11df6c39a38697375745f2bdb2040780e72f3657a56ab4306338bbfa64913efe\",\n  \"kit_sha256\": \"a19e3d258a95aa78e3199a8a95645703411e1ff218b262cd087dcf6516312a05\"\n },\n \"parents\": {\n  \"signal-moodboard\": \"c47635164388d05fba1068fad2642da295a138fc60f9b8a41e78fb4a982243ff\"\n },\n \"wada\": [\n  339,\n  166\n ],\n \"atlas\": [\n  \"sty:kinetic-type-showreel\",\n  \"el:kinetic-type\",\n  \"el:music-bed\",\n  \"el:sfx-cue\",\n  \"el:data-diagram\",\n  \"el:end-card\",\n  \"el:camera-move\",\n  \"q:beat-locked-changes\",\n  \"q:time-pure-frames\",\n  \"q:seeded-rng\",\n  \"q:motion-blur\",\n  \"q:cue-locked-sound\",\n  \"q:loudness-normalisation\",\n  \"gate:contact-sheet\",\n  \"gate:ffprobe-spec\",\n  \"gate:loudness-waveform\",\n  \"eng:code-synth-audio\",\n  \"eng:ffmpeg\"\n ],\n \"gates\": {\n  \"read_time\": \"PASS \\u2014 every line held \\u2265 its need (tightest 1.00 s vs 0.90 s)\",\n  \"flash_safety\": \"PASS \\u2014 0 flashes; largest luma step 1.8% per frame\",\n  \"loudness\": \"PASS \\u2014 -16.3 LUFS, -2.2 dBTP\",\n  \"ffprobe\": \"PASS \\u2014 1800 frames, 30.0 s, 60 fps\",\n  \"contact_sheet\": \"PASS \\u2014 reviewed\",\n  \"colour_provenance\": \"PASS\"\n }\n}\n```",
+ "preview": "kh/registry/previews/signal-v1.jpg",
+ "unresolved_parents": []
+}

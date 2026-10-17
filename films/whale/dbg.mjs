@@ -1,0 +1,10 @@
+import chromium from '@sparticuz/chromium';
+import { chromium as pw } from 'playwright-core';
+import path from 'node:path';
+const b = await pw.launch({ executablePath: await chromium.executablePath(), args: chromium.args });
+const pg = await b.newPage({ viewport: { width: 1920, height: 1080 } });
+pg.on('pageerror', e => console.log('PAGEERR', e.message));
+pg.on('console', m => console.log('CONSOLE', m.text()));
+await pg.goto('file://' + path.resolve('film.html'));
+console.log(await pg.evaluate(() => typeof window.seek));
+await b.close();

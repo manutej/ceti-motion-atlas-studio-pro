@@ -1,0 +1,93 @@
+{
+ "id": "motion-atlas-plates-light",
+ "name": "Motion Atlas plates \u2014 light (video)",
+ "kind": "Plate set",
+ "version": "1.0",
+ "status": "shipped",
+ "style": {
+  "name": "Kinetic Hydrography",
+  "version": "1.0.0",
+  "passport_sha256": "11df6c39a38697375745f2bdb2040780e72f3657a56ab4306338bbfa64913efe",
+  "kit_sha256": null
+ },
+ "parents": {
+  "motion-atlas-plates-dark": "1674d3e8f95eeae8b04d06ce1370b60bc36a6b037e8ebeb1680a270739481716"
+ },
+ "wada": [
+  296,
+  279,
+  166,
+  243,
+  339,
+  84,
+  207
+ ],
+ "engine": [
+  "Python (Pillow)"
+ ],
+ "atlas": [
+  "q:typographic-restraint",
+  "q:brand-grounding"
+ ],
+ "sources": [
+  {
+   "path": "atlas/design/src/light.py",
+   "sha256": "9da7eb386a5e5b16b4a71b9cf5fc42ff52a597b81c71bb68728d809e142c9218",
+   "bytes": 14110
+  },
+  {
+   "path": "atlas/design/src/kit.py",
+   "sha256": "43ad4feb9cfbc388e1f87871aa96088ba40ffe3e967949eee16fbaafe30eebcd",
+   "bytes": 7788
+  }
+ ],
+ "outputs": [
+  {
+   "path": "atlas/design/light/hero-1920x1080.png",
+   "sha256": "bf7ffd9fa626d8688348957a0c05c34143ff27bf0448f8dddbcb432e6284b5d3",
+   "bytes": 201002
+  },
+  {
+   "path": "atlas/design/light/title-1920x1080.png",
+   "sha256": "ab42619d9fd539db5c3fa77361bca2c8e9a15f0cfedf326644dcd94aa37e622b",
+   "bytes": 85882
+  },
+  {
+   "path": "atlas/design/light/plate-hero.png",
+   "sha256": "db79a8c605bf2e5d1fb9adfda8e87fc30e594266e691c05d920c2e93247fe40f",
+   "bytes": 275340
+  },
+  {
+   "path": "atlas/design/light/plate-palette.png",
+   "sha256": "4e202c86e353445dd1deb10b596b6f140306003b9091add90894955bd90d2ca8",
+   "bytes": 196418
+  },
+  {
+   "path": "atlas/design/light/cover-notion.png",
+   "sha256": "c8c09727ca1d5b1c90bd44b9e546676b97558c5e716a6df32c66defc6b58897b",
+   "bytes": 64701
+  },
+  {
+   "path": "atlas/design/light/motion-atlas-plates-light.pdf",
+   "sha256": "035565f11d3c7510fb45113fd6abc1f60f40eee9a609a98cde0bf1718abbe4d8",
+   "bytes": 1140676
+  }
+ ],
+ "gates": {
+  "contrast": "PASS \u2014 min 6.34:1",
+  "title_safe": "PASS \u2014 5% title-safe on 1080p frames",
+  "colour_provenance": "PASS"
+ },
+ "colour_provenance": {
+  "literal_colours": 34,
+  "registered": 34,
+  "declared_derived": [],
+  "unregistered": [],
+  "status": "PASS"
+ },
+ "deviations": [],
+ "summary": "Light twin of the plates for video use: CETI paper ground (not white), Wada accents as fills, plus two 1080p title frames.",
+ "changes": "Re-keyed every plate for light mode (\"the colour is the fill\"); added 1920\u00d71080 hero and title frames.",
+ "registered_at": "2026-10-16T17:09:47+00:00",
+ "fingerprint": "daa2c978a833dd6f208095775c9e36854121829635c9c4820f0b4d59d474e201"
+}

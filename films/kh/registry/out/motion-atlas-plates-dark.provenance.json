@@ -1,0 +1,119 @@
+{
+ "id": "motion-atlas-plates-dark",
+ "name": "Motion Atlas plates \u2014 dark",
+ "kind": "Plate set",
+ "version": "1.0",
+ "status": "shipped",
+ "style": {
+  "name": "Kinetic Hydrography",
+  "version": "1.0.0",
+  "passport_sha256": "11df6c39a38697375745f2bdb2040780e72f3657a56ab4306338bbfa64913efe",
+  "kit_sha256": null
+ },
+ "parents": {
+  "kh-style-1.0.0": "31bf64a419e000b4af1a66d61efd00b6969f293576a98b964a3680cb02a6aa20"
+ },
+ "wada": [
+  296,
+  279,
+  166,
+  243,
+  339,
+  84,
+  207
+ ],
+ "engine": [
+  "Python (Pillow)"
+ ],
+ "atlas": [
+  "el:paper-finish",
+  "q:typographic-restraint",
+  "q:brand-grounding"
+ ],
+ "sources": [
+  {
+   "path": "atlas/design/src/kit.py",
+   "sha256": "43ad4feb9cfbc388e1f87871aa96088ba40ffe3e967949eee16fbaafe30eebcd",
+   "bytes": 7788
+  },
+  {
+   "path": "atlas/design/src/hero.py",
+   "sha256": "1c18461fa2feb2dbd1410273eebfc4766a72a569b025dc6f4f562181937d74fa",
+   "bytes": 4483
+  },
+  {
+   "path": "atlas/design/src/palette.py",
+   "sha256": "2458707acf6af059017068476710467eebfc1d9f283fdbb2de2941f9eabbb4e7",
+   "bytes": 4943
+  },
+  {
+   "path": "atlas/design/src/covers.py",
+   "sha256": "703b60552b7a5648a13c8ad2d82b1d8026460fcff86861a70db4d37b56b3fbf2",
+   "bytes": 10370
+  }
+ ],
+ "outputs": [
+  {
+   "path": "atlas/design/plate-hero.png",
+   "sha256": "6275bb284a032973a8962cc2f168c976a1490ab0368a039f5ce02c259b4db540",
+   "bytes": 283280
+  },
+  {
+   "path": "atlas/design/plate-palette.png",
+   "sha256": "c742cd8257779ce8b64a544b3dbcd85c0c1b9051552af799e4262991a6ed0b4d",
+   "bytes": 199139
+  },
+  {
+   "path": "atlas/design/cover-notion.png",
+   "sha256": "307fbc2e43d9919fccd0e9bec851c873325966a668eaec81e5a3ada1f80a3928",
+   "bytes": 67106
+  },
+  {
+   "path": "atlas/design/cover-styles.png",
+   "sha256": "4eaee697ba19bdf2db2ccd87c1dc69aaba1b25e5e25a3da8b4f11ffe2fb60b5d",
+   "bytes": 79101
+  },
+  {
+   "path": "atlas/design/cover-elements.png",
+   "sha256": "7ffd1413d3cafbcf3ada3663cbeb38eb646d8ca8367e673be4a25026503d1393",
+   "bytes": 61093
+  },
+  {
+   "path": "atlas/design/cover-execution.png",
+   "sha256": "d24b12371070d162d4913907b603b1bf874366566aacdae807c082215329f991",
+   "bytes": 52717
+  },
+  {
+   "path": "atlas/design/cover-quality.png",
+   "sha256": "c4cffa22b42bc95550424aa8b38bb50b0b1cd1e145c3873a9f718d4d3ac53ead",
+   "bytes": 44045
+  },
+  {
+   "path": "atlas/design/cover-engines.png",
+   "sha256": "774f71b4e03c2f2efca5799211ebbae12c27ca4c492588ec321188c52db0af94",
+   "bytes": 86123
+  },
+  {
+   "path": "atlas/design/motion-atlas-plates.pdf",
+   "sha256": "74601a104fe40c81a7fa60915ff18871f3b7b3681ebb6b17f8caadf97607463a",
+   "bytes": 877504
+  }
+ ],
+ "gates": {
+  "contrast": "PASS \u2014 min 7.38:1",
+  "margins": "PASS \u2014 \u2265 6% everywhere",
+  "colour_provenance": "PASS"
+ },
+ "colour_provenance": {
+  "literal_colours": 34,
+  "registered": 34,
+  "declared_derived": [],
+  "unregistered": [],
+  "status": "PASS"
+ },
+ "deviations": [],
+ "summary": "The brand plates for the Motion Atlas wiki: hero, chromatic key and six covers, each keyed to one Wada combination on the CETI navy ground.",
+ "changes": "First set.",
+ "registered_at": "2026-10-16T17:09:46+00:00",
+ "fingerprint": "1674d3e8f95eeae8b04d06ce1370b60bc36a6b037e8ebeb1680a270739481716"
+}

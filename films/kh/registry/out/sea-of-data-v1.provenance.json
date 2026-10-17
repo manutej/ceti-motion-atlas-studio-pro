@@ -1,0 +1,100 @@
+{
+ "id": "sea-of-data-v1",
+ "name": "Sea of data \u2014 film v1",
+ "kind": "Film",
+ "version": "1.0",
+ "status": "shipped",
+ "style": {
+  "name": "Kinetic Hydrography",
+  "version": "1.0.0",
+  "passport_sha256": "11df6c39a38697375745f2bdb2040780e72f3657a56ab4306338bbfa64913efe",
+  "kit_sha256": "a19e3d258a95aa78e3199a8a95645703411e1ff218b262cd087dcf6516312a05"
+ },
+ "parents": {
+  "character-sheet-v2": "a5642288092cd8896b6dd1efc15fc38dcdb3582115686b78405dae9e0c195247",
+  "little-whale-v2": "c39c34cfd5321d9c4ee069192483251cab27b5999ef10f751c536e0e67a4c5e6"
+ },
+ "wada": [
+  339
+ ],
+ "engine": [
+  "Canvas (skia)",
+  "ffmpeg",
+  "numpy synth"
+ ],
+ "atlas": [
+  "el:particle-layer",
+  "el:data-diagram",
+  "el:character-rig",
+  "el:camera-move",
+  "q:time-pure-frames",
+  "q:seeded-rng",
+  "q:motion-blur",
+  "q:cue-locked-sound",
+  "q:beat-locked-changes",
+  "q:loudness-normalisation",
+  "gate:contact-sheet",
+  "gate:ffprobe-spec",
+  "gate:frame-jump-detector"
+ ],
+ "sources": [
+  {
+   "path": "kh/sea/film.js",
+   "sha256": "eef62ea6c9510c287d65552686cc4b83e70929ae39c64a60c92ac78559d75e9c",
+   "bytes": 17116
+  },
+  {
+   "path": "kh/sea/tool.cjs",
+   "sha256": "e8af93f9739f3dceecbad24e8a039ac1f3839d25b9e55af8cf030ed502234f15",
+   "bytes": 3711
+  },
+  {
+   "path": "kh/sea/score.py",
+   "sha256": "1a771e23ab92d2144a29e65b157202ff362dc6091d6eb363349f309b194e24a4",
+   "bytes": 5019
+  },
+  {
+   "path": "kh/sea/cues.json",
+   "sha256": "38fdad6d2e4554766552e073e91122721a81568ac690d6e606aae964a5380e53",
+   "bytes": 16077
+  },
+  {
+   "path": "kh/whale-rig.js",
+   "sha256": "5a15b4982f5b7bc30b77a071b560558113342fcb60f46674c218ad99bb2ecff4",
+   "bytes": 6438
+  },
+  {
+   "path": "kh/kh-kit.js",
+   "sha256": "a19e3d258a95aa78e3199a8a95645703411e1ff218b262cd087dcf6516312a05",
+   "bytes": 7272
+  }
+ ],
+ "outputs": [
+  {
+   "path": "kh/sea/sea-of-data.mp4",
+   "sha256": "da00c55a6245dc62f09971bdce56130a222776dd3343ab70a332b776203a996c",
+   "bytes": 11282210
+  }
+ ],
+ "gates": {
+  "read_time": "PASS \u2014 7 captions, tightest 1.25 s vs 0.90 s",
+  "frame_jump": "PASS \u2014 8.8 px, 0.029 rad per frame",
+  "contrast": "PASS \u2014 every text/ground pair \u2265 8.7:1 (result labels moved to navy after the gate failed at 2.1:1)",
+  "flash_safety": "PASS \u2014 max luma step 0.15%",
+  "loudness": "PASS \u2014 -15.8 LUFS, -2.1 dBTP",
+  "ffprobe": "PASS \u2014 1800 frames, 30.0 s",
+  "colour_provenance": "PASS"
+ },
+ "colour_provenance": {
+  "literal_colours": 36,
+  "registered": 36,
+  "declared_derived": [],
+  "unregistered": [],
+  "status": "PASS"
+ },
+ "deviations": [],
+ "summary": "CETI makes sense of a sea of data: the whale senses 880 points, one sounding sorts the rest into four clusters, an idea, the clusters become a network, and AI pods go to work and bring back answers.",
+ "changes": "First cut. The sounding ring descends from Little whale; pods from character sheet v2.",
+ "registered_at": "2026-10-17T01:57:03+00:00",
+ "fingerprint": "55790cb02b5c52c6893f971a378c7820db845e310d8533c58820ea3d263dfd66"
+}

@@ -1,0 +1,115 @@
+{
+ "id": "little-whale-v2",
+ "name": "Little whale \u2014 film v2",
+ "kind": "Film",
+ "version": "2.0",
+ "status": "shipped",
+ "style": {
+  "name": "Kinetic Hydrography",
+  "version": "1.0.0",
+  "passport_sha256": "11df6c39a38697375745f2bdb2040780e72f3657a56ab4306338bbfa64913efe",
+  "kit_sha256": null
+ },
+ "parents": {
+  "little-whale-v1": "b165c94faf0f0d91e55e6aef122f19144744bf1756aa46f9e023fea641c2f174"
+ },
+ "wada": [
+  279,
+  296,
+  166,
+  339
+ ],
+ "engine": [
+  "Canvas (skia)",
+  "ffmpeg",
+  "numpy synth"
+ ],
+ "atlas": [
+  "q:time-pure-frames",
+  "q:seeded-rng",
+  "q:motion-blur",
+  "q:paint-once-cache",
+  "q:cue-locked-sound",
+  "q:loudness-normalisation",
+  "el:camera-move",
+  "el:particle-layer",
+  "el:3d-layer",
+  "el:paper-finish",
+  "el:character-rig",
+  "gate:frame-jump-detector",
+  "gate:contact-sheet",
+  "gate:ffprobe-spec"
+ ],
+ "sources": [
+  {
+   "path": "whale/film2.js",
+   "sha256": "8c1b5e4f22323cb1590de5173f18e90882448a249cb894e0a90138a62c2d6879",
+   "bytes": 34341
+  },
+  {
+   "path": "whale/engine2.cjs",
+   "sha256": "ce9108589a90f78812068fd8f75e4d2355840b5a7093ee5fb960569f41d5f9b6",
+   "bytes": 1335
+  },
+  {
+   "path": "whale/render2.cjs",
+   "sha256": "ee6c5a5e2de65729c697661f1c62aa1c1b8005cecee04a06942318905102f9c5",
+   "bytes": 1128
+  },
+  {
+   "path": "whale/score.json",
+   "sha256": "f9bbba1a98890c5a1829ced992b51d161f3d5510be0e39da3e26a8834f881a66",
+   "bytes": 1506
+  },
+  {
+   "path": "whale/synth.py",
+   "sha256": "4333af563235f456e703c37ea7f6771a83f62a999ec114a195acbe0999d8f670",
+   "bytes": 7071
+  },
+  {
+   "path": "whale/bubbles.json",
+   "sha256": "3cd7ac93261d73a6f597dc4c88b606f231426ebb1aebbdd62e206abea4f48f62",
+   "bytes": 3463
+  }
+ ],
+ "outputs": [
+  {
+   "path": "whale/little-whale-v2.mp4",
+   "sha256": "abd8b64c4ddfbf116bab0d3741dd71042e147e1a19e3e0b4d7420b199076e1d0",
+   "bytes": 37296737
+  }
+ ],
+ "gates": {
+  "frame_jump": "PASS \u2014 12.8 px and 0.12 rad per frame at 60 fps",
+  "ffprobe": "PASS \u2014 3600 frames, 60.0 s",
+  "loudness": "PASS \u2014 -15.8 LUFS",
+  "contact_sheet": "PASS \u2014 reviewed",
+  "colour_provenance": "PASS"
+ },
+ "colour_provenance": {
+  "literal_colours": 31,
+  "registered": 21,
+  "declared_derived": [
+   "#0B0E16",
+   "#222A3D",
+   "#2A3349",
+   "#38435C",
+   "#5A5566",
+   "#6F9BA8",
+   "#9FB9CC",
+   "#C9DDE6",
+   "#E6F0F1",
+   "#FBF7F0"
+  ],
+  "unregistered": [],
+  "status": "PASS"
+ },
+ "deviations": [
+  "Volume gradients on the character and light shafts go beyond the brand rule of near-flat fills \u2014 needed for gentle 2.5D",
+  "Hand-picked shades predate the style kit; each is declared with its parent token"
+ ],
+ "summary": "Second cut at 60 fps with motion blur, layered water depth (seabed, distant whales, light shafts, three particle planes, caustics) and a character with volume.",
+ "changes": "60 fps + 2-sub-frame motion blur; bolder swim, flinch and singing poses; bubbles per note; parallax camera; canvas engine (10\u00d7 faster render).",
+ "registered_at": "2026-10-16T17:09:47+00:00",
+ "fingerprint": "c39c34cfd5321d9c4ee069192483251cab27b5999ef10f751c536e0e67a4c5e6"
+}

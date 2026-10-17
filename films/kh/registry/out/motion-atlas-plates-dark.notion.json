@@ -1,0 +1,40 @@
+{
+ "properties": {
+  "Name": "Motion Atlas plates \u2014 dark",
+  "Kind": "Plate set",
+  "Version": "1.0",
+  "Status": "shipped",
+  "Style": "Kinetic Hydrography 1.0.0",
+  "Fingerprint": "1674d3e8f95eeae8",
+  "Passport hash": "11df6c39a3869737",
+  "Wada": [
+   "296",
+   "279",
+   "166",
+   "243",
+   "339",
+   "84",
+   "207"
+  ],
+  "Engine": [
+   "Python (Pillow)"
+  ],
+  "Gates": "Pass",
+  "Gate detail": "contrast: PASS \u2014 min 7.38:1 \u00b7 margins: PASS \u2014 \u2265 6% everywhere \u00b7 colour_provenance: PASS",
+  "Deviations": "None",
+  "Design ID": "motion-atlas-plates-dark",
+  "Derived from": [
+   "3fbd50cfaf93811e86ebfd0565a7a2f7"
+  ],
+  "Atlas lineage": [
+   "3fbd50cfaf9381bc98b8cbf799d95321",
+   "3fbd50cfaf9381238fecc2057f43d49e",
+   "3fbd50cfaf938144b0c4e8f18671fd02"
+  ],
+  "date:Registered:start": "2026-10-16",
+  "date:Registered:is_datetime": 0
+ },
+ "content": "The brand plates for the Motion Atlas wiki: hero, chromatic key and six covers, each keyed to one Wada combination on the CETI navy ground.\n\n## Provenance\n- **Style:** Kinetic Hydrography 1.0.0 \u00b7 passport `11df6c39a3869737`\n- **Fingerprint:** `1674d3e8f95eeae8b04d06ce1370b60bc36a6b037e8ebeb1680a270739481716`\n- **Parents:** kh-style-1.0.0 (`31bf64a419e0`)\n- **Colour provenance:** PASS \u2014 34 literal colours, 34 registered tokens, 0 declared derived\n\n## What changed\nFirst set.\n\n## Gates\n- contrast: PASS \u2014 min 7.38:1\n- margins: PASS \u2014 \u2265 6% everywhere\n- colour_provenance: PASS\n\n## Deviations from the style\n- None\n\n## Files\n- `atlas/design/plate-hero.png` \u00b7 `6275bb284a03` \u00b7 283,280 bytes\n- `atlas/design/plate-palette.png` \u00b7 `c742cd825777` \u00b7 199,139 bytes\n- `atlas/design/cover-notion.png` \u00b7 `307fbc2e43d9` \u00b7 67,106 bytes\n- `atlas/design/cover-styles.png` \u00b7 `4eaee697ba19` \u00b7 79,101 bytes\n- `atlas/design/cover-elements.png` \u00b7 `7ffd1413d3ca` \u00b7 61,093 bytes\n- `atlas/design/cover-execution.png` \u00b7 `d24b12371070` \u00b7 52,717 bytes\n- `atlas/design/cover-quality.png` \u00b7 `c4cffa22b42b` \u00b7 44,045 bytes\n- `atlas/design/cover-engines.png` \u00b7 `774f71b4e03c` \u00b7 86,123 bytes\n- `atlas/design/motion-atlas-plates.pdf` \u00b7 `74601a104fe4` \u00b7 877,504 bytes\n- `atlas/design/src/kit.py` \u00b7 `43ad4feb9cfb` \u00b7 7,788 bytes\n- `atlas/design/src/hero.py` \u00b7 `1c18461fa2fe` \u00b7 4,483 bytes\n- `atlas/design/src/palette.py` \u00b7 `2458707acf6a` \u00b7 4,943 bytes\n- `atlas/design/src/covers.py` \u00b7 `703b60552b7a` \u00b7 10,370 bytes\n\n## Manifest\n```json\n{\n \"id\": \"motion-atlas-plates-dark\",\n \"fingerprint\": \"1674d3e8f95eeae8b04d06ce1370b60bc36a6b037e8ebeb1680a270739481716\",\n \"style\": {\n  \"name\": \"Kinetic Hydrography\",\n  \"version\": \"1.0.0\",\n  \"passport_sha256\": \"11df6c39a38697375745f2bdb2040780e72f3657a56ab4306338bbfa64913efe\",\n  \"kit_sha256\": null\n },\n \"parents\": {\n  \"kh-style-1.0.0\": \"31bf64a419e000b4af1a66d61efd00b6969f293576a98b964a3680cb02a6aa20\"\n },\n \"wada\": [\n  296,\n  279,\n  166,\n  243,\n  339,\n  84,\n  207\n ],\n \"atlas\": [\n  \"el:paper-finish\",\n  \"q:typographic-restraint\",\n  \"q:brand-grounding\"\n ],\n \"gates\": {\n  \"contrast\": \"PASS \\u2014 min 7.38:1\",\n  \"margins\": \"PASS \\u2014 \\u2265 6% everywhere\",\n  \"colour_provenance\": \"PASS\"\n }\n}\n```",
+ "preview": "kh/registry/previews/motion-atlas-plates-dark.jpg",
+ "unresolved_parents": []
+}

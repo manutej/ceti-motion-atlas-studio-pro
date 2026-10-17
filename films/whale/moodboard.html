@@ -1,0 +1,85 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="fonts.css">
+<style>body{background:#1A1F2E}</style></head><body>
+<svg id="s" width="1920" height="1080" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg"></svg>
+<script src="lib.js"></script>
+<script>
+const P = PAL; let s = '';
+const T = (x, y, txt, cls, size, fill, anchor = 'start', extra = '') =>
+  `<text x="${x}" y="${y}" class="${cls}" font-size="${size}" fill="${fill}" text-anchor="${anchor}" ${extra}>${txt}</text>`;
+
+// grounds: left = the deep, right = the surface
+s += `<rect width="1920" height="1080" fill="${P.navy}"/>`;
+s += `<rect x="960" width="960" height="1080" fill="${P.paper}"/>`;
+s += `<line x1="960" y1="96" x2="960" y2="984" stroke="${P.fog}" stroke-opacity=".25"/>`;
+
+// header
+s += T(96, 120, 'CETI · LITTLE WHALE · MOODBOARD', 'mono', 15, P.fog);
+s += T(96, 200, 'Finding the <tspan>song</tspan>', 'disp', 74, P.paper);
+s += T(96, 244, 'A small whale relearns its own voice: from copying in the deep to singing at the surface.', 'sans', 20, P.fog);
+s += T(1824, 120, 'ACT I – II · THE DEEP', 'mono', 13, P.fog, 'end', 'opacity="0"');
+s += T(1056, 120, 'ACT III – IV · THE SURFACE', 'mono', 15, P.slate);
+s += T(1824, 120, 'WADA · 296 / 279 / 166 / 339', 'mono', 13, P.w296[2], 'end');
+
+// character — dark poses
+const dark = { stroke: P.fog, fill: '#1E2536', ink: P.fog, sw: 3.2 };
+s += T(96, 318, 'QUIET', 'mono', 13, P.fog);
+s += placeWhale(300, 420, 0.04, 0.95, { ...dark, eye: 0.85, blink: 0.45, tail: 0.05, fin: 0.1 }, 0.62);
+s += T(560, 318, 'LISTENING', 'mono', 13, P.fog);
+s += placeWhale(740, 420, -0.06, 0.95, { ...dark, stroke: P.paper, ink: P.paper, eye: 1.3, tail: -0.25, fin: -0.35 });
+// ping rings behind listening
+s += `<clipPath id="dk"><rect width="960" height="1080"/></clipPath>`; for (const r of [60, 120, 180]) s += `<circle cx="930" cy="410" r="${r}" fill="none" stroke="${P.copper}" stroke-opacity="${(0.9 - r / 220).toFixed(2)}" stroke-width="1.5" clip-path="url(#dk)"/>`;
+
+// character — light poses
+const light = { stroke: P.ink, fill: P.glaucous, ink: P.ink, sw: 3.2, light: true };
+s += T(1056, 318, 'FIRST NOTE', 'mono', 13, P.slate);
+s += placeWhale(1230, 420, -0.05, 0.9, { ...light, mouth: 0.8, eye: 1.1, tail: 0.3, fin: 0.25, blush: 0.5 });
+s += T(1470, 318, 'SINGING', 'mono', 13, P.slate);
+s += placeWhale(1660, 420, -0.42, 0.85, { ...light, mouth: 1, spray: 1, sprayColor: P.copper, blush: 1, tail: -0.35, fin: -0.4, squash: 0.04 });
+
+// palette strips per act
+const chips = (x, y, label, cols, ink) => {
+  let o = T(x, y, label, 'mono', 12, ink);
+  cols.forEach((c, i) => { o += `<rect x="${x + i * 64}" y="${y + 14}" width="54" height="54" fill="${c}" stroke="${ink}" stroke-opacity=".25"/>`;
+    o += T(x + i * 64, y + 88, c.slice(1), 'mono', 10, ink, 'start', 'letter-spacing="0.06em"'); });
+  return o;
+};
+s += chips(96, 560, 'DEEP · CETI', [P.navy, P.bathy, P.slate, P.fog], P.fog);
+s += chips(400, 560, 'SOUNDING · WADA 279', P.w279, P.fog);
+s += chips(1056, 560, 'VOICE · WADA 296', P.w296, P.slate);
+s += chips(1360, 560, 'SURFACE · WADA 166 + 339', [P.w166[0], P.w166[1], P.glaucous, P.paper], P.slate);
+
+// motion vocabulary (dark side): flat song -> ping -> ghost frames
+s += T(96, 730, 'MOTION VOCABULARY', 'mono', 13, P.fog);
+// song meter flat
+s += `<rect x="96" y="760" width="240" height="70" fill="none" stroke="${P.fog}" stroke-opacity=".4"/>`;
+s += `<line x1="104" y1="795" x2="328" y2="795" stroke="${P.fog}" stroke-width="1.5"/>`;
+s += T(96, 856, 'SONG · SILENT', 'mono', 10, P.fog);
+// ghost frames
+for (let i = 0; i < 6; i++) s += placeWhale(420 + i * 48, 800 - Math.sin(i * 0.6) * 14, -0.1 + i * 0.05, 0.28, { ...dark, stroke: P.peach, ink: P.peach, fill: 'none', tail: Math.sin(i) * 0.4 }, 0.18 + i * 0.16);
+s += T(380, 856, 'GHOST FRAMES', 'mono', 10, P.fog);
+// ease curve
+const E = EASE.glaser; let d = '';
+for (let i = 0; i <= 40; i++) { const x = i / 40; d += (i ? 'L' : 'M') + (720 + x * 180).toFixed(1) + ',' + (830 - E(x) * 70).toFixed(1); }
+s += `<path d="${d}" fill="none" stroke="${P.copper}" stroke-width="2"/><rect x="720" y="760" width="180" height="70" fill="none" stroke="${P.fog}" stroke-opacity=".3"/>`;
+s += T(720, 856, 'EASE · GLASER', 'mono', 10, P.fog);
+
+// motion vocabulary (light side): song wave, streaks, depth arc
+s += `<rect x="1056" y="760" width="240" height="70" fill="none" stroke="${P.slate}" stroke-opacity=".4"/>`;
+d = ''; for (let i = 0; i <= 120; i++) { const x = i / 120; d += (i ? 'L' : 'M') + (1064 + x * 224).toFixed(1) + ',' + (795 - Math.sin(x * 26) * (22 * Math.sin(x * Math.PI)) - Math.sin(x * 61) * 5).toFixed(1); }
+s += `<path d="${d}" fill="none" stroke="${P.w279[0]}" stroke-width="2"/>`;
+s += T(1056, 856, 'SONG · VOICED', 'mono', 10, P.slate);
+const streak = [P.copper, P.sage, P.peach, P.slate, P.w279[0]];
+streak.forEach((c, i) => { s += `<path d="M${1340 + i * 6},${830 - i * 9} C${1400 + i * 6},${760 - i * 9} ${1470 + i * 6},${770 - i * 9} ${1540 + i * 6},${745 - i * 9}" fill="none" stroke="${c}" stroke-width="${2.4 - i * 0.25}" stroke-linecap="round"/>`; });
+s += T(1340, 856, 'STREAK LINES', 'mono', 10, P.slate);
+// depth arc = the beat grid
+const bx = 1600, bw = 224, by = 760, bh = 70;
+s += `<rect x="${bx}" y="${by}" width="${bw}" height="${bh}" fill="none" stroke="${P.slate}" stroke-opacity=".4"/>`;
+d = ''; for (let i = 0; i <= 60; i++) { const t = i; const dep = t < 33 ? 1 : t > 49.5 ? 0 : 1 - EASE.warm((t - 33) / 16.5); d += (i ? 'L' : 'M') + (bx + t / 60 * bw).toFixed(1) + ',' + (by + 6 + (1 - dep) * 0 + dep * (bh - 12)).toFixed(1); }
+s += `<path d="${d}" fill="none" stroke="${P.ink}" stroke-width="1.6"/>`;
+s += T(bx, 856, 'DEPTH · 412 → 0 M', 'mono', 10, P.slate);
+
+// footer
+s += T(96, 984, 'Light mode: the colour is the fill. Dark mode: the colour is the light at the edge.', 'sans', 16, P.fog);
+s += T(1824, 984, 'CETIAI.CO', 'mono', 13, P.slate, 'end');
+document.getElementById('s').innerHTML = s;
+</script></body></html>

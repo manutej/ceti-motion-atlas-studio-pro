@@ -1,0 +1,28 @@
+{
+  "name": "Kinetic Hydrography",
+  "version": "1.0.0",
+  "established": "2026-10-16",
+  "lineage": ["CETI Design System (claude.ai/artifact/MyMPg6gAfvpMGFy3r5tXae)", "Sanzo Wada, A Dictionary of Color Combinations (data: github.com/mattdesl/dictionary-of-colour-combinations)", "Motion Atlas graph (Notion)"],
+  "thesis": "Motion as something that can be charted: frames are functions of time, beats sit on a grid, instruments (bearing ring, depth gauge, beat grid) annotate the movement, and one Wada combination keys each piece.",
+  "tokens": {
+    "ceti": {"navy": "#1A1F2E", "bathy": "#0F1320", "nightTide": "#262721", "rule": "#2A3142", "paper": "#F5EFE3", "paperSoft": "#E8DFCB", "fog": "#B8B0A1", "copper": "#A67756", "sage": "#7A9171", "peach": "#D88B5C", "slate": "#324555", "rust": "#8C4A2E", "mist": "#95A8B0", "driftwood": "#5C5447"},
+    "wada": {
+      "296": {"Sulpher Yellow": "#F5ECC2", "Ochraceous Salmon": "#D8A37B", "Pale Raw Umber": "#71502F", "Slate Color": "#34454C"},
+      "279": {"Raw Sienna": "#BB7125", "Vinaceous Cinnamon": "#EEA78C", "Ecru": "#C2AE93", "Dark Tyrian Blue": "#12354E"},
+      "166": {"Grenadine Pink": "#F48067", "Naples Yellow": "#FBE6A0", "Deep Slate Green": "#112F2C"},
+      "339": {"Ochraceous Salmon": "#D8A37B", "English Red": "#D96629", "Light Glaucous Blue": "#A5C8D1", "Violet Blue": "#40456A"},
+      "84": {"Seashell Pink": "#FDD4BD", "Deep Slate Green": "#112F2C"},
+      "207": {"Sudan Brown": "#A36752", "Glaucous Green": "#B4CDC2", "Black": "#111314"},
+      "243": {"Raw Sienna": "#BB7125", "Ivory Buff": "#EBD3A2", "Olive Green": "#6B7140", "Slate Color": "#34454C"}
+    },
+    "neutrals": {"white": "#FFFFFF", "black": "#000000"}
+  },
+  "type": {"display": "Fraunces 300 italic, tracking -0.02em", "body": "DM Sans 400", "eyebrow": "Space Mono uppercase, tracking 0.18-0.22em", "rule": "one italic-emphasised word per line; sentence case"},
+  "motion": {
+    "eases": {"glaser": [0.22, 1, 0.36, 1], "warm": [0.4, 0, 0.2, 1], "defer": [0.25, 0.46, 0.45, 0.94], "collect": [0.55, 0, 0.55, 0.2], "rest": [0.4, 0, 0.6, 1]},
+    "banned": ["bounce, elastic and back eases", "glow blobs and mesh gradients", "blue-purple gradients", "emoji", "flat-grey crossfades between grounds"],
+    "laws": ["every frame is a pure function of t", "seeded randomness only", "intermediate colours are linear-light mixes of registered tokens", "light mode: colour is the fill; dark mode: colour is the light at the edge", "sound is placed from cue times exported by the picture"]
+  },
+  "instruments": ["bearing ring", "depth gauge", "beat grid", "song/noise meter", "plumb line", "ghost frames", "streak lines"],
+  "gates": ["frame-jump (px and rad per frame)", "read-time (hold >= 0.6 s + 0.15 s per word)", "flash safety (<= 3 per second)", "loudness (-16 LUFS integrated, <= -1.5 dBTP)", "ffprobe spec", "contact-sheet review", "colour provenance (every literal colour registered or declared)"]
+}

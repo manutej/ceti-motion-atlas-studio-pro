@@ -1,0 +1,64 @@
+{
+ "id": "character-sheet-v2",
+ "name": "Little whale \u2014 character sheet v2",
+ "kind": "Still",
+ "version": "2.0",
+ "status": "shipped",
+ "style": {
+  "name": "Kinetic Hydrography",
+  "version": "1.0.0",
+  "passport_sha256": "11df6c39a38697375745f2bdb2040780e72f3657a56ab4306338bbfa64913efe",
+  "kit_sha256": "a19e3d258a95aa78e3199a8a95645703411e1ff218b262cd087dcf6516312a05"
+ },
+ "parents": {
+  "little-whale-v2": "c39c34cfd5321d9c4ee069192483251cab27b5999ef10f751c536e0e67a4c5e6",
+  "kh-style-1.0.0": "31bf64a419e000b4af1a66d61efd00b6969f293576a98b964a3680cb02a6aa20"
+ },
+ "wada": [
+  279,
+  339
+ ],
+ "engine": [
+  "Canvas (skia)"
+ ],
+ "atlas": [
+  "el:character-rig",
+  "el:squash-stretch",
+  "q:brand-grounding"
+ ],
+ "sources": [
+  {
+   "path": "kh/whale-rig.js",
+   "sha256": "5a15b4982f5b7bc30b77a071b560558113342fcb60f46674c218ad99bb2ecff4",
+   "bytes": 6438
+  },
+  {
+   "path": "kh/charsheet.cjs",
+   "sha256": "f2f65504ac0ea51d34cb77e0eb3299bd3fb239dcb305feda333b5d94430e7855",
+   "bytes": 2388
+  }
+ ],
+ "outputs": [
+  {
+   "path": "kh/charsheet-v2.png",
+   "sha256": "026da584c8bc65993cdbfaf0a1b0b4df20bca21fbb145b297fde3b3b67969c9d",
+   "bytes": 168551
+  }
+ ],
+ "gates": {
+  "contact_sheet": "PASS \u2014 reviewed; pods legible down to 22 px",
+  "colour_provenance": "PASS"
+ },
+ "colour_provenance": {
+  "literal_colours": 0,
+  "registered": 0,
+  "declared_derived": [],
+  "unregistered": [],
+  "status": "PASS"
+ },
+ "deviations": [],
+ "summary": "The little whale gets a vocabulary of feelings \u2014 cruise, focus, idea (spark), delight, sing, spout \u2014 swims in air, and gains AI pods: small helpers coloured by the job they carry.",
+ "changes": "Rig moved into the kit as kh/whale-rig.js with focus, delight and spark (+ sparkScale); new KH.drawPod. Every colour is a token or a mix of tokens.",
+ "registered_at": "2026-10-17T01:57:03+00:00",
+ "fingerprint": "a5642288092cd8896b6dd1efc15fc38dcdb3582115686b78405dae9e0c195247"
+}

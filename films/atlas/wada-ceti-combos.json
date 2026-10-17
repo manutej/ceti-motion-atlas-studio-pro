@@ -1,0 +1,568 @@
+[
+ {
+  "combo": 296,
+  "ceti_hits": [
+   "copper",
+   "paper",
+   "peach",
+   "rust",
+   "slate"
+  ],
+  "colors": [
+   {
+    "name": "Sulpher Yellow",
+    "hex": "#f5ecc2"
+   },
+   {
+    "name": "Ochraceous Salmon",
+    "hex": "#d8a37b"
+   },
+   {
+    "name": "Pale Raw Umber",
+    "hex": "#71502f"
+   },
+   {
+    "name": "Slate Color",
+    "hex": "#34454c"
+   }
+  ]
+ },
+ {
+  "combo": 243,
+  "ceti_hits": [
+   "peach",
+   "sage",
+   "slate"
+  ],
+  "colors": [
+   {
+    "name": "Raw Sienna",
+    "hex": "#bb7125"
+   },
+   {
+    "name": "Ivory Buff",
+    "hex": "#ebd3a2"
+   },
+   {
+    "name": "Olive Green",
+    "hex": "#6b7140"
+   },
+   {
+    "name": "Slate Color",
+    "hex": "#34454c"
+   }
+  ]
+ },
+ {
+  "combo": 269,
+  "ceti_hits": [
+   "deep-sea",
+   "peach",
+   "rust"
+  ],
+  "colors": [
+   {
+    "name": "Raw Sienna",
+    "hex": "#bb7125"
+   },
+   {
+    "name": "Pale Burnt Lake",
+    "hex": "#802626"
+   },
+   {
+    "name": "Aconite Violet",
+    "hex": "#a36aa5"
+   },
+   {
+    "name": "Black",
+    "hex": "#111314"
+   }
+  ]
+ },
+ {
+  "combo": 279,
+  "ceti_hits": [
+   "deep-sea",
+   "peach",
+   "slate"
+  ],
+  "colors": [
+   {
+    "name": "Raw Sienna",
+    "hex": "#bb7125"
+   },
+   {
+    "name": "Vinaceous Cinnamon",
+    "hex": "#eea78c"
+   },
+   {
+    "name": "Ecru",
+    "hex": "#c2ae93"
+   },
+   {
+    "name": "Dark Tyrian Blue",
+    "hex": "#12354e"
+   }
+  ]
+ },
+ {
+  "combo": 304,
+  "ceti_hits": [
+   "copper",
+   "rust",
+   "sage"
+  ],
+  "colors": [
+   {
+    "name": "Hay's Russet",
+    "hex": "#793327"
+   },
+   {
+    "name": "Cream Yellow",
+    "hex": "#fdbf68"
+   },
+   {
+    "name": "Dark Citrine",
+    "hex": "#8b835b"
+   },
+   {
+    "name": "Benzol Green",
+    "hex": "#00978d"
+   }
+  ]
+ },
+ {
+  "combo": 339,
+  "ceti_hits": [
+   "copper",
+   "peach",
+   "slate"
+  ],
+  "colors": [
+   {
+    "name": "Ochraceous Salmon",
+    "hex": "#d8a37b"
+   },
+   {
+    "name": "English Red",
+    "hex": "#d96629"
+   },
+   {
+    "name": "Light Glaucous Blue",
+    "hex": "#a5c8d1"
+   },
+   {
+    "name": "Violet Blue",
+    "hex": "#40456a"
+   }
+  ]
+ },
+ {
+  "combo": 318,
+  "ceti_hits": [
+   "copper",
+   "deep-sea",
+   "slate"
+  ],
+  "colors": [
+   {
+    "name": "Light Brownish Olive",
+    "hex": "#806e4b"
+   },
+   {
+    "name": "Blackish Olive",
+    "hex": "#42533e"
+   },
+   {
+    "name": "Dusky Green",
+    "hex": "#004f46"
+   },
+   {
+    "name": "Deep Slate Green",
+    "hex": "#112f2c"
+   }
+  ]
+ },
+ {
+  "combo": 166,
+  "ceti_hits": [
+   "deep-sea",
+   "peach",
+   "slate"
+  ],
+  "colors": [
+   {
+    "name": "Grenadine Pink",
+    "hex": "#f48067"
+   },
+   {
+    "name": "Naples Yellow",
+    "hex": "#fbe6a0"
+   },
+   {
+    "name": "Deep Slate Green",
+    "hex": "#112f2c"
+   }
+  ]
+ },
+ {
+  "combo": 121,
+  "ceti_hits": [
+   "copper",
+   "peach",
+   "rust"
+  ],
+  "colors": [
+   {
+    "name": "Brown",
+    "hex": "#7c4226"
+   },
+   {
+    "name": "Ochraceous Salmon",
+    "hex": "#d8a37b"
+   },
+   {
+    "name": "Lincoln Green",
+    "hex": "#555832"
+   }
+  ]
+ },
+ {
+  "combo": 186,
+  "ceti_hits": [
+   "copper",
+   "peach",
+   "rust"
+  ],
+  "colors": [
+   {
+    "name": "Hay's Russet",
+    "hex": "#793327"
+   },
+   {
+    "name": "Ochraceous Salmon",
+    "hex": "#d8a37b"
+   },
+   {
+    "name": "Blue",
+    "hex": "#006eb8"
+   }
+  ]
+ },
+ {
+  "combo": 217,
+  "ceti_hits": [
+   "copper",
+   "peach",
+   "rust"
+  ],
+  "colors": [
+   {
+    "name": "Pale Burnt Lake",
+    "hex": "#802626"
+   },
+   {
+    "name": "Ochraceous Salmon",
+    "hex": "#d8a37b"
+   },
+   {
+    "name": "Diamine Green",
+    "hex": "#1a7444"
+   }
+  ]
+ },
+ {
+  "combo": 207,
+  "ceti_hits": [
+   "copper",
+   "deep-sea",
+   "rust"
+  ],
+  "colors": [
+   {
+    "name": "Sudan Brown",
+    "hex": "#a36752"
+   },
+   {
+    "name": "Glaucous Green",
+    "hex": "#b4cdc2"
+   },
+   {
+    "name": "Black",
+    "hex": "#111314"
+   }
+  ]
+ },
+ {
+  "combo": 84,
+  "ceti_hits": [
+   "deep-sea",
+   "paper",
+   "slate"
+  ],
+  "colors": [
+   {
+    "name": "Seashell Pink",
+    "hex": "#fdd4bd"
+   },
+   {
+    "name": "Deep Slate Green",
+    "hex": "#112f2c"
+   }
+  ]
+ },
+ {
+  "combo": 26,
+  "ceti_hits": [
+   "copper",
+   "peach",
+   "rust"
+  ],
+  "colors": [
+   {
+    "name": "Golden Yellow",
+    "hex": "#f3a257"
+   },
+   {
+    "name": "Pale Raw Umber",
+    "hex": "#71502f"
+   }
+  ]
+ },
+ {
+  "combo": 10,
+  "ceti_hits": [
+   "copper",
+   "peach",
+   "sage"
+  ],
+  "colors": [
+   {
+    "name": "Cinnamon Rufous",
+    "hex": "#c27544"
+   },
+   {
+    "name": "Dark Citrine",
+    "hex": "#8b835b"
+   }
+  ]
+ },
+ {
+  "combo": 73,
+  "ceti_hits": [
+   "copper",
+   "rust",
+   "sage"
+  ],
+  "colors": [
+   {
+    "name": "Pale Raw Umber",
+    "hex": "#71502f"
+   },
+   {
+    "name": "Rainette Green",
+    "hex": "#8fa071"
+   }
+  ]
+ },
+ {
+  "combo": 273,
+  "ceti_hits": [
+   "copper",
+   "rust"
+  ],
+  "colors": [
+   {
+    "name": "Hermosa Pink",
+    "hex": "#f9c1ce"
+   },
+   {
+    "name": "Pansy Purple",
+    "hex": "#7d133a"
+   },
+   {
+    "name": "Sudan Brown",
+    "hex": "#a36752"
+   },
+   {
+    "name": "Neutral Gray",
+    "hex": "#b6bfc1"
+   }
+  ]
+ },
+ {
+  "combo": 315,
+  "ceti_hits": [
+   "paper",
+   "peach"
+  ],
+  "colors": [
+   {
+    "name": "Grenadine Pink",
+    "hex": "#f48067"
+   },
+   {
+    "name": "Sulpher Yellow",
+    "hex": "#f5ecc2"
+   },
+   {
+    "name": "Golden Yellow",
+    "hex": "#f3a257"
+   },
+   {
+    "name": "Eupatorium Purple",
+    "hex": "#bf5892"
+   }
+  ]
+ },
+ {
+  "combo": 276,
+  "ceti_hits": [
+   "deep-sea",
+   "paper"
+  ],
+  "colors": [
+   {
+    "name": "Eosine Pink",
+    "hex": "#f37f94"
+   },
+   {
+    "name": "Seashell Pink",
+    "hex": "#fdd4bd"
+   },
+   {
+    "name": "Yellow Green",
+    "hex": "#afd472"
+   },
+   {
+    "name": "Black",
+    "hex": "#111314"
+   }
+  ]
+ },
+ {
+  "combo": 270,
+  "ceti_hits": [
+   "paper",
+   "sage"
+  ],
+  "colors": [
+   {
+    "name": "Eugenia Red | B",
+    "hex": "#da525d"
+   },
+   {
+    "name": "Sulpher Yellow",
+    "hex": "#f5ecc2"
+   },
+   {
+    "name": "Olive Green",
+    "hex": "#6b7140"
+   },
+   {
+    "name": "Cossack Green",
+    "hex": "#437742"
+   }
+  ]
+ },
+ {
+  "combo": 325,
+  "ceti_hits": [
+   "deep-sea",
+   "slate"
+  ],
+  "colors": [
+   {
+    "name": "Eugenia Red | B",
+    "hex": "#da525d"
+   },
+   {
+    "name": "Naples Yellow",
+    "hex": "#fbe6a0"
+   },
+   {
+    "name": "Yellow Ocher",
+    "hex": "#e2b540"
+   },
+   {
+    "name": "Deep Slate Green",
+    "hex": "#112f2c"
+   }
+  ]
+ },
+ {
+  "combo": 255,
+  "ceti_hits": [
+   "deep-sea",
+   "peach"
+  ],
+  "colors": [
+   {
+    "name": "Raw Sienna",
+    "hex": "#bb7125"
+   },
+   {
+    "name": "Pyrite Yellow",
+    "hex": "#cab356"
+   },
+   {
+    "name": "Calamine BLue",
+    "hex": "#78cdd0"
+   },
+   {
+    "name": "Black",
+    "hex": "#111314"
+   }
+  ]
+ },
+ {
+  "combo": 293,
+  "ceti_hits": [
+   "peach",
+   "sage"
+  ],
+  "colors": [
+   {
+    "name": "Raw Sienna",
+    "hex": "#bb7125"
+   },
+   {
+    "name": "Turquoise Green",
+    "hex": "#b5decc"
+   },
+   {
+    "name": "Artemesia Green",
+    "hex": "#709390"
+   },
+   {
+    "name": "Green",
+    "hex": "#489b6e"
+   }
+  ]
+ },
+ {
+  "combo": 298,
+  "ceti_hits": [
+   "deep-sea",
+   "peach"
+  ],
+  "colors": [
+   {
+    "name": "Raw Sienna",
+    "hex": "#bb7125"
+   },
+   {
+    "name": "Lemon Yellow",
+    "hex": "#f8ed43"
+   },
+   {
+    "name": "Peach Red",
+    "hex": "#f15a30"
+   },
+   {
+    "name": "Black",
+    "hex": "#111314"
+   }
+  ]
+ }
+]

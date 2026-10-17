@@ -1,0 +1,42 @@
+{
+ "properties": {
+  "Name": "Kinetic Hydrography 1.0.0 \u2014 style passport",
+  "Kind": "Style system",
+  "Version": "1.0.0",
+  "Status": "shipped",
+  "Style": "Kinetic Hydrography 1.0.0",
+  "Fingerprint": "31bf64a419e000b4",
+  "Passport hash": "11df6c39a3869737",
+  "Wada": [
+   "296",
+   "279",
+   "166",
+   "339",
+   "84",
+   "207",
+   "243"
+  ],
+  "Engine": [
+   "Canvas (skia)",
+   "Python (Pillow)"
+  ],
+  "Gates": "Pass",
+  "Gate detail": "contrast: PASS \u2014 text \u2265 4.5:1 on its ground in every plate \u00b7 colour_provenance: PASS",
+  "Deviations": "None",
+  "Design ID": "kh-style-1.0.0",
+  "Derived from": [],
+  "Atlas lineage": [
+   "3fbd50cfaf9381468b01c86475b8511a",
+   "3fbd50cfaf938144b0c4e8f18671fd02",
+   "3fbd50cfaf9381238fecc2057f43d49e",
+   "3fbd50cfaf938155ad67ec8d56eda5c8",
+   "3fbd50cfaf938133bc76c0965286eb65",
+   "3fbd50cfaf9381e98de0f324911d288f"
+  ],
+  "date:Registered:start": "2026-10-16",
+  "date:Registered:is_datetime": 0
+ },
+ "content": "The root of the lineage. Motion as something that can be charted: frames are functions of time, beats sit on a grid, instruments (bearing ring, depth gauge, beat grid) annotate the movement, and one Sanzo Wada combination keys each piece. Built on the CETI design system.\n\n## Provenance\n- **Style:** Kinetic Hydrography 1.0.0 \u00b7 passport `11df6c39a3869737` \u00b7 kit `a19e3d258a95aa78`\n- **Fingerprint:** `31bf64a419e000b4af1a66d61efd00b6969f293576a98b964a3680cb02a6aa20`\n- **Parents:** none \u2014 this is a root\n- **Colour provenance:** PASS \u2014 36 literal colours, 36 registered tokens, 0 declared derived\n\n## What changed\nFirst version. Tokens = CETI design system + seven Wada combinations; type = Fraunces 300 italic / DM Sans / Space Mono; motion = the five CETI eases, no bounce.\n\n## Gates\n- contrast: PASS \u2014 text \u2265 4.5:1 on its ground in every plate\n- colour_provenance: PASS\n\n## Deviations from the style\n- None\n\n## Files\n- `kh/registry/style.json` \u00b7 `2dd6f1a1d683` \u00b7 2,946 bytes\n- `kh/kh-kit.js` \u00b7 `a19e3d258a95` \u00b7 7,272 bytes\n- `atlas/design/philosophy.md` \u00b7 `fff859af960d` \u00b7 3,326 bytes\n- `atlas/brand/colors_and_type.css` \u00b7 `2c4bc1fc1baa` \u00b7 18,675 bytes\n\n## Manifest\n```json\n{\n \"id\": \"kh-style-1.0.0\",\n \"fingerprint\": \"31bf64a419e000b4af1a66d61efd00b6969f293576a98b964a3680cb02a6aa20\",\n \"style\": {\n  \"name\": \"Kinetic Hydrography\",\n  \"version\": \"1.0.0\",\n  \"passport_sha256\": \"11df6c39a38697375745f2bdb2040780e72f3657a56ab4306338bbfa64913efe\",\n  \"kit_sha256\": \"a19e3d258a95aa78e3199a8a95645703411e1ff218b262cd087dcf6516312a05\"\n },\n \"parents\": {},\n \"wada\": [\n  296,\n  279,\n  166,\n  339,\n  84,\n  207,\n  243\n ],\n \"atlas\": [\n  \"stg:style-system\",\n  \"q:brand-grounding\",\n  \"q:typographic-restraint\",\n  \"q:banned-effects-list\",\n  \"q:unified-finish\",\n  \"q:principles-as-numbers\"\n ],\n \"gates\": {\n  \"contrast\": \"PASS \\u2014 text \\u2265 4.5:1 on its ground in every plate\",\n  \"colour_provenance\": \"PASS\"\n }\n}\n```",
+ "preview": "kh/registry/previews/kh-style-1.0.0.jpg",
+ "unresolved_parents": []
+}

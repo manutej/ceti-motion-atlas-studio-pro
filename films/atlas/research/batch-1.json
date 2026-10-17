@@ -1,0 +1,207 @@
+[
+  {
+    "source_id": "yt:6Ij9-f2T2Ck",
+    "url": "https://www.youtube.com/watch?v=6Ij9-f2T2Ck",
+    "kind": "video",
+    "title": "Claude Opus 5.5 Just Solved Motion Graphics (No More AI Slop)",
+    "creator": "Bart Slodyczka",
+    "published": "2026-09-25",
+    "duration": "12:22",
+    "priority": "high (owner shared this source 3 times)",
+    "summary": "Demo and walkthrough of a free Claude Code skill (motion-broll, repo Barty-Bart/motion-graphics) that turns a talking-head clip plus a timestamped transcript into motion-graphic b-roll timed to speech. The signature look is a single continuous shape that keeps morphing between forms instead of separate elements popping in. The repo README adds a deterministic render engine, motion blur via sub-frame blending, and an approval gate on the clip plan before any build.",
+    "what_is_shown": "Side-by-side original vs. augmented ~30s talking-head clip; full-frame cutaways and side-third transparent panels in which one shape morphs pill -> card -> terminal -> chart, with a cursor driving transitions; outputs browsed in a local HTML viewer.",
+    "stack": ["Claude Code", "Opus 5.5 (medium effort)", "HTML/JS custom engine (motion.js)", "Playwright + headless Chromium", "ffmpeg (ProRes 4444 for alpha panels, MP4 cutaways)", "Node 18+", "Python 3"],
+    "techniques": [
+      {"name": "Single morphing container", "how": "Each clip is one continuous object that changes size, radius and content through a sequence of forms rather than cutting between discrete graphics.", "quality_lever": "Continuity of form reads as designed motion and avoids the disjointed slide-deck look typical of AI output."},
+      {"name": "Pure time-function frames", "how": "Every frame is computed only from its timestamp; springs are closed-form step responses and CSS transitions/timers are banned.", "quality_lever": "Any frame can be rendered or inspected in isolation, making headless capture deterministic and debuggable."},
+      {"name": "Sub-frame motion blur", "how": "Headless Chromium captures 4 sub-frames per output frame across a 180-degree shutter and ffmpeg blends them.", "quality_lever": "Adds filmic motion blur that makes fast morphs feel smooth rather than strobing."},
+      {"name": "Speech-synced beat timing", "how": "Word timings are estimated from the SRT transcript and animations are keyed to the rhythm of spoken words.", "quality_lever": "Graphics land on emphasis words, which is what makes b-roll feel edited rather than overlaid."},
+      {"name": "Plan-then-approve clip list", "how": "Before building, the skill lists each clip with on-screen text, type (full cutaway, side-third panel, or none) and position for user approval; density presets (medium ~3, heavy 4-5 clips).", "quality_lever": "Cheap human gate catches bad editorial choices before expensive renders."},
+      {"name": "Data honesty placeholders", "how": "Never invents figures; bars show only relative size and text uses skeleton lines until real numbers are supplied.", "quality_lever": "Prevents hallucinated stats from shipping inside polished graphics."},
+      {"name": "Layout-aware cutaways", "how": "Footage inspection determines resolution, fps and picture-in-picture layout so panels sit in the third of frame away from the speaker's face.", "quality_lever": "Graphics respect the existing composition instead of covering the subject."}
+    ],
+    "prompting_patterns": [
+      "Paste the repo URL and ask Claude to read and import the skill into the workspace (it can also create CLAUDE.md/AGENTS.md).",
+      "Invoke /motion-broll with video + SRT, choose density and palette, and explicitly ask for results embedded in a local HTML page for review.",
+      "Supply brand colors/style resources on first use instead of relying on the default palette."
+    ],
+    "pipeline": "inspect footage (res/fps/layout) -> estimate word timings from SRT -> plan clips (cutaway/panel/none) -> user approval -> build each clip + still checks -> render with motion blur -> preview render, compare.html, viewer.html, TIMING.md -> final assembly in user's own editor",
+    "pitfalls": [
+      "Skill cannot transcribe; a timestamped transcript must be provided (suggested ElevenLabs API or a local model).",
+      "Opening frame of output was weak.",
+      "Earlier versions of the skill looked noticeably worse; quality depends on accumulated skill resources.",
+      "Default palette will not match a brand without customization.",
+      "Generation took roughly 15 minutes for ~30s of footage; preview render is review-only."
+    ],
+    "relevance": 5,
+    "confidence": "high",
+    "evidence": "oEmbed title/channel; watch-page description (bot-protected, partial); transcript via youtubetotranscript.com (read as model summary); repo README at github.com/Barty-Bart/motion-graphics; aitoolsreview.co.uk page for duration. SKILL.md body itself not visible."
+  },
+  {
+    "source_id": "yt:747ZnEtsRbg",
+    "url": "https://www.youtube.com/watch?v=747ZnEtsRbg",
+    "kind": "video",
+    "title": "Opus 5.5 Makes Insane Videos. Here's the Full Workflow",
+    "creator": "Lukas Margerie",
+    "published": "2026-09-28",
+    "duration": null,
+    "summary": "A survey-style workflow for code-generated launch/product videos with Opus 5.5, arguing the surrounding harness matters far more than the prompt. Covers rendering routes, a pasted set of 'motion studio rules', brand grounding, reference-video style extraction, markdown memory specs with a beat grid, code-synthesized sound synced to BPM, long director's briefs, and a scored self-critique loop, ending with packaging it all as a reusable skill.",
+    "what_is_shown": "15-20s showreels and product launch films (MagicPath), weather-forecast test animation, reference-styled launch video, narrated product explainer, and cited community examples (Steve Jobs story video synced at 120 BPM, multi-hour director-brief films).",
+    "stack": ["Claude Code", "Opus 5.5 (high effort)", "hand-coded HTML/SVG", "Playwright", "ffmpeg", "Remotion", "HyperFrames", "Diffusion Studio", "Fish Audio TTS (MCP)", "MagicPath", "Node (synthesized audio)"],
+    "techniques": [
+      {"name": "Four rendering routes", "how": "Model chooses between hand-coded frames captured headless, a video framework (Remotion/HyperFrames/Diffusion Studio), a hybrid with image/video models composited by Opus, or editing existing footage.", "quality_lever": "Naming the route up front avoids the zero-dependency default when a framework would give more control."},
+      {"name": "Motion studio rules file", "how": "Project-level instructions in four parts: render contract, a 'look' section banning generic output (centered text, gradients), sound guidance, and a feedback-loop stage.", "quality_lever": "Encodes taste and render reliability once so every prompt inherits it."},
+      {"name": "Reference grammar extraction", "how": "Download a reference video, pull frames at intervals, write a style guide (palette, type, shot lengths, transitions, camera moves, grain, text entry/exit), then a shot list in that style.", "quality_lever": "Borrows craft vocabulary from proven work while explicitly forbidding copying content, logos or characters."},
+      {"name": "Markdown memory specs + beat grid", "how": "Claude writes style, brand, tone and UI-component spec files plus a gotchas list and a frame-level beat-grid table reviewed before coding.", "quality_lever": "Consistency across scenes and a reviewable timing blueprint before expensive builds."},
+      {"name": "Never-cut container direction", "how": "'Product film UI motion' brief: one container that morphs size, radius and fill while content swaps behind a short blur.", "quality_lever": "Same continuity principle as Slodyczka's skill; gives premium, Apple-like flow."},
+      {"name": "Code-synthesized sound on a beats file", "how": "Synthesize a 120 BPM track, measure it into a beats file (beats, downbeats, hits), synthesize UI sounds in Node, then retime animation to the beats.", "quality_lever": "Locks visual hits to audio; creator found benefit uncertain."},
+      {"name": "Director's brief", "how": "Roughly 12-part brief: logline, references, tools/APIs, character bible, beat sheet, on-screen text, workflow gates, critique loop, deliverables; model cast as director, animator, sound designer and render engineer.", "quality_lever": "Output quality rose noticeably as prompt structure increased."},
+      {"name": "Scored critique loop", "how": "Model reviews its render against criteria, scores each, fixes low scores and repeats until a threshold (about 7-8/10).", "quality_lever": "Machine gate replaces some human review; cited example ran 163 calls over ~7 hours."},
+      {"name": "Self-gathered brand assets", "how": "Prompt has Claude research and collect screenshots and logos for a named brand itself.", "quality_lever": "Real brand material breaks the model's default black-and-orange house style."}
+    ],
+    "prompting_patterns": [
+      "One-line showreel prompt framing the model as the subject, sized to 15s (6-8 shots), with an 'go all out' style effort multiplier.",
+      "Template prompts with brand-name placeholders for automated asset research.",
+      "Explicit instruction: copy the reference's grammar, never its content.",
+      "Role stacking: director + animator + sound designer + render engineer.",
+      "Final step: package the workflow as a skill with inputs (URL, duration, format) and hard rules."
+    ],
+    "pipeline": "brief + references -> (optional) brand asset gathering -> style/brand/tone/component markdown specs + gotchas -> beat grid review -> code build -> render (headless or framework) -> voiceover/sound -> scored critique loop -> package as skill",
+    "pitfalls": [
+      "Generic template output (centered text, gradients) without references or brand context.",
+      "Claude Code hand-codes by default unless a framework is named or installed.",
+      "Model has a repetitive default palette (black/orange) when unconstrained.",
+      "Short unstructured prompts yield weaker results.",
+      "Copying reference content instead of style.",
+      "Polished results can take many hours and many calls."
+    ],
+    "relevance": 5,
+    "confidence": "high",
+    "evidence": "oEmbed; watch-page description with chapter list; transcript via youtubetotranscript.com (read as model summary). Rule file itself sits in a paid kit and an X article, not read."
+  },
+  {
+    "source_id": "yt:5XSwP0DaHF4",
+    "url": "https://www.youtube.com/watch?v=5XSwP0DaHF4",
+    "kind": "video",
+    "title": "Claude Opus 5.5 Changed Motion Graphics Forever (Insane Results)",
+    "creator": "Tao Prompts",
+    "published": "2026-10-10",
+    "duration": null,
+    "summary": "Broad tour of what Claude can produce in motion graphics: editorial graphics over talking heads, HUD overlays on AI video, 2D explainers, AI music videos, voxel 3D, and Blender cinematics via MCP. The recurring method is a project folder holding source footage plus a style reference, a custom skill, and external image models for assets Claude cannot render photorealistically, then many feedback rounds.",
+    "what_is_shown": "Split-screen editorial graphics with subtitles over talking head; Iron Man style head-tracking HUD; 2D sci-fi explainer; lyric music video in brushstroke style; voxel showreel and galaxy-to-atom zoom; Blender 3D cinematic scenes.",
+    "stack": ["Claude (desktop/Code)", "Opus 5.5", "Whisper (whisper.cpp) for SRT", "custom motion-graphics skill (zip)", "GPT image model / OpenArt for assets", "AI video model", "Suno", "p5.js + p5.brush (via PDoomVideo repo)", "Blender + Blender MCP", "2D-to-3D model tool", "computer use"],
+    "techniques": [
+      {"name": "Local transcription for timing", "how": "Install Whisper so Claude produces an SRT with timestamps; allow Hugging Face domains in capabilities so it can download the model.", "quality_lever": "Timestamped script is the sync backbone for graphics against voiceover."},
+      {"name": "Style reference video in project folder", "how": "Place a reference clip beside the footage and instruct Claude to match its style.", "quality_lever": "References produce much better output than none even though Claude never copies them exactly."},
+      {"name": "External asset sheets", "how": "Have Claude write an image prompt for an asset sheet in the reference style, generate at 2K+ with an image model, and drop assets/logos/portraits into a reference folder.", "quality_lever": "Offloads photorealism Claude is weak at while Claude handles animation."},
+      {"name": "Sketch-over correction", "how": "When Claude got HUD perspective backwards, the creator drew the intended angle on a frame and fed it back.", "quality_lever": "Rough visual markup communicates spatial intent better than prose."},
+      {"name": "Preview-before-render gate", "how": "Claude shows a preview; stop it and give palette/design feedback before the full render.", "quality_lever": "Avoids wasting long renders on wrong art direction."},
+      {"name": "Repo-as-harness", "how": "Point Claude at open repos (e.g. PDoomVideo: p5.brush frames in studio.html, headless Chrome, ffmpeg, storyboard + animation guide for parallel subagents) and let it handle setup.", "quality_lever": "Reuses proven render pipelines and storyboard/subagent structure."},
+      {"name": "Blender via MCP", "how": "Connect Blender MCP add-on, upscale 2D assets, convert to 3D, let Claude write Blender Python and operate Blender; render overnight.", "quality_lever": "Extends code-driven motion into real 3D cinematics."}
+    ],
+    "prompting_patterns": [
+      "Voice-chat instructions: transcribe, remove awkward pauses, match reference style.",
+      "Ask Claude to author the image-generation prompt for asset sheets in the reference style.",
+      "Ask Claude for concept, lyrics and character-sheet prompts for music videos before animating."
+    ],
+    "pipeline": "footage + style reference in folder -> Whisper SRT -> skill-driven first draft -> generate external assets -> iterate (subtitles, layout, variety) -> preview gate -> render; for 3D: assets -> upscale -> 2D-to-3D -> Blender MCP -> overnight render",
+    "pitfalls": [
+      "First draft cut speech early, felt rushed, visuals too simple, little transition variety, no subtitles.",
+      "Claude weak at photorealistic rendering.",
+      "HUD perspective came out reversed.",
+      "Music video first draft lacked effects, lyrics, environments and props.",
+      "Low-quality 2D inputs give low-quality 3D models.",
+      "3D issues: overlapping buildings, unrealistic rocket physics, weak explosions.",
+      "First draft took ~30 minutes."
+    ],
+    "relevance": 4,
+    "confidence": "high",
+    "evidence": "oEmbed; watch-page description (links, partial); transcript via youtubetotranscript.com (read as model summary); README of github.com/JohnHeibel/PDoomVideo. The creator's skill (Drive link truncated) was not read."
+  },
+  {
+    "source_id": "yt:HzXD4GVqXwM",
+    "url": "https://www.youtube.com/watch?v=HzXD4GVqXwM",
+    "kind": "video",
+    "title": "I Fully Automated My Video Editing Using Claude Code (Full Walkthrough)",
+    "creator": "Christian Peverelli",
+    "published": "2026-10-04",
+    "duration": null,
+    "summary": "Shows a Claude Code 'editing team' where Claude orchestrates transcription, HyperFrames animation, browser research for b-roll, Tella cuts via MCP, Epidemic Sound audio and ffmpeg finishing. The core idea is a large, growing style skill that Claude rewrites after every feedback round so mistakes do not recur.",
+    "what_is_shown": "A YouTube video edited overnight: cuts, zooms, layout changes, HyperFrames 4K animations, screenshot/scroll b-roll of sources, music and sound effects; 2:46 raw clip cut to 31s.",
+    "stack": ["Claude Code", "HyperFrames", "Parakeet (NVIDIA) transcription", "Chrome browsing", "Tella (MCP)", "Epidemic Sound (MCP)", "ffmpeg"],
+    "techniques": [
+      {"name": "Agent-as-editor with tool roles", "how": "Claude coordinates specialised tools: transcriber, animator, researcher, screen editor, sound designer, finisher.", "quality_lever": "Each tool does what it is best at while Claude holds the edit plan."},
+      {"name": "Self-updating style skill", "how": "After every review round, instruct Claude to write what it learned into the skill (grew to ~1,400 lines, 36 rules).", "quality_lever": "Compounding taste; same errors stop recurring."},
+      {"name": "Small-piece calibration", "how": "Teach the style on short segments like the hook first, testing 8-10 sound effect options.", "quality_lever": "Cheap iterations to pin taste before full runs."},
+      {"name": "Timestamped feedback", "how": "Give notes tied to exact timestamps (add suspense music here, zoom when I say zoom).", "quality_lever": "Precise, actionable revisions instead of vague requests."},
+      {"name": "Verifiable research b-roll", "how": "Claude captures screenshots, scrolling recordings and highlighted zooms of real sources and shows only verifiable facts.", "quality_lever": "Grounded, credible b-roll."},
+      {"name": "ffmpeg QA pass", "how": "ffmpeg joins segments, strips black frames and checks audio sync before human review.", "quality_lever": "Machine gate catches technical defects."}
+    ],
+    "prompting_patterns": [
+      "Ask Claude Code to build the editing system and walk you through setup, then save the setup as a skill and test in a new thread.",
+      "Event-triggered instructions keyed to speech (zoom on 'zoom', SFX on mention, showcase three strongest animations).",
+      "'Learn from this session and update the skill' at the end of each round."
+    ],
+    "pipeline": "record (Tella) -> raw footage to project -> Parakeet transcript -> Claude cuts/plans -> HyperFrames animations + browser b-roll -> Epidemic Sound music/SFX -> ffmpeg join/QA -> human timestamped notes -> skill update",
+    "pitfalls": [
+      "Early output too busy; needed simplifying.",
+      "Palettes and sound choices off-taste until corrected.",
+      "SFX require trial and error.",
+      "Feedback not saved to the skill means repeated errors.",
+      "Tools need logins/connectors before use; human review still needed."
+    ],
+    "relevance": 4,
+    "confidence": "high",
+    "evidence": "oEmbed; watch-page description; transcript via youtubetotranscript.com (read as model summary). Skill itself (Skool community) not read."
+  },
+  {
+    "source_id": "yt:MPDhk385gSg",
+    "url": "https://www.youtube.com/watch?v=MPDhk385gSg",
+    "kind": "video",
+    "title": "Claude Opus 5.5 + JavaScript = INSANE 2D Animations (Full Tutorial)",
+    "creator": "RandomAI",
+    "published": "2026-10-10",
+    "duration": "14:14",
+    "summary": "Three-level tutorial for 2D narrative animation with Opus 5.5 in plain JavaScript: a one-line prompt, a structured prompt with style reference and pacing, and an orchestrated pipeline with MCP tools for voice, music and clips plus a HyperFrames or Remotion harness. Note the oEmbed title differs slightly from the page title.",
+    "what_is_shown": "Black hole animation, hand-drawn style baby-deer story with Python-composed music, paper-collage comedy short with generated narration on a HyperFrames timeline; community examples.",
+    "stack": ["Claude Code", "Opus 5.5 (high/extra effort)", "JavaScript (canvas/SVG)", "Python (music synthesis)", "HyperFrames", "Remotion", "Higgsfield MCP"],
+    "techniques": [
+      {"name": "Prompt maturity levels", "how": "Escalate from a one-line ask to a structured prompt (style, pacing, creative direction, story outline) to a multi-tool orchestrated pipeline.", "quality_lever": "Structure and references are what turn inconsistent one-shots into reliable results."},
+      {"name": "Code-composed soundtrack", "how": "Ask Opus to compose original background music in Python alongside the JS animation.", "quality_lever": "Royalty-free, length-matched audio without external services."},
+      {"name": "Iterate-until-match instruction", "how": "Tell the model to keep iterating until quality matches the reference style.", "quality_lever": "Built-in self-critique against a concrete target."},
+      {"name": "Harness for timeline control", "how": "Install HyperFrames or Remotion so scenes appear on an editable timeline and audio can be placed.", "quality_lever": "More control and editability than raw headless capture."}
+    ],
+    "prompting_patterns": [
+      "Reference video plus structured prompt covering style, pacing, direction and story outline.",
+      "Supply pacing research and a plan; the model cannot reliably invent these alone."
+    ],
+    "pipeline": "idea + reference -> structured prompt + pacing plan -> JS animation -> HyperFrames/Remotion render -> Python or MCP music/voice -> timeline assembly",
+    "pitfalls": [
+      "Simple prompts give inconsistent, sometimes poor results.",
+      "Structured-but-unnarrated output felt flat, cartoonish and strictly 2D.",
+      "Sonnet gives less polished animation than Opus."
+    ],
+    "relevance": 3,
+    "confidence": "medium",
+    "evidence": "oEmbed; watch-page metadata (duration, date, short description); transcript via youtubetotranscript.com (read as model summary). No companion repo or write-up found."
+  },
+  {
+    "source_id": "yt:UPIhEjRAyVk",
+    "url": "https://www.youtube.com/shorts/UPIhEjRAyVk",
+    "kind": "short",
+    "title": "Claude Opus 5.5 Motion Graphics",
+    "creator": "Ben Kaluza - Tutorials & Workflows",
+    "published": null,
+    "duration": null,
+    "summary": "A YouTube Short on Opus 5.5 motion graphics. Content could not be read: the Shorts and watch pages returned generic or error responses, no transcript was available, and web searches surfaced no companion write-up.",
+    "what_is_shown": "Unknown.",
+    "stack": [],
+    "techniques": [],
+    "prompting_patterns": [],
+    "pipeline": "unknown",
+    "pitfalls": [],
+    "relevance": 2,
+    "confidence": "low",
+    "evidence": "oEmbed only (title, channel). Shorts page returned a generic template; watch page and transcript service errored; searches found nothing specific. Relevance is a guess from the title."
+  }
+]

@@ -1,0 +1,42 @@
+{
+ "properties": {
+  "Name": "Whale Line \u2014 film format v1.1 (air mode)",
+  "Kind": "Format",
+  "Version": "1.1",
+  "Status": "shipped",
+  "Style": "Kinetic Hydrography 1.0.0",
+  "Fingerprint": "982e72b50c3d5797",
+  "Passport hash": "11df6c39a3869737",
+  "Wada": [
+   "279"
+  ],
+  "Engine": [
+   "Canvas (skia)",
+   "ffmpeg",
+   "numpy synth"
+  ],
+  "Gates": "Pass",
+  "Gate detail": "contrast: PASS \u2014 gate added: every text/ground pair \u2265 4.5:1 (water glosses now 14.3:1 on paper labels) \u00b7 read_time: PASS \u2014 built in \u00b7 frame_jump: PASS \u2014 built in \u00b7 colour_provenance: PASS",
+  "Deviations": "None",
+  "Design ID": "whale-line-format-v1.1",
+  "Derived from": [
+   "3fcd50cfaf93812498bbfd2140371042",
+   "3fcd50cfaf93816bb451d1dfcc721076"
+  ],
+  "Atlas lineage": [
+   "3fbd50cfaf938104bd6dc9ee16ba93f9",
+   "3fbd50cfaf938109b4d8cdcbc2fc8787",
+   "3fbd50cfaf9381fbb243e1afa8e20b3c",
+   "3fbd50cfaf93817a873fefa2714b4f69",
+   "3fbd50cfaf9381159144e6222a7785ef",
+   "3fbd50cfaf9381078d70c4da78795394",
+   "3fbd50cfaf93818c9148cabe066e555a",
+   "3fbd50cfaf9381238fecc2057f43d49e"
+  ],
+  "date:Registered:start": "2026-10-17",
+  "date:Registered:is_datetime": 0
+ },
+ "content": "Whale Line, freed from the water: medium \"air\" (no sea, a speed trail instead of splashes), every timing scaled to the station cycle so stories can run at any tempo, and a contrast gate.\n\n## Provenance\n- **Style:** Kinetic Hydrography 1.0.0 \u00b7 passport `11df6c39a3869737` \u00b7 kit `a19e3d258a95aa78`\n- **Fingerprint:** `982e72b50c3d5797a16e065a264aa5b7cfb630dd4195a3ca83ce617ba752a3a2`\n- **Parents:** whale-line-format-v1 (`9d5e7a25aef1`), character-sheet-v2 (`a5642288092c`)\n- **Colour provenance:** PASS \u2014 0 literal colours, 0 registered tokens, 0 declared derived\n\n## What changed\nAir mode; cycleBeats/bpm/intro per story; glosses held until the next landing; water-mode glosses moved onto paper labels after review (blue on blue was ~3:1).\n\n## Gates\n- contrast: PASS \u2014 gate added: every text/ground pair \u2265 4.5:1 (water glosses now 14.3:1 on paper labels)\n- read_time: PASS \u2014 built in\n- frame_jump: PASS \u2014 built in\n- colour_provenance: PASS\n\n## Deviations from the style\n- None\n\n## Files\n- `kh/lines/whaleline.js` \u00b7 `3e772cc8edf3` \u00b7 16,145 bytes\n- `kh/lines/engine.cjs` \u00b7 `427dd0a9b34d` \u00b7 961 bytes\n- `kh/lines/tool.cjs` \u00b7 `71d961d640ea` \u00b7 3,272 bytes\n- `kh/lines/score.py` \u00b7 `bf957f5c151e` \u00b7 5,076 bytes\n- `kh/whale-rig.js` \u00b7 `5a15b4982f5b` \u00b7 6,438 bytes\n\n## Manifest\n```json\n{\n \"id\": \"whale-line-format-v1.1\",\n \"fingerprint\": \"982e72b50c3d5797a16e065a264aa5b7cfb630dd4195a3ca83ce617ba752a3a2\",\n \"style\": {\n  \"name\": \"Kinetic Hydrography\",\n  \"version\": \"1.0.0\",\n  \"passport_sha256\": \"11df6c39a38697375745f2bdb2040780e72f3657a56ab4306338bbfa64913efe\",\n  \"kit_sha256\": \"a19e3d258a95aa78e3199a8a95645703411e1ff218b262cd087dcf6516312a05\"\n },\n \"parents\": {\n  \"whale-line-format-v1\": \"9d5e7a25aef1e59c09b9c7edb60b4bbca322be6a4c2109798b34c7a8439af68f\",\n  \"character-sheet-v2\": \"a5642288092cd8896b6dd1efc15fc38dcdb3582115686b78405dae9e0c195247\"\n },\n \"wada\": [\n  279\n ],\n \"atlas\": [\n  \"el:kinetic-type\",\n  \"el:character-rig\",\n  \"el:camera-move\",\n  \"q:beat-locked-changes\",\n  \"q:time-pure-frames\",\n  \"q:motion-blur\",\n  \"q:cue-locked-sound\",\n  \"q:typographic-restraint\"\n ],\n \"gates\": {\n  \"contrast\": \"PASS \\u2014 gate added: every text/ground pair \\u2265 4.5:1 (water glosses now 14.3:1 on paper labels)\",\n  \"read_time\": \"PASS \\u2014 built in\",\n  \"frame_jump\": \"PASS \\u2014 built in\",\n  \"colour_provenance\": \"PASS\"\n }\n}\n```",
+ "preview": "kh/registry/previews/whale-line-format-v1.1.jpg",
+ "unresolved_parents": []
+}

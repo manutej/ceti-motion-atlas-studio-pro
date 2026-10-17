@@ -1,0 +1,69 @@
+{
+ "id": "signal-v1",
+ "name": "Signal \u2014 film v1",
+ "kind": "Film",
+ "version": "1.0",
+ "parents": [
+  "signal-moodboard"
+ ],
+ "uses_kit": true,
+ "wada": [
+  339,
+  166
+ ],
+ "engine": [
+  "Canvas (skia)",
+  "ffmpeg",
+  "numpy synth"
+ ],
+ "atlas": [
+  "sty:kinetic-type-showreel",
+  "el:kinetic-type",
+  "el:music-bed",
+  "el:sfx-cue",
+  "el:data-diagram",
+  "el:end-card",
+  "el:camera-move",
+  "q:beat-locked-changes",
+  "q:time-pure-frames",
+  "q:seeded-rng",
+  "q:motion-blur",
+  "q:cue-locked-sound",
+  "q:loudness-normalisation",
+  "gate:contact-sheet",
+  "gate:ffprobe-spec",
+  "gate:loudness-waveform",
+  "eng:code-synth-audio",
+  "eng:ffmpeg"
+ ],
+ "sources": [
+  "kh/kh-kit.js",
+  "kh/host.cjs",
+  "kh/signal/film.js",
+  "kh/signal/engine.cjs",
+  "kh/signal/render.cjs",
+  "kh/signal/score.py",
+  "kh/signal/cues.json",
+  "kh/signal/gate.cjs"
+ ],
+ "outputs": [
+  "kh/signal/signal.mp4"
+ ],
+ "preview": "kh/registry/previews/signal-v1.jpg",
+ "gates": {
+  "read_time": "PASS \u2014 every line held \u2265 its need (tightest 1.00 s vs 0.90 s)",
+  "flash_safety": "PASS \u2014 0 flashes; largest luma step 1.8% per frame",
+  "loudness": "PASS \u2014 -16.3 LUFS, -2.2 dBTP",
+  "ffprobe": "PASS \u2014 1800 frames, 30.0 s, 60 fps",
+  "contact_sheet": "PASS \u2014 reviewed"
+ },
+ "deviations": [
+  "The feed outruns house durations (0.18 s whips vs 0.28 s minimum) \u2014 the story needs nervousness",
+  "270\u00b0 shutter with 4 sub-frames in the feed and filter acts"
+ ],
+ "summary": "30-second kinetic film at 120 BPM: a loud feed is swept by a bearing-ring filter, 95 items fall away, 5 become a rising line, then a single calm wave \u2014 \"Signal over noise.\"",
+ "changes": "First cut. Introduces the read-time and flash-safety gates.",
+ "style": "1.0.0",
+ "status": "shipped",
+ "derived_colours": {}
+}

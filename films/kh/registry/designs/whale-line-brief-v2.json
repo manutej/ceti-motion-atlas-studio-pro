@@ -1,0 +1,50 @@
+{
+ "id": "whale-line-brief-v2",
+ "name": "Whale Line \u2014 The brief v2 (air, 128 BPM)",
+ "kind": "Film",
+ "version": "2.0",
+ "parents": [
+  "whale-line-format-v1.1",
+  "whale-line-brief-v1"
+ ],
+ "wada": [
+  279
+ ],
+ "engine": [
+  "Canvas (skia)",
+  "ffmpeg",
+  "numpy synth"
+ ],
+ "atlas": [
+  "el:kinetic-type",
+  "el:character-rig",
+  "q:beat-locked-changes",
+  "q:motion-blur",
+  "gate:frame-jump-detector",
+  "gate:ffprobe-spec",
+  "gate:loudness-waveform"
+ ],
+ "sources": [
+  "kh/lines/stories/brief-v2.json",
+  "kh/lines/cues-brief-v2.json"
+ ],
+ "outputs": [
+  "kh/lines/whale-line-brief-v2.mp4"
+ ],
+ "preview": "kh/registry/previews/whale-line-brief-v2.jpg",
+ "gates": {
+  "read_time": "PASS \u2014 tightest gloss 2.09 s",
+  "frame_jump": "PASS \u2014 28.4 px and 0.11 rad per frame",
+  "flash_safety": "PASS \u2014 max luma step 0.04%",
+  "loudness": "PASS \u2014 -16.0 LUFS, -2.2 dBTP",
+  "ffprobe": "PASS \u2014 1440 frames, 24.0 s, 60 fps",
+  "contrast": "PASS"
+ },
+ "summary": "The brief, re-cut faster in air: 24 s at 128 BPM, five beats per station instead of six.",
+ "changes": "~30% faster; no water; speed trail; same six words.",
+ "style": "1.0.0",
+ "status": "shipped",
+ "uses_kit": true,
+ "derived_colours": {},
+ "deviations": []
+}

@@ -1,0 +1,40 @@
+{
+ "id": "character-sheet-v2",
+ "name": "Little whale \u2014 character sheet v2",
+ "kind": "Still",
+ "version": "2.0",
+ "parents": [
+  "little-whale-v2",
+  "kh-style-1.0.0"
+ ],
+ "wada": [
+  279,
+  339
+ ],
+ "engine": [
+  "Canvas (skia)"
+ ],
+ "atlas": [
+  "el:character-rig",
+  "el:squash-stretch",
+  "q:brand-grounding"
+ ],
+ "sources": [
+  "kh/whale-rig.js",
+  "kh/charsheet.cjs"
+ ],
+ "outputs": [
+  "kh/charsheet-v2.png"
+ ],
+ "preview": "kh/registry/previews/character-sheet-v2.jpg",
+ "gates": {
+  "contact_sheet": "PASS \u2014 reviewed; pods legible down to 22 px"
+ },
+ "summary": "The little whale gets a vocabulary of feelings \u2014 cruise, focus, idea (spark), delight, sing, spout \u2014 swims in air, and gains AI pods: small helpers coloured by the job they carry.",
+ "changes": "Rig moved into the kit as kh/whale-rig.js with focus, delight and spark (+ sparkScale); new KH.drawPod. Every colour is a token or a mix of tokens.",
+ "style": "1.0.0",
+ "status": "shipped",
+ "uses_kit": true,
+ "derived_colours": {},
+ "deviations": []
+}

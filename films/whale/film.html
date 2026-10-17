@@ -1,0 +1,296 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Little whale</title>
+<link rel="stylesheet" href="fonts.css">
+<style>body{background:#1A1F2E} #ui{position:fixed;left:0;right:0;bottom:0;display:none} body.ui #ui{display:block}</style></head>
+<body>
+<svg id="s" width="1920" height="1080" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="grain" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="7" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+    </filter>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop id="bg0" offset="0"/><stop id="bg1" offset="1"/></linearGradient>
+    <radialGradient id="vig" cx="0.5" cy="0.5" r="0.75"><stop offset="0.55" stop-color="#000" stop-opacity="0"/><stop id="vig1" offset="1" stop-color="#000" stop-opacity="0.35"/></radialGradient>
+  </defs>
+  <rect width="1920" height="1080" fill="url(#bg)"/>
+  <g id="world"></g>
+  <rect width="1920" height="1080" fill="url(#vig)"/>
+  <pattern id="gp" width="256" height="256" patternUnits="userSpaceOnUse"><image href="grain.png" width="256" height="256"/></pattern>
+  <rect id="grainR" width="1920" height="1080" fill="url(#gp)" opacity="0.5"/>
+  <g id="ui2"></g>
+</svg>
+<div id="ui"><input id="scrub" type="range" min="0" max="60" step="0.0333" value="0" style="width:100%"></div>
+<script src="lib.js"></script>
+<script src="score.js"></script>
+<script>
+const SC = window.SCORE, DUR = SC.duration;
+const W = 1920, H = 1080, SURF = 290;
+const $ = id => document.getElementById(id);
+
+// ---------- palette over time -------------------------------------------------
+const Lt = t => EASE.rest(clamp((t - 37) / 8.5));            // 0 = the deep, 1 = the surface
+const DAWN = '#5A5566';
+const dawn = (a, b, k) => k < 0.5 ? mix(a, mix(DAWN, PAL.w296[1], 0.35), k * 2) : mix(mix(DAWN, PAL.w296[1], 0.35), b, (k - 0.5) * 2);
+const lineCol = t => mix(PAL.paper, PAL.ink, Lt(t));
+const softCol = t => mix(PAL.fog, PAL.slate, Lt(t));
+const accentCol = t => mix(PAL.sienna, PAL.w296[2], Lt(t));    // Raw Sienna (279) -> Pale Raw Umber (296)
+
+// ---------- whale path (catmull-rom through keys, with a sampled loop) --------
+function buildKeys(list) { return list.map(([t, x, y]) => ({ t, x, y })); }
+const loopC = { x: 1000, y: 560, r: 150, a: 24.5, b: 29.5 };
+const KA = [[5.0, -300, 650], [8.5, 250, 660], [12.0, 600, 640], [14.4, 730, 625], [16.0, 765, 615], [19.0, 790, 612],
+  [21.0, 815, 620], [22.5, 880, 662], [24.0, 958, 706]];
+for (let i = 0; i <= 20; i++) { const k = i / 20, th = Math.PI / 2 - k * Math.PI * 2;
+  KA.push([lerp(loopC.a, loopC.b, k), loopC.x + Math.cos(th) * loopC.r, loopC.y + Math.sin(th) * loopC.r]); }
+KA.push([31.0, 1110, 700], [33.5, 1240, 645], [37.0, 1340, 545], [40.0, 1420, 492], [43.0, 1470, 440], [46.0, 1505, 470],
+  [48.2, 1540, 400], [49.0, 1560, 316], [49.6, 1580, 214], [50.2, 1612, 172], [51.0, 1662, 268], [51.8, 1762, 410], [52.6, 2160, 600]);
+const KB = [[53.0, -360, 830], [55.6, 1230, 768], [57.2, 1430, 742], [60.5, 1470, 736]];
+const PA = buildKeys(KA), PB = buildKeys(KB);
+function cat(P, t) {
+  // time-parameterised Hermite (non-uniform Catmull-Rom): velocity is continuous across keys
+  const n = P.length;
+  if (t <= P[0].t) return { x: P[0].x, y: P[0].y };
+  if (t >= P[n - 1].t) return { x: P[n - 1].x, y: P[n - 1].y };
+  let i = 0; while (P[i + 1].t < t) i++;
+  const p1 = P[i], p2 = P[i + 1], h = p2.t - p1.t, u = (t - p1.t) / h;
+  const tan = k => { const a = P[Math.max(0, k - 1)], b = P[Math.min(n - 1, k + 1)];
+    return { x: (b.x - a.x) / (b.t - a.t), y: (b.y - a.y) / (b.t - a.t) }; };
+  const m1 = tan(i), m2 = tan(i + 1);
+  const u2 = u * u, u3 = u2 * u, h00 = 2 * u3 - 3 * u2 + 1, h10 = u3 - 2 * u2 + u, h01 = -2 * u3 + 3 * u2, h11 = u3 - u2;
+  return { x: h00 * p1.x + h10 * h * m1.x + h01 * p2.x + h11 * h * m2.x, y: h00 * p1.y + h10 * h * m1.y + h01 * p2.y + h11 * h * m2.y };
+}
+const inB = t => t >= 52.8;
+const pos = t => { const p = inB(t) ? cat(PB, t) : cat(PA, t); return { x: p.x, y: p.y + Math.sin(t * 1.3) * 4 }; };
+function vel(t) { const a = pos(t - 1 / 60), b = pos(t + 1 / 60); return { x: (b.x - a.x) * 30, y: (b.y - a.y) * 30 }; }
+
+// distance table (deterministic) for swim phase
+const DT = 1 / 120, DIST = [0];
+for (let i = 1; i <= DUR / DT + 2; i++) { const a = pos((i - 1) * DT), b = pos(i * DT); DIST.push(DIST[i - 1] + (inB(i * DT) !== inB((i - 1) * DT) ? 0 : Math.hypot(b.x - a.x, b.y - a.y))); }
+const dist = t => DIST[clamp(Math.round(t / DT), 0, DIST.length - 1)];
+
+// heading: full rotation inside the loop, tilt elsewhere (the whale never swims upside down)
+function heading(t) {
+  const v = vel(t), sp = Math.hypot(v.x, v.y);
+  if (t > loopC.a && t < loopC.b) return -((t - loopC.a) / (loopC.b - loopC.a)) * Math.PI * 2;
+  // average the velocity over +-0.2 s so turns ease in rather than snap
+  let ax = 0, ay = 0; for (let k = -4; k <= 4; k++) { const q = vel(t + k * 0.05), wk = 1 - Math.abs(k) / 5; ax += q.x * wk; ay += q.y * wk; }
+  const w = clamp(sp / 60); return clamp(Math.atan2(ay, Math.max(1, ax)) * w, -1.35, 1.35);
+}
+
+// ---------- song (cue-locked to the score) -----------------------------------
+function noteEnv(n, t) { const a = 0.12, r = 0.3; if (t < n.t || t > n.t + n.d + r) return 0;
+  if (t < n.t + a) return (t - n.t) / a; if (t < n.t + n.d) return 1; return 1 - (t - n.t - n.d) / r; }
+function song(t) {
+  let best = null, env = 0;
+  for (const n of SC.notes) { const e = noteEnv(n, t); if (e > env) { env = e; best = n; } }
+  if (!best) return { env: 0, f: 0, wob: 0 };
+  const k = EASE.warm(clamp((t - best.t) / best.d));
+  const f = lerp(best.f0, best.f1, k) * (1 + best.wob * 0.035 * Math.sin(2 * Math.PI * 5.2 * t + Math.sin(11 * t)));
+  return { env: env * best.amp, f, wob: best.wob };
+}
+
+// ---------- helpers ---------------------------------------------------------
+const f1 = n => Math.round(n * 10) / 10;
+function poly(pts) { return pts.map((p, i) => (i ? 'L' : 'M') + f1(p.x) + ',' + f1(p.y)).join(''); }
+const TX = (x, y, txt, cls, size, fill, op = 1, anchor = 'start', extra = '') =>
+  `<text x="${f1(x)}" y="${f1(y)}" class="${cls}" font-size="${size}" fill="${fill}" opacity="${f2(op)}" text-anchor="${anchor}" ${extra}>${txt}</text>`;
+
+
+// background stamps: identical copies in the deep, own shapes later
+const R0 = rng(41), STAMPS = [];
+const SHAPE_COLS = [PAL.w296[0], PAL.w296[1], PAL.w279[1], PAL.w166[0], PAL.w166[1], PAL.glaucous, PAL.w279[2], PAL.sage];
+for (const cx of [210, 345, 480, 615]) for (const cy of [340, 470, 700, 820]) STAMPS.push({ cx, cy, k: 2 + Math.floor(R0() * 5), amp: 0.12 + R0() * 0.14,
+  ph: R0() * 6.28, grow: 0.9 + R0() * 0.55, col: SHAPE_COLS[Math.floor(R0() * SHAPE_COLS.length)], rot: (R0() - 0.5) * 0.6, bloom: R0() });
+function stampPath(st, r, a, rot) {
+  const pts = []; for (let i = 0; i <= 72; i++) { const th = i / 72 * Math.PI * 2;
+    const rr = r * (1 + a * Math.sin(st.k * th + st.ph + rot)); pts.push({ x: st.cx + Math.cos(th) * rr, y: st.cy + Math.sin(th) * rr }); }
+  return poly(pts) + 'Z';
+}
+
+STAMPS.forEach(st => { let tt = 5; while (tt < 14 && pos(tt).x < st.cx - 30) tt += 0.02; st.pass = tt; });
+
+// ---------- frame ---------------------------------------------------------------
+function seek(t) {
+  t = clamp(t, 0, DUR);
+  const L = Lt(t), ink = lineCol(t), soft = softCol(t);
+  $('bg0').setAttribute('stop-color', dawn(PAL.navy, PAL.paper, Lt(t + 2.0)));
+  $('bg1').setAttribute('stop-color', dawn(PAL.bathy, PAL.paperSoft, Lt(t - 1.6)));
+  $('vig1').setAttribute('stop-opacity', f2(lerp(0.35, 0.07, L)));
+  $('grainR').setAttribute('opacity', f2(lerp(0.55, 0.4, L)));
+  let g = '';
+  const endK = ramp(t, 53.0, 54.4, EASE.collect);   // clears the stage for the end card
+  const P = pos(t), ang = heading(t);
+
+  // --- surface line (descends into view as we rise) ---
+  const sy = lerp(-40, SURF, ramp(t, 41, 47, EASE.warm));
+  if (sy > -10) { let d = ''; for (let x = 0; x <= W; x += 16) { const yy = sy + Math.sin(x * 0.012 + t * 1.4) * 2.5 + Math.sin(x * 0.031 - t * 2.1) * 1.2; d += (x ? 'L' : 'M') + x + ',' + f1(yy); }
+    g += `<path d="${d}" fill="none" stroke="${ink}" stroke-width="1.4" opacity="0.55"/>`;
+    g += TX(160, sy - 16, 'SURFACE · 0 M', 'mono', 12, soft, ramp(t, 46, 47.5) * (1 - ramp(t, 53, 54)));
+  }
+
+  // --- opening plumb line (a sounding taken from the surface) ---
+  const plumbK = ramp(t, 0.6, 3.2, EASE.glaser), plumbOut = 1 - ramp(t, 4.6, 6.0);
+  if (plumbOut > 0) { const px = 1500, py = lerp(0, 640, plumbK);
+    g += `<line x1="${px}" y1="0" x2="${px}" y2="${f1(py)}" stroke="${PAL.fog}" stroke-width="1" opacity="${f2(0.7 * plumbOut)}"/>`;
+    for (let k = 1; k * 64 < py; k++) g += `<line x1="${px - 6}" y1="${k * 64}" x2="${px + 6}" y2="${k * 64}" stroke="${PAL.fog}" opacity="${f2(0.5 * plumbOut)}"/>`;
+    g += `<circle cx="${px}" cy="${f1(py)}" r="7" fill="none" stroke="${PAL.sienna}" stroke-width="1.6" opacity="${f2(plumbK * plumbOut)}"/>`;
+    g += TX(px + 18, py + 5, '412 M', 'mono', 12, PAL.fog, plumbK * plumbOut);
+  }
+
+  // --- stamps: copies in the deep, then each finds its own shape ---
+  const vary = ramp(t, 23, 31, EASE.rest);
+  STAMPS.forEach((st, i) => {
+    // each copy is stamped as the whale passes over it
+    const b = ramp(t, st.pass, st.pass + 0.45, EASE.glaser);
+    if (b <= 0) return;
+    const bloom = ramp(t, 33 + st.bloom * 6, 35 + st.bloom * 6, EASE.glaser);
+    const r = 30 * b * lerp(1, st.grow, bloom);
+    const a = st.amp * vary * (0.6 + 0.4 * Math.sin(t * 0.9 + st.ph));
+    const rot = vary * (t - 23) * 0.25 * (st.rot > 0 ? 1 : -1);
+    const out = 1 - endK;
+    const strokeC = mix(mix(PAL.navy, PAL.fog, 0.55), mix(st.col, PAL.ink, L * 0.6), vary * 0.85);
+    const fillOp = bloom * lerp(0.0, 1, L) + bloom * 0.12;
+    g += `<path d="${stampPath(st, r, a, rot)}" fill="${st.col}" fill-opacity="${f2(fillOp * out)}" stroke="${strokeC}" stroke-width="${f2(lerp(1.6, 2.2, vary))}" opacity="${f2(out)}"/>`;
+  });
+
+  // --- ping rings + bearing (Wada 279) ---
+  for (const s of SC.sfx.filter(s => s.kind === 'ping')) {
+    const dt = t - s.t; if (dt < 0 || dt > 2.6) continue;
+    for (let k = 0; k < 3; k++) { const r = dt * 560 - k * 46; if (r <= 0) continue;
+      g += `<circle cx="1900" cy="560" r="${f1(r)}" fill="none" stroke="${k ? PAL.w279[1] : PAL.sienna}" stroke-width="${f2(2.2 - k * 0.5)}" opacity="${f2(s.gain * (1 - dt / 2.6) * (1 - k * 0.25))}"/>`; }
+  }
+  const brg = win(t, 14.8, 21.4, 0.9, 0.9);
+  if (brg > 0) {
+    const R = 215, rot = (t - 14.8) * 0.03; let ticks = '';
+    for (let i = 0; i < 72; i++) { const th = i / 72 * Math.PI * 2 + rot, major = i % 9 === 0, l = major ? 14 : 6;
+      ticks += `M${f1(P.x + Math.cos(th) * R)},${f1(P.y + Math.sin(th) * R)}L${f1(P.x + Math.cos(th) * (R + l))},${f1(P.y + Math.sin(th) * (R + l))}`; }
+    g += `<g opacity="${f2(brg * 0.75)}"><circle cx="${f1(P.x)}" cy="${f1(P.y)}" r="${R}" fill="none" stroke="${PAL.fog}" stroke-width="1" opacity="0.6"/>`
+      + `<path d="${ticks}" stroke="${PAL.fog}" stroke-width="1"/>`;
+    [['000', -Math.PI / 2], ['090', 0], ['180', Math.PI / 2], ['270', Math.PI]].forEach(([lb, th]) => {
+      g += TX(P.x + Math.cos(th + rot) * (R + 34), P.y + Math.sin(th + rot) * (R + 34) + 4, lb, 'mono', 11, PAL.fog, 0.9, 'middle'); });
+    const bl = ramp(t, 15.3, 16.6, EASE.glaser), ex = lerp(P.x + 120, 1880, bl);
+    g += `<line x1="${f1(P.x + 120)}" y1="${f1(P.y - 4)}" x2="${f1(ex)}" y2="${f1(lerp(P.y - 4, 560, bl))}" stroke="${PAL.sienna}" stroke-width="1.4" stroke-dasharray="6 7"/>`;
+    g += TX(lerp(P.x + 140, 1560, 0.5), lerp(P.y - 4, 560, 0.5) - 14, 'BRG 088', 'mono', 12, PAL.w279[1], bl);
+    g += `</g>`;
+  }
+
+  // --- the first line (one wobbly copper line while it tries its first notes) ---
+  if (t > 22 && endK < 1) {
+    const pts = []; const t0 = 22, t1 = Math.min(t, 31);
+    for (let tt = t0; tt <= t1; tt += 1 / 30) { const p = pos(tt), v = vel(tt), m = Math.hypot(v.x, v.y) || 1;
+      const wob = (1 - ramp(tt, 22, 31)) * 16 * Math.sin(tt * 17) * Math.sin(tt * 5.3);
+      pts.push({ x: p.x - v.y / m * wob, y: p.y + v.x / m * wob }); }
+    if (pts.length > 1) g += `<path d="${poly(pts)}" fill="none" stroke="${PAL.copper}" stroke-width="2" stroke-linecap="round" opacity="${f2(0.9 * (1 - 0.75 * ramp(t, 33, 39)) * (1 - endK))}"/>`;
+  }
+
+  // --- streak lines: the voice draws as it rises (CETI streak colours + Raw Sienna) ---
+  if (t > 31) {
+    const cols = [PAL.copper, PAL.sage, PAL.peach, PAL.slate, PAL.sienna];
+    const t0 = 31, t1 = Math.min(t, 52.4);
+    const samples = []; for (let tt = t0; tt <= t1; tt += 1 / 30) samples.push({ p: pos(tt), v: vel(tt), tt });
+    const spread = k => (k - 2) * lerp(4, 12, ramp(t, 31, 36));
+    cols.forEach((c, k) => {
+      const pts = samples.map(s => { const m = Math.hypot(s.v.x, s.v.y) || 1; return { x: s.p.x - s.v.y / m * spread(k), y: s.p.y + s.v.x / m * spread(k) }; });
+      if (pts.length > 1) g += `<path d="${poly(pts)}" fill="none" stroke="${c}" stroke-width="${f2(3.0 - k * 0.3)}" stroke-linecap="round" opacity="${f2(0.9 * (1 - endK))}"/>`;
+    });
+  }
+
+  // --- breach: splash, rings, then a signature in the air ---
+  const tb = 49.55;
+  if (t > tb && t < 53.5) {
+    const R1 = rng(99); const dt = t - tb;
+    for (let i = 0; i < 28; i++) { const vx = (R1() - 0.5) * 460, vy = -(280 + R1() * 330), r = 2.5 + R1() * 3.5, d0 = R1() * 0.15;
+      const tt = dt - d0; if (tt < 0) continue; const x = 1580 + vx * tt, y = SURF + vy * tt + 900 * tt * tt; if (y > SURF + 4) continue;
+      g += `<circle cx="${f1(x)}" cy="${f1(y)}" r="${f2(r)}" fill="${i % 3 ? PAL.glaucous : PAL.ink}" opacity="${f2(clamp(1 - tt / 1.4))}"/>`; }
+    for (const [t0, x0, s0] of [[tb, 1580, 1], [51.05, 1668, 0.7]]) { const d = t - t0; if (d < 0 || d > 2.2) continue;
+      for (let k = 0; k < 3; k++) { const rx = (d * 240 + k * 26) * s0; g += `<ellipse cx="${x0}" cy="${SURF + 2}" rx="${f1(rx)}" ry="${f1(rx * 0.11)}" fill="none" stroke="${PAL.ink}" stroke-width="1.2" opacity="${f2((1 - d / 2.2) * 0.6)}"/>`; } }
+  }
+  // signature arch: five streaks drawn from the spray, held on the end card
+  const sigK = ramp(t, 50.3, 52.8, EASE.glaser);
+  if (sigK > 0) {
+    const cols = [PAL.copper, PAL.sage, PAL.peach, PAL.slate, PAL.sienna];
+    cols.forEach((c, k) => { const o = k * 13;
+      const d = `M${1606 - o * 0.2},${150 + o} C${1430 - o},${10 + o} ${1130 - o},${60 + o} ${880 - o * 1.6},${255 + o * 0.5}`;
+      g += `<path d="${d}" pathLength="1000" stroke-dasharray="1000" stroke-dashoffset="${f1(1000 * (1 - sigK))}" fill="none" stroke="${c}" stroke-width="${f2(3.2 - k * 0.3)}" stroke-linecap="round" opacity="${f2(lerp(0.95, 0.55, ramp(t, 54, 56)))}"/>`; });
+  }
+
+  // --- ghost frames (onion skin) while it plays ---
+  const gh = win(t, 22.4, 32.5, 0.8, 1.2) * (1 - endK);
+  if (gh > 0) for (let k = 5; k >= 1; k--) { const tt = t - k * 0.13, q = pos(tt);
+    g += placeWhale(q.x, q.y, heading(tt), 1, { stroke: PAL.peach, fill: 'none', ink: PAL.peach, sw: 2, tail: Math.sin(dist(tt) / 70 + tt * 3) * 0.28 }, gh * (0.42 - k * 0.07)); }
+
+  // --- the little whale ---
+  const sg = song(t);
+  const v = vel(t), sp = Math.hypot(v.x, v.y);
+  const swim = dist(t) / 70 + t * 2.4;
+  const amp = 0.14 + 0.12 * clamp(sp / 300);
+  let blink = 0; for (const b of [9.5, 14.7, 15.05, 26.2, 41.2, 57.5]) blink = Math.max(blink, 1 - Math.abs(t - b - 0.08) / 0.08);
+  const quiet = 1 - ramp(t, 14.6, 16.0);
+  const eye = lerp(lerp(1, 1.32, win(t, 14.6, 17.4, 0.25, 1.2)), 0.88, quiet * 0.9);
+  const strokeW = mix(mix(mix(PAL.navy, PAL.fog, 0.62), PAL.paper, 1 - quiet), PAL.ink, L);
+  const fillW = mix('#1F2638', PAL.glaucous, L);
+  const squash = -0.07 * win(t, 49.1, 49.9, 0.2, 0.3) + 0.08 * win(t, 50.95, 51.5, 0.12, 0.3);
+  const spray = Math.max(win(t, 49.7, 51.2, 0.15, 0.6), 0.85 * win(t, 56.4, 57.6, 0.15, 0.6));
+  const scl = inB(t) ? lerp(1, 0.66, ramp(t, 53, 55.6)) : 1;
+  g += placeWhale(P.x, P.y, ang, scl, {
+    stroke: strokeW, fill: fillW, ink: strokeW, sw: 3.2, light: L > 0.5,
+    tail: Math.sin(swim) * amp, fin: Math.sin(swim + 1.3) * 0.25, eye, blink: Math.max(blink, quiet * 0.42),
+    mouth: sg.env, spray, sprayColor: L > 0.5 ? PAL.copper : PAL.paper, squash, blush: ramp(t, 36, 44),
+  });
+
+  $('world').innerHTML = g;
+
+  // ---------- chrome: acts, captions, song meter, depth, title + end cards ----------
+  let u = '';
+  const chromeOut = 1 - endK;
+  // act eyebrows
+  const ACTS = [[5.6, 14.2, 'I · THE DEEP'], [14.6, 21.8, 'II · A SOUNDING'], [22.2, 32.8, 'III · FIRST NOTES'], [33.2, 46.0, 'IV · THE VOICE'], [46.4, 53.0, 'V · SURFACING']];
+  for (const [a, b, lb] of ACTS) { const o = win(t, a, b, 0.5, 0.5); if (o > 0) u += TX(160, 150, lb, 'mono', 14, soft, o); }
+  // captions (top-left, Fraunces italic, one emphasised word in Wada colour)
+  for (const c of SC.captions) { const o = win(t, c.t, c.e, 0.55, 0.5); if (o <= 0) continue;
+    const dy = (1 - EASE.defer(clamp((t - c.t) / 0.55))) * 10;
+    const txt = c.text.replace(/<i>(.*?)<\/i>/g, `<tspan fill="${accentCol(t)}">$1</tspan>`);
+    u += TX(160, 214 + dy, txt, 'disp', 54, ink, o); }
+  // song meter
+  const mo = ramp(t, 5.4, 6.4) * chromeOut;
+  if (mo > 0) { const x0 = 160, y0 = 912, w = 360, h = 78;
+    u += `<g opacity="${f2(mo)}"><rect x="${x0}" y="${y0}" width="${w}" height="${h}" fill="none" stroke="${soft}" stroke-opacity="0.45"/>`;
+    u += TX(x0, y0 - 14, 'SONG', 'mono', 12, soft, 1);
+    u += TX(x0 + w, y0 - 14, sg.env > 0.05 ? Math.round(sg.f) + ' HZ' : 'SILENT', 'mono', 12, sg.env > 0.05 ? accentCol(t) : soft, 1, 'end');
+    const harm = ramp(t, 30, 45); const pts = [];
+    for (let i = 0; i <= 160; i++) { const x = i / 160, cyc = (sg.f || 200) / 40, taper = Math.sin(Math.PI * x);
+      const yv = sg.env * taper * (Math.sin(2 * Math.PI * cyc * x - t * 9) + 0.35 * harm * Math.sin(2 * Math.PI * cyc * 2.01 * x - t * 13) + 0.18 * harm * Math.sin(2 * Math.PI * cyc * 3.02 * x + t * 7)) / (1 + 0.53 * harm);
+      pts.push({ x: x0 + 8 + x * (w - 16), y: y0 + h / 2 - yv * (h / 2 - 8) }); }
+    u += `<path d="${poly(pts)}" fill="none" stroke="${sg.env > 0.05 ? accentCol(t) : soft}" stroke-width="2"/></g>`; }
+  // depth gauge
+  const depth = 412 * (1 - EASE.warm(clamp((t - 33) / 16.3)));
+  const go = ramp(t, 1.0, 2.6) * chromeOut;
+  if (go > 0) { const gx = 1812, gy0 = 190, gy1 = 880, ym = d => lerp(gy0, gy1, d / 420);
+    u += `<g opacity="${f2(go)}"><line x1="${gx}" y1="${gy0}" x2="${gx}" y2="${gy1}" stroke="${soft}" stroke-opacity="0.55"/>`;
+    for (let d = 0; d <= 420; d += 20) u += `<line x1="${gx - (d % 100 ? 5 : 11)}" y1="${f1(ym(d))}" x2="${gx}" y2="${f1(ym(d))}" stroke="${soft}" stroke-opacity="0.6"/>`;
+    for (let d = 0; d <= 400; d += 100) u += TX(gx - 18, ym(d) + 4, String(d), 'mono', 11, soft, 0.8, 'end', 'letter-spacing="0.06em"');
+    u += `<path d="M${gx + 3},${f1(ym(depth))} l12,-7 v14 z" fill="${accentCol(t)}"/>`;
+    u += TX(1824, 150, 'DEPTH ' + Math.round(depth) + ' M', 'mono', 14, soft, 1, 'end') + `</g>`; }
+  // title card
+  const tc = win(t, 0.8, 5.2, 0.9, 0.8);
+  if (tc > 0) { const dy = (1 - EASE.glaser(clamp((t - 0.8) / 1.2))) * 16;
+    u += TX(160, 452, 'CETI · A SHORT FILM', 'mono', 16, PAL.fog, tc);
+    u += TX(160, 590 + dy, 'Little whale', 'disp', 156, PAL.paper, tc);
+    u += TX(160, 660, 'WADA · 279 / 296 / 166', 'mono', 13, PAL.w279[1], tc * 0.9); }
+  // end card
+  const ec = ramp(t, 54.4, 55.8, EASE.glaser);
+  if (ec > 0) { const st = k => ramp(t, 54.4 + k * 0.18, 55.6 + k * 0.18, EASE.glaser);
+    u += TX(160, 452, 'CETI · LITTLE WHALE', 'mono', 16, PAL.slate, st(0));
+    u += TX(160, 590 + (1 - st(1)) * 14, `Find your <tspan fill="${PAL.sienna}">song</tspan>.`, 'disp', 132, PAL.ink, st(1));
+    u += `<g transform="translate(160,664) scale(0.6)" color="${PAL.ink}" opacity="${f2(st(2))}">${WHALE_MARK}</g>`;
+    u += TX(240, 692, 'CETIAI.CO', 'mono', 14, PAL.slate, st(2)); }
+  // fade from black
+  const fb = 1 - ramp(t, 0, 0.7, EASE.warm); if (fb > 0) u += `<rect width="1920" height="1080" fill="#0B0E16" opacity="${f2(fb)}"/>`;
+  $('ui2').innerHTML = u;
+}
+const WHALE_MARK = `<svg viewBox="0 0 100 60" width="100" height="60" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 32 C 11 24, 20 20, 32 20 C 50 20, 66 28, 78 34"/><path d="M8 32 C 12 40, 24 44, 42 44 C 60 44, 74 42, 82 38"/><path d="M36 42 C 42 52, 54 56, 64 56 C 58 50, 50 44, 44 38"/><path d="M82 38 C 90 38, 96 32, 96 22 C 90 26, 84 30, 80 34 C 88 30, 94 22, 96 14 C 88 18, 82 24, 78 30"/></svg>`;
+window.seek = seek; window.FILM = { duration: DUR, fps: SC.fps };
+// live preview: ?ui shows a scrubber; ?play plays in real time
+if (location.search.includes('ui')) { document.body.classList.add('ui'); $('scrub').oninput = e => seek(+e.target.value); }
+if (location.search.includes('play')) { const t0 = performance.now(); const tick = () => { const t = (performance.now() - t0) / 1000 % DUR; seek(t); requestAnimationFrame(tick); }; tick(); }
+seek(0);
+</script></body></html>

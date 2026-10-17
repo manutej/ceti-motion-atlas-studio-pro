@@ -1,0 +1,47 @@
+{
+ "properties": {
+  "Name": "Whale Line \u2014 The brief v1",
+  "Kind": "Film",
+  "Version": "1.0",
+  "Status": "shipped",
+  "Style": "Kinetic Hydrography 1.0.0",
+  "Fingerprint": "4b2fe85f8c447560",
+  "Passport hash": "11df6c39a3869737",
+  "Wada": [
+   "279"
+  ],
+  "Engine": [
+   "Canvas (skia)",
+   "ffmpeg",
+   "numpy synth"
+  ],
+  "Gates": "Pass",
+  "Gate detail": "read_time: PASS \u2014 every gloss held 1.75 s (needs \u2264 1.35) \u00b7 frame_jump: PASS \u2014 whale on screen 26.5 px and 0.11 rad per frame at 60 fps \u00b7 flash_safety: PASS \u2014 0 flashes; largest luma step 0.3% \u00b7 loudness: PASS \u2014 -15.9 LUFS, -2.3 dBTP \u00b7 ffprobe: PASS \u2014 1800 frames, 30.0 s, 60 fps \u00b7 contact_sheet: PASS \u2014 reviewed \u00b7 colour_provenance: PASS",
+  "Deviations": "None",
+  "Design ID": "whale-line-brief-v1",
+  "Derived from": [
+   "3fcd50cfaf93812498bbfd2140371042"
+  ],
+  "Atlas lineage": [
+   "3fbd50cfaf9381d88a0af845bedf5df8",
+   "3fbd50cfaf938104bd6dc9ee16ba93f9",
+   "3fbd50cfaf938109b4d8cdcbc2fc8787",
+   "3fbd50cfaf9381fbb243e1afa8e20b3c",
+   "3fbd50cfaf9381d88bcefce332e397ed",
+   "3fbd50cfaf93817a873fefa2714b4f69",
+   "3fbd50cfaf9381159144e6222a7785ef",
+   "3fbd50cfaf9381078d70c4da78795394",
+   "3fbd50cfaf93818c9148cabe066e555a",
+   "3fbd50cfaf93818da268d8e60efb8eb4",
+   "3fbd50cfaf93810bbfc9fe9ad8c1949d",
+   "3fbd50cfaf9381eb9960f6866c267d59",
+   "3fbd50cfaf9381269a41dd50de1c851b",
+   "3fbd50cfaf93813bbd24e9cfe584ebc9"
+  ],
+  "date:Registered:start": "2026-10-17",
+  "date:Registered:is_datetime": 0
+ },
+ "content": "First Whale Line film: how to brief Claude in six words \u2014 Goal, Context, Constraints, Example, Format, Check. 30 s, 120 BPM, Wada 279.\n\n## Provenance\n- **Style:** Kinetic Hydrography 1.0.0 \u00b7 passport `11df6c39a3869737` \u00b7 kit `a19e3d258a95aa78`\n- **Fingerprint:** `4b2fe85f8c44756051521a6b3797515739f9da99cbde05e7e3732dd761ab2387`\n- **Parents:** whale-line-format-v1 (`9d5e7a25aef1`)\n- **Colour provenance:** PASS \u2014 0 literal colours, 0 registered tokens, 0 declared derived\n\n## What changed\nFirst story on the format. Fixes found by the gates before render: whale perched over the letters (moved above), take-off snap (1.26 rad/frame \u2192 0.11), swim too fast (41 \u2192 26.5 px/frame).\n\n## Gates\n- read_time: PASS \u2014 every gloss held 1.75 s (needs \u2264 1.35)\n- frame_jump: PASS \u2014 whale on screen 26.5 px and 0.11 rad per frame at 60 fps\n- flash_safety: PASS \u2014 0 flashes; largest luma step 0.3%\n- loudness: PASS \u2014 -15.9 LUFS, -2.3 dBTP\n- ffprobe: PASS \u2014 1800 frames, 30.0 s, 60 fps\n- contact_sheet: PASS \u2014 reviewed\n- colour_provenance: PASS\n\n## Deviations from the style\n- None\n\n## Files\n- `kh/lines/whale-line-brief.mp4` \u00b7 `8dfc2d65b156` \u00b7 5,667,730 bytes\n- `kh/lines/stories/brief.json` \u00b7 `5df809f5d7b7` \u00b7 611 bytes\n- `kh/lines/cues-brief.json` \u00b7 `d94928cd9224` \u00b7 241 bytes\n\n## Manifest\n```json\n{\n \"id\": \"whale-line-brief-v1\",\n \"fingerprint\": \"4b2fe85f8c44756051521a6b3797515739f9da99cbde05e7e3732dd761ab2387\",\n \"style\": {\n  \"name\": \"Kinetic Hydrography\",\n  \"version\": \"1.0.0\",\n  \"passport_sha256\": \"11df6c39a38697375745f2bdb2040780e72f3657a56ab4306338bbfa64913efe\",\n  \"kit_sha256\": \"a19e3d258a95aa78e3199a8a95645703411e1ff218b262cd087dcf6516312a05\"\n },\n \"parents\": {\n  \"whale-line-format-v1\": \"9d5e7a25aef1e59c09b9c7edb60b4bbca322be6a4c2109798b34c7a8439af68f\"\n },\n \"wada\": [\n  279\n ],\n \"atlas\": [\n  \"sty:kinetic-type-showreel\",\n  \"el:kinetic-type\",\n  \"el:character-rig\",\n  \"el:camera-move\",\n  \"el:end-card\",\n  \"q:beat-locked-changes\",\n  \"q:time-pure-frames\",\n  \"q:motion-blur\",\n  \"q:cue-locked-sound\",\n  \"q:loudness-normalisation\",\n  \"gate:contact-sheet\",\n  \"gate:ffprobe-spec\",\n  \"gate:frame-jump-detector\",\n  \"gate:loudness-waveform\"\n ],\n \"gates\": {\n  \"read_time\": \"PASS \\u2014 every gloss held 1.75 s (needs \\u2264 1.35)\",\n  \"frame_jump\": \"PASS \\u2014 whale on screen 26.5 px and 0.11 rad per frame at 60 fps\",\n  \"flash_safety\": \"PASS \\u2014 0 flashes; largest luma step 0.3%\",\n  \"loudness\": \"PASS \\u2014 -15.9 LUFS, -2.3 dBTP\",\n  \"ffprobe\": \"PASS \\u2014 1800 frames, 30.0 s, 60 fps\",\n  \"contact_sheet\": \"PASS \\u2014 reviewed\",\n  \"colour_provenance\": \"PASS\"\n }\n}\n```",
+ "preview": "kh/registry/previews/whale-line-brief-v1.jpg",
+ "unresolved_parents": []
+}

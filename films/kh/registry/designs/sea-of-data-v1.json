@@ -1,0 +1,60 @@
+{
+ "id": "sea-of-data-v1",
+ "name": "Sea of data \u2014 film v1",
+ "kind": "Film",
+ "version": "1.0",
+ "parents": [
+  "character-sheet-v2",
+  "little-whale-v2"
+ ],
+ "wada": [
+  339
+ ],
+ "engine": [
+  "Canvas (skia)",
+  "ffmpeg",
+  "numpy synth"
+ ],
+ "atlas": [
+  "el:particle-layer",
+  "el:data-diagram",
+  "el:character-rig",
+  "el:camera-move",
+  "q:time-pure-frames",
+  "q:seeded-rng",
+  "q:motion-blur",
+  "q:cue-locked-sound",
+  "q:beat-locked-changes",
+  "q:loudness-normalisation",
+  "gate:contact-sheet",
+  "gate:ffprobe-spec",
+  "gate:frame-jump-detector"
+ ],
+ "sources": [
+  "kh/sea/film.js",
+  "kh/sea/tool.cjs",
+  "kh/sea/score.py",
+  "kh/sea/cues.json",
+  "kh/whale-rig.js",
+  "kh/kh-kit.js"
+ ],
+ "outputs": [
+  "kh/sea/sea-of-data.mp4"
+ ],
+ "preview": "kh/registry/previews/sea-of-data-v1.jpg",
+ "gates": {
+  "read_time": "PASS \u2014 7 captions, tightest 1.25 s vs 0.90 s",
+  "frame_jump": "PASS \u2014 8.8 px, 0.029 rad per frame",
+  "contrast": "PASS \u2014 every text/ground pair \u2265 8.7:1 (result labels moved to navy after the gate failed at 2.1:1)",
+  "flash_safety": "PASS \u2014 max luma step 0.15%",
+  "loudness": "PASS \u2014 -15.8 LUFS, -2.1 dBTP",
+  "ffprobe": "PASS \u2014 1800 frames, 30.0 s"
+ },
+ "summary": "CETI makes sense of a sea of data: the whale senses 880 points, one sounding sorts the rest into four clusters, an idea, the clusters become a network, and AI pods go to work and bring back answers.",
+ "changes": "First cut. The sounding ring descends from Little whale; pods from character sheet v2.",
+ "style": "1.0.0",
+ "status": "shipped",
+ "uses_kit": true,
+ "derived_colours": {},
+ "deviations": []
+}

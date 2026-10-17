@@ -1,0 +1,76 @@
+{
+ "id": "little-whale-v2",
+ "name": "Little whale \u2014 film v2",
+ "kind": "Film",
+ "version": "2.0",
+ "parents": [
+  "little-whale-v1"
+ ],
+ "wada": [
+  279,
+  296,
+  166,
+  339
+ ],
+ "engine": [
+  "Canvas (skia)",
+  "ffmpeg",
+  "numpy synth"
+ ],
+ "atlas": [
+  "q:time-pure-frames",
+  "q:seeded-rng",
+  "q:motion-blur",
+  "q:paint-once-cache",
+  "q:cue-locked-sound",
+  "q:loudness-normalisation",
+  "el:camera-move",
+  "el:particle-layer",
+  "el:3d-layer",
+  "el:paper-finish",
+  "el:character-rig",
+  "gate:frame-jump-detector",
+  "gate:contact-sheet",
+  "gate:ffprobe-spec"
+ ],
+ "sources": [
+  "whale/film2.js",
+  "whale/engine2.cjs",
+  "whale/render2.cjs",
+  "whale/score.json",
+  "whale/synth.py",
+  "whale/bubbles.json"
+ ],
+ "outputs": [
+  "whale/little-whale-v2.mp4"
+ ],
+ "preview": "kh/registry/previews/little-whale-v2.jpg",
+ "gates": {
+  "frame_jump": "PASS \u2014 12.8 px and 0.12 rad per frame at 60 fps",
+  "ffprobe": "PASS \u2014 3600 frames, 60.0 s",
+  "loudness": "PASS \u2014 -15.8 LUFS",
+  "contact_sheet": "PASS \u2014 reviewed"
+ },
+ "deviations": [
+  "Volume gradients on the character and light shafts go beyond the brand rule of near-flat fills \u2014 needed for gentle 2.5D",
+  "Hand-picked shades predate the style kit; each is declared with its parent token"
+ ],
+ "summary": "Second cut at 60 fps with motion blur, layered water depth (seabed, distant whales, light shafts, three particle planes, caustics) and a character with volume.",
+ "changes": "60 fps + 2-sub-frame motion blur; bolder swim, flinch and singing poses; bubbles per note; parallax camera; canvas engine (10\u00d7 faster render).",
+ "style": "1.0.0",
+ "status": "shipped",
+ "derived_colours": {
+  "#1E2536": "navy, deep body fill (moodboard)",
+  "#0B0E16": "below bathy \u2014 fade-from-black",
+  "#1F2638": "navy, deep body fill",
+  "#5A5566": "dawn mid-tone between navy and Ochraceous Salmon (296)",
+  "#222A3D": "navy shade \u2014 back of the whale",
+  "#2A3349": "navy shade \u2014 flank",
+  "#38435C": "navy shade \u2014 belly in the deep",
+  "#6F9BA8": "Light Glaucous Blue (339), shaded \u2014 back",
+  "#9FB9CC": "Light Glaucous Blue (339), tint \u2014 light shafts in the deep",
+  "#C9DDE6": "Light Glaucous Blue (339), tint \u2014 caustics",
+  "#E6F0F1": "Light Glaucous Blue (339), tint \u2014 belly",
+  "#FBF7F0": "paper, tint \u2014 air above the surface"
+ }
+}

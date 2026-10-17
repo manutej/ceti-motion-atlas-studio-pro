@@ -1,0 +1,24 @@
+{
+  "name": "ceti-motion-films",
+  "version": "1.0.0",
+  "private": true,
+  "description": "CETI motion films: Kinetic Hydrography style kit, whale rig, deterministic canvas engines, gates, cue-locked scores, provenance registry.",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "gate:line": "node kh/lines/tool.cjs kh/lines/stories/brief-v2.json gate",
+    "gate:sea": "node kh/sea/tool.cjs gate",
+    "gate:composition": "FILM=film2.js node kh/composition/tool.cjs gate",
+    "gate:signal": "node kh/signal/gate.cjs",
+    "gate:all": "npm run gate:line && npm run gate:sea && npm run gate:composition && npm run gate:signal",
+    "registry:ledger": "python3 kh/registry/register.py --ledger",
+    "build": "bash scripts/build.sh"
+  },
+  "dependencies": {
+    "@napi-rs/canvas": "1.0.11",
+    "@resvg/resvg-js": "2.6.2"
+  },
+  "optionalDependencies": {
+    "@sparticuz/chromium": "153.0.0",
+    "playwright-core": "1.64.1"
+  }
+}

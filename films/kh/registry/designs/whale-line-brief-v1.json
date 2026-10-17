@@ -1,0 +1,55 @@
+{
+ "style": "1.0.0",
+ "status": "shipped",
+ "uses_kit": true,
+ "derived_colours": {},
+ "id": "whale-line-brief-v1",
+ "name": "Whale Line \u2014 The brief v1",
+ "kind": "Film",
+ "version": "1.0",
+ "parents": [
+  "whale-line-format-v1"
+ ],
+ "wada": [
+  279
+ ],
+ "engine": [
+  "Canvas (skia)",
+  "ffmpeg",
+  "numpy synth"
+ ],
+ "atlas": [
+  "sty:kinetic-type-showreel",
+  "el:kinetic-type",
+  "el:character-rig",
+  "el:camera-move",
+  "el:end-card",
+  "q:beat-locked-changes",
+  "q:time-pure-frames",
+  "q:motion-blur",
+  "q:cue-locked-sound",
+  "q:loudness-normalisation",
+  "gate:contact-sheet",
+  "gate:ffprobe-spec",
+  "gate:frame-jump-detector",
+  "gate:loudness-waveform"
+ ],
+ "sources": [
+  "kh/lines/stories/brief.json",
+  "kh/lines/cues-brief.json"
+ ],
+ "outputs": [
+  "kh/lines/whale-line-brief.mp4"
+ ],
+ "preview": "kh/registry/previews/whale-line-brief-v1.jpg",
+ "gates": {
+  "read_time": "PASS \u2014 every gloss held 1.75 s (needs \u2264 1.35)",
+  "frame_jump": "PASS \u2014 whale on screen 26.5 px and 0.11 rad per frame at 60 fps",
+  "flash_safety": "PASS \u2014 0 flashes; largest luma step 0.3%",
+  "loudness": "PASS \u2014 -15.9 LUFS, -2.3 dBTP",
+  "ffprobe": "PASS \u2014 1800 frames, 30.0 s, 60 fps",
+  "contact_sheet": "PASS \u2014 reviewed"
+ },
+ "summary": "First Whale Line film: how to brief Claude in six words \u2014 Goal, Context, Constraints, Example, Format, Check. 30 s, 120 BPM, Wada 279.",
+ "changes": "First story on the format. Fixes found by the gates before render: whale perched over the letters (moved above), take-off snap (1.26 rad/frame \u2192 0.11), swim too fast (41 \u2192 26.5 px/frame)."
+}

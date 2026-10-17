@@ -1,0 +1,48 @@
+{
+ "id": "motion-atlas-plates-light",
+ "name": "Motion Atlas plates \u2014 light (video)",
+ "kind": "Plate set",
+ "version": "1.0",
+ "parents": [
+  "motion-atlas-plates-dark"
+ ],
+ "wada": [
+  296,
+  279,
+  166,
+  243,
+  339,
+  84,
+  207
+ ],
+ "engine": [
+  "Python (Pillow)"
+ ],
+ "atlas": [
+  "q:typographic-restraint",
+  "q:brand-grounding"
+ ],
+ "sources": [
+  "atlas/design/src/light.py",
+  "atlas/design/src/kit.py"
+ ],
+ "outputs": [
+  "atlas/design/light/hero-1920x1080.png",
+  "atlas/design/light/title-1920x1080.png",
+  "atlas/design/light/plate-hero.png",
+  "atlas/design/light/plate-palette.png",
+  "atlas/design/light/cover-notion.png",
+  "atlas/design/light/motion-atlas-plates-light.pdf"
+ ],
+ "preview": "kh/registry/previews/motion-atlas-plates-light.jpg",
+ "gates": {
+  "contrast": "PASS \u2014 min 6.34:1",
+  "title_safe": "PASS \u2014 5% title-safe on 1080p frames"
+ },
+ "summary": "Light twin of the plates for video use: CETI paper ground (not white), Wada accents as fills, plus two 1080p title frames.",
+ "changes": "Re-keyed every plate for light mode (\"the colour is the fill\"); added 1920\u00d71080 hero and title frames.",
+ "style": "1.0.0",
+ "status": "shipped",
+ "deviations": [],
+ "derived_colours": {}
+}

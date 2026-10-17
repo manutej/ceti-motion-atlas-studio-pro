@@ -1,0 +1,68 @@
+{
+ "id": "motion-moodboard-v1",
+ "name": "Motion moodboard \u2014 Sea of data + Composition",
+ "kind": "Moodboard",
+ "version": "1.0",
+ "status": "shipped",
+ "style": {
+  "name": "Kinetic Hydrography",
+  "version": "1.0.0",
+  "passport_sha256": "11df6c39a38697375745f2bdb2040780e72f3657a56ab4306338bbfa64913efe",
+  "kit_sha256": "a19e3d258a95aa78e3199a8a95645703411e1ff218b262cd087dcf6516312a05"
+ },
+ "parents": {
+  "sea-of-data-v1": "55790cb02b5c52c6893f971a378c7820db845e310d8533c58820ea3d263dfd66",
+  "composition-v2": "1a97c5be2b80b382306dc6fea4cd8b37afa93ec46a0b9392db67f9b4dc2f1247",
+  "whale-line-brief-v2": "6b3385aa768e67a9aeca49b13e3a86e956e5d9dab22b32147ad7c9e8220e8a68"
+ },
+ "wada": [
+  339,
+  296,
+  279
+ ],
+ "engine": [
+  "Canvas (skia)",
+  "ffmpeg"
+ ],
+ "atlas": [
+  "stg:style-system",
+  "stg:key-stills",
+  "gate:contact-sheet"
+ ],
+ "sources": [
+  {
+   "path": "kh/board/board.cjs",
+   "sha256": "093789df4470a12a8d0fc67b8b9beef90feefb3151d080afd39309a45026ce02",
+   "bytes": 4199
+  }
+ ],
+ "outputs": [
+  {
+   "path": "kh/board/motion-moodboard.png",
+   "sha256": "e1f0e3bc15db1b2788d897d23112bae5ef24d8c497a15cec72bdc040484a7682",
+   "bytes": 208747
+  },
+  {
+   "path": "kh/board/motion-moodboard.mp4",
+   "sha256": "9423c61edf69068692d149a48fec4660c26b06a1253966cf13259102f58e6e70",
+   "bytes": 5943533
+  }
+ ],
+ "gates": {
+  "contact_sheet": "PASS \u2014 reviewed",
+  "ffprobe": "PASS \u2014 480 frames, 8.0 s",
+  "colour_provenance": "PASS"
+ },
+ "colour_provenance": {
+  "literal_colours": 0,
+  "registered": 0,
+  "declared_derived": [],
+  "unregistered": [],
+  "status": "PASS"
+ },
+ "deviations": [],
+ "summary": "A moodboard built from the live engines: six motion moments (sense, sounding, idea, dispatch, typed joints, show its work) as stills and as an 8-second looping board.",
+ "changes": "First motion moodboard \u2014 cells are true frames, not mock-ups.",
+ "registered_at": "2026-10-17T01:57:03+00:00",
+ "fingerprint": "6214c7371954415792212b1a34c536bd656b34ed5e00603acf46ee36c336bd52"
+}

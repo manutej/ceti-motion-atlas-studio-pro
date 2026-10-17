@@ -1,0 +1,84 @@
+{
+ "id": "composition-v2",
+ "name": "Composition \u2014 film v2",
+ "kind": "Film",
+ "version": "2.0",
+ "status": "shipped",
+ "style": {
+  "name": "Kinetic Hydrography",
+  "version": "1.0.0",
+  "passport_sha256": "11df6c39a38697375745f2bdb2040780e72f3657a56ab4306338bbfa64913efe",
+  "kit_sha256": "a19e3d258a95aa78e3199a8a95645703411e1ff218b262cd087dcf6516312a05"
+ },
+ "parents": {
+  "composition-v1": "f7c3dd21d88add7ae0edc8c7fd9d715afb5078c5e16bd493159572858f9308a0"
+ },
+ "wada": [
+  296
+ ],
+ "engine": [
+  "Canvas (skia)",
+  "ffmpeg",
+  "numpy synth"
+ ],
+ "atlas": [
+  "el:data-diagram",
+  "el:character-rig",
+  "q:one-object-continuity",
+  "q:beat-locked-changes",
+  "q:data-honesty",
+  "q:time-pure-frames",
+  "gate:contact-sheet",
+  "gate:ffprobe-spec",
+  "gate:loudness-waveform"
+ ],
+ "sources": [
+  {
+   "path": "kh/composition/film2.js",
+   "sha256": "ec2e0264832a13bca433cce00185bafee1206670faf3cbfc913310bea4b4e06c",
+   "bytes": 26353
+  },
+  {
+   "path": "kh/composition/engine.cjs",
+   "sha256": "3819b59e0a639cf635a941124232f31b5ae6b244748023c9f906875efd931497",
+   "bytes": 943
+  },
+  {
+   "path": "kh/composition/tool.cjs",
+   "sha256": "3e87589998540ff6ae8350cf5d810273d8a8e65b358925649a9c360f85caa049",
+   "bytes": 3475
+  },
+  {
+   "path": "kh/composition/score2.py",
+   "sha256": "661b94b3b492310c8214e2572fd2ea88044251b8b6c6b44777aca8deb1909012",
+   "bytes": 6194
+  }
+ ],
+ "outputs": [
+  {
+   "path": "kh/composition/composition-v2.mp4",
+   "sha256": "2e03ae8f747c0a711fee9b18ca2db124e786bbc160f4a28735311e628037ecb2",
+   "bytes": 3419659
+  }
+ ],
+ "gates": {
+  "read_time": "PASS \u2014 14 entries; \"Every part checked.\" 1.38 s vs 1.05 s",
+  "frame_jump": "PASS \u2014 28.6 px, 0.047 rad per frame",
+  "flash_safety": "PASS \u2014 0 flashes",
+  "loudness": "PASS \u2014 -16.1 LUFS, -1.7 dBTP",
+  "ffprobe": "PASS \u2014 1680 frames, 28.0 s",
+  "colour_provenance": "PASS"
+ },
+ "colour_provenance": {
+  "literal_colours": 0,
+  "registered": 0,
+  "declared_derived": [],
+  "unregistered": [],
+  "status": "PASS"
+ },
+ "deviations": [],
+ "summary": "Composition, scaled up and tightened: parts own the middle third, the rejection happens at the centre joint, every step gets a full beat, checks land on beats.",
+ "changes": "1.6\u00d7 scale; centre rejection; full-beat second run with the effect underlined; push-in ending with \"Every part checked.\"",
+ "registered_at": "2026-10-17T01:57:03+00:00",
+ "fingerprint": "1a97c5be2b80b382306dc6fea4cd8b37afa93ec46a0b9392db67f9b4dc2f1247"
+}

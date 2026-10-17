@@ -1,0 +1,80 @@
+{
+ "id": "whale-line-brief-v1",
+ "name": "Whale Line \u2014 The brief v1",
+ "kind": "Film",
+ "version": "1.0",
+ "status": "shipped",
+ "style": {
+  "name": "Kinetic Hydrography",
+  "version": "1.0.0",
+  "passport_sha256": "11df6c39a38697375745f2bdb2040780e72f3657a56ab4306338bbfa64913efe",
+  "kit_sha256": "a19e3d258a95aa78e3199a8a95645703411e1ff218b262cd087dcf6516312a05"
+ },
+ "parents": {
+  "whale-line-format-v1": "9d5e7a25aef1e59c09b9c7edb60b4bbca322be6a4c2109798b34c7a8439af68f"
+ },
+ "wada": [
+  279
+ ],
+ "engine": [
+  "Canvas (skia)",
+  "ffmpeg",
+  "numpy synth"
+ ],
+ "atlas": [
+  "sty:kinetic-type-showreel",
+  "el:kinetic-type",
+  "el:character-rig",
+  "el:camera-move",
+  "el:end-card",
+  "q:beat-locked-changes",
+  "q:time-pure-frames",
+  "q:motion-blur",
+  "q:cue-locked-sound",
+  "q:loudness-normalisation",
+  "gate:contact-sheet",
+  "gate:ffprobe-spec",
+  "gate:frame-jump-detector",
+  "gate:loudness-waveform"
+ ],
+ "sources": [
+  {
+   "path": "kh/lines/stories/brief.json",
+   "sha256": "5df809f5d7b79db71e0cfec3d19821bfdbf7e2616b3cc74f4356ba45fb7d854b",
+   "bytes": 611
+  },
+  {
+   "path": "kh/lines/cues-brief.json",
+   "sha256": "d94928cd9224dd81e4304a0b245dee4b8ae2b13237890e091ff79566812addcd",
+   "bytes": 241
+  }
+ ],
+ "outputs": [
+  {
+   "path": "kh/lines/whale-line-brief.mp4",
+   "sha256": "8dfc2d65b156c81c27b078e8942169ba935f9ef14c3ac7ef20e1763e31edd158",
+   "bytes": 5667730
+  }
+ ],
+ "gates": {
+  "read_time": "PASS \u2014 every gloss held 1.75 s (needs \u2264 1.35)",
+  "frame_jump": "PASS \u2014 whale on screen 26.5 px and 0.11 rad per frame at 60 fps",
+  "flash_safety": "PASS \u2014 0 flashes; largest luma step 0.3%",
+  "loudness": "PASS \u2014 -15.9 LUFS, -2.3 dBTP",
+  "ffprobe": "PASS \u2014 1800 frames, 30.0 s, 60 fps",
+  "contact_sheet": "PASS \u2014 reviewed",
+  "colour_provenance": "PASS"
+ },
+ "colour_provenance": {
+  "literal_colours": 0,
+  "registered": 0,
+  "declared_derived": [],
+  "unregistered": [],
+  "status": "PASS"
+ },
+ "deviations": [],
+ "summary": "First Whale Line film: how to brief Claude in six words \u2014 Goal, Context, Constraints, Example, Format, Check. 30 s, 120 BPM, Wada 279.",
+ "changes": "First story on the format. Fixes found by the gates before render: whale perched over the letters (moved above), take-off snap (1.26 rad/frame \u2192 0.11), swim too fast (41 \u2192 26.5 px/frame).",
+ "registered_at": "2026-10-17T00:58:24+00:00",
+ "fingerprint": "4b2fe85f8c44756051521a6b3797515739f9da99cbde05e7e3732dd761ab2387"
+}

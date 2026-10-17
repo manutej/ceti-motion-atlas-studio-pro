@@ -1,0 +1,47 @@
+{
+ "properties": {
+  "Name": "Sea of data \u2014 film v1",
+  "Kind": "Film",
+  "Version": "1.0",
+  "Status": "shipped",
+  "Style": "Kinetic Hydrography 1.0.0",
+  "Fingerprint": "55790cb02b5c52c6",
+  "Passport hash": "11df6c39a3869737",
+  "Wada": [
+   "339"
+  ],
+  "Engine": [
+   "Canvas (skia)",
+   "ffmpeg",
+   "numpy synth"
+  ],
+  "Gates": "Pass",
+  "Gate detail": "read_time: PASS \u2014 7 captions, tightest 1.25 s vs 0.90 s \u00b7 frame_jump: PASS \u2014 8.8 px, 0.029 rad per frame \u00b7 contrast: PASS \u2014 every text/ground pair \u2265 8.7:1 (result labels moved to navy after the gate failed at 2.1:1) \u00b7 flash_safety: PASS \u2014 max luma step 0.15% \u00b7 loudness: PASS \u2014 -15.8 LUFS, -2.1 dBTP \u00b7 ffprobe: PASS \u2014 1800 frames, 30.0 s \u00b7 colour_provenance: PASS",
+  "Deviations": "None",
+  "Design ID": "sea-of-data-v1",
+  "Derived from": [
+   "3fcd50cfaf93816bb451d1dfcc721076",
+   "3fbd50cfaf9381418697e4d66db9435c"
+  ],
+  "Atlas lineage": [
+   "3fbd50cfaf938164b072d3dbdeed91f5",
+   "3fbd50cfaf938116a1ccdcd9d2a33753",
+   "3fbd50cfaf938109b4d8cdcbc2fc8787",
+   "3fbd50cfaf9381fbb243e1afa8e20b3c",
+   "3fbd50cfaf9381159144e6222a7785ef",
+   "3fbd50cfaf93818c8ecfe20f001c91ca",
+   "3fbd50cfaf9381078d70c4da78795394",
+   "3fbd50cfaf93818c9148cabe066e555a",
+   "3fbd50cfaf93817a873fefa2714b4f69",
+   "3fbd50cfaf93818da268d8e60efb8eb4",
+   "3fbd50cfaf93810bbfc9fe9ad8c1949d",
+   "3fbd50cfaf9381eb9960f6866c267d59",
+   "3fbd50cfaf9381269a41dd50de1c851b"
+  ],
+  "date:Registered:start": "2026-10-17",
+  "date:Registered:is_datetime": 0
+ },
+ "content": "CETI makes sense of a sea of data: the whale senses 880 points, one sounding sorts the rest into four clusters, an idea, the clusters become a network, and AI pods go to work and bring back answers.\n\n## Provenance\n- **Style:** Kinetic Hydrography 1.0.0 \u00b7 passport `11df6c39a3869737` \u00b7 kit `a19e3d258a95aa78`\n- **Fingerprint:** `55790cb02b5c52c6893f971a378c7820db845e310d8533c58820ea3d263dfd66`\n- **Parents:** character-sheet-v2 (`a5642288092c`), little-whale-v2 (`c39c34cfd532`)\n- **Colour provenance:** PASS \u2014 36 literal colours, 36 registered tokens, 0 declared derived\n\n## What changed\nFirst cut. The sounding ring descends from Little whale; pods from character sheet v2.\n\n## Gates\n- read_time: PASS \u2014 7 captions, tightest 1.25 s vs 0.90 s\n- frame_jump: PASS \u2014 8.8 px, 0.029 rad per frame\n- contrast: PASS \u2014 every text/ground pair \u2265 8.7:1 (result labels moved to navy after the gate failed at 2.1:1)\n- flash_safety: PASS \u2014 max luma step 0.15%\n- loudness: PASS \u2014 -15.8 LUFS, -2.1 dBTP\n- ffprobe: PASS \u2014 1800 frames, 30.0 s\n- colour_provenance: PASS\n\n## Deviations from the style\n- None\n\n## Files\n- `kh/sea/sea-of-data.mp4` \u00b7 `da00c55a6245` \u00b7 11,282,210 bytes\n- `kh/sea/film.js` \u00b7 `eef62ea6c951` \u00b7 17,116 bytes\n- `kh/sea/tool.cjs` \u00b7 `e8af93f9739f` \u00b7 3,711 bytes\n- `kh/sea/score.py` \u00b7 `1a771e23ab92` \u00b7 5,019 bytes\n- `kh/sea/cues.json` \u00b7 `38fdad6d2e45` \u00b7 16,077 bytes\n- `kh/whale-rig.js` \u00b7 `5a15b4982f5b` \u00b7 6,438 bytes\n- `kh/kh-kit.js` \u00b7 `a19e3d258a95` \u00b7 7,272 bytes\n\n## Manifest\n```json\n{\n \"id\": \"sea-of-data-v1\",\n \"fingerprint\": \"55790cb02b5c52c6893f971a378c7820db845e310d8533c58820ea3d263dfd66\",\n \"style\": {\n  \"name\": \"Kinetic Hydrography\",\n  \"version\": \"1.0.0\",\n  \"passport_sha256\": \"11df6c39a38697375745f2bdb2040780e72f3657a56ab4306338bbfa64913efe\",\n  \"kit_sha256\": \"a19e3d258a95aa78e3199a8a95645703411e1ff218b262cd087dcf6516312a05\"\n },\n \"parents\": {\n  \"character-sheet-v2\": \"a5642288092cd8896b6dd1efc15fc38dcdb3582115686b78405dae9e0c195247\",\n  \"little-whale-v2\": \"c39c34cfd5321d9c4ee069192483251cab27b5999ef10f751c536e0e67a4c5e6\"\n },\n \"wada\": [\n  339\n ],\n \"atlas\": [\n  \"el:particle-layer\",\n  \"el:data-diagram\",\n  \"el:character-rig\",\n  \"el:camera-move\",\n  \"q:time-pure-frames\",\n  \"q:seeded-rng\",\n  \"q:motion-blur\",\n  \"q:cue-locked-sound\",\n  \"q:beat-locked-changes\",\n  \"q:loudness-normalisation\",\n  \"gate:contact-sheet\",\n  \"gate:ffprobe-spec\",\n  \"gate:frame-jump-detector\"\n ],\n \"gates\": {\n  \"read_time\": \"PASS \\u2014 7 captions, tightest 1.25 s vs 0.90 s\",\n  \"frame_jump\": \"PASS \\u2014 8.8 px, 0.029 rad per frame\",\n  \"contrast\": \"PASS \\u2014 every text/ground pair \\u2265 8.7:1 (result labels moved to navy after the gate failed at 2.1:1)\",\n  \"flash_safety\": \"PASS \\u2014 max luma step 0.15%\",\n  \"loudness\": \"PASS \\u2014 -15.8 LUFS, -2.1 dBTP\",\n  \"ffprobe\": \"PASS \\u2014 1800 frames, 30.0 s\",\n  \"colour_provenance\": \"PASS\"\n }\n}\n```",
+ "preview": "kh/registry/previews/sea-of-data-v1.jpg",
+ "unresolved_parents": []
+}

@@ -1,0 +1,44 @@
+{
+ "id": "motion-moodboard-v1",
+ "name": "Motion moodboard \u2014 Sea of data + Composition",
+ "kind": "Moodboard",
+ "version": "1.0",
+ "parents": [
+  "sea-of-data-v1",
+  "composition-v2",
+  "whale-line-brief-v2"
+ ],
+ "wada": [
+  339,
+  296,
+  279
+ ],
+ "engine": [
+  "Canvas (skia)",
+  "ffmpeg"
+ ],
+ "atlas": [
+  "stg:style-system",
+  "stg:key-stills",
+  "gate:contact-sheet"
+ ],
+ "sources": [
+  "kh/board/board.cjs"
+ ],
+ "outputs": [
+  "kh/board/motion-moodboard.png",
+  "kh/board/motion-moodboard.mp4"
+ ],
+ "preview": "kh/registry/previews/motion-moodboard-v1.jpg",
+ "gates": {
+  "contact_sheet": "PASS \u2014 reviewed",
+  "ffprobe": "PASS \u2014 480 frames, 8.0 s"
+ },
+ "summary": "A moodboard built from the live engines: six motion moments (sense, sounding, idea, dispatch, typed joints, show its work) as stills and as an 8-second looping board.",
+ "changes": "First motion moodboard \u2014 cells are true frames, not mock-ups.",
+ "style": "1.0.0",
+ "status": "shipped",
+ "uses_kit": true,
+ "derived_colours": {},
+ "deviations": []
+}

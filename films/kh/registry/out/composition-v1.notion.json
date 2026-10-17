@@ -1,0 +1,42 @@
+{
+ "properties": {
+  "Name": "Composition \u2014 film v1",
+  "Kind": "Film",
+  "Version": "1.0",
+  "Status": "shipped",
+  "Style": "Kinetic Hydrography 1.0.0",
+  "Fingerprint": "f7c3dd21d88add7a",
+  "Passport hash": "11df6c39a3869737",
+  "Wada": [
+   "296"
+  ],
+  "Engine": [
+   "Canvas (skia)",
+   "ffmpeg",
+   "numpy synth"
+  ],
+  "Gates": "Pass",
+  "Gate detail": "read_time: PASS \u2014 tightest 1.10 s vs 1.05 s \u00b7 frame_jump: PASS \u2014 26.1 px, 0.055 rad per frame \u00b7 flash_safety: PASS \u2014 0 flashes \u00b7 loudness: PASS \u2014 -16.1 LUFS, -2.3 dBTP \u00b7 ffprobe: PASS \u2014 1680 frames, 28.0 s \u00b7 colour_provenance: PASS",
+  "Deviations": "None",
+  "Design ID": "composition-v1",
+  "Derived from": [
+   "3fbd50cfaf93811e86ebfd0565a7a2f7",
+   "3fcd50cfaf93816bb451d1dfcc721076"
+  ],
+  "Atlas lineage": [
+   "3fbd50cfaf938116a1ccdcd9d2a33753",
+   "3fbd50cfaf938109b4d8cdcbc2fc8787",
+   "3fbd50cfaf9381b583d4fee1073b83e3",
+   "3fbd50cfaf93817a873fefa2714b4f69",
+   "3fbd50cfaf938189b745f428d43ac25f",
+   "3fbd50cfaf9381159144e6222a7785ef",
+   "3fbd50cfaf93810bbfc9fe9ad8c1949d",
+   "3fbd50cfaf9381eb9960f6866c267d59"
+  ],
+  "date:Registered:start": "2026-10-17",
+  "date:Registered:is_datetime": 0
+ },
+ "content": "Trustworthy AI by composition, really simple: one big box becomes small checkable parts that only snap if their types fit; a value flows through and every step shows its work.\n\n## Provenance\n- **Style:** Kinetic Hydrography 1.0.0 \u00b7 passport `11df6c39a3869737` \u00b7 kit `a19e3d258a95aa78`\n- **Fingerprint:** `f7c3dd21d88add7ae0edc8c7fd9d715afb5078c5e16bd493159572858f9308a0`\n- **Parents:** kh-style-1.0.0 (`31bf64a419e0`), character-sheet-v2 (`a5642288092c`)\n- **Colour provenance:** PASS \u2014 0 literal colours, 0 registered tokens, 0 declared derived\n\n## What changed\nFirst cut (built by a delegated agent to the same spec and gates).\n\n## Gates\n- read_time: PASS \u2014 tightest 1.10 s vs 1.05 s\n- frame_jump: PASS \u2014 26.1 px, 0.055 rad per frame\n- flash_safety: PASS \u2014 0 flashes\n- loudness: PASS \u2014 -16.1 LUFS, -2.3 dBTP\n- ffprobe: PASS \u2014 1680 frames, 28.0 s\n- colour_provenance: PASS\n\n## Deviations from the style\n- None\n\n## Files\n- `kh/composition/composition.mp4` \u00b7 `f0963b65110f` \u00b7 2,760,480 bytes\n- `kh/composition/film.js` \u00b7 `a37cb0bcabe2` \u00b7 25,337 bytes\n- `kh/composition/engine.cjs` \u00b7 `3819b59e0a63` \u00b7 943 bytes\n- `kh/composition/tool.cjs` \u00b7 `3e8758999854` \u00b7 3,475 bytes\n- `kh/composition/score.py` \u00b7 `5bd8826e0f8c` \u00b7 6,034 bytes\n\n## Manifest\n```json\n{\n \"id\": \"composition-v1\",\n \"fingerprint\": \"f7c3dd21d88add7ae0edc8c7fd9d715afb5078c5e16bd493159572858f9308a0\",\n \"style\": {\n  \"name\": \"Kinetic Hydrography\",\n  \"version\": \"1.0.0\",\n  \"passport_sha256\": \"11df6c39a38697375745f2bdb2040780e72f3657a56ab4306338bbfa64913efe\",\n  \"kit_sha256\": \"a19e3d258a95aa78e3199a8a95645703411e1ff218b262cd087dcf6516312a05\"\n },\n \"parents\": {\n  \"kh-style-1.0.0\": \"31bf64a419e000b4af1a66d61efd00b6969f293576a98b964a3680cb02a6aa20\",\n  \"character-sheet-v2\": \"a5642288092cd8896b6dd1efc15fc38dcdb3582115686b78405dae9e0c195247\"\n },\n \"wada\": [\n  296\n ],\n \"atlas\": [\n  \"el:data-diagram\",\n  \"el:character-rig\",\n  \"q:one-object-continuity\",\n  \"q:beat-locked-changes\",\n  \"q:data-honesty\",\n  \"q:time-pure-frames\",\n  \"gate:contact-sheet\",\n  \"gate:ffprobe-spec\"\n ],\n \"gates\": {\n  \"read_time\": \"PASS \\u2014 tightest 1.10 s vs 1.05 s\",\n  \"frame_jump\": \"PASS \\u2014 26.1 px, 0.055 rad per frame\",\n  \"flash_safety\": \"PASS \\u2014 0 flashes\",\n  \"loudness\": \"PASS \\u2014 -16.1 LUFS, -2.3 dBTP\",\n  \"ffprobe\": \"PASS \\u2014 1680 frames, 28.0 s\",\n  \"colour_provenance\": \"PASS\"\n }\n}\n```",
+ "preview": "kh/registry/previews/composition-v1.jpg",
+ "unresolved_parents": []
+}

@@ -1,0 +1,84 @@
+{
+ "id": "composition-v1",
+ "name": "Composition \u2014 film v1",
+ "kind": "Film",
+ "version": "1.0",
+ "status": "shipped",
+ "style": {
+  "name": "Kinetic Hydrography",
+  "version": "1.0.0",
+  "passport_sha256": "11df6c39a38697375745f2bdb2040780e72f3657a56ab4306338bbfa64913efe",
+  "kit_sha256": "a19e3d258a95aa78e3199a8a95645703411e1ff218b262cd087dcf6516312a05"
+ },
+ "parents": {
+  "kh-style-1.0.0": "31bf64a419e000b4af1a66d61efd00b6969f293576a98b964a3680cb02a6aa20",
+  "character-sheet-v2": "a5642288092cd8896b6dd1efc15fc38dcdb3582115686b78405dae9e0c195247"
+ },
+ "wada": [
+  296
+ ],
+ "engine": [
+  "Canvas (skia)",
+  "ffmpeg",
+  "numpy synth"
+ ],
+ "atlas": [
+  "el:data-diagram",
+  "el:character-rig",
+  "q:one-object-continuity",
+  "q:beat-locked-changes",
+  "q:data-honesty",
+  "q:time-pure-frames",
+  "gate:contact-sheet",
+  "gate:ffprobe-spec"
+ ],
+ "sources": [
+  {
+   "path": "kh/composition/film.js",
+   "sha256": "a37cb0bcabe2b444f2e043c1021b00f68398723c9769863e15221f43bf3ad044",
+   "bytes": 25337
+  },
+  {
+   "path": "kh/composition/engine.cjs",
+   "sha256": "3819b59e0a639cf635a941124232f31b5ae6b244748023c9f906875efd931497",
+   "bytes": 943
+  },
+  {
+   "path": "kh/composition/tool.cjs",
+   "sha256": "3e87589998540ff6ae8350cf5d810273d8a8e65b358925649a9c360f85caa049",
+   "bytes": 3475
+  },
+  {
+   "path": "kh/composition/score.py",
+   "sha256": "5bd8826e0f8ca5e1dd202a2ee22329ef4ee843bd299b93927c5ca13bb394cb84",
+   "bytes": 6034
+  }
+ ],
+ "outputs": [
+  {
+   "path": "kh/composition/composition.mp4",
+   "sha256": "f0963b65110f168ca613a6a87a0c43c1b9f4eda4772f6f99d6bbc54241cbed90",
+   "bytes": 2760480
+  }
+ ],
+ "gates": {
+  "read_time": "PASS \u2014 tightest 1.10 s vs 1.05 s",
+  "frame_jump": "PASS \u2014 26.1 px, 0.055 rad per frame",
+  "flash_safety": "PASS \u2014 0 flashes",
+  "loudness": "PASS \u2014 -16.1 LUFS, -2.3 dBTP",
+  "ffprobe": "PASS \u2014 1680 frames, 28.0 s",
+  "colour_provenance": "PASS"
+ },
+ "colour_provenance": {
+  "literal_colours": 0,
+  "registered": 0,
+  "declared_derived": [],
+  "unregistered": [],
+  "status": "PASS"
+ },
+ "deviations": [],
+ "summary": "Trustworthy AI by composition, really simple: one big box becomes small checkable parts that only snap if their types fit; a value flows through and every step shows its work.",
+ "changes": "First cut (built by a delegated agent to the same spec and gates).",
+ "registered_at": "2026-10-17T01:57:03+00:00",
+ "fingerprint": "f7c3dd21d88add7ae0edc8c7fd9d715afb5078c5e16bd493159572858f9308a0"
+}

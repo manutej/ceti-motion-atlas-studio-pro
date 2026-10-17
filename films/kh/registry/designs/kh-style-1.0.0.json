@@ -1,0 +1,46 @@
+{
+ "id": "kh-style-1.0.0",
+ "name": "Kinetic Hydrography 1.0.0 \u2014 style passport",
+ "kind": "Style system",
+ "version": "1.0.0",
+ "parents": [],
+ "uses_kit": true,
+ "wada": [
+  296,
+  279,
+  166,
+  339,
+  84,
+  207,
+  243
+ ],
+ "engine": [
+  "Canvas (skia)",
+  "Python (Pillow)"
+ ],
+ "atlas": [
+  "stg:style-system",
+  "q:brand-grounding",
+  "q:typographic-restraint",
+  "q:banned-effects-list",
+  "q:unified-finish",
+  "q:principles-as-numbers"
+ ],
+ "sources": [
+  "kh/registry/style.json",
+  "kh/kh-kit.js",
+  "atlas/design/philosophy.md",
+  "atlas/brand/colors_and_type.css"
+ ],
+ "outputs": [],
+ "preview": "kh/registry/previews/kh-style-1.0.0.jpg",
+ "gates": {
+  "contrast": "PASS \u2014 text \u2265 4.5:1 on its ground in every plate"
+ },
+ "summary": "The root of the lineage. Motion as something that can be charted: frames are functions of time, beats sit on a grid, instruments (bearing ring, depth gauge, beat grid) annotate the movement, and one Sanzo Wada combination keys each piece. Built on the CETI design system.",
+ "changes": "First version. Tokens = CETI design system + seven Wada combinations; type = Fraunces 300 italic / DM Sans / Space Mono; motion = the five CETI eases, no bounce.",
+ "style": "1.0.0",
+ "status": "shipped",
+ "deviations": [],
+ "derived_colours": {}
+}

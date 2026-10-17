@@ -1,0 +1,75 @@
+{
+ "id": "little-whale-v1",
+ "name": "Little whale \u2014 film v1",
+ "kind": "Film",
+ "version": "1.0",
+ "parents": [
+  "little-whale-moodboard"
+ ],
+ "wada": [
+  279,
+  296,
+  166
+ ],
+ "engine": [
+  "SVG + headless Chromium",
+  "ffmpeg",
+  "numpy synth"
+ ],
+ "atlas": [
+  "q:time-pure-frames",
+  "q:seeded-rng",
+  "q:speed-limits",
+  "q:cue-locked-sound",
+  "q:loudness-normalisation",
+  "q:one-object-continuity",
+  "el:character-rig",
+  "el:captions",
+  "el:end-card",
+  "el:sfx-cue",
+  "eng:seek-html",
+  "eng:headless-capture",
+  "eng:ffmpeg",
+  "eng:code-synth-audio",
+  "gate:frame-jump-detector",
+  "gate:contact-sheet",
+  "gate:ffprobe-spec"
+ ],
+ "sources": [
+  "whale/film.html",
+  "whale/lib.js",
+  "whale/score.json",
+  "whale/synth.py"
+ ],
+ "outputs": [
+  "whale/little-whale.mp4"
+ ],
+ "preview": "kh/registry/previews/little-whale-v1.jpg",
+ "gates": {
+  "frame_jump": "PASS \u2014 22.5 px and 0.23 rad per frame at 30 fps",
+  "ffprobe": "PASS \u2014 1800 frames, 60.0 s",
+  "loudness": "PASS \u2014 -15.8 LUFS, -2.8 dBTP",
+  "contact_sheet": "PASS \u2014 reviewed"
+ },
+ "summary": "60-second film: a little whale rediscovers its voice, from the silent deep to the surface. 1080p30 with a cue-locked synthesised score.",
+ "changes": "First cut.",
+ "style": "1.0.0",
+ "status": "shipped",
+ "deviations": [
+  "Hand-picked shades predate the style kit; each is declared with its parent token"
+ ],
+ "derived_colours": {
+  "#1E2536": "navy, deep body fill (moodboard)",
+  "#0B0E16": "below bathy \u2014 fade-from-black",
+  "#1F2638": "navy, deep body fill",
+  "#5A5566": "dawn mid-tone between navy and Ochraceous Salmon (296)",
+  "#222A3D": "navy shade \u2014 back of the whale",
+  "#2A3349": "navy shade \u2014 flank",
+  "#38435C": "navy shade \u2014 belly in the deep",
+  "#6F9BA8": "Light Glaucous Blue (339), shaded \u2014 back",
+  "#9FB9CC": "Light Glaucous Blue (339), tint \u2014 light shafts in the deep",
+  "#C9DDE6": "Light Glaucous Blue (339), tint \u2014 caustics",
+  "#E6F0F1": "Light Glaucous Blue (339), tint \u2014 belly",
+  "#FBF7F0": "paper, tint \u2014 air above the surface"
+ }
+}

@@ -1,0 +1,117 @@
+{
+ "id": "signal-v1",
+ "name": "Signal \u2014 film v1",
+ "kind": "Film",
+ "version": "1.0",
+ "status": "shipped",
+ "style": {
+  "name": "Kinetic Hydrography",
+  "version": "1.0.0",
+  "passport_sha256": "11df6c39a38697375745f2bdb2040780e72f3657a56ab4306338bbfa64913efe",
+  "kit_sha256": "a19e3d258a95aa78e3199a8a95645703411e1ff218b262cd087dcf6516312a05"
+ },
+ "parents": {
+  "signal-moodboard": "c47635164388d05fba1068fad2642da295a138fc60f9b8a41e78fb4a982243ff"
+ },
+ "wada": [
+  339,
+  166
+ ],
+ "engine": [
+  "Canvas (skia)",
+  "ffmpeg",
+  "numpy synth"
+ ],
+ "atlas": [
+  "sty:kinetic-type-showreel",
+  "el:kinetic-type",
+  "el:music-bed",
+  "el:sfx-cue",
+  "el:data-diagram",
+  "el:end-card",
+  "el:camera-move",
+  "q:beat-locked-changes",
+  "q:time-pure-frames",
+  "q:seeded-rng",
+  "q:motion-blur",
+  "q:cue-locked-sound",
+  "q:loudness-normalisation",
+  "gate:contact-sheet",
+  "gate:ffprobe-spec",
+  "gate:loudness-waveform",
+  "eng:code-synth-audio",
+  "eng:ffmpeg"
+ ],
+ "sources": [
+  {
+   "path": "kh/kh-kit.js",
+   "sha256": "a19e3d258a95aa78e3199a8a95645703411e1ff218b262cd087dcf6516312a05",
+   "bytes": 7272
+  },
+  {
+   "path": "kh/host.cjs",
+   "sha256": "3ae5933ebf72cf4140615e47cb0fe230cfdd0eeaeb3743ea9b47ecaa8cace69b",
+   "bytes": 693
+  },
+  {
+   "path": "kh/signal/film.js",
+   "sha256": "93a364587c7cfd8200a7468f916f8f68bcc2755f0063e7956f2a5169d7d1e75c",
+   "bytes": 18823
+  },
+  {
+   "path": "kh/signal/engine.cjs",
+   "sha256": "f9af14444c1b8f282b37c935e0d2a938556ba78838a651effac5d6266104226e",
+   "bytes": 777
+  },
+  {
+   "path": "kh/signal/render.cjs",
+   "sha256": "8c27957d285ff35c87354ff92cd3b7e1bf4cc2bac11b5cdea669e22fcb67b4f9",
+   "bytes": 1029
+  },
+  {
+   "path": "kh/signal/score.py",
+   "sha256": "b158fa4ad11e6256a6fe221c17358f0bf36b6cedc6a72c91eb1d97311cf09cd4",
+   "bytes": 6648
+  },
+  {
+   "path": "kh/signal/cues.json",
+   "sha256": "06a65373bf37d66dbc183c3f44cef8e11329558b518aa5828ca10aad0f956243",
+   "bytes": 2228
+  },
+  {
+   "path": "kh/signal/gate.cjs",
+   "sha256": "a9940c577f486a4d82d0a6601b90fa6080b5f9a0bd365fec862b2955f6e9d3d2",
+   "bytes": 1049
+  }
+ ],
+ "outputs": [
+  {
+   "path": "kh/signal/signal.mp4",
+   "sha256": "70280084e8ecb1a442d72fa0d19d577fa56eabd932db94f26047cb4572e2c6b3",
+   "bytes": 16602407
+  }
+ ],
+ "gates": {
+  "read_time": "PASS \u2014 every line held \u2265 its need (tightest 1.00 s vs 0.90 s)",
+  "flash_safety": "PASS \u2014 0 flashes; largest luma step 1.8% per frame",
+  "loudness": "PASS \u2014 -16.3 LUFS, -2.2 dBTP",
+  "ffprobe": "PASS \u2014 1800 frames, 30.0 s, 60 fps",
+  "contact_sheet": "PASS \u2014 reviewed",
+  "colour_provenance": "PASS"
+ },
+ "colour_provenance": {
+  "literal_colours": 36,
+  "registered": 36,
+  "declared_derived": [],
+  "unregistered": [],
+  "status": "PASS"
+ },
+ "deviations": [
+  "The feed outruns house durations (0.18 s whips vs 0.28 s minimum) \u2014 the story needs nervousness",
+  "270\u00b0 shutter with 4 sub-frames in the feed and filter acts"
+ ],
+ "summary": "30-second kinetic film at 120 BPM: a loud feed is swept by a bearing-ring filter, 95 items fall away, 5 become a rising line, then a single calm wave \u2014 \"Signal over noise.\"",
+ "changes": "First cut. Introduces the read-time and flash-safety gates.",
+ "registered_at": "2026-10-16T17:09:47+00:00",
+ "fingerprint": "bd9920ea790d0bda7f360bb75945c51a691b3621760f18ef029090657fdb9098"
+}

@@ -1,0 +1,72 @@
+{
+ "id": "signal-moodboard",
+ "name": "Signal \u2014 moodboard",
+ "kind": "Moodboard",
+ "version": "1.0",
+ "status": "shipped",
+ "style": {
+  "name": "Kinetic Hydrography",
+  "version": "1.0.0",
+  "passport_sha256": "11df6c39a38697375745f2bdb2040780e72f3657a56ab4306338bbfa64913efe",
+  "kit_sha256": "a19e3d258a95aa78e3199a8a95645703411e1ff218b262cd087dcf6516312a05"
+ },
+ "parents": {
+  "kh-style-1.0.0": "31bf64a419e000b4af1a66d61efd00b6969f293576a98b964a3680cb02a6aa20",
+  "little-whale-v2": "c39c34cfd5321d9c4ee069192483251cab27b5999ef10f751c536e0e67a4c5e6"
+ },
+ "wada": [
+  339,
+  166
+ ],
+ "engine": [
+  "Canvas (skia)"
+ ],
+ "atlas": [
+  "sty:kinetic-type-showreel",
+  "el:kinetic-type",
+  "q:beat-locked-changes",
+  "stg:style-system"
+ ],
+ "sources": [
+  {
+   "path": "kh/kh-kit.js",
+   "sha256": "a19e3d258a95aa78e3199a8a95645703411e1ff218b262cd087dcf6516312a05",
+   "bytes": 7272
+  },
+  {
+   "path": "kh/host.cjs",
+   "sha256": "3ae5933ebf72cf4140615e47cb0fe230cfdd0eeaeb3743ea9b47ecaa8cace69b",
+   "bytes": 693
+  },
+  {
+   "path": "kh/signal/moodboard.cjs",
+   "sha256": "0df585d102a236dbc7211ef4a8061e28f8f8a476fa19cce7ef911feb3d3d9587",
+   "bytes": 8544
+  }
+ ],
+ "outputs": [
+  {
+   "path": "kh/signal/moodboard.png",
+   "sha256": "2b76655e42b3cb4aac059d3e0c3dba5c5514401737bf2ace3a02725f9fdfd65f",
+   "bytes": 279157
+  }
+ ],
+ "gates": {
+  "contact_sheet": "PASS \u2014 reviewed",
+  "colour_provenance": "PASS"
+ },
+ "colour_provenance": {
+  "literal_colours": 36,
+  "registered": 36,
+  "declared_derived": [],
+  "unregistered": [],
+  "status": "PASS"
+ },
+ "deviations": [
+  "The feed outruns house durations, on purpose"
+ ],
+ "summary": "Direction for a fast kinetic film in the same style: a loud feed on paper (Wada 339), the bearing ring from Little whale reused as a filter, one glaucous line on navy.",
+ "changes": "New story; inherits the bearing ring and the light/dark grounds from Little whale v2.",
+ "registered_at": "2026-10-16T17:09:47+00:00",
+ "fingerprint": "c47635164388d05fba1068fad2642da295a138fc60f9b8a41e78fb4a982243ff"
+}

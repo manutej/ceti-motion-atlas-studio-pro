@@ -1,0 +1,55 @@
+{
+ "id": "little-whale-moodboard",
+ "name": "Little whale \u2014 moodboard",
+ "kind": "Moodboard",
+ "version": "1.0",
+ "parents": [
+  "kh-style-1.0.0"
+ ],
+ "wada": [
+  279,
+  296,
+  166,
+  339
+ ],
+ "engine": [
+  "SVG + headless Chromium"
+ ],
+ "atlas": [
+  "stg:style-system",
+  "el:character-rig",
+  "stg:key-stills"
+ ],
+ "sources": [
+  "whale/moodboard.html",
+  "whale/lib.js"
+ ],
+ "outputs": [
+  "whale/moodboard.png"
+ ],
+ "preview": "kh/registry/previews/little-whale-moodboard.jpg",
+ "gates": {
+  "contact_sheet": "PASS \u2014 reviewed"
+ },
+ "summary": "Character sheet and colour script for the little whale: four emotional states, a palette per act and the motion vocabulary.",
+ "changes": "First moodboard; the rig was reshaped to calf proportions after review.",
+ "style": "1.0.0",
+ "status": "shipped",
+ "deviations": [
+  "Hand-picked shades predate the style kit; each is declared with its parent token"
+ ],
+ "derived_colours": {
+  "#1E2536": "navy, deep body fill (moodboard)",
+  "#0B0E16": "below bathy \u2014 fade-from-black",
+  "#1F2638": "navy, deep body fill",
+  "#5A5566": "dawn mid-tone between navy and Ochraceous Salmon (296)",
+  "#222A3D": "navy shade \u2014 back of the whale",
+  "#2A3349": "navy shade \u2014 flank",
+  "#38435C": "navy shade \u2014 belly in the deep",
+  "#6F9BA8": "Light Glaucous Blue (339), shaded \u2014 back",
+  "#9FB9CC": "Light Glaucous Blue (339), tint \u2014 light shafts in the deep",
+  "#C9DDE6": "Light Glaucous Blue (339), tint \u2014 caustics",
+  "#E6F0F1": "Light Glaucous Blue (339), tint \u2014 belly",
+  "#FBF7F0": "paper, tint \u2014 air above the surface"
+ }
+}

@@ -1,0 +1,52 @@
+{
+ "properties": {
+  "Name": "Little whale \u2014 film v1",
+  "Kind": "Film",
+  "Version": "1.0",
+  "Status": "shipped",
+  "Style": "Kinetic Hydrography 1.0.0",
+  "Fingerprint": "b165c94faf0f0d91",
+  "Passport hash": "11df6c39a3869737",
+  "Wada": [
+   "279",
+   "296",
+   "166"
+  ],
+  "Engine": [
+   "SVG + headless Chromium",
+   "ffmpeg",
+   "numpy synth"
+  ],
+  "Gates": "Pass",
+  "Gate detail": "frame_jump: PASS \u2014 22.5 px and 0.23 rad per frame at 30 fps \u00b7 ffprobe: PASS \u2014 1800 frames, 60.0 s \u00b7 loudness: PASS \u2014 -15.8 LUFS, -2.8 dBTP \u00b7 contact_sheet: PASS \u2014 reviewed \u00b7 colour_provenance: PASS",
+  "Deviations": "Hand-picked shades predate the style kit; each is declared with its parent token",
+  "Design ID": "little-whale-v1",
+  "Derived from": [
+   "3fbd50cfaf9381dd93f2f4105ed237d1"
+  ],
+  "Atlas lineage": [
+   "3fbd50cfaf9381159144e6222a7785ef",
+   "3fbd50cfaf93818c8ecfe20f001c91ca",
+   "3fbd50cfaf93814db091e961b2473076",
+   "3fbd50cfaf93818c9148cabe066e555a",
+   "3fbd50cfaf93818da268d8e60efb8eb4",
+   "3fbd50cfaf9381b583d4fee1073b83e3",
+   "3fbd50cfaf938109b4d8cdcbc2fc8787",
+   "3fbd50cfaf9381e5a5f8ef34ed8e731f",
+   "3fbd50cfaf9381d88bcefce332e397ed",
+   "3fbd50cfaf9381299093d47d6e84caba",
+   "3fbd50cfaf93811785d4c0d1d7ed5e4a",
+   "3fbd50cfaf938150a1e4f75672272922",
+   "3fbd50cfaf938163b12cf49cec540485",
+   "3fbd50cfaf9381269880f33214682643",
+   "3fbd50cfaf9381269a41dd50de1c851b",
+   "3fbd50cfaf93810bbfc9fe9ad8c1949d",
+   "3fbd50cfaf9381eb9960f6866c267d59"
+  ],
+  "date:Registered:start": "2026-10-16",
+  "date:Registered:is_datetime": 0
+ },
+ "content": "60-second film: a little whale rediscovers its voice, from the silent deep to the surface. 1080p30 with a cue-locked synthesised score.\n\n## Provenance\n- **Style:** Kinetic Hydrography 1.0.0 \u00b7 passport `11df6c39a3869737`\n- **Fingerprint:** `b165c94faf0f0d91e55e6aef122f19144744bf1756aa46f9e023fea641c2f174`\n- **Parents:** little-whale-moodboard (`f8a7036d27e1`)\n- **Colour provenance:** PASS \u2014 28 literal colours, 25 registered tokens, 3 declared derived\n\n## What changed\nFirst cut.\n\n## Gates\n- frame_jump: PASS \u2014 22.5 px and 0.23 rad per frame at 30 fps\n- ffprobe: PASS \u2014 1800 frames, 60.0 s\n- loudness: PASS \u2014 -15.8 LUFS, -2.8 dBTP\n- contact_sheet: PASS \u2014 reviewed\n- colour_provenance: PASS\n\n## Deviations from the style\n- Hand-picked shades predate the style kit; each is declared with its parent token\n\n## Files\n- `whale/little-whale.mp4` \u00b7 `79ed7860fbb8` \u00b7 50,967,991 bytes\n- `whale/film.html` \u00b7 `68bcf9663e49` \u00b7 21,065 bytes\n- `whale/lib.js` \u00b7 `b937f7789f44` \u00b7 6,349 bytes\n- `whale/score.json` \u00b7 `f9bbba1a9889` \u00b7 1,506 bytes\n- `whale/synth.py` \u00b7 `4333af563235` \u00b7 7,071 bytes\n\n## Manifest\n```json\n{\n \"id\": \"little-whale-v1\",\n \"fingerprint\": \"b165c94faf0f0d91e55e6aef122f19144744bf1756aa46f9e023fea641c2f174\",\n \"style\": {\n  \"name\": \"Kinetic Hydrography\",\n  \"version\": \"1.0.0\",\n  \"passport_sha256\": \"11df6c39a38697375745f2bdb2040780e72f3657a56ab4306338bbfa64913efe\",\n  \"kit_sha256\": null\n },\n \"parents\": {\n  \"little-whale-moodboard\": \"f8a7036d27e1525a59d150c3aa57eb5ef81e29353b270e3ec0d79f3c45b85934\"\n },\n \"wada\": [\n  279,\n  296,\n  166\n ],\n \"atlas\": [\n  \"q:time-pure-frames\",\n  \"q:seeded-rng\",\n  \"q:speed-limits\",\n  \"q:cue-locked-sound\",\n  \"q:loudness-normalisation\",\n  \"q:one-object-continuity\",\n  \"el:character-rig\",\n  \"el:captions\",\n  \"el:end-card\",\n  \"el:sfx-cue\",\n  \"eng:seek-html\",\n  \"eng:headless-capture\",\n  \"eng:ffmpeg\",\n  \"eng:code-synth-audio\",\n  \"gate:frame-jump-detector\",\n  \"gate:contact-sheet\",\n  \"gate:ffprobe-spec\"\n ],\n \"gates\": {\n  \"frame_jump\": \"PASS \\u2014 22.5 px and 0.23 rad per frame at 30 fps\",\n  \"ffprobe\": \"PASS \\u2014 1800 frames, 60.0 s\",\n  \"loudness\": \"PASS \\u2014 -15.8 LUFS, -2.8 dBTP\",\n  \"contact_sheet\": \"PASS \\u2014 reviewed\",\n  \"colour_provenance\": \"PASS\"\n }\n}\n```",
+ "preview": "kh/registry/previews/little-whale-v1.jpg",
+ "unresolved_parents": []
+}

@@ -1,0 +1,14 @@
+node_modules/
+renders/
+*.mp4
+*.wav
+*.mov
+*.webm
+*.mp4.log
+*.out
+seg*.mp4
+segs*.txt
+qa*/
+stills*/
+__pycache__/
+kh/registry/previews/*.svg

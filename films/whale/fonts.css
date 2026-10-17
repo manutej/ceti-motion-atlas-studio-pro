@@ -1,0 +1,10 @@
+@font-face { font-family: "Fraunces"; src: url("fonts/Fraunces-Italic[SOFT,WONK,opsz,wght].ttf"); font-style: italic; font-weight: 100 900; }
+@font-face { font-family: "Fraunces"; src: url("fonts/Fraunces[SOFT,WONK,opsz,wght].ttf"); font-style: normal; font-weight: 100 900; }
+@font-face { font-family: "DM Sans"; src: url("fonts/DMSans[opsz,wght].ttf"); font-weight: 100 1000; }
+@font-face { font-family: "Space Mono"; src: url("fonts/SpaceMono-Regular.ttf"); font-weight: 400; }
+@font-face { font-family: "Space Mono"; src: url("fonts/SpaceMono-Bold.ttf"); font-weight: 700; }
+html, body { margin: 0; padding: 0; }
+body { width: 1920px; height: 1080px; overflow: hidden; }
+.disp { font-family: "Fraunces", serif; font-style: italic; font-weight: 300; font-variation-settings: "opsz" 144, "SOFT" 0, "WONK" 0; letter-spacing: -0.02em; }
+.mono { font-family: "Space Mono", monospace; letter-spacing: 0.2em; text-transform: uppercase; }
+.sans { font-family: "DM Sans", sans-serif; }

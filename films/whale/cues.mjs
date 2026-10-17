@@ -1,0 +1,11 @@
+import chromium from '@sparticuz/chromium';
+import { chromium as pw } from 'playwright-core';
+import path from 'node:path';
+import fs from 'node:fs';
+const b = await pw.launch({ executablePath: await chromium.executablePath(), args: chromium.args });
+const pg = await b.newPage();
+await pg.goto('file://' + path.resolve('film.html'));
+const c = await pg.evaluate(() => ({ stamps: STAMPS.map(s => ({ pass: s.pass, bloom: 33 + s.bloom * 6, k: s.k })) }));
+fs.writeFileSync('cues.json', JSON.stringify(c, null, 1));
+console.log(c.stamps.map(s => s.pass.toFixed(2)).join(' '));
+await b.close();

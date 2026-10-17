@@ -1,0 +1,198 @@
+[
+  {
+    "source_id": "yt:6sZAZaQ5SNU",
+    "url": "https://www.youtube.com/watch?v=6sZAZaQ5SNU",
+    "kind": "video",
+    "title": "Claude Opus 5.5 Just Changed Design Forever (5 Insane Use Cases)",
+    "creator": "Ben AI",
+    "published": "2026-10-02",
+    "duration": null,
+    "summary": "A walkthrough of using Opus 5.5 with Claude's built-in design features (a design system, live artifacts, canvas comments) to make brand-aligned design output. The motion part covers 15-20 second explainers built entirely in code, logo intro and outro variants exported as MP4, and a custom skill that adds motion graphics over existing footage. The rest covers decks, landing pages and carousels, all tied to one saved design system and turned into scheduled skills.",
+    "what_is_shown": "Short code-built explainer videos split into separate scenes inside a live artifact, exported to MP4. Also five 2-5 second logo animation variants, motion-graphic overlays on a segment of a YouTube video, plus animated slides and landing pages.",
+    "stack": ["Claude (Opus 5.5)", "Claude Design / design systems", "Claude Code / Cowork", "HTML/CSS/JS artifacts", "custom skills", "scheduled tasks"],
+    "techniques": [
+      {"name": "Design system before any motion", "how": "Build a reusable design system first from a website, logos and brand assets (or a reference site if there is no brand yet), iterate on it, and save a local copy for each client.", "quality_lever": "Every video, deck and logo animation inherits the same colours, type and style, so the output looks on-brand instead of generic."},
+      {"name": "Script and storyboard approval gate", "how": "Have the model write a script and storyboard for the explainer, approve it, and only then build the animation.", "quality_lever": "Catches direction errors before you spend tokens on animation and render time."},
+      {"name": "One scene per unit", "how": "Build each storyboard scene as its own separately addressable piece in the live artifact, so comments target one scene instead of the whole video.", "quality_lever": "Revisions stay local, and the model knows which part to change."},
+      {"name": "Code-only constraint", "how": "Say explicitly that everything must be built in code, with no image or video generation model.", "quality_lever": "Cheaper, deterministic and editable, with crisp vector typography."},
+      {"name": "Variation batch for logo stings", "how": "Ask for several (for example five) short logo intro or outro variants in one request and export each as an MP4.", "quality_lever": "You pick the best of several, which beats iterating on a single draft."},
+      {"name": "Tweak panel", "how": "Ask the output to include an in-page control panel for colours, backgrounds, text sizes and layout variants.", "quality_lever": "The human tunes taste parameters directly, with no extra round of prompting."},
+      {"name": "Word caps per frame", "how": "Set a maximum word count for each slide or image.", "quality_lever": "Stops the model from overloading frames with text, which keeps them readable at motion speed."}
+    ],
+    "prompting_patterns": [
+      "State duration (15-20 s), aspect ratio and 'built in code, not a video/image model' up front",
+      "Ask for script + storyboard first, approve, then build scene by scene",
+      "Attach the saved design system to every request",
+      "Paste layout references (e.g. Pinterest) and give audience, purpose, CTA, slide count",
+      "Once a template works, save it as a skill with template categories and copy rules; schedule recurring runs"
+    ],
+    "pipeline": "brand assets -> design system (iterate, save locally) -> script + storyboard (approve) -> per-scene build in live artifact -> scene-level comments -> MP4 export; repeatable formats -> skill -> scheduled task",
+    "pitfalls": [
+      "Iterating on a whole video without scene separation confuses the model about what to change",
+      "Copy often needs rewriting even when visuals are strong",
+      "Text overload on social frames unless word limits are set",
+      "Design systems need several iteration rounds to get right"
+    ],
+    "relevance": 4,
+    "confidence": "medium",
+    "evidence": "oEmbed title/author; watch-page description and chapters (mostly promo links); transcript read through a third-party transcript page, delivered as a model summary rather than verbatim"
+  },
+  {
+    "source_id": "yt:W3s56iFRIiU",
+    "url": "https://www.youtube.com/watch?v=W3s56iFRIiU",
+    "kind": "video",
+    "title": "1 Secret Prompt to Create Unlimited Motion Graphics Videos with AI (FREE)",
+    "creator": "Biet Thinks",
+    "published": null,
+    "duration": null,
+    "summary": "Not a code-rendered workflow. A reusable master prompt stored in a Claude Project's instructions interviews the user (style, format, clip length, brand, pacing, audio), then turns a script into numbered clip prompts. A generative video model (Google Flow) renders each clip, and CapCut assembles them. Continuity comes from screenshotting the last frame of each clip and attaching it to the next generation.",
+    "what_is_shown": "A seven-clip 16:9 sequence of 3D-style motion graphics in a cream, minimal, luxury look, made as 10-second 720p clips from a generative video model and edited in CapCut.",
+    "stack": ["Claude Projects", "Google Flow (generative video)", "CapCut", "ChatGPT (script only)"],
+    "techniques": [
+      {"name": "Interview-first master prompt", "how": "The project-level system prompt asks setup questions about theme, format, clip length, brand, pacing and audio before it accepts the script.", "quality_lever": "Locks the art direction and technical constraints once, so every scene shares them."},
+      {"name": "Script-to-scene prompt decomposition", "how": "The model splits the script into numbered clips. Each gets a structured prompt covering format, style, sequencing, text rules and an avoid list.", "quality_lever": "Consistent, bounded scene specs instead of one sprawling request."},
+      {"name": "Last-frame continuity handoff", "how": "Capture the final frame of clip N and attach it as a visual reference when generating clip N+1.", "quality_lever": "Reduces style and composition drift across clips."}
+    ],
+    "prompting_patterns": [
+      "Store the master prompt as Project instructions; trigger with 'start'",
+      "Setup Q&A -> paste script -> receive 'clip k of n' prompts with explicit avoid lists"
+    ],
+    "pipeline": "script (external) -> Claude Project master prompt (setup Q&A) -> per-clip prompts -> Google Flow render per clip, with last-frame reference -> CapCut assembly + voiceover",
+    "pitfalls": [
+      "Free tier credits allow only about three 10 s clips per day; the creator used several accounts",
+      "Continuity relies on the screenshot handoff and is shown on one example only",
+      "Output from a generative model is not deterministic or code-editable",
+      "Voiceover still has to be added separately"
+    ],
+    "relevance": 2,
+    "confidence": "medium",
+    "evidence": "oEmbed title/author; the watch page returned HTTP 429 and was not retried, so the description (which reportedly holds the full master prompt) was not read; transcript read through a third-party transcript page as a model summary"
+  },
+  {
+    "source_id": "yt:lD6ZNj-8wcQ",
+    "url": "https://www.youtube.com/shorts/lD6ZNj-8wcQ",
+    "kind": "short",
+    "title": "Motion designers are cooked? Opus 5.5 drew every frame of this in code.",
+    "creator": "AndersenBuilds",
+    "published": "2026-09-28",
+    "duration": "00:20",
+    "summary": "A 20-second showcase short. The description says Opus 5.5 wrote a program that draws all 600 frames in the creator's brand colours, with no After Effects, footage or designer, and with generated music. No workflow, prompt or stack is described.",
+    "what_is_shown": "A 20 s, 600-frame brand-coloured motion piece (30 fps implied) drawn programmatically. The visual content was not inspected.",
+    "stack": ["Claude (Opus 5.5)", "code-drawn frames (renderer unspecified)", "AI music (unspecified)"],
+    "techniques": [
+      {"name": "Program draws every frame", "how": "The model writes a program that renders each of 600 frames from code, rather than generating pixels with a video model.", "quality_lever": "Deterministic, brand-exact colours and crisp vector shapes."},
+      {"name": "Brand palette as input constraint", "how": "The creator's brand colours are given to the model as fixed constraints.", "quality_lever": "On-brand output without manual colour grading."}
+    ],
+    "prompting_patterns": [],
+    "pipeline": "brand colours -> Opus 5.5 writes frame-drawing code -> 600 frames rendered -> plus generated music (as stated; details not given)",
+    "pitfalls": [],
+    "relevance": 2,
+    "confidence": "low",
+    "evidence": "oEmbed title/author and the Shorts page description only; no transcript was available (fetch failed) and the video was not viewed"
+  },
+  {
+    "source_id": "yt:YKFpSe28mlg",
+    "url": "https://www.youtube.com/watch?v=YKFpSe28mlg",
+    "kind": "video",
+    "title": "Opus 5.5 Video Editing is Unbelievably Good (master it in 12 mins)",
+    "creator": "Jay E | RoboNuggets",
+    "published": "2026-09-29",
+    "duration": "~12:00",
+    "summary": "Sets out three levels of AI motion graphics with Opus 5.5, all built from code and existing images with no generative video. Level 1 is a one-shot showcase prompt (useful as a model benchmark), Level 2 is a storyboard of frame stills plus animation notes that you comment on before any render, and Level 3 is directing the rendered video with timestamped comments on frames and audio. The claimed quality is 80-90% from the model, with human direction covering the rest.",
+    "what_is_shown": "Code-built motion graphics (HTML/CSS/JS with Three.js elements, encoded with FFmpeg) laid over and edited into raw footage. Also a storyboard review interface with comments pinned to timestamps and points on frames.",
+    "stack": ["Claude (Opus 5.5)", "Claude Code-style workspace agent", "HTML/CSS/JS", "SVG", "Three.js", "FFmpeg", "agents.md"],
+    "techniques": [
+      {"name": "Three-level maturity ladder", "how": "Move from one-shot showcase, to storyboard review, to directing rendered cuts, depending on stakes and budget.", "quality_lever": "Spends render tokens only after direction has been agreed."},
+      {"name": "Still-frame storyboard before video", "how": "The model outputs panel screenshots plus written animation descriptions with no render. The human comments, and the model revises or proceeds.", "quality_lever": "Cheap course correction that avoids wasted full renders."},
+      {"name": "Spatiotemporal review comments", "how": "Review comments are pinned to a timestamp and an x/y point on the frame, then pasted back to the model as a batch.", "quality_lever": "Unambiguous, local edits instead of vague whole-video feedback."},
+      {"name": "Ask for SVG assets", "how": "Request graphics as SVG so they scale, stay hand-editable and can be animated.", "quality_lever": "Crisp at any resolution and easy to tweak."},
+      {"name": "One-shot prompt as benchmark", "how": "Keep a fixed showcase prompt and rerun it on each new model.", "quality_lever": "Tracks capability changes and supplies portfolio material."},
+      {"name": "Single agent instructions file", "how": "Keep one agents.md as the only instructions file instead of syncing several.", "quality_lever": "Consistent behaviour across sessions and tools."}
+    ],
+    "prompting_patterns": [
+      "Level 1: open request for a dynamic motion-graphics showcase",
+      "Level 2: 'make a storyboard for <app>' -> stills + motion notes, no render",
+      "Feedback batches of timestamped, point-anchored comments; apply a fix pattern across similar clips",
+      "Give doc links when asking to focus on specific UI (e.g. a page title)"
+    ],
+    "pipeline": "raw footage/assets in workspace -> model selects takes -> storyboard (stills + notes) -> human comments -> HTML/JS motion build -> render (FFmpeg) -> timestamped review of frames + SFX -> revise -> final render",
+    "pitfalls": [
+      "Vague prompts waste tokens on renders that go in the wrong direction",
+      "Text-heavy scenes; ask for less text",
+      "Sound effects cannot be judged before a render",
+      "Unneeded scenes slip through unless the full cut is reviewed",
+      "Over-reliance on model taste; the human still has to direct"
+    ],
+    "relevance": 5,
+    "confidence": "high",
+    "evidence": "oEmbed; watch-page description and chapters (Intro / Under the hood / Level 1-3 / Wrap up); transcript read through a third-party transcript page as a detailed model summary. The prompt PDF linked in the description was not read"
+  },
+  {
+    "source_id": "yt:hKztrJbDGpA",
+    "url": "https://www.youtube.com/watch?v=hKztrJbDGpA",
+    "kind": "video",
+    "title": "I Asked Claude Opus 5.5 to Make This Video. It Wrote Every Frame.",
+    "creator": "Ahmed T'aide (watch page lists the channel as 'Ahmed Code')",
+    "published": "2026-09-22",
+    "duration": "~05:30",
+    "summary": "A self-referential explainer made entirely in code (HTML, Canvas, SVG, Three.js), in which a math-drawn robot guide called Bit passes through several visual styles. It names concrete craft techniques for each style and shows the model checking its own frames and fixing bugs it was not told about. Narration and music came from ElevenLabs; some sound effects were synthesized in code.",
+    "what_is_shown": "One character across these styles: 320x180 pixel art at 12 fps with hit-stop, a seeded procedural voxel world, a classic cartoon with squash and stretch, kawaii, and a hand-drawn or stop-motion look with line jitter. Each frame is a browser-rendered page at 30 fps.",
+    "stack": ["Claude (Opus 5.5)", "HTML", "Canvas", "SVG", "Three.js", "headless browser frame capture", "code-synthesized SFX (Web Audio-style)", "ElevenLabs TTS + Music"],
+    "techniques": [
+      {"name": "Frame = pure function of time", "how": "Each frame is a web page rendered from a timestamp at 30 fps, and every movement is a numeric curve.", "quality_lever": "Reproducible renders that can be scrubbed and are frame-accurate."},
+      {"name": "Seeded procedural generation", "how": "Generate terrain and props from noise with a fixed seed, so every render matches exactly.", "quality_lever": "Rich, organic detail without nondeterminism."},
+      {"name": "Hit-stop", "how": "Freeze the action for a few frames on impact.", "quality_lever": "Gives impacts weight and punch."},
+      {"name": "Style-specific frame rate", "how": "Run pixel art and stop-motion sections at deliberately low fps (for example 12) inside a 30 fps master.", "quality_lever": "Makes each style read as genuine instead of like a CSS tween."},
+      {"name": "Animation principles as curves", "how": "Encode squash and stretch, anticipation and follow-through as timing and easing functions, and drive jumps with gravity equations.", "quality_lever": "Motion feels physical and characterful rather than linear."},
+      {"name": "Intentional imperfection", "how": "Add small seeded jitter to line paths and drop the frame rate for a handmade look.", "quality_lever": "Removes the sterile vector look."},
+      {"name": "Procedural sound design", "how": "Synthesize sound effects in code, such as square waves for jumps and filtered noise for paper.", "quality_lever": "Sound locks to frame events with no asset licensing."},
+      {"name": "Snapshot self-review loop", "how": "The model captures stills of its own render, inspects them and fixes defects. Examples were a label covering the character, a jump colliding with the title, and a pixel glyph misreading as another letter.", "quality_lever": "Catches layout collisions and legibility bugs before a human sees them."}
+    ],
+    "prompting_patterns": [],
+    "pipeline": "request -> plan -> build HTML/Canvas/SVG/Three.js scenes -> render frames in browser -> capture snapshots -> self-critique + fix -> final render (under 1 min for a 30 s, 5-scene v1) + external TTS/music",
+    "pitfalls": [
+      "Output still contains mistakes; a human with taste has to direct",
+      "Verifying is harder than generating, so the review loop is essential",
+      "Narration and music depend on separate systems",
+      "Overlap and collision bugs between labels, characters and titles",
+      "Pixel-font glyphs can be misread"
+    ],
+    "relevance": 5,
+    "confidence": "high",
+    "evidence": "oEmbed; watch-page description and full chapter list; transcript read through a third-party transcript page as a detailed model summary. Prompt text was not shown"
+  },
+  {
+    "source_id": "yt:7gmPM-Xq5Zo",
+    "url": "https://www.youtube.com/watch?v=7gmPM-Xq5Zo",
+    "kind": "video",
+    "title": "Claude Opus 5.5 Is Insane for Educational Animations",
+    "creator": "Andy Lo",
+    "published": "2026-09-23",
+    "duration": "~08:00",
+    "summary": "Two demos made in claude.ai chat with Opus 5.5 at default effort. The first is a paper-cutout, hand-drawn explainer of Hawking radiation driven by a structured 'director's storyboard' prompt. The second turns a 2D sketch of a catapult into an interactive 3D physics sim with adjustable force and angle. The built-in voice sounded robotic, so the creator generated per-scene narration with Fish Audio via Claude Code and had the chat sync the uploaded clips into the animation.",
+    "what_is_shown": "A seven-scene paper-cutout science explainer: a curtain puppet stage, gouache and crayon textures, torn-edge outlines, stop-motion wobble, and morph transitions (sun rays curling into a black hole), with a child narrator character. Also an interactive 3D catapult with sliders.",
+    "stack": ["claude.ai chat (Opus 5.5, default effort)", "Claude Code", "Fish Audio TTS API", "HTML/JS artifact (likely Canvas/SVG and Three.js; not stated)"],
+    "techniques": [
+      {"name": "Director's storyboard prompt", "how": "Structure one prompt as a style block, main character, transition rules, a timestamped scene list (visual, voiceover line, transition) and notes on tone, music, sound effects and specs.", "quality_lever": "One-shot coherence: the model gets art direction, narrative and timing at once."},
+      {"name": "Material-texture style spec", "how": "Name physical media (paper cutout, gouache, crayon, torn edges with thin white outline, stop-motion wobble) and a fixed palette.", "quality_lever": "A distinctive, non-generic look with tactile character."},
+      {"name": "No hard cuts; morph transitions", "how": "Require every scene change to be a medium-appropriate morph between subjects.", "quality_lever": "Continuous visual flow, which aids comprehension."},
+      {"name": "Guide character for science content", "how": "A narrator character carries the lesson so the explanation follows a story.", "quality_lever": "Viewers stay engaged and the explanation is easier to follow."},
+      {"name": "Per-scene audio then sync", "how": "Generate one voiceover clip per scene with an external TTS, upload them, and ask the model to align the scene timings to the clips.", "quality_lever": "Better voice quality, with timing driven by the audio."},
+      {"name": "Sketch-to-3D interactive reveal", "how": "Open on a hand-drawn 2D sketch that becomes a live 3D physics sim on play, with parameter controls.", "quality_lever": "A strong reveal moment, plus explorable understanding."}
+    ],
+    "prompting_patterns": [
+      "Long structured storyboard prompt: STYLE / CHARACTER / TRANSITIONS / SCENES (timestamp, visual, VO, transition) / NOTES (tone, music, SFX, tech)",
+      "Short three-idea prompt for the interactive build (starts as sketch; play -> 3D sim; user-adjustable params)",
+      "Hand off to Claude Code when the chat sandbox cannot call external APIs"
+    ],
+    "pipeline": "storyboard prompt -> chat builds animated artifact -> Claude Code generates per-scene TTS (Fish Audio) -> upload clips to chat -> sync narration -> final explainer",
+    "pitfalls": [
+      "Chat sandbox cannot call external APIs, which forces a split workflow with Claude Code",
+      "The default synthetic voice sounded robotic and broke the storybook tone",
+      "Interactive 3D builds take about 15 minutes per generation"
+    ],
+    "relevance": 4,
+    "confidence": "high",
+    "evidence": "oEmbed; watch-page description and chapters; transcript read through a third-party transcript page as a detailed model summary. The exact prompt text was not reproduced"
+  }
+]

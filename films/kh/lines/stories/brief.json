@@ -1,0 +1,19 @@
+{
+  "id": "brief",
+  "title": "Brief Claude in <i>one line</i>.",
+  "eyebrow": "CETI · Whale line · The brief",
+  "endEyebrow": "CETI · The brief",
+  "outro": "One line of <i>thinking</i>.",
+  "bpm": 120,
+  "wada": 279,
+  "duration": 30,
+  "spoutT": 26.4,
+  "stations": [
+    { "word": "Goal", "sub": "What done looks like" },
+    { "word": "Context", "sub": "What it cannot see" },
+    { "word": "Constraints", "sub": "What to avoid" },
+    { "word": "Example", "sub": "Show, don't tell" },
+    { "word": "Format", "sub": "The shape of the answer" },
+    { "word": "Check", "sub": "How you'll know" }
+  ]
+}

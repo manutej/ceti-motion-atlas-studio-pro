@@ -1,0 +1,453 @@
+/* ════════════════════════════════════════════════════════════════════
+   CETI Design System — colors_and_type.css
+   --------------------------------------------------------------------
+   Two surfaces, one contract.
+
+     cetiai.co (marketing)       — dark editorial, navy ground,
+                                    maritime accents (copper / sage /
+                                    peach / slate). Whale logomark.
+     learn.cetiai.co (academy)   — retro-boardwalk dual-mode. Four
+                                    palettes × {light, dark}. Tone
+                                    tokens map to HSL roles so any
+                                    palette re-skins the whole UI.
+
+   The shared spine:
+     • Fraunces 300 italic        — display, signature
+     • DM Sans 400–700            — body / UI
+     • Space Mono 400/700         — code, eyebrows, hex, marginalia
+
+   Drop into :root. Components reference roles (--primary, --ink,
+   --terminal-bg, --gold) NEVER raw hex.
+   ──────────────────────────────────────────────────────────────────── */
+
+/* ── Webfonts ─────────────────────────────────────────────────────── */
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,300;1,9..144,400;1,9..144,500;1,9..144,600&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Space+Mono:wght@400;700&display=swap");
+
+:root {
+  /* ════════════════════════════════════════
+   * § TYPE
+   * ════════════════════════════════════════ */
+  --font-display: "Fraunces", "Cormorant Garamond", Georgia, serif;
+  --font-sans:    "DM Sans", "Inter", system-ui, sans-serif;
+  --font-mono:    "Space Mono", "JetBrains Mono", ui-monospace, monospace;
+
+  /* Type scale — fluid clamp(min, ideal, max) */
+  --t-display-xl: clamp(3.0rem, 6vw, 4.4rem);   /* hero, cover */
+  --t-display-l:  clamp(2.2rem, 4.5vw, 3.4rem); /* h1 */
+  --t-display:    clamp(1.7rem, 3.5vw, 2.4rem); /* h2 */
+  --t-h3:         clamp(1.25rem, 2vw, 1.5rem);
+  --t-h4:         1.125rem;
+  --t-body:       1rem;
+  --t-small:      0.875rem;
+  --t-meta:       0.75rem;
+  --t-eyebrow:    0.625rem;          /* mono caps, 0.18-0.22em tracking */
+
+  /* Tracking presets — eyebrow / mono uppercase rhythm */
+  --tracking-eyebrow: 0.22em;
+  --tracking-mono:    0.06em;
+  --tracking-display: -0.02em;
+  --tracking-body:    0;
+
+  /* Line-height presets */
+  --lh-tight:    1.1;
+  --lh-display:  1.2;
+  --lh-body:     1.6;
+  --lh-loose:    1.7;
+
+
+  /* ════════════════════════════════════════
+   * § SPACING + RHYTHM
+   * ════════════════════════════════════════ */
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  24px;
+  --space-6:  32px;
+  --space-7:  48px;
+  --space-8:  64px;
+  --space-9:  96px;
+  --gutter:   clamp(1.5rem, 4vw, 4rem);
+  --content-max: 1100px;
+  --lesson-max:   840px;
+
+  /* Radii */
+  --radius-sm:  6px;
+  --radius:     10px;
+  --radius-lg:  14px;
+  --radius-xl:  20px;
+  --radius-pill: 999px;
+
+
+  /* ════════════════════════════════════════
+   * § MOTION (mirrors motion.css)
+   * ════════════════════════════════════════ */
+  --ease-glaser:   cubic-bezier(0.22, 1, 0.36, 1);   /* house ease */
+  --ease-warm-in:  cubic-bezier(0.4, 0, 0.2, 1);     /* workhorse */
+  --ease-defer:    cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --ease-collect:  cubic-bezier(0.55, 0, 0.55, 0.2);
+  --ease-rest:     cubic-bezier(0.4, 0, 0.6, 1);
+  --duration-quick:       180ms;
+  --duration-comfortable: 280ms;
+  --duration-deliberate:  480ms;
+  --duration-considered:  720ms;
+
+
+  /* ════════════════════════════════════════
+   * § MARKETING PALETTE — cetiai.co
+   *    deep editorial dark; whale-streak accents.
+   *    Sampled from whale-logo.svg + meta-theme-color.
+   * ════════════════════════════════════════ */
+  --mk-deep-sea:     #1A1F2E;   /* page ground (deeper than ink) */
+  --mk-night-tide:   #262721;   /* meta theme color — alt ground */
+  --mk-bathysphere:  #0F1320;   /* terminal / code surface */
+  --mk-paper:        #F5EFE3;   /* cream ink-on-cream */
+  --mk-paper-soft:   #E8DFCB;   /* surface ivory */
+  --mk-fog:          #B8B0A1;   /* muted text on dark */
+  --mk-rule:         #2A3142;   /* hairline rule on dark */
+
+  /* Whale-streak accents — sampled from whale-logo.svg */
+  --mk-copper:       #A67756;   /* lead — warm metallic */
+  --mk-sage:         #7A9171;   /* counterpoint — botanical */
+  --mk-peach:        #D88B5C;   /* spark — sunset coral */
+  --mk-slate:        #324555;   /* depth — cool ink */
+  --mk-rust:         #8C4A2E;   /* deeper copper for CTA */
+
+  /* Soft accents for illustration / badges */
+  --mk-mist:         #95A8B0;   /* surface cool */
+  --mk-driftwood:    #5C5447;   /* earthen */
+
+
+  /* ════════════════════════════════════════
+   * § ACADEMY PALETTE — learn.cetiai.co
+   *    Four palettes × {light, dark}.
+   *    HSL triples (so Tailwind alpha modifiers work).
+   *    Default look (no class on body) = boardwalk dark.
+   * ════════════════════════════════════════ */
+
+  /* fallback ring + destructive */
+  --ring: 260 40% 55%;
+  --destructive: 8 72% 52%;
+  --destructive-foreground: 40 40% 96%;
+  --input: 0 0% 100% / .08;
+}
+
+
+/* ── 🎡 Boardwalk · light ───────────────────────────────────────── */
+.palette-boardwalk.light, [data-palette="boardwalk-light"] {
+  --background: 44 58% 92%;
+  --foreground: 28 28% 13%;
+  --card:       42 46% 87%;
+  --card-foreground: 28 28% 13%;
+  --muted:      42 18% 92%;
+  --muted-foreground: 28 18% 34%;
+  --border:     260 35% 78%;
+  --primary:    265 45% 78%;
+  --primary-foreground: 262 48% 30%;
+  --secondary:  150 35% 72%;
+  --secondary-foreground: 158 56% 23%;
+  --accent:     10 62% 76%;
+  --accent-foreground: 10 70% 26%;
+  --support:    212 40% 67%;
+  --support-foreground: 212 56% 23%;
+  --primary-edge:   265 45% 52%;
+  --secondary-edge: 150 40% 32%;
+  --accent-edge:    10 62% 43%;
+  --support-edge:   212 50% 42%;
+  --terminal-bg: 42 30% 83%;
+  --terminal-fg: 28 28% 13%;
+  --input: 0 0% 0% / .06;
+}
+
+/* ── 🎡 Boardwalk · dark (default look) ─────────────────────────── */
+.palette-boardwalk.dark, [data-palette="boardwalk-dark"],
+body:not([class*="palette-"]) {
+  --background: 268 16% 11%;
+  --foreground: 40 62% 96%;
+  --card:       260 22% 17%;
+  --card-foreground: 40 62% 96%;
+  --muted:      268 15% 22%;
+  --muted-foreground: 268 28% 82%;
+  --border: 262 72% 86% / .30;
+  --primary:    263 28% 22%;
+  --primary-foreground: 262 90% 92%;
+  --secondary:  158 18% 15%;
+  --secondary-foreground: 152 72% 82%;
+  --accent:     12 30% 18%;
+  --accent-foreground: 10 88% 80%;
+  --support:    212 30% 18%;
+  --support-foreground: 212 70% 80%;
+  --primary-edge:   262 90% 92%;
+  --secondary-edge: 152 72% 82%;
+  --accent-edge:    10 88% 80%;
+  --support-edge:   212 70% 80%;
+  --terminal-bg: 268 22% 7%;
+  --terminal-fg: 40 62% 96%;
+  --input: 0 0% 100% / .08;
+}
+
+/* ── 🌊 Coastal · light ─────────────────────────────────────────── */
+.palette-coastal.light, [data-palette="coastal-light"] {
+  --background: 48 30% 91%;
+  --foreground: 32 18% 11%;
+  --card: 46 24% 85%;
+  --card-foreground: 32 18% 11%;
+  --muted: 48 18% 90%;
+  --muted-foreground: 32 16% 28%;
+  --border: 170 40% 22% / .20;
+  --primary: 166 36% 72%;  --primary-foreground: 166 55% 22%;
+  --secondary: 14 55% 82%; --secondary-foreground: 14 55% 26%;
+  --accent: 205 52% 78%;   --accent-foreground: 205 70% 20%;
+  --support: 0 24% 72%;    --support-foreground: 0 38% 24%;
+  --primary-edge: 166 50% 42%; --secondary-edge: 14 65% 52%;
+  --accent-edge: 205 60% 48%;  --support-edge: 0 40% 50%;
+  --terminal-bg: 46 20% 82%;   --terminal-fg: 32 18% 11%;
+}
+
+/* ── 🌊 Coastal · dark ──────────────────────────────────────────── */
+.palette-coastal.dark, [data-palette="coastal-dark"] {
+  --background: 192 14% 10%;
+  --foreground: 170 30% 96%;
+  --card: 204 28% 15%;
+  --card-foreground: 170 30% 96%;
+  --muted: 192 14% 20%;
+  --muted-foreground: 170 22% 78%;
+  --border: 165 60% 68% / .30;
+  --primary: 168 28% 13%;  --primary-foreground: 165 72% 82%;
+  --secondary: 8 25% 13%;  --secondary-foreground: 16 85% 86%;
+  --accent: 202 42% 15%;   --accent-foreground: 205 78% 78%;
+  --support: 0 14% 15%;    --support-foreground: 0 62% 88%;
+  --primary-edge: 165 72% 82%;  --secondary-edge: 16 85% 86%;
+  --accent-edge: 205 78% 78%;   --support-edge: 0 62% 88%;
+  --terminal-bg: 200 22% 6%;    --terminal-fg: 170 30% 96%;
+}
+
+/* ── 🌿 Greenhouse · light ──────────────────────────────────────── */
+.palette-greenhouse.light, [data-palette="greenhouse-light"] {
+  --background: 44 30% 91%;
+  --foreground: 40 40% 8%;
+  --card: 42 22% 85%;
+  --card-foreground: 40 40% 8%;
+  --muted: 44 16% 90%;
+  --muted-foreground: 32 20% 28%;
+  --border: 90 30% 20% / .18;
+  --primary: 80 26% 52%;  --primary-foreground: 85 65% 12%;
+  --secondary: 14 42% 59%; --secondary-foreground: 14 58% 12%;
+  --accent: 148 20% 52%;   --accent-foreground: 148 40% 12%;
+  --support: 30 12% 67%;   --support-foreground: 30 20% 18%;
+  --primary-edge: 80 40% 32%;  --secondary-edge: 14 56% 36%;
+  --accent-edge: 148 38% 30%;  --support-edge: 30 22% 38%;
+  --terminal-bg: 42 18% 82%;   --terminal-fg: 40 40% 8%;
+}
+
+/* ── 🌿 Greenhouse · dark ───────────────────────────────────────── */
+.palette-greenhouse.dark, [data-palette="greenhouse-dark"] {
+  --background: 72 14% 7%;
+  --foreground: 40 50% 94%;
+  --card: 78 18% 12%;
+  --card-foreground: 40 50% 94%;
+  --muted: 72 12% 20%;
+  --muted-foreground: 42 28% 78%;
+  --border: 90 62% 66% / .30;
+  --primary: 96 32% 12%;   --primary-foreground: 90 72% 80%;
+  --secondary: 22 32% 12%; --secondary-foreground: 22 85% 82%;
+  --accent: 144 32% 12%;   --accent-foreground: 145 58% 72%;
+  --support: 36 20% 13%;   --support-foreground: 40 36% 84%;
+  --primary-edge: 90 72% 80%;   --secondary-edge: 22 85% 82%;
+  --accent-edge: 145 58% 72%;   --support-edge: 40 36% 84%;
+  --terminal-bg: 72 20% 4%;     --terminal-fg: 40 50% 94%;
+}
+
+/* ── ⚡ Neo Sage · light ────────────────────────────────────────── */
+.palette-neosage.light, [data-palette="neosage-light"] {
+  --background: 48 24% 95%;
+  --foreground: 8 18% 11%;
+  --card: 48 22% 90%;
+  --card-foreground: 8 18% 11%;
+  --muted: 48 16% 92%;
+  --muted-foreground: 32 14% 30%;
+  --border: 262 44% 20% / .18;
+  --primary: 265 32% 65%;   --primary-foreground: 262 60% 24%;
+  --secondary: 68 54% 54%;  --secondary-foreground: 72 100% 11%;
+  --accent: 36 70% 66%;     --accent-foreground: 36 100% 16%;
+  --support: 28 6% 63%;     --support-foreground: 28 10% 18%;
+  --primary-edge: 265 46% 38%;  --secondary-edge: 68 72% 25%;
+  --accent-edge: 36 80% 31%;    --support-edge: 28 14% 30%;
+  --terminal-bg: 48 18% 86%;    --terminal-fg: 8 18% 11%;
+}
+
+/* ── ⚡ Neo Sage · dark ─────────────────────────────────────────── */
+.palette-neosage.dark, [data-palette="neosage-dark"] {
+  --background: 260 16% 8%;
+  --foreground: 48 30% 96%;
+  --card: 260 18% 13%;
+  --card-foreground: 48 30% 96%;
+  --muted: 260 14% 22%;
+  --muted-foreground: 260 22% 82%;
+  --border: 262 86% 82% / .30;
+  --primary: 258 38% 15%;   --primary-foreground: 262 92% 90%;
+  --secondary: 72 65% 8%;   --secondary-foreground: 68 88% 76%;
+  --accent: 36 60% 12%;     --accent-foreground: 36 88% 72%;
+  --support: 280 8% 13%;    --support-foreground: 260 22% 84%;
+  --primary-edge: 262 92% 90%;   --secondary-edge: 68 88% 76%;
+  --accent-edge: 36 88% 72%;     --support-edge: 260 22% 84%;
+  --terminal-bg: 260 22% 5%;     --terminal-fg: 48 30% 96%;
+}
+
+
+/* ════════════════════════════════════════════════════════════════════
+   § SEMANTIC ROLE ALIASES
+   Use these in component CSS — never raw hex, never `--primary` directly
+   if you want palette-aware behavior.
+   ──────────────────────────────────────────────────────────────────── */
+
+:root {
+  /* Surfaces */
+  --bg:           hsl(var(--background));
+  --surface:      hsl(var(--card));
+  --raised:       hsl(var(--muted));
+  --rule:         hsl(var(--border));
+
+  /* Text */
+  --ink:          hsl(var(--foreground));
+  --muted-ink:    hsl(var(--muted-foreground));
+  --dim:          hsl(var(--muted-foreground) / 0.7);
+
+  /* Brand "gold" — maps to primary-edge so it pops in dark, grounds in light */
+  --gold:         hsl(var(--primary-edge));
+  --gold-soft:    hsl(var(--primary-edge) / 0.18);
+
+  /* Terminal */
+  --term-bg:      hsl(var(--terminal-bg));
+  --term-fg:      hsl(var(--terminal-fg));
+
+  /* Role accent shorthands */
+  --primary-fill: hsl(var(--primary));
+  --primary-ink:  hsl(var(--primary-foreground));
+  --primary-glow: hsl(var(--primary-edge));
+
+  --accent-fill:  hsl(var(--accent));
+  --accent-ink:   hsl(var(--accent-foreground));
+  --accent-glow:  hsl(var(--accent-edge));
+
+  --secondary-fill: hsl(var(--secondary));
+  --secondary-ink:  hsl(var(--secondary-foreground));
+  --secondary-glow: hsl(var(--secondary-edge));
+
+  --support-fill: hsl(var(--support));
+  --support-ink:  hsl(var(--support-foreground));
+  --support-glow: hsl(var(--support-edge));
+}
+
+
+/* ════════════════════════════════════════════════════════════════════
+   § SEMANTIC TYPE STYLES — h1, h2, body, eyebrow, mono, etc.
+   Pages that need quick canonical text styling apply these classes.
+   ──────────────────────────────────────────────────────────────────── */
+
+.ceti-h1, h1.display, .ceti-display {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-style: italic;
+  font-size: var(--t-display-l);
+  line-height: var(--lh-display);
+  letter-spacing: var(--tracking-display);
+  color: var(--ink);
+  margin: 0 0 var(--space-4);
+}
+.ceti-h1-xl {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-style: italic;
+  font-size: var(--t-display-xl);
+  line-height: 1.05;
+  letter-spacing: var(--tracking-display);
+  color: var(--ink);
+}
+.ceti-h2 {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-style: italic;
+  font-size: var(--t-display);
+  line-height: var(--lh-display);
+  letter-spacing: var(--tracking-display);
+  color: var(--ink);
+  margin: 0 0 var(--space-3);
+}
+.ceti-h3 {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: var(--t-h3);
+  line-height: 1.3;
+  color: var(--ink);
+  margin: 0 0 var(--space-3);
+}
+.ceti-h4 {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: var(--t-h4);
+  color: var(--ink);
+}
+.ceti-body, p {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: var(--t-body);
+  line-height: var(--lh-body);
+  color: var(--ink);
+}
+.ceti-lede {
+  font-family: var(--font-sans);
+  font-size: clamp(1rem, 1.6vw, 1.15rem);
+  line-height: 1.6;
+  color: var(--muted-ink);
+  max-width: 56ch;
+}
+.ceti-eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--t-eyebrow);
+  font-weight: 700;
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--muted-ink);
+}
+.ceti-mono, code, kbd, samp, pre {
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+}
+.ceti-meta {
+  font-family: var(--font-mono);
+  font-size: var(--t-meta);
+  letter-spacing: var(--tracking-mono);
+  color: var(--dim);
+}
+
+/* "display-italic" — the signature class. Any element with it picks up
+   Fraunces 300 italic. Use sparingly: every diagram/card title gets it. */
+.display-italic {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-style: italic;
+  letter-spacing: -0.01em;
+}
+
+
+/* ════════════════════════════════════════════════════════════════════
+   § BASE — minimal reset + body wiring
+   ──────────────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+html:has(body.dark), body.dark { color-scheme: dark; }
+html:has(body.light), body.light { color-scheme: light; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: var(--t-body);
+  line-height: var(--lh-body);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: "ss01", "cv11";
+  transition: background-color 0.3s ease, color 0.3s ease;
+}

@@ -1,0 +1,99 @@
+{
+ "id": "whale-line-format-v1",
+ "name": "Whale Line \u2014 film format v1",
+ "kind": "Format",
+ "version": "1.0",
+ "status": "shipped",
+ "style": {
+  "name": "Kinetic Hydrography",
+  "version": "1.0.0",
+  "passport_sha256": "11df6c39a38697375745f2bdb2040780e72f3657a56ab4306338bbfa64913efe",
+  "kit_sha256": "a19e3d258a95aa78e3199a8a95645703411e1ff218b262cd087dcf6516312a05"
+ },
+ "parents": {
+  "kh-style-1.0.0": "31bf64a419e000b4af1a66d61efd00b6969f293576a98b964a3680cb02a6aa20",
+  "little-whale-v2": "c39c34cfd5321d9c4ee069192483251cab27b5999ef10f751c536e0e67a4c5e6"
+ },
+ "wada": [
+  279
+ ],
+ "engine": [
+  "Canvas (skia)",
+  "ffmpeg",
+  "numpy synth"
+ ],
+ "atlas": [
+  "sty:kinetic-type-showreel",
+  "el:kinetic-type",
+  "el:character-rig",
+  "el:camera-move",
+  "el:sfx-cue",
+  "el:music-bed",
+  "el:squash-stretch",
+  "q:one-object-continuity",
+  "q:beat-locked-changes",
+  "q:time-pure-frames",
+  "q:motion-blur",
+  "q:cue-locked-sound",
+  "pr:inputs-block-template",
+  "stg:beat-grid"
+ ],
+ "sources": [
+  {
+   "path": "kh/kh-kit.js",
+   "sha256": "a19e3d258a95aa78e3199a8a95645703411e1ff218b262cd087dcf6516312a05",
+   "bytes": 7272
+  },
+  {
+   "path": "kh/whale-rig.js",
+   "sha256": "b73a9ad95b8f2f94a7919fc2125a4455d3efc58ff1eb9eb469f96ca101c9a82b",
+   "bytes": 4265
+  },
+  {
+   "path": "kh/host.cjs",
+   "sha256": "3ae5933ebf72cf4140615e47cb0fe230cfdd0eeaeb3743ea9b47ecaa8cace69b",
+   "bytes": 693
+  },
+  {
+   "path": "kh/lines/whaleline.js",
+   "sha256": "bb4711e204eb59e72c893942dd3e583fdfbdeaea197c55e97293ebd2e84c7476",
+   "bytes": 14600
+  },
+  {
+   "path": "kh/lines/engine.cjs",
+   "sha256": "427dd0a9b34dc38b97acff46bbe9b27d8f8151865e7a4c2ab0628562283a1410",
+   "bytes": 961
+  },
+  {
+   "path": "kh/lines/tool.cjs",
+   "sha256": "1e491e0f5498013b712863382fca94d44bde3829eef7fb3a80ac04373df66987",
+   "bytes": 3067
+  },
+  {
+   "path": "kh/lines/score.py",
+   "sha256": "bf957f5c151eb56206ab01fe31a50fc58298b797733bbab3a1839df6c82629c1",
+   "bytes": 5076
+  }
+ ],
+ "outputs": [],
+ "gates": {
+  "read_time": "PASS \u2014 built in (tool.cjs gate)",
+  "frame_jump": "PASS \u2014 measured on screen, per story",
+  "flash_safety": "PASS \u2014 measured on each render",
+  "colour_provenance": "PASS"
+ },
+ "colour_provenance": {
+  "literal_colours": 36,
+  "registered": 36,
+  "declared_derived": [],
+  "unregistered": [],
+  "status": "PASS"
+ },
+ "deviations": [
+  "The whale keeps its own colours (character continuity) rather than the story\u2019s Wada combination"
+ ],
+ "summary": "A reusable film format: one line of thinking draws the sea; the little whale swims under it and hops onto each key word on the beat; the camera pulls back to show the whole line as the summary. A story is a small JSON file: title, 4\u20138 words with one-line glosses, a Wada combination, BPM.",
+ "changes": "New format. The whale rig moved into the style kit (whale-rig.js), coloured only from tokens.",
+ "registered_at": "2026-10-17T00:58:23+00:00",
+ "fingerprint": "9d5e7a25aef1e59c09b9c7edb60b4bbca322be6a4c2109798b34c7a8439af68f"
+}

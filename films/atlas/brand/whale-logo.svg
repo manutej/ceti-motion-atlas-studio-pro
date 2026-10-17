@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 360" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="CETI humpback whale">
+  <g id="whale">
+    
+    <path d="M88 168 C 96 152, 118 138, 152 138 C 188 138, 220 148, 252 162 C 292 178, 332 192, 376 198 C 418 204, 456 206, 488 198 C 510 192, 524 184, 532 176"></path>
+    
+    <path d="M88 168 C 92 158, 104 150, 124 148 C 156 144, 196 154, 240 168 C 286 184, 336 196, 388 200"></path>
+    
+    <path d="M150 162 C 175 175, 210 184, 248 188" stroke-width="1" opacity="0.55"></path>
+    <path d="M165 170 C 195 184, 232 192, 268 194" stroke-width="1" opacity="0.45"></path>
+    <path d="M185 176 C 215 188, 250 196, 285 198" stroke-width="1" opacity="0.35"></path>
+    
+    <path d="M92 172 C 110 174, 132 170, 150 164" stroke-width="1.2"></path>
+    
+    <circle cx="118" cy="158" r="1.6" fill="currentColor" stroke="none"></circle>
+    
+    <path d="M232 180 C 248 210, 280 232, 322 238 C 308 224, 290 208, 276 192"></path>
+    
+    <path d="M488 198 C 512 198, 532 192, 548 178 C 562 166, 572 148, 572 130 C 558 138, 542 148, 528 158 C 540 152, 556 142, 568 126 C 552 132, 534 142, 518 154"></path>
+    <path d="M532 176 C 548 172, 562 162, 572 150"></path>
+    
+    <path d="M548 152 C 552 158, 555 164, 556 170" stroke-width="1" opacity="0.6"></path>
+  </g>
+  <g id="streaks" stroke-linecap="round" fill="none">
+    
+    <path d="M148 78 C 196 92, 250 122, 312 158" stroke="#A67756" stroke-width="2.2" opacity="0.85"></path>
+    <path d="M168 86 C 222 102, 282 132, 348 168" stroke="#7A9171" stroke-width="1.8" opacity="0.8"></path>
+    <path d="M188 92 C 246 110, 310 142, 380 178" stroke="#D88B5C" stroke-width="2.4" opacity="0.85"></path>
+    <path d="M210 98 C 270 116, 336 148, 410 184" stroke="#324555" stroke-width="1.4" opacity="0.7"></path>
+    <path d="M232 104 C 292 122, 358 152, 434 186" stroke="#A67756" stroke-width="1.2" opacity="0.6"></path>
+    <path d="M256 110 C 314 126, 376 152, 452 184" stroke="#7A9171" stroke-width="1.6" opacity="0.55"></path>
+    <path d="M280 116 C 332 130, 388 150, 462 178" stroke="#262721" stroke-width="1" opacity="0.5"></path>
+  </g>
+</svg>

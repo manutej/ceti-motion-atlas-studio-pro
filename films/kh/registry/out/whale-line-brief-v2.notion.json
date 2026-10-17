@@ -1,0 +1,41 @@
+{
+ "properties": {
+  "Name": "Whale Line \u2014 The brief v2 (air, 128 BPM)",
+  "Kind": "Film",
+  "Version": "2.0",
+  "Status": "shipped",
+  "Style": "Kinetic Hydrography 1.0.0",
+  "Fingerprint": "6b3385aa768e67a9",
+  "Passport hash": "11df6c39a3869737",
+  "Wada": [
+   "279"
+  ],
+  "Engine": [
+   "Canvas (skia)",
+   "ffmpeg",
+   "numpy synth"
+  ],
+  "Gates": "Pass",
+  "Gate detail": "read_time: PASS \u2014 tightest gloss 2.09 s \u00b7 frame_jump: PASS \u2014 28.4 px and 0.11 rad per frame \u00b7 flash_safety: PASS \u2014 max luma step 0.04% \u00b7 loudness: PASS \u2014 -16.0 LUFS, -2.2 dBTP \u00b7 ffprobe: PASS \u2014 1440 frames, 24.0 s, 60 fps \u00b7 contrast: PASS \u00b7 colour_provenance: PASS",
+  "Deviations": "None",
+  "Design ID": "whale-line-brief-v2",
+  "Derived from": [
+   "3fcd50cfaf9381dfaaa1e76efbec18cf",
+   "3fcd50cfaf9381bda8d6e0a53b1ddc79"
+  ],
+  "Atlas lineage": [
+   "3fbd50cfaf938104bd6dc9ee16ba93f9",
+   "3fbd50cfaf938109b4d8cdcbc2fc8787",
+   "3fbd50cfaf93817a873fefa2714b4f69",
+   "3fbd50cfaf9381078d70c4da78795394",
+   "3fbd50cfaf9381269a41dd50de1c851b",
+   "3fbd50cfaf9381eb9960f6866c267d59",
+   "3fbd50cfaf93813bbd24e9cfe584ebc9"
+  ],
+  "date:Registered:start": "2026-10-17",
+  "date:Registered:is_datetime": 0
+ },
+ "content": "The brief, re-cut faster in air: 24 s at 128 BPM, five beats per station instead of six.\n\n## Provenance\n- **Style:** Kinetic Hydrography 1.0.0 \u00b7 passport `11df6c39a3869737` \u00b7 kit `a19e3d258a95aa78`\n- **Fingerprint:** `6b3385aa768e67a9aeca49b13e3a86e956e5d9dab22b32147ad7c9e8220e8a68`\n- **Parents:** whale-line-format-v1.1 (`982e72b50c3d`), whale-line-brief-v1 (`4b2fe85f8c44`)\n- **Colour provenance:** PASS \u2014 0 literal colours, 0 registered tokens, 0 declared derived\n\n## What changed\n~30% faster; no water; speed trail; same six words.\n\n## Gates\n- read_time: PASS \u2014 tightest gloss 2.09 s\n- frame_jump: PASS \u2014 28.4 px and 0.11 rad per frame\n- flash_safety: PASS \u2014 max luma step 0.04%\n- loudness: PASS \u2014 -16.0 LUFS, -2.2 dBTP\n- ffprobe: PASS \u2014 1440 frames, 24.0 s, 60 fps\n- contrast: PASS\n- colour_provenance: PASS\n\n## Deviations from the style\n- None\n\n## Files\n- `kh/lines/whale-line-brief-v2.mp4` \u00b7 `7d746cd687c5` \u00b7 4,142,634 bytes\n- `kh/lines/stories/brief-v2.json` \u00b7 `bcc06ba65e86` \u00b7 668 bytes\n- `kh/lines/cues-brief-v2.json` \u00b7 `498a66b17376` \u00b7 398 bytes\n\n## Manifest\n```json\n{\n \"id\": \"whale-line-brief-v2\",\n \"fingerprint\": \"6b3385aa768e67a9aeca49b13e3a86e956e5d9dab22b32147ad7c9e8220e8a68\",\n \"style\": {\n  \"name\": \"Kinetic Hydrography\",\n  \"version\": \"1.0.0\",\n  \"passport_sha256\": \"11df6c39a38697375745f2bdb2040780e72f3657a56ab4306338bbfa64913efe\",\n  \"kit_sha256\": \"a19e3d258a95aa78e3199a8a95645703411e1ff218b262cd087dcf6516312a05\"\n },\n \"parents\": {\n  \"whale-line-format-v1.1\": \"982e72b50c3d5797a16e065a264aa5b7cfb630dd4195a3ca83ce617ba752a3a2\",\n  \"whale-line-brief-v1\": \"4b2fe85f8c44756051521a6b3797515739f9da99cbde05e7e3732dd761ab2387\"\n },\n \"wada\": [\n  279\n ],\n \"atlas\": [\n  \"el:kinetic-type\",\n  \"el:character-rig\",\n  \"q:beat-locked-changes\",\n  \"q:motion-blur\",\n  \"gate:frame-jump-detector\",\n  \"gate:ffprobe-spec\",\n  \"gate:loudness-waveform\"\n ],\n \"gates\": {\n  \"read_time\": \"PASS \\u2014 tightest gloss 2.09 s\",\n  \"frame_jump\": \"PASS \\u2014 28.4 px and 0.11 rad per frame\",\n  \"flash_safety\": \"PASS \\u2014 max luma step 0.04%\",\n  \"loudness\": \"PASS \\u2014 -16.0 LUFS, -2.2 dBTP\",\n  \"ffprobe\": \"PASS \\u2014 1440 frames, 24.0 s, 60 fps\",\n  \"contrast\": \"PASS\",\n  \"colour_provenance\": \"PASS\"\n }\n}\n```",
+ "preview": "kh/registry/previews/whale-line-brief-v2.jpg",
+ "unresolved_parents": []
+}

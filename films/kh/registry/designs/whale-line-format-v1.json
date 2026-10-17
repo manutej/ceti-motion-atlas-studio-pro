@@ -1,0 +1,59 @@
+{
+ "style": "1.0.0",
+ "status": "shipped",
+ "uses_kit": true,
+ "derived_colours": {},
+ "id": "whale-line-format-v1",
+ "name": "Whale Line \u2014 film format v1",
+ "kind": "Format",
+ "version": "1.0",
+ "parents": [
+  "kh-style-1.0.0",
+  "little-whale-v2"
+ ],
+ "wada": [
+  279
+ ],
+ "engine": [
+  "Canvas (skia)",
+  "ffmpeg",
+  "numpy synth"
+ ],
+ "atlas": [
+  "sty:kinetic-type-showreel",
+  "el:kinetic-type",
+  "el:character-rig",
+  "el:camera-move",
+  "el:sfx-cue",
+  "el:music-bed",
+  "el:squash-stretch",
+  "q:one-object-continuity",
+  "q:beat-locked-changes",
+  "q:time-pure-frames",
+  "q:motion-blur",
+  "q:cue-locked-sound",
+  "pr:inputs-block-template",
+  "stg:beat-grid"
+ ],
+ "sources": [
+  "kh/kh-kit.js",
+  "kh/whale-rig.js",
+  "kh/host.cjs",
+  "kh/lines/whaleline.js",
+  "kh/lines/engine.cjs",
+  "kh/lines/tool.cjs",
+  "kh/lines/score.py"
+ ],
+ "outputs": [],
+ "preview": "kh/registry/previews/whale-line-format-v1.jpg",
+ "gates": {
+  "read_time": "PASS \u2014 built in (tool.cjs gate)",
+  "frame_jump": "PASS \u2014 measured on screen, per story",
+  "flash_safety": "PASS \u2014 measured on each render"
+ },
+ "deviations": [
+  "The whale keeps its own colours (character continuity) rather than the story\u2019s Wada combination"
+ ],
+ "summary": "A reusable film format: one line of thinking draws the sea; the little whale swims under it and hops onto each key word on the beat; the camera pulls back to show the whole line as the summary. A story is a small JSON file: title, 4\u20138 words with one-line glosses, a Wada combination, BPM.",
+ "changes": "New format. The whale rig moved into the style kit (whale-rig.js), coloured only from tokens."
+}

@@ -1,0 +1,74 @@
+{
+ "id": "kh-style-1.0.0",
+ "name": "Kinetic Hydrography 1.0.0 \u2014 style passport",
+ "kind": "Style system",
+ "version": "1.0.0",
+ "status": "shipped",
+ "style": {
+  "name": "Kinetic Hydrography",
+  "version": "1.0.0",
+  "passport_sha256": "11df6c39a38697375745f2bdb2040780e72f3657a56ab4306338bbfa64913efe",
+  "kit_sha256": "a19e3d258a95aa78e3199a8a95645703411e1ff218b262cd087dcf6516312a05"
+ },
+ "parents": {},
+ "wada": [
+  296,
+  279,
+  166,
+  339,
+  84,
+  207,
+  243
+ ],
+ "engine": [
+  "Canvas (skia)",
+  "Python (Pillow)"
+ ],
+ "atlas": [
+  "stg:style-system",
+  "q:brand-grounding",
+  "q:typographic-restraint",
+  "q:banned-effects-list",
+  "q:unified-finish",
+  "q:principles-as-numbers"
+ ],
+ "sources": [
+  {
+   "path": "kh/registry/style.json",
+   "sha256": "2dd6f1a1d683c0d17559909ec2e82c2cc143c16f063dacab8d9f75457bda7c27",
+   "bytes": 2946
+  },
+  {
+   "path": "kh/kh-kit.js",
+   "sha256": "a19e3d258a95aa78e3199a8a95645703411e1ff218b262cd087dcf6516312a05",
+   "bytes": 7272
+  },
+  {
+   "path": "atlas/design/philosophy.md",
+   "sha256": "fff859af960db1cf5b0371954941c780f1369fd6b0875007678194aaa6d2bf6d",
+   "bytes": 3326
+  },
+  {
+   "path": "atlas/brand/colors_and_type.css",
+   "sha256": "2c4bc1fc1baa53f6e81870ad6d91158e91b175fc5b26c5acc53353400ae21257",
+   "bytes": 18675
+  }
+ ],
+ "outputs": [],
+ "gates": {
+  "contrast": "PASS \u2014 text \u2265 4.5:1 on its ground in every plate",
+  "colour_provenance": "PASS"
+ },
+ "colour_provenance": {
+  "literal_colours": 36,
+  "registered": 36,
+  "declared_derived": [],
+  "unregistered": [],
+  "status": "PASS"
+ },
+ "deviations": [],
+ "summary": "The root of the lineage. Motion as something that can be charted: frames are functions of time, beats sit on a grid, instruments (bearing ring, depth gauge, beat grid) annotate the movement, and one Sanzo Wada combination keys each piece. Built on the CETI design system.",
+ "changes": "First version. Tokens = CETI design system + seven Wada combinations; type = Fraunces 300 italic / DM Sans / Space Mono; motion = the five CETI eases, no bounce.",
+ "registered_at": "2026-10-16T17:09:46+00:00",
+ "fingerprint": "31bf64a419e000b4af1a66d61efd00b6969f293576a98b964a3680cb02a6aa20"
+}

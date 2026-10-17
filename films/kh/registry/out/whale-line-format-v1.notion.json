@@ -1,0 +1,48 @@
+{
+ "properties": {
+  "Name": "Whale Line \u2014 film format v1",
+  "Kind": "Format",
+  "Version": "1.0",
+  "Status": "shipped",
+  "Style": "Kinetic Hydrography 1.0.0",
+  "Fingerprint": "9d5e7a25aef1e59c",
+  "Passport hash": "11df6c39a3869737",
+  "Wada": [
+   "279"
+  ],
+  "Engine": [
+   "Canvas (skia)",
+   "ffmpeg",
+   "numpy synth"
+  ],
+  "Gates": "Pass",
+  "Gate detail": "read_time: PASS \u2014 built in (tool.cjs gate) \u00b7 frame_jump: PASS \u2014 measured on screen, per story \u00b7 flash_safety: PASS \u2014 measured on each render \u00b7 colour_provenance: PASS",
+  "Deviations": "The whale keeps its own colours (character continuity) rather than the story\u2019s Wada combination",
+  "Design ID": "whale-line-format-v1",
+  "Derived from": [
+   "3fbd50cfaf93811e86ebfd0565a7a2f7",
+   "3fbd50cfaf9381418697e4d66db9435c"
+  ],
+  "Atlas lineage": [
+   "3fbd50cfaf9381d88a0af845bedf5df8",
+   "3fbd50cfaf938104bd6dc9ee16ba93f9",
+   "3fbd50cfaf938109b4d8cdcbc2fc8787",
+   "3fbd50cfaf9381fbb243e1afa8e20b3c",
+   "3fbd50cfaf9381299093d47d6e84caba",
+   "3fbd50cfaf9381019bf1e53faa0bf719",
+   "3fbd50cfaf938155a99bc0fc919e55cb",
+   "3fbd50cfaf9381b583d4fee1073b83e3",
+   "3fbd50cfaf93817a873fefa2714b4f69",
+   "3fbd50cfaf9381159144e6222a7785ef",
+   "3fbd50cfaf9381078d70c4da78795394",
+   "3fbd50cfaf93818c9148cabe066e555a",
+   "3fbd50cfaf93818781c7f9c8ca66f3c7",
+   "3fbd50cfaf9381359bdfe39aa9039cbc"
+  ],
+  "date:Registered:start": "2026-10-17",
+  "date:Registered:is_datetime": 0
+ },
+ "content": "A reusable film format: one line of thinking draws the sea; the little whale swims under it and hops onto each key word on the beat; the camera pulls back to show the whole line as the summary. A story is a small JSON file: title, 4\u20138 words with one-line glosses, a Wada combination, BPM.\n\n## Provenance\n- **Style:** Kinetic Hydrography 1.0.0 \u00b7 passport `11df6c39a3869737` \u00b7 kit `a19e3d258a95aa78`\n- **Fingerprint:** `9d5e7a25aef1e59c09b9c7edb60b4bbca322be6a4c2109798b34c7a8439af68f`\n- **Parents:** kh-style-1.0.0 (`31bf64a419e0`), little-whale-v2 (`c39c34cfd532`)\n- **Colour provenance:** PASS \u2014 36 literal colours, 36 registered tokens, 0 declared derived\n\n## What changed\nNew format. The whale rig moved into the style kit (whale-rig.js), coloured only from tokens.\n\n## Gates\n- read_time: PASS \u2014 built in (tool.cjs gate)\n- frame_jump: PASS \u2014 measured on screen, per story\n- flash_safety: PASS \u2014 measured on each render\n- colour_provenance: PASS\n\n## Deviations from the style\n- The whale keeps its own colours (character continuity) rather than the story\u2019s Wada combination\n\n## Files\n- `kh/kh-kit.js` \u00b7 `a19e3d258a95` \u00b7 7,272 bytes\n- `kh/whale-rig.js` \u00b7 `b73a9ad95b8f` \u00b7 4,265 bytes\n- `kh/host.cjs` \u00b7 `3ae5933ebf72` \u00b7 693 bytes\n- `kh/lines/whaleline.js` \u00b7 `bb4711e204eb` \u00b7 14,600 bytes\n- `kh/lines/engine.cjs` \u00b7 `427dd0a9b34d` \u00b7 961 bytes\n- `kh/lines/tool.cjs` \u00b7 `1e491e0f5498` \u00b7 3,067 bytes\n- `kh/lines/score.py` \u00b7 `bf957f5c151e` \u00b7 5,076 bytes\n\n## Manifest\n```json\n{\n \"id\": \"whale-line-format-v1\",\n \"fingerprint\": \"9d5e7a25aef1e59c09b9c7edb60b4bbca322be6a4c2109798b34c7a8439af68f\",\n \"style\": {\n  \"name\": \"Kinetic Hydrography\",\n  \"version\": \"1.0.0\",\n  \"passport_sha256\": \"11df6c39a38697375745f2bdb2040780e72f3657a56ab4306338bbfa64913efe\",\n  \"kit_sha256\": \"a19e3d258a95aa78e3199a8a95645703411e1ff218b262cd087dcf6516312a05\"\n },\n \"parents\": {\n  \"kh-style-1.0.0\": \"31bf64a419e000b4af1a66d61efd00b6969f293576a98b964a3680cb02a6aa20\",\n  \"little-whale-v2\": \"c39c34cfd5321d9c4ee069192483251cab27b5999ef10f751c536e0e67a4c5e6\"\n },\n \"wada\": [\n  279\n ],\n \"atlas\": [\n  \"sty:kinetic-type-showreel\",\n  \"el:kinetic-type\",\n  \"el:character-rig\",\n  \"el:camera-move\",\n  \"el:sfx-cue\",\n  \"el:music-bed\",\n  \"el:squash-stretch\",\n  \"q:one-object-continuity\",\n  \"q:beat-locked-changes\",\n  \"q:time-pure-frames\",\n  \"q:motion-blur\",\n  \"q:cue-locked-sound\",\n  \"pr:inputs-block-template\",\n  \"stg:beat-grid\"\n ],\n \"gates\": {\n  \"read_time\": \"PASS \\u2014 built in (tool.cjs gate)\",\n  \"frame_jump\": \"PASS \\u2014 measured on screen, per story\",\n  \"flash_safety\": \"PASS \\u2014 measured on each render\",\n  \"colour_provenance\": \"PASS\"\n }\n}\n```",
+ "preview": "kh/registry/previews/whale-line-format-v1.jpg",
+ "unresolved_parents": []
+}

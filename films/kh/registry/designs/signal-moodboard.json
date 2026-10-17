@@ -1,0 +1,44 @@
+{
+ "id": "signal-moodboard",
+ "name": "Signal \u2014 moodboard",
+ "kind": "Moodboard",
+ "version": "1.0",
+ "parents": [
+  "kh-style-1.0.0",
+  "little-whale-v2"
+ ],
+ "uses_kit": true,
+ "wada": [
+  339,
+  166
+ ],
+ "engine": [
+  "Canvas (skia)"
+ ],
+ "atlas": [
+  "sty:kinetic-type-showreel",
+  "el:kinetic-type",
+  "q:beat-locked-changes",
+  "stg:style-system"
+ ],
+ "sources": [
+  "kh/kh-kit.js",
+  "kh/host.cjs",
+  "kh/signal/moodboard.cjs"
+ ],
+ "outputs": [
+  "kh/signal/moodboard.png"
+ ],
+ "preview": "kh/registry/previews/signal-moodboard.jpg",
+ "gates": {
+  "contact_sheet": "PASS \u2014 reviewed"
+ },
+ "deviations": [
+  "The feed outruns house durations, on purpose"
+ ],
+ "summary": "Direction for a fast kinetic film in the same style: a loud feed on paper (Wada 339), the bearing ring from Little whale reused as a filter, one glaucous line on navy.",
+ "changes": "New story; inherits the bearing ring and the light/dark grounds from Little whale v2.",
+ "style": "1.0.0",
+ "status": "shipped",
+ "derived_colours": {}
+}

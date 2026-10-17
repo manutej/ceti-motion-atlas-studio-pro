@@ -1,0 +1,54 @@
+{
+ "id": "motion-atlas-plates-dark",
+ "name": "Motion Atlas plates \u2014 dark",
+ "kind": "Plate set",
+ "version": "1.0",
+ "parents": [
+  "kh-style-1.0.0"
+ ],
+ "wada": [
+  296,
+  279,
+  166,
+  243,
+  339,
+  84,
+  207
+ ],
+ "engine": [
+  "Python (Pillow)"
+ ],
+ "atlas": [
+  "el:paper-finish",
+  "q:typographic-restraint",
+  "q:brand-grounding"
+ ],
+ "sources": [
+  "atlas/design/src/kit.py",
+  "atlas/design/src/hero.py",
+  "atlas/design/src/palette.py",
+  "atlas/design/src/covers.py"
+ ],
+ "outputs": [
+  "atlas/design/plate-hero.png",
+  "atlas/design/plate-palette.png",
+  "atlas/design/cover-notion.png",
+  "atlas/design/cover-styles.png",
+  "atlas/design/cover-elements.png",
+  "atlas/design/cover-execution.png",
+  "atlas/design/cover-quality.png",
+  "atlas/design/cover-engines.png",
+  "atlas/design/motion-atlas-plates.pdf"
+ ],
+ "preview": "kh/registry/previews/motion-atlas-plates-dark.jpg",
+ "gates": {
+  "contrast": "PASS \u2014 min 7.38:1",
+  "margins": "PASS \u2014 \u2265 6% everywhere"
+ },
+ "summary": "The brand plates for the Motion Atlas wiki: hero, chromatic key and six covers, each keyed to one Wada combination on the CETI navy ground.",
+ "changes": "First set.",
+ "style": "1.0.0",
+ "status": "shipped",
+ "deviations": [],
+ "derived_colours": {}
+}
