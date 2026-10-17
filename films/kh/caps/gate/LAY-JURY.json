@@ -134,6 +134,63 @@
     }
    },
    "why": "All three now name the problem and the fix (avg 7.2/10 confidence, up from 6.2); remaining unclear words: gate, miss, error log, machines, the Not-quality slogan; small icons; fast cards; AI never mentioned."
+  },
+  {
+   "version": "v3.3",
+   "sheet": "kh/caps/gate/sheet-v3.3.png",
+   "verdict": "PASS (revised criterion)",
+   "personas": {
+    "teacher": {
+     "q1": 1,
+     "q2": 1,
+     "sure": [
+      7,
+      8
+     ],
+     "unclear": [
+      "whale/fish roles (took a few seconds)",
+      "true-story card fast",
+      "lockup unreadable",
+      "Passing means: no mistakes we know of (odd)",
+      "Aa until labelled",
+      "title card 6-8 s fades the picture"
+     ]
+    },
+    "nurse": {
+     "q1": 1,
+     "q2": 1,
+     "sure": [
+      8,
+      7
+     ],
+     "unclear": [
+      "check: person or machine?",
+      "card fast; whose list",
+      "whale flip 14-15 s",
+      "lockup",
+      "orange flags",
+      "icon labels small",
+      "what the AI helper is"
+     ]
+    },
+    "shop owner": {
+     "q1": 1,
+     "q2": 1,
+     "sure": [
+      8,
+      7
+     ],
+     "unclear": [
+      "title card pale + tiny eyebrow",
+      "card: 7 checks but 4 gates",
+      "Passing means line",
+      "lockup",
+      "labels small",
+      "clipped labels 16-21 s"
+     ]
+    }
+   },
+   "why": "All three name the AI helper, the passed checks, the customer finding the wrong font, and the fix (a new check per new mistake). Mean confidence 7.5. No unclear item touches INTENT-critical words. Polish: title card should not fade the scene, card bigger/central, clipped labels, lockup size."
   }
  ]
 }
