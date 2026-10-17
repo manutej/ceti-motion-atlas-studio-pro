@@ -30,7 +30,7 @@ const LET = [
   { id: 'L2', in: 7.55, send: 12.25, fly: 0.9, mid: 'sealed', stamp: 8.5, thread: [10.0, 10.7], hdr: [['To: Bakery', 7.65, 12.0, 0.3, 0.15], ['To: Clinic', 11.9, 13.2, 0.15, 0.1]] },
   { id: 'L3', in: 13.95, send: 14.85, fly: 0.8, mid: 'sealed', hdr: [['To: Clinic', 13.95, 15.7, 0.2, 0.1]] },
   { id: 'L5', in: 19.85, send: 20.95, fly: 0.85, mid: 'scrawl', scrawl: [20.3, 20.8], hdr: [['To: Clinic', 19.9, 23.4, 0.3, 0.4]], pop: [23.0, 23.4] },
-  { id: 'L6', in: 22.85, send: 24.1, fly: 0.95, mid: 'sealed', hdr: [['To: Bakery', 22.85, 23.95, 0.15, 0.15], ['To: Clinic', 23.85, 25.1, 0.1, 0.1]] },
+  { id: 'L6', in: 22.85, send: 24.15, fly: 0.95, mid: 'sealed', hdr: [['To: Bakery', 22.85, 24.05, 0.15, 0.15], ['To: Clinic', 23.95, 25.15, 0.1, 0.1]] },
 ];
 let home = 0;
 for (const L of LET) { L.arr = L.send + L.fly;

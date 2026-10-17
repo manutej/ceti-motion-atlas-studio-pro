@@ -71,7 +71,7 @@ All three viewers got the gist: "every miss becomes a new check". But every one 
 
 ### O2 lessons, batch 2 (tick v2 PASS, counter v2 and private v4 FAIL, 17 Oct 2026)
 11. **Make the AI unmistakably software.** "AI readers" and "Your AI assistant" were read as maybe-people. Prefer "AI app" or "AI helper" next to a non-human icon. "Your AI helper" over the whale passed.
-12. **A real-number card must support the story, never complicate it.** A sequence that looks like a second, contradicting example (14 → 14 → 10 → 0 next to a tidy 3 → 1 → 0) confuses everyone. Use one line: "Real draft: 14 problems down to 0 in four rounds."
+12. **A real-number card must support the story, never complicate it.** A sequence that looks like a second, contradicting example (14 → 14 → 10 → 0 next to a tidy 3 → 1 → 0) confuses everyone. Use one line, and check it against the ledger first: "Real draft: 28 problems, then 10, then 0." (The two 14s were two critics in one round, so "four rounds" would have been false.)
 13. **Use the everyday noun.** Say "notes", not "cards"; "email", not "message object". The fix's object word must be the one the viewer already uses.
 14. **Show the harm land.** If the problem is a leak or a wrong send, show the thing arriving in the wrong place. Don't just say it happened.
 15. **One limit line, plain.** "No stamp? Then the note can still go." beats two clever lines ("It checks the stamp, not the words." / "Plain cards go too.").

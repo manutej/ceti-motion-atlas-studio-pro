@@ -201,7 +201,7 @@ Compiled 2026-10-17 from Manu's Notion workspace (read only) plus, where Notion 
 
 **Example (his ledger):** three critics produced 14 + 14 + 10 = 38 edits, taking the meta-prompt from v1 to v3. The author's re-check found 0, so v3 is the fixpoint.
 
-**Visual metaphor:** The line has three kinks. On each lap the whale smooths exactly one. A counter ticks 14 → 14 → 10 → 0, and at 0 the line holds still.
+**Visual metaphor:** The line has three kinks. On each lap the whale smooths exactly one. A counter ticks 28 → 10 → 0 (three rounds; the two 14s in the ledger are two critics in round 1, and the 0 is the author's re-check), and at 0 the line holds still.
 
 **End belief:** Self-improvement you can trust is a measured loop: one change at a time, judged by something else, kept only if it wins.
 

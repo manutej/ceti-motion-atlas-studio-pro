@@ -35,4 +35,4 @@
 
 The existing Composition v2 counts as the series' Episode 00 (typed parts that snap). Episode 01 is deliberately different: it is about context for agents, seams and parallelism.
 
-Next, not yet built: `loop` (bounded RSI: one change at a time, counter 14 → 14 → 10 → 0), `jury` (the builder never judges) and `ledger` (fingerprint chain).
+Next, not yet built: `loop` (bounded RSI: one change at a time, counter 28 → 10 → 0), `jury` (the builder never judges) and `ledger` (fingerprint chain).
