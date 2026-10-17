@@ -57,7 +57,7 @@ function caption(c, t, r, o = {}) { const a = win(t, r.in, r.out, r.fi, r.fo); i
 
 // Closing lockup: whale mark + series name + episode. It takes the caption's place at the bottom, so the
 // end-belief caption must be fully out by t0 (the lockup's start). Every episode ends on it after its own ending beat.
-function lockup(c, t, t0, ep) { const a = ramp(t, t0, t0 + 0.6, EASE.warm);
+function lockup(c, t, t0, ep) { const a = ramp(t, t0, t0 + 0.45, EASE.warm);
   if (a <= 0) return; c.save(); c.setTransform(1, 0, 0, 1, 0, 0);
   whaleMark(c, 960 - 60, 900, 1.2, INK, a);
   text(c, `CETI · Capabilities · ${ep.no} · ${ep.short}`, 960, 1010, { f: 'mono', size: 15, col: SOFT, a, align: 'center' });
