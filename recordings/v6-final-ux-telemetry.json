@@ -1,0 +1,465 @@
+{
+  "tag": "v6-final",
+  "capturedAt": "2026-10-17T03:12:34.861Z",
+  "frames": [
+    {
+      "file": "01-surface1-living-canvas-default.png",
+      "label": "Surface I · Infinite-Zoom Living Canvas (0.88x Studio LOD · Pelagic Sovereign · Wada No. 343)",
+      "metrics": {
+        "viewport": {
+          "vw": 1680,
+          "vh": 1040
+        },
+        "surface": "infinite-canvas",
+        "charId": "ceti-whale",
+        "zoom": 0.78,
+        "headerHeightPx": 136,
+        "headerViewportSharePct": 13,
+        "mainTopPx": 136,
+        "ctrlStripDisplay": "flex",
+        "tabBarDisplay": "flex",
+        "canvasCount": 6,
+        "nonBlankCanvases": 6,
+        "dagNodeCount": 6,
+        "dagNodeOverlaps": 0,
+        "overlappingPairs": [],
+        "dagNodes": [
+          {
+            "id": "node-seed",
+            "x": 69,
+            "y": 277,
+            "w": 242,
+            "h": 315
+          },
+          {
+            "id": "node-fork-look",
+            "x": 357,
+            "y": 277,
+            "w": 246,
+            "h": 317
+          },
+          {
+            "id": "node-char-rig",
+            "x": 357,
+            "y": 674,
+            "w": 246,
+            "h": 304
+          },
+          {
+            "id": "node-proof-a",
+            "x": 650,
+            "y": 277,
+            "w": 250,
+            "h": 307
+          },
+          {
+            "id": "node-proof-b",
+            "x": 650,
+            "y": 674,
+            "w": 250,
+            "h": 318
+          },
+          {
+            "id": "node-storyboard",
+            "x": 946,
+            "y": 277,
+            "w": 257,
+            "h": 311
+          }
+        ]
+      }
+    },
+    {
+      "file": "02-surface1-tri-fork-ab-compare.png",
+      "label": "Surface I · 3-Direction Orthogonal Fork (α/β/γ) + Side-by-Side A/B Branch Compare Drawer",
+      "metrics": {
+        "viewport": {
+          "vw": 1680,
+          "vh": 1040
+        },
+        "surface": "infinite-canvas",
+        "charId": "ceti-whale",
+        "zoom": 0.78,
+        "headerHeightPx": 136,
+        "headerViewportSharePct": 13,
+        "mainTopPx": 136,
+        "ctrlStripDisplay": "flex",
+        "tabBarDisplay": "flex",
+        "canvasCount": 11,
+        "nonBlankCanvases": 11,
+        "dagNodeCount": 9,
+        "dagNodeOverlaps": 0,
+        "overlappingPairs": [],
+        "dagNodes": [
+          {
+            "id": "node-seed",
+            "x": 69,
+            "y": 560,
+            "w": 242,
+            "h": 315
+          },
+          {
+            "id": "node-fork-look",
+            "x": 357,
+            "y": 560,
+            "w": 246,
+            "h": 317
+          },
+          {
+            "id": "node-char-rig",
+            "x": 357,
+            "y": 957,
+            "w": 246,
+            "h": 304
+          },
+          {
+            "id": "node-proof-a",
+            "x": 650,
+            "y": 560,
+            "w": 250,
+            "h": 307
+          },
+          {
+            "id": "node-proof-b",
+            "x": 650,
+            "y": 957,
+            "w": 250,
+            "h": 318
+          },
+          {
+            "id": "node-storyboard",
+            "x": 946,
+            "y": 560,
+            "w": 257,
+            "h": 311
+          },
+          {
+            "id": "node-tri-alpha-6",
+            "x": 1254,
+            "y": 560,
+            "w": 250,
+            "h": 318
+          },
+          {
+            "id": "node-tri-beta-8",
+            "x": 1254,
+            "y": 962,
+            "w": 250,
+            "h": 307
+          },
+          {
+            "id": "node-tri-gamma-10",
+            "x": 1254,
+            "y": 1363,
+            "w": 250,
+            "h": 318
+          }
+        ]
+      }
+    },
+    {
+      "file": "03-surface1-micro-lod-rungs.png",
+      "label": "Surface I · 1.65x Micro-Inspection LOD (Live Rung 1 vs Rung 3 vs Rung 5 Strip in Every Node)",
+      "metrics": {
+        "viewport": {
+          "vw": 1680,
+          "vh": 1040
+        },
+        "surface": "infinite-canvas",
+        "charId": "ceti-whale",
+        "zoom": 1.65,
+        "headerHeightPx": 136,
+        "headerViewportSharePct": 13,
+        "mainTopPx": 136,
+        "ctrlStripDisplay": "flex",
+        "tabBarDisplay": "flex",
+        "canvasCount": 36,
+        "nonBlankCanvases": 36,
+        "dagNodeCount": 9,
+        "dagNodeOverlaps": 0,
+        "overlappingPairs": [],
+        "dagNodes": [
+          {
+            "id": "node-seed",
+            "x": -34,
+            "y": 252,
+            "w": 512,
+            "h": 817
+          },
+          {
+            "id": "node-fork-look",
+            "x": 576,
+            "y": 252,
+            "w": 520,
+            "h": 824
+          },
+          {
+            "id": "node-char-rig",
+            "x": 576,
+            "y": 1092,
+            "w": 520,
+            "h": 796
+          },
+          {
+            "id": "node-proof-a",
+            "x": 1195,
+            "y": 252,
+            "w": 528,
+            "h": 803
+          },
+          {
+            "id": "node-proof-b",
+            "x": 1195,
+            "y": 1092,
+            "w": 528,
+            "h": 826
+          },
+          {
+            "id": "node-storyboard",
+            "x": 1822,
+            "y": 252,
+            "w": 545,
+            "h": 817
+          },
+          {
+            "id": "node-tri-alpha-6",
+            "x": 2474,
+            "y": 252,
+            "w": 528,
+            "h": 827
+          },
+          {
+            "id": "node-tri-beta-8",
+            "x": 2474,
+            "y": 1102,
+            "w": 528,
+            "h": 803
+          },
+          {
+            "id": "node-tri-gamma-10",
+            "x": 2474,
+            "y": 1952,
+            "w": 528,
+            "h": 826
+          }
+        ]
+      }
+    },
+    {
+      "file": "04-surface2-5lens-fork-explorer.png",
+      "label": "Surface II · 5-Lens Decision Fork Explorer (Look · Use · Story · Character · Register)",
+      "metrics": {
+        "viewport": {
+          "vw": 1680,
+          "vh": 1040
+        },
+        "surface": "fork-explorer",
+        "charId": "ceti-whale",
+        "zoom": 0.88,
+        "headerHeightPx": 136,
+        "headerViewportSharePct": 13,
+        "mainTopPx": 136,
+        "ctrlStripDisplay": "flex",
+        "tabBarDisplay": "flex",
+        "canvasCount": 4,
+        "nonBlankCanvases": 4,
+        "dagNodeCount": 0,
+        "dagNodeOverlaps": 0,
+        "overlappingPairs": [],
+        "dagNodes": []
+      }
+    },
+    {
+      "file": "05-surface3-character-foundry-orpheus.png",
+      "label": "Surface III · Character & Emblem Foundry — Orpheum Lyre-Sphere (Mythic D8 Harmonic Mandala)",
+      "metrics": {
+        "viewport": {
+          "vw": 1680,
+          "vh": 1040
+        },
+        "surface": "character-foundry",
+        "charId": "geome-orpheus",
+        "zoom": 0.88,
+        "headerHeightPx": 136,
+        "headerViewportSharePct": 13,
+        "mainTopPx": 136,
+        "ctrlStripDisplay": "flex",
+        "tabBarDisplay": "flex",
+        "canvasCount": 22,
+        "nonBlankCanvases": 22,
+        "dagNodeCount": 0,
+        "dagNodeOverlaps": 0,
+        "overlappingPairs": [],
+        "dagNodes": []
+      }
+    },
+    {
+      "file": "06-surface3-character-foundry-falcon.png",
+      "label": "Surface III · Character & Emblem Foundry — Peregrine Cut (Saul Bass Avian Raptor · Wada No. 126)",
+      "metrics": {
+        "viewport": {
+          "vw": 1680,
+          "vh": 1040
+        },
+        "surface": "character-foundry",
+        "charId": "saul-falcon",
+        "zoom": 0.88,
+        "headerHeightPx": 136,
+        "headerViewportSharePct": 13,
+        "mainTopPx": 136,
+        "ctrlStripDisplay": "flex",
+        "tabBarDisplay": "flex",
+        "canvasCount": 22,
+        "nonBlankCanvases": 22,
+        "dagNodeCount": 0,
+        "dagNodeOverlaps": 0,
+        "overlappingPairs": [],
+        "dagNodes": []
+      }
+    },
+    {
+      "file": "07-surface4-8beat-storyboard.png",
+      "label": "Surface IV · 8-Beat Storyboard Sheet & Inline Causal Hinge (BUT/THEREFORE) Editor",
+      "metrics": {
+        "viewport": {
+          "vw": 1680,
+          "vh": 1040
+        },
+        "surface": "storyboard-sheet",
+        "charId": "origami-crane",
+        "zoom": 0.88,
+        "headerHeightPx": 136,
+        "headerViewportSharePct": 13,
+        "mainTopPx": 136,
+        "ctrlStripDisplay": "flex",
+        "tabBarDisplay": "flex",
+        "canvasCount": 8,
+        "nonBlankCanvases": 8,
+        "dagNodeCount": 0,
+        "dagNodeOverlaps": 0,
+        "overlappingPairs": [],
+        "dagNodes": []
+      }
+    },
+    {
+      "file": "08-surface5-sanzo-wada-348-hydrography.png",
+      "label": "Surface V · Sanzo Wada 348 Dictionary, 4x4 OKLab Chord Matrix & CIEDE2000 Token Telemetry",
+      "metrics": {
+        "viewport": {
+          "vw": 1680,
+          "vh": 1040
+        },
+        "surface": "wada-chord-matrix",
+        "charId": "astronav-compass",
+        "zoom": 0.88,
+        "headerHeightPx": 136,
+        "headerViewportSharePct": 13,
+        "mainTopPx": 136,
+        "ctrlStripDisplay": "flex",
+        "tabBarDisplay": "flex",
+        "canvasCount": 1,
+        "nonBlankCanvases": 1,
+        "dagNodeCount": 0,
+        "dagNodeOverlaps": 0,
+        "overlappingPairs": [],
+        "dagNodes": []
+      }
+    },
+    {
+      "file": "09-surface6-15styles-24elements.png",
+      "label": "Surface VI · All 15 Motion Styles & 24 Building Blocks Running on One Deterministic Clock",
+      "metrics": {
+        "viewport": {
+          "vw": 1680,
+          "vh": 1040
+        },
+        "surface": "contact-sheet",
+        "charId": "kelp-leviathan",
+        "zoom": 0.88,
+        "headerHeightPx": 136,
+        "headerViewportSharePct": 13,
+        "mainTopPx": 136,
+        "ctrlStripDisplay": "flex",
+        "tabBarDisplay": "flex",
+        "canvasCount": 39,
+        "nonBlankCanvases": 39,
+        "dagNodeCount": 0,
+        "dagNodeOverlaps": 0,
+        "overlappingPairs": [],
+        "dagNodes": []
+      }
+    },
+    {
+      "file": "10-surface7-compile-export-room.png",
+      "label": "Surface VII · Multi-Target Production Compiler (Stage-1 Brief · HyperFrames · Remotion · Anime.js v4)",
+      "metrics": {
+        "viewport": {
+          "vw": 1680,
+          "vh": 1040
+        },
+        "surface": "compile-export",
+        "charId": "kelp-leviathan",
+        "zoom": 0.88,
+        "headerHeightPx": 136,
+        "headerViewportSharePct": 13,
+        "mainTopPx": 136,
+        "ctrlStripDisplay": "flex",
+        "tabBarDisplay": "flex",
+        "canvasCount": 0,
+        "nonBlankCanvases": 0,
+        "dagNodeCount": 0,
+        "dagNodeOverlaps": 0,
+        "overlappingPairs": [],
+        "dagNodes": []
+      }
+    },
+    {
+      "file": "11-modal-oauth-pkce-rsi-critique.png",
+      "label": "Modal · OAuth 2.0 PKCE Live Enhancer & 4-Lens Adversarial RSI Critique Report",
+      "metrics": {
+        "viewport": {
+          "vw": 1680,
+          "vh": 1040
+        },
+        "surface": "compile-export",
+        "charId": "kelp-leviathan",
+        "zoom": 0.88,
+        "headerHeightPx": 136,
+        "headerViewportSharePct": 13,
+        "mainTopPx": 136,
+        "ctrlStripDisplay": "flex",
+        "tabBarDisplay": "flex",
+        "canvasCount": 0,
+        "nonBlankCanvases": 0,
+        "dagNodeCount": 0,
+        "dagNodeOverlaps": 0,
+        "overlappingPairs": [],
+        "dagNodes": []
+      }
+    },
+    {
+      "file": "12-modal-20gate-tellapart-sheaf.png",
+      "label": "Modal · 20-Gate Mechanical Contract Audit + Tell-Apart Kernel + Alexandrov Sheaf Cohomology",
+      "metrics": {
+        "viewport": {
+          "vw": 1680,
+          "vh": 1040
+        },
+        "surface": "compile-export",
+        "charId": "kelp-leviathan",
+        "zoom": 0.88,
+        "headerHeightPx": 136,
+        "headerViewportSharePct": 13,
+        "mainTopPx": 136,
+        "ctrlStripDisplay": "flex",
+        "tabBarDisplay": "flex",
+        "canvasCount": 0,
+        "nonBlankCanvases": 0,
+        "dagNodeCount": 0,
+        "dagNodeOverlaps": 0,
+        "overlappingPairs": [],
+        "dagNodes": []
+      }
+    }
+  ]
+}

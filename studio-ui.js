@@ -53,10 +53,10 @@
         guide: true,
         captionsCovered: false,
         // Infinite-Zoom Living Canvas viewport & DAG
-        zoom: (saved && saved.zoom) || 0.88,
-        panX: (saved && saved.panX) || 28,
-        panY: (saved && saved.panY) || 24,
-        dag: (saved && saved.dag && Array.isArray(saved.dag.nodes) && saved.dag.nodes.length) ? saved.dag.nodes : defaultDag,
+        zoom: (saved && saved.zoom) || 0.78,
+        panX: (saved && saved.panX) || 18,
+        panY: (saved && saved.panY) || 16,
+        dag: (saved && saved.dag && Array.isArray(saved.dag.nodes) && saved.dag.nodes.length) ? CO.autoLayoutDAG(saved.dag) : defaultDag,
         selectedNodeId: 'node-proof-a',
         compareNodeId: 'node-proof-b',
         showABCompare: false,
@@ -83,7 +83,7 @@
       };
 
       // Fix saved dag structure if needed
-      if (Array.isArray(this.state.dag)) {
+      if (!this.state.dag || !Array.isArray(this.state.dag.nodes)) {
         this.state.dag = defaultDag;
       }
 
@@ -187,6 +187,9 @@
         const nodeChar = c.getAttribute('data-char') || this.state.charId;
         const nodeRung = Number(c.getAttribute('data-rung')) || this.state.rung;
         const nodeMode = c.getAttribute('data-mode') || this.state.renderMode;
+        const nodeCam = c.getAttribute('data-cam') || null;
+        const nodeBeatIdxAttr = c.getAttribute('data-beat-idx');
+        const nodeBeatIdx = (nodeBeatIdxAttr != null && nodeBeatIdxAttr !== '') ? Number(nodeBeatIdxAttr) : null;
         const nodePalId = Number(c.getAttribute('data-pal-id'));
         let usePal = pal;
         if (nodePalId) {
@@ -204,6 +207,8 @@
           partnerCharId: this.state.partnerCharId,
           rung: nodeRung,
           renderMode: nodeMode || null,
+          cameraMove: nodeCam,
+          beatIdx: nodeBeatIdx,
           captionsCovered: this.state.captionsCovered
         });
       }
@@ -239,8 +244,14 @@
         }
       } catch (_e) { /* ignore */ }
 
-      // Global Keyboard Shortcuts (Gate G16): Space=Play/Pause, [/]=Scrub, C=Captions-Covered, F=Fork
+      // Global Keyboard Shortcuts (Gate G16): Escape=Close Modal, Space=Play/Pause, [/]=Scrub, C=Captions-Covered, F=Fork
       window.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+          if (self.state.oauthModalOpen || self.state.gateModalOpen) {
+            self.setState({ oauthModalOpen: false, gateModalOpen: false });
+            return;
+          }
+        }
         const tag = (e.target && e.target.tagName) ? e.target.tagName.toLowerCase() : '';
         if (tag === 'input' || tag === 'textarea' || tag === 'select') return;
         if (e.code === 'Space') {
@@ -309,17 +320,17 @@
       return (this.state.dag.edges || []).map(function (e) {
         const a = nodesById[e.fromNodeId], b = nodesById[e.toNodeId];
         if (!a || !b) return '';
-        const x1 = a.x + (a.width || 300), y1 = a.y + (a.height || 210) * 0.45;
-        const x2 = b.x, y2 = b.y + (b.height || 210) * 0.45;
-        const cx1 = x1 + Math.max(60, (x2 - x1) * 0.48), cx2 = x2 - Math.max(60, (x2 - x1) * 0.48);
+        const x1 = a.x + (a.width || 315), y1 = a.y + 185;
+        const x2 = b.x, y2 = b.y + 185;
+        const cx1 = x1 + Math.max(55, (x2 - x1) * 0.46), cx2 = x2 - Math.max(55, (x2 - x1) * 0.46);
         const mx = (x1 + x2) / 2, my = (y1 + y2) / 2 - 8;
         const stroke = e.kind === 'fork' ? '#8C4A2E' : (e.kind === 'comparison' ? '#1E3F66' : '#1A1F2E');
         const dash = e.kind === 'comparison' ? 'stroke-dasharray="5,5"' : '';
         return '<g>' +
-          '<path d="M' + x1 + ',' + y1 + ' C' + cx1 + ',' + y1 + ' ' + cx2 + ',' + y2 + ' ' + x2 + ',' + y2 + '" fill="none" stroke="' + stroke + '" stroke-width="2" stroke-opacity="0.55" ' + dash + '/>' +
+          '<path d="M' + x1 + ',' + y1 + ' C' + cx1 + ',' + y1 + ' ' + cx2 + ',' + y2 + ' ' + x2 + ',' + y2 + '" fill="none" stroke="' + stroke + '" stroke-width="2" stroke-opacity="0.6" ' + dash + '/>' +
           '<circle cx="' + x2 + '" cy="' + y2 + '" r="4" fill="' + stroke + '"/>' +
-          '<rect x="' + (mx - 38) + '" y="' + (my - 10) + '" width="76" height="16" rx="4" fill="#FBF3E6" stroke="' + stroke + '" stroke-opacity="0.3"/>' +
-          '<text x="' + mx + '" y="' + (my + 1) + '" text-anchor="middle" font-family="Space Mono, monospace" font-size="9" font-weight="700" fill="' + stroke + '">' + esc(e.label) + '</text>' +
+          '<rect x="' + (mx - 58) + '" y="' + (my - 10) + '" width="116" height="17" rx="4" fill="#FBF3E6" stroke="' + stroke + '" stroke-opacity="0.35"/>' +
+          '<text x="' + mx + '" y="' + (my + 2) + '" text-anchor="middle" font-family="Space Mono, monospace" font-size="8.5" font-weight="700" fill="' + stroke + '">' + esc(e.label) + '</text>' +
           '</g>';
       }).join('');
     }
@@ -525,17 +536,18 @@
 
     return '<section class="st-surface">' +
       '<div class="canvas-toolbar">' +
-        '<div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">' +
+        '<div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap">' +
           '<span class="st-mono-xs">INFINITE LIVING CANVAS · ZOOM ' + st.zoom.toFixed(2) + '× · LOD: ' + lod.toUpperCase() + ' · ' + st.dag.nodes.length + ' NODES</span>' +
           '<span class="st-badge ' + (sheafAudit.valid ? 'badge-pass' : 'badge-warn') + '" title="Alexandrov Sheaf Restriction Cohomology across DAG edges">SHEAF ρ: ' + (sheafAudit.valid ? 'δ⁰=0 COHOMOLOGY PASS' : 'MISMATCH') + '</span>' +
           '<button data-action="zoom-canvas" data-delta="0.18" class="st-mini-btn">Zoom +</button>' +
           '<button data-action="zoom-canvas" data-delta="-0.18" class="st-mini-btn">Zoom −</button>' +
           '<button data-action="zoom-set" data-zoom="0.3" class="st-mini-btn">0.3× Macro</button>' +
-          '<button data-action="zoom-set" data-zoom="0.88" class="st-mini-btn">0.9× Studio</button>' +
+          '<button data-action="zoom-set" data-zoom="0.78" class="st-mini-btn">0.8× Studio</button>' +
           '<button data-action="zoom-set" data-zoom="1.65" class="st-mini-btn">1.6× Micro</button>' +
           '<button data-action="reset-pan" class="st-mini-btn">Center View</button>' +
+          '<button data-action="dag-auto-layout" class="st-mini-btn on" title="Resolve all node overlaps and align DAG columns">⊞ Auto-Layout DAG</button>' +
         '</div>' +
-        '<div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">' +
+        '<div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap">' +
           '<button data-action="fork-dag-node" data-node-id="' + esc(st.selectedNodeId) + '" class="st-btn st-btn-ink">⑂ Fork Selected</button>' +
           '<button data-action="fork-three-directions" data-node-id="' + esc(st.selectedNodeId) + '" class="st-btn">⑂ Fork 3 Directions (α/β/γ)</button>' +
           '<button data-action="run-rsi-critique" class="st-btn st-btn-rust" title="Run 4-Lens Adversarial RSI Critique & Auto-Fix">⚖ Run 4-Lens RSI Critique</button>' +
@@ -547,19 +559,24 @@
       (st.showABCompare && selectedNode && compareNode ? (
         '<div class="ab-compare-drawer">' +
           '<div class="ab-col">' +
-            '<div class="st-mono-xs">BRANCH A (SELECTED): ' + esc(selectedNode.title) + ' · ' + esc(selectedNode.packetHash || '') + '</div>' +
-            '<canvas width="480" height="300" data-proof="' + esc(selectedNode.payload.styleKey || 'watercolor') + '" data-char="' + esc(selectedNode.payload.charId || st.charId) + '" data-pal-id="' + (selectedNode.payload.palId || pal.id) + '" style="width:100%;max-width:440px;border-radius:8px;border:1px solid rgba(26,31,46,.2);margin-top:6px"></canvas>' +
+            '<div style="display:flex;justify-content:space-between;align-items:center">' +
+              '<span class="st-mono-xs">BRANCH A (SELECTED): <strong>' + esc(selectedNode.title) + '</strong> · ' + esc(selectedNode.packetHash || '') + '</span>' +
+            '</div>' +
+            '<canvas width="480" height="300" data-proof="' + esc(selectedNode.payload.styleKey || 'watercolor') + '" data-char="' + esc(selectedNode.payload.charId || st.charId) + '" data-pal-id="' + (selectedNode.payload.palId || pal.id) + '" style="width:100%;max-width:340px;border-radius:6px;border:1px solid rgba(26,31,46,.2);margin-top:4px"></canvas>' +
           '</div>' +
           '<div class="ab-col">' +
-            '<div style="display:flex;justify-content:space-between;align-items:center">' +
+            '<div style="display:flex;justify-content:space-between;align-items:center;gap:8px">' +
               '<span class="st-mono-xs">BRANCH B (COMPARISON):</span>' +
-              '<select id="sel-compare-node" class="st-select">' +
-                st.dag.nodes.map(function (n) {
-                  return '<option value="' + esc(n.id) + '"' + (n.id === compareNode.id ? ' selected' : '') + '>' + esc(n.title) + '</option>';
-                }).join('') +
-              '</select>' +
+              '<div style="display:flex;gap:6px;align-items:center">' +
+                '<select id="sel-compare-node" class="st-select">' +
+                  st.dag.nodes.map(function (n) {
+                    return '<option value="' + esc(n.id) + '"' + (n.id === compareNode.id ? ' selected' : '') + '>' + esc(n.title) + '</option>';
+                  }).join('') +
+                '</select>' +
+                '<button data-action="toggle-ab-compare" class="st-mini-btn">✕ Close A/B</button>' +
+              '</div>' +
             '</div>' +
-            '<canvas width="480" height="300" data-proof="' + esc(compareNode.payload.styleKey || 'hydrographic') + '" data-char="' + esc(compareNode.payload.charId || st.charId) + '" data-pal-id="' + (compareNode.payload.palId || pal.id) + '" style="width:100%;max-width:440px;border-radius:8px;border:1px solid rgba(26,31,46,.2);margin-top:6px"></canvas>' +
+            '<canvas width="480" height="300" data-proof="' + esc(compareNode.payload.styleKey || 'hydrographic') + '" data-char="' + esc(compareNode.payload.charId || st.charId) + '" data-pal-id="' + (compareNode.payload.palId || pal.id) + '" style="width:100%;max-width:340px;border-radius:6px;border:1px solid rgba(26,31,46,.2);margin-top:4px"></canvas>' +
           '</div>' +
         '</div>'
       ) : '') +
@@ -567,14 +584,14 @@
       '<div class="living-canvas-layout">' +
         '<div id="living-canvas-viewport" class="living-canvas-viewport">' +
           '<div id="dag-transform-stage" class="dag-transform-stage" style="transform:translate(' + st.panX + 'px,' + st.panY + 'px) scale(' + st.zoom + ')">' +
-            '<svg id="dag-edges-svg" class="dag-edges-svg" width="2600" height="1600">' +
+            '<svg id="dag-edges-svg" class="dag-edges-svg" width="3600" height="2400">' +
               this.renderDagEdgesMarkup() +
             '</svg>' +
             nodesHtml +
           '</div>' +
           '<div class="canvas-minimap">' +
-            '<div class="st-mono-xs" style="margin-bottom:4px">DAG TOPOLOGY MAP · DRAG CANVAS TO PAN · SHORTCUTS: [SPACE] PLAY · [F] FORK · [C] CAPTIONS</div>' +
-            '<div style="font-size:11px;color:rgba(26,31,46,.75)">Selected: <strong>' + esc(selectedNode ? selectedNode.title : '') + '</strong> (' + esc(selectedNode ? (selectedNode.packetHash || '') : '') + ')</div>' +
+            '<div class="st-mono-xs" style="margin-bottom:2px">DAG TOPOLOGY MAP · DRAG CANVAS TO PAN · SHORTCUTS: [SPACE] PLAY · [F] FORK · [C] CAPTIONS · [ESC] CLOSE</div>' +
+            '<div style="font-size:11px;color:rgba(26,31,46,.78)">Selected: <strong>' + esc(selectedNode ? selectedNode.title : '') + '</strong> (' + esc(selectedNode ? (selectedNode.packetHash || '') : '') + ')</div>' +
           '</div>' +
         '</div>' +
 
@@ -833,12 +850,12 @@
             '<option value="BUT"' + (b.hinge === 'BUT' ? ' selected' : '') + '>BUT · ' + esc(b.role.toUpperCase()) + '</option>' +
           '</select>' +
         '</div>' +
-        '<canvas width="320" height="200" data-proof="' + esc(sheet.storyKey) + '" data-char="' + esc(charSpec.id) + '" data-fixed-t="' + b.tMidSec + '" style="width:100%;height:auto;border-radius:6px;border:1px solid rgba(26,31,46,.16);cursor:pointer" data-action="scrub-to-beat" data-t="' + b.tMidSec + '"></canvas>' +
-        '<div style="font-weight:700;font-size:14px;margin:6px 0 3px">' + esc(b.label) + '</div>' +
+        '<canvas width="320" height="200" data-proof="' + esc(sheet.storyKey) + '" data-char="' + esc(charSpec.id) + '" data-fixed-t="' + b.tMidSec + '" data-cam="' + esc(b.cameraMove || 'static-wide') + '" data-beat-idx="' + b.index + '" style="width:100%;height:auto;border-radius:6px;border:1px solid rgba(26,31,46,.16);cursor:pointer" data-action="scrub-to-beat" data-t="' + b.tMidSec + '"></canvas>' +
+        '<div style="font-weight:700;font-size:13.5px;margin:6px 0 3px">' + esc(b.label) + '</div>' +
         '<textarea data-beat-action="' + b.index + '" rows="2" class="st-input" style="width:100%;font-size:11px;margin-bottom:6px">' + esc(b.visualAction) + '</textarea>' +
         '<div style="display:flex;justify-content:space-between;align-items:center;font-size:10px;font-family:Space Mono,monospace;color:rgba(26,31,46,.65)">' +
           '<select data-beat-cam="' + b.index + '" class="st-select" style="padding:2px 4px;font-size:10px">' +
-            ['static', 'push', 'pan', 'pull', 'breather-hold'].map(function (cm) {
+            ['static-wide', 'pan-follow', 'push-in', 'dutch-tilt', 'tracking-drift', 'breather-hold', 'kick-shake', 'pull-back'].map(function (cm) {
               return '<option value="' + cm + '"' + (b.cameraMove === cm ? ' selected' : '') + '>CAM: ' + cm + '</option>';
             }).join('') +
           '</select>' +
@@ -1152,7 +1169,7 @@
         '<div class="st-modal">' +
           '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">' +
             '<div>' +
-              '<span class="st-eyebrow">16 BINARY CONSERVATION GATES + TELL-APART + SHEAF COHOMOLOGY (G01–G16)</span>' +
+              '<span class="st-eyebrow">21 BINARY CONSERVATION GATES + TELL-APART + SHEAF + VBM UX ERGONOMICS (G01–G21)</span>' +
               '<h3 style="margin:4px 0;font-family:Fraunces,serif;font-size:22px">Mechanical Contract Audit — ' + audit.passedCount + '/' + audit.totalCount + ' PASS</h3>' +
             '</div>' +
             '<button data-action="toggle-gate-modal" class="st-mini-btn">✕ Close</button>' +
@@ -1182,6 +1199,18 @@
 
   proto.renderDOM = function () {
     if (!this.root) return;
+    let activeId = null, selStart = null, selEnd = null;
+    try {
+      const ae = document.activeElement;
+      if (ae && ae.id && this.root.contains(ae)) {
+        activeId = ae.id;
+        if (typeof ae.selectionStart === 'number') {
+          selStart = ae.selectionStart;
+          selEnd = ae.selectionEnd;
+        }
+      }
+    } catch (_e) { /* ignore */ }
+
     const pal = this.getActivePalette();
     const charSpec = this.getActiveChar();
     const audit = CO.run16GateAudit(this.state);
@@ -1204,6 +1233,18 @@
 
     this.attachDOMListeners();
     this.drawAllCanvases();
+
+    if (activeId) {
+      try {
+        const nextEl = this.root.querySelector('#' + activeId);
+        if (nextEl) {
+          nextEl.focus();
+          if (selStart != null && typeof nextEl.setSelectionRange === 'function') {
+            nextEl.setSelectionRange(selStart, selEnd);
+          }
+        }
+      } catch (_e) { /* ignore */ }
+    }
   };
 
   proto.attachDOMListeners = function () {
@@ -1227,6 +1268,8 @@
     if (scrub) {
       scrub.addEventListener('input', function (e) {
         self._T = Number(e.target.value);
+        const tReadout = root.querySelector('#global-t-readout');
+        if (tReadout) tReadout.textContent = 't = ' + (self._T % 12).toFixed(2) + 's';
         self.setState({ playing: false }, true);
         self.drawAllCanvases();
       });
@@ -1239,17 +1282,11 @@
       });
     }
 
-    // Inline Storyboard Beat Editing (Hinge, Camera, VisualAction)
+    // Inline Storyboard Beat Editing (Hinge, Camera, VisualAction) delegated to CO.auditStoryboardSheet
     const reauditStoryboard = function () {
-      const beats = self.state.storyboard.beats || [];
-      const b1 = beats[0] || {};
-      const b8 = beats[beats.length - 1] || {};
-      self.state.storyboard.audit = {
-        coveredOk: beats.every(function (b) { return b.visualAction && b.visualAction.length > 10; }),
-        movementOk: beats.slice(1).every(function (b) { return b.hinge === 'BUT' || b.hinge === 'THEREFORE'; }),
-        oneBreather: beats.some(function (b) { return b.role === 'breather' || b.cameraMove === 'breather-hold'; }),
-        callback: Boolean(b8.visualAction && b1.visualAction)
-      };
+      if (CO.auditStoryboardSheet) {
+        CO.auditStoryboardSheet(self.state.storyboard);
+      }
     };
 
     const hingeSels = root.querySelectorAll('[data-beat-hinge]');
@@ -1321,7 +1358,7 @@
       });
     }
 
-    // Rig sliders
+    // Rig sliders with live label update
     const rigSliders = root.querySelectorAll('[data-rig-param]');
     for (let i = 0; i < rigSliders.length; i++) {
       rigSliders[i].addEventListener('input', function (e) {
@@ -1332,7 +1369,21 @@
         else if (param in charSpec.bodyProfile) charSpec.bodyProfile[param] = val;
         else if (param in charSpec.spineWave) charSpec.spineWave[param] = val;
         else if (param in charSpec.appendages) charSpec.appendages[param] = val;
+        const lbl = e.target.parentElement && e.target.parentElement.querySelector('.st-label');
+        if (lbl) {
+          lbl.textContent = lbl.textContent.replace(/\([0-9.]+\)/, '(' + val + ')');
+        }
         self.drawAllCanvases();
+      });
+    }
+
+    // Modal backdrop click to dismiss
+    const backdrops = root.querySelectorAll('.st-modal-backdrop');
+    for (let i = 0; i < backdrops.length; i++) {
+      backdrops[i].addEventListener('click', function (e) {
+        if (e.target === e.currentTarget) {
+          self.setState({ oauthModalOpen: false, gateModalOpen: false });
+        }
       });
     }
 
@@ -1387,7 +1438,9 @@
       this._T = targetT;
       this.setState({ playing: false }, true);
       const scrub = this.root.querySelector('#global-scrub');
-      if (scrub) scrub.value = String((targetT % 6).toFixed(2));
+      const tReadout = this.root.querySelector('#global-t-readout');
+      if (scrub) scrub.value = String((targetT % 12).toFixed(2));
+      if (tReadout) tReadout.textContent = 't = ' + (targetT % 12).toFixed(2) + 's';
       this.drawAllCanvases();
       return;
     }
@@ -1431,6 +1484,10 @@
       return this.setState({ dag: { nodes: res.nodes, edges: res.edges }, selectedNodeId: res.createdNodeId, surface: 'infinite-canvas' });
     }
     if (act === 'select-dag-node') return this.setState({ selectedNodeId: el.getAttribute('data-node-id') });
+    if (act === 'dag-auto-layout') {
+      const aligned = CO.autoLayoutDAG ? CO.autoLayoutDAG(st.dag) : st.dag;
+      return this.setState({ dag: aligned, panX: 18, panY: 16, zoom: 0.78 });
+    }
     if (act === 'fork-dag-node') {
       const nid = el.getAttribute('data-node-id') || st.selectedNodeId;
       const res = CO.forkCanvasNode(st.dag, nid);
@@ -1496,8 +1553,8 @@
       const d = Number(el.getAttribute('data-delta')) || 0;
       return this.setState({ zoom: Math.max(0.15, Math.min(4.0, Number((st.zoom + d).toFixed(2)))) });
     }
-    if (act === 'zoom-set') return this.setState({ zoom: Number(el.getAttribute('data-zoom')) || 0.88 });
-    if (act === 'reset-pan') return this.setState({ panX: 28, panY: 24, zoom: 0.88 });
+    if (act === 'zoom-set') return this.setState({ zoom: Number(el.getAttribute('data-zoom')) || 0.78 });
+    if (act === 'reset-pan') return this.setState({ panX: 18, panY: 16, zoom: 0.78 });
     if (act === 'toggle-ab-compare') return this.setState({ showABCompare: !st.showABCompare });
     if (act === 'open-storyboard-from-node') return this.setState({ surface: 'storyboard-sheet' });
     if (act === 'filter-wada') return this.setState({ wadaFilterRegister: el.getAttribute('data-reg') });

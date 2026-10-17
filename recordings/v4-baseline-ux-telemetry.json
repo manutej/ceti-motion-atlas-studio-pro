@@ -1,0 +1,558 @@
+{
+  "tag": "v4-baseline",
+  "capturedAt": "2026-10-17T02:33:41.067Z",
+  "frames": [
+    {
+      "file": "01-surface1-living-canvas-default.png",
+      "label": "Surface I · Infinite-Zoom Living Canvas (0.88x Studio LOD · Pelagic Sovereign · Wada No. 343)",
+      "metrics": {
+        "viewport": {
+          "vw": 1680,
+          "vh": 1040
+        },
+        "surface": "infinite-canvas",
+        "charId": "ceti-whale",
+        "zoom": 0.88,
+        "headerHeightPx": 460,
+        "headerViewportSharePct": 44.2,
+        "mainTopPx": 460,
+        "ctrlStripDisplay": "block",
+        "tabBarDisplay": "block",
+        "canvasCount": 6,
+        "nonBlankCanvases": 6,
+        "dagNodeCount": 6,
+        "dagNodeOverlaps": 2,
+        "overlappingPairs": [
+          {
+            "a": "node-fork-look",
+            "b": "node-char-rig",
+            "overlapAreaPx": 58344
+          },
+          {
+            "a": "node-proof-a",
+            "b": "node-proof-b",
+            "overlapAreaPx": 40044
+          }
+        ],
+        "dagNodes": [
+          {
+            "id": "node-seed",
+            "x": 82,
+            "y": 771,
+            "w": 255,
+            "h": 445
+          },
+          {
+            "id": "node-fork-look",
+            "x": 390,
+            "y": 692,
+            "w": 264,
+            "h": 432
+          },
+          {
+            "id": "node-char-rig",
+            "x": 390,
+            "y": 903,
+            "w": 264,
+            "h": 432
+          },
+          {
+            "id": "node-proof-a",
+            "x": 707,
+            "y": 648,
+            "w": 282,
+            "h": 384
+          },
+          {
+            "id": "node-proof-b",
+            "x": 707,
+            "y": 890,
+            "w": 282,
+            "h": 402
+          },
+          {
+            "id": "node-storyboard",
+            "x": 1042,
+            "y": 745,
+            "w": 299,
+            "h": 382
+          }
+        ]
+      }
+    },
+    {
+      "file": "02-surface1-tri-fork-ab-compare.png",
+      "label": "Surface I · 3-Direction Orthogonal Fork (α/β/γ) + Side-by-Side A/B Branch Compare Drawer",
+      "metrics": {
+        "viewport": {
+          "vw": 1680,
+          "vh": 1040
+        },
+        "surface": "infinite-canvas",
+        "charId": "ceti-whale",
+        "zoom": 0.88,
+        "headerHeightPx": 460,
+        "headerViewportSharePct": 44.2,
+        "mainTopPx": 460,
+        "ctrlStripDisplay": "block",
+        "tabBarDisplay": "block",
+        "canvasCount": 11,
+        "nonBlankCanvases": 11,
+        "dagNodeCount": 9,
+        "dagNodeOverlaps": 8,
+        "overlappingPairs": [
+          {
+            "a": "node-fork-look",
+            "b": "node-char-rig",
+            "overlapAreaPx": 58344
+          },
+          {
+            "a": "node-proof-a",
+            "b": "node-proof-b",
+            "overlapAreaPx": 40044
+          },
+          {
+            "a": "node-storyboard",
+            "b": "node-tri-alpha-6",
+            "overlapAreaPx": 75012
+          },
+          {
+            "a": "node-storyboard",
+            "b": "node-tri-beta-8",
+            "overlapAreaPx": 85728
+          },
+          {
+            "a": "node-storyboard",
+            "b": "node-tri-gamma-10",
+            "overlapAreaPx": 80652
+          },
+          {
+            "a": "node-tri-alpha-6",
+            "b": "node-tri-beta-8",
+            "overlapAreaPx": 97572
+          },
+          {
+            "a": "node-tri-alpha-6",
+            "b": "node-tri-gamma-10",
+            "overlapAreaPx": 47940
+          },
+          {
+            "a": "node-tri-beta-8",
+            "b": "node-tri-gamma-10",
+            "overlapAreaPx": 58656
+          }
+        ],
+        "dagNodes": [
+          {
+            "id": "node-seed",
+            "x": 82,
+            "y": 1134,
+            "w": 255,
+            "h": 445
+          },
+          {
+            "id": "node-fork-look",
+            "x": 390,
+            "y": 1055,
+            "w": 264,
+            "h": 432
+          },
+          {
+            "id": "node-char-rig",
+            "x": 390,
+            "y": 1266,
+            "w": 264,
+            "h": 432
+          },
+          {
+            "id": "node-proof-a",
+            "x": 707,
+            "y": 1011,
+            "w": 282,
+            "h": 384
+          },
+          {
+            "id": "node-proof-b",
+            "x": 707,
+            "y": 1253,
+            "w": 282,
+            "h": 402
+          },
+          {
+            "id": "node-storyboard",
+            "x": 1042,
+            "y": 1108,
+            "w": 299,
+            "h": 382
+          },
+          {
+            "id": "node-tri-alpha-6",
+            "x": 1050,
+            "y": 970,
+            "w": 282,
+            "h": 404
+          },
+          {
+            "id": "node-tri-beta-8",
+            "x": 1050,
+            "y": 1028,
+            "w": 282,
+            "h": 384
+          },
+          {
+            "id": "node-tri-gamma-10",
+            "x": 1050,
+            "y": 1204,
+            "w": 282,
+            "h": 384
+          }
+        ]
+      }
+    },
+    {
+      "file": "03-surface1-micro-lod-rungs.png",
+      "label": "Surface I · 1.65x Micro-Inspection LOD (Live Rung 1 vs Rung 3 vs Rung 5 Strip in Every Node)",
+      "metrics": {
+        "viewport": {
+          "vw": 1680,
+          "vh": 1040
+        },
+        "surface": "infinite-canvas",
+        "charId": "ceti-whale",
+        "zoom": 1.65,
+        "headerHeightPx": 460,
+        "headerViewportSharePct": 44.2,
+        "mainTopPx": 460,
+        "ctrlStripDisplay": "block",
+        "tabBarDisplay": "block",
+        "canvasCount": 36,
+        "nonBlankCanvases": 36,
+        "dagNodeCount": 9,
+        "dagNodeOverlaps": 8,
+        "overlappingPairs": [
+          {
+            "a": "node-fork-look",
+            "b": "node-char-rig",
+            "overlapAreaPx": 290070
+          },
+          {
+            "a": "node-proof-a",
+            "b": "node-proof-b",
+            "overlapAreaPx": 221760
+          },
+          {
+            "a": "node-storyboard",
+            "b": "node-tri-alpha-6",
+            "overlapAreaPx": 345312
+          },
+          {
+            "a": "node-storyboard",
+            "b": "node-tri-beta-8",
+            "overlapAreaPx": 383328
+          },
+          {
+            "a": "node-storyboard",
+            "b": "node-tri-gamma-10",
+            "overlapAreaPx": 366960
+          },
+          {
+            "a": "node-tri-alpha-6",
+            "b": "node-tri-beta-8",
+            "overlapAreaPx": 423456
+          },
+          {
+            "a": "node-tri-alpha-6",
+            "b": "node-tri-gamma-10",
+            "overlapAreaPx": 249216
+          },
+          {
+            "a": "node-tri-beta-8",
+            "b": "node-tri-gamma-10",
+            "overlapAreaPx": 287232
+          }
+        ],
+        "dagNodes": [
+          {
+            "id": "node-seed",
+            "x": -19,
+            "y": 869,
+            "w": 479,
+            "h": 1003
+          },
+          {
+            "id": "node-fork-look",
+            "x": 558,
+            "y": 720,
+            "w": 495,
+            "h": 982
+          },
+          {
+            "id": "node-char-rig",
+            "x": 558,
+            "y": 1116,
+            "w": 495,
+            "h": 982
+          },
+          {
+            "id": "node-proof-a",
+            "x": 1152,
+            "y": 638,
+            "w": 528,
+            "h": 874
+          },
+          {
+            "id": "node-proof-b",
+            "x": 1152,
+            "y": 1092,
+            "w": 528,
+            "h": 908
+          },
+          {
+            "id": "node-storyboard",
+            "x": 1779,
+            "y": 819,
+            "w": 561,
+            "h": 877
+          },
+          {
+            "id": "node-tri-alpha-6",
+            "x": 1796,
+            "y": 562,
+            "w": 528,
+            "h": 911
+          },
+          {
+            "id": "node-tri-beta-8",
+            "x": 1796,
+            "y": 671,
+            "w": 528,
+            "h": 874
+          },
+          {
+            "id": "node-tri-gamma-10",
+            "x": 1796,
+            "y": 1001,
+            "w": 528,
+            "h": 874
+          }
+        ]
+      }
+    },
+    {
+      "file": "04-surface2-5lens-fork-explorer.png",
+      "label": "Surface II · 5-Lens Decision Fork Explorer (Look · Use · Story · Character · Register)",
+      "metrics": {
+        "viewport": {
+          "vw": 1680,
+          "vh": 1040
+        },
+        "surface": "fork-explorer",
+        "charId": "ceti-whale",
+        "zoom": 0.88,
+        "headerHeightPx": 460,
+        "headerViewportSharePct": 44.2,
+        "mainTopPx": 460,
+        "ctrlStripDisplay": "block",
+        "tabBarDisplay": "block",
+        "canvasCount": 4,
+        "nonBlankCanvases": 4,
+        "dagNodeCount": 0,
+        "dagNodeOverlaps": 0,
+        "overlappingPairs": [],
+        "dagNodes": []
+      }
+    },
+    {
+      "file": "05-surface3-character-foundry-orpheus.png",
+      "label": "Surface III · Character & Emblem Foundry — Orpheum Lyre-Sphere (Mythic D8 Harmonic Mandala)",
+      "metrics": {
+        "viewport": {
+          "vw": 1680,
+          "vh": 1040
+        },
+        "surface": "character-foundry",
+        "charId": "geome-orpheus",
+        "zoom": 0.88,
+        "headerHeightPx": 460,
+        "headerViewportSharePct": 44.2,
+        "mainTopPx": 460,
+        "ctrlStripDisplay": "block",
+        "tabBarDisplay": "block",
+        "canvasCount": 22,
+        "nonBlankCanvases": 22,
+        "dagNodeCount": 0,
+        "dagNodeOverlaps": 0,
+        "overlappingPairs": [],
+        "dagNodes": []
+      }
+    },
+    {
+      "file": "06-surface3-character-foundry-falcon.png",
+      "label": "Surface III · Character & Emblem Foundry — Peregrine Cut (Saul Bass Avian Raptor · Wada No. 126)",
+      "metrics": {
+        "viewport": {
+          "vw": 1680,
+          "vh": 1040
+        },
+        "surface": "character-foundry",
+        "charId": "saul-falcon",
+        "zoom": 0.88,
+        "headerHeightPx": 460,
+        "headerViewportSharePct": 44.2,
+        "mainTopPx": 460,
+        "ctrlStripDisplay": "block",
+        "tabBarDisplay": "block",
+        "canvasCount": 22,
+        "nonBlankCanvases": 22,
+        "dagNodeCount": 0,
+        "dagNodeOverlaps": 0,
+        "overlappingPairs": [],
+        "dagNodes": []
+      }
+    },
+    {
+      "file": "07-surface4-8beat-storyboard.png",
+      "label": "Surface IV · 8-Beat Storyboard Sheet & Inline Causal Hinge (BUT/THEREFORE) Editor",
+      "metrics": {
+        "viewport": {
+          "vw": 1680,
+          "vh": 1040
+        },
+        "surface": "storyboard-sheet",
+        "charId": "origami-crane",
+        "zoom": 0.88,
+        "headerHeightPx": 460,
+        "headerViewportSharePct": 44.2,
+        "mainTopPx": 460,
+        "ctrlStripDisplay": "block",
+        "tabBarDisplay": "block",
+        "canvasCount": 8,
+        "nonBlankCanvases": 8,
+        "dagNodeCount": 0,
+        "dagNodeOverlaps": 0,
+        "overlappingPairs": [],
+        "dagNodes": []
+      }
+    },
+    {
+      "file": "08-surface5-sanzo-wada-348-hydrography.png",
+      "label": "Surface V · Sanzo Wada 348 Dictionary, 4x4 OKLab Chord Matrix & CIEDE2000 Token Telemetry",
+      "metrics": {
+        "viewport": {
+          "vw": 1680,
+          "vh": 1040
+        },
+        "surface": "wada-chord-matrix",
+        "charId": "astronav-compass",
+        "zoom": 0.88,
+        "headerHeightPx": 460,
+        "headerViewportSharePct": 44.2,
+        "mainTopPx": 460,
+        "ctrlStripDisplay": "block",
+        "tabBarDisplay": "block",
+        "canvasCount": 1,
+        "nonBlankCanvases": 1,
+        "dagNodeCount": 0,
+        "dagNodeOverlaps": 0,
+        "overlappingPairs": [],
+        "dagNodes": []
+      }
+    },
+    {
+      "file": "09-surface6-15styles-24elements.png",
+      "label": "Surface VI · All 15 Motion Styles & 24 Building Blocks Running on One Deterministic Clock",
+      "metrics": {
+        "viewport": {
+          "vw": 1680,
+          "vh": 1040
+        },
+        "surface": "contact-sheet",
+        "charId": "kelp-leviathan",
+        "zoom": 0.88,
+        "headerHeightPx": 460,
+        "headerViewportSharePct": 44.2,
+        "mainTopPx": 460,
+        "ctrlStripDisplay": "block",
+        "tabBarDisplay": "block",
+        "canvasCount": 39,
+        "nonBlankCanvases": 39,
+        "dagNodeCount": 0,
+        "dagNodeOverlaps": 0,
+        "overlappingPairs": [],
+        "dagNodes": []
+      }
+    },
+    {
+      "file": "10-surface7-compile-export-room.png",
+      "label": "Surface VII · Multi-Target Production Compiler (Stage-1 Brief · HyperFrames · Remotion · Anime.js v4)",
+      "metrics": {
+        "viewport": {
+          "vw": 1680,
+          "vh": 1040
+        },
+        "surface": "compile-export",
+        "charId": "kelp-leviathan",
+        "zoom": 0.88,
+        "headerHeightPx": 460,
+        "headerViewportSharePct": 44.2,
+        "mainTopPx": 460,
+        "ctrlStripDisplay": "block",
+        "tabBarDisplay": "block",
+        "canvasCount": 0,
+        "nonBlankCanvases": 0,
+        "dagNodeCount": 0,
+        "dagNodeOverlaps": 0,
+        "overlappingPairs": [],
+        "dagNodes": []
+      }
+    },
+    {
+      "file": "11-modal-oauth-pkce-rsi-critique.png",
+      "label": "Modal · OAuth 2.0 PKCE Live Enhancer & 4-Lens Adversarial RSI Critique Report",
+      "metrics": {
+        "viewport": {
+          "vw": 1680,
+          "vh": 1040
+        },
+        "surface": "compile-export",
+        "charId": "kelp-leviathan",
+        "zoom": 0.88,
+        "headerHeightPx": 460,
+        "headerViewportSharePct": 44.2,
+        "mainTopPx": 460,
+        "ctrlStripDisplay": "block",
+        "tabBarDisplay": "block",
+        "canvasCount": 0,
+        "nonBlankCanvases": 0,
+        "dagNodeCount": 0,
+        "dagNodeOverlaps": 0,
+        "overlappingPairs": [],
+        "dagNodes": []
+      }
+    },
+    {
+      "file": "12-modal-20gate-tellapart-sheaf.png",
+      "label": "Modal · 20-Gate Mechanical Contract Audit + Tell-Apart Kernel + Alexandrov Sheaf Cohomology",
+      "metrics": {
+        "viewport": {
+          "vw": 1680,
+          "vh": 1040
+        },
+        "surface": "compile-export",
+        "charId": "kelp-leviathan",
+        "zoom": 0.88,
+        "headerHeightPx": 460,
+        "headerViewportSharePct": 44.2,
+        "mainTopPx": 460,
+        "ctrlStripDisplay": "block",
+        "tabBarDisplay": "block",
+        "canvasCount": 0,
+        "nonBlankCanvases": 0,
+        "dagNodeCount": 0,
+        "dagNodeOverlaps": 0,
+        "overlappingPairs": [],
+        "dagNodes": []
+      }
+    }
+  ]
+}

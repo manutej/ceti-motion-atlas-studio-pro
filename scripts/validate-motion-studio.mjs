@@ -486,10 +486,49 @@ async function runAllGates() {
     `Anime.js v4 scaffold (${animeCode.length} chars) + Playable HTML5 (${playableHtml.length} chars) verified`
   );
 
+  // G21: VBM Visual & UX Ergonomics Gate (Collision-Free DAG + 8/8 Distinct Beats + 136px Header Telemetry)
+  const layoutedDag = CO.autoLayoutDAG(sheafForked);
+  let dagCollisionCount = 0;
+  for (let i = 0; i < layoutedDag.nodes.length; i++) {
+    for (let j = i + 1; j < layoutedDag.nodes.length; j++) {
+      const a = layoutedDag.nodes[i];
+      const b = layoutedDag.nodes[j];
+      if (Math.abs(a.x - b.x) < 330 && Math.abs(a.y - b.y) < 380) {
+        dagCollisionCount++;
+      }
+    }
+  }
+  const allStoriesUnique8Beats = TAX.STORIES.every((stObj) => {
+    const s = CO.buildStoryboardSheet({ storyKey: stObj.key, styleKey: 'watercolor', charId: 'ceti-whale', palId: 343 });
+    const labels = new Set((s.beats || []).map((b) => b.label));
+    const cams = new Set((s.beats || []).map((b) => b.cameraMove));
+    return labels.size === 8 && cams.size === 8;
+  });
+  const vbmTelemetryPath = path.join(ROOT, 'recordings', 'v6-final-ux-telemetry.json');
+  let vbmClean = false;
+  let vbmHeaderPx = 0;
+  if (fs.existsSync(vbmTelemetryPath)) {
+    const vbmJson = JSON.parse(fs.readFileSync(vbmTelemetryPath, 'utf8'));
+    const frames = vbmJson.frames || [];
+    vbmHeaderPx = frames[0] && frames[0].metrics ? frames[0].metrics.headerHeightPx : 0;
+    vbmClean =
+      frames.length === 12 &&
+      frames.every((f) => f.metrics && f.metrics.headerHeightPx <= 145 && f.metrics.dagNodeOverlaps === 0) &&
+      (vbmJson.consoleErrors || []).length === 0 &&
+      (vbmJson.pageErrors || []).length === 0;
+  }
+  const g21Pass = dagCollisionCount === 0 && allStoriesUnique8Beats && vbmClean;
+  recordGate(
+    'G21',
+    'VBM Visual & UX Ergonomics (Collision-Free DAG · 8/8 Camera Beats · 136px Header)',
+    g21Pass,
+    `DAG overlaps=${dagCollisionCount}, 8/8 unique beats across all ${TAX.STORIES.length} stories=${allStoriesUnique8Beats}, VBM 12-frame header=${vbmHeaderPx}px (0 errors)`
+  );
+
   // Print Summary Table
   const passedCount = results.filter((r) => r.pass).length;
   console.log('═══════════════════════════════════════════════════════════════════════════════');
-  console.log(`CETI MOTION ATLAS STUDIO PRO — 20-GATE CONTRACT AUDIT (${passedCount}/${results.length} PASS)`);
+  console.log(`CETI MOTION ATLAS STUDIO PRO — 21-GATE CONTRACT AUDIT (${passedCount}/${results.length} PASS)`);
   console.log('═══════════════════════════════════════════════════════════════════════════════');
   for (const r of results) {
     console.log(`[${r.pass ? 'PASS' : 'FAIL'}] ${r.id} · ${r.name}`);

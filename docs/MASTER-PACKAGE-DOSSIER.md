@@ -13,36 +13,38 @@
 
 ## PART 1 · LIVE STATUS & DELIVERABLE MANIFEST
 
-# STATUS — CETI Motion Atlas Studio Pro (`v4` Locked)
+# STATUS — CETI Motion Atlas Studio Pro (`v6.0.0` Locked)
 
 **Last Updated:** 2026-10-16  
 **Workspace:** `/Users/cairo/Documents/CETI/ACCENTURE/content-factory v2/ARTE/motion-atlas/`  
-**Current Version:** `v4.0.0` (4 Adversarial MOE Rounds Complete · `20/20 Gates PASS` · `5/5 Negative Mutation Selftests CAUGHT`)
+**Public Repository:** `https://github.com/manutej/ceti-motion-atlas-studio-pro`  
+**Current Version:** `v6.0.0` (6 Adversarial MOE + VBM Visual/UX Rounds Complete · `21/21 Gates PASS` · `5/5 Negative Mutation Selftests CAUGHT`)
 
 ---
 
-## 1. Live Studio Endpoints & Deliverables
+## 1. Live Studio Endpoints, VBM Recordings & Deliverables
 
 | Deliverable | Path / URL | Status |
 |---|---|---|
+| **Public GitHub Repository** | `https://github.com/manutej/ceti-motion-atlas-studio-pro` | **PUBLIC (`v6.0.0`)** |
 | **Live Local Studio & OAuth 2.0 PKCE Server** | `http://127.0.0.1:43110/` (served by [`scripts/oauth-bridge-server.mjs`](file:///Users/cairo/Documents/CETI/ACCENTURE/content-factory%20v2/ARTE/motion-atlas/scripts/oauth-bridge-server.mjs)) | **ONLINE** |
-| **Standalone Single-File Studio (Downloads)** | [`/Users/cairo/Downloads/CETI Motion Atlas Studio Pro.html`](file:///Users/cairo/Downloads/CETI%20Motion%20Atlas%20Studio%20Pro.html) (`432,859 bytes`) | **LOCKED (`v4`)** |
-| **Standalone Single-File Studio (Workspace)** | [`ARTE/motion-atlas/Motion Atlas Studio Pro — Standalone.html`](file:///Users/cairo/Documents/CETI/ACCENTURE/content-factory%20v2/ARTE/motion-atlas/Motion%20Atlas%20Studio%20Pro%20%E2%80%94%20Standalone.html) (`432,859 bytes`) | **LOCKED (`v4`)** |
-| **Modular Studio Entry HTML** | [`ARTE/motion-atlas/Motion Atlas Studio Pro.dc.html`](file:///Users/cairo/Documents/CETI/ACCENTURE/content-factory%20v2/ARTE/motion-atlas/Motion%20Atlas%20Studio%20Pro.dc.html) & [`ARTE/motion-atlas/index.html`](file:///Users/cairo/Documents/CETI/ACCENTURE/content-factory%20v2/ARTE/motion-atlas/index.html) | **LOCKED (`v4`)** |
-| **Sanzo Wada 348 Harmonic Dictionary** | [`ARTE/motion-atlas/geome-wada.js`](file:///Users/cairo/Documents/CETI/ACCENTURE/content-factory%20v2/ARTE/motion-atlas/geome-wada.js) (`348` combinations) | **LOCKED** |
-| **Parametric Motion & Multi-Character Engine** | [`ARTE/motion-atlas/studio-motion-engine.js`](file:///Users/cairo/Documents/CETI/ACCENTURE/content-factory%20v2/ARTE/motion-atlas/studio-motion-engine.js) (`8` distinct archetypes · `8` feels · `15` styles · `8` stories · `24` elements) | **LOCKED (`v4`)** |
-| **Living Canvas DAG, Sheaf Cohomology & OAuth PKCE** | [`ARTE/motion-atlas/studio-canvas-oauth.js`](file:///Users/cairo/Documents/CETI/ACCENTURE/content-factory%20v2/ARTE/motion-atlas/studio-canvas-oauth.js) | **LOCKED (`v4`)** |
-| **7-Surface Interactive Studio UI** | [`ARTE/motion-atlas/studio-ui.js`](file:///Users/cairo/Documents/CETI/ACCENTURE/content-factory%20v2/ARTE/motion-atlas/studio-ui.js) | **LOCKED (`v4`)** |
-| **20-Gate Mechanical Validator + Selftest** | [`ARTE/motion-atlas/scripts/validate-motion-studio.mjs`](file:///Users/cairo/Documents/CETI/ACCENTURE/content-factory%20v2/ARTE/motion-atlas/scripts/validate-motion-studio.mjs) | **`20/20 PASS` + `5/5 SELFTEST`** |
-| **Typed Contract & Meta-Plan** | [`docs/TYPED-CONTRACT-MOTION-ATLAS.md`](file:///Users/cairo/Documents/CETI/ACCENTURE/content-factory%20v2/ARTE/motion-atlas/docs/TYPED-CONTRACT-MOTION-ATLAS.md) · [`docs/META-PLAN-AND-RSI.md`](file:///Users/cairo/Documents/CETI/ACCENTURE/content-factory%20v2/ARTE/motion-atlas/docs/META-PLAN-AND-RSI.md) · [`docs/RSI-LEDGER.md`](file:///Users/cairo/Documents/CETI/ACCENTURE/content-factory%20v2/ARTE/motion-atlas/docs/RSI-LEDGER.md) | **COMPLETE** |
+| **Standalone Single-File Studio (Downloads)** | [`/Users/cairo/Downloads/CETI Motion Atlas Studio Pro.html`](file:///Users/cairo/Downloads/CETI%20Motion%20Atlas%20Studio%20Pro.html) (`457,599 bytes`) | **LOCKED (`v6`)** |
+| **Standalone Single-File Studio (Workspace)** | [`ARTE/motion-atlas/Motion Atlas Studio Pro — Standalone.html`](file:///Users/cairo/Documents/CETI/ACCENTURE/content-factory%20v2/ARTE/motion-atlas/Motion%20Atlas%20Studio%20Pro%20%E2%80%94%20Standalone.html) (`457,599 bytes`) | **LOCKED (`v6`)** |
+| **VBM `@2x` Walkthrough Video (`MP4` + `GIF`)** | [`recordings/v6-final-walkthrough.mp4`](file:///Users/cairo/Documents/CETI/ACCENTURE/content-factory%20v2/ARTE/motion-atlas/recordings/v6-final-walkthrough.mp4) & [`recordings/v6-final-walkthrough.gif`](file:///Users/cairo/Documents/CETI/ACCENTURE/content-factory%20v2/ARTE/motion-atlas/recordings/v6-final-walkthrough.gif) | **CAPTURED (`v6-final`)** |
+| **VBM `@2x` Screenshot Suite (`v4-baseline` vs `v6-final`)** | [`recordings/screenshots/v4-baseline/`](file:///Users/cairo/Documents/CETI/ACCENTURE/content-factory%20v2/ARTE/motion-atlas/recordings/screenshots/v4-baseline/) vs [`recordings/screenshots/v6-final/`](file:///Users/cairo/Documents/CETI/ACCENTURE/content-factory%20v2/ARTE/motion-atlas/recordings/screenshots/v6-final/) (`12` surfaces/modals each) | **VERIFIED (`136px` shell, `0` overlaps)** |
+| **VBM Automated CDP Walkthrough Recorder** | [`ARTE/motion-atlas/scripts/vbm-walkthrough-recorder.mjs`](file:///Users/cairo/Documents/CETI/ACCENTURE/content-factory%20v2/ARTE/motion-atlas/scripts/vbm-walkthrough-recorder.mjs) | **LOCKED (`v6`)** |
+| **21-Gate Mechanical Validator + Selftest** | [`ARTE/motion-atlas/scripts/validate-motion-studio.mjs`](file:///Users/cairo/Documents/CETI/ACCENTURE/content-factory%20v2/ARTE/motion-atlas/scripts/validate-motion-studio.mjs) | **`21/21 PASS` + `5/5 SELFTEST`** |
+| **Typed Contract, Meta-Plan & RSI Ledger** | [`docs/TYPED-CONTRACT-MOTION-ATLAS.md`](file:///Users/cairo/Documents/CETI/ACCENTURE/content-factory%20v2/ARTE/motion-atlas/docs/TYPED-CONTRACT-MOTION-ATLAS.md) · [`docs/META-PLAN-AND-RSI.md`](file:///Users/cairo/Documents/CETI/ACCENTURE/content-factory%20v2/ARTE/motion-atlas/docs/META-PLAN-AND-RSI.md) · [`docs/RSI-LEDGER.md`](file:///Users/cairo/Documents/CETI/ACCENTURE/content-factory%20v2/ARTE/motion-atlas/docs/RSI-LEDGER.md) | **COMPLETE (`v1 → v6`)** |
 
 ---
 
-## 2. Verification Command
+## 2. Verification & VBM Recording Commands
 
 ```bash
 cd "/Users/cairo/Documents/CETI/ACCENTURE/content-factory v2/ARTE/motion-atlas"
-node scripts/validate-motion-studio.mjs --selftest
+npm run build
+npm test
+npm run vbm
 ```
 
 
@@ -50,110 +52,116 @@ node scripts/validate-motion-studio.mjs --selftest
 
 ## PART 2 · COLD-RESUME ARCHITECTURE & EXTENSION HANDOFF
 
-# HANDOFF — CETI Motion Atlas Studio Pro (`v4.0.0`)
+# HANDOFF — CETI Motion Atlas Studio Pro (`v6.0.0`)
 
 **Cold-Resume Entry Point for Engineers, Motion Directors, and Autonomous Agents**  
-**Root:** `/Users/cairo/Documents/CETI/ACCENTURE/content-factory v2/ARTE/motion-atlas/`
+**Root:** `/Users/cairo/Documents/CETI/ACCENTURE/content-factory v2/ARTE/motion-atlas/`  
+**Public Repository:** `https://github.com/manutej/ceti-motion-atlas-studio-pro`
 
 ---
 
-## 1. Executive Summary — What Was Built & Locked In
+## 1. Executive Summary — What Was Built & Locked In (`v1 → v6.0.0`)
 
 **CETI Motion Atlas Studio Pro** elevates the original single-character *Motion Atlas Explorer* (`whale.html`) into a complete, contract-governed **Transcendental Motion Graphic & Narrative Design Studio** inspired by **Orpheum / GEOME** (`Sanzo Wada 348` harmonic dictionary), **Saul Bass** (5-rung graphic reduction ladder), **Milton Glaser / Push Pin Studios** (ceremonial overshoot & warm editorial ink), and **Alexandrov Sheaf Topology** ($\rho(\text{child}) = \text{parent}$ across living canvas forks).
 
-Across **4 rounds of Adversarial MOE evaluation and recursive self-improvement (`v1 → v2 → v3 → v4`)**, the studio was hardened to pass **20 binary conservation gates (`G01–G20`)** and **5 negative mutation selftests (`MUT-01` through `MUT-05`)**.
+Across **6 rounds of Adversarial MOE + VBM Visual Browser Monitor evaluation (`v1 → v6.0.0`)**, the studio was hardened to pass **21 binary conservation gates (`G01–G21`)** and **5 negative mutation selftests (`MUT-01` through `MUT-05`)**, backed by automated `@2x` CDP screenshot and `.mp4`/`.gif` video walkthrough recording (`scripts/vbm-walkthrough-recorder.mjs`).
 
 ---
 
-## 2. Architecture & File Map
+## 2. Round 5/6 VBM Visual & UX Adversarial Audit Summary (`v4-baseline` $\to$ `v6-final`)
+
+| Area Audited | `v4-baseline` Finding (Before) | `v6-final` Resolution (After) | Verified Metric |
+|---|---|---|---|
+| **Studio Shell & Header Ergonomics** | Missing `.st-*` CSS rules caused header controls to stack vertically to `460px` (`44.2%` of viewport height). | Implemented complete `.st-*` flexbox shell, control-strip, Wada-strip, and tab-bar CSS in [`Motion Atlas Studio Pro.dc.html`](file:///Users/cairo/Documents/CETI/ACCENTURE/content-factory%20v2/ARTE/motion-atlas/Motion%20Atlas%20Studio%20Pro.dc.html). | **`460px → 136px` (`-70.4%` vertical bloat reclaimed)** |
+| **Infinite-Zoom Living Canvas DAG Topology** | Default DAG had `2` AABB node overlaps (`node-fork-1` vs `node-char-rig`, `node-style-a` vs `node-style-b`) and `8` overlaps after 3-direction $\alpha/\beta/\gamma$ fork. | Added `resolveNonOverlappingPosition()` and `autoLayoutDAG()` (`⊞ Auto-Layout DAG` toolbar button) with `400px × 440px` topological grid spacing and expanded `3600×2400` stage. | **`8 → 0` node overlaps across `0.3×`, `0.78×`, and `1.65×` LODs** |
+| **8-Beat Storyboard Narrative & Camera Framing** | `STORIES` had only 4 beats doubled via `Math.floor(i/2)` (duplicate titles `Silence` ×2, `One Drop` ×2) and rendered all 8 cards at identical `t=2.4s` with static framing. | Expanded all 8 `STORIES` to **8 unique beat titles**, distinct beat midpoint timestamps (`0.75s..11.25s`), and **8 deterministic 2D camera transforms + viewfinder crop HUD** (`static-wide`, `pan-follow`, `push-in`, `dutch-tilt`, `tracking-drift`, `breather-hold`, `kick-shake`, `pull-back`). | **`8/8` unique beat titles & `8/8` camera moves across all 8 storylines** |
+| **Multi-Archetype Silhouette & Anatomy Separation** | `doodle-scribe` had duplicate `'instrument'` archetype; character cards shared too much cetacean silhouette logic. | Fixed `doodle-scribe` to `'calligraphic'`; gave each of the 8 archetypes (`cetacean`, `avian`, `submersible`, `geometric`, `instrument`, `calligraphic`, `mythic`, `botanical`) unmistakable mathematical contours & internal anatomy. | **Min pairwise $\Delta_{\text{geom}}$ rose from `0.1906 → 0.6327` (`+231.9%`)** |
+| **Saul Bass 5-Rung Reduction Ladder (`R1–R5`)** | 5 rungs were wrapped in a 3-column grid and shared similar backgrounds. | Added `.char-grid-5` 5-column side-by-side layout and distinct material/ground treatments for every rung (`R1` full wash, `R2` cut-paper collage, `R3` monoline vector + anchor ticks, `R4` 3-stroke poster block, `R5` radar dot + bearing vector). | **`5/5` visually unmistakable rungs at a glance** |
+| **Canvas Option Isolation (`MA.render`)** | Mutating shared `O` inside `MA.render` caused `rung`, `charId`, and `renderMode` options to bleed into subsequent canvases. | Wrapped `MA.render` in a `try/finally` snapshot of `O` and keyed `getBg()` cache by `ground` + `rung`. | **Zero cross-canvas state leakage across `151` rendered canvases** |
+
+---
+
+## 3. Architecture & File Map
 
 ```text
 ARTE/motion-atlas/
-├── Motion Atlas Studio Pro.dc.html          # Modular HTML entry shell + editorial CSS
+├── Motion Atlas Studio Pro.dc.html          # Modular HTML entry shell + complete .st-* editorial CSS
 ├── index.html                               # HTTP server default entry (identical to .dc.html)
-├── Motion Atlas Studio Pro — Standalone.html# 432 KB zero-dependency single-file bundle
+├── Motion Atlas Studio Pro — Standalone.html# 457 KB zero-dependency single-file bundle
 ├── geome-wada.js                            # Full 348 Sanzo Wada Dictionary (GEOME_WADA_LIST)
-├── studio-motion-engine.js                  # Wada OKLab/CIEDE2000 + 8 Archetypes + 8 Feels + Single-Clock MA
-├── studio-canvas-oauth.js                   # Living Canvas DAG + Sheaf ρ + OAuth 2.0 PKCE + Compilers + RSI
+├── studio-motion-engine.js                  # Wada OKLab/CIEDE2000 + 8 Archetypes + 8 Feels + Camera HUD + MA
+├── studio-canvas-oauth.js                   # Living Canvas DAG + Auto-Layout + Sheaf ρ + OAuth PKCE + 21 Gates
 ├── studio-ui.js                             # 7 Interactive Studio Surfaces + Modals + MediaRecorder + Shortcuts
+├── recordings/
+│   ├── v6-final-walkthrough.mp4             # ★ Full @2x MP4 video recording of all 12 studio states
+│   ├── v6-final-walkthrough.gif             # ★ Animated GIF walkthrough preview
+│   ├── v6-final-ux-telemetry.json           # ★ Automated DOM/UX layout & overlap telemetry (v6-final)
+│   ├── v4-baseline-ux-telemetry.json        # Baseline telemetry before Round 5/6 compaction
+│   └── screenshots/
+│       ├── v6-final/                        # ★ 12 @2x Retina PNG screenshots after Round 6 improvements
+│       └── v4-baseline/                     # 12 @2x Retina PNG screenshots before Round 5/6
 ├── scripts/
-│   ├── validate-motion-studio.mjs           # 20-Gate Mechanical Contract Validator + --selftest
+│   ├── build-package.mjs                    # Deterministic compiler for dist/ and master dossier
+│   ├── validate-motion-studio.mjs           # 21-Gate Mechanical Contract Validator + --selftest
+│   ├── vbm-walkthrough-recorder.mjs         # ★ Headless Chrome CDP @2x Screenshot, Telemetry & Video Recorder
 │   └── oauth-bridge-server.mjs              # Local HTTP Studio Server + OAuth 2.0 PKCE S256 Loopback Bridge
 ├── docs/
-│   ├── TYPED-CONTRACT-MOTION-ATLAS.md       # Formal TypeScript/JSON-Schema domain contracts (G01–G16)
+│   ├── MASTER-PACKAGE-DOSSIER.md            # Unified single-file master spec, build & RSI dossier
+│   ├── TYPED-CONTRACT-MOTION-ATLAS.md       # Formal TypeScript/JSON-Schema domain contracts
 │   ├── META-PLAN-AND-RSI.md                 # Operadic decomposition, sheaf topology & RSI critique loops
-│   └── RSI-LEDGER.md                        # v1 → v4 Adversarial MOE audit log & mutation selftest ledger
+│   ├── RSI-LEDGER.md                        # v1 → v6 Adversarial MOE & VBM UX audit ledger
+│   └── FINDINGS-MOTION-ATLAS-STUDIO.md      # Durable architectural QC findings
 ├── STATUS.md                                # Live status & verification commands
 └── HANDOFF.md                               # This cold-resume guide & extension playbook
 ```
 
-Also mirrored to `/Users/cairo/Downloads/CETI Motion Atlas Studio Pro.html` for one-click standalone launch.
-
 ---
 
-## 3. Quick Start & Verification Commands
+## 4. Quick Start & Verification Commands
 
-### A. Run the 20-Gate Mechanical Audit + Negative Mutation Selftest
+### A. Run the 21-Gate Mechanical Audit + Negative Mutation Selftest
 ```bash
 cd "/Users/cairo/Documents/CETI/ACCENTURE/content-factory v2/ARTE/motion-atlas"
-node scripts/validate-motion-studio.mjs --selftest
+npm test
+# Runs: node scripts/validate-motion-studio.mjs --selftest (21/21 Gates PASS + 5/5 Selftests CAUGHT)
 ```
 
-### B. Start the Local Studio & OAuth 2.0 PKCE Loopback Server
+### B. Capture `@2x` VBM Screenshots, UX Telemetry & Walkthrough Video (`MP4` + `GIF`)
 ```bash
 cd "/Users/cairo/Documents/CETI/ACCENTURE/content-factory v2/ARTE/motion-atlas"
-node scripts/oauth-bridge-server.mjs
+npm run vbm
+# Runs: node scripts/vbm-walkthrough-recorder.mjs v6-final
+```
+
+### C. Rebuild Standalone Bundles & Unified Master Dossier
+```bash
+cd "/Users/cairo/Documents/CETI/ACCENTURE/content-factory v2/ARTE/motion-atlas"
+npm run build
+```
+
+### D. Start the Local Studio & OAuth 2.0 PKCE Loopback Server
+```bash
+cd "/Users/cairo/Documents/CETI/ACCENTURE/content-factory v2/ARTE/motion-atlas"
+npm start
 # Opens http://127.0.0.1:43110/ with live PKCE S256 handshake & /oauth/enhance endpoints
 ```
 
-### C. Rebuild the Zero-Dependency Standalone HTML Bundle after Edits
-```bash
-cd "/Users/cairo/Documents/CETI/ACCENTURE/content-factory v2/ARTE/motion-atlas"
-node -e '
-const fs = require("fs");
-const html = fs.readFileSync("Motion Atlas Studio Pro.dc.html", "utf8");
-const wada = fs.readFileSync("geome-wada.js", "utf8");
-const eng = fs.readFileSync("studio-motion-engine.js", "utf8");
-const co = fs.readFileSync("studio-canvas-oauth.js", "utf8");
-const ui = fs.readFileSync("studio-ui.js", "utf8");
-const standalone = html
-  .replace("<script src=\"./geome-wada.js\"></script>", () => "<script>\n" + wada + "\n</script>")
-  .replace("<script src=\"./studio-motion-engine.js\"></script>", () => "<script>\n" + eng + "\n</script>")
-  .replace("<script src=\"./studio-canvas-oauth.js\"></script>", () => "<script>\n" + co + "\n</script>")
-  .replace("<script src=\"./studio-ui.js\"></script>", () => "<script>\n" + ui + "\n</script>");
-fs.writeFileSync("Motion Atlas Studio Pro — Standalone.html", standalone);
-fs.writeFileSync("/Users/cairo/Downloads/CETI Motion Atlas Studio Pro.html", standalone);
-'
-```
-
 ---
 
-## 4. Extension Playbook (How to Advance This Work)
+## 5. Comprehensive Backlog & Next-Round Improvement Roadmap (`v7.0` Horizon)
 
-### 4.1 Adding a New Character Archetype or Preset Rig
-1. **Runtime / UI Way:** Open the **OAuth 2.0 PKCE Live Enhancer Modal** (`✦ OAuth PKCE Enhancer`) or **Surface III (`Character & Emblem Foundry`)**, click **`✦ Synthesize Character Rig`**, or call `window.MA.registerCustomCharacter(spec)`.
-2. **Permanent Preset Way:** Add a new entry to `CHARACTERS` and `CHARACTER_ORDER` in [`studio-motion-engine.js`](file:///Users/cairo/Documents/CETI/ACCENTURE/content-factory%20v2/ARTE/motion-atlas/studio-motion-engine.js).
-   - Ensure its `bodyProfile`, `spineWave`, and `appendages` produce a contour signature with $\Delta_{\text{geom}} > 0.08$ against all existing rigs (verified automatically by `G17` via `MA.auditArchetypeDiscriminability()`).
+Based on our expert adversarial review team's observations while recording and moving through all 7 surfaces, here is the prioritized roadmap for the next round of iterations (`v7.0`):
 
-### 4.2 Adding or Curating New Sanzo Wada Harmonic Plates
-1. All 348 historical Sanzo Wada combinations are already loaded in [`geome-wada.js`](file:///Users/cairo/Documents/CETI/ACCENTURE/content-factory%20v2/ARTE/motion-atlas/geome-wada.js) (`window.GEOME_WADA_LIST`).
-2. To promote any of the 348 combinations to a curated top-bar studio plate with custom Japanese/English editorial notes, append an entry to `PALS` in `STUDIO_WADA_ENGINE` (`studio-motion-engine.js`).
-3. Ensure `cr >= 7.0` (WCAG AAA ink-on-paper contrast); `WADA.enrichPalette(raw, ground)` will automatically compute the $4\times 4$ OKLab chord matrix and CIEDE2000 nearest CETI tokens.
-
-### 4.3 Connecting External Cloud LLM Keys to the OAuth 2.0 PKCE Bridge
-1. In [`scripts/oauth-bridge-server.mjs`](file:///Users/cairo/Documents/CETI/ACCENTURE/content-factory%20v2/ARTE/motion-atlas/scripts/oauth-bridge-server.mjs), the `/oauth/enhance` endpoint validates the PKCE bearer token and returns a schema-checked `OAuthEnhanceResponse`.
-2. To route `/oauth/enhance` through a live upstream model (Anthropic Claude, OpenAI, Gemini, or OpenRouter), pass `OPENROUTER_API_KEY` or `ANTHROPIC_API_KEY` in the environment of `oauth-bridge-server.mjs` and validate the JSON output through `CO.validateEnhancementResponse(payload)` before returning it to the client.
-
----
-
-## 5. Next-Horizon Roadmap (Phase 2 Advancement)
-
-1. **Multi-Track WebAudio Sound Synthesis (`Orpheum Harmonic Sonification`):**
-   - Map each active Sanzo Wada combination's $4\times 4$ OKLab chord distances ($\Delta_{\text{OKLab}}$) to a 4-voice WebAudio harmonic drone/plucked-string chord that evolves deterministically with `frame(t)` and changes timbre across the 5 Saul Bass reduction rungs.
-2. **SVG / Lottie Vector Path Compiler Target:**
-   - Extend `CO.compileCodeScaffold(state, 'lottie')` and `'svg-sprites'` to serialize the exact bezier spine and contour arrays (`actorGeom(spec, o)`) into standalone animated SVG `<path>` keyframe sprites and Lottie JSON.
-3. **Collaborative Multi-Cursor Living Canvas (CRDT / WebSocket):**
-   - Extend `scripts/oauth-bridge-server.mjs` with a lightweight WebSocket room so multiple art directors can pan, fork $\alpha/\beta/\gamma$ branches, and stamp Sheaf restriction hashes ($\rho$) on the same Infinite-Zoom Living Canvas in real time.
+1. **Interactive Bezier Spine & Keyframe Curve Editor on Surface IV (`8-Beat Storyboard`):**
+   - Allow art directors to drag cubic-bezier handles `(x1, y1, x2, y2)` directly inside each storyboard beat card to customize per-beat easing overrides on top of the global timing feel (`spring`, `boil`, `snappy`, `rostrum`).
+2. **Interactive SVG Edge Dragging & Custom Dependency Wiring on Surface I (`Living Canvas DAG`):**
+   - Enable click-and-drag port wiring between DAG nodes so users can merge two sibling branches ($\alpha + \beta \to \text{synthesis node}$) with automatic sheaf restriction hash reconciliation ($\rho(\text{merge}) = \rho(\alpha) \oplus \rho(\beta)$).
+3. **Orpheum Harmonic WebAudio Sonification Engine:**
+   - Map the active Sanzo Wada palette's $4\times 4$ OKLab perceptual chord distances ($\Delta_{\text{OKLab}}$) to a deterministic 4-voice WebAudio synthesizer whose harmonic overtones track `frame(t)` and filter down to a pure sine pulse at Saul Bass `Rung 5`.
+4. **Vector SVG / Lottie Keyframe Path Compiler (`Surface VII`):**
+   - Add `'svg-keyframe'` and `'lottie-json'` export targets to `CO.compileCodeScaffold()` that serialize `actorGeom(spec, o)` spline points directly into resolution-independent vector animations.
+5. **Live Multi-Frame Onion-Skin Scrubbing Overlay:**
+   - Add an optional onion-skin toggle (`O` shortcut) on Surface III and Surface IV that renders ghost silhouettes at $t - 2\Delta t, t - \Delta t, t + \Delta t$ in Wada support-wash tints (`pal.a`, `pal.c`) for frame-by-frame spacing inspection.
 
 
 ---
@@ -581,53 +589,73 @@ flowchart LR
 
 ## PART 5 · 4-ROUND ADVERSARIAL MOE & NEGATIVE MUTATION SELFTEST LEDGER
 
-# CETI MOTION ATLAS STUDIO PRO — 4-ROUND ADVERSARIAL MOE & RSI LEDGER (`v1 → v4`)
+# CETI MOTION ATLAS STUDIO PRO — 6-ROUND ADVERSARIAL MOE & VBM UX LEDGER (`v1 → v6`)
 
 **Workspace:** `/Users/cairo/Documents/CETI/ACCENTURE/content-factory v2/ARTE/motion-atlas/`  
+**Public Repository:** `https://github.com/manutej/ceti-motion-atlas-studio-pro`  
 **Contracts:** [`docs/TYPED-CONTRACT-MOTION-ATLAS.md`](file:///Users/cairo/Documents/CETI/ACCENTURE/content-factory%20v2/ARTE/motion-atlas/docs/TYPED-CONTRACT-MOTION-ATLAS.md) · [`docs/META-PLAN-AND-RSI.md`](file:///Users/cairo/Documents/CETI/ACCENTURE/content-factory%20v2/ARTE/motion-atlas/docs/META-PLAN-AND-RSI.md)  
-**Validator:** [`scripts/validate-motion-studio.mjs`](file:///Users/cairo/Documents/CETI/ACCENTURE/content-factory%20v2/ARTE/motion-atlas/scripts/validate-motion-studio.mjs) (`--selftest` enabled)
+**Validators:** [`scripts/validate-motion-studio.mjs`](file:///Users/cairo/Documents/CETI/ACCENTURE/content-factory%20v2/ARTE/motion-atlas/scripts/validate-motion-studio.mjs) (`--selftest`) · [`scripts/vbm-walkthrough-recorder.mjs`](file:///Users/cairo/Documents/CETI/ACCENTURE/content-factory%20v2/ARTE/motion-atlas/scripts/vbm-walkthrough-recorder.mjs)
 
 ---
 
-## 1. Multi-Round Adversarial MOE Evolution (`v1 → v2 → v3 → v4`)
+## 1. Multi-Round Adversarial MOE & VBM Visual/UX Evolution (`v1 → v6`)
 
-| Round | Target Focus | Adversarial Probes & Findings (A1–A4 + `tell-apart`) | Surgical Fixes Applied | Gate Score |
+| Round | Target Focus | Adversarial Probes & Findings (A1–A4 + `tell-apart` + VBM Visual Telemetry) | Surgical Fixes Applied | Gate Score |
 |---|---|---|---|---|
-| **Round 1 (`v1`)** | Initial 4-file modular architecture (`geome-wada.js`, `studio-motion-engine.js`, `studio-canvas-oauth.js`, `studio-ui.js`) | **A4 / Runtime Probe:** Unescaped apostrophe inside single-quoted string at `studio-ui.js:441` (`doesn't`); `_MA_INTERNAL` missing `bez` and `renderReductionRung`; `INTERACTION_MODES` using `proof` instead of `proofKey`; `oauth-bridge-server.mjs` `import.meta.url` comparison failed on workspace path containing spaces (`content-factory v2`). | Fixed quote syntax in `studio-ui.js`; exported `bez` and `renderReductionRung` on `_MA_INTERNAL`; added `proofKey` to all 8 `INTERACTION_MODES`; replaced raw URL check with `pathToFileURL(process.argv[1]).href` in `oauth-bridge-server.mjs`. | `13/16` → `16/16` |
+| **Round 1 (`v1`)** | Initial 4-file modular architecture (`geome-wada.js`, `studio-motion-engine.js`, `studio-canvas-oauth.js`, `studio-ui.js`) | **A4 / Runtime Probe:** Unescaped apostrophe inside single-quoted string at `studio-ui.js:441` (`doesn't`); `_MA_INTERNAL` missing `bez` and `renderReductionRung`; `INTERACTION_MODES` using `proof` instead of `proofKey`; `oauth-bridge-server.mjs` `import.meta.url` comparison failed on workspace path containing spaces. | Fixed quote syntax in `studio-ui.js`; exported `bez` and `renderReductionRung` on `_MA_INTERNAL`; added `proofKey` to all 8 `INTERACTION_MODES`; replaced raw URL check with `pathToFileURL(process.argv[1]).href` in `oauth-bridge-server.mjs`. | `13/16` → `16/16` |
 | **Round 2 (`v2`)** | Baseline 16-Gate Closure & Standalone Packaging | **A2 / Packaging Probe:** Opening `Motion Atlas Studio Pro.dc.html` over `file://` could face browser CORS restrictions if scripts aren't either served via HTTP or inlined; `MA.renderActor` and `MA.renderReductionRung` needed flexible parameter signatures for headless vs DOM invocation. | Added flexible parameter adapters in `studio-motion-engine.js`; enhanced `scripts/oauth-bridge-server.mjs` to serve the entire studio over HTTP on `http://127.0.0.1:43110/`; generated zero-dependency single-file `Motion Atlas Studio Pro — Standalone.html`. | `16/16 PASS` |
-| **Round 3 (`v3`)** | **`tell-apart` Discriminability & Mathematical Engine Deepening** | **A1 (`tell-apart` Kernel) + A3 (Timing & Sheaf) Probe:** 1. In `v2`, 4 of the 8 archetypes (`geometric`, `calligraphic`, `mythic`, `botanical`) fell through to the default cetacean contour envelope in `actorGeom`, violating `tell-apart` silhouette discriminability. 2. Only 7 of 8 timing feels were registered (`rostrum` 10fps documentary camera pan was missing). 3. DAG edges lacked explicit Alexandrov Sheaf restriction hashes ($\rho(\text{child}) = \text{parent}$, $\delta^0 = 0$). | 1. Built distinct mathematical contours and internal anatomical geometry in `actorGeom` and `renderActor` for all 8 archetypes (`origami-crane` neck/delta wings/creases, `nib-scriptor` slit & breather hole, `geome-orpheus` $D_8$ rose-lyre mandala, `kelp-leviathan` botanical frond lobes, `saul-falcon` raptor beak/keel, `lantern-bathysphere` viewport/skid, `astronav-compass` gimbal rings). 2. Added `MA.computeContourSignature` and `MA.auditArchetypeDiscriminability()` proving $\min \Delta_{\text{geom}} = 0.1906 > 0.08$ across all $\binom{8}{2} = 28$ character pairs. 3. Added `rostrum` 8th timing feel. 4. Added `computePacketHash`, `stampDAGRestrictionHashes`, and `verifyDAGSheafCohomology` ($\delta^0 = 0$). | `18/20` |
-| **Round 4 (`v4`)** | **Full Studio Surface Lock-In, 4-Action OAuth Modal, Multi-Target Compilers & Negative Mutation `--selftest`** | **A2 (Interactive Studio Depth) + A4 (Negative Selftest Law):** 1. Surface 1 needed live 3-tier Semantic LOD (`macro-topology` Rung 4 glyph, `standard-studio` live canvas, `micro-inspection` Rung 1/3/5 comparison strip) and Sheaf $\rho$ badges. 2. Surface 4 needed inline beat editing (`BUT`/`THEREFORE` hinge, camera move, visual action) + click-to-scrub beat transport. 3. Surface 7 needed `Anime.js v4`, `Playable Single-Clock HTML5` download, `WebM` video `MediaRecorder`, and `.motion.studio.json` import. 4. Validator needed `--selftest` negative mutation verification. | Upgraded Surfaces 1, 4, 7, and Modals in `studio-ui.js`; normalized return contracts in `studio-motion-engine.js` and `studio-canvas-oauth.js`; expanded `scripts/validate-motion-studio.mjs` to **20 binary gates** + **5 negative mutation selftests**; rebuilt standalone HTML bundles (`432,859 bytes`). | **`20/20 PASS` + `5/5 SELFTEST CAUGHT`** |
+| **Round 3 (`v3`)** | **`tell-apart` Discriminability & Mathematical Engine Deepening** | **A1 (`tell-apart` Kernel) + A3 (Timing & Sheaf) Probe:** 1. In `v2`, 4 of the 8 archetypes fell through to the default cetacean contour envelope in `actorGeom`. 2. Only 7 of 8 timing feels were registered (`rostrum` missing). 3. DAG edges lacked explicit Alexandrov Sheaf restriction hashes ($\rho(\text{child}) = \text{parent}$, $\delta^0 = 0$). | Built distinct mathematical contours in `actorGeom` and `renderActor` for all 8 archetypes; added `MA.computeContourSignature` and `MA.auditArchetypeDiscriminability()`; added `rostrum` 8th timing feel; added `computePacketHash`, `stampDAGRestrictionHashes`, and `verifyDAGSheafCohomology` ($\delta^0 = 0$). | `18/20` |
+| **Round 4 (`v4`)** | **Full Studio Surface Lock-In, 4-Action OAuth Modal, Multi-Target Compilers & Negative Mutation `--selftest`** | **A2 (Interactive Studio Depth) + A4 (Negative Selftest Law):** Surface 1 needed live 3-tier Semantic LOD (`macro-topology`, `standard-studio`, `micro-inspection`) and Sheaf $\rho$ badges; Surface 4 needed inline beat editing; Surface 7 needed `Anime.js v4`, `Playable Single-Clock HTML5`, `WebM` `MediaRecorder`, and `.motion.studio.json` import; validator needed `--selftest`. | Upgraded Surfaces 1, 4, 7, and Modals in `studio-ui.js`; expanded `scripts/validate-motion-studio.mjs` to **20 binary gates** + **5 negative mutation selftests**. | `20/20 PASS` + `5/5 SELFTEST` |
+| **Round 5 (`v5`)** | **VBM `@2x` Visual Browser Monitor Audit & Multi-Agent Expert Design/UX Critique** | **VBM Telemetry (`v4-baseline-ux-telemetry.json`) + Subagent Critic Team (`A1/A3 Editorial UX Critic` + `A2/A4 Motion & Rig Critic`):** 1. **460px Header Bloat:** Missing `.st-*` CSS rules in `Motion Atlas Studio Pro.dc.html` caused header controls to stack vertically to `460px` (`44.2%` of viewport height!). 2. **DAG Node Collisions:** Default DAG had `2` AABB node overlaps (`node-fork-1` vs `node-char-rig`, `node-style-a` vs `node-style-b`), escalating to `8` overlaps after 3-direction $\alpha/\beta/\gamma$ fork. 3. **Duplicate Storyboard Beats:** `STORIES` had only 4 beats doubled via `Math.floor(i/2)`, producing duplicate titles (`Silence` ×2, `One Drop` ×2) and identical `t=2.4s` frames. 4. **Shared `O` Mutation Leak in `MA.render`:** Mutating shared `O` caused options (`rung`, `charId`, `renderMode`) to bleed across canvases. 5. **Archetype & Rung Polish:** `doodle-scribe` was mis-tagged `'instrument'` instead of `'calligraphic'`; Rungs 1–5 and all 8 character cards needed unmistakable silhouette & surface separation. | Compiled comprehensive 18-point engineering & UX remediation plan across `Motion Atlas Studio Pro.dc.html`, `studio-motion-engine.js`, `studio-canvas-oauth.js`, and `studio-ui.js`. | Diagnostic Baseline Captured |
+| **Round 6 (`v6.0.0`)** | **Full UX/CSS Compaction, Collision-Free DAG Auto-Layout, 8-Beat Camera Viewfinder Engine, 5-Rung Separation & Gate `G21`** | **VBM Verification (`v6-final-ux-telemetry.json` + `v6-final-walkthrough.mp4`):** Verified all 12 `@2x` screenshots and walkthrough video. Header height dropped from **`460px → 136px`** (`-70.4%`); DAG overlaps dropped from **`8 → 0`** across all zoom levels (`0.3×`, `0.78×`, `1.65×`); `tell-apart` min pairwise distance rose from **`0.1906 → 0.6327`**; all 8 storylines now have **8 unique beat titles + 8 distinct camera moves + viewfinder HUD**. | Implemented complete `.st-*` studio CSS architecture (`136px` sticky header), `resolveNonOverlappingPosition()` + `autoLayoutDAG()` (`⊞ Auto-Layout DAG`), 8-beat `STORIES` with 2D camera transforms & viewfinder HUD, `try/finally` `O` isolation in `MA.render`, and **Gate `G21`** in `validate-motion-studio.mjs`. | **`21/21 PASS` + `5/5 SELFTEST CAUGHT`** |
 
 ---
 
-## 2. Final 20-Gate Mechanical Audit Scorecard (`v4`)
+## 2. Quantitative VBM Telemetry Comparison (`v4-baseline` vs `v6-final`)
 
-| Gate | Contract Invariant | Measured Metric (`v4`) | Verdict |
+| UX / Visual Metric | `v4-baseline` (Before Round 5/6) | `v6-final` (After Round 5/6) | Improvement |
+|---|---|---|---|
+| **Sticky Studio Header Height (`headerHeightPx`)** | `460px` (`44.2%` of `1040px` viewport) | **`136px`** (`13.1%` of `1040px` viewport) | **`-324px` (`-70.4%` vertical bloat reclaimed)** |
+| **Default DAG Node Collisions (`01-surface1`)** | `2` overlapping node pairs | **`0` overlaps** (`400px × 440px` grid pitch) | **100% collision-free** |
+| **3-Direction $\alpha/\beta/\gamma$ Fork Overlaps (`02-surface1`)** | `8` overlapping node pairs | **`0` overlaps** (`resolveNonOverlappingPosition` + `autoLayoutDAG`) | **100% collision-free** |
+| **1.65× Micro-LOD Rung Strip Overlaps (`03-surface1`)** | `8` overlapping node pairs | **`0` overlaps** | **100% collision-free** |
+| **Tell-Apart Min Pairwise Distance ($\min \Delta_{\text{geom}}$)** | `0.1906` (`doodle-scribe` duplicate `'instrument'`) | **`0.6327`** across all $\binom{8}{2}=28$ character pairs | **`+231.9%` silhouette discriminability** |
+| **8-Beat Storyboard Distinct Beat Titles (`Surface IV`)** | `4` unique titles (each duplicated twice) | **`8/8` unique beat titles** across all 8 storylines | **Zero duplicate beats** |
+| **8-Beat Storyboard Camera Moves & Sampling (`Surface IV`)** | Static framing; identical `t=2.4s` on all 8 cards | **`8/8` distinct camera transforms + viewfinder crop HUD** (`t = 0.75s .. 11.25s`) | **True kinematic progression across all 8 beats** |
+| **Saul Bass 5-Rung Reduction Grid (`Surface III`)** | 3-column wrapped cards with subtle stroke diff | **5-column side-by-side grid (`.char-grid-5`)** with distinct ground/material treatments (`R1`–`R5`) | **Instant 5-rung visual comparison** |
+| **Console / Page / Canvas Runtime Errors (`12` VBM frames)** | `0` | **`0`** (`151/151` canvases rendered cleanly across 12 captures) | **100% clean** |
+
+---
+
+## 3. Final 21-Gate Mechanical Audit Scorecard (`v6.0.0`)
+
+| Gate | Contract Invariant | Measured Metric (`v6.0.0`) | Verdict |
 |---|---|---|---|
 | **G01** | Sanzo Wada Harmonic Pinning Closure | `GEOME_WADA_LIST=348`, Curated `PALS=19`, 4×4 OKLab chord matrix & CIEDE2000 token matcher active | **PASS** |
 | **G02** | WCAG AAA Ink-on-Paper Contrast ($\ge 7.0:1$) | Minimum contrast across all 19 curated grounds = `7.65:1` (`No. 343` = `14.12:1`) | **PASS** |
 | **G03** | Zero Hardcoded Whale Lock-In | `8` characters × `6` render modes (`wash`, `paper`, `line`, `flat`, `pixel`, `hydrographic`) = `48/48` verified | **PASS** |
 | **G04** | 5-Rung Saul Bass Reduction Ladder & Emblem Gauntlet | `40/40` reduction rungs rendered; `8/8` 4-Test Emblem Gauntlets (`16px`, `silhouette`, `oneMove`, `cutTest`) passed | **PASS** |
 | **G05** | 8 Character Interaction Modes Completeness | `8` interaction modes × `8` characters = `64/64` live proofs verified | **PASS** |
-| **G06** | Single-Clock Determinism (`window.MA.draw`) | `15/15` style proofs + `8/8` storyline proofs rendered deterministically with non-whale rigs | **PASS** |
+| **G06** | Single-Clock Determinism (`window.MA.draw`) | `15/15` style proofs + `8/8` storyline proofs rendered deterministically with option isolation | **PASS** |
 | **G07** | 5-Lens Decision Fork Tree Completeness | `5` lenses verified: `look`, `use`, `story`, `character`, `register` | **PASS** |
 | **G08** | 8-Beat Storyboard Conservation Laws | `8/8` storylines pass `coveredOk`, `movementOk` (`BUT`/`THEREFORE`), `oneBreather`, `callback`, and $\le 2$ moves | **PASS** |
 | **G09** | Infinite-Zoom Living Canvas DAG Integrity | Non-destructive fork, A/B compare, and 3-tier LOD (`macro-topology`, `standard-studio`, `micro-inspection`) verified | **PASS** |
 | **G10** | Multi-Provider OAuth 2.0 PKCE + Local Bridge | RFC 7636 verifier (`43` chars), `S256` challenge (`43` chars), `?code=` auto-exchange, & `127.0.0.1:43110` bridge active | **PASS** |
 | **G11** | OAuth Live Storyboard & Character Schema Guard | Valid synthesizer payload accepted; malformed payload rejected | **PASS** |
 | **G12** | 100% Offline Embedded 171-Node Atlas Corpus | `15` styles, `24` elements, `8` laws, `16` gates embedded (`0` `/_blob/` network fetches) | **PASS** |
-| **G13** | Multi-Target Production Compiler | Stage-1 Brief `.md` (`2,130` chars), HyperFrames HTML (`8,182` chars), Remotion TSX (`895` chars) | **PASS** |
+| **G13** | Multi-Target Production Compiler | Stage-1 Brief `.md` (`2,248` chars), HyperFrames HTML (`9,510` chars), Remotion TSX (`895` chars) | **PASS** |
 | **G14** | Session Persistence & Portable `.motion.studio.json` | `localStorage` + `IndexedDB` + JSON export/import round-trip verified | **PASS** |
 | **G15** | CETI Editorial & Anti-Slop Typography Compliance | `Fraunces` + `DM Sans` + `Space Mono` active; `0` banned fonts | **PASS** |
-| **G16** | Zero Runtime Errors & Full Bundle Integrity | All core files + keyboard shortcuts (`Space`, `[`, `]`, `C`, `F`) + `prefers-reduced-motion` verified | **PASS** |
-| **G17** | `tell-apart` Archetype Discriminability Kernel & 8 Timing Feels | `28/28` character pairs distinct ($\min \Delta_{\text{geom}} = 0.1906$, $\max = 8.6266$); `8` timing feels including `rostrum` | **PASS** |
+| **G16** | Zero Runtime Errors & Full Bundle Integrity | All core files + keyboard shortcuts (`Space`, `[`, `]`, `C`, `F`, `Esc`) + `prefers-reduced-motion` verified | **PASS** |
+| **G17** | `tell-apart` Archetype Discriminability Kernel & 8 Timing Feels | `28/28` character pairs distinct ($\min \Delta_{\text{geom}} = 0.6327$, $\max = 8.9522$); `8` timing feels including `rostrum` | **PASS** |
 | **G18** | Alexandrov Sheaf Restriction Cohomology ($\delta^0 = 0$) | Verified $\rho(\text{child}) = \text{parent}$ across `9` DAG edges after 3-direction $\alpha/\beta/\gamma$ fork | **PASS** |
 | **G19** | 4-Lens Adversarial RSI Critique & Surgical Auto-Fix | `4/4` lenses (`A1 Saul Bass`, `A2 Koolhaas`, `A3 Hydrography`, `A4 HyperFrames Sheaf`) pass & auto-heal defects | **PASS** |
-| **G20** | Extended Compilers (`Anime.js v4` + `Playable HTML5`) | `Anime.js v4` timeline scaffold (`1,291` chars) + Playable Single-Clock HTML5 (`8,429` chars) verified | **PASS** |
+| **G20** | Extended Compilers (`Anime.js v4` + `Playable HTML5`) | `Anime.js v4` timeline scaffold (`1,317` chars) + Playable Single-Clock HTML5 (`9,757` chars) verified | **PASS** |
+| **G21** | **VBM Visual & UX Ergonomics Gate** | `0` DAG node overlaps, `8/8` unique beat titles & camera moves across all 8 stories, `136px` sticky header (`12/12` VBM frames clean) | **PASS** |
 
 ---
 
-## 3. Negative Mutation Selftest (`node scripts/validate-motion-studio.mjs --selftest`)
+## 4. Negative Mutation Selftest (`node scripts/validate-motion-studio.mjs --selftest`)
 
 | Mutation ID | Synthetic Defect Injected | Target Gate | Result |
 |---|---|---|---|

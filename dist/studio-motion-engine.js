@@ -346,7 +346,7 @@
       id: 'doodle-scribe',
       name: 'Nib & Ink Automaton',
       subtitle: 'Calligraphic Diagrammer & Side-Third Pointer',
-      archetype: 'botanical',
+      archetype: 'calligraphic',
       aspectRatio: 0.34,
       bodyProfile: { headTaper: 0.06, dorsalArch: 0.30, ventralBelly: 0.30, caudalTaper: 0.55, humpPos: 0.42, humpHeight: 0.14 },
       spineWave: { ampDefault: 0.22, freqHz: 1.15, tailPower: 2.1 },
@@ -472,12 +472,14 @@
       format: '16:9 · 24 fps · 12 s excerpt of a 60–90 s piece',
       logline: 'A drained grey actor meets one drop of Wada pigment, and its resonant call turns the colour into its own.',
       beats: [
-        [0,   'Silence',  'Grey actor drifts, eyes half-closed. The palette is drained.'],
-        [2,   'One drop', 'A single drop of pigment falls and blooms on the paper.'],
-        [4.2, 'Contact',  'The actor traverses the bloom; its tail leaves a brushstroke.'],
-        [6,   'Song',     'Intake opens; acoustic rings become harmonic streaks; colour floods the body.'],
-        [9,   'Leap',     'A full-colour parabolic arc trailing Wada ribbons.'],
-        [11,  'Calm',     'The last beat holds still — the Atlas calm ending echoes beat 1.']
+        [0.0,  'Drained Silence',  'Grey actor drifts in desaturated archival paper; eye half-closed.'],
+        [1.5,  'Single Drop',      'One drop of Wada focal pigment falls from the upper margin toward the datum.'],
+        [3.0,  'Pigment Bloom',    'Concentric watercolor wash blooms outward; actor tilts nose toward the chromatic front.'],
+        [4.5,  'Brushstroke Wake', 'Actor traverses the bloom; caudal fluke leaves a saturated multiply brushstroke.'],
+        [6.0,  'Resonant Intake',  'Intake opens; 3 acoustic Wada rings radiate as harmonic streaks ignite along the spine.'],
+        [7.5,  'Breather Hold',    'Actor glides in quiet negative space as the full Wada palette locks into the body.'],
+        [9.0,  'Parabolic Leap',   'Full-chroma breach arc across the upper third trailing 5 harmonic Wada ribbons.'],
+        [10.5, 'Calm Callback',    'Actor settles in the right third, echoing Beat 1 silhouette in full Wada color.']
       ],
       styles: ['watercolor', 'doodle', 'saul-severe'],
       elements: ['Part-based character rig', 'Painted texture layer', 'Squash, stretch and anticipation curves', 'Grain and vignette finish', 'Music bed on a beat grid']
@@ -487,11 +489,14 @@
       format: '16:9 or 9:16 · 10 s',
       logline: 'High-frequency noise rushes in; the actor moves unhurriedly through it, filters it, and leaves three clean harmonic lines.',
       beats: [
-        [0,   'Noise',    'Fast seeded particles fill the frame.'],
-        [3,   'Arrival',  'The actor enters slowly and opens its intake filter.'],
-        [4.5, 'Filter',   'Noise passes the internal ribs; three clean lines leave the fluke.'],
-        [6.6, 'Words',    'SLOW DOWN. FILTER NOISE. — one change per beat.'],
-        [8.4, 'End card', 'The emblem and title, then a calm hold.']
+        [0.0,  'Particulate Surge', 'High-frequency seeded noise tokens rush across the open paper field.'],
+        [1.25, 'Unhurried Entry',   'The actor enters from the right margin at half-tide cadence against the stream.'],
+        [2.5,  'Intake Threshold',  'Primary aperture opens; turbulent noise vectors converge toward the intake datum.'],
+        [3.75, 'Internal Sieve',    'Noise tokens pass through the internal ribs and attenuate into ordered phase.'],
+        [5.0,  'Triad Emission',    'Three clean Wada harmonic sine waves emerge from the caudal fluke.'],
+        [6.25, 'Breather Hold',     'Particulate field clears; the three laminar waves hold in quiet negative space.'],
+        [7.5,  'Manifesto Stamp',   'SLOW DOWN · FILTER NOISE lands on the 0.5 s beat grid with zero competing motion.'],
+        [8.75, 'Calm Callback',     'Emblem lockup holds still in the center third, echoing the opening horizon datum.']
       ],
       styles: ['kinetic', 'watercolor', 'hydrographic'],
       elements: ['Particle layer', 'Connected transition', 'Kinetic typography', 'Logo sting and end card']
@@ -501,11 +506,14 @@
       format: '16:9 · 10 s cut-down',
       logline: 'A question arrives; the actor fetches only the three corpus pages that matter and answers from what it carried.',
       beats: [
-        [0,   'Question',  'A question card appears beside the actor.'],
-        [2.5, 'Relevance', 'Three of nine corpus pages light up in Wada accent.'],
-        [3.4, 'Retrieve',  'The actor collects them; they trail behind its dorsal socket.'],
-        [7,   'Answer',    'The answer writes itself with three verified sources attached.'],
-        [9.2, 'Hold',      'Calm hold on the cited synthesis.']
+        [0.0,  'Query Arrival',     'Question card lands in the upper-left third beside the stationed actor.'],
+        [1.25, 'Corpus Lattice',    'Nine archival corpus folios populate the right two-thirds on a dot grid.'],
+        [2.5,  'SalienceIgnition',  'Three relevant folios (#2, #6, #7) ignite with Wada focal ochre borders.'],
+        [3.75, 'First Gather',      'Actor navigates to Folio #2 and attaches it to its dorsal socket trail.'],
+        [5.0,  'Triad Harvest',     'Actor sweeps Folios #6 and #7 into a phase-locked trailing caravan.'],
+        [6.25, 'Breather Hold',     'Non-salient folios recede into low-contrast paper negative space.'],
+        [7.5,  'Grounded Synthesis','Answer card writes itself in the lower third with 3 verified source badges.'],
+        [8.75, 'Calm Callback',     'Actor stations beside the cited answer, echoing Beat 1 posture.']
       ],
       styles: ['editorial', 'whiteboard'],
       elements: ['Guide character', 'Data and diagram nodes', 'Captions and on-screen text track', 'Connected transition']
@@ -515,11 +523,14 @@
       format: '16:9 and 1:1 · 4 s',
       logline: 'The character draws itself in one continuous contour, harmonic streaks sweep through, wash fills the mass, and the mark lands.',
       beats: [
-        [0,   'Line',    'Monoline character contour draws on.'],
-        [1,   'Streaks', 'Wada palette streaks sweep through the spine.'],
-        [1.8, 'Fill',    'Pigment wash blooms into the body silhouette.'],
-        [2.3, 'Name',    'Wordmark letters land in 100 ms stagger.'],
-        [3.3, 'Calm',    'Final emblem lockup holds still.']
+        [0.0,  'Dorsal Contour',    'Single unbroken ink line traces the primary dorsal arch from nose to fluke.'],
+        [0.5,  'Ventral Closure',   'Caudal fluke and pectoral fin contours close the monoline silhouette.'],
+        [1.0,  'Harmonic Sweep',    'Five Sanzo Wada ribbons sweep across the spine in quadratic Bezier arcs.'],
+        [1.5,  'Pigment Flood',     'Multi-pass watercolor wash blooms inside the closed character contour.'],
+        [2.0,  'Emblem Severance',  'Internal details tighten into a high-contrast Saul Bass graphic mark.'],
+        [2.5,  'Breather Hold',     'Mark holds in 65% warm-paper negative space before typography enters.'],
+        [3.0,  'Wordmark Stagger',  'CETI letters land on a 100 ms stagger beneath the emblem center of mass.'],
+        [3.5,  'Calm Callback',     'Final emblem and wordmark lockup holds still for clean cut closure.']
       ],
       styles: ['saul-severe', 'kinetic', 'morph'],
       elements: ['Logo sting and end card', 'Kinetic typography', 'Painted texture layer']
@@ -529,10 +540,14 @@
       format: '1:1 or 9:16 · 6 s seamless',
       logline: 'The actor circles a solar sounding disc, turning edge-on at each apogee; frame N equals frame 0.',
       beats: [
-        [0,   'Front pass', 'Large foreground pass in front of the sounding sun.'],
-        [1.5, 'Turn',       'Edge-on foreshortened turn at the western apogee.'],
-        [3,   'Far pass',   'Scaled depth pass behind the sun disc.'],
-        [6,   'Closure',    'Position, velocity, and phase match frame 0 exactly.']
+        [0.0,  'Perigee Pass',      'Foreground pass across the solar sounding disc at 1.0x scale.'],
+        [0.75, 'Western Descent',   'Actor banks along the elliptical azimuth track toward western apogee.'],
+        [1.5,  'Western Apogee',    'Foreshortened edge-on turn at the left orbital tangent point.'],
+        [2.25, 'Occultation Entry', 'Actor slips behind the solar sounding disc at 0.72x depth scale.'],
+        [3.0,  'Apogee Transit',    'Far-side transit behind the sounding sun with muted atmospheric wash.'],
+        [3.75, 'Breather Hold',     'Quiet eastern tangent emergence in open paper negative space.'],
+        [4.5,  'Eastern Bank',      'Foreshortened eastern turn restoring foreground heading and scale.'],
+        [5.25, 'Seamless Closure',  'Position, velocity, and spine phase lock identically onto Beat 1 (frame 0).']
       ],
       styles: ['voxel', 'cutout', 'hydrographic'],
       elements: ['Camera move', 'Particle layer']
@@ -542,12 +557,14 @@
       format: '16:9 · side-third panel · 8 s',
       logline: 'While the instructor speaks, the character enters the right third and points to each structural claim as it lands.',
       beats: [
-        [0,   'Speaker', 'Footage plate, side-third panel off.'],
-        [0.8, 'Enter',   'The actor glides into the side third.'],
-        [1.5, 'Point 1', 'First claim; actor articulates fin pointer.'],
-        [3,   'Point 2', 'Second claim; check mark draws in.'],
-        [4.5, 'Point 3', 'Third claim, with an emphasis nod.'],
-        [7,   'Exit',    'The actor departs; panel clears cleanly.']
+        [0.0,  'Speaker Plate',     'Instructor plate occupies the left two-thirds; right third remains clear.'],
+        [1.0,  'Side-Third Entry',  'Translucent editorial card and guide actor glide into the right third.'],
+        [2.0,  'First Claim Cue',   'Actor articulates primary appendage toward Claim 1; check mark draws on.'],
+        [3.0,  'Second Claim Cue',  'Actor shifts down 40 px to index Claim 2 on the beat grid.'],
+        [4.0,  'Third Claim Nod',   'Actor indexes Claim 3 with a 0.15 rad emphasis nod and check closure.'],
+        [5.0,  'Breather Hold',     'All three claims hold steady in high-contrast AAA legibility.'],
+        [6.0,  'Synthesis Glance',  'Guide actor turns sightline vector back toward the speaker plate.'],
+        [7.0,  'Calm Callback',     'Guide actor and side-third card depart cleanly, restoring Beat 1 framing.']
       ],
       styles: ['overlay', 'hybrid'],
       elements: ['Guide character', 'Captions and on-screen text track', 'Verified research b-roll']
@@ -557,11 +574,14 @@
       format: '16:9 · 8 s phase-locked duet',
       logline: 'Two distinct character archetypes exchange harmonic wave packets across the stage until their phases lock into a single chord.',
       beats: [
-        [0,   'Stance',    'Primary and partner actors hold opposite thirds.'],
-        [1.6, 'Call',      'Left actor emits a 3-ring Wada harmonic call.'],
-        [3.4, 'Response',  'Right partner actor answers with a counter-phase arc.'],
-        [5.2, 'Resonance', 'Both actors swim into a shared orbital figure-eight.'],
-        [7.0, 'Chord',     'Still hold on the locked two-voice chord.']
+        [0.0,  'Antiphonal Stance', 'Primary and partner character rigs station in opposite horizontal thirds.'],
+        [1.0,  'Primary Call',      'Left actor emits a 3-ring Wada focal wave packet across the center datum.'],
+        [2.0,  'Wave Transit',      'Acoustic rings traverse the paper field toward the partner rig.'],
+        [3.0,  'Counter Response',  'Right partner rig answers with an inverted-phase structural wave packet.'],
+        [4.0,  'Phase Convergence', 'Both actors leave their stations and enter a shared orbital figure-eight.'],
+        [5.0,  'Breather Hold',     'Unaccompanied orbital glide in wide negative space without ring clutter.'],
+        [6.0,  'Harmonic Lock',     'Spine frequencies synchronize into a single locked two-voice chord.'],
+        [7.0,  'Calm Callback',     'Both rigs return to balanced opposite thirds, echoing Beat 1 in harmony.']
       ],
       styles: ['watercolor', 'hybrid', 'hydrographic'],
       elements: ['Part-based character rig', 'Music bed on a beat grid', 'Connected transition']
@@ -571,11 +591,14 @@
       format: '16:9 · 8 s survey pass',
       logline: 'An actor traces a bathymetric survey curve, leaving 25 ghost-position silhouettes, azimuth bearings, and ΔE2000 soundings.',
       beats: [
-        [0,   'Datum',      'Survey grid and compass rose lock onto paper datum.'],
-        [1.5, 'Ghosting',   '25 ghost-position silhouettes accumulate along the spline.'],
-        [3.8, 'Bearing',    'Azimuth needle tracks instantaneous tangent vector.'],
-        [5.6, 'Sounding',   'ΔE2000 token bars verify perceptual color distance.'],
-        [7.2, 'Fix',        'Survey benchmark locks at terminal station.']
+        [0.0,  'Survey Datum',      'Bathymetric grid and dual-ring compass rose lock onto archival paper.'],
+        [1.0,  'Initial Sounding',  'Actor departs eastern station, laying down ghost silhouettes #1–#6.'],
+        [2.0,  'Crest Inflection',  'Trajectory crests the northern sinusoid; azimuth needle tracks 288° tangent.'],
+        [3.0,  'Mid-Channel Wake',  'Ghost silhouettes #7–#15 accumulate at graduated opacity along the spline.'],
+        [4.0,  'Delta-E Telemetry', 'Plate II CIEDE2000 token-fit bars materialize in the upper-right register.'],
+        [5.0,  'Breather Hold',     'Actor glides through the southern trough in uncluttered hydrographic space.'],
+        [6.0,  'Terminal Bearing',  'Ghost silhouettes #16–#25 complete the full 25-station sounding envelope.'],
+        [7.0,  'Calm Callback',     'Benchmark fixes at the western station, echoing Beat 1 survey datum.']
       ],
       styles: ['hydrographic', 'sim', 'whiteboard'],
       elements: ['Seeded procedural field', 'Data and diagram nodes', 'Tweak panel']
@@ -1097,7 +1120,7 @@
     }
     const body = top.concat(bot.slice(1).reverse());
 
-    // Caudal fluke / tail vane (archetype-differentiated)
+    // Caudal fluke / tail vane (all 8 archetypes differentiated)
     const pe = [X(0.81), bend(0.81)];
     const ang = -0.22 + (o.fluke || 0) * 0.42 + Math.atan2(bend(0.81) - bend(0.75), L * 0.06);
     const R = function (u, v) { return [pe[0] + u * Math.cos(ang) - v * Math.sin(ang), pe[1] + u * Math.sin(ang) + v * Math.cos(ang)]; };
@@ -1105,16 +1128,55 @@
     let fluke;
     if (archType === 'geometric') {
       fluke = [
-        R(-0.02 * L, -0.04 * H), R(0.18 * L, -0.44 * H * tSpan),
-        R(0.10 * L, -0.06 * H),  R(0.16 * L, 0.10 * H * tSpan),
+        R(-0.02 * L, -0.04 * H), R(0.20 * L, -0.52 * H * tSpan),
+        R(0.10 * L, -0.06 * H),  R(0.17 * L, 0.14 * H * tSpan),
         R(-0.02 * L, 0.06 * H)
       ];
     } else if (archType === 'avian') {
       fluke = [
-        R(-0.03 * L, -0.06 * H), R(0.18 * L, -0.28 * H * tSpan),
-        R(0.15 * L, -0.10 * H),  R(0.20 * L, 0.0),
-        R(0.15 * L, 0.10 * H),   R(0.18 * L, 0.24 * H * tSpan),
+        R(-0.03 * L, -0.06 * H), R(0.21 * L, -0.34 * H * tSpan),
+        R(0.15 * L, -0.10 * H),  R(0.23 * L, 0.0),
+        R(0.15 * L, 0.10 * H),   R(0.21 * L, 0.30 * H * tSpan),
         R(-0.03 * L, 0.06 * H)
+      ];
+    } else if (archType === 'submersible') {
+      // Rectangular twin-blade propeller shroud + vertical rudder
+      fluke = [
+        R(-0.02 * L, -0.26 * H * tSpan), R(0.13 * L, -0.28 * H * tSpan),
+        R(0.13 * L, -0.05 * H),          R(0.06 * L, 0.0),
+        R(0.13 * L, 0.05 * H),           R(0.13 * L, 0.28 * H * tSpan),
+        R(-0.02 * L, 0.26 * H * tSpan)
+      ];
+    } else if (archType === 'instrument') {
+      // Mechanical vernier tail counterweight vane
+      fluke = [
+        R(-0.02 * L, -0.10 * H), R(0.16 * L, -0.22 * H * tSpan),
+        R(0.20 * L, 0.0),        R(0.16 * L, 0.22 * H * tSpan),
+        R(-0.02 * L, 0.10 * H)
+      ];
+    } else if (archType === 'calligraphic') {
+      // Flowing split ink-ribbon plume
+      fluke = [
+        R(-0.03 * L, -0.08 * H), R(0.12 * L, -0.32 * H * tSpan),
+        R(0.24 * L, -0.18 * H * tSpan), R(0.14 * L, 0.02 * H),
+        R(0.22 * L, 0.24 * H * tSpan),  R(0.08 * L, 0.20 * H * tSpan),
+        R(-0.03 * L, 0.08 * H)
+      ];
+    } else if (archType === 'mythic') {
+      // Twin-horned Orpheum lyre scrollwork crown
+      fluke = [
+        R(-0.03 * L, -0.12 * H), R(0.15 * L, -0.42 * H * tSpan),
+        R(0.20 * L, -0.22 * H * tSpan), R(0.09 * L, 0.0),
+        R(0.20 * L, 0.22 * H * tSpan),  R(0.15 * L, 0.42 * H * tSpan),
+        R(-0.03 * L, 0.12 * H)
+      ];
+    } else if (archType === 'botanical') {
+      // Multi-lobed botanical kelp frond fan
+      fluke = [
+        R(-0.03 * L, -0.08 * H), R(0.09 * L, -0.34 * H * tSpan),
+        R(0.22 * L, -0.26 * H * tSpan), R(0.14 * L, -0.05 * H),
+        R(0.25 * L, 0.06 * H * tSpan),  R(0.12 * L, 0.30 * H * tSpan),
+        R(-0.03 * L, 0.08 * H)
       ];
     } else {
       fluke = [
@@ -1126,21 +1188,67 @@
       ];
     }
 
-    // Primary appendage (pectoral fin / swept delta wing / sonar boom / gimbal arm)
+    // Primary appendage (all 8 archetypes differentiated)
     const fPos = ap.primaryFinPos || 0.24;
     const fr = [X(fPos), bend(fPos) + H * (archType === 'avian' || archType === 'geometric' ? -0.08 : 0.22)];
     const fa = (ap.primaryFinSweep || 0.5) + (o.fin || 0) * 0.34;
     const Rf = function (u, v) { return [fr[0] + u * Math.cos(fa) - v * Math.sin(fa), fr[1] + u * Math.sin(fa) + v * Math.cos(fa)]; };
     const fSpan = (ap.primaryFinSpan || 0.29) / 0.29;
     let fin;
-    if (archType === 'geometric' || archType === 'avian') {
-      // Swept triangular delta wing
+    if (archType === 'geometric') {
+      // High swept angular origami paper wing
+      fin = [
+        Rf(-0.05 * L, -0.04 * H),
+        Rf(0.08 * L * fSpan, -0.46 * H * fSpan),
+        Rf(0.30 * L * fSpan, -0.18 * H * fSpan),
+        Rf(0.18 * L * fSpan, 0.10 * H * fSpan),
+        Rf(0, 0.05 * H)
+      ];
+    } else if (archType === 'avian') {
+      // Jagged raptor primary-feather swept wing
       fin = [
         Rf(-0.04 * L, -0.04 * H),
-        Rf(0.10 * L * fSpan, -0.34 * H * fSpan),
-        Rf(0.32 * L * fSpan, -0.14 * H * fSpan),
-        Rf(0.22 * L * fSpan, 0.12 * H * fSpan),
+        Rf(0.12 * L * fSpan, -0.40 * H * fSpan),
+        Rf(0.28 * L * fSpan, -0.24 * H * fSpan),
+        Rf(0.22 * L * fSpan, -0.12 * H * fSpan),
+        Rf(0.32 * L * fSpan, -0.04 * H * fSpan),
+        Rf(0.18 * L * fSpan, 0.10 * H * fSpan),
         Rf(0, 0.06 * H)
+      ];
+    } else if (archType === 'submersible') {
+      // Stubby mechanical hydroplane diving vane
+      fin = [
+        Rf(-0.03 * L, -0.04 * H),
+        Rf(0.16 * L * fSpan, -0.05 * H),
+        Rf(0.18 * L * fSpan, 0.09 * H * fSpan),
+        Rf(-0.01 * L, 0.09 * H * fSpan)
+      ];
+    } else if (archType === 'instrument') {
+      // Cardinal Vernier pointer lug
+      fin = [
+        Rf(-0.03 * L, -0.05 * H),
+        Rf(0.22 * L * fSpan, -0.02 * H),
+        Rf(0.26 * L * fSpan, 0.03 * H),
+        Rf(0.22 * L * fSpan, 0.08 * H),
+        Rf(-0.03 * L, 0.06 * H)
+      ];
+    } else if (archType === 'calligraphic') {
+      // Brass nib clip & flourish barb
+      fin = [
+        Rf(-0.02 * L, -0.04 * H),
+        Rf(0.20 * L * fSpan, -0.14 * H * fSpan),
+        Rf(0.28 * L * fSpan, 0.02 * H),
+        Rf(0.14 * L * fSpan, 0.10 * H * fSpan),
+        Rf(0, 0.05 * H)
+      ];
+    } else if (archType === 'mythic') {
+      // Acoustic lyre cross-bridge wing
+      fin = [
+        Rf(-0.04 * L, -0.06 * H),
+        Rf(0.14 * L * fSpan, -0.26 * H * fSpan),
+        Rf(0.26 * L * fSpan, 0.0),
+        Rf(0.14 * L * fSpan, 0.22 * H * fSpan),
+        Rf(-0.04 * L, 0.06 * H)
       ];
     } else {
       fin = [
@@ -1209,9 +1317,10 @@
     ctx.restore();
   }
 
-  // Saul Bass 5-Rung Reduction Ladder renderer (G05)
+  // Saul Bass 5-Rung Reduction Ladder renderer (G05) — Unmistakable visual differentiation across Rungs 1..5
   function renderReductionRung(ctx, P, g, o, rung) {
     const ink = P.ink;
+    const archType = (g.spec && g.spec.archetype) || 'cetacean';
     let bodyCol = o.body || P.h;
     if (o.grey) bodyCol = desat(bodyCol, o.grey);
     ctx.save();
@@ -1221,33 +1330,60 @@
     ctx.scale((o.flip ? -1 : 1) * (o.sx == null ? 1 : o.sx), o.sy == null ? 1 : o.sy);
 
     if (rung === 5) {
-      // Rung 5: Signal Dot & Bearing Vector (16px legible)
-      const r = Math.max(4, g.H * 0.34);
+      // Rung 5: 16px Favicon Benchmark & Signal Dot + Bearing Vector (≤ 1 stroke/mark)
+      const r = Math.max(8, g.H * 0.38);
+      const box = r * 2.15;
+      // Outer 16px calibration reticle
+      ctx.strokeStyle = rgba(ink, 0.28);
+      ctx.lineWidth = 1.2;
+      ctx.setLineDash([3, 3]);
+      ctx.strokeRect(-box, -box, box * 2, box * 2);
+      ctx.setLineDash([]);
+      // Core signal disc
       ell(ctx, 0, 0, r, r);
       ctx.fillStyle = bodyCol; ctx.fill();
-      ctx.strokeStyle = ink; ctx.lineWidth = Math.max(1.5, r * 0.22); ctx.stroke();
-      ctx.beginPath(); ctx.moveTo(0, 0); ctx.lineTo(-r * 1.65, -r * 0.35);
-      ctx.strokeStyle = ink; ctx.lineWidth = Math.max(1.8, r * 0.26); ctx.stroke();
+      ctx.strokeStyle = ink; ctx.lineWidth = Math.max(2.2, r * 0.24); ctx.stroke();
+      // Inner high-contrast paper puncture + azimuth bearing vector
+      ell(ctx, 0, 0, r * 0.34, r * 0.34);
+      ctx.fillStyle = P.paper; ctx.fill();
+      ctx.beginPath();
+      ctx.moveTo(0, 0);
+      ctx.lineTo(-r * 1.9, -r * 0.42);
+      ctx.strokeStyle = ink; ctx.lineWidth = Math.max(2.6, r * 0.28); ctx.lineCap = 'round'; ctx.stroke();
+      ell(ctx, -r * 1.9, -r * 0.42, r * 0.22, r * 0.22);
+      ctx.fillStyle = ink; ctx.fill();
       ctx.restore();
       return g;
     }
+
     if (rung === 4) {
-      // Rung 4: Saul Bass 3-Stroke Glyph
-      ctx.strokeStyle = ink; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
-      ctx.lineWidth = Math.max(2.4, g.L / 28);
-      // Stroke 1: Dorsal spine arc
+      // Rung 4: Saul Bass 3-Stroke Poster Glyph (≤ 3 bold graphic strokes)
+      const lw = Math.max(5.5, g.L / 15);
+      ctx.lineCap = 'square'; ctx.lineJoin = 'miter';
+      // Stroke 1 (Ink): Primary structural dorsal/hull vector
+      ctx.strokeStyle = ink; ctx.lineWidth = lw;
       ctx.beginPath();
-      ctx.moveTo(g.X(0.02), g.bend(0.02));
-      ctx.quadraticCurveTo(g.X(0.42), g.bend(0.42) - g.H * 0.55, g.X(0.86), g.bend(0.86));
+      if (archType === 'instrument' || archType === 'submersible') {
+        ctx.arc(g.X(0.40), g.bend(0.40), g.H * 0.44, Math.PI * 0.15, Math.PI * 1.65);
+      } else if (archType === 'geometric') {
+        ctx.moveTo(g.X(0.02), g.bend(0.02) - g.H * 0.55);
+        ctx.lineTo(g.X(0.42), g.bend(0.42) + g.H * 0.28);
+        ctx.lineTo(g.X(0.84), g.bend(0.84) - g.H * 0.36);
+      } else {
+        ctx.moveTo(g.X(0.02), g.bend(0.02));
+        ctx.quadraticCurveTo(g.X(0.42), g.bend(0.42) - g.H * 0.62, g.X(0.84), g.bend(0.84));
+      }
       ctx.stroke();
-      // Stroke 2: Primary appendage slash
-      ctx.strokeStyle = bodyCol;
+
+      // Stroke 2 (Focal Accent): Primary wing / fin / azimuth slash
+      ctx.strokeStyle = bodyCol; ctx.lineWidth = lw * 0.92;
       ctx.beginPath();
-      ctx.moveTo(g.finRoot[0], g.finRoot[1]);
-      ctx.lineTo(g.fin[Math.min(3, g.fin.length - 1)][0], g.fin[Math.min(3, g.fin.length - 1)][1]);
+      ctx.moveTo(g.finRoot[0] - g.L * 0.05, g.finRoot[1] - g.H * 0.18);
+      ctx.lineTo(g.fin[Math.min(2, g.fin.length - 1)][0] + g.L * 0.06, g.fin[Math.min(2, g.fin.length - 1)][1] + g.H * 0.15);
       ctx.stroke();
-      // Stroke 3: Caudal fluke crescent
-      ctx.strokeStyle = ink;
+
+      // Stroke 3 (Structure B): Caudal fluke / counter-vane wedge
+      ctx.strokeStyle = P.b || ink; ctx.lineWidth = lw * 0.85;
       ctx.beginPath();
       ctx.moveTo(g.fluke[1][0], g.fluke[1][1]);
       ctx.lineTo(g.flukeRoot[0], g.flukeRoot[1]);
@@ -1256,19 +1392,55 @@
       ctx.restore();
       return g;
     }
+
     if (rung === 3) {
-      // Rung 3: Monoline Silhouette
+      // Rung 3: Monoline Calligraphic Silhouette (≤ 7 strokes, single continuous contour + 1 core line + focal eye)
       ctx.beginPath(); smoothClosed(ctx, g.body);
-      ctx.fillStyle = rgba(P.paper, 0.92); ctx.fill();
-      ctx.strokeStyle = ink; ctx.lineWidth = Math.max(2.0, g.L / 65); ctx.stroke();
-      ell(ctx, g.eye[0], g.eye[1], g.er * 1.1, g.er * 1.1);
+      ctx.fillStyle = rgba(mix(P.paper, P.a, 0.38), 0.95); ctx.fill();
+      ctx.strokeStyle = ink; ctx.lineWidth = Math.max(3.2, g.L / 42); ctx.stroke();
+      // Single interior structural datum line
+      ctx.beginPath();
+      ctx.moveTo(g.X(0.10), g.bend(0.10));
+      ctx.quadraticCurveTo(g.X(0.45), g.bend(0.45) - g.H * 0.16, g.X(0.78), g.bend(0.78));
+      ctx.strokeStyle = rgba(ink, 0.55); ctx.lineWidth = Math.max(1.8, g.L / 75); ctx.stroke();
+      // High-contrast focal eye punctuation dot
+      ell(ctx, g.eye[0], g.eye[1], g.er * 1.45, g.er * 1.45);
       ctx.fillStyle = bodyCol; ctx.fill();
+      ctx.strokeStyle = ink; ctx.lineWidth = 1.4; ctx.stroke();
       ctx.restore();
       return g;
     }
-    // Rung 2 delegates to 'paper' mode
+
+    // Rung 2: True Saul Bass Faceted Cut-Paper Emblem (≤ 14 strokes, coarse polygon facets + knockout paper border)
+    const decimate = function (pts, step) {
+      const out = [];
+      for (let i = 0; i < pts.length; i += step) out.push(pts[i]);
+      if (out.length < 4) return pts;
+      return out;
+    };
+    const coarseBody = archType === 'geometric' ? g.body : decimate(g.body, 3);
+    // 2 flat cut-paper Wada bars behind emblem
+    ctx.fillStyle = rgba(P.a, 0.75);
+    ctx.fillRect(-g.L * 0.44, -g.H * 0.68, g.L * 0.88, g.H * 0.18);
+    ctx.fillStyle = rgba(P.b, 0.65);
+    ctx.fillRect(-g.L * 0.36, g.H * 0.48, g.L * 0.76, g.H * 0.16);
+    // Drop-cut shadow in ink
+    ctx.save(); ctx.translate(3.5, 4.0);
+    polyPath(ctx, coarseBody); ctx.fillStyle = ink; ctx.fill();
     ctx.restore();
-    return renderActor(ctx, P, g.spec, Object.assign({}, o, { mode: 'paper', rung: 1 }));
+    // Caudal & pectoral cut-paper shards
+    polyPath(ctx, g.fluke); ctx.fillStyle = P.b; ctx.fill();
+    ctx.strokeStyle = P.paper; ctx.lineWidth = 3.5; ctx.stroke();
+    // Main faceted body with thick paper knockout border
+    polyPath(ctx, coarseBody); ctx.fillStyle = bodyCol; ctx.fill();
+    ctx.strokeStyle = P.paper; ctx.lineWidth = 4.0; ctx.stroke();
+    polyPath(ctx, g.fin); ctx.fillStyle = mix(bodyCol, ink, 0.28); ctx.fill();
+    ctx.strokeStyle = P.paper; ctx.lineWidth = 3.2; ctx.stroke();
+    // Knockout paper eye
+    ell(ctx, g.eye[0], g.eye[1], g.er * 1.35, g.er * 1.35);
+    ctx.fillStyle = P.paper; ctx.fill();
+    ctx.restore();
+    return g;
   }
 
   function renderActor(ctx, P, specOrOpts, maybeOpts) {
@@ -1276,11 +1448,11 @@
     if (maybeOpts) { spec = specOrOpts || getCharSpec(); o = maybeOpts; }
     else { o = specOrOpts || {}; spec = getCharSpec(o.charId); }
 
-    const rung = o.rung || O.rung || 1;
+    const rung = (O.rung && O.rung > 1) ? O.rung : (o.rung || O.rung || 1);
     const g = actorGeom(spec, o);
     if (rung >= 2) return renderReductionRung(ctx, P, g, o, rung);
 
-    const mode = o.mode || O.renderMode || 'wash';
+    const mode = O.renderMode || o.mode || 'wash';
     const wob = (o.wob == null ? 1 : o.wob) * O.wob;
     const seed = o.seed || 0;
     const ink = P.ink;
@@ -1321,15 +1493,23 @@
     const strokeIt = function (lw) {
       if (mode === 'paper') { ctx.strokeStyle = P.paper; ctx.lineWidth = 3; ctx.stroke(); }
       else if (mode === 'line' || mode === 'hydrographic') { ctx.strokeStyle = ink; ctx.lineWidth = lw || 2.2; ctx.stroke(); }
-      else if (mode === 'wash') { ctx.strokeStyle = ink; ctx.lineWidth = lw || Math.max(1.2, g.L / 100); ctx.stroke(); }
+      else if (mode === 'wash' || mode === 'flat') { ctx.strokeStyle = ink; ctx.lineWidth = lw || Math.max(1.4, g.L / 90); ctx.stroke(); }
     };
     const fills = mode !== 'line';
     ctx.lineJoin = 'round'; ctx.lineCap = 'round';
 
+    // Submersible forward sonar/searchlight cone behind hull
+    if (spec.archetype === 'submersible' && fills) {
+      ctx.save();
+      polyPath(ctx, [[g.X(0.02), g.bend(0.02)], [g.X(-0.34), g.bend(0.0) - g.H * 0.48], [g.X(-0.34), g.bend(0.0) + g.H * 0.48]]);
+      ctx.fillStyle = rgba(P.a, 0.34); ctx.fill();
+      ctx.restore();
+    }
+
     // Fluke / tail
     ctx.save(); ctx.translate(g.L * 0.16 * ex, -g.H * 0.2 * ex);
     shape(jit(g.fluke, 1));
-    if (fills) { ctx.fillStyle = mix(body, ink, 0.12); ctx.fill(); }
+    if (fills) { ctx.fillStyle = mix(body, ink, 0.16); ctx.fill(); }
     else { ctx.fillStyle = rgba(P.paper, 0.9); ctx.fill(); }
     strokeIt();
     if (ex > 0.05) { ell(ctx, g.flukeRoot[0], g.flukeRoot[1], 3.5, 3.5); ctx.strokeStyle = ink; ctx.lineWidth = 1.4; ctx.stroke(); }
@@ -1353,46 +1533,99 @@
     }
     shape(jit(g.body, 2)); strokeIt();
 
-    // Archetype-specific internal anatomy & structural accents
+    // Archetype-specific internal anatomy & structural accents (unmistakable across all 8 archetypes)
     if (spec.archetype === 'instrument') {
-      // Concentric astrolabe gimbal rings + cardinal crosshairs
-      ell(ctx, g.X(0.41), g.bend(0.41), g.H * 0.36, g.H * 0.36);
-      ctx.strokeStyle = rgba(P.paper, 0.82); ctx.lineWidth = Math.max(1.2, g.L / 85); ctx.stroke();
-      ell(ctx, g.X(0.41), g.bend(0.41), g.H * 0.18, g.H * 0.18);
-      ctx.strokeStyle = ink; ctx.lineWidth = Math.max(1.0, g.L / 110); ctx.stroke();
-    } else if (spec.archetype === 'submersible') {
-      // Bathysphere quartz viewport & rivet ring
-      ell(ctx, g.eye[0], g.eye[1], g.er * 2.1, g.er * 2.1);
-      ctx.fillStyle = rgba(P.a, 0.88); ctx.fill();
+      // Open-ring brass astrolabe: cut out inner negative-space ring, degree ticks, and diagonal azimuth needle
+      const cxI = g.X(0.41), cyI = g.bend(0.41), rOuter = g.H * 0.38, rInner = g.H * 0.22;
+      ell(ctx, cxI, cyI, rOuter, rOuter);
+      ctx.fillStyle = rgba(P.paper, 0.88); ctx.fill();
+      ctx.strokeStyle = ink; ctx.lineWidth = Math.max(1.6, g.L / 75); ctx.stroke();
+      ell(ctx, cxI, cyI, rInner, rInner);
+      ctx.fillStyle = rgba(P.a, 0.55); ctx.fill();
       ctx.strokeStyle = ink; ctx.lineWidth = Math.max(1.3, g.L / 90); ctx.stroke();
+      // Cardinal crosshair & diagonal azimuth spear
+      ctx.beginPath();
+      ctx.moveTo(cxI - rOuter * 1.15, cyI); ctx.lineTo(cxI + rOuter * 1.15, cyI);
+      ctx.moveTo(cxI, cyI - rOuter * 1.15); ctx.lineTo(cxI, cyI + rOuter * 1.15);
+      ctx.strokeStyle = rgba(ink, 0.65); ctx.lineWidth = 1.2; ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(cxI - rOuter * 0.95, cyI + rOuter * 0.65);
+      ctx.lineTo(cxI + rOuter * 0.95, cyI - rOuter * 0.65);
+      ctx.strokeStyle = body; ctx.lineWidth = Math.max(2.4, g.L / 55); ctx.stroke();
+    } else if (spec.archetype === 'submersible') {
+      // Bathysphere pressure hull: large glowing quartz viewport, crosshair, dorsal hatch & rivet seam
+      const vx = g.X(0.22), vy = g.bend(0.22), vr = g.H * 0.24;
+      ell(ctx, vx, vy, vr, vr);
+      ctx.fillStyle = P.a; ctx.fill();
+      ctx.strokeStyle = ink; ctx.lineWidth = Math.max(1.8, g.L / 75); ctx.stroke();
+      ell(ctx, vx - vr * 0.25, vy - vr * 0.25, vr * 0.32, vr * 0.32);
+      ctx.fillStyle = P.paper; ctx.fill();
+      // Dorsal conning hatch bar + equatorial rivet line
+      ctx.fillStyle = mix(body, ink, 0.35);
+      ctx.fillRect(g.X(0.26), g.bend(0.36) - g.H * 0.66, g.L * 0.20, g.H * 0.14);
+      ctx.strokeStyle = ink; ctx.lineWidth = 1.4;
+      ctx.strokeRect(g.X(0.26), g.bend(0.36) - g.H * 0.66, g.L * 0.20, g.H * 0.14);
     } else if (spec.archetype === 'calligraphic') {
-      // Fountain nib slit + breather hole
+      // Fountain-pen nib: light metallic nib shoulder, brass ferrule collar, split nib slit & heart breather hole
+      ctx.save(); ctx.beginPath(); smoothClosed(ctx, g.body); ctx.clip();
+      ctx.fillStyle = P.a;
+      ctx.fillRect(g.X(-0.02), -g.H, g.L * 0.28, g.H * 2);
+      ctx.fillStyle = P.b;
+      ctx.fillRect(g.X(0.24), -g.H, g.L * 0.08, g.H * 2);
+      ctx.restore();
+      shape(jit(g.body, 2)); strokeIt();
       ctx.beginPath();
       ctx.moveTo(g.X(0.0), g.bend(0.0));
-      ctx.lineTo(g.X(0.19), g.bend(0.19));
-      ctx.strokeStyle = P.paper; ctx.lineWidth = Math.max(1.4, g.L / 95); ctx.stroke();
-      ell(ctx, g.X(0.19), g.bend(0.19), g.er * 1.35, g.er * 1.35);
-      ctx.fillStyle = P.paper; ctx.fill(); ctx.strokeStyle = ink; ctx.lineWidth = 1; ctx.stroke();
+      ctx.lineTo(g.X(0.21), g.bend(0.21));
+      ctx.strokeStyle = ink; ctx.lineWidth = Math.max(1.8, g.L / 80); ctx.stroke();
+      ell(ctx, g.X(0.21), g.bend(0.21), g.er * 1.65, g.er * 1.65);
+      ctx.fillStyle = P.paper; ctx.fill(); ctx.strokeStyle = ink; ctx.lineWidth = 1.5; ctx.stroke();
     } else if (spec.archetype === 'mythic') {
-      // Orpheum D8 sacred-geometry rose window + harmonic chord strings
-      const cxM = g.X(0.40), cyM = g.bend(0.40), rM = g.H * 0.30;
-      ell(ctx, cxM, cyM, rM, rM);
-      ctx.strokeStyle = rgba(P.paper, 0.85); ctx.lineWidth = Math.max(1.1, g.L / 95); ctx.stroke();
-      for (let k = 0; k < 4; k++) {
-        const aM = (k * Math.PI) / 4;
+      // Orpheum Lyre-Form: open paper resonance chamber + 5 vertical golden-ratio acoustic strings
+      const cxM = g.X(0.40), cyM = g.bend(0.40), rM = g.H * 0.33;
+      ell(ctx, cxM, cyM, rM * 1.25, rM);
+      ctx.fillStyle = rgba(P.paper, 0.90); ctx.fill();
+      ctx.strokeStyle = ink; ctx.lineWidth = Math.max(1.6, g.L / 80); ctx.stroke();
+      for (let k = -2; k <= 2; k++) {
+        const sx = cxM + k * (rM * 0.42);
         ctx.beginPath();
-        ctx.moveTo(cxM - Math.cos(aM) * rM, cyM - Math.sin(aM) * rM);
-        ctx.lineTo(cxM + Math.cos(aM) * rM, cyM + Math.sin(aM) * rM);
+        ctx.moveTo(sx, cyM - rM * 0.92);
+        ctx.lineTo(sx, cyM + rM * 0.92);
+        ctx.strokeStyle = k === 0 ? body : ink;
+        ctx.lineWidth = k === 0 ? 2.0 : 1.2;
         ctx.stroke();
       }
     } else if (spec.archetype === 'geometric') {
-      // Origami valley/mountain fold crease lines
-      ctx.strokeStyle = rgba(P.paper, 0.8); ctx.lineWidth = Math.max(1.1, g.L / 95);
+      // Origami crane: multi-plane paper facet shading + crisp valley/mountain fold lines
+      polyPath(ctx, [
+        [g.X(0.0), g.bend(0.0)],
+        [g.X(0.14), g.bend(0.14) - g.H * 0.72],
+        [g.X(0.28), g.bend(0.28) - g.H * 0.38],
+        [g.X(0.20), g.bend(0.20) + g.H * 0.16]
+      ]);
+      ctx.fillStyle = P.a; ctx.fill(); ctx.strokeStyle = ink; ctx.lineWidth = 1.4; ctx.stroke();
+      ctx.strokeStyle = P.paper; ctx.lineWidth = Math.max(1.6, g.L / 80);
       ctx.beginPath();
-      ctx.moveTo(g.X(0.14), g.bend(0.14) - g.H * 0.65);
+      ctx.moveTo(g.X(0.14), g.bend(0.14) - g.H * 0.70);
       ctx.lineTo(g.X(0.42), g.bend(0.42) + g.H * 0.25);
-      ctx.lineTo(g.X(0.75), g.bend(0.75) - g.H * 0.25);
+      ctx.lineTo(g.X(0.76), g.bend(0.76) - g.H * 0.35);
       ctx.stroke();
+    } else if (spec.archetype === 'avian') {
+      // Saul Bass Peregrine Cutout: sharp hooked beak block in P.a + dark raptor mask
+      polyPath(ctx, [
+        [g.X(0.0), g.bend(0.0) + g.H * 0.10],
+        [g.X(0.11), g.bend(0.11) - g.H * 0.28],
+        [g.X(0.14), g.bend(0.14) + g.H * 0.18]
+      ]);
+      ctx.fillStyle = P.a; ctx.fill(); ctx.strokeStyle = ink; ctx.lineWidth = 1.4; ctx.stroke();
+    } else if (spec.archetype === 'botanical') {
+      // Pelagic Riff-Serpent: 4 dorsal kelp frond leaf-ribs in P.a / P.b
+      for (let k = 0; k < 4; k++) {
+        const sL = 0.16 + k * 0.16;
+        ell(ctx, g.X(sL), g.bend(sL) - g.H * 0.38, g.L * 0.045, g.H * 0.22);
+        ctx.fillStyle = k % 2 === 0 ? P.a : P.b; ctx.fill();
+        ctx.strokeStyle = ink; ctx.lineWidth = 1.1; ctx.stroke();
+      }
     }
 
     if (mode === 'wash' || mode === 'line' || mode === 'hydrographic') {
@@ -1405,7 +1638,7 @@
     // Primary fin / wing
     ctx.save(); ctx.translate(0, g.H * 0.4 * ex);
     shape(jit(g.fin, 3));
-    if (fills) { ctx.fillStyle = mix(body, ink, 0.18); ctx.fill(); }
+    if (fills) { ctx.fillStyle = (spec.archetype === 'avian' || spec.archetype === 'geometric') ? P.b : mix(body, ink, 0.18); ctx.fill(); }
     else { ctx.fillStyle = rgba(P.paper, 0.9); ctx.fill(); }
     strokeIt();
     if (ex > 0.05) { ell(ctx, g.finRoot[0], g.finRoot[1], 3.5, 3.5); ctx.strokeStyle = ink; ctx.lineWidth = 1.4; ctx.stroke(); }
@@ -1542,16 +1775,21 @@
         wash(ctx, function (s) { blobR(ctx, 240, 262, 150, 16, s); }, mix(P.a, P.paper, 0.35), 33, 0.12);
       },
       draw: function (ctx, t, P, F) {
-        const gy = 252, x = 240, h = hop(t, F), hgt = -h.y;
+        const spec = getCharSpec();
+        const archList = ['cetacean', 'avian', 'submersible', 'geometric', 'instrument', 'calligraphic', 'mythic', 'botanical'];
+        const aIdx = Math.max(0, archList.indexOf(spec.archetype || 'cetacean'));
+        const tChar = (t + aIdx * 0.42) % 4;
+        const gy = 252, x = 240, h = hop(tChar, F), hgt = -h.y;
         ell(ctx, x, gy + 2, lerp(70, 26, clamp(hgt / 92, 0, 1)), 6); ctx.fillStyle = rgba(P.ink, 0.2 - 0.1 * clamp(hgt / 92, 0, 1)); ctx.fill();
-        if (t > 1.42 && t < 2.0) {
-          const k = seg(t, 1.42, 2.0);
+        if (tChar > 1.42 && tChar < 2.0) {
+          const k = seg(tChar, 1.42, 2.0);
           for (let i = 0; i < 6; i++) { const side = i < 3 ? -1 : 1, m = i % 3; ell(ctx, x + side * (54 + 40 * glaser(k) * (0.6 + 0.25 * m)), gy - 4 - 10 * k * m, (4 + 3 * m) * (1 - 0.5 * k), (4 + 3 * m) * (1 - 0.5 * k)); ctx.fillStyle = rgba(mix(P.paper, P.ink, 0.3), 0.5 * (1 - k)); ctx.fill(); }
         }
-        const ph = swimPh(t, 4, 0.75);
+        const ph = swimPh(tChar, 4, 0.75);
         ctx.save(); ctx.translate(x, gy + h.y); ctx.rotate(h.rot); ctx.scale(h.sx, h.sy);
-        whale(ctx, P, { x: 0, y: -40, len: 150, ph: ph, amp: 0.14, fin: Math.sin(ph) * 0.5 - (t > 0.82 && t < 1.42 ? 0.6 : 0), fluke: (t > 0.82 && t < 1.42) ? 0.8 : Math.sin(ph) * 0.4, blink: ((t > 0.36 && t < 0.5) || (t > 3.0 && t < 3.14)) ? 1 : 0, streak: (t > 0.82 && t < 2.2) ? glaser(seg(t, 0.82, 1.2)) * (1 - seg(t, 1.6, 2.2)) : 0, seed: 7, wob: 0.3 });
+        whale(ctx, P, { x: 0, y: -42, len: 162, ph: ph, amp: 0.16, fin: Math.sin(ph) * 0.55 - (tChar > 0.82 && tChar < 1.42 ? 0.6 : 0), fluke: (tChar > 0.82 && tChar < 1.42) ? 0.8 : Math.sin(ph) * 0.45, blink: ((tChar > 0.36 && tChar < 0.5) || (tChar > 3.0 && tChar < 3.14)) ? 1 : 0, streak: 0.85, seed: 7 + aIdx, wob: 0.3 });
         ctx.restore();
+        txt(ctx, (spec.archetype || 'cetacean').toUpperCase() + ' · ' + (spec.name || '').toUpperCase(), 16, 24, '700 9px ' + MONO, rgba(P.ink, 0.68));
       }
     },
     cutout: {
@@ -1888,7 +2126,7 @@
         ctx.strokeStyle = P.h; ctx.lineWidth = 2.2; ctx.beginPath(); ctx.moveTo(-36, 0); ctx.lineTo(36, 0); ctx.stroke();
         ell(ctx, -36, 0, 3.5, 3.5); ctx.fillStyle = P.h; ctx.fill();
         ctx.restore();
-        txt(ctx, 'BEARING ' + String(brg).padStart(3, '0') + '° · 25 GHOST SOUNDINGS', 16, 284, '700 9px ' + MONO, rgba(P.ink, 0.78));
+        txt(ctx, 'BEARING ' + String(brg).padStart(3, '0') + '° · 25 GHOST SOUNDINGS', 16, 22, '700 9px ' + MONO, rgba(P.ink, 0.78));
       }
     },
     // Style 15: Saul Bass 3-Color Cut-Paper Overture
@@ -2033,15 +2271,24 @@
     s_sting: {
       L: 4, native: true,
       draw: function (ctx, t, P, F) {
-        const wo = { x: 240, y: 124, len: 230, ph: 0.6, amp: 0.1, fin: 0, fluke: 0.3, streak: glaser(seg(t, 1.0, 2.2)), seed: 51, wob: 0, mode: 'flat' };
+        const activeRung = O.rung || 1;
+        if (activeRung >= 2) {
+          // Dedicated Saul Bass Rung 2..5 inspection plate (used on Surface III 5-Rung strip & LOD 3)
+          const ph = swimPh(t, 4, 0.5);
+          whale(ctx, P, { x: 240, y: 138, len: 215, ph: ph, amp: 0.12, fin: Math.sin(ph) * 0.35, fluke: Math.sin(ph + 1) * 0.35, streak: activeRung === 2 ? 0.7 : 0, seed: 51, wob: 0.2, rung: activeRung });
+          txt(ctx, 'RUNG ' + activeRung + ' REDUCTION · ' + (getCharSpec().name || '').toUpperCase(), 240, 278, '700 10px ' + MONO, rgba(P.ink, 0.75), 'center');
+          return;
+        }
+        const wo = { x: 240, y: 124, len: 230, ph: 0.6, amp: 0.1, fin: 0, fluke: 0.3, streak: Math.max(0.65, glaser(seg(t, 1.0, 2.2))), seed: 51, wob: 0.2, mode: 'wash' };
         const g = whaleGeom(wo), off = function (pts) { return pts.map(function (p) { return [p[0] + wo.x, p[1] + wo.y]; }); };
-        const fa = glaser(seg(t, 1.8, 2.6));
-        if (fa > 0) { wo.alpha = fa; whale(ctx, P, wo); } else if (wo.streak > 0) { ctx.save(); ctx.translate(wo.x, wo.y); whaleStreaks(ctx, P, g, wo); ctx.restore(); }
+        const fa = Math.max(0.78, glaser(seg(t, 1.4, 2.4)));
+        wo.alpha = fa;
+        whale(ctx, P, wo);
         ctx.strokeStyle = P.ink; ctx.lineWidth = 2.4; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
-        const bp = off(g.body); bp.push(bp[0]); drawPartial(ctx, bp, seg(t, 0, 1.6), 5, 0, 1);
-        const fp = off(g.fluke); drawPartial(ctx, fp, seg(t, 0.5, 1.4), 6, 0, 1);
-        const fn = off(g.fin); fn.push(fn[0]); drawPartial(ctx, fn, seg(t, 0.8, 1.5), 7, 0, 1);
-        const es = seg(t, 1.4, 1.6); if (es > 0) { ell(ctx, g.eye[0] + wo.x, g.eye[1] + wo.y, g.er * es, g.er * es); ctx.fillStyle = P.ink; ctx.fill(); }
+        const bp = off(g.body); bp.push(bp[0]); drawPartial(ctx, bp, Math.max(0.45, seg(t, 0, 1.6)), 5, 0, 1);
+        const fp = off(g.fluke); drawPartial(ctx, fp, Math.max(0.45, seg(t, 0.5, 1.4)), 6, 0, 1);
+        const fn = off(g.fin); fn.push(fn[0]); drawPartial(ctx, fn, Math.max(0.45, seg(t, 0.8, 1.5)), 7, 0, 1);
+        const es = Math.max(0.85, seg(t, 1.2, 1.6)); if (es > 0) { ell(ctx, g.eye[0] + wo.x, g.eye[1] + wo.y, g.er * es, g.er * es); ctx.fillStyle = P.ink; ctx.fill(); }
         const word = 'CETI'; ctx.font = '700 46px ' + SANS; const spc = 14; let tw = 0; for (let i = 0; i < 4; i++) tw += ctx.measureText(word[i]).width; tw += spc * 3;
         let x = 240 - tw / 2;
         for (let i = 0; i < 4; i++) { const e = F.ease(seg(t, 2.3 + i * 0.1, 2.3 + i * 0.1 + 0.3)), cw = ctx.measureText(word[i]).width; ctx.globalAlpha = clamp(e, 0, 1); ctx.fillStyle = P.ink; if (!O.captionsCovered) ctx.fillText(word[i], x, 252 + 16 * (1 - e)); x += cw + spc; }
@@ -2396,7 +2643,7 @@
   const BG = new Map();
   function getBg(key, P) {
     if (typeof document === 'undefined') return null;
-    const id = key + '|' + P.id + '|' + O.charId;
+    const id = key + '|' + P.id + '|' + O.charId + '|' + O.ground + '|' + O.rung;
     let c = BG.get(id); if (c) return c;
     c = document.createElement('canvas'); c.width = LW; c.height = LH; const x = c.getContext('2d');
     const pr = PROOFS[key];
@@ -2423,39 +2670,80 @@
     const pr = PROOFS[key]; if (!pr || !el) return;
     const ctx = el.getContext('2d'); if (!ctx) return;
     const op = opts || {};
-    O.wob = op.wob == null ? 1 : op.wob;
-    O.streaks = op.streaks !== false;
-    O.guide = op.guide !== false;
-    O.ground = op.ground || 'atlas';
-    O.grain = op.grain == null ? 0.24 : op.grain;
-    if (op.charId) O.charId = op.charId;
-    if (op.partnerCharId) O.partnerCharId = op.partnerCharId;
-    O.renderMode = op.renderMode || null;
-    O.rung = op.rung || 1;
-    O.captionsCovered = !!op.captionsCovered;
+    const prevO = {
+      wob: O.wob, streaks: O.streaks, guide: O.guide, ground: O.ground,
+      grain: O.grain, charId: O.charId, partnerCharId: O.partnerCharId,
+      renderMode: O.renderMode, rung: O.rung, captionsCovered: O.captionsCovered
+    };
+    try {
+      O.wob = op.wob == null ? 1 : op.wob;
+      O.streaks = op.streaks !== false;
+      O.guide = op.guide !== false;
+      O.ground = op.ground || 'atlas';
+      O.grain = op.grain == null ? 0.24 : op.grain;
+      if (op.charId) O.charId = op.charId;
+      if (op.partnerCharId) O.partnerCharId = op.partnerCharId;
+      O.renderMode = op.renderMode || null;
+      O.rung = op.rung || 1;
+      O.captionsCovered = !!op.captionsCovered;
 
-    const P = prep(pal);
-    ctx.setTransform(el.width / LW, 0, 0, el.height / LH, 0, 0);
-    ctx.globalCompositeOperation = 'source-over'; ctx.globalAlpha = 1; ctx.imageSmoothingEnabled = true; ctx.setLineDash([]);
-    const bg = getBg(key, P);
-    if (pr.ownBg || !bg) { ctx.fillStyle = P.paper; ctx.fillRect(0, 0, LW, LH); }
-    else ctx.drawImage(bg, 0, 0, LW, LH);
+      const P = prep(pal);
+      ctx.setTransform(el.width / LW, 0, 0, el.height / LH, 0, 0);
+      ctx.globalCompositeOperation = 'source-over'; ctx.globalAlpha = 1; ctx.imageSmoothingEnabled = true; ctx.setLineDash([]);
+      const bg = getBg(key, P);
+      if (pr.ownBg || !bg) { ctx.fillStyle = P.paper; ctx.fillRect(0, 0, LW, LH); }
+      else ctx.drawImage(bg, 0, 0, LW, LH);
 
-    const warpFn = (F && F.warp) ? F.warp : function (x) { return x; };
-    const easeObj = F || { ease: glaser, warp: warpFn };
-    let t = warpFn(T) % pr.L; if (t < 0) t += pr.L;
-    ctx.save(); pr.draw(ctx, t, P, easeObj, bg); ctx.restore();
-    if (pr.guide && O.guide) { ctx.save(); guideWhale(ctx, P, t, pr.L, pr.guide); ctx.restore(); }
-    if (!pr.noFinish) {
-      const grn = getGrain();
+      const warpFn = (F && F.warp) ? F.warp : function (x) { return x; };
+      const easeObj = F || { ease: glaser, warp: warpFn };
+      let t = warpFn(T) % pr.L; if (t < 0) t += pr.L;
+
       ctx.save();
-      if (grn && O.grain > 0.01) {
-        ctx.globalCompositeOperation = 'multiply'; ctx.globalAlpha = O.grain; ctx.drawImage(grn, 0, 0, LW, LH); ctx.globalAlpha = 1;
+      if (op.cameraMove) {
+        const cam = op.cameraMove;
+        let cz = 1.0, cxOff = 0, cyOff = 0, cRot = 0;
+        if (cam === 'push-in' || cam === 'push') { cz = 1.22; cxOff = -18; cyOff = -6; }
+        else if (cam === 'pan-follow' || cam === 'pan') { cz = 1.08; cxOff = 24; cyOff = 0; }
+        else if (cam === 'dutch-tilt') { cz = 1.12; cRot = -0.055; }
+        else if (cam === 'tracking-drift') { cz = 1.15; cxOff = -10; cyOff = 10; }
+        else if (cam === 'breather-hold') { cz = 0.88; }
+        else if (cam === 'kick-shake') { cz = 1.26; cRot = 0.035; cyOff = -14; }
+        else if (cam === 'pull-back' || cam === 'pull') { cz = 0.93; cxOff = 14; }
+        ctx.translate(LW / 2, LH / 2);
+        if (cRot) ctx.rotate(cRot);
+        ctx.scale(cz, cz);
+        ctx.translate(-LW / 2 + cxOff, -LH / 2 + cyOff);
       }
-      const g = ctx.createRadialGradient(240, 150, 140, 240, 150, 320);
-      g.addColorStop(0, 'rgba(140,96,60,0)'); g.addColorStop(1, 'rgba(140,96,60,0.16)');
-      ctx.fillStyle = g; ctx.fillRect(0, 0, LW, LH);
+      pr.draw(ctx, t, P, easeObj, bg);
       ctx.restore();
+
+      if (op.cameraMove && !O.captionsCovered) {
+        // Editorial storyboard camera viewfinder reticle & beat badge
+        ctx.save();
+        ctx.strokeStyle = rgba(P.ink, 0.32); ctx.lineWidth = 1.2;
+        [[12, 12, 1, 1], [LW - 12, 12, -1, 1], [12, LH - 12, 1, -1], [LW - 12, LH - 12, -1, -1]].forEach(function (c) {
+          ctx.beginPath(); ctx.moveTo(c[0], c[1] + 10 * c[3]); ctx.lineTo(c[0], c[1]); ctx.lineTo(c[0] + 10 * c[2], c[1]); ctx.stroke();
+        });
+        if (op.beatIdx != null) {
+          txt(ctx, 'BEAT ' + (Number(op.beatIdx) + 1) + '/8 · CAM ' + String(op.cameraMove).toUpperCase(), LW - 16, 24, '700 8.5px ' + MONO, rgba(P.ink, 0.72), 'right');
+        }
+        ctx.restore();
+      }
+
+      if (pr.guide && O.guide) { ctx.save(); guideWhale(ctx, P, t, pr.L, pr.guide); ctx.restore(); }
+      if (!pr.noFinish) {
+        const grn = getGrain();
+        ctx.save();
+        if (grn && O.grain > 0.01) {
+          ctx.globalCompositeOperation = 'multiply'; ctx.globalAlpha = O.grain; ctx.drawImage(grn, 0, 0, LW, LH); ctx.globalAlpha = 1;
+        }
+        const g = ctx.createRadialGradient(240, 150, 140, 240, 150, 320);
+        g.addColorStop(0, 'rgba(140,96,60,0)'); g.addColorStop(1, 'rgba(140,96,60,0.16)');
+        ctx.fillStyle = g; ctx.fillRect(0, 0, LW, LH);
+        ctx.restore();
+      }
+    } finally {
+      Object.assign(O, prevO);
     }
   }
 
