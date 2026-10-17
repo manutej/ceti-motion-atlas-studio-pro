@@ -102,7 +102,7 @@ const READ = [
   { ...cap('strike', 14.25, 17.2, 'No pointing? The complaint is crossed out.'), fi: 0.2 },
   lab('else', 17.3, 18.9, 'someone else'),
   { ...cap('fix', 17.22, 19.15, 'Someone else adds the missing page.'), fi: 0.2 },
-  { id: 'card', kind: 'card', card: true, in: 19.15, out: 22.85, fi: 0.08, fo: 0.1, text: '57 problems found. Each one pointed at.', src: SRC },
+  { id: 'card', kind: 'card', card: true, in: 19.15, out: 22.85, fi: 0.08, fo: 0.1, text: '57 complaints raised. Each one pointed at.', src: SRC },
   lab('cardl1', 19.15, 22.85, 'True story · our own review notes', { fi: 0.08, fo: 0.1, card: true, src: SRC }),
   { ...cap('limit', 22.95, 24.9, 'Checkers that think alike miss alike.'), fi: 0.2 },
   lab('order', 25.75, 27.3, 'pages out of order', { fi: 0.1 }),

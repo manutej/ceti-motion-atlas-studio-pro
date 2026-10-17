@@ -40,3 +40,13 @@ Sheets: `sheet-v1.png` (too small, mechanism a thin band), `sheet-v2.png` (×1.4
 - "Eyes shut" is small on a 640-px sheet; the not-watching beat reads mostly through the caption and the emails leaving with no whale near them.
 - The home stack in the Bakery box gets busy (4 fanned cards); fine in motion, cluttered in a still.
 - The clinic box half-shows at the right edge during the case push (16–18 s).
+
+## v4 (lay jury on v3: "who checks, me or the system?"; AGENT-BRIEF lessons 7–10). v3 kept as `film-v3.js`.
+- AI named as an actor: a helper pod labelled **"Your AI assistant"** (whole film) sends every email (a small push) and checks each card as it goes: a violet dashed line goes to the PRIVATE stamp (that card is held back), and a slate line goes to the plain card (that card is let through). Caption at 11.1: "Your AI assistant checks the stamp before sending." Not-this: "It checks the stamp, not the words."
+- The tie is visible: the thread is ≥ 6 px solid violet. As the email leaves, the card is first **tugged** out of the page (120 world units back, tilted), then pulled home 0.3 s later.
+- The Clinic's "+" is gone. Boxes are now client **folders** (folder tab, eyebrow "CLIENT FOLDER"). The card reads "True story: how we keep client notes apart" / **"One folder per client"** (60 px) / "Source: the AI tool we use for client work". It is up 15.6–19.1 s (3.5 s).
+- Title hinge: the veil is 0.5 and the camera pulls back to z 0.9 before the title arrives (3.9–4.75), so the circled card, the whale, the folders and the AI stay visible under the title.
+- 12–15 s, one at a time: the second automatic email (L4) is cut. Stamped cards land home at 12.78 (L2) and 15.0 (L3), 2.2 s apart. The limit card pops at 21.0.
+- Limit, phrased as "and also" (lesson 8): "Plain cards go too. So stamp them."
+- Camera: no shot crops a folder at rest (STAMP z 1.5, CASE z 1.3, LIM z 1.42).
+- DUR 28.5 s. Gate: GATES PASS (plain worst grade 5.2, intent PASS, jump 22.6 px/frame). Score −16.0 LUFS / −1.2 dBTP. Sheet: `sheet-v4.png`.

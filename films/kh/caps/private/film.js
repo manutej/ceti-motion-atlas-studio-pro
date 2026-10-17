@@ -63,7 +63,7 @@ const WS = 0.8, REACH = 118 * WS + 48;
 const IMP = { x: DESK.x + 78, y: DESK.y + CY[1] + 19 };
 const PERCH0 = [-150, -180], PERCHR = [235, -245], PRESS = [IMP.x + REACH, IMP.y - 49], HOVER = [PRESS[0], PRESS[1] - 62],
   SCRAWL = [DESK.x - 116 - REACH, DESK.y + CY[1] - 60], WATCH = [40, -250], BAKP = [-480, -160];
-const K = [[0, ...PERCH0], [2.55, ...PERCH0], [3.4, 120, -235], [4.5, 120, -235], [5.4, 120, -200], [6.85, 120, -200],
+const K = [[0, ...PERCH0], [2.55, ...PERCH0], [3.4, 120, -235], [3.9, 120, -235], [4.7, 100, -150], [6.85, 100, -150],
   [7.3, ...HOVER], [7.55, ...PRESS], [7.85, ...HOVER], [8.6, ...PERCHR], [15.6, ...PERCHR], [16.8, ...BAKP], [18.0, ...BAKP],
   [19.0, ...SCRAWL], [19.9, ...SCRAWL], [20.6, ...WATCH], [22.8, ...WATCH], [23.6, ...PERCH0], [DUR + 1, ...PERCH0]];
 function herm(P, t) { const n = P.length; if (t <= P[0][0]) return { x: P[0][1], y: P[0][2] }; if (t >= P[n - 1][0]) return { x: P[n - 1][1], y: P[n - 1][2] };
@@ -83,10 +83,10 @@ function nose(t) { const p = wworld(t), a = heading(t), f = facing(t); return { 
 
 // ---------- camera ----------
 const FELT = { x: 300, y: 0, z: 1.55 }, TITLE = { x: 0, y: -320, z: 0.9 }, MID = { x: 0, y: -20, z: 1.4 }, STAMP = { x: 0, y: 0, z: 1.5 },
-  CASE = { x: -60, y: -40, z: 1.3 }, LIM = { x: 330, y: -50, z: 1.6 }, PAY = { x: 0, y: -20, z: 1.42 };
+  CASE = { x: -60, y: -40, z: 1.3 }, LIM = { x: 40, y: -40, z: 1.42 }, PAY = { x: 0, y: -20, z: 1.42 };
 function cam(t) { let s = { ...FELT };
   const go = (a, b, T, e) => { const k = ramp(t, a, b, e); s = { x: lerp(s.x, T.x, k), y: lerp(s.y, T.y, k), z: lerp(s.z, T.z, k) }; };
-  go(4.5, 5.6, TITLE, EASE.rest); go(6.0, 7.1, STAMP, EASE.warm); go(8.1, 8.9, MID, EASE.warm); go(15.5, 16.6, CASE, EASE.rest);
+  go(3.9, 4.75, TITLE, EASE.rest); go(6.0, 7.1, STAMP, EASE.warm); go(8.1, 8.9, MID, EASE.warm); go(15.5, 16.6, CASE, EASE.rest);
   go(18.2, 19.0, MID, EASE.warm); go(20.6, 21.8, LIM, EASE.warm); go(22.7, 23.5, PAY, EASE.warm);
   return { x: s.x, y: s.y, z: s.z + 0.02 * ramp(t, 25.5, DUR, EASE.rest), ax: 960, ay: 540 }; }
 const wpos = t => wworld(t);
@@ -111,8 +111,7 @@ const READ = [
   cap('limit', 19.15, 21.3, 'Plain cards go too. So stamp them.'),
   cap('notthis', 21.35, 23.5, 'It checks the stamp, not the words.'),
   cap('belief', 23.55, T_LOCK - 0.05, 'Stamp private cards once. They stay home.'),
-  { id: 'ai1', kind: 'label', in: 0.1, out: 20.7, fi: 0.3, fo: 0.3, text: 'Your AI assistant' },
-  { id: 'ai2', kind: 'label', in: 22.9, out: DUR, fi: 0.3, fo: 0, text: 'Your AI assistant' },
+  { id: 'ai1', kind: 'label', in: 0.1, out: DUR, fi: 0.3, fo: 0, text: 'Your AI assistant' },
   { id: 'lockup', kind: 'label', in: T_LOCK, out: DUR, fi: 0.45, fo: 0, text: 'CETI · Capabilities · 09 · Private' },
   { id: 'boxB', kind: 'label', in: 0, out: DUR, fi: 0.01, fo: 0, text: 'Client folder Bakery' },
   { id: 'boxC', kind: 'label', in: 0, out: DUR, fi: 0.01, fo: 0, text: 'Client folder Clinic' },
@@ -167,7 +166,7 @@ function drawFrame(c, t) {
   { const nud = LET.reduce((m, L) => Math.max(m, win(t, L.send - 0.2, L.send + 0.3, 0.12, 0.25)), 0);
     let glow = 0; for (const sc of SCANS) glow = Math.max(glow, win(t, sc.t, sc.t + 0.55, 0.08, 0.2));
     c.save(); c.translate(X(POD.x - 16 * nud), Y(POD.y + Math.sin(t * 2.1) * 3)); c.scale(-1, 1); KH.drawPod(c, 0, 0, 0, PODS * z, PODCOL, { glow: glow * 0.9 }); c.restore();
-    const la = Math.max(RA(t, 'ai1'), RA(t, 'ai2')); if (la > 0) S.chip(c, 'Your AI assistant', X(POD.x), Y(POD.y + 82), { f: 'sans', size: Math.round(26 * z), col: INK, a: la, align: 'center', pad: 12, border: CARDEDGE }); }
+    const la = RA(t, 'ai1'); if (la > 0) S.chip(c, 'Your AI assistant', X(POD.x), Y(POD.y + 82), { f: 'sans', size: Math.round(26 * z), col: INK, a: la, align: 'center', pad: 12, border: CARDEDGE }); }
 
   // the emails (pages with three cards)
   for (const L of LET) { const lt = letter(L, t); if (lt.a <= 0.001) continue;
