@@ -88,7 +88,7 @@ const READ = [
   lab('cust', 0, DUR, 'Customer: Ana', { fi: 0 }),
   ...LABEL.map((s, i) => lab('st' + i, 0, DUR, s, { fi: 0 })),
   ...CRASH.map(k => lab(k.id, k.t, k.t + 1.1, 'Crash!', { fi: 0.08 })),
-  lab('to', ENV.up + 0.3, 21.0, 'To: Bob'),
+  lab('to', ENV.up + 0.3, 21.3, 'To: Bob', { fo: 0.3 }),
   lab('paidA1', 1.55, 4.72, 'Paid $20'), lab('paidA2', 4.72, 6.6, 'Paid $40', { fi: 0.08 }),
   lab('paidB', 11.45, 21.0, 'Paid $20'), lab('paidE', 23.45, DUR, 'Paid $20', { fo: 0 }),
 ];
@@ -170,10 +170,10 @@ function drawFrame(c, t) {
   bolt();
 
   // ---- LIMIT: the sent email lifts out of its card. Its step is ticked, and it is addressed to the wrong name ----
-  { const a = win(t, ENV.up, 21.3, 0.1, 0.3); if (a > 0) { const u = ramp(t, ENV.up, ENV.up + 0.55, EASE.glaser), ex = SX[2], ey = lerp(-37, -262, u), k = lerp(1.3, 2.3, u);
+  { const a = win(t, ENV.up, 21.3, 0.1, 0.3); if (a > 0) { const u = ramp(t, ENV.up, ENV.up + 0.55, EASE.glaser), ex = SX[2], ey = lerp(-37, -300, u), k = lerp(1.3, 2.2, u);
       icon(c, 2, X(ex), Y(ey), k * z, a);
-      label(c, t, 'to', X(ex), Y(ey + 34), 34, { f: 'monoB' });
-      const r = win(t, ENV.ring, 21.3, 0.12, 0.3); if (r > 0.01) { c.save(); c.globalAlpha = r * a; c.strokeStyle = RUST; c.lineWidth = 5 * z; c.beginPath(); c.ellipse(X(ex), Y(ey + 22), 118 * z, 46 * z, 0, 0, Math.PI * 2); c.stroke(); c.restore(); } } }
+      label(c, t, 'to', X(ex), Y(ey + 100), 34, { f: 'monoB' });
+      const r = win(t, ENV.ring, 21.3, 0.12, 0.3); if (r > 0.01) { c.save(); c.globalAlpha = r * a; c.strokeStyle = RUST; c.lineWidth = 5 * z; c.beginPath(); c.ellipse(X(ex), Y(ey + 90), 112 * z, 34 * z, 0, 0, Math.PI * 2); c.stroke(); c.restore(); } } }
 
   // ---- the customer: a coin jar at the end of the line ----
   { const jx = X(JX), jt = Y(JTOP), jb = Y(JBOT), hw = 96 * z;

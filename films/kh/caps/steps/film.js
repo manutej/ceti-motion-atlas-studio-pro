@@ -18,13 +18,13 @@ const WALL = mix(C.paper, C.slate, 0.16), HATCH = mix(C.paper, C.slate, 0.34), T
 // ---------- geometry ----------
 const GX = [-520, -260, 0, 260, 520], OA = 50, ENV_W = 130, ENV_H = 80, TRAYX = 740, TRAY_HW = 100, LINE_END = 640;
 const QL = [['Known', 'sender?'], ['Real', 'link?'], ['Expected', 'bill?'], ['Usual', 'amount?'], ['No', 'rush?']], QS = QL.map(q => q.join(' '));
-const BIG = { hw: 36, HH: 150, r: 54, chipW: 470, chipF: 44, lh: 0 }, SMALL = { hw: 22, HH: 112, r: 40, chipW: 190, chipF: 36, lh: 40 };   // small chips: two lines
+const BIG = { hw: 36, HH: 150, r: 54, chipW: 470, chipF: 44, lh: 0 }, SMALL = { hw: 22, HH: 112, r: 44, chipW: 190, chipF: 36, lh: 40 };   // small chips: two lines
 const gateGeo = (s) => { const lampY = -s.HH - s.r - 12, base = lampY - s.r - (s.lh ? 24 : 34); return { ...s, lampY, base, top: base - s.chipF * 1.05 - s.lh, h: s.chipF * 1.5 + s.lh }; };
 const GB = gateGeo(BIG), GS = gateGeo(SMALL);
 const lerpGeo = (m) => { const o = {}; for (const k of ['hw', 'HH', 'r', 'chipW', 'chipF', 'lampY', 'base', 'top', 'h']) o[k] = lerp(GB[k], GS[k], m); return o; };
 
 // ---------- timing (132 BPM grid) ----------
-const T0 = 5.15, T_NUDGE = 8.2, T_SPLIT = 8.25, T_LAND = 9.35, T_Q = 9.15;
+const T0 = 4.6, T_NUDGE = 8.2, T_SPLIT = 8.25, T_LAND = 9.35, T_Q = 9.15;
 const splitM = (i, t) => ramp(t, T_SPLIT + 0.05 * Math.abs(i - 2), T_LAND + 0.05 * Math.abs(i - 2), EASE.warm);
 const V = 260 / B;                                           // envelope speed: one check per beat (572 px/s)
 const CK0 = 10.95, tA0 = CK0 - (GX[0] + 1000) / V;          // the fake bill: centre at gate 1 at CK0
@@ -34,7 +34,7 @@ const T_HELD = 13.55, T_RESET = 14.1;
 const PY0 = 21.95, tR0 = PY0 - (GX[0] + 1000) / V;           // the real bill: centre at gate 1 at PY0
 const PAY = GX.map((x, g) => ({ g, t: tR0 + (x + 1000) / V, ok: true }));
 const T_TRAY = tR0 + (TRAYX - 40 + 1000) / V, T_TICK = T_TRAY + 0.08;
-const T_CARD = 14.75, BAR = [[15.05, 15.8], [16.0, 16.8], [17.2, 18.0]], T_CARD_OUT = 21.3;
+const T_CARD = 14.75, BAR = [[15.05, 15.7], [15.65, 16.3], [16.25, 16.9]], T_CARD_OUT = 21.3;
 const T_LOCK = 27.65;
 
 // ---------- the whale: Hermite through keys (zero tangents = it settles at each key) ----------
@@ -75,9 +75,9 @@ const READ = [
   lab('checker', 0.5, 5.2, 'the AI checker'),
   cap('felt1', 0.25, 2.75, 'We asked one big question.'),
   cap('felt2', 2.80, 5.30, 'Is this real? It says: maybe.'),
-  { id: 'eyebrow', kind: 'label', in: T0 + 0.25, out: T0 + 2.47, fi: 0.4, fo: 0.45, text: 'CETI · Capabilities · 10' },
-  { id: 'title', kind: 'title', in: T0 + 0.25, out: T0 + 2.47, fi: 0.4, fo: 0.45, text: 'Five small <i>checks</i>, not one.' },
-  cap('split', 7.75, 10.2, 'Split the question into five small checks.'),
+  { id: 'eyebrow', kind: 'label', in: T0 + 0.25, out: T0 + 3.3, fi: 0.4, fo: 0.45, text: 'CETI · Capabilities · 10' },
+  { id: 'title', kind: 'title', in: T0 + 0.25, out: T0 + 3.3, fi: 0.4, fo: 0.45, text: 'Five small <i>checks</i>, not one.' },
+  cap('split', 7.95, 10.2, 'Split the question into five small checks.'),
   ...QS.map((q, i) => lab('q' + i, T_Q, DUR, q, { fi: 0.4, fo: 0 })),
   lab('example', 9.5, T_LOCK, 'Example checks', { fo: 0.5 }),
   lab('inbox', 7.8, DUR, 'Your inbox', { fo: 0 }),
@@ -85,13 +85,12 @@ const READ = [
   cap('clear', 10.25, 12.5, 'Each check is a clear yes or no.'),
   cap('stop', 12.55, 14.5, 'One clear no stops the fake.'),
   { id: 'cardH', kind: 'label', card: true, in: T_CARD, out: T_CARD_OUT, fi: 0.3, fo: 0.3, text: 'Real test' },
-  { id: 'cardM', kind: 'card', card: true, in: T_CARD, out: T_CARD_OUT, fi: 0.3, fo: 0.3, text: 'Right answers, scam emails' },
-  { id: 'cardA', kind: 'card', card: true, in: BAR[0][0], out: T_CARD_OUT, fi: 0.3, fo: 0.3, text: 'One big question 62.6%' },
-  { id: 'cardB', kind: 'card', card: true, in: BAR[1][0], out: T_CARD_OUT, fi: 0.3, fo: 0.3, text: 'Five small questions 95.1%' },
+  { id: 'cardM', kind: 'card', card: true, in: T_CARD, out: T_CARD_OUT, fi: 0.3, fo: 0.3, text: 'Right answers on scam emails' },
+  { id: 'cardA', kind: 'card', card: true, in: BAR[0][0], out: T_CARD_OUT, fi: 0.3, fo: 0.3, text: 'One big question 63%' },
+  { id: 'cardB', kind: 'card', card: true, in: BAR[1][0], out: T_CARD_OUT, fi: 0.3, fo: 0.3, text: 'Five small checks 95%' },
   { id: 'src', kind: 'label', card: true, in: T_CARD, out: T_CARD_OUT, fi: 0.3, fo: 0.3, text: 'Source: our own tests', src: 'https://github.com/manutej/JEV-works' },
-  { id: 'cardC', kind: 'card', card: true, in: BAR[2][0], out: T_CARD_OUT, fi: 0.3, fo: 0.3, text: 'A simple fixed rule 91.8%' },
-  cap('notmagic', 17.45, 19.0, 'Not magic.'),
-  cap('limit', 19.05, 21.3, 'A simple rule did nearly as well.'),
+  { id: 'cardC', kind: 'card', card: true, in: BAR[2][0], out: T_CARD_OUT, fi: 0.3, fo: 0.3, text: 'A simple fixed rule 92%' },
+  cap('helps', 17.0, 20.95, 'Splitting the question is what helps.'),
   lab('env3', 21.15, DUR, 'Real bill', { fo: 0 }),
   cap('pay', 23.0, 25.3, 'Five clear lamps. The real bill gets through.'),
   cap('belief', 24.42, T_LOCK, 'Split the question until each answer is clear.'),
@@ -101,7 +100,7 @@ const RD = id => READ.find(r => r.id === id), RA = (t, id) => { const r = RD(id)
 const INTENT = {
   problem: 'Asking the AI checker one big question ("Is this email a scam?") about a real bill gives only a wobbly maybe: no clear yes, no clear no.',
   move: 'Split the big question into five small yes/no checks (known sender? real link? expected bill? usual amount? no rush?); each lamp gives a clear yes or no, and one clear no stops a fake.',
-  belief: 'Split the question until each answer is clear. Not magic: a simple fixed rule did nearly as well (91.8% vs 95.1%).',
+  belief: 'Split the question until each answer is clear: splitting is what helps (63% → 95% right answers on scam emails). A simple fixed rule also scored 92%.',
 };
 const TERMS = [];
 
@@ -132,8 +131,8 @@ function lamp(c, x, y, R, state, since, t, z, breathe = 0) {
   c.fillStyle = state === 'yes' ? LIT : state === 'no' ? mix(C.paper, NO, 0.16) : C.paper;
   c.strokeStyle = state === 'yes' ? LITRING : state === 'no' ? NO : OFFRING; c.lineWidth = Math.max(4, 5 * z);
   c.beginPath(); c.arc(x, y, r, 0, Math.PI * 2); c.fill(); c.stroke();
-  if (state === 'yes') tickMark(c, x, y, r * 0.42, YES, Math.max(5, r * 0.17));
-  if (state === 'no') crossMark(c, x, y, r * 0.38, NO, Math.max(5, r * 0.17));
+  if (state === 'yes') tickMark(c, x, y, r * 0.5, YES, Math.max(6, r * 0.17));
+  if (state === 'no') crossMark(c, x, y, r * 0.46, NO, Math.max(6, r * 0.17));
 }
 // the big lamp in a wobbling maybe: yes and no both half-there, smeared and jittering
 function mushLamp(c, x, y, R, t, z, a) {
@@ -203,7 +202,7 @@ function drawFrame(c, t) {
       lamp(c, X0, ly, R, 'off', 0, t, z); mushLamp(c, X0, ly, R, t, z, aMush * ramp(t, 1.05, 1.4, EASE.warm));
       const cx = X0 - g.chipW / 2 * z, cy = Y(g.top); chipRect(c, cx, cy, g.chipW * z, g.h * z, 1, z);
       text(c, 'Is this email a scam?', X0, Y(g.base), { f: 'sans', size: g.chipF * z, col: INK, a: 1 - ramp(t, T_NUDGE, T_NUDGE + 0.1), align: 'center' });
-      const fl = win(t, 7.65, 8.4, 0.3, 0.05); if (fl > 0.01) { c.save(); c.strokeStyle = rgba(SOFT, 0.8 * fl); c.lineWidth = 2.5; c.setLineDash([7, 6]); c.beginPath();
+      const fl = win(t, 7.75, 8.4, 0.3, 0.05); if (fl > 0.01) { c.save(); c.strokeStyle = rgba(SOFT, 0.8 * fl); c.lineWidth = 2.5; c.setLineDash([7, 6]); c.beginPath();
         for (let k = 1; k < 5; k++) { const fx = cx + g.chipW * z * k / 5; c.moveTo(fx, cy - 10 * z); c.lineTo(fx, cy + g.h * z + 10 * z); } c.stroke(); c.restore(); }
     } else {
       const L = lampOf(G.i, t), R = g.r * z, ly = Y(g.lampY), breathe = t > 23 ? 0.5 + 0.5 * Math.sin(t * 2.6 + G.i * 0.9) : 0;
@@ -223,24 +222,7 @@ function drawFrame(c, t) {
   // your inbox answers ✓ when the real bill lands
   if (t >= T_TICK) { const a = ramp(t, T_TICK, T_TICK + 0.12), pop = 1 + 0.2 * Math.exp(-(t - T_TICK) * 8), cx = X(TRAYX), cy = Y(-150), R = 46 * z * pop;
     c.save(); c.globalAlpha = a; c.fillStyle = rgba(OS, 0.35); c.beginPath(); c.arc(cx, cy, R * 1.45, 0, Math.PI * 2); c.fill();
-    c.fillStyle = C.paper; c.strokeStyle = LITRING; c.lineWidth = 5 * z; c.beginPath(); c.arc(cx, cy, R, 0, Math.PI * 2); c.fill(); c.stroke(); tickMark(c, cx, cy, R * 0.42, YES, 8 * z); c.restore(); }
-
-  // the real-test card (top centre, clean paper round it): two bars, then the honest third bar
-  const ka = RA(t, 'cardH'); if (ka > 0) { const x0 = 350, y0 = 22 + (1 - EASE.defer(ramp(t, T_CARD, T_CARD + 0.35))) * 8, wd = 1040, ht = 400, bx = x0 + 500, bw = 380;
-    c.save(); c.globalAlpha = ka; c.fillStyle = C.paper; c.strokeStyle = CHIPB; c.lineWidth = 1.2; c.beginPath(); c.roundRect(x0, y0, wd, ht, 8); c.fill(); c.stroke();
-    c.fillStyle = OS; c.fillRect(x0, y0, 6, ht); c.restore();
-    text(c, 'Real test', x0 + 40, y0 + 44, { f: 'mono', size: 24, col: SOFT, a: ka });
-    text(c, 'Right answers, scam emails', x0 + 40, y0 + 96, { f: 'sans', size: 38, col: INK, a: RA(t, 'cardM') });
-    const rows = [['cardA', 'One big question', 62.6, OFFRING, BAR[0]], ['cardB', 'Five small questions', 95.1, OS, BAR[1]], ['cardC', 'A simple fixed rule', 91.8, mix(PRU, C.paper, 0.2), BAR[2]]];
-    rows.forEach(([id, label, v, col, [b0, b1]], k) => { const ra = RA(t, id); if (ra <= 0) return; const by = y0 + 172 + k * 68, p = ramp(t, b0 + 0.1, b1, EASE.warm), lx = x0 + 40 + (k === 2 ? 92 : 0);
-      if (k === 2) { // a tiny two-line rule card, so "a simple fixed rule" is a thing you can see
-        const rx = x0 + 40, ry = by - 44, pop = 1 + 0.15 * Math.exp(-(t - b0) * 8); c.save(); c.globalAlpha = ra; c.translate(rx + 38, ry + 27); c.scale(pop, pop);
-        c.fillStyle = C.paper; c.strokeStyle = INK; c.lineWidth = 3; c.beginPath(); c.roundRect(-38, -27, 76, 54, 5); c.fill(); c.stroke();
-        c.lineWidth = 4; c.lineCap = 'round'; c.beginPath(); c.moveTo(-26, -9); c.lineTo(24, -9); c.moveTo(-26, 9); c.lineTo(8, 9); c.stroke(); c.restore(); }
-      text(c, label, lx, by, { f: 'sans', size: 36, col: INK, a: ra });
-      c.save(); c.globalAlpha = ra; c.fillStyle = mix(C.paper, C.slate, 0.1); c.fillRect(bx, by - 30, bw, 34); c.fillStyle = col; c.fillRect(bx, by - 30, bw * v / 100 * p, 34); c.restore();
-      text(c, v.toFixed(1) + '%', bx + bw * v / 100 * p + 14, by + 2, { f: 'disp', size: 48, col: INK, a: ra * ramp(t, b1 - 0.25, b1, EASE.warm) }); });
-    text(c, 'Source: our own tests', x0 + 40, y0 + ht - 26, { f: 'sans', size: 30, col: SOFT, a: RA(t, 'src') }); }
+    c.fillStyle = C.paper; c.strokeStyle = LITRING; c.lineWidth = 5 * z; c.beginPath(); c.arc(cx, cy, R, 0, Math.PI * 2); c.fill(); c.stroke(); tickMark(c, cx, cy, R * 0.5, YES, 8 * z); c.restore(); }
 
   // the little whale ("you")
   { const p = wworld(t), ang = heading(t), v = wvel(t), sp = Math.hypot(v.x, v.y), moving = clamp(sp / 400), f = facing(t);
@@ -256,17 +238,36 @@ function drawFrame(c, t) {
     const ya = RA(t, 'you'); if (ya > 0) S.chip(c, 'you', X(p.x), Y(p.y + 100), { f: 'sans', size: 26 * z, col: SOFT, a: ya, align: 'center', pad: 10 }); }
 
   // the title hinge: the scene goes still under a paper veil
-  const veil = win(t, T0 + 0.08, T0 + 2.55, 0.35, 0.4); if (veil > 0) { c.fillStyle = rgba(C.paper, 0.9 * veil); c.fillRect(0, 0, W, H); }
+  const veil = win(t, T0 + 0.08, T0 + 3.38, 0.35, 0.4); if (veil > 0) { c.fillStyle = rgba(C.paper, 0.45 * veil); c.fillRect(0, 0, W, H);
+    c.save(); c.globalAlpha = 0.94 * veil; c.fillStyle = C.paper; c.strokeStyle = CHIPB; c.lineWidth = 1.2; c.beginPath(); c.roundRect(430, 385, 1060, 230, 10); c.fill(); c.stroke(); c.restore(); }
+  // the real-test chart: the only thing on screen while it shows
+  const cv = win(t, T_CARD - 0.15, T_CARD_OUT + 0.15, 0.35, 0.35); if (cv > 0) { c.fillStyle = rgba(C.paper, 0.97 * cv); c.fillRect(0, 0, W, H); }
+  const ka = RA(t, 'cardH'); if (ka > 0) { const x0 = 260, y0 = 120 + (1 - EASE.defer(ramp(t, T_CARD, T_CARD + 0.35))) * 10, wd = 1400, ht = 720, bx = x0 + 600, bw = 600;
+    c.save(); c.globalAlpha = ka; c.fillStyle = C.paper; c.strokeStyle = CHIPB; c.lineWidth = 1.5; c.beginPath(); c.roundRect(x0, y0, wd, ht, 12); c.fill(); c.stroke();
+    c.fillStyle = OS; c.fillRect(x0, y0, 8, ht); c.restore();
+    text(c, 'Real test', x0 + 60, y0 + 68, { f: 'mono', size: 26, col: SOFT, a: ka });
+    text(c, 'Right answers on scam emails', x0 + 60, y0 + 148, { f: 'sans', size: 56, col: INK, a: RA(t, 'cardM') });
+    const rows = [['cardA', 'One big question', 63, OFFRING, BAR[0]], ['cardB', 'Five small checks', 95, OS, BAR[1]], ['cardC', 'A simple fixed rule', 92, mix(PRU, C.paper, 0.2), BAR[2]]];
+    rows.forEach(([id, label, v, col, [b0, b1]], k) => { const ra = RA(t, id); if (ra <= 0) return; const by = y0 + 300 + k * 120, p = ramp(t, b0 + 0.1, b1, EASE.warm), lx = x0 + 60 + (k === 2 ? 118 : 0);
+      if (k === 2) { const pop = 1 + 0.15 * Math.exp(-(t - b0) * 8); c.save(); c.globalAlpha = ra; c.translate(x0 + 60 + 50, by - 16); c.scale(pop, pop);   // a tiny two-line rule card
+        c.fillStyle = C.paper; c.strokeStyle = INK; c.lineWidth = 4; c.beginPath(); c.roundRect(-50, -36, 100, 72, 7); c.fill(); c.stroke();
+        c.lineWidth = 6; c.lineCap = 'round'; c.beginPath(); c.moveTo(-32, -12); c.lineTo(32, -12); c.moveTo(-32, 13); c.lineTo(10, 13); c.stroke(); c.restore(); }
+      text(c, label, lx, by, { f: 'sans', size: 44, col: INK, a: ra });
+      c.save(); c.globalAlpha = ra; c.fillStyle = mix(C.paper, C.slate, 0.1); c.fillRect(bx, by - 52, bw, 64); c.fillStyle = col; c.fillRect(bx, by - 52, bw * v / 100 * p, 64);
+      if (k === 1 && t > b1) { const g = 0.5 + 0.5 * Math.sin((t - b1) * 3.2); c.strokeStyle = rgba(OS, 0.35 * g * ramp(t, b1, b1 + 0.5)); c.lineWidth = 10; c.strokeRect(bx - 7, by - 59, bw * v / 100 + 14, 78); }   // the winning bar breathes, so the hold is never dead
+      c.restore();
+      text(c, v + '%', bx + bw * v / 100 * p + 22, by + 6, { f: 'sans', size: 64, col: INK, a: ra * ramp(t, b1 - 0.25, b1, EASE.warm) }); });
+    text(c, 'Source: our own tests', x0 + 60, y0 + ht - 50, { f: 'sans', size: 32, col: SOFT, a: RA(t, 'src') }); }
 
   for (const r of READ) if (r.kind === 'caption') S.caption(c, t, r, { size: 40 });
-  S.open(c, t - T0, { no: '10', title: 'Five small <i>checks</i>, not one.', accent: ACC }, { out: 2.47 });
+  S.open(c, t - T0, { no: '10', title: 'Five small <i>checks</i>, not one.', accent: ACC }, { out: 3.3 });
   S.lockup(c, t, T_LOCK, { no: '10', short: 'Steps' });
   c.restore();
 }
 
 function cues() {
-  return { bpm: BPM, dur: DUR, envIn: 0.35, mush: 1.1, mushEnd: T_NUDGE, veil: T0 + 0.08, title: T0 + 0.25, unveil: T0 + 2.15,
-    folds: 7.65, nudge: T_NUDGE, tear: T_SPLIT, land: GX.map((_, i) => T_LAND + 0.05 * Math.abs(i - 2)), questions: T_Q,
+  return { bpm: BPM, dur: DUR, envIn: 0.35, mush: 1.1, mushEnd: T_NUDGE, veil: T0 + 0.08, title: T0 + 0.25, unveil: T0 + 2.95,
+    folds: 7.75, nudge: T_NUDGE, tear: T_SPLIT, land: GX.map((_, i) => T_LAND + 0.05 * Math.abs(i - 2)), questions: T_Q,
     fakeIn: tA0, check: CHECK.map(e => ({ t: e.t, g: e.g, ok: e.ok })), held: T_HELD, reset: T_RESET,
     card: T_CARD, bars: BAR.map(b => b[1]), limit: BAR[2][0], whaleMove: [7.45, 9.5, 14.0],
     pay: PAY.map(e => ({ t: e.t, g: e.g })), tray: T_TRAY, tick: T_TICK, belief: RD('belief').in, lockup: T_LOCK,

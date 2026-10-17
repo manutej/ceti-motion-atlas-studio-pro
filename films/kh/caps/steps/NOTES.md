@@ -1,6 +1,8 @@
-# 10 · steps v4: Five small *checks*, not one.
+# 10 · steps v5 (v4 kept as film-v4.js): Five small *checks*, not one.
 
 v4 applies the first lay-jury notes and AGENT-BRIEF lessons 7–10. v3 is kept as `film-v3.js` (sheet-v3.png); the beat sheet below is the v3 order, and v4 timings are in `film.js`. v4 changes: the title says "checks" (no "gate" in any on-screen word). "the AI checker" names the AI once. The real bill now gets a "?" maybe-lamp (drawn as a mark) under "Is this real? It says: maybe." The two opening captions are each held ≥ 2 s. The card reads "Right answers, scam emails" (38 px), rows are 36 px with 48 px values, and "A simple fixed rule" has a tiny two-line rule card beside it; source "Source: our own tests"; the main lines hold ≥ 3.5 s. The limit is now two captions: "Not magic." and "A simple rule did nearly as well." The inbox is bigger with a 30 px label, "Example checks" is 26 px. The push-in frames out the inbox so it is not cropped. The whale drifts during the opening so it is not a static hold. DUR is 29.85 s.
+
+v5 polish, after the v4 lay-jury PASS: while the chart shows it is the only thing on screen (paper veil). It has three 64 px bars rounded to whole % (63 / 95 / 92, from 62.6 / 95.1 / 91.8), 44 px labels, the 56 px title "Right answers on scam emails", and holds ≥ 4 s; the winning bar breathes. The limit is one line, "Splitting the question is what helps." The title card sits on a paper panel with the scene visible behind it, held 2.2 s (T0 = 4.6). The ✓/✕/? marks inside the lamps are ≥ 40 px (small lamp r 44).
 
 Source board sb-06-05 (JEV-works), cut from 58.5 s to 28.9 s. Wada 296 (ground tint Ochraceous Salmon; lit lamp = Sulpher Yellow × Salmon with a Pale Raw Umber ring; ✓ marks Slate Color; a clear no = CETI rust). 132 BPM (B = 0.4545 s). Text is ink or slate on paper or chips only.
 

@@ -68,9 +68,13 @@ for a in Q['answer']:
         for i, f in enumerate([659.25, 987.77, 1318.5]): put(glass(f, 2.6), a['t'] + i * 0.05, 0.1, -0.3 + 0.3 * i, 0.6)
 put(tick(4200, 0.03), Q['title'], 0.14, 0, 0.4); put(whoosh(0.7, rev=True), Q['title'] - 0.6, 0.06, 0, 0.3)
 put(glass(987.77, 1.2), Q['card'], 0.05, -0.3, 0.5)
+# limit: the ticked email lifts out (paper whoosh up), then the wrong name lands as one chime that hangs unresolved (a semitone off)
+if 'envelope' in Q:
+    put(whoosh(0.55), Q['envelope'], 0.1, 0.3, 0.3); pentick(Q['tickHolds'], 2, 0.6)
+    put(glass(1244.5, 2.6), Q['wrongName'], 0.08, 0.3, 0.7); put(glass(1318.5, 2.6), Q['wrongName'] + 0.02, 0.05, 0.3, 0.7)
 pad = np.zeros(N)
 for f, g in [(146.83, 1), (220, 0.7), (329.63, 0.55), (440, 0.35), (493.88, 0.25)]: pad += g * np.sin(2 * np.pi * f * (1 + 0.0015 * np.sin(2 * np.pi * 0.11 * t + f)) * t)
-pad *= 0.04 * smooth(Q['answer'][3]['t'] - 0.5, Q['answer'][3]['t'] + 1.5, t) * (1 - 0.6 * smooth(D - 1.2, D, t)); pad = lp(pad, 2400); BUS[:, 0] += pad; BUS[:, 1] += pad; SEND += pad * 0.4
+pad *= 0.04 * smooth(Q['answer'][-1]['t'] - 0.5, Q['answer'][-1]['t'] + 1.5, t) * (1 - 0.6 * smooth(D - 1.2, D, t)); pad = lp(pad, 2400); BUS[:, 0] += pad; BUS[:, 1] += pad; SEND += pad * 0.4
 put(glass(659.25, 2.4), Q['lockup'], 0.08, 0, 0.7)
 
 # reverb send, fades, then loudness: BS.1770-style K-weighted, gated integrated level → −16 LUFS, true peak ≤ −1 dBTP

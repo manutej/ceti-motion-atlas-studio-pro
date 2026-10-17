@@ -19,9 +19,9 @@ const ALIKE = mix(WD.lightGlaucousBlue, C.slate, 0.25);                 // the l
 
 // ---------- the report: seven page slots, page 4 missing; pages 2 and 3 get swapped only in the limit beat ----------
 const SLOT = i => -690 + 230 * i, PW = 160, PH = 212, HY = -380, PODS = 140, NOSE = 70;
-const T_SET4 = 17.05, SWAP1 = [22.1, 22.5], SWAP2 = [26.3, 26.65];
+const T_SET4 = 17.85, SWAP1 = [22.9, 23.3], SWAP2 = [26.7, 27.05];
 function pagePos(n, t) {                                                 // returns {x, y, a} or null
-  if (n === 4) { if (t < 16.35) return null; if (t < T_SET4) { const f = podPos('fix', t); return { x: f.x, y: f.y + NOSE + PH / 2 + 4, a: 1 }; } return { x: SLOT(3), y: 0, a: 1 }; }
+  if (n === 4) { if (t < 17.15) return null; if (t < T_SET4) { const f = podPos('fix', t); return { x: f.x, y: f.y + NOSE + PH / 2 + 4, a: 1 }; } return { x: SLOT(3), y: 0, a: 1 }; }
   if (n === 2 || n === 3) { const k1 = ramp(t, SWAP1[0], SWAP1[1], EASE.warm), k2 = ramp(t, SWAP2[0], SWAP2[1], EASE.warm), sw = k1 - k2, arc = Math.sin(Math.PI * (t < SWAP2[0] ? k1 : k2));
     const home = n === 2 ? 1 : 2, other = n === 2 ? 2 : 1; return { x: lerp(SLOT(home), SLOT(other), sw), y: n === 2 ? -110 * arc : 40 * arc, a: 1 }; }
   return { x: SLOT(n - 1), y: 0, a: 1 };
@@ -29,38 +29,38 @@ function pagePos(n, t) {                                                 // retu
 
 // ---------- helpers (pods): keys [t, x, y]; eased between keys ----------
 const KEYS = {
-  A: [[0, 0, -1100], [7.0, 0, -1100], [7.6, 0, HY], [16.15, 0, HY], [16.55, -150, -560], [17.75, -150, -560], [18.15, 0, HY], [22.1, 0, HY], [22.6, -460, HY], [24.5, -460, HY], [25.0, 200, -1300]],
-  B: [[0, 690, -1100], [7.15, 690, -1100], [7.75, 690, HY], [22.1, 690, HY], [22.6, 0, HY], [24.6, 0, HY], [25.1, 500, -1300]],
-  C: [[0, 230, -1100], [7.3, 230, -1100], [7.9, 230, HY], [22.1, 230, HY], [22.6, -230, HY], [24.55, -230, HY], [25.05, 350, -1300]],
+  A: [[0, 0, -1100], [7.95, 0, -1100], [8.55, 0, HY], [16.95, 0, HY], [17.35, -150, -560], [18.55, -150, -560], [18.95, 0, HY], [22.9, 0, HY], [23.4, -460, HY], [24.9, -460, HY], [25.4, 200, -1300]],
+  B: [[0, 690, -1100], [8.1, 690, -1100], [8.7, 690, HY], [22.9, 690, HY], [23.4, 0, HY], [25.0, 0, HY], [25.5, 500, -1300]],
+  C: [[0, 230, -1100], [8.25, 230, -1100], [8.85, 230, HY], [22.9, 230, HY], [23.4, -230, HY], [24.95, -230, HY], [25.45, 350, -1300]],
   cust: [[0, 1500, -230], [2.05, 1500, -230], [2.55, 880, -230], [4.7, 880, -230], [5.4, 1550, -230]],
-  fix: [[0, 0, -1300], [16.3, 0, -1300], [16.95, 0, -PH / 2 - NOSE - 4], [17.4, 0, -PH / 2 - NOSE - 4], [18.0, 150, -1300]],
-  fix2: [[0, -230, -1300], [25.6, -230, -1300], [26.05, -230, HY], [26.7, -230, HY], [27.15, -60, -1300]],
-  F: [[0, -460, -1300], [24.75, -460, -1300], [25.2, -460, HY], [DUR + 1, -460, HY]],
+  fix: [[0, 0, -1300], [17.1, 0, -1300], [17.75, 0, -PH / 2 - NOSE - 4], [18.2, 0, -PH / 2 - NOSE - 4], [18.8, 150, -1300]],
+  fix2: [[0, -230, -1300], [26.0, -230, -1300], [26.45, -230, HY], [27.1, -230, HY], [27.55, -60, -1300]],
+  F: [[0, -460, -1300], [25.15, -460, -1300], [25.6, -460, HY], [DUR + 1, -460, HY]],
 };
 function keyed(P, t) { const n = P.length; if (t <= P[0][0]) return { x: P[0][1], y: P[0][2] }; if (t >= P[n - 1][0]) return { x: P[n - 1][1], y: P[n - 1][2] };
   let i = 0; while (P[i + 1][0] < t) i++; const a = P[i], b = P[i + 1], k = EASE.warm((t - a[0]) / (b[0] - a[0])); return { x: lerp(a[1], b[1], k), y: lerp(a[2], b[2], k) }; }
 // pokes: the checker darts nose-first at a page. 'slot' = nothing there: the nose goes into the hole. 'page' = it bounces.
 const POKES = [
-  { p: 'A', t: 9.45, at: 'slot', says: 'missing' }, { p: 'B', t: 9.9, at: 'page', says: 'vague' }, { p: 'C', t: 10.35, at: 'page' },
-  { p: 'A', t: 18.55, at: 'page', holds: true }, { p: 'C', t: 19.35, at: 'page', holds: true }, { p: 'B', t: 20.15, at: 'page', holds: true },
-  { p: 'A', t: 22.9, at: 'page', agree: true }, { p: 'C', t: 23.15, at: 'page', agree: true }, { p: 'B', t: 23.4, at: 'page', agree: true },
-  { p: 'F', t: 25.35, at: 'page', says: 'order' }, { p: 'F', t: 26.95, at: 'page', holds: true, final: true },
+  { p: 'A', t: 10.4, at: 'slot', says: 'missing' }, { p: 'B', t: 10.85, at: 'page', says: 'vague' }, { p: 'C', t: 11.3, at: 'page' },
+  { p: 'A', t: 19.35, at: 'page', holds: true }, { p: 'C', t: 20.15, at: 'page', holds: true }, { p: 'B', t: 20.95, at: 'page', holds: true },
+  { p: 'A', t: 23.7, at: 'page', agree: true }, { p: 'C', t: 23.95, at: 'page', agree: true }, { p: 'B', t: 24.2, at: 'page', agree: true },
+  { p: 'F', t: 25.75, at: 'page', says: 'order' }, { p: 'F', t: 27.35, at: 'page', holds: true, final: true },
 ];
 const CONTACT = { page: -PH / 2 - NOSE - 2, slot: -40 };
 function podPos(p, t) { const q = keyed(KEYS[p], t); let y = q.y;
   for (const k of POKES) if (k.p === p) { const d = ramp(t, k.t - 0.15, k.t, EASE.glaser) * (1 - ramp(t, k.t + 0.1, k.t + 0.45, EASE.warm)); if (d > 0) y = lerp(y, CONTACT[k.at], d); }
   return { x: q.x, y: y + (p === 'cust' ? 0 : 7 * Math.sin(t * 2.1 + p.charCodeAt(0))) }; }
-const T_ALIKE = [22.1, 22.6];
+const T_ALIKE = [22.9, 23.4];
 function podDir(p, t) { return p === 'cust' ? Math.PI : Math.PI / 2; }
 function podCol(p, t) { return 'ABC'.includes(p) ? mix(COL[p], ALIKE, ramp(t, T_ALIKE[0], T_ALIKE[1], EASE.warm)) : COL[p]; }
 
 // ---------- the whale ("you"): Hermite through keys ----------
 const WS = 0.8;
-const K = [[0, -480, -330], [6.0, -480, -330], [7.4, -780, -470], [24.5, -780, -470], [25.2, -750, -470], [DUR + 1, -750, -470]];
+const K = [[0, -480, -330], [6.0, -480, -330], [7.4, -780, -470], [24.9, -780, -470], [25.6, -750, -470], [DUR + 1, -750, -470]];
 function herm(P, t) { const n = P.length; if (t <= P[0][0]) return { x: P[0][1], y: P[0][2] }; if (t >= P[n - 1][0]) return { x: P[n - 1][1], y: P[n - 1][2] };
   let i = 0; while (P[i + 1][0] < t) i++; const p1 = P[i], p2 = P[i + 1], u = (t - p1[0]) / (p2[0] - p1[0]), A2 = 2 * u * u * u - 3 * u * u + 1, C2 = 1 - A2;
   return { x: A2 * p1[1] + C2 * p2[1], y: A2 * p1[2] + C2 * p2[2] }; }
-const NODS = [1.95, T_SET4, 18.6, 19.4, 20.2, 21.1, 27.03];
+const NODS = [1.95, T_SET4, 19.4, 20.2, 21.0, 21.9, 27.43];
 function wworld(t) { const p = herm(K, t), q = herm(K, t + 0.01), sp = Math.hypot(q.x - p.x, q.y - p.y) * 100, still = 1 - clamp(sp / 150);
   let dip = 0; for (const s of NODS) { const d = t - s; if (d > 0 && d < 0.35) dip = Math.max(dip, 6 * Math.sin(Math.PI * d / 0.35)); }
   return { x: p.x, y: p.y + (Math.sin(t * 2.4) * 2.5 + dip) * still }; }
@@ -75,7 +75,7 @@ function meant(t) { const lx = lensX(t); let m = lx == null ? 0 : clamp(1 - Math
 
 // ---------- camera ----------
 function cam(t) {
-  const pull = ramp(t, 4.4, 6.8, EASE.rest), push = ramp(t, 11.2, 11.9, EASE.warm), rel = ramp(t, 15.9, 16.7, EASE.warm), pay = ramp(t, 24.5, 25.2, EASE.warm), end = ramp(t, 27.6, DUR, EASE.rest);
+  const pull = ramp(t, 4.4, 6.8, EASE.rest), push = ramp(t, 11.85, 12.55, EASE.warm), rel = ramp(t, 16.7, 17.5, EASE.warm), pay = ramp(t, 24.9, 25.6, EASE.warm), end = ramp(t, 27.6, DUR, EASE.rest);
   let z = lerp(1.05, 1.0, pull), x = lerp(80, 0, pull), y = -60;
   z = lerp(z, 1.12, push); x = lerp(x, -40, push); y = lerp(y, -170, push); z = lerp(z, 1.0, rel); x = lerp(x, 0, rel); y = lerp(y, -60, rel);
   z = lerp(z, 1.05, pay); x = lerp(x, 0, pay); y = lerp(y, -120, pay);
@@ -91,22 +91,22 @@ const READ = [
   lab('you', 0.3, 4.4, 'you'), lab('report', 0.3, 4.4, 'your report'), lab('cust', 2.3, 4.5, 'the customer'),
   cap('felt1', 0.25, 2.3, 'I checked my report twice.'),
   cap('felt2', 2.4, 4.4, 'The customer found a missing page.'),
-  { id: 'eyebrow', kind: 'label', in: T0 + 0.25, out: T0 + 2.62, fi: 0.4, fo: 0.45, text: 'CETI · Capabilities · 08' },
-  { id: 'title', kind: 'title', in: T0 + 0.25, out: T0 + 2.62, fi: 0.4, fo: 0.45, text: 'Fresh <i>eyes</i> find what you missed.' },
-  lab('fresh', 7.5, 9.35, '3 different AI checkers'),
-  cap('ask', 7.1, 9.25, 'Ask someone who didn\'t write the report.'),
-  cap('hunt', 9.3, 11.25, 'They hunt for mistakes.'),
-  lab('missing', 9.6, 16.15, 'page 4 is missing'), lab('vague', 10.05, 15.4, 'feels off'),
-  cap('point', 11.3, 13.45, 'Each complaint must point at the problem.'),
-  { ...cap('strike', 13.47, 16.4, 'No pointing? The complaint is crossed out.'), fi: 0.2 },
-  lab('else', 16.5, 18.1, 'someone else'),
-  cap('fix', 16.45, 18.45, 'Someone else adds the missing page.'),
-  { id: 'card', kind: 'card', card: true, in: 18.4, out: 22.05, fi: 0.1, fo: 0.1, text: '57 complaints, 0 crossed out', src: SRC },
-  lab('cardl1', 18.4, 22.05, 'True story · from our own review notes', { fi: 0.1, fo: 0.1, card: true, src: SRC }),
-  lab('cardl3', 18.4, 22.05, 'Each one pointed at its evidence.', { fi: 0.1, fo: 0.1 }),
-  cap('limit', 22.15, 24.5, 'Checkers that think alike miss alike.'),
-  lab('order', 25.35, 26.9, 'pages out of order', { fi: 0.1 }),
-  cap('belief', 24.55, T_LOCK - 0.05, 'Never let the maker be the judge.'),
+  { id: 'eyebrow', kind: 'label', in: T0 + 0.25, out: T0 + 3.6, fi: 0.4, fo: 0.45, text: 'CETI · Capabilities · 08' },
+  { id: 'title', kind: 'title', in: T0 + 0.25, out: T0 + 3.6, fi: 0.4, fo: 0.45, text: 'Fresh <i>eyes</i> find what you missed.' },
+  lab('fresh', 8.4, 10.3, '3 different AI checkers'),
+  lab('legend1', 8.55, 10.35, 'different colours'), lab('legend2', 8.55, 10.35, '= different kinds of checker'),
+  cap('ask', 8.05, 10.25, 'Ask someone who didn\'t write the report.'),
+  cap('hunt', 10.3, 12.0, 'They hunt for mistakes.'),
+  lab('missing', 10.55, 16.95, 'page 4 is missing'), lab('vague', 11.0, 16.2, 'feels off'),
+  cap('point', 12.05, 14.2, 'Each complaint must point at the problem.'),
+  { ...cap('strike', 14.25, 17.2, 'No pointing? The complaint is crossed out.'), fi: 0.2 },
+  lab('else', 17.3, 18.9, 'someone else'),
+  { ...cap('fix', 17.22, 19.15, 'Someone else adds the missing page.'), fi: 0.2 },
+  { id: 'card', kind: 'card', card: true, in: 19.15, out: 22.85, fi: 0.08, fo: 0.1, text: '57 problems found. Each one pointed at.', src: SRC },
+  lab('cardl1', 19.15, 22.85, 'True story · our own review notes', { fi: 0.08, fo: 0.1, card: true, src: SRC }),
+  { ...cap('limit', 22.95, 24.9, 'Checkers that think alike miss alike.'), fi: 0.2 },
+  lab('order', 25.75, 27.3, 'pages out of order', { fi: 0.1 }),
+  cap('belief', 24.95, T_LOCK - 0.05, 'Never let the maker be the judge.'),
   { id: 'lockup', kind: 'label', in: T_LOCK, out: DUR, fi: 0.45, fo: 0, text: 'CETI · Capabilities · 08 · Fresh' },
 ];
 const RD = id => READ.find(r => r.id === id), RA = (t, id) => { const r = RD(id); return win(t, r.in, r.out, r.fi, r.fo); };
@@ -163,14 +163,14 @@ function drawFrame(c, t) {
   { const g = win(t, T_SET4, T_SET4 + 1.4, 0.05, 0.8); if (g > 0.01) { c.save(); c.globalAlpha = g * 0.5; c.strokeStyle = OK; c.lineWidth = 10 * z; c.beginPath(); c.roundRect(X(SLOT(3) - PW / 2 - 8), Y(-PH / 2 - 8), (PW + 16) * z, (PH + 16) * z, 12 * z); c.stroke(); c.restore(); } }
 
   // the hole, pointed at: by the customer (felt) and by helper A (move)
-  const holeA = Math.max(win(t, 2.65, 4.6, 0.12, 0.3), win(t, 9.55, 16.75, 0.12, 0.3));
+  const holeA = Math.max(win(t, 2.65, 4.6, 0.12, 0.3), win(t, 10.5, 17.55, 0.12, 0.3));
   outline(c, X(SLOT(3) - PW / 2 - 10), Y(-PH / 2 - 10), X(SLOT(3) + PW / 2 + 10), Y(PH / 2 + 10), z, holeA);
   // the swapped pages, pulsing faintly once the look-alike helpers face away; outlined when the different helper points
-  { const pulse = win(t, 22.6, 24.7, 0.4, 0.3) * (0.35 + 0.25 * Math.sin((t - 22.6) * 5)), pt = win(t, 25.35, 26.4, 0.1, 0.15);
+  { const pulse = win(t, 23.4, 25.1, 0.4, 0.3) * (0.35 + 0.25 * Math.sin((t - 23.4) * 5)), pt = win(t, 25.75, 26.8, 0.1, 0.15);
     const a = Math.max(pulse, pt); outline(c, X(SLOT(1) - PW / 2 - 10), Y(-PH / 2 - 10), X(SLOT(2) + PW / 2 + 10), Y(PH / 2 + 10), z, a); }
 
   // recheck: each held poke leaves a green tick under its page
-  for (const k of POKES) if (k.holds && !k.final) { const q = podPos(k.p, k.t), a = win(t, k.t + 0.08, 22.1, 0.15, 0.4); tickAt(c, X(q.x), Y(PH / 2 + 46), 24 * z, a); }
+  for (const k of POKES) if (k.holds && !k.final) { const q = podPos(k.p, k.t), a = win(t, k.t + 0.08, 22.9, 0.15, 0.4); tickAt(c, X(q.x), Y(PH / 2 + 46), 24 * z, a); }
 
   // helpers
   for (const p of ['cust', 'A', 'B', 'C', 'fix', 'fix2', 'F']) pod(c, X, Y, z, p, t);
@@ -179,24 +179,24 @@ function drawFrame(c, t) {
   { const qa = podPos('A', t), qb = podPos('B', t), qf = podPos('F', t);
     const am = RA(t, 'missing'); if (am > 0.01) { const cx = X(qa.x), cy = Y(HY - 190); leader(c, cx, cy + 30, X(SLOT(3)), Y(-PH / 2 - 14), am, z); sayChip(c, 'page 4 is missing', cx, cy + 12, am); }
     const av = RA(t, 'vague'); if (av > 0.01) { const cx = X(qb.x) - 30, cy = Y(HY - 190) + 12; sayChip(c, 'feels off', cx, cy, av);
-      const s = ramp(t, 13.75, 14.05, EASE.glaser); if (s > 0) { c.save(); c.globalAlpha = av; c.strokeStyle = INK; c.lineWidth = 6; c.beginPath(); c.moveTo(cx - 100, cy - 10); c.lineTo(cx - 100 + 200 * s, cy - 10 - 20 * s); c.stroke(); c.restore(); } }
-    const ao = RA(t, 'order'); if (ao > 0.01) { const cx = X(qf.x) - 40 * z, cy = Y(HY - 190) + 12; sayChip(c, 'pages out of order', cx, cy, ao); leader(c, cx + 60, cy + 22, X(SLOT(1) + 115), Y(-PH / 2 - 14), ao * (1 - ramp(t, 26.25, 26.35)), z); }
+      const s = ramp(t, 14.55, 14.85, EASE.glaser); if (s > 0) { c.save(); c.globalAlpha = av; c.strokeStyle = INK; c.lineWidth = 6; c.beginPath(); c.moveTo(cx - 100, cy - 10); c.lineTo(cx - 100 + 200 * s, cy - 10 - 20 * s); c.stroke(); c.restore(); } }
+    const ao = RA(t, 'order'); if (ao > 0.01) { const cx = X(qf.x) - 40 * z, cy = Y(HY - 190) + 12; sayChip(c, 'pages out of order', cx, cy, ao); leader(c, cx + 60, cy + 22, X(SLOT(1) + 115), Y(-PH / 2 - 14), ao * (1 - ramp(t, 26.65, 26.75)), z); }
     // the customer's ✕ (felt)
     const qc = podPos('cust', t); mark(c, X(qc.x), Y(qc.y - 150), 44 * z, false, win(t, 2.65, 4.7, 0.08, 0.3), 1 + 0.18 * Math.exp(-Math.max(0, t - 2.65) * 8));
     // A's ✕ (the complaint with evidence) and B's ✕ (no pointer)
     // the look-alikes all agree: ✓ ✓ ✓ while the swap sits there
-    for (const k of POKES) if (k.agree) { const q = podPos(k.p, t), e = k.t + 0.08; mark(c, X(q.x) + 20 * z, Y(q.y - 150), 40 * z, true, win(t, e, 24.55, 0.1, 0.3), 1 + 0.15 * Math.exp(-Math.max(0, t - e) * 8)); }
+    for (const k of POKES) if (k.agree) { const q = podPos(k.p, t), e = k.t + 0.08; mark(c, X(q.x) + 20 * z, Y(q.y - 150), 40 * z, true, win(t, e, 24.95, 0.1, 0.3), 1 + 0.15 * Math.exp(-Math.max(0, t - e) * 8)); }
     // the different helper's final ✓ (holds to the end)
-    mark(c, X(qf.x), Y(qf.y - 160), 46 * z, true, win(t, 27.03, DUR + 1, 0.08, 0.1), 1 + 0.2 * Math.exp(-Math.max(0, t - 27.03) * 8)); }
+    mark(c, X(qf.x), Y(qf.y - 160), 46 * z, true, win(t, 27.43, DUR + 1, 0.08, 0.1), 1 + 0.2 * Math.exp(-Math.max(0, t - 27.43) * 8)); }
 
   // the little whale (you)
   { const p = wworld(t), ang = heading(t), v = wvel(t), sp = Math.hypot(v.x, v.y), moving = clamp(sp / 400);
-    let blink = 0; for (const k of [3.4, 8.2, 12.6, 19.3, 22.4, 29.0]) blink = Math.max(blink, 1 - Math.abs(t - k) / 0.07);
+    let blink = 0; for (const k of [3.4, 9.2, 13.4, 20.6, 23.0, 29.0]) blink = Math.max(blink, 1 - Math.abs(t - k) / 0.07);
     let squash = 0; for (const k of [1.95]) { const d = t - k; if (d >= 0 && d < 0.32) squash = Math.max(squash, 0.1 * (1 - EASE.glaser(d / 0.32))); }
-    const focus = Math.max(win(t, 0.3, 1.9, 0.15, 0.15), win(t, 9.3, 14.2, 0.3, 0.3) * 0.5, win(t, 22.6, 24.5, 0.3, 0.3) * 0.6);
-    const eye = 1 + 0.38 * win(t, 2.65, 4.0, 0.06, 0.4) + 0.25 * win(t, 9.5, 10.3, 0.06, 0.3) + 0.25 * win(t, 25.35, 26.0, 0.06, 0.3);
-    const spark = Math.max(win(t, T_SET4, T_SET4 + 0.9, 0.12, 0.4), win(t, 27.03, 28.6, 0.12, 0.5));
-    const delight = (t > T_SET4 && t < T_SET4 + 0.9) || t > 27.05 ? 1 : 0;
+    const focus = Math.max(win(t, 0.3, 1.9, 0.15, 0.15), win(t, 10.2, 15.0, 0.3, 0.3) * 0.5, win(t, 23.4, 24.9, 0.3, 0.3) * 0.6);
+    const eye = 1 + 0.38 * win(t, 2.65, 4.0, 0.06, 0.4) + 0.25 * win(t, 10.45, 11.2, 0.06, 0.3) + 0.25 * win(t, 25.75, 26.4, 0.06, 0.3);
+    const spark = Math.max(win(t, T_SET4, T_SET4 + 0.9, 0.12, 0.4), win(t, 27.43, 28.9, 0.12, 0.5));
+    const delight = (t > T_SET4 && t < T_SET4 + 0.9) || t > 27.45 ? 1 : 0;
     c.save(); c.translate(X(p.x), Y(p.y));
     KH.drawWhale(c, { x: 0, y: 0, ang, scale: WS * z, L: 1, tail: Math.sin(t * (moving > 0.3 ? 11 : 3)) * lerp(0.12, 0.34, moving), fin: Math.sin(t * 6 + 1.3) * lerp(0.15, 0.3, moving),
       blink, squash, focus: delight ? 0 : focus, eye, spark, sparkColor: OK, delight, blush: 0.6, mouth: delight ? 0.4 : 0.35 * win(t, 2.7, 3.8, 0.06, 0.3), sw: 3.2 });
@@ -209,32 +209,37 @@ function drawFrame(c, t) {
     sayChip(c, 'your report', X(SLOT(5)), Y(-PH / 2 - 40), RA(t, 'report'), { border: EDGE, size: 36 });
     const q = podPos('cust', t); sayChip(c, 'the customer', X(q.x) - 30, Y(q.y + 140), RA(t, 'cust'), { border: EDGE, size: 36 });
     { const f = podPos('fix', t); sayChip(c, 'someone else', X(f.x) + 210 * z, Y(f.y) + 10, RA(t, 'else'), { border: EDGE, size: 36 }); }
-    sayChip(c, '3 different AI checkers', X(300), Y(HY - 160), RA(t, 'fresh'), { border: EDGE, size: 36 }); }
+    sayChip(c, '3 different AI checkers', X(300), Y(HY - 160), RA(t, 'fresh'), { border: EDGE, size: 36 });
+    // the legend: three colour dots, then "different colours = different kinds of checker"
+    const lg = RA(t, 'legend1'); if (lg > 0.01) { const str = 'different colours ' + RD('legend2').text, x0 = X(300), y0 = Y(HY - 160) + 64;
+      c.save(); c.font = `30px ${KH.FONTS.sans}`; const w = c.measureText(str).width; c.restore(); const tot = w + 108, lx = x0 - tot / 2;
+      c.save(); c.globalAlpha = lg; c.fillStyle = C.paper; c.strokeStyle = EDGE; c.lineWidth = 1.2; c.beginPath(); c.roundRect(lx - 14, y0 - 34, tot + 28, 46, 6); c.fill(); c.stroke();
+      ['A', 'B', 'C'].forEach((p, i) => { c.fillStyle = COL[p]; c.strokeStyle = INK; c.lineWidth = 2; c.beginPath(); c.arc(lx + 14 + i * 32, y0 - 11, 11, 0, Math.PI * 2); c.fill(); c.stroke(); }); c.restore();
+      text(c, str, lx + 108, y0, { f: 'sans', size: 30, col: INK, a: lg }); } }
 
   // the title hinge: the scene goes still under a paper veil
-  const veil = win(t, 4.45, T0 + 2.7, 0.35, 0.4); if (veil > 0) { c.fillStyle = rgba(C.paper, 0.9 * veil); c.fillRect(0, 0, W, H); }
+  const veil = win(t, 4.45, T0 + 3.65, 0.35, 0.4); if (veil > 0) { c.fillStyle = rgba(C.paper, 0.6 * veil); c.fillRect(0, 0, W, H); }
 
   // the real-example card: it stands alone in the caption's place (bottom centre, clean paper)
-  const ka = RA(t, 'card'); if (ka > 0) { const dy = (1 - EASE.defer(ramp(t, 18.4, 18.75))) * 8, big = RD('card').text, l1 = RD('cardl1').text, l3 = RD('cardl3').text;
-    c.save(); c.font = `64px ${KH.FONTS.disp}`; const wd = c.measureText(big).width + 220; c.restore();
+  const ka = RA(t, 'card'); if (ka > 0) { const dy = (1 - EASE.defer(ramp(t, 19.15, 19.5))) * 8, big = RD('card').text, l1 = RD('cardl1').text;
+    c.save(); c.font = `60px ${KH.FONTS.disp}`; const wd = c.measureText(big).width + 160; c.restore();
     c.save(); c.globalAlpha = ka; c.fillStyle = C.paper; c.strokeStyle = EDGE; c.lineWidth = 1.5;
-    c.beginPath(); c.roundRect(960 - wd / 2, 840 + dy, wd, 210, 10); c.fill(); c.stroke(); c.fillStyle = OK; c.fillRect(960 - wd / 2, 840 + dy, 7, 210); c.restore();
-    text(c, l1, 960, 886 + dy, { f: 'sans', size: 30, col: SOFT, a: ka, align: 'center' });
-    text(c, big, 960, 962 + dy, { f: 'disp', size: 64, col: INK, a: ka, align: 'center' });
-    text(c, l3, 960, 1018 + dy, { f: 'sans', size: 32, col: INK, a: ka, align: 'center' }); }
+    c.beginPath(); c.roundRect(960 - wd / 2, 856 + dy, wd, 176, 10); c.fill(); c.stroke(); c.fillStyle = OK; c.fillRect(960 - wd / 2, 856 + dy, 7, 176); c.restore();
+    text(c, l1, 960, 906 + dy, { f: 'sans', size: 32, col: SOFT, a: ka, align: 'center' });
+    text(c, big, 960, 990 + dy, { f: 'disp', size: 60, col: INK, a: ka, align: 'center' }); }
 
   for (const r of READ) if (r.kind === 'caption') S.caption(c, t, r, { size: 40 });
-  S.open(c, t - T0, { no: '08', title: 'Fresh <i>eyes</i> find what you missed.', accent: ACC }, { out: 2.62 });
+  S.open(c, t - T0, { no: '08', title: 'Fresh <i>eyes</i> find what you missed.', accent: ACC }, { out: 3.6 });
   S.lockup(c, t, T_LOCK, { no: '08', short: 'Fresh' });
   c.restore();
 }
 
 function cues() {
-  return { bpm: BPM, dur: DUR, gaze: [0.35, 1.2], ghost: [1.0, 1.75], selfTick: 1.95, custIn: 2.05, custX: 2.65, title: T0 + 0.25, veil: 4.45, unveil: T0 + 2.3,
-    podsIn: [7.6, 7.75, 7.9], pokes: POKES.map(k => ({ t: k.t, at: k.at, holds: !!k.holds, agree: !!k.agree, says: k.says || null, final: !!k.final })),
-    claim: [9.6, 10.05, 25.35], push: 11.2, strike: 13.75, release: 15.9, fixIn: 16.3, set: T_SET4, card: RD('card').in,
-    alike: T_ALIKE[0], swap: [SWAP1[0], SWAP2[0]], agree: POKES.filter(k => k.agree).map(k => k.t), payoff: 24.5, belief: RD('belief').in, final: 26.95, lockup: T_LOCK,
-    tags: { consequence: [2.65], focus: [2.65, 9.45, 13.75, T_SET4, 25.35, 26.95], mech: [9.45, 9.9, 13.75, T_SET4, 18.55], limit: [22.1, 22.9], callback: [25.35] } }; }
+  return { bpm: BPM, dur: DUR, gaze: [0.35, 1.2], ghost: [1.0, 1.75], selfTick: 1.95, custIn: 2.05, custX: 2.65, title: T0 + 0.25, veil: 4.45, unveil: T0 + 3.3,
+    podsIn: [8.55, 8.7, 8.85], pokes: POKES.map(k => ({ t: k.t, at: k.at, holds: !!k.holds, agree: !!k.agree, says: k.says || null, final: !!k.final })),
+    claim: [10.55, 11.0, 25.75], push: 11.85, strike: 14.55, release: 16.7, fixIn: 17.1, set: T_SET4, card: RD('card').in,
+    alike: T_ALIKE[0], swap: [SWAP1[0], SWAP2[0]], agree: POKES.filter(k => k.agree).map(k => k.t), payoff: 24.9, belief: RD('belief').in, final: 27.35, lockup: T_LOCK,
+    tags: { consequence: [2.65], focus: [2.65, 10.4, 14.55, T_SET4, 25.75, 27.35], mech: [10.4, 10.85, 14.55, T_SET4, 19.35], limit: [22.9, 23.7], callback: [25.75] } }; }
 const CONTRAST = [['captions / labels / complaint chips (ink on paper chip)', INK, C.paper], ['page numbers (ink on paper page)', INK, C.paper],
   ['ghost page number (slate on paper)', SOFT, C.paper], ['title (ink on chart ground)', INK, BG], ['title accent on ground', ACC, BG],
   ['title accent on veiled ground (paper)', ACC, C.paper], ['eyebrow / lockup (slate on ground)', SOFT, BG], ['card label + source (slate on paper)', SOFT, C.paper], ['card main + explainer (ink on paper)', INK, C.paper]];
