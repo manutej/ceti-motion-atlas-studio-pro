@@ -379,6 +379,16 @@
     return 'ρ_' + (h >>> 0).toString(16).padStart(8, '0');
   }
 
+  function computeGluingHash(hashA, hashB) {
+    const raw = String(hashA || 'ρ_0') + '⊕' + String(hashB || 'ρ_0');
+    let h = 0x811c9dc5;
+    for (let i = 0; i < raw.length; i++) {
+      h ^= raw.charCodeAt(i);
+      h = Math.imul(h, 0x01000193);
+    }
+    return 'ρ_' + (h >>> 0).toString(16).padStart(8, '0');
+  }
+
   function stampDAGRestrictionHashes(dag) {
     const byId = {};
     (dag.nodes || []).forEach(function (n) {
@@ -391,7 +401,9 @@
       byId[n.id] = n;
     });
     (dag.nodes || []).forEach(function (n) {
-      if (n.parentId && byId[n.parentId]) {
+      if (n.parentId && n.secondaryParentId && byId[n.parentId] && byId[n.secondaryParentId]) {
+        n.upstreamHash = computeGluingHash(byId[n.parentId].packetHash, byId[n.secondaryParentId].packetHash);
+      } else if (n.parentId && byId[n.parentId]) {
         n.upstreamHash = byId[n.parentId].packetHash;
       } else {
         n.upstreamHash = 'ρ_root0000';
@@ -412,7 +424,18 @@
       if (n.packetHash && n.packetHash !== expectedSelf) {
         defects.push('Node ' + n.id + ' packetHash mismatch (' + n.packetHash + ' != ' + expectedSelf + ')');
       }
-      if (n.parentId) {
+      if (n.parentId && n.secondaryParentId) {
+        const p1 = byId[n.parentId];
+        const p2 = byId[n.secondaryParentId];
+        if (!p1 || !p2) {
+          defects.push('Pushout node ' + n.id + ' references missing parent (' + n.parentId + ' ⊕ ' + n.secondaryParentId + ')');
+        } else {
+          const expectedGlue = computeGluingHash(p1.packetHash, p2.packetHash);
+          if (n.upstreamHash && n.upstreamHash !== expectedGlue) {
+            defects.push('Pushout coboundary defect δ⁰ ≠ 0 on (' + n.parentId + ' ⊕ ' + n.secondaryParentId + ') → ' + n.id + ': ' + n.upstreamHash + ' != ' + expectedGlue);
+          }
+        }
+      } else if (n.parentId) {
         const p = byId[n.parentId];
         if (!p) {
           defects.push('Node ' + n.id + ' references missing parent ' + n.parentId);
@@ -559,6 +582,98 @@
     });
     cur.createdNodeIds = createdIds;
     return cur;
+  }
+
+  // Alexandrov Sheaf Pushout / Multi-Parent Branch Synthesis (A ⊕ B → Glued Synthesis Node) (G22)
+  function synthesizeBranches(dag, nodeAId, nodeBId, overrides) {
+    if (!dag || !Array.isArray(dag.nodes)) return dag;
+    const nodeA = dag.nodes.find(function (n) { return n.id === nodeAId; }) || dag.nodes[0];
+    const nodeB = dag.nodes.find(function (n) { return n.id === nodeBId && n.id !== (nodeA && nodeA.id); }) || dag.nodes[dag.nodes.length - 1] || nodeA;
+    if (!nodeA || !nodeB) return dag;
+
+    const ov = overrides || {};
+    const seq = dag.nodes.length + 1;
+    const synthId = ov.id || ('node-synth-' + seq);
+    const charId = ov.charId || (nodeA.payload && nodeA.payload.charId) || 'ceti-whale';
+    const partnerCharId = (nodeB.payload && nodeB.payload.charId) || 'orpheus-lyre';
+    const palId = ov.palId || (nodeA.payload && nodeA.payload.palId) || 343;
+    const styleKey = ov.styleKey || (nodeB.payload && nodeB.payload.styleKey) || 'hydrographic';
+    const storyKey = ov.storyKey || (nodeB.payload && nodeB.payload.storyKey) || 's_duet';
+    const feelKey = ov.feelKey || (nodeA.payload && nodeA.payload.feelKey) || 'spring';
+
+    const mergedPayload = Object.assign({}, nodeA.payload, nodeB.payload, {
+      charId: charId,
+      partnerCharId: partnerCharId,
+      palId: palId,
+      styleKey: styleKey,
+      storyKey: storyKey,
+      feelKey: feelKey,
+      interaction: 'duet-counterpoint',
+      storyboard: buildStoryboardSheet({
+        storyKey: storyKey,
+        styleKey: styleKey,
+        charId: charId,
+        palId: palId,
+        feelKey: feelKey
+      })
+    }, ov.payload || {});
+
+    const hashA = nodeA.packetHash || computePacketHash(nodeA.payload);
+    const hashB = nodeB.packetHash || computePacketHash(nodeB.payload);
+    const glueHash = computeGluingHash(hashA, hashB);
+    const packetHash = computePacketHash(mergedPayload);
+
+    const nodeW = nodeA.width || 320;
+    const nodeH = nodeA.height || 455;
+    const desiredX = Math.max(nodeA.x || 40, nodeB.x || 40) + 400;
+    const desiredY = Math.round(((nodeA.y || 36) + (nodeB.y || 36)) / 2);
+    const safePos = resolveNonOverlappingPosition(dag.nodes, desiredX, desiredY, nodeW, nodeH, 36, 40);
+
+    const charNameA = FOUNDRY.CHARACTERS[charId] ? FOUNDRY.CHARACTERS[charId].name.split(' ')[0] : charId;
+    const charNameB = FOUNDRY.CHARACTERS[partnerCharId] ? FOUNDRY.CHARACTERS[partnerCharId].name.split(' ')[0] : partnerCharId;
+
+    const synthNode = {
+      id: synthId,
+      kind: 'synthesis-gluing',
+      title: ov.title || ('Synthesis (A ⊕ B) · ' + charNameA + ' × ' + charNameB),
+      subtitle: ov.subtitle || ('Wada No. ' + palId + ' · ' + styleKey + ' · Sheaf Pushout'),
+      x: safePos.x,
+      y: safePos.y,
+      width: nodeW,
+      height: nodeH,
+      parentId: nodeA.id,
+      secondaryParentId: nodeB.id,
+      parentIds: [nodeA.id, nodeB.id],
+      upstreamHash: glueHash,
+      packetHash: packetHash,
+      conjectureNote: ov.conjectureNote || ('†C⊕ · Sheaf Pushout Gluing ρ(' + nodeA.id + ' ⊕ ' + nodeB.id + ') = ' + glueHash),
+      forkReason: 'Alexandrov Sheaf Pushout Gluing of ' + nodeA.title + ' ⊕ ' + nodeB.title,
+      status: 'committed',
+      payload: mergedPayload
+    };
+
+    const edgeA = {
+      id: 'e-' + synthId + '-a',
+      fromNodeId: nodeA.id,
+      toNodeId: synthId,
+      label: '⊕ Glue A (Actor/Wada)',
+      kind: 'synthesis'
+    };
+    const edgeB = {
+      id: 'e-' + synthId + '-b',
+      fromNodeId: nodeB.id,
+      toNodeId: synthId,
+      label: '⊕ Glue B (Style/Arc)',
+      kind: 'synthesis'
+    };
+
+    return {
+      nodes: dag.nodes.concat([synthNode]),
+      edges: dag.edges.concat([edgeA, edgeB]),
+      createdNodeId: synthId,
+      synthesizedNode: synthNode,
+      gluingHash: glueHash
+    };
   }
 
   function computeCanvasLOD(zoom) {
@@ -1046,6 +1161,152 @@
       ].join('\n');
     }
 
+    if (target === 'svg-keyframes' || target === 'svg') {
+      const g0 = (global.MA && global.MA.actorGeom) ? global.MA.actorGeom(charSpec, { len: 220, ph: 0.0 }) : { body: [[-80, 0], [0, -30], [80, 0], [0, 30]], fin: [], fluke: [] };
+      const g1 = (global.MA && global.MA.actorGeom) ? global.MA.actorGeom(charSpec, { len: 220, ph: Math.PI }) : g0;
+      const toPath = function (pts, ox, oy) {
+        if (!pts || !pts.length) return 'M 0 0 Z';
+        return pts.map(function (p, idx) {
+          return (idx === 0 ? 'M ' : 'L ') + Math.round(p[0] + ox) + ' ' + Math.round(p[1] + oy);
+        }).join(' ') + ' Z';
+      };
+      const d0 = toPath(g0.body, 480, 300);
+      const d1 = toPath(g1.body, 480, 292);
+      const finD = toPath(g0.fin, 480, 300);
+      const flukeD = toPath(g0.fluke, 480, 300);
+      return [
+        '<!-- Resolution-Independent Animated SVG Keyframe Sprite — CETI Motion Atlas Studio Pro (G25) -->',
+        '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 600" width="960" height="600" data-wada="' + pal.no + '" data-actor="' + charSpec.id + '">',
+        '  <defs>',
+        '    <style>',
+        '      :root { --paper: ' + pal.paper + '; --ink: ' + pal.ink + '; --accent: ' + pal.h + '; --structure: ' + pal.b + '; --wash: ' + pal.a + '; }',
+        '      @keyframes cetiActorSwim { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-8px); } }',
+        '      .actor-rig { animation: cetiActorSwim ' + sheet.totalDurationSec + 's cubic-bezier(0.22, 1, 0.36, 1) infinite; }',
+        '      .actor-body { fill: var(--accent); stroke: var(--ink); stroke-width: 3.5; stroke-linejoin: round; }',
+        '      .actor-appendage { fill: var(--structure); stroke: var(--ink); stroke-width: 2.8; stroke-linejoin: round; }',
+        '    </style>',
+        '  </defs>',
+        '  <rect width="960" height="600" fill="var(--paper)" />',
+        '  <g id="actor-' + charSpec.id + '" class="actor-rig">',
+        '    <path class="actor-appendage" d="' + flukeD + '" />',
+        '    <path class="actor-body" d="' + d0 + '">',
+        '      <animate attributeName="d" dur="' + sheet.totalDurationSec + 's" repeatCount="indefinite" values="' + d0 + ';' + d1 + ';' + d0 + '" />',
+        '    </path>',
+        '    <path class="actor-appendage" d="' + finD + '" />',
+        '  </g>',
+        '</svg>'
+      ].join('\n');
+    }
+
+    if (target === 'lottie-json' || target === 'lottie') {
+      const g = (global.MA && global.MA.actorGeom) ? global.MA.actorGeom(charSpec, { len: 220, ph: 0.4 }) : { body: [[-80, 0], [0, -30], [80, 0], [0, 30]] };
+      const hexToRgb01 = function (hex) {
+        const clean = String(hex || '#1a1f2e').replace('#', '');
+        const n = parseInt(clean, 16) || 0;
+        return [
+          Number((((n >> 16) & 255) / 255).toFixed(3)),
+          Number((((n >> 8) & 255) / 255).toFixed(3)),
+          Number(((n & 255) / 255).toFixed(3)),
+          1
+        ];
+      };
+      const verts = g.body.map(function (p) { return [Number(p[0].toFixed(2)), Number(p[1].toFixed(2))]; });
+      const zeros = verts.map(function () { return [0, 0]; });
+      const lottieObj = {
+        v: '5.7.4',
+        fr: 24,
+        ip: 0,
+        op: Math.round((sheet.totalDurationSec || 12) * 24),
+        w: 960,
+        h: 600,
+        nm: 'CETI · ' + charSpec.name + ' · ' + pal.no,
+        ddd: 0,
+        meta: {
+          generator: 'CETI Motion Atlas Studio Pro v7.0',
+          wadaCombo: pal.no + ' · ' + pal.name,
+          characterId: charSpec.id,
+          archetype: charSpec.archetype,
+          beatCount: sheet.beats.length
+        },
+        layers: [
+          {
+            ddd: 0,
+            ind: 1,
+            ty: 4,
+            nm: charSpec.name + ' (' + charSpec.archetype + ')',
+            sr: 1,
+            ks: {
+              o: { a: 0, k: 100 },
+              r: { a: 0, k: 0 },
+              p: {
+                a: 1,
+                k: sheet.beats.map(function (b, idx) {
+                  return {
+                    t: Math.round(b.tStartSec * 24),
+                    s: [240 + idx * 65, 300 + (idx % 2 === 0 ? -18 : 18), 0],
+                    h: b.role === 'breather' ? 1 : 0
+                  };
+                })
+              },
+              a: { a: 0, k: [0, 0, 0] },
+              s: { a: 0, k: [100, 100, 100] }
+            },
+            shapes: [
+              {
+                ty: 'gr',
+                nm: 'Body Contour Group',
+                it: [
+                  {
+                    ind: 0,
+                    ty: 'sh',
+                    nm: 'Parametric Contour',
+                    ks: { a: 0, k: { i: zeros, o: zeros, v: verts, c: true } }
+                  },
+                  {
+                    ty: 'st',
+                    nm: 'Wada Ink Stroke',
+                    c: { a: 0, k: hexToRgb01(pal.ink) },
+                    o: { a: 0, k: 100 },
+                    w: { a: 0, k: 3.5 }
+                  },
+                  {
+                    ty: 'fl',
+                    nm: 'Wada Focal Fill',
+                    c: { a: 0, k: hexToRgb01(pal.h) },
+                    o: { a: 0, k: 100 }
+                  }
+                ]
+              }
+            ],
+            ip: 0,
+            op: Math.round((sheet.totalDurationSec || 12) * 24),
+            st: 0
+          },
+          {
+            ddd: 0,
+            ind: 2,
+            ty: 1,
+            nm: 'Wada Dominant Field Ground (' + pal.no + ')',
+            sr: 1,
+            sw: 960,
+            sh: 600,
+            sc: pal.paper,
+            ks: {
+              o: { a: 0, k: 100 },
+              r: { a: 0, k: 0 },
+              p: { a: 0, k: [480, 300, 0] },
+              a: { a: 0, k: [480, 300, 0] },
+              s: { a: 0, k: [100, 100, 100] }
+            },
+            ip: 0,
+            op: Math.round((sheet.totalDurationSec || 12) * 24),
+            st: 0
+          }
+        ]
+      };
+      return JSON.stringify(lottieObj, null, 2);
+    }
+
     // Default: HyperFrames / Single-Clock HTML window.seek(t)
     return [
       '<!-- HyperFrames Deterministic Single-Clock Composition (frame(t)) -->',
@@ -1124,7 +1385,7 @@
   }
 
   // ─────────────────────────────────────────────────────────────────────────
-  // 6. 20-GATE MECHANICAL LIVE AUDITOR (G01–G20)
+  // 6. 25-GATE MECHANICAL LIVE AUDITOR (G01–G25)
   // ─────────────────────────────────────────────────────────────────────────
   function run16GateAudit(state) {
     const st = state || {};
@@ -1139,6 +1400,10 @@
     const sampleEnh = runDeterministicSynthesizer({ charId: charSpec.id, palId: activePal.id, prompt: 'Audit verification test' });
     const schemaCheck = validateEnhancementResponse(sampleEnh);
     const uniqueBeatLabels = new Set((sheet.beats || []).map(function (b) { return b.label; })).size;
+    const onionFrames = (global.MA && global.MA.computeOnionSkinFrames) ? global.MA.computeOnionSkinFrames(charSpec, activePal, null, 2.4) : [{}, {}, {}];
+    const wadaChord = (global.MA && global.MA.computeWadaHarmonicChord) ? global.MA.computeWadaHarmonicChord(activePal, charSpec, st.rung || 1, 2.4) : { voices: [{}, {}, {}, {}], baseRootHz: 220 };
+    const svgOut = compileCodeScaffold(st, 'svg-keyframes');
+    const lottieOut = compileCodeScaffold(st, 'lottie-json');
 
     const gates = [
       { id: 'G01', name: 'Wada Palette Closure', pass: allWada.length >= 348 && activePal.wadaIndex >= 1 && activePal.wadaIndex <= 348, metric: allWada.length + ' Wada combos · ' + activePal.no },
@@ -1161,7 +1426,11 @@
       { id: 'G18', name: 'Alexandrov Sheaf Cohomology δ⁰ = 0', pass: Boolean(sheaf.valid), metric: sheaf.edgeCount + ' DAG edges · 0 coboundary defects' },
       { id: 'G19', name: 'Multi-Branch α/β/γ Fork & Auto-Layout', pass: typeof forkThreeDirections === 'function' && typeof autoLayoutDAG === 'function', metric: '3× α/β/γ + Collision-Free Auto-Layout' },
       { id: 'G20', name: 'Live OAuth PKCE Code Exchange & RSI Fix', pass: typeof exchangeOAuthPKCECode === 'function' && typeof runRSICritiqueAndFix === 'function', metric: 'PKCE Token Exchange + 4-Lens Surgical Fix' },
-      { id: 'G21', name: 'VBM Visual & UX Ergonomics (0 Overlaps · 136px Header)', pass: uniqueBeatLabels === 8 && typeof autoLayoutDAG === 'function', metric: '136px Shell · 0 DAG Overlaps · 8/8 Camera Beats' }
+      { id: 'G21', name: 'VBM Visual & UX Ergonomics (0 Overlaps · 136px Header)', pass: uniqueBeatLabels === 8 && typeof autoLayoutDAG === 'function', metric: '136px Shell · 0 DAG Overlaps · 8/8 Camera Beats' },
+      { id: 'G22', name: 'Alexandrov Sheaf Pushout Synthesis (A ⊕ B Gluing)', pass: typeof synthesizeBranches === 'function' && typeof computeGluingHash === 'function', metric: 'Multi-Parent Pushout ρ(A ⊕ B) · δ⁰=0' },
+      { id: 'G23', name: 'Multi-Frame Onion-Skinning (-2Δt / -1Δt / +1Δt)', pass: Array.isArray(onionFrames) && onionFrames.length === 3, metric: '3 Wada Ghost Frames + Spacing Trajectory' },
+      { id: 'G24', name: 'Orpheum Harmonic WebAudio Sonification (OKLab → Hz)', pass: Array.isArray(wadaChord.voices) && wadaChord.voices.length === 4, metric: '4-Voice Just-Intonation · Root ' + wadaChord.baseRootHz + ' Hz' },
+      { id: 'G25', name: 'Vector Path Compilers (SVG Keyframe Sprite + Lottie v5.7)', pass: svgOut.indexOf('<svg') >= 0 && lottieOut.indexOf('"5.7.4"') >= 0, metric: 'Animated SVG (' + svgOut.length + 'B) + Lottie JSON (' + lottieOut.length + 'B)' }
     ];
 
     const passedCount = gates.filter(function (g) { return g.pass; }).length;
@@ -1182,10 +1451,12 @@
     autoLayoutDAG: autoLayoutDAG,
     createDefaultDAG: createDefaultDAG,
     computePacketHash: computePacketHash,
+    computeGluingHash: computeGluingHash,
     stampDAGRestrictionHashes: stampDAGRestrictionHashes,
     verifyDAGSheafCohomology: verifyDAGSheafCohomology,
     forkCanvasNode: forkCanvasNode,
     forkThreeDirections: forkThreeDirections,
+    synthesizeBranches: synthesizeBranches,
     computeCanvasLOD: computeCanvasLOD,
     generateCodeVerifier: generateCodeVerifier,
     generateCodeChallengeS256: generateCodeChallengeS256,

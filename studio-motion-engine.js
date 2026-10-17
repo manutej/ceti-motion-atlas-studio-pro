@@ -2374,12 +2374,12 @@
         const showBars = seg(t, 4.5, 5.2);
         if (showBars > 0 && P.cetiTokenMatches) {
           ctx.save(); ctx.globalAlpha = showBars;
-          rrect(ctx, 314, 18, 150, 76, 6); ctx.fillStyle = rgba(P.paper, 0.94); ctx.fill(); ctx.strokeStyle = rgba(P.ink, 0.25); ctx.lineWidth = 1; ctx.stroke();
-          txt(ctx, 'ΔE2000 CETI TOKEN FIT', 324, 32, '700 8px ' + MONO, P.ink);
+          rrect(ctx, 290, 18, 176, 76, 6); ctx.fillStyle = rgba(P.paper, 0.94); ctx.fill(); ctx.strokeStyle = rgba(P.ink, 0.25); ctx.lineWidth = 1; ctx.stroke();
+          txt(ctx, 'ΔE2000 CETI TOKEN FIT', 300, 32, '700 8px ' + MONO, P.ink);
           P.cetiTokenMatches.slice(0, 3).forEach(function (m, idx) {
-            const yy = 42 + idx * 15, bw = clamp((24 - m.deltaE2000) / 24, 0.15, 1) * 76;
-            ctx.fillStyle = m.swatchHex; ctx.fillRect(324, yy, bw, 7);
-            txt(ctx, m.nearestToken + ' Δ' + m.deltaE2000.toFixed(1), 406, yy + 7, '400 8px ' + MONO, rgba(P.ink, 0.8));
+            const yy = 42 + idx * 15, bw = clamp((24 - m.deltaE2000) / 24, 0.15, 1) * 66;
+            ctx.fillStyle = m.swatchHex; ctx.fillRect(300, yy, bw, 7);
+            txt(ctx, m.nearestToken + ' Δ' + m.deltaE2000.toFixed(1), 458, yy + 7, '400 8px ' + MONO, rgba(P.ink, 0.85), 'right');
           });
           ctx.restore();
         }
@@ -2670,10 +2670,11 @@
     const pr = PROOFS[key]; if (!pr || !el) return;
     const ctx = el.getContext('2d'); if (!ctx) return;
     const op = opts || {};
-    const prevO = {
+      const prevO = {
       wob: O.wob, streaks: O.streaks, guide: O.guide, ground: O.ground,
       grain: O.grain, charId: O.charId, partnerCharId: O.partnerCharId,
-      renderMode: O.renderMode, rung: O.rung, captionsCovered: O.captionsCovered
+      renderMode: O.renderMode, rung: O.rung, captionsCovered: O.captionsCovered,
+      onionSkin: O.onionSkin
     };
     try {
       O.wob = op.wob == null ? 1 : op.wob;
@@ -2686,6 +2687,7 @@
       O.renderMode = op.renderMode || null;
       O.rung = op.rung || 1;
       O.captionsCovered = !!op.captionsCovered;
+      O.onionSkin = !!(op.onionSkin != null ? op.onionSkin : prevO.onionSkin);
 
       const P = prep(pal);
       ctx.setTransform(el.width / LW, 0, 0, el.height / LH, 0, 0);
@@ -2714,8 +2716,55 @@
         ctx.scale(cz, cz);
         ctx.translate(-LW / 2 + cxOff, -LH / 2 + cyOff);
       }
+
+      // Multi-Frame Onion-Skinning Overlay (t - 2Δt, t - Δt in Wada supportWash P.a; t + Δt in structure P.b) (G23)
+      if (O.onionSkin) {
+        const ghosts = computeOnionSkinFrames(getCharSpec(O.charId), P, easeObj, T, { len: 132 });
+        ctx.save();
+        // Dashed motion trajectory arc connecting ghost centroids
+        ctx.beginPath();
+        ghosts.forEach(function (gh, gi) {
+          if (gi === 0) ctx.moveTo(gh.cx, gh.cy);
+          else ctx.lineTo(gh.cx, gh.cy);
+        });
+        ctx.setLineDash([4, 4]);
+        ctx.strokeStyle = rgba(P.ink, 0.35);
+        ctx.lineWidth = 1.2;
+        ctx.stroke();
+        ctx.setLineDash([]);
+        ghosts.forEach(function (gh) {
+          ctx.save();
+          ctx.translate(gh.cx, gh.cy);
+          ctx.rotate(gh.rot);
+          ctx.globalAlpha = gh.alpha;
+          polyPath(ctx, gh.contourPoints);
+          ctx.fillStyle = rgba(gh.tintHex, 0.22);
+          ctx.fill();
+          ctx.setLineDash(gh.tOffset < 0 ? [3, 3] : [6, 2]);
+          ctx.strokeStyle = gh.tintHex;
+          ctx.lineWidth = 1.4;
+          ctx.stroke();
+          ctx.setLineDash([]);
+          ctx.restore();
+          // Spacing tick marker
+          ell(ctx, gh.cx, gh.cy, 2.8, 2.8);
+          ctx.fillStyle = gh.tintHex;
+          ctx.fill();
+        });
+        ctx.restore();
+      }
+
       pr.draw(ctx, t, P, easeObj, bg);
       ctx.restore();
+
+      if (O.onionSkin && !O.captionsCovered) {
+        ctx.save();
+        rrect(ctx, 12, 10, 184, 18, 4);
+        ctx.fillStyle = rgba(P.paper, 0.88); ctx.fill();
+        ctx.strokeStyle = rgba(P.ink, 0.25); ctx.lineWidth = 0.9; ctx.stroke();
+        txt(ctx, 'ONION-SKIN · -2Δt / -1Δt / +1Δt', 18, 22, '700 8px ' + MONO, P.ink);
+        ctx.restore();
+      }
 
       if (op.cameraMove && !O.captionsCovered) {
         // Editorial storyboard camera viewfinder reticle & beat badge
@@ -2745,6 +2794,144 @@
     } finally {
       Object.assign(O, prevO);
     }
+  }
+
+  // Multi-Frame Onion-Skinning Ghost Trajectory Calculator (G23)
+  function computeOnionSkinFrames(charSpec, pal, feel, tNow, opts) {
+    const spec = (charSpec && charSpec.id) ? charSpec : getCharSpec();
+    const P = (pal && pal.paper && pal.ink) ? pal : prep(pal || global.STUDIO_WADA_ENGINE.PALS[0]);
+    const F = feel || FEELS.spring;
+    const warpFn = F.warp || function (x) { return x; };
+    const o = opts || {};
+    const L = o.len || 132;
+    const offsets = [-0.24, -0.12, 0.12];
+    return offsets.map(function (dt, idx) {
+      const tSample = Math.max(0, (tNow || 0) + dt);
+      const tw = warpFn(tSample);
+      const ph = tw * TAU * (spec.spineWave ? spec.spineWave.freqHz || 0.9 : 0.9);
+      const g = actorGeom(spec, { len: L, ph: ph, amp: spec.spineWave ? spec.spineWave.ampDefault : 0.16 });
+      const cx = (o.cx || 240) + dt * 145;
+      const cy = (o.cy || 152) + Math.sin(ph) * 16;
+      const rot = -0.12 * Math.cos(ph);
+      return {
+        index: idx,
+        label: dt < -0.18 ? '-2Δt' : (dt < 0 ? '-1Δt' : '+1Δt'),
+        tOffset: dt,
+        tSample: Number(tSample.toFixed(3)),
+        phase: Number(ph.toFixed(3)),
+        cx: Number(cx.toFixed(2)),
+        cy: Number(cy.toFixed(2)),
+        rot: Number(rot.toFixed(4)),
+        tintHex: dt < 0 ? (P.a || '#8c4a2e') : (P.b || '#1e4d6b'),
+        alpha: dt < -0.18 ? 0.28 : 0.44,
+        contourPoints: g.body
+      };
+    });
+  }
+
+  // Orpheum Harmonic WebAudio Sonification Engine — OKLab 4×4 Chord Matrix → 4-Voice Just-Intonation Synthesis (G24)
+  let _audioCtx = null;
+  function computeWadaHarmonicChord(pal, charSpec, rung, tSec) {
+    const rawPal = pal || global.STUDIO_WADA_ENGINE.PALS[0];
+    const P = rawPal.chordMatrix ? rawPal : global.STUDIO_WADA_ENGINE.enrichPalette(rawPal, 'atlas');
+    const spec = (charSpec && charSpec.id) ? charSpec : getCharSpec();
+    const r = clamp(Number(rung) || 1, 1, 5);
+    const t = Number(tSec) || 0;
+
+    // Derive deterministic base frequency (110 Hz .. 293.66 Hz) from Wada index & character spineWave
+    const wadaIdx = P.wadaIndex || P.id || 343;
+    const rootTable = [130.81, 146.83, 164.81, 174.61, 196.00, 220.00, 246.94, 261.63]; // C3..C4 modal roots
+    const rootNotes = ['C3', 'D3', 'E3', 'F3', 'G3', 'A3', 'B3', 'C4'];
+    const rootNote = rootNotes[wadaIdx % rootNotes.length];
+    const baseRootHz = rootTable[wadaIdx % rootTable.length] * (0.92 + 0.12 * (spec.aspectRatio || 0.36));
+
+    // Just-Intonation Orpheum ratios modulated by OKLab chord distances
+    const jiRatios = [1.0, 9 / 8, 5 / 4, 4 / 3, 3 / 2, 5 / 3, 15 / 8, 2.0];
+    const jiLabels = ['1:1 Unison', '9:8 Major 2nd', '5:4 Just 3rd', '4:3 Perfect 4th', '3:2 Perfect 5th', '5:3 Just 6th', '15:8 Leading 7th', '2:1 Octave'];
+    const matrix = P.chordMatrix || (pal && pal.oklabChordTable) || [[0, 12, 24, 36], [12, 0, 18, 28], [24, 18, 0, 22], [36, 28, 22, 0]];
+    const swatches = P.sw || [P.paper, P.b, P.h, P.ink];
+    const rawSw = (pal && Array.isArray(pal.sw)) ? pal.sw : [];
+    const roles = ['dominantField (60%)', 'secondaryStructure (25%)', 'accentFocal (15%)', 'inkContour'];
+    const waveformsByRung = {
+      1: ['sine', 'triangle', 'sine', 'triangle'],
+      2: ['triangle', 'triangle', 'sine', 'sine'],
+      3: ['sine', 'sine', 'triangle', 'sine'],
+      4: ['triangle', 'sine', 'sine', 'sine'],
+      5: ['sine', 'sine', 'sine', 'sine']
+    };
+    const activeVoiceCount = r === 1 ? 4 : (r === 2 ? 3 : (r === 3 ? 2 : (r === 4 ? 3 : 1)));
+
+    const voices = swatches.slice(0, 4).map(function (hex, idx) {
+      const dOklab = (matrix[0] && matrix[0][idx] != null) ? Number(matrix[0][idx]) : idx * 14;
+      const ratioIdx = (idx * 2 + Math.round(dOklab / 12)) % jiRatios.length;
+      const ratio = jiRatios[ratioIdx];
+      const swName = (rawSw[idx] && Array.isArray(rawSw[idx])) ? rawSw[idx][1] : roles[idx];
+      // Subtle temporal breath modulation along single clock t
+      const vibrato = 1 + 0.004 * Math.sin(TAU * (spec.spineWave ? spec.spineWave.freqHz : 0.9) * t + idx);
+      const freqHz = Number((baseRootHz * ratio * vibrato).toFixed(2));
+      const active = idx < activeVoiceCount;
+      return {
+        voiceIndex: idx + 1,
+        role: roles[idx],
+        swatchHex: hex,
+        swatchName: swName,
+        oklabDeltaFromGround: Number(dOklab.toFixed(2)),
+        oklabDistFromLead: Number(dOklab.toFixed(1)),
+        justRatio: Number(ratio.toFixed(4)),
+        ratioLabel: jiLabels[ratioIdx],
+        freqHz: freqHz,
+        waveform: (waveformsByRung[r] || waveformsByRung[1])[idx],
+        gain: active ? Number((0.18 / Math.sqrt(idx + 1)).toFixed(3)) : 0,
+        active: active
+      };
+    });
+
+    return {
+      wadaNo: P.no || ('No. ' + wadaIdx),
+      wadaName: P.name || 'Sanzo Wada Chord',
+      charId: spec.id,
+      reductionRung: r,
+      activeVoiceCount: activeVoiceCount,
+      rootNote: rootNote,
+      baseRootHz: Number(baseRootHz.toFixed(2)),
+      baseFreqHz: Number(baseRootHz.toFixed(1)),
+      waveform: (waveformsByRung[r] || waveformsByRung[1])[0],
+      voices: voices
+    };
+  }
+
+  function playWadaHarmonicChord(pal, charSpec, rung, tSec, durationSec) {
+    const chord = computeWadaHarmonicChord(pal, charSpec, rung, tSec);
+    const dur = clamp(Number(durationSec) || 1.6, 0.25, 6.0);
+    if (typeof window !== 'undefined' && (window.AudioContext || window.webkitAudioContext)) {
+      try {
+        const Ctx = window.AudioContext || window.webkitAudioContext;
+        if (!_audioCtx) _audioCtx = new Ctx();
+        if (_audioCtx.state === 'suspended') _audioCtx.resume();
+        const now = _audioCtx.currentTime;
+        chord.voices.forEach(function (v, idx) {
+          if (!v.active || v.gain <= 0) return;
+          const osc = _audioCtx.createOscillator();
+          const gain = _audioCtx.createGain();
+          osc.type = v.waveform;
+          osc.frequency.setValueAtTime(v.freqHz, now);
+          const stagger = idx * 0.05;
+          gain.gain.setValueAtTime(0.0001, now + stagger);
+          gain.gain.exponentialRampToValueAtTime(v.gain, now + stagger + 0.08);
+          gain.gain.exponentialRampToValueAtTime(0.0001, now + dur);
+          osc.connect(gain);
+          gain.connect(_audioCtx.destination);
+          osc.start(now + stagger);
+          osc.stop(now + dur + 0.04);
+        });
+        chord.playedViaWebAudio = true;
+      } catch (_e) {
+        chord.playedViaWebAudio = false;
+      }
+    } else {
+      chord.playedViaWebAudio = false;
+    }
+    return chord;
   }
 
   // 4-Test Saul Bass Emblem Gauntlet (16px favicon, 1-color ink, knockout inversion, squint blur) (G05)
@@ -2863,6 +3050,9 @@
     actorGeom: actorGeom,
     computeContourSignature: computeContourSignature,
     auditArchetypeDiscriminability: auditArchetypeDiscriminability,
+    computeOnionSkinFrames: computeOnionSkinFrames,
+    computeWadaHarmonicChord: computeWadaHarmonicChord,
+    playWadaHarmonicChord: playWadaHarmonicChord,
     renderActor: function (ctx, palOrP, specOrOpts, maybeOpts) {
       const P = (palOrP && palOrP.paper && palOrP.ink && palOrP.sw && typeof palOrP.sw[0] === 'string')
         ? palOrP

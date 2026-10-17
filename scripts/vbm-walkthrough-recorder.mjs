@@ -233,26 +233,26 @@ async function main() {
 
     await captureStep(
       '01-surface1-living-canvas-default.png',
-      'Surface I · Infinite-Zoom Living Canvas (0.88x Studio LOD · Pelagic Sovereign · Wada No. 343)',
+      'Surface I · Infinite-Zoom Living Canvas (0.78x Studio LOD · Pelagic Sovereign · Wada No. 343)',
       null
     );
 
     await captureStep(
       '02-surface1-tri-fork-ab-compare.png',
-      'Surface I · 3-Direction Orthogonal Fork (α/β/γ) + Side-by-Side A/B Branch Compare Drawer',
-      `window.__MOTION_ATLAS_STUDIO_INSTANCE.handleAction('fork-three-directions', { getAttribute: () => 'node-proof-a' });`
+      'Surface I · 3-Direction Orthogonal Fork (α/β/γ) + Pushout Gluing (A ⊕ B) + Side-by-Side Compare',
+      `window.__MOTION_ATLAS_STUDIO_INSTANCE.handleAction('fork-three-directions', { getAttribute: () => 'node-proof-a' }); window.__MOTION_ATLAS_STUDIO_INSTANCE.handleAction('dag-synthesize-ab');`
     );
 
     await captureStep(
       '03-surface1-micro-lod-rungs.png',
-      'Surface I · 1.65x Micro-Inspection LOD (Live Rung 1 vs Rung 3 vs Rung 5 Strip in Every Node)',
-      `window.__MOTION_ATLAS_STUDIO_INSTANCE.setState({ showABCompare: false, zoom: 1.65, panX: -120, panY: -40 });`
+      'Surface I · 1.65x Micro-Inspection LOD + Multi-Frame Onion Skinning (-2Δt / -1Δt / +1Δt)',
+      `window.__MOTION_ATLAS_STUDIO_INSTANCE.setState({ showABCompare: false, onionSkin: true }); window.__MOTION_ATLAS_STUDIO_INSTANCE.handleAction('zoom-set', { getAttribute: () => '1.65' });`
     );
 
     await captureStep(
       '04-surface2-5lens-fork-explorer.png',
       'Surface II · 5-Lens Decision Fork Explorer (Look · Use · Story · Character · Register)',
-      `window.__MOTION_ATLAS_STUDIO_INSTANCE.setState({ surface: 'fork-explorer', zoom: 0.88, panX: 28, panY: 24 });`
+      `window.__MOTION_ATLAS_STUDIO_INSTANCE.setState({ surface: 'fork-explorer', onionSkin: false, zoom: 0.78, panX: 18, panY: 16 });`
     );
 
     await captureStep(
@@ -269,14 +269,14 @@ async function main() {
 
     await captureStep(
       '07-surface4-8beat-storyboard.png',
-      'Surface IV · 8-Beat Storyboard Sheet & Inline Causal Hinge (BUT/THEREFORE) Editor',
-      `window.__MOTION_ATLAS_STUDIO_INSTANCE.setState({ surface: 'storyboard-sheet', charId: 'origami-crane', palIdx: 0 });`
+      'Surface IV · 8-Beat Storyboard Sheet & Inline Causal Hinge (BUT/THEREFORE) Editor + Onion Skinning',
+      `window.__MOTION_ATLAS_STUDIO_INSTANCE.setState({ surface: 'storyboard-sheet', charId: 'origami-crane', palIdx: 0, onionSkin: true });`
     );
 
     await captureStep(
       '08-surface5-sanzo-wada-348-hydrography.png',
-      'Surface V · Sanzo Wada 348 Dictionary, 4x4 OKLab Chord Matrix & CIEDE2000 Token Telemetry',
-      `window.__MOTION_ATLAS_STUDIO_INSTANCE.setState({ surface: 'wada-chord-matrix', charId: 'astronav-compass', palIdx: 3 });`
+      'Surface V · Sanzo Wada 348 Dictionary, 4x4 OKLab Chord Matrix, Orpheum 4-Voice Sonification & CIEDE2000',
+      `window.__MOTION_ATLAS_STUDIO_INSTANCE.setState({ surface: 'wada-chord-matrix', charId: 'astronav-compass', palIdx: 3, onionSkin: false });`
     );
 
     await captureStep(
@@ -287,8 +287,8 @@ async function main() {
 
     await captureStep(
       '10-surface7-compile-export-room.png',
-      'Surface VII · Multi-Target Production Compiler (Stage-1 Brief · HyperFrames · Remotion · Anime.js v4)',
-      `window.__MOTION_ATLAS_STUDIO_INSTANCE.setState({ surface: 'compile-export', compileTarget: 'animejs' });`
+      'Surface VII · Multi-Target Production Compiler (Brief · HyperFrames · Remotion · Anime.js · SVG · Lottie JSON)',
+      `window.__MOTION_ATLAS_STUDIO_INSTANCE.setState({ surface: 'compile-export', compileTarget: 'svg-keyframes' });`
     );
 
     await captureStep(
@@ -299,7 +299,7 @@ async function main() {
 
     await captureStep(
       '12-modal-20gate-tellapart-sheaf.png',
-      'Modal · 20-Gate Mechanical Contract Audit + Tell-Apart Kernel + Alexandrov Sheaf Cohomology',
+      'Modal · 25-Gate Mechanical Contract Audit (25/25 PASS) + Tell-Apart Kernel + Alexandrov Sheaf Cohomology',
       `window.__MOTION_ATLAS_STUDIO_INSTANCE.setState({ oauthModalOpen: false, gateModalOpen: true });`
     );
   } finally {

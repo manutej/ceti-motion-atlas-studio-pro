@@ -52,6 +52,7 @@
         streaks: true,
         guide: true,
         captionsCovered: false,
+        onionSkin: (saved && typeof saved.onionSkin === 'boolean') ? saved.onionSkin : false,
         // Infinite-Zoom Living Canvas viewport & DAG
         zoom: (saved && saved.zoom) || 0.78,
         panX: (saved && saved.panX) || 18,
@@ -99,6 +100,7 @@
       MA.setActorOption('partnerCharId', this.state.partnerCharId);
       MA.setActorOption('rung', this.state.rung);
       MA.setActorOption('captionsCovered', this.state.captionsCovered);
+      MA.setActorOption('onionSkin', this.state.onionSkin);
 
       this.tick = this.tick.bind(this);
     }
@@ -116,6 +118,7 @@
       MA.setActorOption('rung', this.state.rung);
       MA.setActorOption('renderMode', this.state.renderMode);
       MA.setActorOption('captionsCovered', this.state.captionsCovered);
+      MA.setActorOption('onionSkin', this.state.onionSkin);
 
       if (patch.storyKey || patch.mStyle || patch.charId || patch.palIdx !== undefined || patch.feel) {
         const pal = this.getActivePalette();
@@ -139,6 +142,7 @@
         ground: this.state.ground,
         mStyle: this.state.mStyle,
         storyKey: this.state.storyKey,
+        onionSkin: this.state.onionSkin,
         zoom: this.state.zoom,
         panX: this.state.panX,
         panY: this.state.panY,
@@ -209,7 +213,8 @@
           renderMode: nodeMode || null,
           cameraMove: nodeCam,
           beatIdx: nodeBeatIdx,
-          captionsCovered: this.state.captionsCovered
+          captionsCovered: this.state.captionsCovered,
+          onionSkin: this.state.onionSkin
         });
       }
     }
@@ -244,7 +249,7 @@
         }
       } catch (_e) { /* ignore */ }
 
-      // Global Keyboard Shortcuts (Gate G16): Escape=Close Modal, Space=Play/Pause, [/]=Scrub, C=Captions-Covered, F=Fork
+      // Global Keyboard Shortcuts (Gate G16): Escape=Close Modal, Space=Play/Pause, [/]=Scrub, C=Captions-Covered, O=Onion-Skin, F=Fork
       window.addEventListener('keydown', function (e) {
         if (e.key === 'Escape') {
           if (self.state.oauthModalOpen || self.state.gateModalOpen) {
@@ -267,6 +272,8 @@
           self.drawAllCanvases();
         } else if (e.key === 'c' || e.key === 'C') {
           self.setState({ captionsCovered: !self.state.captionsCovered });
+        } else if (e.key === 'o' || e.key === 'O') {
+          self.setState({ onionSkin: !self.state.onionSkin });
         } else if (e.key === 'f' || e.key === 'F') {
           const res = CO.forkCanvasNode(self.state.dag, self.state.selectedNodeId);
           self.setState({ dag: { nodes: res.nodes, edges: res.edges }, selectedNodeId: res.createdNodeId });
@@ -324,8 +331,8 @@
         const x2 = b.x, y2 = b.y + 185;
         const cx1 = x1 + Math.max(55, (x2 - x1) * 0.46), cx2 = x2 - Math.max(55, (x2 - x1) * 0.46);
         const mx = (x1 + x2) / 2, my = (y1 + y2) / 2 - 8;
-        const stroke = e.kind === 'fork' ? '#8C4A2E' : (e.kind === 'comparison' ? '#1E3F66' : '#1A1F2E');
-        const dash = e.kind === 'comparison' ? 'stroke-dasharray="5,5"' : '';
+        const stroke = e.kind === 'synthesis' ? '#2E5A44' : (e.kind === 'fork' ? '#8C4A2E' : (e.kind === 'comparison' ? '#1E3F66' : '#1A1F2E'));
+        const dash = e.kind === 'comparison' ? 'stroke-dasharray="5,5"' : (e.kind === 'synthesis' ? 'stroke-dasharray="7,3"' : '');
         return '<g>' +
           '<path d="M' + x1 + ',' + y1 + ' C' + cx1 + ',' + y1 + ' ' + cx2 + ',' + y2 + ' ' + x2 + ',' + y2 + '" fill="none" stroke="' + stroke + '" stroke-width="2" stroke-opacity="0.6" ' + dash + '/>' +
           '<circle cx="' + x2 + '" cy="' + y2 + '" r="4" fill="' + stroke + '"/>' +
@@ -445,10 +452,12 @@
 
         '<div class="st-ctrl-group st-transport">' +
           '<label class="st-label">SINGLE CLOCK TRANSPORT · <span id="global-t-readout">t = ' + (this._T % 12).toFixed(2) + 's</span></label>' +
-          '<div style="display:flex;gap:6px;align-items:center">' +
+          '<div style="display:flex;gap:5px;align-items:center">' +
             '<button data-action="toggle-play" class="st-mini-btn on">' + (st.playing ? 'PAUSE' : 'PLAY') + '</button>' +
-            '<input id="global-scrub" type="range" min="0" max="12" step="0.02" value="' + (this._T % 12).toFixed(2) + '" style="width:92px;accent-color:#8C4A2E"/>' +
-            '<button data-action="toggle-captions-covered" class="st-mini-btn ' + (st.captionsCovered ? 'on' : '') + '" title="Gate G08 Captions-Covered Test">NO-TEXT</button>' +
+            '<input id="global-scrub" type="range" min="0" max="12" step="0.02" value="' + (this._T % 12).toFixed(2) + '" style="width:82px;accent-color:#8C4A2E"/>' +
+            '<button data-action="toggle-onion-skin" class="st-mini-btn ' + (st.onionSkin ? 'on' : '') + '" title="Gate G23 Multi-Frame Onion Skinning (-2Δt / -1Δt / +1Δt) [O]">ONION</button>' +
+            '<button data-action="sonify-wada-chord" class="st-mini-btn" title="Gate G24 Orpheum 4-Voice Harmonic Chord Sonification">♪ SONIFY</button>' +
+            '<button data-action="toggle-captions-covered" class="st-mini-btn ' + (st.captionsCovered ? 'on' : '') + '" title="Gate G08 Captions-Covered Test [C]">NO-TEXT</button>' +
           '</div>' +
         '</div>' +
       '</div>' +
@@ -550,6 +559,7 @@
         '<div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap">' +
           '<button data-action="fork-dag-node" data-node-id="' + esc(st.selectedNodeId) + '" class="st-btn st-btn-ink">⑂ Fork Selected</button>' +
           '<button data-action="fork-three-directions" data-node-id="' + esc(st.selectedNodeId) + '" class="st-btn">⑂ Fork 3 Directions (α/β/γ)</button>' +
+          '<button data-action="dag-synthesize-ab" class="st-btn" title="Gate G22 Pushout Gluing of Selected Branch A & Comparison Branch B">⊕ Synthesize A ⊕ B</button>' +
           '<button data-action="run-rsi-critique" class="st-btn st-btn-rust" title="Run 4-Lens Adversarial RSI Critique & Auto-Fix">⚖ Run 4-Lens RSI Critique</button>' +
           '<button data-action="toggle-ab-compare" class="st-btn ' + (st.showABCompare ? 'st-btn-rust' : '') + '">⚖ Side-by-Side A/B Compare</button>' +
           '<button data-action="open-storyboard-from-node" class="st-btn">Open in 8-Beat Storyboard →</button>' +
@@ -561,6 +571,7 @@
           '<div class="ab-col">' +
             '<div style="display:flex;justify-content:space-between;align-items:center">' +
               '<span class="st-mono-xs">BRANCH A (SELECTED): <strong>' + esc(selectedNode.title) + '</strong> · ' + esc(selectedNode.packetHash || '') + '</span>' +
+              '<button data-action="dag-synthesize-ab" class="st-mini-btn on" title="Synthesize Pushout Gluing Node from Branch A ⊕ Branch B">⊕ Glue A ⊕ B → Synthesis Node</button>' +
             '</div>' +
             '<canvas width="480" height="300" data-proof="' + esc(selectedNode.payload.styleKey || 'watercolor') + '" data-char="' + esc(selectedNode.payload.charId || st.charId) + '" data-pal-id="' + (selectedNode.payload.palId || pal.id) + '" style="width:100%;max-width:340px;border-radius:6px;border:1px solid rgba(26,31,46,.2);margin-top:4px"></canvas>' +
           '</div>' +
@@ -590,7 +601,7 @@
             nodesHtml +
           '</div>' +
           '<div class="canvas-minimap">' +
-            '<div class="st-mono-xs" style="margin-bottom:2px">DAG TOPOLOGY MAP · DRAG CANVAS TO PAN · SHORTCUTS: [SPACE] PLAY · [F] FORK · [C] CAPTIONS · [ESC] CLOSE</div>' +
+            '<div class="st-mono-xs" style="margin-bottom:2px">DAG TOPOLOGY MAP · DRAG TO PAN · [SPACE] PLAY · [F] FORK · [O] ONION · [C] CAPTIONS</div>' +
             '<div style="font-size:11px;color:rgba(26,31,46,.78)">Selected: <strong>' + esc(selectedNode ? selectedNode.title : '') + '</strong> (' + esc(selectedNode ? (selectedNode.packetHash || '') : '') + ')</div>' +
           '</div>' +
         '</div>' +
@@ -969,6 +980,17 @@
       '</div>';
     }).join('');
 
+    const wadaChord = MA.computeWadaHarmonicChord ? MA.computeWadaHarmonicChord(pal, charSpec, st.rung, this._T) : null;
+    const chordVoiceHtml = (wadaChord && Array.isArray(wadaChord.voices)) ? wadaChord.voices.map(function (v) {
+      return '<div style="padding:5px 7px;background:rgba(26,31,46,.04);border:1px solid rgba(26,31,46,.14);border-radius:5px;font-size:10.5px">' +
+        '<div style="display:flex;justify-content:space-between;align-items:center">' +
+          '<span class="st-mono-xs"><strong>V' + v.voiceIndex + ' · ' + esc(v.role) + '</strong></span>' +
+          '<span class="st-mono-xs" style="color:#8C4A2E;font-weight:700">' + v.freqHz.toFixed(1) + ' Hz (' + esc(v.ratioLabel) + ')</span>' +
+        '</div>' +
+        '<div style="font-size:10px;color:rgba(26,31,46,.72);margin-top:2px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:' + v.swatchHex + ';margin-right:4px"></span>' + esc(v.swatchName) + ' · ΔOKLab ' + v.oklabDistFromLead + '</div>' +
+      '</div>';
+    }).join('') : '';
+
     return '<section class="st-surface">' +
       '<div class="fork-grid-2">' +
         '<div class="st-panel">' +
@@ -979,6 +1001,15 @@
           '<table style="width:100%;border-collapse:collapse;margin:6px 0 14px;border:1px solid rgba(26,31,46,.15)">' + chordRows + '</table>' +
           '<div class="st-label">PLATE II · CIEDE2000 NEAREST CETI DESIGN SYSTEM TOKENS</div>' +
           '<div style="margin-top:6px">' + cetiBars + '</div>' +
+          (wadaChord ? (
+            '<div style="margin-top:12px;padding-top:10px;border-top:1px dashed rgba(26,31,46,.18)">' +
+              '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">' +
+                '<span class="st-label" style="margin-bottom:0">ORPHEUM 4-VOICE JUST-INTONATION HARMONIC SYNTHESIZER (GATE G24 · ROOT ' + esc(wadaChord.rootNote) + ' ' + wadaChord.baseFreqHz + ' Hz · ' + esc(wadaChord.waveform.toUpperCase()) + ')</span>' +
+                '<button data-action="sonify-wada-chord" class="st-mini-btn on">♪ Play Wada Chord</button>' +
+              '</div>' +
+              '<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">' + chordVoiceHtml + '</div>' +
+            '</div>'
+          ) : '') +
         '</div>' +
         '<div class="st-panel">' +
           '<div class="st-eyebrow">LIVE KINETIC HYDROGRAPHY PLATE PREVIEW (' + esc(charSpec.name.toUpperCase()) + ')</div>' +
@@ -1042,7 +1073,7 @@
   };
 
   // ─────────────────────────────────────────────────────────────────────────
-  // SURFACE 7 · COMPILE & EXPORT ROOM (G13 · G14)
+  // SURFACE 7 · COMPILE & EXPORT ROOM (G13 · G14 · G25)
   // ─────────────────────────────────────────────────────────────────────────
   proto.renderSurfaceCompile = function (pal, charSpec) {
     const st = this.state;
@@ -1053,7 +1084,7 @@
       '<div class="st-panel">' +
         '<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">' +
           '<div>' +
-            '<span class="st-eyebrow">MULTI-TARGET PRODUCTION COMPILER &amp; PORTABLE ARCHIVE (GATE G13 · G14)</span>' +
+            '<span class="st-eyebrow">MULTI-TARGET PRODUCTION COMPILER &amp; PORTABLE ARCHIVE (GATE G13 · G14 · G25)</span>' +
             '<h2 class="st-section-h2" style="margin:4px 0">Compile Committed Branch — ' + esc(charSpec.name) + ' · ' + esc(pal.no) + ' ' + esc(pal.name) + '</h2>' +
           '</div>' +
           '<div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">' +
@@ -1073,12 +1104,14 @@
             '<pre class="st-code-box">' + esc(briefMd) + '</pre>' +
           '</div>' +
           '<div>' +
-            '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">' +
-              '<span class="st-label">EXECUTABLE SINGLE-CLOCK CODE SCAFFOLD</span>' +
-              '<div style="display:flex;gap:4px">' +
+            '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;flex-wrap:wrap;gap:6px">' +
+              '<span class="st-label">EXECUTABLE SINGLE-CLOCK &amp; VECTOR PATH SCAFFOLD</span>' +
+              '<div style="display:flex;gap:4px;flex-wrap:wrap">' +
                 '<button data-action="set-compile-target" data-target="hyperframes" class="st-mini-btn ' + (st.compileTarget === 'hyperframes' ? 'on' : '') + '">HyperFrames HTML</button>' +
                 '<button data-action="set-compile-target" data-target="remotion" class="st-mini-btn ' + (st.compileTarget === 'remotion' ? 'on' : '') + '">Remotion TSX</button>' +
                 '<button data-action="set-compile-target" data-target="animejs" class="st-mini-btn ' + (st.compileTarget === 'animejs' ? 'on' : '') + '">Anime.js v4</button>' +
+                '<button data-action="set-compile-target" data-target="svg-keyframes" class="st-mini-btn ' + (st.compileTarget === 'svg-keyframes' ? 'on' : '') + '">SVG Keyframes</button>' +
+                '<button data-action="set-compile-target" data-target="lottie-json" class="st-mini-btn ' + (st.compileTarget === 'lottie-json' ? 'on' : '') + '">Lottie JSON v5.7</button>' +
               '</div>' +
             '</div>' +
             '<pre class="st-code-box">' + esc(codeOut) + '</pre>' +
@@ -1089,7 +1122,7 @@
   };
 
   // ─────────────────────────────────────────────────────────────────────────
-  // MODALS: OAUTH 2.0 PKCE LIVE ENHANCER & 16-GATE AUDIT LEDGER
+  // MODALS: OAUTH 2.0 PKCE LIVE ENHANCER & 25-GATE AUDIT LEDGER
   // ─────────────────────────────────────────────────────────────────────────
   proto.renderModals = function (pal, charSpec, audit) {
     const st = this.state;
@@ -1169,7 +1202,7 @@
         '<div class="st-modal">' +
           '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">' +
             '<div>' +
-              '<span class="st-eyebrow">21 BINARY CONSERVATION GATES + TELL-APART + SHEAF + VBM UX ERGONOMICS (G01–G21)</span>' +
+              '<span class="st-eyebrow">25 BINARY CONSERVATION GATES + TELL-APART + SHEAF + VBM UX ERGONOMICS (G01–G25)</span>' +
               '<h3 style="margin:4px 0;font-family:Fraunces,serif;font-size:22px">Mechanical Contract Audit — ' + audit.passedCount + '/' + audit.totalCount + ' PASS</h3>' +
             '</div>' +
             '<button data-action="toggle-gate-modal" class="st-mini-btn">✕ Close</button>' +
@@ -1432,6 +1465,26 @@
     if (act === 'switch-surface') return this.setState({ surface: el.getAttribute('data-surface') });
     if (act === 'toggle-play') return this.setState({ playing: !st.playing });
     if (act === 'toggle-captions-covered') return this.setState({ captionsCovered: !st.captionsCovered });
+    if (act === 'toggle-onion-skin') return this.setState({ onionSkin: !st.onionSkin });
+    if (act === 'sonify-wada-chord') {
+      if (MA.playWadaHarmonicChord) {
+        MA.playWadaHarmonicChord(this.getActivePalette(), this.getActiveChar(), st.rung, this._T, 1.35);
+      }
+      return;
+    }
+    if (act === 'dag-synthesize-ab') {
+      const nodeAId = st.selectedNodeId || 'node-proof-a';
+      const nodeBId = (st.compareNodeId && st.compareNodeId !== nodeAId) ? st.compareNodeId : 'node-proof-b';
+      const res = CO.synthesizeBranches(st.dag, nodeAId, nodeBId, {
+        charId: st.charId,
+        palId: this.getActivePalette().id
+      });
+      return this.setState({
+        dag: { nodes: res.nodes, edges: res.edges },
+        selectedNodeId: res.createdNodeId,
+        surface: 'infinite-canvas'
+      });
+    }
     if (act === 'set-rung') return this.setState({ rung: Number(el.getAttribute('data-rung')) || 1 });
     if (act === 'scrub-to-beat') {
       const targetT = Number(el.getAttribute('data-t')) || 0;
@@ -1553,7 +1606,18 @@
       const d = Number(el.getAttribute('data-delta')) || 0;
       return this.setState({ zoom: Math.max(0.15, Math.min(4.0, Number((st.zoom + d).toFixed(2)))) });
     }
-    if (act === 'zoom-set') return this.setState({ zoom: Number(el.getAttribute('data-zoom')) || 0.78 });
+    if (act === 'zoom-set') {
+      const nextZ = Number(el.getAttribute('data-zoom')) || 0.78;
+      if (nextZ >= 1.4) {
+        const seedNode = (st.dag.nodes || [])[0] || { x: 24, y: 210 };
+        return this.setState({
+          zoom: nextZ,
+          panX: Math.round(24 - seedNode.x * nextZ + 24),
+          panY: Math.round(18 - seedNode.y * nextZ)
+        });
+      }
+      return this.setState({ zoom: nextZ, panX: 18, panY: 16 });
+    }
     if (act === 'reset-pan') return this.setState({ panX: 18, panY: 16, zoom: 0.78 });
     if (act === 'toggle-ab-compare') return this.setState({ showABCompare: !st.showABCompare });
     if (act === 'open-storyboard-from-node') return this.setState({ surface: 'storyboard-sheet' });

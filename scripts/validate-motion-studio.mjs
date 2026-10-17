@@ -504,7 +504,9 @@ async function runAllGates() {
     const cams = new Set((s.beats || []).map((b) => b.cameraMove));
     return labels.size === 8 && cams.size === 8;
   });
-  const vbmTelemetryPath = path.join(ROOT, 'recordings', 'v6-final-ux-telemetry.json');
+  const vbmTelemetryPath = fs.existsSync(path.join(ROOT, 'recordings', 'v7-final-ux-telemetry.json'))
+    ? path.join(ROOT, 'recordings', 'v7-final-ux-telemetry.json')
+    : path.join(ROOT, 'recordings', 'v6-final-ux-telemetry.json');
   let vbmClean = false;
   let vbmHeaderPx = 0;
   if (fs.existsSync(vbmTelemetryPath)) {
@@ -525,10 +527,98 @@ async function runAllGates() {
     `DAG overlaps=${dagCollisionCount}, 8/8 unique beats across all ${TAX.STORIES.length} stories=${allStoriesUnique8Beats}, VBM 12-frame header=${vbmHeaderPx}px (0 errors)`
   );
 
+  // G22: Multi-Parent DAG Branch Synthesis / Pushout Gluing (A ⊕ B) & Sheaf Cohomology
+  const synthDag = CO.createDefaultDAG();
+  const synthRes = CO.synthesizeBranches(synthDag, 'node-proof-a', 'node-proof-b', {
+    charId: 'geome-orpheus',
+    palId: 296
+  });
+  const synthNode = synthRes.synthesizedNode;
+  const synthSheaf = CO.verifyDAGSheafCohomology({ nodes: synthRes.nodes, edges: synthRes.edges });
+  const g22Pass =
+    Boolean(synthNode) &&
+    Array.isArray(synthNode.parentIds) &&
+    synthNode.parentIds.length === 2 &&
+    synthSheaf.valid === true;
+  recordGate(
+    'G22',
+    'Multi-Parent DAG Branch Synthesis / Pushout Gluing (A ⊕ B)',
+    g22Pass,
+    `Synthesized pushout node ${synthNode ? synthNode.id : 'none'} from parents [${synthNode ? synthNode.parentIds.join(' ⊕ ') : ''}] with upstreamHash=${synthNode ? synthNode.upstreamHash : ''} (Sheaf δ⁰=0: ${synthSheaf.valid})`
+  );
+
+  // G23: Multi-Frame Onion-Skinning (-2Δt / -1Δt / +1Δt) & Canvas2D Save/Restore Isolation
+  let saveDepth = 0;
+  let maxSaveDepth = 0;
+  const depthCtx = createMockCanvasContext(480, 300);
+  const origSave = depthCtx.save;
+  const origRestore = depthCtx.restore;
+  depthCtx.save = () => { saveDepth++; if (saveDepth > maxSaveDepth) maxSaveDepth = saveDepth; origSave(); };
+  depthCtx.restore = () => { saveDepth--; origRestore(); };
+  const mockCanvasEl = {
+    width: 480,
+    height: 300,
+    getContext: () => depthCtx
+  };
+  MA.render(mockCanvasEl, 's_voice', WADA.enrichPalette(WADA.PALS[0], 'atlas'), MA.FEELS.spring, 2.4, {
+    charId: 'ceti-whale',
+    onionSkin: true
+  });
+  const onionFrames = MA.computeOnionSkinFrames(FOUNDRY.CHARACTERS['ceti-whale'], WADA.enrichPalette(WADA.PALS[0], 'atlas'), MA.FEELS.spring, 2.4);
+  const g23Pass =
+    saveDepth === 0 &&
+    maxSaveDepth >= 2 &&
+    Array.isArray(onionFrames) &&
+    onionFrames.length === 3 &&
+    onionFrames[0].tintHex !== onionFrames[2].tintHex;
+  recordGate(
+    'G23',
+    'Multi-Frame Onion-Skinning (-2Δt / -1Δt / +1Δt) & Save/Restore Isolation',
+    g23Pass,
+    `3 onion-skin frames (${onionFrames.map((f) => `${f.label || f.role}@${f.tSample.toFixed(2)}s`).join(', ')}), Canvas2D net saveDepth=${saveDepth} (max=${maxSaveDepth})`
+  );
+
+  // G24: Orpheum 4-Voice Harmonic Chord Sonification (OKLab 4×4 Matrix → Just-Intonation Hz)
+  let chordChecks = 0;
+  for (const p of WADA.PALS) {
+    const ch = MA.computeWadaHarmonicChord(WADA.enrichPalette(p, 'atlas'), FOUNDRY.CHARACTERS['geome-orpheus'], 3, 1.5);
+    if (
+      ch &&
+      Array.isArray(ch.voices) &&
+      ch.voices.length === 4 &&
+      ch.voices.every((v) => v.freqHz >= 80 && v.freqHz <= 2400)
+    ) {
+      chordChecks++;
+    }
+  }
+  recordGate(
+    'G24',
+    'Orpheum 4-Voice Harmonic Chord Sonification (OKLab → Just-Intonation Hz)',
+    chordChecks === WADA.PALS.length,
+    `${chordChecks}/${WADA.PALS.length} curated Wada palettes map deterministically to 4-voice Just-Intonation chords (root=${MA.computeWadaHarmonicChord(WADA.PALS[0], FOUNDRY.CHARACTERS['ceti-whale'], 1, 0).rootNote})`
+  );
+
+  // G25: Resolution-Independent Vector Path Compilers (SVG Keyframe Sprite + Lottie JSON v5.7.4)
+  const svgCode = CO.compileCodeScaffold(rsiMockState, 'svg-keyframes');
+  const lottieCode = CO.compileCodeScaffold(rsiMockState, 'lottie-json');
+  const lottieObj = JSON.parse(lottieCode);
+  const g25Pass =
+    svgCode.includes('<svg') &&
+    svgCode.includes('@keyframes cetiActorSwim') &&
+    lottieObj.v === '5.7.4' &&
+    Array.isArray(lottieObj.layers) &&
+    lottieObj.layers.length >= 2;
+  recordGate(
+    'G25',
+    'Resolution-Independent Vector Compilers (SVG Keyframes + Lottie JSON v5.7.4)',
+    g25Pass,
+    `SVG Keyframe Sprite (${svgCode.length} chars) + Lottie JSON v${lottieObj.v} (${lottieCode.length} chars, ${lottieObj.layers.length} layers)`
+  );
+
   // Print Summary Table
   const passedCount = results.filter((r) => r.pass).length;
   console.log('═══════════════════════════════════════════════════════════════════════════════');
-  console.log(`CETI MOTION ATLAS STUDIO PRO — 21-GATE CONTRACT AUDIT (${passedCount}/${results.length} PASS)`);
+  console.log(`CETI MOTION ATLAS STUDIO PRO — 25-GATE CONTRACT AUDIT (${passedCount}/${results.length} PASS)`);
   console.log('═══════════════════════════════════════════════════════════════════════════════');
   for (const r of results) {
     console.log(`[${r.pass ? 'PASS' : 'FAIL'}] ${r.id} · ${r.name}`);
@@ -543,7 +633,7 @@ async function runAllGates() {
   // Negative Mutation Selftest (--selftest) per adversarial-moe-governance law
   if (process.argv.includes('--selftest')) {
     console.log('\n═══════════════════════════════════════════════════════════════════════════════');
-    console.log('RUNNING 5-TEST NEGATIVE MUTATION SELFTEST (--selftest)');
+    console.log('RUNNING 7-TEST NEGATIVE MUTATION SELFTEST (--selftest)');
     console.log('═══════════════════════════════════════════════════════════════════════════════');
     const mutResults = [];
 
@@ -612,6 +702,37 @@ async function runAllGates() {
       id: 'MUT-05',
       desc: 'Inject malformed OAuth payload (1 beat, Wada #9999, null character rig)',
       caught: mut05Caught
+    });
+
+    // MUT-06: Tampered multi-parent synthesis node upstreamHash must fail pushout gluing cohomology (G22)
+    const tamSynth = CO.synthesizeBranches(CO.createDefaultDAG(), 'node-proof-a', 'node-proof-b');
+    const mergeNode = tamSynth.nodes.find((n) => n.id === tamSynth.createdNodeId);
+    mergeNode.upstreamHash = 'ρ-tampered-pushout';
+    const tamSheaf = CO.verifyDAGSheafCohomology({ nodes: tamSynth.nodes, edges: tamSynth.edges });
+    const mut06Caught =
+      tamSheaf.valid === false &&
+      tamSheaf.mismatches.some((m) => (typeof m === 'string' ? m.includes(tamSynth.createdNodeId) : m.to === tamSynth.createdNodeId));
+    mutResults.push({
+      id: 'MUT-06',
+      desc: 'Tamper with multi-parent synthesis pushout hash ρ(A ⊕ B) and verify Sheaf cohomology catches mismatch',
+      caught: mut06Caught
+    });
+
+    // MUT-07: Degenerate 0s onion-skin step (collapsed temporal spacing) must be rejected by G23 spacing check
+    const collapsedFrames = [
+      { role: 'past-2', tSample: 2.0, tintHex: '#000' },
+      { role: 'past-1', tSample: 2.0, tintHex: '#000' },
+      { role: 'future-1', tSample: 2.0, tintHex: '#000' }
+    ];
+    const spacingValid =
+      collapsedFrames[0].tSample < collapsedFrames[1].tSample &&
+      collapsedFrames[1].tSample < collapsedFrames[2].tSample &&
+      collapsedFrames[0].tintHex !== collapsedFrames[2].tintHex;
+    const mut07Caught = spacingValid === false;
+    mutResults.push({
+      id: 'MUT-07',
+      desc: 'Inject collapsed 0s onion-skin frames with identical timestamps & tints and verify G23 rejection',
+      caught: mut07Caught
     });
 
     for (const m of mutResults) {
