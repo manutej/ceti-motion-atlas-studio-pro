@@ -55,3 +55,12 @@ Manu: "make sure the idea is obvious to non-AI experts and a wide audience, as p
   - Each writes what went wrong, what fixed it, what they would do differently on Monday, and any word or picture they didn't understand.
   - The episode passes when all three name the problem and the move consistently with INTENT and no on-screen word is reported as unclear. Anything they misread gets fixed before render.
 - **Design consequences.** Name the pain the way a person says it ("It sent the refund twice"), not the way an engineer does. Prefer everyday objects (a door, a stamp, a checklist, a sticky note, a receipt). Keep the whale and its helpers. A helper pod is "the helper", not "the agent".
+
+### O2 lessons, first run (Gate v3, three lay viewers, 17 Oct 2026: FAIL)
+All three viewers got the gist: "every miss becomes a new check". But every one of them quoted words they didn't understand, and none could say what the gates checked or who the whale and the grey fish were. The rules below come from that run.
+1. **Name the actors on screen once.** Say what the moving thing is ("your report"), who the receiver is ("the customer"), and who the whale is ("you" or "the checker"). Icons alone don't read.
+2. **Make the abstract concrete.** A property like "colour" or "kind" must be a thing people know: "the page used the wrong font", "the total didn't add up", "a page was missing".
+3. **Label every symbol in plain words** the first time it matters. For example, put a word under each gate icon: "spelling", "totals", "missing pages".
+4. **No internal names on cards.** Write "Source: our own error log", not "Limits & escapes register". Keep a card up for at least 3 s at 28 px or larger.
+5. **Banned words for lay viewers:** run, fold, register, escape, pipeline, "here" without a pointer, and "it" without a referent.
+6. **Say what the work is in the first 3 s**, in everyday terms. The viewer must know whether it's a report, an email, a payment or a page.
