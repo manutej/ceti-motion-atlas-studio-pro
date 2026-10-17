@@ -1,8 +1,139 @@
-{"episode": "gate", "version": "v3.1", "sheet": "kh/caps/gate/sheet-v3.png", "date": "2026-10-17",
- "intent": {"problem": "Work passed every check, yet a customer still found a bug: the checks only looked at some kinds of mistake.", "move": "Each gate checks a different kind of thing; every miss becomes a new kind of check.", "belief": "Machines check every run; misses become new checks; passing is not quality."},
- "personas": {
-  "teacher": {"q1": 1.0, "q2": 1.0, "sure": [7, 6], "unclear": ["Check it at the gate.", "No gate looks at colour.", "Source: Limits & escapes register", "Machines check every run.", "gate icons (wave, dash, eye, arrow)", "whale vs grey fish roles", "captions ~11-14 s too fast"]},
-  "nurse": {"q1": 1.0, "q2": 1.0, "sure": [7, 5], "unclear": ["Check it at the gate. (what is 'it')", "No gate looks at colour.", "Fold the miss into a new check.", "Source: Limits & escapes register / REAL RUN", "gate icons", "two fish roles", "nothing says what the work or the customer is"]},
-  "shop owner": {"q1": 1.0, "q2": 1.0, "sure": [7, 6], "unclear": ["Check it at the gate.", "No gate looks at colour.", "Fold the miss into a new check.", "The old mistake must stop here now. ('here')", "Machines check every run.", "Limits & escapes register", "gate icons", "whale and grey fish"]}},
- "verdict": "FAIL", "why": "All three got the problem and the move (gist 'every miss becomes a new check'), but every persona quoted on-screen words as unclear, and none could say what the gates check or who the whale/fish are; the colour abstraction was lost. Confidence on the fix 5-6/10.",
- "lessons": ["Name the actors on screen once (your work, the customer, the checker).", "Write what each gate checks under its icon in plain words.", "Make the abstract property concrete (the page used the wrong font), not 'colour'.", "No internal source names on cards ('our own error log', not 'Limits & escapes register').", "Avoid run, fold, register, escape, vague 'here'.", "Cards hold >= 3 s at >= 28 px.", "Say once what the work is in everyday terms."]}
+{
+ "episode": "gate",
+ "version": "v3.1",
+ "sheet": "kh/caps/gate/sheet-v3.png",
+ "date": "2026-10-17",
+ "intent": {
+  "problem": "Work passed every check, yet a customer still found a bug: the checks only looked at some kinds of mistake.",
+  "move": "Each gate checks a different kind of thing; every miss becomes a new kind of check.",
+  "belief": "Machines check every run; misses become new checks; passing is not quality."
+ },
+ "lessons": [
+  "Name the actors on screen once (your work, the customer, the checker).",
+  "Write what each gate checks under its icon in plain words.",
+  "Make the abstract property concrete (the page used the wrong font), not 'colour'.",
+  "No internal source names on cards ('our own error log', not 'Limits & escapes register').",
+  "Avoid run, fold, register, escape, vague 'here'.",
+  "Cards hold >= 3 s at >= 28 px.",
+  "Say once what the work is in everyday terms."
+ ],
+ "runs": [
+  {
+   "version": "v3.1",
+   "verdict": "FAIL",
+   "personas": {
+    "teacher": {
+     "q1": 1.0,
+     "q2": 1.0,
+     "sure": [
+      7,
+      6
+     ],
+     "unclear": [
+      "Check it at the gate.",
+      "No gate looks at colour.",
+      "Source: Limits & escapes register",
+      "Machines check every run.",
+      "gate icons (wave, dash, eye, arrow)",
+      "whale vs grey fish roles",
+      "captions ~11-14 s too fast"
+     ]
+    },
+    "nurse": {
+     "q1": 1.0,
+     "q2": 1.0,
+     "sure": [
+      7,
+      5
+     ],
+     "unclear": [
+      "Check it at the gate. (what is 'it')",
+      "No gate looks at colour.",
+      "Fold the miss into a new check.",
+      "Source: Limits & escapes register / REAL RUN",
+      "gate icons",
+      "two fish roles",
+      "nothing says what the work or the customer is"
+     ]
+    },
+    "shop owner": {
+     "q1": 1.0,
+     "q2": 1.0,
+     "sure": [
+      7,
+      6
+     ],
+     "unclear": [
+      "Check it at the gate.",
+      "No gate looks at colour.",
+      "Fold the miss into a new check.",
+      "The old mistake must stop here now. ('here')",
+      "Machines check every run.",
+      "Limits & escapes register",
+      "gate icons",
+      "whale and grey fish"
+     ]
+    }
+   },
+   "why": "All three got the problem and the move (gist 'every miss becomes a new check'), but every persona quoted on-screen words as unclear, and none could say what the gates check or who the whale/fish are; the colour abstraction was lost. Confidence on the fix 5-6/10."
+  },
+  {
+   "version": "v3.2",
+   "sheet": "kh/caps/gate/sheet-v3.2.png",
+   "verdict": "FAIL (near pass)",
+   "personas": {
+    "teacher": {
+     "q1": 1.0,
+     "q2": 1.0,
+     "sure": [
+      7,
+      8
+     ],
+     "unclear": [
+      "gate",
+      "miss",
+      "error log",
+      "Σ icon",
+      "tiny lockup text"
+     ]
+    },
+    "nurse": {
+     "q1": 1.0,
+     "q2": 1.0,
+     "sure": [
+      7,
+      6
+     ],
+     "unclear": [
+      "Passing means no known mistakes. Not quality.",
+      "gate",
+      "miss / error log card too fast",
+      "Σ and Aa icons small",
+      "= shape at 12 s",
+      "No gate checks the font (too fast)",
+      "where AI fits"
+     ]
+    },
+    "shop owner": {
+     "q1": 1.0,
+     "q2": 1.0,
+     "sure": [
+      8,
+      7
+     ],
+     "unclear": [
+      "gate (at first)",
+      "Aa tiny",
+      "miss",
+      "Machines check each report (no machines shown)",
+      "error log",
+      "lockup text unreadable",
+      "title card fades too fast",
+      "= sign at 12 s"
+     ]
+    }
+   },
+   "why": "All three now name the problem and the fix (avg 7.2/10 confidence, up from 6.2); remaining unclear words: gate, miss, error log, machines, the Not-quality slogan; small icons; fast cards; AI never mentioned."
+  }
+ ]
+}

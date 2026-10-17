@@ -62,7 +62,7 @@ function caption(c, t, r, o = {}) { const a = win(t, r.in, r.out, r.fi, r.fo); i
 function lockup(c, t, t0, ep) { const a = ramp(t, t0, t0 + 0.45, EASE.warm);
   if (a <= 0) return; c.save(); c.setTransform(1, 0, 0, 1, 0, 0);
   whaleMark(c, 960 - 60, 900, 1.2, INK, a);
-  text(c, `CETI · Capabilities · ${ep.no} · ${ep.short}`, 960, 1010, { f: 'mono', size: 15, col: SOFT, a, align: 'center' });
+  text(c, `CETI · Capabilities · ${ep.no} · ${ep.short}`, 960, 1010, { f: 'mono', size: 20, col: SOFT, a, align: 'center' });
   c.restore(); }
 
 KH.SERIES = { name: 'CETI Capabilities', INK, SOFT, ground, chip, open, caption, lockup };
