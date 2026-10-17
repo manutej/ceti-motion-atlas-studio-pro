@@ -213,7 +213,7 @@ function drawFrame(c, t) {
     let blink = 0; for (const k of [2.9, 5.6, 8.0, 13.0, 16.6, 19.4, 25.0, 28.1]) blink = Math.max(blink, 1 - Math.abs(t - k) / 0.07);
     let squash = 0; for (const k of WORK) { const d = t - k; if (d >= 0 && d < 0.3) squash = Math.max(squash, 0.1 * (1 - EASE.glaser(d / 0.3))); }
     const daze = Math.max(...CRASH.map(k => win(t, k.t, k.t + 1.3, 0.05, 0.3)));
-    const focus = Math.max(win(t, 12.85, 14.25, 0.15, 0.2), win(t, 24.85, 26.2, 0.15, 0.2));
+    const focus = Math.max(win(t, 12.85, 14.25, 0.15, 0.2), win(t, 24.85, 26.2, 0.15, 0.2), win(t, 19.0, 20.8, 0.3, 0.3) * 0.6);
     const eye = 1 + 0.4 * win(t, 4.7, 6.2, 0.06, 0.4) + 0.25 * daze;
     const delight = (t > 14.6 && t < 15.8) || t > 26.6 ? 1 : 0, spark = Math.max(win(t, 14.6, 15.5, 0.12, 0.4), win(t, 26.6, 27.9, 0.12, 0.5));
     c.save(); c.translate(X(p.x), Y(p.y));

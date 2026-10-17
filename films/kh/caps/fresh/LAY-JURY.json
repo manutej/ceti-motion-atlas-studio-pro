@@ -1,5 +1,119 @@
-{"episode": "fresh", "runs": [{"version": "v4", "sheet": "kh/caps/fresh/sheet-v4.png", "verdict": "FAIL (near pass)",
- "personas": {"teacher": {"q1": 1, "q2": 1, "sure": [9, 7], "unclear": ["break it", "If checkers think alike, they miss alike", "Agreeing doesn't mean they're right", "feels off crossed out", "116 card tiny / what was checked", "fish colours", "lockup tiny"]},
-  "nurse": {"q1": 1, "q2": 1, "sure": [9, 7], "unclear": ["break it", "feels off crossed out (slow to get)", "116 card", "think alike", "pages out of order (fast)", "lockup", "three colours", "no AI mentioned"]},
-  "shop owner": {"q1": 1, "q2": 1, "sure": [9, 7], "unclear": ["fresh eyes (figure of speech)", "feels off crossed out", "116 card from another story", "think alike", "lockup", "break it"]}},
- "why": "First half lands for all (9/10). Second idea (checkers who think alike) dilutes the ending; 116 card reads as another story; 'break it'; AI not named."}]}
+{
+ "episode": "fresh",
+ "runs": [
+  {
+   "version": "v4",
+   "sheet": "kh/caps/fresh/sheet-v4.png",
+   "verdict": "FAIL (near pass)",
+   "personas": {
+    "teacher": {
+     "q1": 1,
+     "q2": 1,
+     "sure": [
+      9,
+      7
+     ],
+     "unclear": [
+      "break it",
+      "If checkers think alike, they miss alike",
+      "Agreeing doesn't mean they're right",
+      "feels off crossed out",
+      "116 card tiny / what was checked",
+      "fish colours",
+      "lockup tiny"
+     ]
+    },
+    "nurse": {
+     "q1": 1,
+     "q2": 1,
+     "sure": [
+      9,
+      7
+     ],
+     "unclear": [
+      "break it",
+      "feels off crossed out (slow to get)",
+      "116 card",
+      "think alike",
+      "pages out of order (fast)",
+      "lockup",
+      "three colours",
+      "no AI mentioned"
+     ]
+    },
+    "shop owner": {
+     "q1": 1,
+     "q2": 1,
+     "sure": [
+      9,
+      7
+     ],
+     "unclear": [
+      "fresh eyes (figure of speech)",
+      "feels off crossed out",
+      "116 card from another story",
+      "think alike",
+      "lockup",
+      "break it"
+     ]
+    }
+   },
+   "why": "First half lands for all (9/10). Second idea (checkers who think alike) dilutes the ending; 116 card reads as another story; 'break it'; AI not named."
+  },
+  {
+   "version": "v5",
+   "sheet": "kh/caps/fresh/sheet-v5.png",
+   "verdict": "PASS (revised criterion)",
+   "personas": {
+    "teacher": {
+     "q1": 1,
+     "q2": 1,
+     "sure": [
+      8,
+      6
+     ],
+     "unclear": [
+      "think alike (for a computer?)",
+      "AI checkers",
+      "57 complaints card: good or bad",
+      "title brief",
+      "lockup"
+     ]
+    },
+    "nurse": {
+     "q1": 1,
+     "q2": 1,
+     "sure": [
+      9,
+      7
+     ],
+     "unclear": [
+      "3 different AI checkers: three programs or one asked thrice",
+      "57 complaints card",
+      "think alike picture",
+      "fish colours",
+      "title flashed"
+     ]
+    },
+    "shop owner": {
+     "q1": 1,
+     "q2": 1,
+     "sure": [
+      9,
+      7
+     ],
+     "unclear": [
+      "fish colours",
+      "think alike wordy; swap small",
+      "57 complaints looks like a brag",
+      "title card pale",
+      "whale never explained",
+      "someone else",
+      "feels off disappears"
+     ]
+    }
+   },
+   "why": "All three: missing page found by the customer; fix = others who did not write it check, and must point at the problem; bonus lesson on alike checkers understood. Mean confidence 7.7; no INTENT-critical word unclear. Polish: card meaning, title hold, fish colour legend."
+  }
+ ]
+}
