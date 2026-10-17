@@ -36,12 +36,12 @@ const fixAt = (id, f) => [F[id].x - f * REACH, F[id].y - 26];
 const K = []; const key = (t, p) => K.push([t, p[0], p[1]]);
 key(0, [-560, 60]); key(0.55, fixAt('a', 1)); key(0.85, fixAt('a', 1)); key(1.6, fixAt('b', 1)); key(1.9, fixAt('b', 1));
 key(2.6, fixAt('c', 1)); key(2.9, fixAt('c', 1)); key(3.6, [60, -140]); key(4.3, [60, -140]); key(5.8, R0); key(8.8, R0);
-const FIX1 = [['g', 9.2, 9.38], ['f', 9.7, 9.88], ['d', 10.2, 10.38]], FIX2 = [['h', 12.55, 12.72]];
+const FIX1 = [['g', 9.2, 9.38], ['f', 9.7, 9.88], ['d', 10.25, 10.43]], FIX2 = [['h', 12.55, 12.72]];
 for (const [id, a, b] of FIX1) { key(a, fixAt(id, -1)); key(b, fixAt(id, -1)); }
-key(10.6, fixAt('d', -1)); key(11.6, R0); key(11.85, R0);
+key(10.65, fixAt('d', -1)); key(11.6, R0); key(11.85, R0);
 for (const [id, a, b] of FIX2) { key(a, fixAt(id, -1)); key(b, fixAt(id, -1)); }
 key(12.95, fixAt('h', -1)); key(13.95, R0);
-const T_ZFIX = [22.45, 22.65]; key(22.0, R0); key(T_ZFIX[0], fixAt('z', -1)); key(T_ZFIX[1], fixAt('z', -1)); key(23.4, R0); key(DUR + 1, R0);
+const T_ZFIX = [22.85, 23.05]; key(22.4, R0); key(T_ZFIX[0], fixAt('z', -1)); key(T_ZFIX[1], fixAt('z', -1)); key(23.8, R0); key(DUR + 1, R0);
 for (const [id, a] of [...FIX1, ...FIX2]) F[id].fix = a;
 F.a.fix = 0.55; F.b.fix = 1.6; F.c.fix = 2.6; F.h.in = 9.8; F.z.fix = T_ZFIX[0];
 
@@ -55,7 +55,7 @@ function wworld(t) { const p = herm(K, t), q = herm(K, t + 0.01), sp = Math.hypo
 const wvel = t => { const a = wworld(t - 1 / 240), c = wworld(t + 1 / 240); return { x: (c.x - a.x) * 120, y: (c.y - a.y) * 120 }; };
 function heading(t) { let a = 0, s = 0; for (let k = -8; k <= 8; k++) { const v = wvel(t + k * 0.022), w = 1 - Math.abs(k) / 9, sp = Math.hypot(v.x, v.y);
     a += (sp < 40 ? 0 : clamp(Math.atan2(v.y, Math.abs(v.x)), -0.8, 0.8) * clamp(sp / 300)) * w; s += w; } return a / s; }
-const TURNS = [[3.15, -1], [4.35, 1], [5.85, -1], [10.38, 1], [11.62, -1], [12.72, 1], [13.98, -1]];
+const TURNS = [[3.15, -1], [4.35, 1], [5.85, -1], [10.43, 1], [11.62, -1], [12.72, 1], [13.98, -1]];
 function facing(t) { let f = 1; for (const [a, to] of TURNS) f = lerp(f, to, ramp(t, a, a + 0.22, EASE.warm)); return f; }
 const wpos = t => wworld(t);
 
@@ -66,12 +66,12 @@ const lead = (L, t) => -700 + SPEED * (t - L), lapEnd = L => L + 2.0;
 const MARKS = [];
 LAPS.slice(0, 3).forEach((L, r) => {
   const here = Object.entries(F).filter(([id, f]) => f.y < BEAM_Y && (f.in ?? -1) < L && (f.fix == null || f.fix > L)).sort((p, q) => p[1].x - q[1].x);
-  here.forEach(([id, f], j) => { const k = j % 3; MARKS.push({ id, r, k, t: L + (f.x + 700 + GAP * k) / SPEED }); });
+  here.forEach(([id, f], j) => { const k = (here.length - 1 - j) % 3; MARKS.push({ id, r, k, t: L + (f.x + 700 + GAP * k) / SPEED }); });
 });
 const ROUND = [0, 1, 2].map(r => MARKS.filter(m => m.r === r));
 const ZERO = lapEnd(LAPS[2]) - 0.2;
 // the new kind of reader: green, looks UP from below the letter; out to the right, then back to check again
-const NR = { t0: 20.95, y: 300, v: 1100 }, NR_TURN = [22.25, 22.55];
+const NR = { t0: 20.95, y: 300, v: 1100 }, NR_TURN = [23.0, 23.3];
 function nrX(t) { return t < NR_TURN[1] ? Math.min(640, -720 + NR.v * (t - NR.t0)) : 640 - NR.v * 0.9 * (t - NR_TURN[1]); }
 const NR_MARK = NR.t0 + (F.z.x + 720) / NR.v, NR_CLEAR = NR_TURN[1] + (640 - F.z.x) / (NR.v * 0.9);
 MARKS.push({ id: 'z', r: 3, k: 0, t: NR_MARK });
@@ -98,8 +98,8 @@ const READ = [
   lab('tab', 0, DUR, 'Your cover letter', 0.01, 0.01),
   lab('dear', 0, DUR, 'Dear Hiring Team,', 0.01, 0.01),
   lab('you', 0.2, 3.05, 'You', 0.2, 0.3),
-  cap('felt1', 0.25, 2.05, 'I keep tweaking my letter.'),
-  cap('felt2', 2.1, 4.05, 'I never know when to stop.'),
+  cap('felt1', 0.25, 2.07, 'I keep tweaking my letter.'),
+  cap('felt2', 2.12, 4.1, 'I never know when to stop.'),
   { id: 'eyebrow', kind: 'label', in: T0 + 0.25, out: T0 + 3.6, fi: 0.4, fo: 0.45, text: 'CETI · Capabilities · 07' },
   { id: 'title', kind: 'title', in: T0 + 0.25, out: T0 + 3.6, fi: 0.4, fo: 0.45, text: 'Stop when the <i>counter</i> hits zero.' },
   lab('counter', T_COUNTER, DUR, 'Problems found', 0.3, 0.01),
@@ -161,7 +161,7 @@ function drawFrame(c, t) {
     for (let k = 0; k < 3; k++) { const px = ld - GAP * k; if (px < PX0 - 120 || px > PX1 + 120) continue;
       c.fillStyle = rgba(RBEAM, 0.16 * a); c.beginPath(); c.moveTo(X(px - 22), Y(PY0)); c.lineTo(X(px + 22), Y(PY0)); c.lineTo(X(px + 68), Y(BEAM_Y)); c.lineTo(X(px - 68), Y(BEAM_Y)); c.closePath(); c.fill();
       c.strokeStyle = rgba(RBEAM, 0.6 * a); c.lineWidth = 3 * z; c.beginPath(); c.moveTo(X(px - 68), Y(BEAM_Y)); c.lineTo(X(px + 68), Y(BEAM_Y)); c.stroke(); } }
-  { const a = win(t, NR.t0 + 0.4, 23.7, 0.3, 0.4); if (a > 0) { const px = nrX(t);
+  { const a = win(t, NR.t0 + 0.4, 24.3, 0.3, 0.4); if (a > 0) { const px = nrX(t);
       c.fillStyle = rgba(NBEAM, 0.2 * a); c.beginPath(); c.moveTo(X(px - 22), Y(PY1)); c.lineTo(X(px + 22), Y(PY1)); c.lineTo(X(px + 68), Y(150)); c.lineTo(X(px - 68), Y(150)); c.closePath(); c.fill();
       c.strokeStyle = rgba(NBEAM, 0.7 * a); c.lineWidth = 3 * z; c.beginPath(); c.moveTo(X(px - 68), Y(150)); c.lineTo(X(px + 68), Y(150)); c.stroke(); } }
   c.restore();
@@ -188,7 +188,7 @@ function drawFrame(c, t) {
       reader(c, X(px), Y(POD_Y + Math.sin(t * 7 + k * 1.9) * 5), z, READER, 1, false, a * fade); } }
   { const a = RA(t, 'readers'); if (a > 0) { const px = lead(LAPS[0], t) - GAP; S.chip(c, 'Three AI readers', X(clamp(px, -230, 200)), Y(POD_Y - 72), { f: 'mono', size: Math.round(28 * z), col: INK, a, align: 'center', bg: C.paper, border: EDGE, track: 0.12 }); } }
   // the new kind of reader (green, looking up from below), out and back
-  { const a = win(t, NR.t0, 23.9, 0.3, 0.4); if (a > 0) { const dir = t < NR_TURN[0] ? 1 : t < NR_TURN[1] ? lerp(1, -1, ramp(t, NR_TURN[0], NR_TURN[1], EASE.warm)) : -1;
+  { const a = win(t, NR.t0, 24.5, 0.3, 0.4); if (a > 0) { const dir = t < NR_TURN[0] ? 1 : t < NR_TURN[1] ? lerp(1, -1, ramp(t, NR_TURN[0], NR_TURN[1], EASE.warm)) : -1;
       reader(c, X(nrX(t)), Y(NR.y + Math.sin(t * 6) * 4), z * 1.05, NEWR, dir, true, a); } }
 
   // the counter: PROBLEMS FOUND — earlier rounds, then this round, in one row
@@ -222,7 +222,7 @@ function drawFrame(c, t) {
     const finUp = win(t, 3.3, 4.5, 0.25, 0.3);
     c.save(); c.translate(X(p.x), Y(p.y)); c.scale(f, 1);
     KH.drawWhale(c, { x: 0, y: 0, ang, scale: WS * z, L: 1, tail: Math.sin(t * (moving > 0.3 ? 11 : 3)) * lerp(0.12, 0.34, moving), fin: lerp(Math.sin(t * 6 + 1.3) * lerp(0.15, 0.3, moving), -1.05, finUp),
-      blink, squash, focus: delight ? 0 : focus, eye, spark, sparkColor: OK, delight, blush: 0.6, spray: win(t, 24.0, 25.4, 0.35, 0.6), sprayColor: mix(C.mist, C.navy, 0.2),
+      blink, squash, focus: delight ? 0 : focus, eye, spark, sparkColor: OK, delight, blush: 0.6, spray: win(t, 24.15, 25.5, 0.35, 0.6), sprayColor: mix(C.mist, C.navy, 0.2),
       mouth: delight ? 0.4 : 0.3 * win(t, 3.15, 3.9, 0.06, 0.3), sw: 3.2 });
     c.restore();
     const ya = RA(t, 'you'); if (ya > 0) S.chip(c, 'You', X(p.x), Y(p.y - 92), { f: 'mono', size: Math.round(28 * z), col: INK, a: ya, align: 'center', bg: C.paper, border: EDGE, track: 0.16 }); }
@@ -254,7 +254,7 @@ function cues() {
     fixFelt: [F.a.fix, F.b.fix, F.c.fix], fix: [...FIX1, ...FIX2].map(x => x[1]).concat([T_ZFIX[0]]), counterIn: T_COUNTER,
     lap: LAPS.slice(0, 3), limitLap: LAPS[3], mark: MARKS.filter(m => m.r < 3).map(m => ({ t: m.t, r: m.r, k: m.k, n: ROUND[m.r].indexOf(m) + 1 })),
     zero: ZERO, card: CARD[0], cardNums: [0, 1, 2, 3].map(j => CARD[0] + 0.2 + j * 0.42), blind: 20.75,
-    newReader: NR.t0, newMark: NR_MARK, newTurn: NR_TURN[0], clear: NR_CLEAR, spout: 24.0, belief: RD('belief').in, lockup: T_LOCK,
+    newReader: NR.t0, newMark: NR_MARK, newTurn: NR_TURN[0], clear: NR_CLEAR, spout: 24.15, belief: RD('belief').in, lockup: T_LOCK,
     tags: { consequence: [F.b.in, F.c.in, F.d.in], focus: [F.a.fix, ZERO, NR_CLEAR], mech: MARKS.map(m => m.t), limit: [20.75] } }; }
 const CONTRAST = [['captions / chips (ink on paper)', INK, C.paper], ['title (ink on chart ground)', INK, BG], ['title accent on ground', ACC, BG],
   ['title accent on veiled ground (paper)', ACC, C.paper], ['eyebrow / lockup (slate on ground)', SOFT, BG], ['card label + source, counter label + earlier rounds (slate on paper)', SOFT, C.paper],

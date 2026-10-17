@@ -67,6 +67,8 @@ for a in Q['answer']:
     else:
         for i, f in enumerate(sorted(KIND_NOTE[:3] if a['t'] < Q['notThis'] else KIND_NOTE)): put(glass(f / 2, 2.6), a['t'] + i * 0.05, 0.12, -0.3 + 0.2 * i, 0.6)
 for x in Q['flag']: put(tick(1200, 0.05), x + 0.36, 0.16, 0.35, 0.1)
+# the true-story card: each check rings its bell in turn (one mistake → one check)
+for g, x in enumerate(Q.get('pulse', [])): put(glass(KIND_NOTE[g], 1.6), x, 0.1, -0.5 + 0.3 * g, 0.5)
 # the title hinge: near-silence, then the title tick
 put(tick(4200, 0.03), Q['title'], 0.14, 0, 0.4); put(whoosh(0.7, rev=True), Q['title'] - 0.6, 0.06, 0, 0.3)
 # the move: lift, fold, posts rise, stamp + the NEW bell rings for the first time (a glass ping)

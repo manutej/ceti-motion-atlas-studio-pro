@@ -37,7 +37,7 @@ const WS = 0.95, px = s => SX[s] - 20, P = (t, x) => [t, x, PERCH];
 const K = [P(0, START), P(0.35, px(0)), P(0.6, px(0)), P(0.95, px(1)), P(1.25, px(1)), P(1.6, px(2)), P(1.95, px(2)), P(2.95, START), P(3.2, START),
   P(3.55, px(0)), P(3.75, px(0)), P(4.1, px(1)), P(6.6, px(1)), P(7.6, START), P(9.9, START),
   P(10.25, px(0)), P(10.5, px(0)), P(10.85, px(1)), P(11.15, px(1)), P(11.5, px(2)), P(11.8, px(2)), P(12.8, START), P(13.25, START), P(14.2, px(2)),
-  P(16.0, px(2)), P(17.1, START), P(21.9, START),
+  P(16.0, px(2)), P(16.7, px(1)), P(21.9, px(1)),
   P(22.25, px(0)), P(22.5, px(0)), P(22.85, px(1)), P(23.15, px(1)), P(23.5, px(2)), P(23.8, px(2)), P(24.8, START), P(25.2, START), P(26.15, px(2)), P(DUR + 1, px(2))];
 function herm(Q, t) { const n = Q.length; if (t <= Q[0][0]) return { x: Q[0][1], y: Q[0][2] }; if (t >= Q[n - 1][0]) return { x: Q[n - 1][1], y: Q[n - 1][2] };
   let i = 0; while (Q[i + 1][0] < t) i++; const a = Q[i], b = Q[i + 1], u = (t - a[0]) / (b[0] - a[0]), h = 2 * u * u * u - 3 * u * u + 1;

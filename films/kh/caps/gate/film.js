@@ -296,7 +296,7 @@ function cues() { const oldStop = STOPS.find(s => s.id === 'old').t, endA = ANSW
     pass: PASSES.map(e => ({ t: e.t, g: e.g, id: e.id })), stop: STOPS.map(e => ({ t: e.t, g: e.g, id: e.id })), reopen: STOPS.map(e => e.open),
     answer: ANSWERS.map(a => ({ t: a.t, ok: a.ok, id: a.id })), flag: FLAGS.map(F => F.t), flagGone: 16.15,
     lift: [13.0, 23.36], pick: T_PICK, fold: T_FOLD.map(f => f[0]), grow: BUILT.slice(2), set: T_SET, push: 14.4, release: 16.95,
-    spark: [oldStop, endA], card: RD('card').in, limit: ANSWERS.find(a => a.id === 'back').t,
+    spark: [oldStop, endA], card: RD('card').in, pulse: [0, 1, 2].map(g => RD('card').in + 0.45 + 0.4 * g), limit: ANSWERS.find(a => a.id === 'back').t,
     notThis: RD('notthis').in, belief: RD('belief').in, lockup: T_LOCK,
     tags: { consequence: [ANSWERS[0].t], focus: [ANSWERS[0].t, STOPS[0].t, STOPS[1].t, ANSWERS[1].t, T_SET[0], oldStop, ANSWERS.find(a => a.id === 'fix').t, endA], mech: [T_PICK[0], T_SET[0], oldStop], limit: [ANSWERS.find(a => a.id === 'back').t] } }; }
 const CONTRAST = [['gate / actor labels (ink on paper chip)', INK, C.paper], ['wrong-font heading on the report (accent on paper)', ACC, C.paper], ['captions / card main (ink on paper chip)', INK, C.paper], ['title (ink on chart ground)', INK, BG], ['title accent on ground', ACC, BG],
