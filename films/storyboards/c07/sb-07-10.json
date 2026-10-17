@@ -1,0 +1,511 @@
+{
+  "schema_version": "sb60-v1",
+  "id": "sb-07-10",
+  "meta_prompt_id": "mp-c07-v1",
+  "cluster": "07 Formal correctness & logic",
+  "repo": "notion:limits-and-escapes (Limits & escapes register)",
+  "capability": "Check what came out, not what it claims",
+  "audience": "Leaders",
+  "wada": 207,
+  "bpm": 126,
+  "dur": 61.25,
+  "title": "Check the work, not its <i>label</i>.",
+  "hook": {
+    "kind": "Example",
+    "picture": "Close: a run with a bright green tag swims to a pod. The line itself is the wrong colour, and the pod answers ✕.",
+    "words": "The report said green."
+  },
+  "problem_in_viewer_words": {
+    "kind": "Fact",
+    "body": "The report said green. The screen said otherwise.",
+    "who": "director reading a status dashboard"
+  },
+  "why_it_keeps_happening": {
+    "kind": "Fact",
+    "picture": "A gate reads only the tags. Three times, faster each time, green-tagged runs of the wrong colour pass and pods answer ✕.",
+    "words": "We checked what it said it was."
+  },
+  "stakes": {
+    "kind": "Fact",
+    "body": "Decisions get made on green reports while customers see the broken thing, and trust in every report drops."
+  },
+  "solution_hint": "Look at what really came out.",
+  "metaphor": {
+    "kind": "Example",
+    "body": "A label tag rides on each run. A gate that reads the tag passes wrong work. Turning the gate's lens onto the line itself catches it.",
+    "symbols": [
+      "whale",
+      "line",
+      "gate",
+      "atom",
+      "pod"
+    ]
+  },
+  "mechanism_beats": {
+    "kind": "Method",
+    "steps": [
+      {
+        "t": 19.048,
+        "picture": "The gate's lens turns from the tag down to the line itself.",
+        "words": "",
+        "sound": "Focus pull"
+      },
+      {
+        "t": 20.952,
+        "picture": "A green-tagged rust run stops at the gate. The bar drops.",
+        "words": "Check the thing itself, not its tag.",
+        "sound": "Focus, then a stop knock"
+      },
+      {
+        "t": 22.857,
+        "picture": "Push-in: the tag peels away, showing the line's real colour.",
+        "words": "",
+        "sound": "A peel, the sour tone exposed"
+      },
+      {
+        "t": 24.762,
+        "picture": "A true slate run passes. The opening glows. Tick.",
+        "words": "The tag said one thing. The line, another.",
+        "sound": "Bright resolved tone"
+      },
+      {
+        "t": 26.667,
+        "picture": "Runs flow, and the gate looks at each line, not each tag.",
+        "words": "",
+        "sound": "Pulse"
+      },
+      {
+        "t": 28.571,
+        "picture": "Ticks gather beside the gate.",
+        "words": "Read what was built, not what was planned.",
+        "sound": "Resolved"
+      }
+    ]
+  },
+  "real_case": {
+    "kind": "Evidence",
+    "claim": "Two escapes came from checking the plan, not the result: 'Example declared IBM Plex, rendered Inter' and 'Built page at 1.18:1 contrast' (tokens only). Both are now checked on what renders.",
+    "numbers": [
+      "1.18:1"
+    ],
+    "source": {
+      "kind": "notion",
+      "title": "Limits & escapes register",
+      "url": "https://app.notion.com/p/3f2d50cfaf9381a88b04f3837efcac6a"
+    },
+    "verified": true,
+    "illustrative": false
+  },
+  "honest_limit": {
+    "kind": "Constraint",
+    "picture": "A run with a made-up source tick passes the gate that reads the line. Push in, and behind the tick there is nothing.",
+    "words": "An invented source still looks real."
+  },
+  "not_this": {
+    "kind": "Constraint",
+    "body": "Checked output can still quote made-up sources."
+  },
+  "ending_pattern": {
+    "kind": "Example",
+    "slug": "label-peels-off",
+    "body": "The same green-tagged run nears the same pod. The gate looks past the tag, the tag peels off, the line is fixed and the pod answers ✓.",
+    "callback": "Same close framing as bar 1: the green tag that hid the wrong line is gone."
+  },
+  "end_belief": {
+    "kind": "Goal",
+    "body": "Trust what came out, not what it says."
+  },
+  "beats": [
+    {
+      "t": 0.0,
+      "picture": "Close: a run with a bright green label tag tied to it swims toward a pod. The line itself is rust, not slate.",
+      "words": "The report said green.",
+      "sound": "A bright tone over a sour bass",
+      "act": "felt",
+      "bars": "1",
+      "camera": "close z 1.6 on the whale",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 2.857,
+      "picture": "The pod reads the line, not the tag, and answers ✕ in rust.",
+      "words": "",
+      "sound": "The sour bass swells",
+      "act": "felt",
+      "bars": "2",
+      "camera": "close z 1.6 on the whale",
+      "cue_tags": [
+        "consequence",
+        "focus"
+      ]
+    },
+    {
+      "t": 4.762,
+      "picture": "The green tag still flutters, cheerful.",
+      "words": "The screen said otherwise.",
+      "sound": "The bright tone, hollow",
+      "act": "felt",
+      "bars": "3",
+      "camera": "close z 1.6 on the whale",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 7.619,
+      "picture": "Hold on the tag and the line, mismatched.",
+      "words": "",
+      "sound": "Silence",
+      "act": "felt",
+      "bars": "5",
+      "camera": "close z 1.6 on the whale",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 9.524,
+      "picture": "Hinge: half a bar of stillness, then the title card.",
+      "words": "Check the work, not its <i>label</i>.",
+      "sound": "Near-silence, then the title tick",
+      "act": "why",
+      "bars": "6",
+      "camera": "pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "hinge"
+      ]
+    },
+    {
+      "t": 11.429,
+      "picture": "Pull back: a gate that reads only the tags. Runs with green tags pass.",
+      "words": "",
+      "sound": "Problem motif",
+      "act": "why",
+      "bars": "7",
+      "camera": "pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 12.857,
+      "picture": "The gate's lens points at the tags, never at the lines.",
+      "words": "We checked what it said it was.",
+      "sound": "Problem motif again",
+      "act": "why",
+      "bars": "7",
+      "camera": "pull back z 1.6 to 1.0"
+    },
+    {
+      "t": 14.286,
+      "picture": "Three times, faster: green-tagged runs of the wrong colour pass, and three pods answer ✕.",
+      "words": "",
+      "sound": "Sour bass three times, accelerating",
+      "act": "why",
+      "bars": "8",
+      "camera": "pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 16.667,
+      "picture": "Freeze: the gate's lens trembles.",
+      "words": "Look at what really came out.",
+      "sound": "First clean focus pull",
+      "act": "why",
+      "bars": "9",
+      "camera": "pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 19.048,
+      "picture": "The gate's lens turns from the tag down to the line itself.",
+      "words": "",
+      "sound": "Focus pull",
+      "act": "move",
+      "bars": "11",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 20.952,
+      "picture": "A green-tagged rust run stops at the gate. The bar drops.",
+      "words": "Check the thing itself, not its tag.",
+      "sound": "Focus, then a stop knock",
+      "act": "move",
+      "bars": "12",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 22.857,
+      "picture": "Push-in: the tag peels away, showing the line's real colour.",
+      "words": "",
+      "sound": "A peel, the sour tone exposed",
+      "act": "move",
+      "bars": "13",
+      "camera": "one push-in to z 1.3 on the decisive moment",
+      "cue_tags": [
+        "mech",
+        "focus"
+      ]
+    },
+    {
+      "t": 24.762,
+      "picture": "A true slate run passes. The opening glows. Tick.",
+      "words": "The tag said one thing. The line, another.",
+      "sound": "Bright resolved tone",
+      "act": "move",
+      "bars": "14",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 26.667,
+      "picture": "Runs flow, and the gate looks at each line, not each tag.",
+      "words": "",
+      "sound": "Pulse",
+      "act": "move",
+      "bars": "15",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 28.571,
+      "picture": "Ticks gather beside the gate.",
+      "words": "Read what was built, not what was planned.",
+      "sound": "Resolved",
+      "act": "move",
+      "bars": "16",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 30.476,
+      "picture": "Wide: a built page drawn as a line. Its tag says the text is easy to read, but the line itself is nearly invisible.",
+      "words": "",
+      "sound": "Pulse bed",
+      "act": "case",
+      "bars": "17",
+      "camera": "steady wide, slow drift"
+    },
+    {
+      "t": 32.381,
+      "picture": "The card fades in on clean paper.",
+      "words": "Real run: the old check read the plan.",
+      "sound": "Ticks",
+      "act": "case",
+      "bars": "18",
+      "camera": "steady wide, slow drift"
+    },
+    {
+      "t": 36.19,
+      "picture": "The new gate looks at the built page and stops it.",
+      "words": "Now we check the page that was built.",
+      "sound": "Stop knock, then ticks",
+      "act": "case",
+      "bars": "20",
+      "camera": "steady wide, slow drift"
+    },
+    {
+      "t": 41.905,
+      "picture": "A run with a source tick that was made up passes. The gate sees a good line with a source attached.",
+      "words": "An invented source still looks real.",
+      "sound": "Bright tone, unresolved",
+      "act": "limit",
+      "bars": "23",
+      "camera": "still, then one slow push to what slipped",
+      "cue_tags": [
+        "limit",
+        "focus"
+      ]
+    },
+    {
+      "t": 43.81,
+      "picture": "Slow push into the source tick: behind it, nothing.",
+      "words": "",
+      "sound": "Hollow",
+      "act": "limit",
+      "bars": "24",
+      "camera": "still, then one slow push to what slipped",
+      "cue_tags": [
+        "limit"
+      ]
+    },
+    {
+      "t": 45.238,
+      "picture": "Still on the empty tick.",
+      "words": "Checked output can still quote made-up sources.",
+      "sound": "Room tone",
+      "act": "limit",
+      "bars": "24",
+      "camera": "still, then one slow push to what slipped"
+    },
+    {
+      "t": 47.619,
+      "picture": "FELT framing restored: the same green-tagged rust run as in bar 1 nears the same pod.",
+      "words": "",
+      "sound": "Bright over sour",
+      "act": "payoff",
+      "bars": "26",
+      "camera": "FELT framing restored, z 1.6",
+      "cue_tags": [
+        "callback"
+      ]
+    },
+    {
+      "t": 49.524,
+      "picture": "The gate's lens looks at the line. The tag peels off, and the whale recolours the line slate.",
+      "words": "",
+      "sound": "Peel, then focus",
+      "act": "payoff",
+      "bars": "27",
+      "camera": "FELT framing restored, z 1.6"
+    },
+    {
+      "t": 51.429,
+      "picture": "The pod answers ✓. Spark.",
+      "words": "",
+      "sound": "Resolved",
+      "act": "payoff",
+      "bars": "28",
+      "camera": "FELT framing restored, z 1.6"
+    },
+    {
+      "t": 55.238,
+      "picture": "Gate and line, still. No tags.",
+      "words": "Trust what came out, not what it says.",
+      "sound": "Pad tail",
+      "act": "belief",
+      "bars": "30",
+      "camera": "still, breathing only"
+    },
+    {
+      "t": 59.048,
+      "picture": "SERIES.lockup over the still line.",
+      "words": "",
+      "sound": "Pad tail ends in room tone",
+      "act": "lockup",
+      "bars": "32",
+      "camera": "still"
+    }
+  ],
+  "captions": [
+    {
+      "t_in": 0.952,
+      "t_out": 4.286,
+      "text": "The report said green.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 4.762,
+      "t_out": 8.571,
+      "text": "The screen said otherwise.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 10.476,
+      "t_out": 12.857,
+      "text": "Check the work, not its <i>label</i>.",
+      "kind": "title"
+    },
+    {
+      "t_in": 12.857,
+      "t_out": 16.19,
+      "text": "We checked what it said it was.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 16.667,
+      "t_out": 19.524,
+      "text": "Look at what really came out.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 20.952,
+      "t_out": 24.286,
+      "text": "Check the thing itself, not its tag.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 24.762,
+      "t_out": 28.095,
+      "text": "The tag said one thing. The line, another.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 28.571,
+      "t_out": 31.429,
+      "text": "Read what was built, not what was planned.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 32.381,
+      "t_out": 35.714,
+      "text": "Real run: the old check read the plan.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 33.333,
+      "t_out": 41.429,
+      "text": "Built page at 1.18:1 passed the old check",
+      "kind": "card",
+      "src": "https://app.notion.com/p/3f2d50cfaf9381a88b04f3837efcac6a"
+    },
+    {
+      "t_in": 36.19,
+      "t_out": 40.952,
+      "text": "Now we check the page that was built.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 42.381,
+      "t_out": 45.0,
+      "text": "An invented source still looks real.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 45.238,
+      "t_out": 47.619,
+      "text": "Checked output can still quote made-up sources.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 55.238,
+      "t_out": 59.048,
+      "text": "Trust what came out, not what it says.",
+      "kind": "caption"
+    }
+  ],
+  "terms": [],
+  "jargon": [
+    "rendered",
+    "declared",
+    "tokens"
+  ],
+  "sound": {
+    "signature": "A lens focus pull landing on a bright resolved tone",
+    "problem_motif": "A bright tone over a sour bass",
+    "limit_unresolved": true
+  },
+  "score_self": {
+    "score": 0.79,
+    "reason": "Leaders feel 'green report, broken product' instantly, and two verified escapes back it. The made-up-source limit is a second idea and could crowd LIMIT.",
+    "weakest_piece": "honest_limit"
+  }
+}

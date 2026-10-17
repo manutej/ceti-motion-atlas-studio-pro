@@ -1,0 +1,508 @@
+{
+  "schema_version": "sb60-v1",
+  "id": "sb-03-02",
+  "meta_prompt_id": "mp-c03-v1",
+  "cluster": "03 Noether & conservation",
+  "repo": "skill:noether-wiki",
+  "capability": "Merge two knowledge bases without hiding conflicts",
+  "audience": "Leaders",
+  "wada": 279,
+  "bpm": 128,
+  "dur": 60.3,
+  "title": "Merge, and keep the <i>seams</i>.",
+  "hook": {
+    "kind": "Example",
+    "picture": "Close: the whale braids two lines, one per team, into one rope. Where they twist, one team's dot slides over the other's and the covered dot vanishes.",
+    "words": "We merged both teams' docs."
+  },
+  "problem_in_viewer_words": {
+    "kind": "Fact",
+    "body": "We merged both teams' docs, and now nobody trusts either.",
+    "who": "operations lead after a reorg"
+  },
+  "why_it_keeps_happening": {
+    "kind": "Fact",
+    "picture": "Many braided lines, each with dents where one team's dot was quietly covered by the other's. Three more covers happen, accelerating.",
+    "words": "The last edit wins. The other just vanishes."
+  },
+  "stakes": {
+    "kind": "Fact",
+    "body": "Two teams' knowledge becomes one source nobody believes. People go back to asking each other, and the merge was wasted."
+  },
+  "solution_hint": "Keep both answers. Lose nothing without a note.",
+  "metaphor": {
+    "kind": "Example",
+    "body": "Two team lines are laid side by side. Wherever they meet, a seam shows whether they agree. Disagreements stay visible in one marked box instead of one covering the other.",
+    "symbols": [
+      "whale",
+      "line",
+      "seam",
+      "pod",
+      "tick"
+    ]
+  },
+  "mechanism_beats": {
+    "kind": "Method",
+    "steps": [
+      {
+        "t": 18.75,
+        "picture": "The two lines lie side by side. At each shared dot a dashed seam appears, and where the two dots agree, the seam turns teal with a tick.",
+        "words": "",
+        "sound": "Two notes meet in unison."
+      },
+      {
+        "t": 19.688,
+        "picture": "A chip appears on a teal seam.",
+        "words": "Same thing? Join them.",
+        "sound": "Soft click."
+      },
+      {
+        "t": 22.5,
+        "picture": "At a seam where the dots disagree, the seam glows raw sienna. Both dots stay, stacked side by side in one marked box.",
+        "words": "Disagree? Keep both. Mark the seam.",
+        "sound": "Two notes held, not merged."
+      },
+      {
+        "t": 25.312,
+        "picture": "Push-in (z 1.3). The whale tries to let one dot slip off the edge. A gate closes, and the dot slides back with a note tick.",
+        "words": "Nothing dropped without a written note.",
+        "sound": "Muted thud, then a click."
+      },
+      {
+        "t": 28.125,
+        "picture": "Ticks run along the strip: one per joined, kept or flagged dot.",
+        "words": "Every choice gets written down.",
+        "sound": "Soft ticks."
+      }
+    ]
+  },
+  "real_case": {
+    "kind": "Evidence",
+    "claim": "The memory graph merge of the 437-entity atlas and 111 new lab entities produced 548 entities, with conflicts kept, not smoothed.",
+    "numbers": [
+      "437",
+      "111",
+      "548"
+    ],
+    "source": {
+      "kind": "notion",
+      "title": "Memory graph map",
+      "url": "https://app.notion.com/p/3f3d50cfaf93813b8cfce21490365024"
+    },
+    "verified": true,
+    "illustrative": false
+  },
+  "honest_limit": {
+    "kind": "Constraint",
+    "picture": "Two dots for one thing, under different names, sit apart on the merged line. No seam forms and nothing glows, so the duplicate passes.",
+    "words": "Two names for one thing slip past."
+  },
+  "not_this": {
+    "kind": "Constraint",
+    "body": "Zero conflicts found usually means look again."
+  },
+  "ending_pattern": {
+    "kind": "Example",
+    "slug": "two-pods-agree",
+    "body": "The two pods that got opposite answers ask again. Both read the marked box and give the same answer with the same note.",
+    "callback": "In bar 3 two pods got opposite answers from the rope. Now, in the same framing, both get one answer and both see the conflict."
+  },
+  "end_belief": {
+    "kind": "Goal",
+    "body": "When you merge, keep conflicts visible."
+  },
+  "beats": [
+    {
+      "t": 0.0,
+      "picture": "Close: the whale braids two lines, one per team, into one rope. Where they twist, one team's dot slides over the other's and the covered dot vanishes.",
+      "words": "",
+      "sound": "Rope creak, a sour low note.",
+      "act": "felt",
+      "bars": "1",
+      "camera": "close z 1.6 on the whale"
+    },
+    {
+      "t": 0.938,
+      "picture": "The braid keeps twisting.",
+      "words": "We merged both teams' docs.",
+      "sound": "Room tone.",
+      "act": "felt",
+      "bars": "1",
+      "camera": "close z 1.6 on the whale"
+    },
+    {
+      "t": 1.875,
+      "picture": "Where the covered dot was, only a faint dent remains in the rope.",
+      "words": "",
+      "sound": "Sour note, softer.",
+      "act": "felt",
+      "bars": "2",
+      "camera": "close z 1.6 on the whale",
+      "cue_tags": [
+        "consequence"
+      ]
+    },
+    {
+      "t": 3.75,
+      "picture": "Two pods ask the rope the same thing. One gets a tick chip. The other gets a raw-sienna cross, quoting the vanished dot.",
+      "words": "",
+      "sound": "Two notes clash.",
+      "act": "felt",
+      "bars": "3",
+      "camera": "close z 1.6 on the whale",
+      "cue_tags": [
+        "consequence",
+        "focus"
+      ]
+    },
+    {
+      "t": 4.688,
+      "picture": "Both pods turn toward the whale.",
+      "words": "Now nobody trusts either one.",
+      "sound": "Room tone.",
+      "act": "felt",
+      "bars": "3",
+      "camera": "close z 1.6 on the whale"
+    },
+    {
+      "t": 7.5,
+      "picture": "The whale looks from one pod to the other. Hold.",
+      "words": "",
+      "sound": "Silence.",
+      "act": "felt",
+      "bars": "5",
+      "camera": "close z 1.6 on the whale",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 10.312,
+      "picture": "Stillness, then SERIES.open title.",
+      "words": "Merge, and keep the <i>seams</i>.",
+      "sound": "Near-silence, then title tick.",
+      "act": "why",
+      "bars": "6",
+      "camera": "pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "hinge"
+      ]
+    },
+    {
+      "t": 11.25,
+      "picture": "Pull back: many braided ropes, every one dented where a dot was covered.",
+      "words": "",
+      "sound": "Problem motif, low.",
+      "act": "why",
+      "bars": "7",
+      "camera": "pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 13.125,
+      "picture": "Three-times device: a dot slides over another and the lower one vanishes. Every 2 beats.",
+      "words": "The last edit wins. The other just vanishes.",
+      "sound": "Problem motif.",
+      "act": "why",
+      "bars": "8",
+      "camera": "pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 15.0,
+      "picture": "Two more covers, every beat then every half beat.",
+      "words": "",
+      "sound": "Problem motif, faster.",
+      "act": "why",
+      "bars": "9",
+      "camera": "pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 16.875,
+      "picture": "Everything stops. The vanished dots reappear as faint ghosts beside the dots that covered them.",
+      "words": "Keep both answers. Lose nothing without a note.",
+      "sound": "First clean signature chord.",
+      "act": "why",
+      "bars": "10",
+      "camera": "pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 18.75,
+      "picture": "The two lines lie side by side. At each shared dot a dashed seam appears, and where the two dots agree, the seam turns teal with a tick.",
+      "words": "",
+      "sound": "Two notes meet in unison.",
+      "act": "move",
+      "bars": "11",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 19.688,
+      "picture": "A chip appears on a teal seam.",
+      "words": "Same thing? Join them.",
+      "sound": "Soft click.",
+      "act": "move",
+      "bars": "11",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 22.5,
+      "picture": "At a seam where the dots disagree, the seam glows raw sienna. Both dots stay, stacked side by side in one marked box.",
+      "words": "Disagree? Keep both. Mark the seam.",
+      "sound": "Two notes held, not merged.",
+      "act": "move",
+      "bars": "13",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 25.312,
+      "picture": "Push-in (z 1.3). The whale tries to let one dot slip off the edge. A gate closes, and the dot slides back with a note tick.",
+      "words": "Nothing dropped without a written note.",
+      "sound": "Muted thud, then a click.",
+      "act": "move",
+      "bars": "14",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech",
+        "focus"
+      ]
+    },
+    {
+      "t": 28.125,
+      "picture": "Ticks run along the strip: one per joined, kept or flagged dot.",
+      "words": "Every choice gets written down.",
+      "sound": "Soft ticks.",
+      "act": "move",
+      "bars": "16",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 30.0,
+      "picture": "Wide: a 437-dot line and a 111-dot line meet. Seams light along the join, most teal, two raw sienna and stacked.",
+      "words": "Real run: two wikis, conflicts kept, not smoothed.",
+      "sound": "Pulse bed.",
+      "act": "case",
+      "bars": "17",
+      "camera": "steady wide, slow drift"
+    },
+    {
+      "t": 30.938,
+      "picture": "Card: Real run · Memory graph map.",
+      "words": "437 + 111 → 548 entities",
+      "sound": "Card tick.",
+      "act": "case",
+      "bars": "17",
+      "camera": "steady wide, slow drift"
+    },
+    {
+      "t": 35.625,
+      "picture": "Slow drift to one raw-sienna seam: two dots with different values sit in one box, each with its own source tick. A box tick lands.",
+      "words": "Both answers kept, each with its source.",
+      "sound": "Two-note figure.",
+      "act": "case",
+      "bars": "20",
+      "camera": "steady wide, slow drift"
+    },
+    {
+      "t": 41.25,
+      "picture": "Still, then a slow push. Two dots for the same thing, under different names, sit far apart on the merged line. No seam forms between them and nothing glows.",
+      "words": "Two names for one thing slip past.",
+      "sound": "Signature chord once, unresolved.",
+      "act": "limit",
+      "bars": "23",
+      "camera": "still, then one slow push",
+      "cue_tags": [
+        "limit",
+        "focus"
+      ]
+    },
+    {
+      "t": 44.062,
+      "picture": "Hold on the two unjoined dots.",
+      "words": "Zero conflicts found usually means look again.",
+      "sound": "Room tone.",
+      "act": "limit",
+      "bars": "24",
+      "camera": "still, then one slow push"
+    },
+    {
+      "t": 46.875,
+      "picture": "FELT framing (z 1.6). The two pods from bar 3 ask the same thing again. Both read the marked box.",
+      "words": "",
+      "sound": "Chord returns.",
+      "act": "payoff",
+      "bars": "26",
+      "camera": "FELT framing z 1.6, then wide reveal",
+      "cue_tags": [
+        "callback"
+      ]
+    },
+    {
+      "t": 50.625,
+      "picture": "Both pods answer with the same tick chip and the same note. Pull back: the merged line runs whole, seams ticked along its length. The whale spouts.",
+      "words": "",
+      "sound": "Full resolution.",
+      "act": "payoff",
+      "bars": "28",
+      "camera": "FELT framing z 1.6, then wide reveal",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 54.375,
+      "picture": "Still merged line, whale breathing.",
+      "words": "When you merge, keep conflicts visible.",
+      "sound": "Pad tail.",
+      "act": "belief",
+      "bars": "30",
+      "camera": "still, breathing only"
+    },
+    {
+      "t": 58.125,
+      "picture": "SERIES.lockup over the settled line.",
+      "words": "",
+      "sound": "Pad tail ends on the tonic.",
+      "act": "lockup",
+      "bars": "32",
+      "camera": "still"
+    }
+  ],
+  "captions": [
+    {
+      "t_in": 0.938,
+      "t_out": 3.75,
+      "text": "We merged both teams' docs.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 4.688,
+      "t_out": 8.438,
+      "text": "Now nobody trusts either one.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 10.312,
+      "t_out": 13.125,
+      "text": "Merge, and keep the <i>seams</i>.",
+      "kind": "title"
+    },
+    {
+      "t_in": 13.125,
+      "t_out": 16.406,
+      "text": "The last edit wins. The other just vanishes.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 16.875,
+      "t_out": 19.219,
+      "text": "Keep both answers. Lose nothing without a note.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 19.688,
+      "t_out": 21.562,
+      "text": "Same thing? Join them.",
+      "kind": "label"
+    },
+    {
+      "t_in": 22.5,
+      "t_out": 25.312,
+      "text": "Disagree? Keep both. Mark the seam.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 25.312,
+      "t_out": 28.125,
+      "text": "Nothing dropped without a written note.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 28.125,
+      "t_out": 30.938,
+      "text": "Every choice gets written down.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 30.0,
+      "t_out": 33.75,
+      "text": "Real run: two wikis, conflicts kept, not smoothed.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 30.938,
+      "t_out": 38.438,
+      "text": "437 + 111 → 548 entities",
+      "kind": "card",
+      "src": "https://app.notion.com/p/3f3d50cfaf93813b8cfce21490365024"
+    },
+    {
+      "t_in": 35.625,
+      "t_out": 40.312,
+      "text": "Both answers kept, each with its source.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 41.25,
+      "t_out": 44.062,
+      "text": "Two names for one thing slip past.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 44.062,
+      "t_out": 46.875,
+      "text": "Zero conflicts found usually means look again.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 54.375,
+      "t_out": 58.125,
+      "text": "When you merge, keep conflicts visible.",
+      "kind": "caption"
+    }
+  ],
+  "terms": [
+    {
+      "term": "seam",
+      "symbol": "dashed seam",
+      "pictured_at": 18.75,
+      "named_at": 22.5
+    }
+  ],
+  "jargon": [
+    "merge conflict",
+    "entity",
+    "dedupe"
+  ],
+  "sound": {
+    "signature": "Two notes that meet in unison at a seam.",
+    "problem_motif": "The same two notes clashing a semitone apart.",
+    "limit_unresolved": true
+  },
+  "score_self": {
+    "score": 0.76,
+    "reason": "Mechanical gates N3 N4 N5 N6 N8 N9 S1 and read time pass. A strong leader pain. The limit (aliases) is honest but subtle on a phone. J1 unrun.",
+    "weakest_piece": "honest_limit"
+  }
+}

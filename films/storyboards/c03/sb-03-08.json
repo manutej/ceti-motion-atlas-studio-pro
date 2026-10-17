@@ -1,0 +1,513 @@
+{
+  "schema_version": "sb60-v1",
+  "id": "sb-03-08",
+  "meta_prompt_id": "mp-c03-v1",
+  "cluster": "03 Noether & conservation",
+  "repo": "skill:noether-wiki",
+  "capability": "Add up small changes before they add up",
+  "audience": "Leaders",
+  "wada": 296,
+  "bpm": 126,
+  "dur": 61.252,
+  "title": "Small changes, one <i>counter</i>.",
+  "hook": {
+    "kind": "Example",
+    "picture": "Close on the line. The whale makes one tiny bend: fine. Another tiny bend. Another. Each one barely visible.",
+    "words": "Each change looked fine."
+  },
+  "problem_in_viewer_words": {
+    "kind": "Fact",
+    "body": "Every change was fine. Together they changed everything.",
+    "who": "head of a docs team at quarter end"
+  },
+  "why_it_keeps_happening": {
+    "kind": "Fact",
+    "picture": "Dozens of tiny bends, each with a small tick beside it, add up to a line that has wandered far from its start. Three more bends, accelerating.",
+    "words": "We check each step. Never the sum."
+  },
+  "stakes": {
+    "kind": "Fact",
+    "body": "A quarter of fine edits leaves docs nobody recognises. People who learned the old version get it wrong."
+  },
+  "solution_hint": "Keep a running total. Stop when full.",
+  "metaphor": {
+    "kind": "Example",
+    "body": "Each small bend of the line adds a sliver to one counter bar. When the bar nears its line, the whale stops and asks.",
+    "symbols": [
+      "whale",
+      "line",
+      "counter",
+      "gate",
+      "pod"
+    ]
+  },
+  "mechanism_beats": {
+    "kind": "Method",
+    "steps": [
+      {
+        "t": 19.048,
+        "picture": "The counter bar sits by the line, starting empty. Each tiny bend adds a sliver of copper to the bar.",
+        "words": "",
+        "sound": "Tuned pluck per sliver."
+      },
+      {
+        "t": 20.0,
+        "picture": "A chip on the bar.",
+        "words": "Wobble used so far.",
+        "sound": "Click."
+      },
+      {
+        "t": 22.857,
+        "picture": "Bends pile up and the bar fills step by step. Each sliver is small, but the bar keeps the sum.",
+        "words": "Small steps add up in plain sight.",
+        "sound": "Plucks, rising pitch."
+      },
+      {
+        "t": 25.714,
+        "picture": "Push-in (z 1.3). The bar reaches its reserve line. A gate ahead closes and the whale stops editing and turns toward the viewer.",
+        "words": "Budget nearly gone? Stop and ask.",
+        "sound": "Pluck held, then silence."
+      },
+      {
+        "t": 28.571,
+        "picture": "Ticks under the line, one per step, each carrying its sliver.",
+        "words": "This wobble has a name: drift.",
+        "sound": "Soft ticks."
+      }
+    ]
+  },
+  "real_case": {
+    "kind": "Evidence",
+    "claim": "The memory graph merge (548 entities) finished with soft drift 0.0 under the wikictl gates. The noether-wiki skill caps each step (default 2.0) and the session (default 10.0).",
+    "numbers": [
+      "548",
+      "soft drift 0.0"
+    ],
+    "source": {
+      "kind": "notion",
+      "title": "Memory graph map",
+      "url": "https://app.notion.com/p/3f3d50cfaf93813b8cfce21490365024"
+    },
+    "verified": true,
+    "illustrative": false
+  },
+  "honest_limit": {
+    "kind": "Constraint",
+    "picture": "A dot keeps its place but changes colour: the same shape, a different meaning. The bar does not move and every gate passes.",
+    "words": "The counter misses what nobody measures."
+  },
+  "not_this": {
+    "kind": "Constraint",
+    "body": "A budget limits wobble, not wrong ideas."
+  },
+  "ending_pattern": {
+    "kind": "Example",
+    "slug": "ghost-overlay",
+    "body": "The ghost of the original line returns beside the edited line. After a quarter of edits the two nearly match, and the bar has room left.",
+    "callback": "The long copper gap between old and new line in FELT is a hairline, in the same framing."
+  },
+  "end_belief": {
+    "kind": "Goal",
+    "body": "Track the total, not just each change."
+  },
+  "beats": [
+    {
+      "t": 0.0,
+      "picture": "Close on the line. The whale makes one tiny bend: fine. Another tiny bend. Another. Each one barely visible.",
+      "words": "",
+      "sound": "Soft pizzicato, slowly going flat.",
+      "act": "felt",
+      "bars": "1",
+      "camera": "close z 1.6 on the whale"
+    },
+    {
+      "t": 0.952,
+      "picture": "Another tiny bend.",
+      "words": "Each change looked fine.",
+      "sound": "Room tone.",
+      "act": "felt",
+      "bars": "1",
+      "camera": "close z 1.6 on the whale"
+    },
+    {
+      "t": 1.905,
+      "picture": "The ghost of the original line fades in. The new line is far from it now, with a long copper gap between them.",
+      "words": "",
+      "sound": "Flat pizzicato.",
+      "act": "felt",
+      "bars": "2",
+      "camera": "close z 1.6 on the whale",
+      "cue_tags": [
+        "consequence"
+      ]
+    },
+    {
+      "t": 3.81,
+      "picture": "A pod that learned the old line reads the new one and answers with a copper cross chip.",
+      "words": "",
+      "sound": "Dull thunk.",
+      "act": "felt",
+      "bars": "3",
+      "camera": "close z 1.6 on the whale",
+      "cue_tags": [
+        "consequence",
+        "focus"
+      ]
+    },
+    {
+      "t": 4.762,
+      "picture": "The gap glows faintly.",
+      "words": "Together, they changed the whole thing.",
+      "sound": "Room tone.",
+      "act": "felt",
+      "bars": "3",
+      "camera": "close z 1.6 on the whale"
+    },
+    {
+      "t": 7.619,
+      "picture": "The whale looks along the gap. Hold.",
+      "words": "",
+      "sound": "Silence.",
+      "act": "felt",
+      "bars": "5",
+      "camera": "close z 1.6 on the whale",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 10.476,
+      "picture": "Stillness, then SERIES.open title.",
+      "words": "Small changes, one <i>counter</i>.",
+      "sound": "Near-silence, title tick.",
+      "act": "why",
+      "bars": "6",
+      "camera": "pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "hinge"
+      ]
+    },
+    {
+      "t": 11.429,
+      "picture": "Pull back: dozens of tiny bends, each with a small tick, adding up to a line that has wandered off the page.",
+      "words": "",
+      "sound": "Problem motif.",
+      "act": "why",
+      "bars": "7",
+      "camera": "pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 13.333,
+      "picture": "Three-times device: a tiny bend gets its own tick. Every 2 beats.",
+      "words": "We check each step. Never the sum.",
+      "sound": "Pizzicato, flatter.",
+      "act": "why",
+      "bars": "8",
+      "camera": "pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 15.238,
+      "picture": "Two more bends with ticks, every beat then every half beat.",
+      "words": "",
+      "sound": "Faster, flatter.",
+      "act": "why",
+      "bars": "9",
+      "camera": "pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 17.143,
+      "picture": "Everything stops. An empty bar outline appears by the line.",
+      "words": "Keep a running total. Stop when full.",
+      "sound": "First clean signature: a tuned pizzicato.",
+      "act": "why",
+      "bars": "10",
+      "camera": "pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 19.048,
+      "picture": "The counter bar sits by the line, starting empty. Each tiny bend adds a sliver of copper to the bar.",
+      "words": "",
+      "sound": "Tuned pluck per sliver.",
+      "act": "move",
+      "bars": "11",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 20.0,
+      "picture": "A chip on the bar.",
+      "words": "Wobble used so far.",
+      "sound": "Click.",
+      "act": "move",
+      "bars": "11",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 22.857,
+      "picture": "Bends pile up and the bar fills step by step. Each sliver is small, but the bar keeps the sum.",
+      "words": "Small steps add up in plain sight.",
+      "sound": "Plucks, rising pitch.",
+      "act": "move",
+      "bars": "13",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 25.714,
+      "picture": "Push-in (z 1.3). The bar reaches its reserve line. A gate ahead closes and the whale stops editing and turns toward the viewer.",
+      "words": "Budget nearly gone? Stop and ask.",
+      "sound": "Pluck held, then silence.",
+      "act": "move",
+      "bars": "14",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech",
+        "focus"
+      ]
+    },
+    {
+      "t": 28.571,
+      "picture": "Ticks under the line, one per step, each carrying its sliver.",
+      "words": "This wobble has a name: drift.",
+      "sound": "Soft ticks.",
+      "act": "move",
+      "bars": "16",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 30.476,
+      "picture": "Wide: two lines merge into one long line. The counter bar stays empty the whole way.",
+      "words": "Real run: a big merge, no wobble.",
+      "sound": "Pulse bed.",
+      "act": "case",
+      "bars": "17",
+      "camera": "steady wide, slow drift"
+    },
+    {
+      "t": 31.429,
+      "picture": "Card: Real run · Memory graph map.",
+      "words": "548 entities · soft drift 0.0",
+      "sound": "Card tick.",
+      "act": "case",
+      "bars": "17",
+      "camera": "steady wide, slow drift"
+    },
+    {
+      "t": 36.19,
+      "picture": "Two caps appear on the bar: one small notch per step and one total line for the session.",
+      "words": "Each step capped. The total capped too.",
+      "sound": "Two plucks.",
+      "act": "case",
+      "bars": "20",
+      "camera": "steady wide, slow drift"
+    },
+    {
+      "t": 41.905,
+      "picture": "Still, then a slow push. A dot keeps its place but changes colour slightly: the same shape, a different meaning. The bar does not move and every gate passes.",
+      "words": "The counter misses what nobody measures.",
+      "sound": "Signature pluck once, unresolved.",
+      "act": "limit",
+      "bars": "23",
+      "camera": "still, then one slow push",
+      "cue_tags": [
+        "limit",
+        "focus"
+      ]
+    },
+    {
+      "t": 44.762,
+      "picture": "Hold on the recoloured dot.",
+      "words": "A budget limits wobble, not wrong ideas.",
+      "sound": "Room tone.",
+      "act": "limit",
+      "bars": "24",
+      "camera": "still, then one slow push"
+    },
+    {
+      "t": 47.619,
+      "picture": "FELT framing (z 1.6). The ghost of the original line returns. After a quarter of edits, the new line lies close beside it. The copper gap is a hairline.",
+      "words": "",
+      "sound": "Tuned plucks.",
+      "act": "payoff",
+      "bars": "26",
+      "camera": "FELT framing z 1.6, then wide reveal",
+      "cue_tags": [
+        "callback"
+      ]
+    },
+    {
+      "t": 51.429,
+      "picture": "The bar shows room left. The pod from bar 3 reads the line and answers with a tick chip. Whale spouts.",
+      "words": "",
+      "sound": "Full resolution.",
+      "act": "payoff",
+      "bars": "28",
+      "camera": "FELT framing z 1.6, then wide reveal",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 55.238,
+      "picture": "Still line, ghost beside it, whale breathing.",
+      "words": "Track the total, not just each change.",
+      "sound": "Pad tail.",
+      "act": "belief",
+      "bars": "30",
+      "camera": "still, breathing only"
+    },
+    {
+      "t": 59.048,
+      "picture": "SERIES.lockup over the settled line.",
+      "words": "",
+      "sound": "Pad tail ends on the tonic.",
+      "act": "lockup",
+      "bars": "32",
+      "camera": "still"
+    }
+  ],
+  "captions": [
+    {
+      "t_in": 0.952,
+      "t_out": 3.81,
+      "text": "Each change looked fine.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 4.762,
+      "t_out": 8.571,
+      "text": "Together, they changed the whole thing.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 10.476,
+      "t_out": 13.333,
+      "text": "Small changes, one <i>counter</i>.",
+      "kind": "title"
+    },
+    {
+      "t_in": 13.333,
+      "t_out": 16.667,
+      "text": "We check each step. Never the sum.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 17.143,
+      "t_out": 19.524,
+      "text": "Keep a running total. Stop when full.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 20.0,
+      "t_out": 21.905,
+      "text": "Wobble used so far.",
+      "kind": "label"
+    },
+    {
+      "t_in": 22.857,
+      "t_out": 25.714,
+      "text": "Small steps add up in plain sight.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 25.714,
+      "t_out": 28.571,
+      "text": "Budget nearly gone? Stop and ask.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 28.571,
+      "t_out": 31.429,
+      "text": "This wobble has a name: drift.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 30.476,
+      "t_out": 34.286,
+      "text": "Real run: a big merge, no wobble.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 31.429,
+      "t_out": 39.048,
+      "text": "548 entities · soft drift 0.0",
+      "kind": "card",
+      "src": "https://app.notion.com/p/3f3d50cfaf93813b8cfce21490365024"
+    },
+    {
+      "t_in": 36.19,
+      "t_out": 40.952,
+      "text": "Each step capped. The total capped too.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 41.905,
+      "t_out": 44.762,
+      "text": "The counter misses what nobody measures.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 44.762,
+      "t_out": 47.619,
+      "text": "A budget limits wobble, not wrong ideas.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 55.238,
+      "t_out": 59.048,
+      "text": "Track the total, not just each change.",
+      "kind": "caption"
+    }
+  ],
+  "terms": [
+    {
+      "term": "budget",
+      "symbol": "counter bar with reserve line",
+      "pictured_at": 19.048,
+      "named_at": 25.714
+    },
+    {
+      "term": "drift",
+      "symbol": "copper slivers",
+      "pictured_at": 19.048,
+      "named_at": 28.571
+    }
+  ],
+  "jargon": [
+    "drift",
+    "budget",
+    "cumulative"
+  ],
+  "sound": {
+    "signature": "A tuned pizzicato, one pluck per change.",
+    "problem_motif": "The same pluck going slowly flat.",
+    "limit_unresolved": true
+  },
+  "score_self": {
+    "score": 0.77,
+    "reason": "Mechanical gates N3 N4 N5 N6 N8 N9 S1 and read time pass. A strong leader pain. The case shows zero drift, not the budget stopping anything, so it is weak proof of the stop. J1 unrun.",
+    "weakest_piece": "real_case"
+  }
+}

@@ -13,7 +13,7 @@
   "hook": {
     "kind": "Example",
     "picture": "Close on the whale as a shower of ticks lands on one big glowing card. Just below it, a small card that holds it up stays grey and raises a flag.",
-    "words": "The app got all the thanks."
+    "words": "Our app got all the thanks."
   },
   "problem_in_viewer_words": {
     "kind": "Fact",
@@ -72,7 +72,7 @@
   },
   "real_case": {
     "kind": "Evidence",
-    "claim": "In the deepfunding graph explored by sheaf-dep-ethereum, each of 14,927 edges carries a weight: the portion of the dependent's credit that belongs to the dependency. Weights leaving a source total less than one.",
+    "claim": "In the deepfunding graph that sheaf-dep-ethereum explores, each of 14,927 edges carries a weight (the share of credit owed to the dependency); weights leaving a source total under one.",
     "numbers": [
       "14,927"
     ],
@@ -109,7 +109,7 @@
       "act": "felt",
       "bars": "1-2",
       "picture": "Close on the whale as a shower of ticks rains onto one big glowing card at the top of the line.",
-      "words": "The app got all the thanks.",
+      "words": "Our app got all the thanks.",
       "sound": "Bright coin-like chimes.",
       "camera": "close z 1.6 on the whale",
       "cue_tags": [
@@ -352,7 +352,7 @@
     {
       "t_in": 0.968,
       "t_out": 4.839,
-      "text": "The app got all the thanks.",
+      "text": "Our app got all the thanks.",
       "kind": "caption"
     },
     {
@@ -400,7 +400,7 @@
     {
       "t_in": 31.935,
       "t_out": 40.161,
-      "text": "Real data · 14,927 links, each with a share",
+      "text": "Real data · 14,927 links, each shared",
       "kind": "card",
       "src": "https://github.com/deepfunding/dependency-graph"
     },

@@ -1,0 +1,506 @@
+{
+  "schema_version": "sb60-v1",
+  "id": "sb-03-10",
+  "meta_prompt_id": "mp-c03-v1",
+  "cluster": "03 Noether & conservation",
+  "repo": "skill:noether-wiki",
+  "capability": "Keep the doc and the build matching on every change",
+  "audience": "Engineers",
+  "wada": 207,
+  "bpm": 122,
+  "dur": 63.251,
+  "title": "Two copies, one <i>seam</i>.",
+  "hook": {
+    "kind": "Example",
+    "picture": "Close: two lines run side by side like rails, the doc above and the build below. The whale edits the lower one only, and the rails start to part.",
+    "words": "We changed the build, not the doc."
+  },
+  "problem_in_viewer_words": {
+    "kind": "Fact",
+    "body": "The build quietly stopped matching the design doc.",
+    "who": "tech lead on release day"
+  },
+  "why_it_keeps_happening": {
+    "kind": "Fact",
+    "picture": "The two rails fan out across the screen: many edits, each to one rail only. Three more one-sided edits, accelerating.",
+    "words": "Nothing ever compares the two."
+  },
+  "stakes": {
+    "kind": "Fact",
+    "body": "The doc lies to everyone who builds from it, and the next agent or hire builds the wrong thing."
+  },
+  "solution_hint": "Compare both copies on every change.",
+  "metaphor": {
+    "kind": "Example",
+    "body": "Doc and build are two rails. Short seams join them at each shared point, and a gate waits until both sides match, so the rails always step together.",
+    "symbols": [
+      "whale",
+      "line",
+      "seam",
+      "gate",
+      "pod"
+    ]
+  },
+  "mechanism_beats": {
+    "kind": "Method",
+    "steps": [
+      {
+        "t": 19.672,
+        "picture": "Short dashed seams appear between the rails at each shared point. At each one the two dots must sit level.",
+        "words": "",
+        "sound": "Unison tone per seam."
+      },
+      {
+        "t": 20.656,
+        "picture": "A chip on one seam.",
+        "words": "Must match here.",
+        "sound": "Click."
+      },
+      {
+        "t": 23.607,
+        "picture": "The whale edits the build rail. A seam stretches and glows rust, and a gate on the rail closes until the doc rail is updated too.",
+        "words": "One side changed? The gate waits.",
+        "sound": "Tones beat, then a gate thud."
+      },
+      {
+        "t": 26.557,
+        "picture": "Push-in (z 1.28). The whale updates the doc dot. The seam shortens and ticks teal, the gate opens, and both rails step together.",
+        "words": "Checks live where the copies meet: seams.",
+        "sound": "Beating resolves to unison."
+      },
+      {
+        "t": 29.508,
+        "picture": "Each matched seam leaves a tick on the strip.",
+        "words": "Every match written down.",
+        "sound": "Soft ticks."
+      }
+    ]
+  },
+  "real_case": {
+    "kind": "Evidence",
+    "claim": "Escape register: a build silently diverged from its design document. It slipped past because nothing compared them, and it is now caught by AP-54 conformance.",
+    "numbers": [
+      "AP-54"
+    ],
+    "source": {
+      "kind": "notion",
+      "title": "Limits & escapes register",
+      "url": "https://app.notion.com/p/3f2d50cfaf9381a88b04f3837efcac6a"
+    },
+    "verified": true,
+    "illustrative": false
+  },
+  "honest_limit": {
+    "kind": "Constraint",
+    "picture": "A feature neither rail mentions slides between them. No seam exists there, so nothing glows.",
+    "words": "Missing from both copies? Nothing glows."
+  },
+  "not_this": {
+    "kind": "Constraint",
+    "body": "Matching copies can both be wrong."
+  },
+  "ending_pattern": {
+    "kind": "Example",
+    "slug": "rails-in-step",
+    "body": "The same one-sided edit now makes its seam glow until the doc follows, and the two rails curve together through a long bend.",
+    "callback": "The rails that parted in bar 1 now run parallel through a curve, in the same framing."
+  },
+  "end_belief": {
+    "kind": "Goal",
+    "body": "Two copies? Check them where they meet."
+  },
+  "beats": [
+    {
+      "t": 0.0,
+      "picture": "Close: two lines run side by side like rails, the doc above and the build below. The whale edits the lower one only, and the rails start to part.",
+      "words": "",
+      "sound": "Two tones a hair apart, beating.",
+      "act": "felt",
+      "bars": "1",
+      "camera": "close z 1.6 on the whale"
+    },
+    {
+      "t": 0.984,
+      "picture": "Another edit to the lower rail.",
+      "words": "We changed the build, not the doc.",
+      "sound": "Room tone.",
+      "act": "felt",
+      "bars": "1",
+      "camera": "close z 1.6 on the whale"
+    },
+    {
+      "t": 1.967,
+      "picture": "The rails part further and a gap opens.",
+      "words": "",
+      "sound": "Beating, wider.",
+      "act": "felt",
+      "bars": "2",
+      "camera": "close z 1.6 on the whale",
+      "cue_tags": [
+        "consequence"
+      ]
+    },
+    {
+      "t": 3.934,
+      "picture": "A pod reads the doc rail, builds on it, and answers with a rust cross when it meets the build.",
+      "words": "",
+      "sound": "Dull thunk.",
+      "act": "felt",
+      "bars": "3",
+      "camera": "close z 1.6 on the whale",
+      "cue_tags": [
+        "consequence",
+        "focus"
+      ]
+    },
+    {
+      "t": 4.918,
+      "picture": "The gap glows.",
+      "words": "Nobody noticed until it broke.",
+      "sound": "Room tone.",
+      "act": "felt",
+      "bars": "3",
+      "camera": "close z 1.6 on the whale"
+    },
+    {
+      "t": 7.869,
+      "picture": "The whale looks between the rails. Hold.",
+      "words": "",
+      "sound": "Silence.",
+      "act": "felt",
+      "bars": "5",
+      "camera": "close z 1.6 on the whale",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 10.82,
+      "picture": "Stillness, then SERIES.open title.",
+      "words": "Two copies, one <i>seam</i>.",
+      "sound": "Near-silence, title tick.",
+      "act": "why",
+      "bars": "6",
+      "camera": "pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "hinge"
+      ]
+    },
+    {
+      "t": 11.803,
+      "picture": "Pull back: the rails fan out across the screen. Many edits, each to one rail only.",
+      "words": "",
+      "sound": "Problem motif.",
+      "act": "why",
+      "bars": "7",
+      "camera": "pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 13.77,
+      "picture": "Three-times device: a one-sided edit pushes the rails apart. Every 2 beats.",
+      "words": "Nothing ever compares the two.",
+      "sound": "Beating tones.",
+      "act": "why",
+      "bars": "8",
+      "camera": "pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 15.738,
+      "picture": "Two more one-sided edits, every beat then every half beat.",
+      "words": "",
+      "sound": "Beating, faster.",
+      "act": "why",
+      "bars": "9",
+      "camera": "pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 17.705,
+      "picture": "Everything stops. Faint dashes ghost in between the rails.",
+      "words": "Compare both copies on every change.",
+      "sound": "First clean signature: two tones in unison.",
+      "act": "why",
+      "bars": "10",
+      "camera": "pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 19.672,
+      "picture": "Short dashed seams appear between the rails at each shared point. At each one the two dots must sit level.",
+      "words": "",
+      "sound": "Unison tone per seam.",
+      "act": "move",
+      "bars": "11",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 20.656,
+      "picture": "A chip on one seam.",
+      "words": "Must match here.",
+      "sound": "Click.",
+      "act": "move",
+      "bars": "11",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 23.607,
+      "picture": "The whale edits the build rail. A seam stretches and glows rust, and a gate on the rail closes until the doc rail is updated too.",
+      "words": "One side changed? The gate waits.",
+      "sound": "Tones beat, then a gate thud.",
+      "act": "move",
+      "bars": "13",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 26.557,
+      "picture": "Push-in (z 1.28). The whale updates the doc dot. The seam shortens and ticks teal, the gate opens, and both rails step together.",
+      "words": "Checks live where the copies meet: seams.",
+      "sound": "Beating resolves to unison.",
+      "act": "move",
+      "bars": "14",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech",
+        "focus"
+      ]
+    },
+    {
+      "t": 29.508,
+      "picture": "Each matched seam leaves a tick on the strip.",
+      "words": "Every match written down.",
+      "sound": "Soft ticks.",
+      "act": "move",
+      "bars": "16",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 31.475,
+      "picture": "Wide: a long pair of rails. A rust flag arrives with a doc icon and a build icon and becomes a new pin on the seam line.",
+      "words": "Real catch: a build left its design.",
+      "sound": "Pulse bed.",
+      "act": "case",
+      "bars": "17",
+      "camera": "steady wide, slow drift"
+    },
+    {
+      "t": 32.459,
+      "picture": "Card: Real run · Limits & escapes register.",
+      "words": "Slipped past: nothing compared them. Now: AP-54.",
+      "sound": "Card tick.",
+      "act": "case",
+      "bars": "17",
+      "camera": "steady wide, slow drift"
+    },
+    {
+      "t": 37.377,
+      "picture": "Releases pass through the new seam check with the rails in step.",
+      "words": "Now every release compares the two.",
+      "sound": "Unison, steady.",
+      "act": "case",
+      "bars": "20",
+      "camera": "steady wide, slow drift"
+    },
+    {
+      "t": 43.279,
+      "picture": "Still, then a slow push. A feature that neither rail mentions slides between them. No seam exists there, so nothing glows and it passes.",
+      "words": "Missing from both copies? Nothing glows.",
+      "sound": "Signature unison once, unresolved.",
+      "act": "limit",
+      "bars": "23",
+      "camera": "still, then one slow push",
+      "cue_tags": [
+        "limit",
+        "focus"
+      ]
+    },
+    {
+      "t": 46.23,
+      "picture": "Hold on the unmarked gap.",
+      "words": "Matching copies can both be wrong.",
+      "sound": "Room tone.",
+      "act": "limit",
+      "bars": "24",
+      "camera": "still, then one slow push"
+    },
+    {
+      "t": 49.18,
+      "picture": "FELT framing (z 1.6). The same two rails, the same edit to the build. The seam glows, the doc updates, and the rails run parallel through a long curve.",
+      "words": "",
+      "sound": "Unison tones.",
+      "act": "payoff",
+      "bars": "26",
+      "camera": "FELT framing z 1.6, then wide reveal",
+      "cue_tags": [
+        "callback"
+      ]
+    },
+    {
+      "t": 53.115,
+      "picture": "The pod reads the doc, builds, and answers with a tick chip. Whale spouts.",
+      "words": "",
+      "sound": "Full resolution.",
+      "act": "payoff",
+      "bars": "28",
+      "camera": "FELT framing z 1.6, then wide reveal",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 57.049,
+      "picture": "Still rails, whale breathing.",
+      "words": "Two copies? Check them where they meet.",
+      "sound": "Pad tail.",
+      "act": "belief",
+      "bars": "30",
+      "camera": "still, breathing only"
+    },
+    {
+      "t": 60.984,
+      "picture": "SERIES.lockup over the settled line.",
+      "words": "",
+      "sound": "Pad tail ends on the tonic.",
+      "act": "lockup",
+      "bars": "32",
+      "camera": "still"
+    }
+  ],
+  "captions": [
+    {
+      "t_in": 0.984,
+      "t_out": 3.934,
+      "text": "We changed the build, not the doc.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 4.918,
+      "t_out": 8.852,
+      "text": "Nobody noticed until it broke.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 10.82,
+      "t_out": 13.77,
+      "text": "Two copies, one <i>seam</i>.",
+      "kind": "title"
+    },
+    {
+      "t_in": 13.77,
+      "t_out": 17.213,
+      "text": "Nothing ever compares the two.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 17.705,
+      "t_out": 20.164,
+      "text": "Compare both copies on every change.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 20.656,
+      "t_out": 22.623,
+      "text": "Must match here.",
+      "kind": "label"
+    },
+    {
+      "t_in": 23.607,
+      "t_out": 26.557,
+      "text": "One side changed? The gate waits.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 26.557,
+      "t_out": 29.508,
+      "text": "Checks live where the copies meet: seams.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 29.508,
+      "t_out": 32.459,
+      "text": "Every match written down.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 31.475,
+      "t_out": 35.41,
+      "text": "Real catch: a build left its design.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 32.459,
+      "t_out": 40.328,
+      "text": "Slipped past: nothing compared them. Now: AP-54.",
+      "kind": "card",
+      "src": "https://app.notion.com/p/3f2d50cfaf9381a88b04f3837efcac6a"
+    },
+    {
+      "t_in": 37.377,
+      "t_out": 42.295,
+      "text": "Now every release compares the two.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 43.279,
+      "t_out": 46.23,
+      "text": "Missing from both copies? Nothing glows.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 46.23,
+      "t_out": 49.18,
+      "text": "Matching copies can both be wrong.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 57.049,
+      "t_out": 60.984,
+      "text": "Two copies? Check them where they meet.",
+      "kind": "caption"
+    }
+  ],
+  "terms": [
+    {
+      "term": "seams",
+      "symbol": "dashed seam between rails",
+      "pictured_at": 19.672,
+      "named_at": 26.557
+    }
+  ],
+  "jargon": [
+    "sync",
+    "index",
+    "conformance"
+  ],
+  "sound": {
+    "signature": "Two tones in perfect unison.",
+    "problem_motif": "The same two tones a hair apart, beating.",
+    "limit_unresolved": true
+  },
+  "score_self": {
+    "score": 0.78,
+    "reason": "Mechanical gates N3 N4 N5 N6 N8 N9 S1 and read time pass. A real escape grounds the case. It overlaps cluster 01's seam grammar, so it may read as sheaf memory. J1 unrun.",
+    "weakest_piece": "metaphor"
+  }
+}

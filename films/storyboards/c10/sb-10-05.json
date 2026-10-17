@@ -72,7 +72,7 @@
   },
   "real_case": {
     "kind": "Evidence",
-    "claim": "The craft README states \"~19.7% of AI-suggested packages don't\" exist, attributing the figure to USENIX Security 2025. Its supply-chain-hygiene skill checks that dependencies exist and that APIs are real.",
+    "claim": "The craft README: \"~19.7% of AI-suggested packages don't\" exist (attributed to USENIX Security 2025); its supply-chain-hygiene skill checks that dependencies exist.",
     "numbers": [
       "~19.7%"
     ],
@@ -87,11 +87,11 @@
   "honest_limit": {
     "kind": "Constraint",
     "picture": "A full, real card passes the gate cleanly, but inside its lines there is a rust smudge: a real package with bad code inside.",
-    "words": "Real is not the same as safe."
+    "words": "A real package can still be bad."
   },
   "not_this": {
     "kind": "Constraint",
-    "body": "Still read what you install."
+    "body": "Real is not the same as safe."
   },
   "ending_pattern": {
     "kind": "Example",
@@ -297,7 +297,7 @@
       "act": "limit",
       "bars": "23",
       "picture": "A full, real card passes the gate cleanly, but inside its lines there is a rust smudge: a real package with bad code inside.",
-      "words": "Real is not the same as safe.",
+      "words": "A real package can still be bad.",
       "sound": "The signature plays once and does not resolve",
       "camera": "Still, then one slow push in",
       "cue_tags": [
@@ -310,7 +310,7 @@
       "act": "limit",
       "bars": "25",
       "picture": "Hold on the smudged card, already through.",
-      "words": "Still read what you install.",
+      "words": "Real is not the same as safe.",
       "sound": "Room tone",
       "camera": "Still",
       "cue_tags": []
@@ -432,13 +432,13 @@
     {
       "t_in": 41.25,
       "t_out": 44.062,
-      "text": "Real is not the same as safe.",
+      "text": "A real package can still be bad.",
       "kind": "caption"
     },
     {
       "t_in": 45.0,
       "t_out": 47.812,
-      "text": "Still read what you install.",
+      "text": "Real is not the same as safe.",
       "kind": "caption"
     },
     {

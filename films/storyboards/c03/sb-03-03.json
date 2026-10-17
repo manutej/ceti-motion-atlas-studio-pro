@@ -1,0 +1,510 @@
+{
+  "schema_version": "sb60-v1",
+  "id": "sb-03-03",
+  "meta_prompt_id": "mp-c03-v1",
+  "cluster": "03 Noether & conservation",
+  "repo": "skill:noether-wiki",
+  "capability": "Turn each mistake found later into a new check",
+  "audience": "Everyone",
+  "wada": 207,
+  "bpm": 120,
+  "dur": 64.3,
+  "title": "The same mistake, <i>pinned</i>.",
+  "hook": {
+    "kind": "Example",
+    "picture": "Close: the whale patches a small rust smudge on the line. Behind it, faint, an older patch sits in the same spot.",
+    "words": "We fixed this exact mistake last month."
+  },
+  "problem_in_viewer_words": {
+    "kind": "Fact",
+    "body": "We fixed this exact mistake last month.",
+    "who": "editor of the team handbook"
+  },
+  "why_it_keeps_happening": {
+    "kind": "Fact",
+    "picture": "Along the line the same three kinds of rust smudge recur, each patched, each back. Patch, return: every 2 beats, then 1, then half.",
+    "words": "Fixes stay on the page. Nothing learns."
+  },
+  "stakes": {
+    "kind": "Fact",
+    "body": "The team pays for the same mistake again and again, and readers stop believing fixes stick."
+  },
+  "solution_hint": "When you find a miss, add a check.",
+  "metaphor": {
+    "kind": "Example",
+    "body": "A mistake found after saving is a flag. It becomes a hollow pin that watches first, then a solid pin once it proves itself, so the same smudge bounces off next time.",
+    "symbols": [
+      "whale",
+      "line",
+      "pin",
+      "flag",
+      "tick"
+    ]
+  },
+  "mechanism_beats": {
+    "kind": "Method",
+    "steps": [
+      {
+        "t": 20.0,
+        "picture": "The smudge appears once more after saving. A rust flag pops up where the pod tripped on it, and the whale writes it down: one tick on the strip.",
+        "words": "",
+        "sound": "Flag snap, soft tick."
+      },
+      {
+        "t": 21.0,
+        "picture": "A chip on the flag.",
+        "words": "Found after saving.",
+        "sound": "Click."
+      },
+      {
+        "t": 24.0,
+        "picture": "A hollow pin forms at the flag's spot. Two laps of edits pass through it, and the hollow pin rings each time it would have caught the smudge, without blocking.",
+        "words": "Missed after saving? Call it an escape.",
+        "sound": "Knock rings, quiet."
+      },
+      {
+        "t": 27.0,
+        "picture": "Push-in (z 1.28). The hollow pin fills solid. The smudge rides in on the next edit, the gate closes on it, and the whale fixes it before save.",
+        "words": "It proved itself. Now it stops the mistake.",
+        "sound": "Knock rings true, then a gate thud."
+      },
+      {
+        "t": 30.0,
+        "picture": "A tick lands beside the new solid pin.",
+        "words": "The miss is now a law.",
+        "sound": "Soft tick."
+      }
+    ]
+  },
+  "real_case": {
+    "kind": "Evidence",
+    "claim": "An example declared IBM Plex but rendered Inter. It slipped past a font check by declared name and is now caught by checking the rendered faces (AP-14b).",
+    "numbers": [],
+    "source": {
+      "kind": "notion",
+      "title": "Limits & escapes register",
+      "url": "https://app.notion.com/p/3f2d50cfaf9381a88b04f3837efcac6a"
+    },
+    "verified": true,
+    "illustrative": false
+  },
+  "honest_limit": {
+    "kind": "Constraint",
+    "picture": "A pod adds a dot whose source tick leads to blank paper: an invented source. All six pins glow pass.",
+    "words": "An invented source still passes."
+  },
+  "not_this": {
+    "kind": "Constraint",
+    "body": "A check catches only what it knows."
+  },
+  "ending_pattern": {
+    "kind": "Example",
+    "slug": "third-time-bounces",
+    "body": "The same smudge arrives a third time at the same spot, hits the new pin and bounces off while the whale stays still.",
+    "callback": "The smudge that seeped back twice in FELT now bounces off a pin at the same spot, in the same framing."
+  },
+  "end_belief": {
+    "kind": "Goal",
+    "body": "Found a mistake twice? Make it a check."
+  },
+  "beats": [
+    {
+      "t": 0.0,
+      "picture": "Close: the whale patches a small rust smudge on the line. Behind it, faint, an older patch sits in the same spot.",
+      "words": "",
+      "sound": "Low wooden knock, damped.",
+      "act": "felt",
+      "bars": "1",
+      "camera": "close z 1.6 on the whale"
+    },
+    {
+      "t": 1.0,
+      "picture": "The whale smooths the patch.",
+      "words": "We fixed this exact mistake last month.",
+      "sound": "Room tone.",
+      "act": "felt",
+      "bars": "1",
+      "camera": "close z 1.6 on the whale"
+    },
+    {
+      "t": 2.0,
+      "picture": "The patch holds for a beat, then the same smudge seeps back through.",
+      "words": "",
+      "sound": "Damped knock again.",
+      "act": "felt",
+      "bars": "2",
+      "camera": "close z 1.6 on the whale",
+      "cue_tags": [
+        "consequence"
+      ]
+    },
+    {
+      "t": 4.0,
+      "picture": "A pod reads the smudged spot and answers with a rust cross chip.",
+      "words": "",
+      "sound": "Dull thunk.",
+      "act": "felt",
+      "bars": "3",
+      "camera": "close z 1.6 on the whale",
+      "cue_tags": [
+        "consequence",
+        "focus"
+      ]
+    },
+    {
+      "t": 5.0,
+      "picture": "The whale looks at the cross chip.",
+      "words": "And here it is again.",
+      "sound": "Room tone.",
+      "act": "felt",
+      "bars": "3",
+      "camera": "close z 1.6 on the whale"
+    },
+    {
+      "t": 8.0,
+      "picture": "The whale stares at two patches on the same spot. Hold.",
+      "words": "",
+      "sound": "Silence.",
+      "act": "felt",
+      "bars": "5",
+      "camera": "close z 1.6 on the whale",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 11.0,
+      "picture": "Stillness, then SERIES.open title.",
+      "words": "The same mistake, <i>pinned</i>.",
+      "sound": "Near-silence, title tick.",
+      "act": "why",
+      "bars": "6",
+      "camera": "pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "hinge"
+      ]
+    },
+    {
+      "t": 12.0,
+      "picture": "Pull back: along the line, three kinds of smudge, each patched more than once.",
+      "words": "",
+      "sound": "Problem motif.",
+      "act": "why",
+      "bars": "7",
+      "camera": "pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 14.0,
+      "picture": "Three-times device: a smudge returns through its patch. Every 2 beats.",
+      "words": "Fixes stay on the page. Nothing learns.",
+      "sound": "Damped knock.",
+      "act": "why",
+      "bars": "8",
+      "camera": "pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 16.0,
+      "picture": "Two more returns, every beat then every half beat.",
+      "words": "",
+      "sound": "Knocks, faster.",
+      "act": "why",
+      "bars": "9",
+      "camera": "pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 18.0,
+      "picture": "Everything stops. A faint hollow ring outlines the smudged spot.",
+      "words": "When you find a miss, add a check.",
+      "sound": "One true knock: first signature.",
+      "act": "why",
+      "bars": "10",
+      "camera": "pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 20.0,
+      "picture": "The smudge appears once more after saving. A rust flag pops up where the pod tripped on it, and the whale writes it down: one tick on the strip.",
+      "words": "",
+      "sound": "Flag snap, soft tick.",
+      "act": "move",
+      "bars": "11",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 21.0,
+      "picture": "A chip on the flag.",
+      "words": "Found after saving.",
+      "sound": "Click.",
+      "act": "move",
+      "bars": "11",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 24.0,
+      "picture": "A hollow pin forms at the flag's spot. Two laps of edits pass through it, and the hollow pin rings each time it would have caught the smudge, without blocking.",
+      "words": "Missed after saving? Call it an escape.",
+      "sound": "Knock rings, quiet.",
+      "act": "move",
+      "bars": "13",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 27.0,
+      "picture": "Push-in (z 1.28). The hollow pin fills solid. The smudge rides in on the next edit, the gate closes on it, and the whale fixes it before save.",
+      "words": "It proved itself. Now it stops the mistake.",
+      "sound": "Knock rings true, then a gate thud.",
+      "act": "move",
+      "bars": "14",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech",
+        "focus"
+      ]
+    },
+    {
+      "t": 30.0,
+      "picture": "A tick lands beside the new solid pin.",
+      "words": "The miss is now a law.",
+      "sound": "Soft tick.",
+      "act": "move",
+      "bars": "16",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 32.0,
+      "picture": "Wide: a long line with five pins. A rust flag with an icon of two letter shapes (the font named and the font drawn) slides down and becomes a sixth pin.",
+      "words": "Real catch: the font check read the label.",
+      "sound": "Pulse bed, ticks.",
+      "act": "case",
+      "bars": "17",
+      "camera": "steady wide, slow drift"
+    },
+    {
+      "t": 33.0,
+      "picture": "Card: Real run · Limits & escapes register.",
+      "words": "Declared IBM Plex. Rendered Inter.",
+      "sound": "Card tick.",
+      "act": "case",
+      "bars": "17",
+      "camera": "steady wide, slow drift"
+    },
+    {
+      "t": 38.0,
+      "picture": "The next page arrives naming one font and drawing another. The new pin rings and the gate closes.",
+      "words": "Now it checks the font you actually see.",
+      "sound": "Gate thud, then a clean knock.",
+      "act": "case",
+      "bars": "20",
+      "camera": "steady wide, slow drift"
+    },
+    {
+      "t": 44.0,
+      "picture": "Still, then a slow push. A pod adds a dot with a neat source tick, but the tick's tail ends in blank paper: the source does not exist. All six pins glow pass.",
+      "words": "An invented source still passes.",
+      "sound": "Signature knock once, unresolved.",
+      "act": "limit",
+      "bars": "23",
+      "camera": "still, then one slow push",
+      "cue_tags": [
+        "limit",
+        "focus"
+      ]
+    },
+    {
+      "t": 47.0,
+      "picture": "Hold on the tick tail ending in blank paper.",
+      "words": "A check catches only what it knows.",
+      "sound": "Room tone.",
+      "act": "limit",
+      "bars": "24",
+      "camera": "still, then one slow push"
+    },
+    {
+      "t": 50.0,
+      "picture": "FELT framing (z 1.6), same spot on the line. The same rust smudge drifts in a third time, hits the solid pin and bounces off. The old patches fade.",
+      "words": "",
+      "sound": "Knock rings, the smudge pings away.",
+      "act": "payoff",
+      "bars": "26",
+      "camera": "FELT framing z 1.6, then wide reveal",
+      "cue_tags": [
+        "callback"
+      ]
+    },
+    {
+      "t": 54.0,
+      "picture": "The whale does not lift a fin. The pod reads the spot and answers with a tick chip. Spout, spark.",
+      "words": "",
+      "sound": "Full resolution.",
+      "act": "payoff",
+      "bars": "28",
+      "camera": "FELT framing z 1.6, then wide reveal",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 58.0,
+      "picture": "Still line, six pins, whale breathing.",
+      "words": "Found a mistake twice? Make it a check.",
+      "sound": "Pad tail.",
+      "act": "belief",
+      "bars": "30",
+      "camera": "still, breathing only"
+    },
+    {
+      "t": 62.0,
+      "picture": "SERIES.lockup over the settled line.",
+      "words": "",
+      "sound": "Pad tail ends on the tonic.",
+      "act": "lockup",
+      "bars": "32",
+      "camera": "still"
+    }
+  ],
+  "captions": [
+    {
+      "t_in": 1.0,
+      "t_out": 4.0,
+      "text": "We fixed this exact mistake last month.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 5.0,
+      "t_out": 9.0,
+      "text": "And here it is again.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 11.0,
+      "t_out": 14.0,
+      "text": "The same mistake, <i>pinned</i>.",
+      "kind": "title"
+    },
+    {
+      "t_in": 14.0,
+      "t_out": 17.5,
+      "text": "Fixes stay on the page. Nothing learns.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 18.0,
+      "t_out": 20.5,
+      "text": "When you find a miss, add a check.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 21.0,
+      "t_out": 23.0,
+      "text": "Found after saving.",
+      "kind": "label"
+    },
+    {
+      "t_in": 24.0,
+      "t_out": 27.0,
+      "text": "Missed after saving? Call it an escape.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 27.0,
+      "t_out": 30.0,
+      "text": "It proved itself. Now it stops the mistake.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 30.0,
+      "t_out": 33.0,
+      "text": "The miss is now a law.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 32.0,
+      "t_out": 36.0,
+      "text": "Real catch: the font check read the label.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 33.0,
+      "t_out": 41.0,
+      "text": "Declared IBM Plex. Rendered Inter.",
+      "kind": "card",
+      "src": "https://app.notion.com/p/3f2d50cfaf9381a88b04f3837efcac6a"
+    },
+    {
+      "t_in": 38.0,
+      "t_out": 43.0,
+      "text": "Now it checks the font you actually see.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 44.0,
+      "t_out": 47.0,
+      "text": "An invented source still passes.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 47.0,
+      "t_out": 50.0,
+      "text": "A check catches only what it knows.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 58.0,
+      "t_out": 62.0,
+      "text": "Found a mistake twice? Make it a check.",
+      "kind": "caption"
+    }
+  ],
+  "terms": [
+    {
+      "term": "escape",
+      "symbol": "rust flag after save",
+      "pictured_at": 20.0,
+      "named_at": 24.0
+    },
+    {
+      "term": "law",
+      "symbol": "solid pin",
+      "pictured_at": 24.0,
+      "named_at": 30.0
+    }
+  ],
+  "jargon": [
+    "escape",
+    "regression",
+    "shadow"
+  ],
+  "sound": {
+    "signature": "Low wooden knock that rings true.",
+    "problem_motif": "The same knock, damped and repeating.",
+    "limit_unresolved": true
+  },
+  "score_self": {
+    "score": 0.82,
+    "reason": "Mechanical gates N3 N4 N5 N6 N8 N9 S1 and read time pass. Universal pain, and the escape-to-law move is unique to this cluster. The font case may need a second look on a phone. J1 unrun.",
+    "weakest_piece": "real_case"
+  }
+}

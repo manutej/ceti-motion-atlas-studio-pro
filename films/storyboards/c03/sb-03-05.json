@@ -1,0 +1,539 @@
+{
+  "schema_version": "sb60-v1",
+  "id": "sb-03-05",
+  "meta_prompt_id": "mp-c03-v1",
+  "cluster": "03 Noether & conservation",
+  "repo": "manutej/noether-resonance-core",
+  "capability": "Say where the Noether analogy stops",
+  "audience": "Researchers",
+  "wada": 243,
+  "bpm": 124,
+  "dur": 62.235,
+  "title": "We choose the <i>pins</i>.",
+  "hook": {
+    "kind": "Example",
+    "picture": "Close: the whale shows a pin on the line to a pod (the reviewer). A huge raw-sienna ring is puffed around the pin like a halo.",
+    "words": "Your slide says it's proven."
+  },
+  "problem_in_viewer_words": {
+    "kind": "Fact",
+    "body": "Your slide says Noether proved our wiki checks. Nothing did.",
+    "who": "reviewer at a research talk"
+  },
+  "why_it_keeps_happening": {
+    "kind": "Fact",
+    "picture": "Two lanes. A borrowed arrow from the upper lane carries a big promise down to the wiki line, three times, accelerating.",
+    "words": "Big words bring big promises along."
+  },
+  "stakes": {
+    "kind": "Fact",
+    "body": "One overclaim and a careful audience stops trusting the parts that are real."
+  },
+  "solution_hint": "Say what you borrowed. Say what you chose.",
+  "metaphor": {
+    "kind": "Example",
+    "body": "Upper lane: an evenly spinning ring keeps its amount, so the kept thing follows from the spin. Lower lane: we place pins by hand, and more come from mistakes. The arrows point opposite ways.",
+    "symbols": [
+      "whale",
+      "line",
+      "pin",
+      "ring",
+      "flag"
+    ]
+  },
+  "mechanism_beats": {
+    "kind": "Method",
+    "steps": [
+      {
+        "t": 19.355,
+        "picture": "Upper lane: the ring spins evenly. Shift it in time and it looks the same, and a small ring beside it keeps the same size. An arrow runs from the even spin to the kept ring.",
+        "words": "",
+        "sound": "Pure fifth, steady."
+      },
+      {
+        "t": 20.323,
+        "picture": "A chip under the upper lane.",
+        "words": "Same shape, kept amount.",
+        "sound": "Click."
+      },
+      {
+        "t": 23.226,
+        "picture": "Lower lane: no spin. The whale places three pins by hand onto the wiki line. Here the arrow points from the pins to the line.",
+        "words": "Physics finds what's kept. We choose it.",
+        "sound": "Fifth, plucked by hand."
+      },
+      {
+        "t": 26.129,
+        "picture": "Push-in (z 1.25). A flag pops after a save on the lower lane and turns into a fourth pin. Its arrow points from the flag up to the pins.",
+        "words": "More laws come from mistakes, not maths.",
+        "sound": "Flag snap, then the fifth."
+      },
+      {
+        "t": 29.032,
+        "picture": "Both lanes in view: the upper arrow points down, the lower arrow points up.",
+        "words": "Noether-inspired. The direction is reversed.",
+        "sound": "Fifth inverted."
+      }
+    ]
+  },
+  "real_case": {
+    "kind": "Evidence",
+    "claim": "noether-resonance-core cites Noether's 1918 theorem only as inspiration for a WebGL field synth with 5 field topologies. The noether-wiki method notes: Noether derives, we choose, so do not overclaim.",
+    "numbers": [
+      "5",
+      "1918"
+    ],
+    "source": {
+      "kind": "repo",
+      "title": "manutej/noether-resonance-core README",
+      "url": "https://github.com/manutej/noether-resonance-core"
+    },
+    "verified": true,
+    "illustrative": false
+  },
+  "honest_limit": {
+    "kind": "Constraint",
+    "picture": "A defect with no pin glides through every gate on the lower lane. Nothing chosen covers it.",
+    "words": "No law covers what nobody named."
+  },
+  "not_this": {
+    "kind": "Constraint",
+    "body": "Noether-inspired. Not Noether's theorem."
+  },
+  "ending_pattern": {
+    "kind": "Example",
+    "slug": "label-honestly",
+    "body": "The same pin is shown to the same reviewer, now without a halo and with a chip reading Chosen, then checked. The reviewer answers with a tick.",
+    "callback": "The puffed halo that popped in bar 2 is gone. The same pin in the same framing now earns a tick."
+  },
+  "end_belief": {
+    "kind": "Goal",
+    "body": "Borrow the idea. Never borrow the proof."
+  },
+  "beats": [
+    {
+      "t": 0.0,
+      "picture": "Close: the whale shows a pin on the line to a pod (the reviewer). A huge raw-sienna ring is puffed around the pin like a halo.",
+      "words": "",
+      "sound": "Bright chord, slightly sharp.",
+      "act": "felt",
+      "bars": "1",
+      "camera": "close z 1.6 on the whale"
+    },
+    {
+      "t": 0.968,
+      "picture": "The pod reads the halo.",
+      "words": "Your slide says it's proven.",
+      "sound": "Room tone.",
+      "act": "felt",
+      "bars": "1",
+      "camera": "close z 1.6 on the whale"
+    },
+    {
+      "t": 1.935,
+      "picture": "The pod pokes the halo and it pops into a small raw-sienna flag.",
+      "words": "",
+      "sound": "Pop, sour note.",
+      "act": "felt",
+      "bars": "2",
+      "camera": "close z 1.6 on the whale",
+      "cue_tags": [
+        "consequence"
+      ]
+    },
+    {
+      "t": 3.871,
+      "picture": "The pod answers with a cross chip and turns away.",
+      "words": "",
+      "sound": "Dull thunk.",
+      "act": "felt",
+      "bars": "3",
+      "camera": "close z 1.6 on the whale",
+      "cue_tags": [
+        "consequence",
+        "focus"
+      ]
+    },
+    {
+      "t": 4.839,
+      "picture": "The whale holds the bare pin.",
+      "words": "No one proved a thing here.",
+      "sound": "Room tone.",
+      "act": "felt",
+      "bars": "3",
+      "camera": "close z 1.6 on the whale"
+    },
+    {
+      "t": 7.742,
+      "picture": "The whale looks at the bare pin. Hold.",
+      "words": "",
+      "sound": "Silence.",
+      "act": "felt",
+      "bars": "5",
+      "camera": "close z 1.6 on the whale",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 10.645,
+      "picture": "Stillness, then SERIES.open title.",
+      "words": "We choose the <i>pins</i>.",
+      "sound": "Near-silence, title tick.",
+      "act": "why",
+      "bars": "6",
+      "camera": "pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "hinge"
+      ]
+    },
+    {
+      "t": 11.613,
+      "picture": "Pull back: two lanes. Upper: a ring spinning evenly. Lower: the wiki line with pins. An arrow points down from upper to lower.",
+      "words": "",
+      "sound": "Problem motif.",
+      "act": "why",
+      "bars": "7",
+      "camera": "pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 13.548,
+      "picture": "Three-times device: a puffed halo slides down the arrow onto a pin. Every 2 beats.",
+      "words": "Big words bring big promises along.",
+      "sound": "Sharp chord.",
+      "act": "why",
+      "bars": "8",
+      "camera": "pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 15.484,
+      "picture": "Two more halos slide down, every beat then every half beat.",
+      "words": "",
+      "sound": "Chords, faster.",
+      "act": "why",
+      "bars": "9",
+      "camera": "pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 17.419,
+      "picture": "Everything stops. The halos fade. The arrow dims to a dotted line.",
+      "words": "Say what you borrowed. Say what you chose.",
+      "sound": "First clean signature: a pure fifth.",
+      "act": "why",
+      "bars": "10",
+      "camera": "pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 19.355,
+      "picture": "Upper lane: the ring spins evenly. Shift it in time and it looks the same, and a small ring beside it keeps the same size. An arrow runs from the even spin to the kept ring.",
+      "words": "",
+      "sound": "Pure fifth, steady.",
+      "act": "move",
+      "bars": "11",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 20.323,
+      "picture": "A chip under the upper lane.",
+      "words": "Same shape, kept amount.",
+      "sound": "Click.",
+      "act": "move",
+      "bars": "11",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 23.226,
+      "picture": "Lower lane: no spin. The whale places three pins by hand onto the wiki line. Here the arrow points from the pins to the line.",
+      "words": "Physics finds what's kept. We choose it.",
+      "sound": "Fifth, plucked by hand.",
+      "act": "move",
+      "bars": "13",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 26.129,
+      "picture": "Push-in (z 1.25). A flag pops after a save on the lower lane and turns into a fourth pin. Its arrow points from the flag up to the pins.",
+      "words": "More laws come from mistakes, not maths.",
+      "sound": "Flag snap, then the fifth.",
+      "act": "move",
+      "bars": "14",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech",
+        "focus"
+      ]
+    },
+    {
+      "t": 29.032,
+      "picture": "Both lanes in view: the upper arrow points down, the lower arrow points up.",
+      "words": "Noether-inspired. The direction is reversed.",
+      "sound": "Fifth inverted.",
+      "act": "move",
+      "bars": "16",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 30.968,
+      "picture": "Wide: the upper lane becomes the resonance field, a shell of glowing field lines that changes shape with the score and cycles through five shapes.",
+      "words": "Real build: a field synth, inspired, not derived.",
+      "sound": "Pulse bed, shimmering.",
+      "act": "case",
+      "bars": "17",
+      "camera": "steady wide, slow drift"
+    },
+    {
+      "t": 31.935,
+      "picture": "Card: Real repo · noether-resonance-core.",
+      "words": "5 field shapes · Noether 1918 cited",
+      "sound": "Card tick.",
+      "act": "case",
+      "bars": "17",
+      "camera": "steady wide, slow drift"
+    },
+    {
+      "t": 36.774,
+      "picture": "Lower lane: the wiki pins, and beside them a small card from the method's own notes.",
+      "words": "The method's own rule: don't overclaim.",
+      "sound": "Quiet ticks.",
+      "act": "case",
+      "bars": "20",
+      "camera": "steady wide, slow drift"
+    },
+    {
+      "t": 42.581,
+      "picture": "Still, then a slow push. A defect with no pin glides along the lower lane, through every gate, all glowing pass. No physics predicted it and no chosen pin covers it.",
+      "words": "No law covers what nobody named.",
+      "sound": "Signature fifth once, unresolved.",
+      "act": "limit",
+      "bars": "23",
+      "camera": "still, then one slow push",
+      "cue_tags": [
+        "limit",
+        "focus"
+      ]
+    },
+    {
+      "t": 45.484,
+      "picture": "Hold as the defect glides on.",
+      "words": "Noether-inspired. Not Noether's theorem.",
+      "sound": "Room tone.",
+      "act": "limit",
+      "bars": "24",
+      "camera": "still, then one slow push"
+    },
+    {
+      "t": 48.387,
+      "picture": "FELT framing (z 1.6). The whale shows the same pin to the same reviewer pod. No halo now. A small chip sits on the pin.",
+      "words": "",
+      "sound": "Fifth returns.",
+      "act": "payoff",
+      "bars": "26",
+      "camera": "FELT framing z 1.6, then wide reveal",
+      "cue_tags": [
+        "callback"
+      ]
+    },
+    {
+      "t": 50.323,
+      "picture": "The chip on the pin.",
+      "words": "Chosen, then checked.",
+      "sound": "Click.",
+      "act": "payoff",
+      "bars": "27",
+      "camera": "FELT framing z 1.6, then wide reveal"
+    },
+    {
+      "t": 52.258,
+      "picture": "The pod reads it and answers with a tick chip. The whale spouts.",
+      "words": "",
+      "sound": "Full resolution.",
+      "act": "payoff",
+      "bars": "28",
+      "camera": "FELT framing z 1.6, then wide reveal",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 56.129,
+      "picture": "Still: two lanes, two arrows, whale breathing.",
+      "words": "Borrow the idea. Never borrow the proof.",
+      "sound": "Pad tail.",
+      "act": "belief",
+      "bars": "30",
+      "camera": "still, breathing only"
+    },
+    {
+      "t": 60.0,
+      "picture": "SERIES.lockup over the settled line.",
+      "words": "",
+      "sound": "Pad tail ends on the tonic.",
+      "act": "lockup",
+      "bars": "32",
+      "camera": "still"
+    }
+  ],
+  "captions": [
+    {
+      "t_in": 0.968,
+      "t_out": 3.871,
+      "text": "Your slide says it's proven.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 4.839,
+      "t_out": 8.71,
+      "text": "No one proved a thing here.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 10.645,
+      "t_out": 13.548,
+      "text": "We choose the <i>pins</i>.",
+      "kind": "title"
+    },
+    {
+      "t_in": 13.548,
+      "t_out": 16.935,
+      "text": "Big words bring big promises along.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 17.419,
+      "t_out": 19.839,
+      "text": "Say what you borrowed. Say what you chose.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 20.323,
+      "t_out": 22.258,
+      "text": "Same shape, kept amount.",
+      "kind": "label"
+    },
+    {
+      "t_in": 23.226,
+      "t_out": 26.129,
+      "text": "Physics finds what's kept. We choose it.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 26.129,
+      "t_out": 29.032,
+      "text": "More laws come from mistakes, not maths.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 29.032,
+      "t_out": 31.935,
+      "text": "Noether-inspired. The direction is reversed.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 30.968,
+      "t_out": 34.839,
+      "text": "Real build: a field synth, inspired, not derived.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 31.935,
+      "t_out": 39.677,
+      "text": "5 field shapes · Noether 1918 cited",
+      "kind": "card",
+      "src": "https://github.com/manutej/noether-resonance-core"
+    },
+    {
+      "t_in": 36.774,
+      "t_out": 41.613,
+      "text": "The method's own rule: don't overclaim.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 42.581,
+      "t_out": 45.484,
+      "text": "No law covers what nobody named.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 45.484,
+      "t_out": 48.387,
+      "text": "Noether-inspired. Not Noether's theorem.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 50.323,
+      "t_out": 55.161,
+      "text": "Chosen, then checked.",
+      "kind": "label"
+    },
+    {
+      "t_in": 56.129,
+      "t_out": 60.0,
+      "text": "Borrow the idea. Never borrow the proof.",
+      "kind": "caption"
+    }
+  ],
+  "terms": [
+    {
+      "term": "laws",
+      "symbol": "pin",
+      "pictured_at": 23.226,
+      "named_at": 26.129
+    },
+    {
+      "term": "Noether",
+      "symbol": "upper-lane ring and arrow",
+      "pictured_at": 19.355,
+      "named_at": 29.032
+    },
+    {
+      "term": "theorem",
+      "symbol": "upper-lane ring and arrow",
+      "pictured_at": 19.355,
+      "named_at": 45.484
+    },
+    {
+      "term": "proof",
+      "symbol": "halo popped into a flag",
+      "pictured_at": 1.935,
+      "named_at": 56.129
+    }
+  ],
+  "jargon": [
+    "symmetry",
+    "Lagrangian"
+  ],
+  "sound": {
+    "signature": "A pure fifth, played steady.",
+    "problem_motif": "The same fifth, slightly sharp and brassy.",
+    "limit_unresolved": true
+  },
+  "score_self": {
+    "score": 0.7,
+    "reason": "Mechanical gates N3 N4 N5 N6 N8 N9 S1 and read time pass. Honest and distinctive, but abstract: a stranger may read the two lanes as a physics lesson. The case is a repo, not a run. J1 unrun.",
+    "weakest_piece": "metaphor"
+  }
+}

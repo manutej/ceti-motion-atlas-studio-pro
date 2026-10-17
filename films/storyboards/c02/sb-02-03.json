@@ -72,7 +72,7 @@
   },
   "real_case": {
     "kind": "Evidence",
-    "claim": "On 22 Sep 2026 the sheaf / validate check failed on main nine times in a row inside six minutes, each failing in 5-8 seconds with 3 annotations; the cause is recorded only as a config or validation error.",
+    "claim": "22 Sep 2026: sheaf / validate failed on main 9 times in a row inside six minutes, each in 5-8 seconds; cause recorded only as a config or validation error.",
     "numbers": [
       "9 consecutive red runs",
       "inside six minutes",

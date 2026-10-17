@@ -1,0 +1,519 @@
+{
+  "schema_version": "sb60-v1",
+  "id": "sb-07-07",
+  "meta_prompt_id": "mp-c07-v1",
+  "cluster": "07 Formal correctness & logic",
+  "repo": "manutej/Lean4Agent (fork of RickySkywalker/Lean4Agent)",
+  "capability": "Check where agent steps meet",
+  "audience": "Engineers",
+  "wada": 243,
+  "bpm": 130,
+  "dur": 59.38,
+  "title": "Find the first broken <i>joint</i>.",
+  "hook": {
+    "kind": "Example",
+    "picture": "Close: the whale swims backwards along a very long line, searching. A pod at the far end has answered ✕.",
+    "words": "The agent ran for an hour."
+  },
+  "problem_in_viewer_words": {
+    "kind": "Fact",
+    "body": "The agent ran for an hour. Where did it break?",
+    "who": "engineer debugging an overnight agent run"
+  },
+  "why_it_keeps_happening": {
+    "kind": "Fact",
+    "picture": "The run is many steps laid end to end. Three times, faster each time, a run fails and the whale starts reading from the first step.",
+    "words": "We read every step by hand."
+  },
+  "stakes": {
+    "kind": "Fact",
+    "body": "Every failed agent run costs an hour of reading logs, and the real cause is often far from where it showed up."
+  },
+  "solution_hint": "Check each step where it meets the next.",
+  "metaphor": {
+    "kind": "Example",
+    "body": "An agent's run is a line of steps. A small gate at each joint checks that what one step hands over fits what the next needs, so the first break lights up.",
+    "symbols": [
+      "whale",
+      "line",
+      "seam",
+      "gate",
+      "pod"
+    ]
+  },
+  "mechanism_beats": {
+    "kind": "Method",
+    "steps": [
+      {
+        "t": 18.462,
+        "picture": "Each joint between two steps gets a small gate. What one step hands over must fit what the next needs.",
+        "words": "",
+        "sound": "Clicks, one per joint"
+      },
+      {
+        "t": 20.308,
+        "picture": "The run replays, and the joints glow one by one.",
+        "words": "Each step promises what the next needs.",
+        "sound": "Rising clicks"
+      },
+      {
+        "t": 22.154,
+        "picture": "Push-in: the fourth joint's bar drops. Step three handed over something step four can't use.",
+        "words": "",
+        "sound": "The clicks stop on a stop knock"
+      },
+      {
+        "t": 24.0,
+        "picture": "The whale hops straight to that joint and fixes it.",
+        "words": "The first broken joint lights up.",
+        "sound": "Hop, then a click"
+      },
+      {
+        "t": 25.846,
+        "picture": "The run replays and every joint glows.",
+        "words": "",
+        "sound": "Clean arpeggio"
+      },
+      {
+        "t": 27.692,
+        "picture": "Ticks ripple along all the joints.",
+        "words": "A check at every seam between steps.",
+        "sound": "The arpeggio resolves"
+      }
+    ]
+  },
+  "real_case": {
+    "kind": "Evidence",
+    "claim": "Lean4Agent (Wang et al., 2026, forked by Manu): workflows that passed Lean verification beat failing ones by an average of 11.94%, across 5 leading LLMs on SWE-Bench Verified and ELAIP-Bench subsets.",
+    "numbers": [
+      "11.94%",
+      "5 leading LLMs"
+    ],
+    "source": {
+      "kind": "repo",
+      "title": "Lean4Agent README (fork of RickySkywalker/Lean4Agent)",
+      "url": "https://github.com/manutej/Lean4Agent"
+    },
+    "verified": true,
+    "illustrative": false
+  },
+  "honest_limit": {
+    "kind": "Constraint",
+    "picture": "One step is wrong inside but hands over the right shape. Its joint glows, and a pod at the end answers ✕.",
+    "words": "A wrong step can still fit its joint."
+  },
+  "not_this": {
+    "kind": "Constraint",
+    "body": "Steps that fit are not steps that work."
+  },
+  "ending_pattern": {
+    "kind": "Example",
+    "slug": "hop-to-the-joint",
+    "body": "Instead of scrolling the whole run, the whale hops straight to the one glowing joint and fixes it. The pod answers ✓.",
+    "callback": "Same long line and close framing as bar 1: the endless search becomes one hop."
+  },
+  "end_belief": {
+    "kind": "Goal",
+    "body": "Check where steps meet. Find breaks fast."
+  },
+  "beats": [
+    {
+      "t": 0.0,
+      "picture": "Close: the whale swims backwards along a very long line, nose to it, searching.",
+      "words": "The agent ran for an hour.",
+      "sound": "A long smear of clicks",
+      "act": "felt",
+      "bars": "1",
+      "camera": "close z 1.6 on the whale",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 2.769,
+      "picture": "At the far end, a pod has answered ✕ in raw sienna.",
+      "words": "",
+      "sound": "Dull thud",
+      "act": "felt",
+      "bars": "2",
+      "camera": "close z 1.6 on the whale",
+      "cue_tags": [
+        "consequence",
+        "focus"
+      ]
+    },
+    {
+      "t": 4.615,
+      "picture": "The whale keeps scrolling. The line runs off the frame in both directions.",
+      "words": "Where did it go wrong?",
+      "sound": "The smear continues",
+      "act": "felt",
+      "bars": "3",
+      "camera": "close z 1.6 on the whale",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 7.385,
+      "picture": "The whale stops, lost. Hold.",
+      "words": "",
+      "sound": "Silence",
+      "act": "felt",
+      "bars": "5",
+      "camera": "close z 1.6 on the whale",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 9.231,
+      "picture": "Hinge: half a bar of stillness, then the title card.",
+      "words": "Find the first broken <i>joint</i>.",
+      "sound": "Near-silence, then the title tick",
+      "act": "why",
+      "bars": "6",
+      "camera": "pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "hinge"
+      ]
+    },
+    {
+      "t": 11.077,
+      "picture": "Pull back: the line is made of many short steps laid end to end.",
+      "words": "",
+      "sound": "Problem motif",
+      "act": "why",
+      "bars": "7",
+      "camera": "pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 12.462,
+      "picture": "The whale's search starts again from the very first step.",
+      "words": "We read every step by hand.",
+      "sound": "Problem motif again",
+      "act": "why",
+      "bars": "7",
+      "camera": "pull back z 1.6 to 1.0"
+    },
+    {
+      "t": 13.846,
+      "picture": "Three times, faster: a new run fails and the whale starts reading from the start.",
+      "words": "",
+      "sound": "Smear three times, accelerating",
+      "act": "why",
+      "bars": "8",
+      "camera": "pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 16.154,
+      "picture": "Freeze: the joints between steps glint.",
+      "words": "Check each step where it meets the next.",
+      "sound": "First clean click",
+      "act": "why",
+      "bars": "9",
+      "camera": "pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 18.462,
+      "picture": "Each joint between two steps gets a small gate. What one step hands over must fit what the next needs.",
+      "words": "",
+      "sound": "Clicks, one per joint",
+      "act": "move",
+      "bars": "11",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 20.308,
+      "picture": "The run replays, and the joints glow one by one.",
+      "words": "Each step promises what the next needs.",
+      "sound": "Rising clicks",
+      "act": "move",
+      "bars": "12",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 22.154,
+      "picture": "Push-in: the fourth joint's bar drops. Step three handed over something step four can't use.",
+      "words": "",
+      "sound": "The clicks stop on a stop knock",
+      "act": "move",
+      "bars": "13",
+      "camera": "one push-in to z 1.3 on the decisive moment",
+      "cue_tags": [
+        "mech",
+        "focus"
+      ]
+    },
+    {
+      "t": 24.0,
+      "picture": "The whale hops straight to that joint and fixes it.",
+      "words": "The first broken joint lights up.",
+      "sound": "Hop, then a click",
+      "act": "move",
+      "bars": "14",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 25.846,
+      "picture": "The run replays and every joint glows.",
+      "words": "",
+      "sound": "Clean arpeggio",
+      "act": "move",
+      "bars": "15",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 27.692,
+      "picture": "Ticks ripple along all the joints.",
+      "words": "A check at every seam between steps.",
+      "sound": "The arpeggio resolves",
+      "act": "move",
+      "bars": "16",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 29.538,
+      "picture": "Wide: many agent plans, each a jointed line. Those whose joints all glow travel further.",
+      "words": "",
+      "sound": "Pulse bed",
+      "act": "case",
+      "bars": "17",
+      "camera": "steady wide, slow drift"
+    },
+    {
+      "t": 31.385,
+      "picture": "The card fades in on clean paper.",
+      "words": "Paper: agent plans written out and checked.",
+      "sound": "Ticks",
+      "act": "case",
+      "bars": "18",
+      "camera": "steady wide, slow drift"
+    },
+    {
+      "t": 35.077,
+      "picture": "Drift across: the checked plans pull ahead of the unchecked ones.",
+      "words": "Tested across five models on real bugs.",
+      "sound": "Ticks",
+      "act": "case",
+      "bars": "20",
+      "camera": "steady wide, slow drift"
+    },
+    {
+      "t": 40.615,
+      "picture": "Push into one step whose inside is smudged (wrong), but whose output fits the next joint exactly. The joint glows.",
+      "words": "A wrong step can still fit its joint.",
+      "sound": "Click, unresolved",
+      "act": "limit",
+      "bars": "23",
+      "camera": "still, then one slow push to what slipped",
+      "cue_tags": [
+        "limit",
+        "focus"
+      ]
+    },
+    {
+      "t": 42.462,
+      "picture": "At the end of the line, a pod answers ✕.",
+      "words": "",
+      "sound": "Thud",
+      "act": "limit",
+      "bars": "24",
+      "camera": "still, then one slow push to what slipped",
+      "cue_tags": [
+        "limit"
+      ]
+    },
+    {
+      "t": 43.846,
+      "picture": "Still on the smudged step.",
+      "words": "Steps that fit are not steps that work.",
+      "sound": "Room tone",
+      "act": "limit",
+      "bars": "24",
+      "camera": "still, then one slow push to what slipped"
+    },
+    {
+      "t": 46.154,
+      "picture": "FELT framing restored: the same very long line as in bar 1.",
+      "words": "",
+      "sound": "The smear begins",
+      "act": "payoff",
+      "bars": "26",
+      "camera": "FELT framing restored, z 1.6",
+      "cue_tags": [
+        "callback"
+      ]
+    },
+    {
+      "t": 48.0,
+      "picture": "One joint glows raw sienna. The whale hops straight to it in one move, with no scrolling.",
+      "words": "",
+      "sound": "Cut short by a single click",
+      "act": "payoff",
+      "bars": "27",
+      "camera": "FELT framing restored, z 1.6"
+    },
+    {
+      "t": 49.846,
+      "picture": "It fixes the joint, and the pod at the end answers ✓. Spark.",
+      "words": "",
+      "sound": "Resolved arpeggio",
+      "act": "payoff",
+      "bars": "28",
+      "camera": "FELT framing restored, z 1.6"
+    },
+    {
+      "t": 53.538,
+      "picture": "The jointed line, still, with every joint ticked.",
+      "words": "Check where steps meet. Find breaks fast.",
+      "sound": "Pad tail",
+      "act": "belief",
+      "bars": "30",
+      "camera": "still, breathing only"
+    },
+    {
+      "t": 57.231,
+      "picture": "SERIES.lockup over the still line.",
+      "words": "",
+      "sound": "Pad tail ends in room tone",
+      "act": "lockup",
+      "bars": "32",
+      "camera": "still"
+    }
+  ],
+  "captions": [
+    {
+      "t_in": 0.923,
+      "t_out": 4.154,
+      "text": "The agent ran for an hour.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 4.615,
+      "t_out": 8.308,
+      "text": "Where did it go wrong?",
+      "kind": "caption"
+    },
+    {
+      "t_in": 10.154,
+      "t_out": 12.462,
+      "text": "Find the first broken <i>joint</i>.",
+      "kind": "title"
+    },
+    {
+      "t_in": 12.462,
+      "t_out": 15.692,
+      "text": "We read every step by hand.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 16.154,
+      "t_out": 18.923,
+      "text": "Check each step where it meets the next.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 20.308,
+      "t_out": 23.538,
+      "text": "Each step promises what the next needs.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 24.0,
+      "t_out": 27.231,
+      "text": "The first broken joint lights up.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 27.692,
+      "t_out": 30.462,
+      "text": "A check at every seam between steps.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 31.385,
+      "t_out": 34.615,
+      "text": "Paper: agent plans written out and checked.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 32.308,
+      "t_out": 40.154,
+      "text": "Paper · plans that passed did 11.94% better",
+      "kind": "card",
+      "src": "https://github.com/manutej/Lean4Agent"
+    },
+    {
+      "t_in": 35.077,
+      "t_out": 39.692,
+      "text": "Tested across five models on real bugs.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 41.077,
+      "t_out": 43.615,
+      "text": "A wrong step can still fit its joint.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 43.846,
+      "t_out": 46.154,
+      "text": "Steps that fit are not steps that work.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 53.538,
+      "t_out": 57.231,
+      "text": "Check where steps meet. Find breaks fast.",
+      "kind": "caption"
+    }
+  ],
+  "terms": [
+    {
+      "term": "seam",
+      "symbol": "seam",
+      "pictured_at": 18.462,
+      "named_at": 27.692
+    }
+  ],
+  "jargon": [
+    "trajectory",
+    "workflow",
+    "agentic"
+  ],
+  "sound": {
+    "signature": "A clean click per joint, rising as an arpeggio",
+    "problem_motif": "A long smear of clicks with no accent",
+    "limit_unresolved": true
+  },
+  "score_self": {
+    "score": 0.76,
+    "reason": "Concrete engineering pain and a fast callback. The evidence is third-party (credited as Paper), and 'fit' at joints may read as type-matching, which is close to cluster 04.",
+    "weakest_piece": "real_case"
+  }
+}

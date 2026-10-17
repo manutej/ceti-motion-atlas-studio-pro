@@ -84,7 +84,7 @@
  },
  "real_case": {
   "kind": "Evidence",
-  "claim": "catreview-go: 5 real-world repositories analyzed (5,055 objects, 8,141 morphisms); objects are modules, packages, types and functions, morphisms are dependencies, calls and imports. Example run: Cycle",
+  "claim": "catreview-go: 5 real-world repositories analyzed (5,055 objects, 8,141 morphisms); morphisms are dependencies, calls and imports. Example run: Cycles Found: 0.",
   "numbers": [
    "5",
    "5,055",

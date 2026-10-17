@@ -462,8 +462,7 @@
     "transitive",
     "lattice",
     "stratum",
-    "graph",
-    "Ethereum"
+    "graph"
   ],
   "sound": {
     "signature": "A clear bell, one per row",

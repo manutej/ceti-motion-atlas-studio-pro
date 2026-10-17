@@ -1,0 +1,101 @@
+id	title	repo	self	body
+belief.sb-01-01	Notes must agree at the <i>joins</i>.	manutej/sheaf-knowledge-studio	0.74	Compare notes where they overlap. Keep the warnings.
+belief.sb-01-02	Give each note its own <i>card</i>.	manutej/stalks-and-sections	0.68	Let notes differ. Compare them where they meet.
+belief.sb-01-03	Keep the red <i>join</i> red.	manutej/cell-sheaf	0.77	Report the real colour. Name who fixes it.
+belief.sb-01-04	Map the <i>joins</i>, then merge.	manutej/sheaf-port	0.79	Map the links first. Then decide to merge.
+belief.sb-01-05	Show both sides of the <i>edge</i>.	manutej/glue	0.66	When sources disagree, show both. Then check.
+belief.sb-01-06	One owner for every <i>join</i>.	none	0.8	Give each shared piece one owner. Check copies.
+belief.sb-01-07	Seven opinions, one <i>line</i>.	none	0.7	Let neighbours agree. Then check the answer.
+belief.sb-01-08	Keep both. Mark the <i>join</i>.	none	0.75	Never let memory write over. Show the clash.
+belief.sb-01-09	Test the <i>gate</i> by breaking it.	manutej/sheaf-knowledge-studio	0.76	Trust a check only after it fails once.
+belief.sb-01-10	Trust the <i>parts</i> that agree.	manutej/stalks-and-sections	0.72	Trust what fits its neighbours. Check the rest.
+belief.sb-02-01	Fold only the <i>joins</i> that agree.	manutej/cell-sheaf-swarm	0.8	Check every join. Keep disagreements in sight.
+belief.sb-02-02	Odd <i>joins</i> wait for a person.	manutej/cell-sheaf-swarm	0.78	Let odd results wait for a person.
+belief.sb-02-03	Every push meets the <i>gate</i>.	manutej/cell-sheaf-swarm	0.68	Put a shape check on every push.
+belief.sb-02-04	Let every <i>join</i> pull back.	manutej/sheaf-dirichlet-protein-3d	0.72	Know which parts touch. Let them pull.
+belief.sb-02-05	Floppy parts have fewer <i>joins</i>.	manutej/sheaf-dirichlet-protein-3d	0.76	Check what holds a part before trusting it.
+belief.sb-02-06	See every <i>link</i> below the top.	manutej/sheaf-dep-ethereum	0.76	Look two rows down before you fund.
+belief.sb-02-07	Credit should flow down the <i>links</i>.	manutej/sheaf-dep-ethereum	0.7	When you thank a project, thank its links.
+belief.sb-02-08	Draw only <i>links</i> you can show.	manutej/ormus-harness-sheaf-lattice	0.82	Every link on your map needs a source.
+belief.sb-02-09	Let the unfinished <i>joins</i> glow.	manutej/ormus-harness-sheaf-lattice	0.8	Show the gaps you know about. Name them.
+belief.sb-02-10	Rules on top, <i>parts</i> below.	manutej/ormus-harness-sheaf-lattice	0.7	Sort your map into rows before sharing.
+belief.sb-03-01	A wiki with <i>pins</i>.	skill:noether-wiki	0.8	Pick three things your wiki must keep.
+belief.sb-03-02	Merge, and keep the <i>seams</i>.	skill:noether-wiki	0.76	When you merge, keep conflicts visible.
+belief.sb-03-03	The same mistake, <i>pinned</i>.	skill:noether-wiki	0.82	Found a mistake twice? Make it a check.
+belief.sb-03-04	Don't touch the <i>gate</i>.	skill:noether-wiki	0.79	Agents fix the work. Never the checks.
+belief.sb-03-05	We choose the <i>pins</i>.	manutej/noether-resonance-core	0.7	Borrow the idea. Never borrow the proof.
+belief.sb-03-06	Try first. Then the <i>gate</i> opens.	manutej/noether-wiki	0.74	Try before you look. Every time.
+belief.sb-03-07	Find the <i>pin</i> first.	manutej/noether-operadic-course	0.72	Stuck? Ask what stays the same.
+belief.sb-03-08	Small changes, one <i>counter</i>.	skill:noether-wiki	0.77	Track the total, not just each change.
+belief.sb-03-09	AI writes. The <i>gate</i> checks.	skill:noether-wiki	0.83	Let AI write. Let machines check. You decide.
+belief.sb-03-10	Two copies, one <i>seam</i>.	skill:noether-wiki	0.78	Two copies? Check them where they meet.
+belief.sb-04-01	Give every note a <i>label</i>.	operadic-stitch (Context Atoms)	0.78	Say what each piece is before you send.
+belief.sb-04-02	Hand over only the right <i>cards</i>.	operadic-stitch (Context Atoms)	0.74	Give each helper only what its job needs.
+belief.sb-04-03	One fact at every <i>joint</i>.	operadic-stitch (Context Atoms)	0.8	Write each fact once. Check every copy.
+belief.sb-04-04	Private <i>cards</i> stay home.	operadic-stitch (Context Atoms)	0.76	Mark what is private before you reuse it.
+belief.sb-04-05	Send the <i>wiring</i>, not the pile.	manutej/wiring-and-the-whole	0.72	Send the shape. Add files when asked.
+belief.sb-04-06	Draw the <i>sockets</i> first.	manutej/discopy	0.66	Save each step's inputs. Rerun only what changed.
+belief.sb-04-07	See every <i>joint</i> first.	manutej/catreview-go	0.7	Check what leans on it before changing.
+belief.sb-04-08	Add the missing <i>piece</i>.	manutej/operadic-compositionality-course	0.74	When parts don't fit, name the converter.
+belief.sb-04-09	Each helper gets its own <i>part</i>.	manutej/operadic-compositionality-course	0.72	Split work so no helpers share a spot.
+belief.sb-04-10	Find the <i>joint</i> that slipped.	manutej/wiring-and-the-whole	0.7	Build it two ways. Look where they differ.
+belief.sb-05-01	Build it once, with <i>slots</i>.	manutej/meta-suite	0.74	Write the steps once. Fill them each time.
+belief.sb-05-02	Stop when the <i>counter</i> hits zero.	manutej/meta-suite	0.82	Repeat until fresh eyes find nothing. Then stop.
+belief.sb-05-03	Send only what clears the <i>gate</i>.	manutej/categorical-meta-prompting	0.75	Set a bar. Score it. Then send.
+belief.sb-05-04	One <i>line</i> for every puzzle.	manutej/categorical-meta-prompting	0.72	Checkable task? Ask for the method, not answers.
+belief.sb-05-05	Every try gets a <i>tick</i>.	manutej/meta-prompting-framework	0.78	Keep every try. Then you can go back.
+belief.sb-05-06	A small <i>gate</i> picks the road.	manutej/meta-prompting-framework	0.7	Ask how hard it is before you start.
+belief.sb-05-07	Check every <i>join</i> in the chain.	manutej/meta-prompting-plugin	0.79	Check between steps, not just at the end.
+belief.sb-05-08	Keep the judge <i>pinned</i>.	operadic-stitch/references/RSI.md	0.8	Let the work change. Never the judge.
+belief.sb-05-09	One change, then <i>measure</i>.	none	0.8	Change one thing. Measure it. Keep what wins.
+belief.sb-05-10	Let it draft the <i>cards</i> first.	manutej/meta-prompting-plugin	0.77	Ask for the prompt first. Then add facts.
+belief.sb-06-01	Hunches don't fit the <i>slot</i>.	manutej/jev	0.72	Let only evidence pull the ship lever.
+belief.sb-06-02	When unsure, the <i>gate</i> stays shut.	manutej/jev	0.78	Make unsure mean stop, not go.
+belief.sb-06-03	Every step gets a <i>tick</i>.	manutej/jev-tape	0.8	Write down each step. Act once, last.
+belief.sb-06-04	Doing waits behind the <i>gate</i>.	manutej/jev-tape	0.76	Keep sending off until you choose it.
+belief.sb-06-05	Five small <i>gates</i>, not one.	manutej/JEV-works	0.82	Split the question until each answer is checkable.
+belief.sb-06-06	First, check the <i>ruler</i>.	manutej/JEV-works	0.74	Test the test first. Then trust the score.
+belief.sb-06-07	Coin flips go to a <i>person</i>.	manutej/jev-elder	0.8	Coin toss? Hand it to a person.
+belief.sb-06-08	Leave the <i>flag</i> where it is.	manutej/jev-elder	0.7	Keep the mismatch visible until it is fixed.
+belief.sb-06-09	Every claim faces the same <i>gates</i>.	manutej/the-twenty-nesy	0.77	Judge claims by tests, including your own.
+belief.sb-06-10	Readers pass a one-way <i>gate</i>.	manutej/jev-tape-wiki	0.71	Let people read without the keys.
+belief.sb-07-01	Every miss gets a new <i>gate</i>.	notion:limits-and-escapes (Limits & escapes register)	0.82	Machines check every run. Misses become new checks.
+belief.sb-07-02	Add a different <i>gate</i>.	notion:limits-and-escapes (Limits & escapes register)	0.8	Don't add copies. Add a new kind.
+belief.sb-07-03	Turn every miss into a <i>gate</i>.	notion:the-jury (round 2 print gate)	0.85	Every miss is the start of a check.
+belief.sb-07-04	The old bug hits a <i>gate</i>.	notion:the-jury (fail-first doctrine)	0.8	Every fix ships with its failing check.
+belief.sb-07-05	Fresh <i>eyes</i> try to break it.	notion:the-jury	0.78	Never let the builder be the judge.
+belief.sb-07-06	Check the <i>pin</i> before the work.	manutej/fstar-labs	0.72	Check your rules as hard as your work.
+belief.sb-07-07	Find the first broken <i>joint</i>.	manutej/Lean4Agent (fork of RickySkywalker/Lean4Agent)	0.76	Check where steps meet. Find breaks fast.
+belief.sb-07-08	Show one real <i>example</i>.	manutej/intuitionistic-logic-framework	0.74	When it says it exists, ask for one.
+belief.sb-07-09	Seven <i>gates</i> watch every frame.	notion:whale-line-brief-v1 (kh/caps/tool.cjs gates)	0.84	Let machines count. You judge what matters.
+belief.sb-07-10	Check the work, not its <i>label</i>.	notion:limits-and-escapes (Limits & escapes register)	0.79	Trust what came out, not what it says.
+belief.sb-08-01	Every answer keeps its <i>receipt</i>.	manutej/kraken-omnimemory-mcp	0.8	Ask every answer where it came from.
+belief.sb-08-02	Give every note a <i>label</i>.	none	0.82	Label how sure. Raise it only by checking.
+belief.sb-08-03	Every step leaves a <i>mark</i>.	manutej/volumetric-intelligence	0.78	Keep the record. Move on only on green.
+belief.sb-08-04	Draw only the <i>joins</i> you see.	Ormus-Solutions/ormus-agent-harness	0.85	Show the gaps. Never draw hopeful lines.
+belief.sb-08-05	Test where the parts <i>join</i>.	manutej/ceti-clock-tree	0.75	Test where your parts meet, not alone.
+belief.sb-08-06	A <i>gate</i> after every step.	manutej/VERA	0.77	Put a check after every step.
+belief.sb-08-07	Let the <i>check</i> only look.	manutej/maat	0.74	A checker should never change what it checks.
+belief.sb-08-08	Some numbers get a <i>pin</i>.	manutej/aor-ki	0.8	Name the numbers no redesign may move.
+belief.sb-08-09	Start with the small <i>card</i>.	none	0.79	Give the short version first. Then go deeper.
+belief.sb-08-10	Three runs, one <i>gate</i>.	none	0.83	Check it more than one way.
+belief.sb-09-01	Let the colours <i>ring</i>.	manutej/orpheum-studio-pro	0.74	Before you ship colours, listen to them.
+belief.sb-09-02	Keep the reading pair <i>pinned</i>.	manutej/orpheum-studio-pro	0.71	Pick any colours. Pin the reading pair.
+belief.sb-09-03	Three <i>parts</i>, many songs.	manutej/orpheum-studio-pro	0.66	Make new work from parts you can check.
+belief.sb-09-04	Finished is when every <i>gate</i> opens.	manutej/glyph-foundry-studio-pro	0.73	Don't trust the glance. Run the checks.
+belief.sb-09-05	Shrink it through the <i>gates</i>.	manutej/glyph-foundry-studio-pro	0.75	Shrink on purpose, one step at a time.
+belief.sb-09-06	Draw the order as one <i>line</i>.	manutej/hekat	0.7	Write the order down. Let it check itself.
+belief.sb-09-07	Pull every <i>thread</i> into view.	manutej/kochi	0.72	Look at the links between your notes.
+belief.sb-09-08	Every shape gets one <i>pin</i>.	manutej/visual-elements	0.68	Give each shape one job. Reuse it.
+belief.sb-09-09	Taste, one <i>tick</i> at a time.	manutej/orpheum-trainer	0.55	Show your taste with choices, not prompts.
+belief.sb-09-10	Every sound on the <i>tick</i>.	none	0.76	Tie each sound to the moment it marks.
+belief.sb-10-01	Every frame lives on the <i>line</i>.	manutej/ceti-explainer	0.74	Build films you can pause anywhere.
+belief.sb-10-02	Every <i>join</i> must hold.	manutej/ceti-explainer	0.7	Ship the shorter cut that holds together.
+belief.sb-10-03	Two copies, one <i>card</i>.	manutej/p5js-explainer-lab	0.78	One owner per fact. Copy from it.
+belief.sb-10-04	Run the <i>ring</i> end to end.	manutej/p5js-explainer-lab	0.72	Check the whole thing, every time.
+belief.sb-10-05	Nothing fake gets past the <i>door</i>.	manutej/craft	0.76	Check the name exists before you install.
+belief.sb-10-06	Turn each rule into a <i>door</i>.	manutej/craft	0.68	If it matters, make it a check.
+belief.sb-10-07	The old bug meets a <i>door</i>.	ceti-ai-services/loop-engineering	0.66	Every fix leaves a check behind.
+belief.sb-10-08	Lay the <i>cards</i> side by side.	tell-apart (skill)	0.7	Test your score on two different cases.
+belief.sb-10-09	Every version gets a <i>tick</i>.	provenance ledger (kh/registry)	0.71	Never edit in place. Make a version.
+belief.sb-10-10	Put a <i>ring</i> on every turn.	Motion Atlas (this studio)	0.73	Let a machine measure what eyes miss.

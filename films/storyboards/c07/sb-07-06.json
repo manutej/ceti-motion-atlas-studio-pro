@@ -1,0 +1,528 @@
+{
+  "schema_version": "sb60-v1",
+  "id": "sb-07-06",
+  "meta_prompt_id": "mp-c07-v1",
+  "cluster": "07 Formal correctness & logic",
+  "repo": "manutej/fstar-labs",
+  "capability": "A checked rule can still be the wrong rule",
+  "audience": "Researchers",
+  "wada": 84,
+  "bpm": 126,
+  "dur": 61.25,
+  "title": "Check the <i>pin</i> before the work.",
+  "hook": {
+    "kind": "Example",
+    "picture": "Close: the line lands exactly on a pin and gets a tick. A pod downstream answers ✕.",
+    "words": "The checker said yes."
+  },
+  "problem_in_viewer_words": {
+    "kind": "Fact",
+    "body": "The checker said yes. The program still did the wrong thing.",
+    "who": "researcher reviewing AI-written verified code"
+  },
+  "why_it_keeps_happening": {
+    "kind": "Fact",
+    "picture": "One pin, set once, just below where it should be. Three times, faster each time, runs land on it perfectly and pods answer ✕.",
+    "words": "The rule was written wrong, once."
+  },
+  "stakes": {
+    "kind": "Fact",
+    "body": "A perfectly checked program can still do the wrong thing, and the green result makes everyone stop looking."
+  },
+  "solution_hint": "Test the rule, not only the work.",
+  "metaphor": {
+    "kind": "Example",
+    "body": "The pin is the written rule. A gate compares the line with the pin, never with what you meant, so a second gate tests the pin against known answers.",
+    "symbols": [
+      "whale",
+      "line",
+      "pin",
+      "gate",
+      "atom"
+    ]
+  },
+  "mechanism_beats": {
+    "kind": "Method",
+    "steps": [
+      {
+        "t": 19.048,
+        "picture": "A gate compares the line with the pin step by step, with a ring on each step.",
+        "words": "",
+        "sound": "A tuned pluck per step"
+      },
+      {
+        "t": 20.952,
+        "picture": "A step that leaves the pin stops at the gate. The bar drops.",
+        "words": "A machine checks each step against the rule.",
+        "sound": "Pluck, then a stop knock"
+      },
+      {
+        "t": 22.857,
+        "picture": "Push-in: a second gate with an example-card icon. Known right answers, as cards, are tested against the pin, and one doesn't fit.",
+        "words": "",
+        "sound": "Card taps, one of them sour"
+      },
+      {
+        "t": 24.762,
+        "picture": "The pin flags itself in copper: the rule is wrong.",
+        "words": "The written rule is called the spec.",
+        "sound": "Sour tone held"
+      },
+      {
+        "t": 26.667,
+        "picture": "The whale moves the pin up to the ghost mark, and every example card fits.",
+        "words": "",
+        "sound": "The tones converge"
+      },
+      {
+        "t": 28.571,
+        "picture": "The line follows the moved pin. Both gates glow.",
+        "words": "Check the spec against known answers too.",
+        "sound": "Unison, resolved"
+      }
+    ]
+  },
+  "real_case": {
+    "kind": "Evidence",
+    "claim": "Field results on Manu's FRONTIER topic page: Verus system proofs 81%, DafnyBench 92.7%, while Lean end-to-end is far lower (VERINA proof 4.9%). 'Verifier is an oracle for proofs, not specs.'",
+    "numbers": [
+      "81%",
+      "92.7%",
+      "4.9%"
+    ],
+    "source": {
+      "kind": "notion",
+      "title": "llm-verification (FRONTIER topic)",
+      "url": "https://app.notion.com/p/3fbd50cfaf93815e82a1c8ac4a862ce9"
+    },
+    "verified": true,
+    "illustrative": false
+  },
+  "honest_limit": {
+    "kind": "Constraint",
+    "picture": "A pin set wrong in a way no example card covers. The line follows it through both gates and the pod answers ✕.",
+    "words": "No example covered this. It passed."
+  },
+  "not_this": {
+    "kind": "Constraint",
+    "body": "Checked against the rule. Not against your intent."
+  },
+  "ending_pattern": {
+    "kind": "Example",
+    "slug": "pin-finds-home",
+    "body": "An example card tests the bar-1 pin. It slides up to where the pod needed it, the line follows, and the pod answers ✓.",
+    "callback": "Same close framing as bar 1: the pin that matched the line but missed the pod now meets both."
+  },
+  "end_belief": {
+    "kind": "Goal",
+    "body": "Check your rules as hard as your work."
+  },
+  "beats": [
+    {
+      "t": 0.0,
+      "picture": "Close: the line runs onto a pin exactly. The pin glows and a tick lands.",
+      "words": "The checker said yes.",
+      "sound": "A string in tune with itself",
+      "act": "felt",
+      "bars": "1",
+      "camera": "close z 1.6 on the whale",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 2.857,
+      "picture": "A pod downstream takes the result and answers ✕ in copper: it needed the line to land a little higher.",
+      "words": "",
+      "sound": "The string a semitone off the reference",
+      "act": "felt",
+      "bars": "2",
+      "camera": "close z 1.6 on the whale",
+      "cue_tags": [
+        "consequence",
+        "focus"
+      ]
+    },
+    {
+      "t": 4.762,
+      "picture": "A faint ghost mark shows where the pod needed it. The pin sits just below.",
+      "words": "It still did the wrong thing.",
+      "sound": "Beating between two tones",
+      "act": "felt",
+      "bars": "3",
+      "camera": "close z 1.6 on the whale",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 7.619,
+      "picture": "The whale looks from the pin to the ghost mark. Hold.",
+      "words": "",
+      "sound": "Silence",
+      "act": "felt",
+      "bars": "5",
+      "camera": "close z 1.6 on the whale",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 9.524,
+      "picture": "Hinge: half a bar of stillness, then the title card.",
+      "words": "Check the <i>pin</i> before the work.",
+      "sound": "Near-silence, then the title tick",
+      "act": "why",
+      "bars": "6",
+      "camera": "pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "hinge"
+      ]
+    },
+    {
+      "t": 11.429,
+      "picture": "Pull back: the pin was set once, long ago, and many runs follow it.",
+      "words": "",
+      "sound": "Problem motif",
+      "act": "why",
+      "bars": "7",
+      "camera": "pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 12.857,
+      "picture": "Nobody has moved the pin since it was set.",
+      "words": "The rule was written wrong, once.",
+      "sound": "Problem motif again",
+      "act": "why",
+      "bars": "7",
+      "camera": "pull back z 1.6 to 1.0"
+    },
+    {
+      "t": 14.286,
+      "picture": "Three times, faster: three runs land perfectly on the pin and three pods answer ✕.",
+      "words": "",
+      "sound": "Beating three times, accelerating",
+      "act": "why",
+      "bars": "8",
+      "camera": "pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 16.667,
+      "picture": "Freeze: the ghost mark brightens above the pin.",
+      "words": "Test the rule, not only the work.",
+      "sound": "First pure reference tone",
+      "act": "why",
+      "bars": "9",
+      "camera": "pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 19.048,
+      "picture": "A gate compares the line with the pin step by step, with a ring on each step.",
+      "words": "",
+      "sound": "A tuned pluck per step",
+      "act": "move",
+      "bars": "11",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 20.952,
+      "picture": "A step that leaves the pin stops at the gate. The bar drops.",
+      "words": "A machine checks each step against the rule.",
+      "sound": "Pluck, then a stop knock",
+      "act": "move",
+      "bars": "12",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 22.857,
+      "picture": "Push-in: a second gate with an example-card icon. Known right answers, as cards, are tested against the pin, and one doesn't fit.",
+      "words": "",
+      "sound": "Card taps, one of them sour",
+      "act": "move",
+      "bars": "13",
+      "camera": "one push-in to z 1.3 on the decisive moment",
+      "cue_tags": [
+        "mech",
+        "focus"
+      ]
+    },
+    {
+      "t": 24.762,
+      "picture": "The pin flags itself in copper: the rule is wrong.",
+      "words": "The written rule is called the spec.",
+      "sound": "Sour tone held",
+      "act": "move",
+      "bars": "14",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 26.667,
+      "picture": "The whale moves the pin up to the ghost mark, and every example card fits.",
+      "words": "",
+      "sound": "The tones converge",
+      "act": "move",
+      "bars": "15",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 28.571,
+      "picture": "The line follows the moved pin. Both gates glow.",
+      "words": "Check the spec against known answers too.",
+      "sound": "Unison, resolved",
+      "act": "move",
+      "bars": "16",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 30.476,
+      "picture": "Wide: a field of many lines, each passing step gates. Most glow.",
+      "words": "",
+      "sound": "Pulse bed",
+      "act": "case",
+      "bars": "17",
+      "camera": "steady wide, slow drift"
+    },
+    {
+      "t": 32.381,
+      "picture": "The card fades in on clean paper.",
+      "words": "Machines can check AI-written steps at scale.",
+      "sound": "Ticks",
+      "act": "case",
+      "bars": "18",
+      "camera": "steady wide, slow drift"
+    },
+    {
+      "t": 36.19,
+      "picture": "Drift to one corner: long end-to-end lines where most gates stay shut. The counter sits there.",
+      "words": "Harder end-to-end tasks still mostly fail.",
+      "sound": "Sparse ticks",
+      "act": "case",
+      "bars": "20",
+      "camera": "steady wide, slow drift"
+    },
+    {
+      "t": 41.905,
+      "picture": "A pin set wrong in a way no example card covers. The line follows it and both gates glow.",
+      "words": "No example covered this. It passed.",
+      "sound": "Signature, unresolved",
+      "act": "limit",
+      "bars": "23",
+      "camera": "still, then one slow push to what slipped",
+      "cue_tags": [
+        "limit",
+        "focus"
+      ]
+    },
+    {
+      "t": 43.81,
+      "picture": "Slow push: the pod answers ✕.",
+      "words": "",
+      "sound": "Beating",
+      "act": "limit",
+      "bars": "24",
+      "camera": "still, then one slow push to what slipped",
+      "cue_tags": [
+        "limit"
+      ]
+    },
+    {
+      "t": 45.238,
+      "picture": "Still on the pin.",
+      "words": "Checked against the rule. Not against your intent.",
+      "sound": "Room tone",
+      "act": "limit",
+      "bars": "24",
+      "camera": "still, then one slow push to what slipped"
+    },
+    {
+      "t": 47.619,
+      "picture": "FELT framing restored: the same pin, line and pod as in bar 1.",
+      "words": "",
+      "sound": "Reference tone",
+      "act": "payoff",
+      "bars": "26",
+      "camera": "FELT framing restored, z 1.6",
+      "cue_tags": [
+        "callback"
+      ]
+    },
+    {
+      "t": 49.524,
+      "picture": "An example card tests the pin. The pin slides up to the ghost mark and the line follows.",
+      "words": "",
+      "sound": "The tones converge",
+      "act": "payoff",
+      "bars": "27",
+      "camera": "FELT framing restored, z 1.6"
+    },
+    {
+      "t": 51.429,
+      "picture": "The pod answers ✓. Spark.",
+      "words": "",
+      "sound": "Resolved",
+      "act": "payoff",
+      "bars": "28",
+      "camera": "FELT framing restored, z 1.6"
+    },
+    {
+      "t": 55.238,
+      "picture": "Pin, line and two gates, still. The whale breathes.",
+      "words": "Check your rules as hard as your work.",
+      "sound": "Pad tail",
+      "act": "belief",
+      "bars": "30",
+      "camera": "still, breathing only"
+    },
+    {
+      "t": 59.048,
+      "picture": "SERIES.lockup over the still line.",
+      "words": "",
+      "sound": "Pad tail ends in room tone",
+      "act": "lockup",
+      "bars": "32",
+      "camera": "still"
+    }
+  ],
+  "captions": [
+    {
+      "t_in": 0.952,
+      "t_out": 4.286,
+      "text": "The checker said yes.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 4.762,
+      "t_out": 8.571,
+      "text": "It still did the wrong thing.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 10.476,
+      "t_out": 12.857,
+      "text": "Check the <i>pin</i> before the work.",
+      "kind": "title"
+    },
+    {
+      "t_in": 12.857,
+      "t_out": 16.19,
+      "text": "The rule was written wrong, once.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 16.667,
+      "t_out": 19.524,
+      "text": "Test the rule, not only the work.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 20.952,
+      "t_out": 24.286,
+      "text": "A machine checks each step against the rule.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 24.762,
+      "t_out": 28.095,
+      "text": "The written rule is called the spec.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 28.571,
+      "t_out": 31.429,
+      "text": "Check the spec against known answers too.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 32.381,
+      "t_out": 35.714,
+      "text": "Machines can check AI-written steps at scale.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 33.333,
+      "t_out": 41.429,
+      "text": "Field · Verus 81% · DafnyBench 92.7%",
+      "kind": "card",
+      "src": "https://app.notion.com/p/3fbd50cfaf93815e82a1c8ac4a862ce9"
+    },
+    {
+      "t_in": 36.19,
+      "t_out": 40.952,
+      "text": "Harder end-to-end tasks still mostly fail.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 38.095,
+      "t_out": 41.429,
+      "text": "VERINA 4.9%",
+      "kind": "counter",
+      "src": "https://app.notion.com/p/3fbd50cfaf93815e82a1c8ac4a862ce9"
+    },
+    {
+      "t_in": 42.381,
+      "t_out": 45.0,
+      "text": "No example covered this. It passed.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 45.238,
+      "t_out": 47.619,
+      "text": "Checked against the rule. Not against your intent.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 55.238,
+      "t_out": 59.048,
+      "text": "Check your rules as hard as your work.",
+      "kind": "caption"
+    }
+  ],
+  "terms": [
+    {
+      "term": "spec",
+      "symbol": "pin",
+      "pictured_at": 19.048,
+      "named_at": 24.762
+    }
+  ],
+  "jargon": [
+    "dafny",
+    "lean",
+    "verus",
+    "formal"
+  ],
+  "sound": {
+    "signature": "A tuned string matching a pure reference tone",
+    "problem_motif": "The string a semitone off the reference, beating",
+    "limit_unresolved": true
+  },
+  "score_self": {
+    "score": 0.72,
+    "reason": "Spec integrity is the cluster's weak point, and this board pictures it. But two gates, a pin and cards make it dense, and the field numbers are not Manu's own run.",
+    "weakest_piece": "real_case"
+  }
+}

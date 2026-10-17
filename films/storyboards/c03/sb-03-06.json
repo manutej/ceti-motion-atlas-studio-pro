@@ -1,0 +1,506 @@
+{
+  "schema_version": "sb60-v1",
+  "id": "sb-03-06",
+  "meta_prompt_id": "mp-c03-v1",
+  "cluster": "03 Noether & conservation",
+  "repo": "manutej/noether-wiki",
+  "capability": "Hide the answer until you log a real try",
+  "audience": "Learners",
+  "wada": 166,
+  "bpm": 128,
+  "dur": 60.3,
+  "title": "Try first. Then the <i>gate</i> opens.",
+  "hook": {
+    "kind": "Example",
+    "picture": "Close: the whale faces a puzzle dot on the line. An answer card sits right beside it, face up, and the whale glances at it at once.",
+    "words": "I peeked at the answer."
+  },
+  "problem_in_viewer_words": {
+    "kind": "Fact",
+    "body": "I read the answer, nodded, and forgot it by Friday.",
+    "who": "learner working through monthly puzzles"
+  },
+  "why_it_keeps_happening": {
+    "kind": "Fact",
+    "picture": "A row of puzzle dots, each with a face-up answer card beside it. The whale glances at three cards, accelerating.",
+    "words": "The answer is always one glance away."
+  },
+  "stakes": {
+    "kind": "Fact",
+    "body": "Hours of reading with nothing kept. The next puzzle starts from zero."
+  },
+  "solution_hint": "Hide the answer until you try.",
+  "metaphor": {
+    "kind": "Example",
+    "body": "Each puzzle's answer card sits behind a gate. The whale's own line has to reach the puzzle and leave a tick before the gate opens.",
+    "symbols": [
+      "whale",
+      "line",
+      "gate",
+      "tick"
+    ]
+  },
+  "mechanism_beats": {
+    "kind": "Method",
+    "steps": [
+      {
+        "t": 18.75,
+        "picture": "A gate drops between the puzzle dot and its card. The card waits behind the gate, face down.",
+        "words": "",
+        "sound": "Bell, low."
+      },
+      {
+        "t": 19.688,
+        "picture": "A chip on the gate.",
+        "words": "Answer behind the gate.",
+        "sound": "Click."
+      },
+      {
+        "t": 22.5,
+        "picture": "The whale works the puzzle: its line wobbles and bends (effort squash). It drops one tick on the strip, the gate opens and the card flips.",
+        "words": "Write down a try. Then it opens.",
+        "sound": "Bell rings out."
+      },
+      {
+        "t": 25.312,
+        "picture": "Push-in (z 1.3). The whale's wobbly line is laid against the card. Matching parts glow, and the parts that don't get a soft grenadine mark to retry.",
+        "words": "Now the answer lands on your work.",
+        "sound": "Bell, then a gentle second bell."
+      },
+      {
+        "t": 28.125,
+        "picture": "The next unopened puzzle dot pulls forward. The solved one slides back.",
+        "words": "Next: a puzzle you haven't opened.",
+        "sound": "Soft tick."
+      }
+    ]
+  },
+  "real_case": {
+    "kind": "Evidence",
+    "claim": "The noether-wiki repo indexes twenty-five monthly puzzles, September 2024 to September 2026. Its trainer keeps solutions hidden until you log an attempt and favours unopened problems.",
+    "numbers": [
+      "twenty-five",
+      "September 2024",
+      "September 2026"
+    ],
+    "source": {
+      "kind": "repo",
+      "title": "manutej/noether-wiki README",
+      "url": "https://github.com/manutej/noether-wiki"
+    },
+    "verified": true,
+    "illustrative": false
+  },
+  "honest_limit": {
+    "kind": "Constraint",
+    "picture": "The whale drops a blank tick with no work on its line, and the gate opens anyway.",
+    "words": "A blank try opens it too."
+  },
+  "not_this": {
+    "kind": "Constraint",
+    "body": "A logged try is not learning."
+  },
+  "ending_pattern": {
+    "kind": "Example",
+    "slug": "earned-card",
+    "body": "The answer card waits behind the gate. The whale's own worked line reaches it and matches it, then the next-day puzzle is passed.",
+    "callback": "In FELT the card sat face up and the whale glanced at it. In the same framing the whale's own line now reaches the card first."
+  },
+  "end_belief": {
+    "kind": "Goal",
+    "body": "Try before you look. Every time."
+  },
+  "beats": [
+    {
+      "t": 0.0,
+      "picture": "Close: the whale faces a puzzle dot on the line. An answer card sits right beside it, face up, and the whale glances at it at once.",
+      "words": "",
+      "sound": "Bright pluck, no sustain.",
+      "act": "felt",
+      "bars": "1",
+      "camera": "close z 1.6 on the whale"
+    },
+    {
+      "t": 0.938,
+      "picture": "The whale nods at the card.",
+      "words": "I peeked at the answer.",
+      "sound": "Room tone.",
+      "act": "felt",
+      "bars": "1",
+      "camera": "close z 1.6 on the whale"
+    },
+    {
+      "t": 1.875,
+      "picture": "The line behind the whale runs flat and smooth, with no effort marks. The card dissolves.",
+      "words": "",
+      "sound": "Pluck fades fast.",
+      "act": "felt",
+      "bars": "2",
+      "camera": "close z 1.6 on the whale",
+      "cue_tags": [
+        "consequence"
+      ]
+    },
+    {
+      "t": 3.75,
+      "picture": "Next day: a similar puzzle dot. The whale swims at it and bounces off. Grenadine cross chip.",
+      "words": "",
+      "sound": "Dull thunk.",
+      "act": "felt",
+      "bars": "3",
+      "camera": "close z 1.6 on the whale",
+      "cue_tags": [
+        "consequence",
+        "focus"
+      ]
+    },
+    {
+      "t": 4.688,
+      "picture": "The whale rubs its nose.",
+      "words": "By Friday, I couldn't do it.",
+      "sound": "Room tone.",
+      "act": "felt",
+      "bars": "3",
+      "camera": "close z 1.6 on the whale"
+    },
+    {
+      "t": 7.5,
+      "picture": "The whale looks at the puzzle dot. Hold.",
+      "words": "",
+      "sound": "Silence.",
+      "act": "felt",
+      "bars": "5",
+      "camera": "close z 1.6 on the whale",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 10.312,
+      "picture": "Stillness, then SERIES.open title.",
+      "words": "Try first. Then the <i>gate</i> opens.",
+      "sound": "Near-silence, title tick.",
+      "act": "why",
+      "bars": "6",
+      "camera": "pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "hinge"
+      ]
+    },
+    {
+      "t": 11.25,
+      "picture": "Pull back: a row of puzzle dots along the line, each with a face-up card beside it.",
+      "words": "",
+      "sound": "Problem motif.",
+      "act": "why",
+      "bars": "7",
+      "camera": "pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 13.125,
+      "picture": "Three-times device: the whale glances at a card. Every 2 beats.",
+      "words": "The answer is always one glance away.",
+      "sound": "Short pluck.",
+      "act": "why",
+      "bars": "8",
+      "camera": "pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 15.0,
+      "picture": "Two more glances, every beat then every half beat.",
+      "words": "",
+      "sound": "Plucks, faster.",
+      "act": "why",
+      "bars": "9",
+      "camera": "pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 16.875,
+      "picture": "Everything stops. The cards flip face down.",
+      "words": "Hide the answer until you try.",
+      "sound": "First clean signature: a sustained bell.",
+      "act": "why",
+      "bars": "10",
+      "camera": "pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 18.75,
+      "picture": "A gate drops between the puzzle dot and its card. The card waits behind the gate, face down.",
+      "words": "",
+      "sound": "Bell, low.",
+      "act": "move",
+      "bars": "11",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 19.688,
+      "picture": "A chip on the gate.",
+      "words": "Answer behind the gate.",
+      "sound": "Click.",
+      "act": "move",
+      "bars": "11",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 22.5,
+      "picture": "The whale works the puzzle: its line wobbles and bends (effort squash). It drops one tick on the strip, the gate opens and the card flips.",
+      "words": "Write down a try. Then it opens.",
+      "sound": "Bell rings out.",
+      "act": "move",
+      "bars": "13",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 25.312,
+      "picture": "Push-in (z 1.3). The whale's wobbly line is laid against the card. Matching parts glow, and the parts that don't get a soft grenadine mark to retry.",
+      "words": "Now the answer lands on your work.",
+      "sound": "Bell, then a gentle second bell.",
+      "act": "move",
+      "bars": "14",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech",
+        "focus"
+      ]
+    },
+    {
+      "t": 28.125,
+      "picture": "The next unopened puzzle dot pulls forward. The solved one slides back.",
+      "words": "Next: a puzzle you haven't opened.",
+      "sound": "Soft tick.",
+      "act": "move",
+      "bars": "16",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 30.0,
+      "picture": "Wide: a long line of puzzle dots, each with its own gate. Ticks sit under the ones tried, and a rank marker climbs.",
+      "words": "Real repo: one puzzle a month.",
+      "sound": "Pulse bed.",
+      "act": "case",
+      "bars": "17",
+      "camera": "steady wide, slow drift"
+    },
+    {
+      "t": 30.938,
+      "picture": "Card: Real repo · noether-wiki trainer.",
+      "words": "25 problems · Sept 2024 to Sept 2026",
+      "sound": "Card tick.",
+      "act": "case",
+      "bars": "17",
+      "camera": "steady wide, slow drift"
+    },
+    {
+      "t": 35.625,
+      "picture": "The picker skips the ticked dots and pulls an unopened one forward.",
+      "words": "It picks the ones you haven't opened.",
+      "sound": "Quiet ticks.",
+      "act": "case",
+      "bars": "20",
+      "camera": "steady wide, slow drift"
+    },
+    {
+      "t": 41.25,
+      "picture": "Still, then a slow push. The whale drops a blank tick with no wobble on its line and no work done, and the gate opens anyway.",
+      "words": "A blank try opens it too.",
+      "sound": "Signature bell once, unresolved.",
+      "act": "limit",
+      "bars": "23",
+      "camera": "still, then one slow push",
+      "cue_tags": [
+        "limit",
+        "focus"
+      ]
+    },
+    {
+      "t": 44.062,
+      "picture": "Hold on the open gate and the flat line.",
+      "words": "A logged try is not learning.",
+      "sound": "Room tone.",
+      "act": "limit",
+      "bars": "24",
+      "camera": "still, then one slow push"
+    },
+    {
+      "t": 46.875,
+      "picture": "FELT framing (z 1.6). The same puzzle dot, its card now behind the gate. The whale's line wobbles, works and ticks. The gate opens and the card matches the whale's line.",
+      "words": "",
+      "sound": "Bell, full.",
+      "act": "payoff",
+      "bars": "26",
+      "camera": "FELT framing z 1.6, then wide reveal",
+      "cue_tags": [
+        "callback"
+      ]
+    },
+    {
+      "t": 50.625,
+      "picture": "Next day: a similar dot. This time the whale swims straight through it, with a tick chip and a spark.",
+      "words": "",
+      "sound": "Full resolution.",
+      "act": "payoff",
+      "bars": "28",
+      "camera": "FELT framing z 1.6, then wide reveal",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 54.375,
+      "picture": "Still line of gates, whale breathing.",
+      "words": "Try before you look. Every time.",
+      "sound": "Pad tail.",
+      "act": "belief",
+      "bars": "30",
+      "camera": "still, breathing only"
+    },
+    {
+      "t": 58.125,
+      "picture": "SERIES.lockup over the settled line.",
+      "words": "",
+      "sound": "Pad tail ends on the tonic.",
+      "act": "lockup",
+      "bars": "32",
+      "camera": "still"
+    }
+  ],
+  "captions": [
+    {
+      "t_in": 0.938,
+      "t_out": 3.75,
+      "text": "I peeked at the answer.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 4.688,
+      "t_out": 8.438,
+      "text": "By Friday, I couldn't do it.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 10.312,
+      "t_out": 13.125,
+      "text": "Try first. Then the <i>gate</i> opens.",
+      "kind": "title"
+    },
+    {
+      "t_in": 13.125,
+      "t_out": 16.406,
+      "text": "The answer is always one glance away.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 16.875,
+      "t_out": 19.219,
+      "text": "Hide the answer until you try.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 19.688,
+      "t_out": 21.562,
+      "text": "Answer behind the gate.",
+      "kind": "label"
+    },
+    {
+      "t_in": 22.5,
+      "t_out": 25.312,
+      "text": "Write down a try. Then it opens.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 25.312,
+      "t_out": 28.125,
+      "text": "Now the answer lands on your work.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 28.125,
+      "t_out": 30.938,
+      "text": "Next: a puzzle you haven't opened.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 30.0,
+      "t_out": 33.75,
+      "text": "Real repo: one puzzle a month.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 30.938,
+      "t_out": 38.438,
+      "text": "25 problems · Sept 2024 to Sept 2026",
+      "kind": "card",
+      "src": "https://github.com/manutej/noether-wiki"
+    },
+    {
+      "t_in": 35.625,
+      "t_out": 40.312,
+      "text": "It picks the ones you haven't opened.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 41.25,
+      "t_out": 44.062,
+      "text": "A blank try opens it too.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 44.062,
+      "t_out": 46.875,
+      "text": "A logged try is not learning.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 54.375,
+      "t_out": 58.125,
+      "text": "Try before you look. Every time.",
+      "kind": "caption"
+    }
+  ],
+  "terms": [
+    {
+      "term": "logged",
+      "symbol": "tick dropped on the strip",
+      "pictured_at": 22.5,
+      "named_at": 44.062
+    }
+  ],
+  "jargon": [
+    "spaced repetition",
+    "retrieval"
+  ],
+  "sound": {
+    "signature": "A sustained bell.",
+    "problem_motif": "A bright pluck that dies at once.",
+    "limit_unresolved": true
+  },
+  "score_self": {
+    "score": 0.74,
+    "reason": "Mechanical gates N3 N4 N5 N6 N8 N9 S1 and read time pass. A clear learner pain. The link to conservation is loose (the gate is a rule, not a pin). J1 unrun.",
+    "weakest_piece": "capability"
+  }
+}

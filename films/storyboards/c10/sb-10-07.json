@@ -71,7 +71,7 @@
   },
   "real_case": {
     "kind": "Evidence",
-    "claim": "The loop-engineering repo could not be read (UNGROUNDED). The jury doctrine \"Every fix ships with a check that fails on the old copy\"; in the jury run, fixers on disjoint files went 0/22 → 22/22, 0/15 → 15/15 and 0/16 → 16/16.",
+    "claim": "Repo unreadable (UNGROUNDED); evidence from the jury: \"Every fix ships with a check that fails on the old copy.\" Fixers went 0/22 → 22/22, 0/15 → 15/15, 0/16 → 16/16.",
     "numbers": [
       "0/22 → 22/22",
       "0/15 → 15/15",

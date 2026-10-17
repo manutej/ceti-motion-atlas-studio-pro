@@ -1,0 +1,101 @@
+id	title	repo	self	body
+problem.sb-01-01	Notes must agree at the <i>joins</i>.	manutej/sheaf-knowledge-studio	0.74	My notes from chapter two and chapter nine disagree. · a learner the night before the exam
+problem.sb-01-02	Give each note its own <i>card</i>.	manutej/stalks-and-sections	0.68	Everything sits in one space, so nothing ever looks wrong. · a researcher reviewing a knowledge graph
+problem.sb-01-03	Keep the red <i>join</i> red.	manutej/cell-sheaf	0.77	Every team says green, but the project is late. · a programme lead in the Monday status meeting
+problem.sb-01-04	Map the <i>joins</i>, then merge.	manutej/sheaf-port	0.79	I merged the folder and half the links point nowhere. · an engineer after a Friday repo merge
+problem.sb-01-05	Show both sides of the <i>edge</i>.	manutej/glue	0.66	Two websites gave me two dates, and I picked one. · someone planning a trip
+problem.sb-01-06	One owner for every <i>join</i>.	none	0.8	The storyboard says one thing, the build says another. · an engineer shipping a film or a doc site
+problem.sb-01-07	Seven opinions, one <i>line</i>.	none	0.7	Seven teams sent seven numbers, and nobody owns the answer. · an operations lead before the board meeting
+problem.sb-01-08	Keep both. Mark the <i>join</i>.	none	0.75	The assistant replaced what my client said in March. · a consultant using an AI assistant with memory
+problem.sb-01-09	Test the <i>gate</i> by breaking it.	manutej/sheaf-knowledge-studio	0.76	The checker said all clear. Was it even looking? · a researcher reading a green test report
+problem.sb-01-10	Trust the <i>parts</i> that agree.	manutej/stalks-and-sections	0.72	It sounded sure about everything. Which parts can I trust? · anyone reading an AI answer at work
+problem.sb-02-01	Fold only the <i>joins</i> that agree.	manutej/cell-sheaf-swarm	0.8	Two agents disagreed, and the merge just kept the last one. · engineer reading a merged multi-agent report
+problem.sb-02-02	Odd <i>joins</i> wait for a person.	manutej/cell-sheaf-swarm	0.78	The bot merged something weird, and nobody looked at it. · ops lead reading the weekly report
+problem.sb-02-03	Every push meets the <i>gate</i>.	manutej/cell-sheaf-swarm	0.68	My file looked fine to me. Then the viewer broke for everyone. · engineer pushing a new contract file
+problem.sb-02-04	Let every <i>join</i> pull back.	manutej/sheaf-dirichlet-protein-3d	0.72	I nudged the model, and it never settled back. · researcher tuning a 3D molecule model
+problem.sb-02-05	Floppy parts have fewer <i>joins</i>.	manutej/sheaf-dirichlet-protein-3d	0.76	It looks solid in the picture. I can't tell what wobbles. · student looking at a molecule diagram
+problem.sb-02-06	See every <i>link</i> below the top.	manutej/sheaf-dep-ethereum	0.76	We back the big projects. The break came from below. · funding lead at a quarterly review
+problem.sb-02-07	Credit should flow down the <i>links</i>.	manutej/sheaf-dep-ethereum	0.7	The app gets thanked. The tiny library under it gets nothing. · open source maintainer reading a thank-you post
+problem.sb-02-08	Draw only <i>links</i> you can show.	manutej/ormus-harness-sheaf-lattice	0.82	The diagram looked tidy. Half the arrows were guesses. · researcher reviewing an agent architecture diagram
+problem.sb-02-09	Let the unfinished <i>joins</i> glow.	manutej/ormus-harness-sheaf-lattice	0.8	The status said all green. The plan still had holes. · project sponsor at a status meeting
+problem.sb-02-10	Rules on top, <i>parts</i> below.	manutej/ormus-harness-sheaf-lattice	0.7	We mapped the whole codebase, and nobody can read it. · new engineer on day one
+problem.sb-03-01	A wiki with <i>pins</i>.	skill:noether-wiki	0.8	I followed the wiki's link, and it went nowhere. · new hire on day one
+problem.sb-03-02	Merge, and keep the <i>seams</i>.	skill:noether-wiki	0.76	We merged both teams' docs, and now nobody trusts either. · operations lead after a reorg
+problem.sb-03-03	The same mistake, <i>pinned</i>.	skill:noether-wiki	0.82	We fixed this exact mistake last month. · editor of the team handbook
+problem.sb-03-04	Don't touch the <i>gate</i>.	skill:noether-wiki	0.79	The checks went green because it deleted the hard part. · engineer reviewing an agent's pull request
+problem.sb-03-05	We choose the <i>pins</i>.	manutej/noether-resonance-core	0.7	Your slide says Noether proved our wiki checks. Nothing did. · reviewer at a research talk
+problem.sb-03-06	Try first. Then the <i>gate</i> opens.	manutej/noether-wiki	0.74	I read the answer, nodded, and forgot it by Friday. · learner working through monthly puzzles
+problem.sb-03-07	Find the <i>pin</i> first.	manutej/noether-operadic-course	0.72	Every problem looks brand new, so I start from zero. · learner on module one
+problem.sb-03-08	Small changes, one <i>counter</i>.	skill:noether-wiki	0.77	Every change was fine. Together they changed everything. · head of a docs team at quarter end
+problem.sb-03-09	AI writes. The <i>gate</i> checks.	skill:noether-wiki	0.83	The AI filled our wiki overnight. Which pages can I trust? · small business owner on Monday morning
+problem.sb-03-10	Two copies, one <i>seam</i>.	skill:noether-wiki	0.78	The build quietly stopped matching the design doc. · tech lead on release day
+problem.sb-04-01	Give every note a <i>label</i>.	operadic-stitch (Context Atoms)	0.78	It quoted our old draft like it was the decision. · project lead reading the AI summary on Monday
+problem.sb-04-02	Hand over only the right <i>cards</i>.	operadic-stitch (Context Atoms)	0.74	I gave it the whole folder. It missed the one rule. · marketing manager briefing an AI helper
+problem.sb-04-03	One fact at every <i>joint</i>.	operadic-stitch (Context Atoms)	0.8	My two helpers were told two different deadlines. · team lead who split one task across two AI helpers
+problem.sb-04-04	Private <i>cards</i> stay home.	operadic-stitch (Context Atoms)	0.76	I didn't mean to send the client's notes. · consultant reusing last week's prompt for a new client
+problem.sb-04-05	Send the <i>wiring</i>, not the pile.	manutej/wiring-and-the-whole	0.72	Our codebase doesn't fit, so it guesses how things connect. · engineer asking an AI about a large repo
+problem.sb-04-06	Draw the <i>sockets</i> first.	manutej/discopy	0.66	We reran one step and got a different result. · researcher rerunning half a pipeline
+problem.sb-04-07	See every <i>joint</i> first.	manutej/catreview-go	0.7	We changed one small module and five teams broke. · engineering director the morning after a release
+problem.sb-04-08	Add the missing <i>piece</i>.	manutej/operadic-compositionality-course	0.74	Each tool works. Chained together, they fall apart. · learner wiring two AI tools together in a course lab
+problem.sb-04-09	Each helper gets its own <i>part</i>.	manutej/operadic-compositionality-course	0.72	Three AI helpers, and they kept undoing each other. · operations lead running several agents on one document
+problem.sb-04-10	Find the <i>joint</i> that slipped.	manutej/wiring-and-the-whole	0.7	The answer's wrong, and I can't tell which step. · researcher debugging a multi-step agent run
+problem.sb-05-01	Build it once, with <i>slots</i>.	manutej/meta-suite	0.74	Every new client, I start the prompt from zero. · consultant opening a blank chat on Monday
+problem.sb-05-02	Stop when the <i>counter</i> hits zero.	manutej/meta-suite	0.82	I keep tweaking it, and I never know when to stop. · learner on their fifth rewrite of one prompt
+problem.sb-05-03	Send only what clears the <i>gate</i>.	manutej/categorical-meta-prompting	0.75	Is this answer good enough? Honestly, I can't tell. · engineer about to paste an AI answer into a ticket
+problem.sb-05-04	One <i>line</i> for every puzzle.	manutej/categorical-meta-prompting	0.72	It gets the same kind of puzzle wrong, differently each time. · researcher rerunning the same puzzle set
+problem.sb-05-05	Every try gets a <i>tick</i>.	manutej/meta-prompting-framework	0.78	Which version actually worked? I overwrote it last night. · engineer the morning after a prompt session
+problem.sb-05-06	A small <i>gate</i> picks the road.	manutej/meta-prompting-framework	0.7	A yes-or-no question took ten minutes and cost us. · team lead reading this month's AI bill
+problem.sb-05-07	Check every <i>join</i> in the chain.	manutej/meta-prompting-plugin	0.79	Step one was fine. By step five it was nonsense. · anyone running a multi-step AI workflow
+problem.sb-05-08	Keep the judge <i>pinned</i>.	operadic-stitch/references/RSI.md	0.8	The scores kept going up, but the work got worse. · researcher reading a self-improvement report
+problem.sb-05-09	One change, then <i>measure</i>.	none	0.8	I changed six things. Now I don't know what helped. · learner tuning their first prompt
+problem.sb-05-10	Let it draft the <i>cards</i> first.	manutej/meta-prompting-plugin	0.77	I never know what to write in the box. · anyone new to AI at work
+problem.sb-06-01	Hunches don't fit the <i>slot</i>.	manutej/jev	0.72	Someone said it looked fine, so the bot shipped it. · release manager after a bad deploy
+problem.sb-06-02	When unsure, the <i>gate</i> stays shut.	manutej/jev	0.78	It wasn't sure, so it just went ahead. · operations director in an incident review
+problem.sb-06-03	Every step gets a <i>tick</i>.	manutej/jev-tape	0.8	The retry sent the refund twice. · support engineer reading Monday's tickets
+problem.sb-06-04	Doing waits behind the <i>gate</i>.	manutej/jev-tape	0.76	The AI sent the email before anyone looked. · head of sales at Monday standup
+problem.sb-06-05	Five small <i>gates</i>, not one.	manutej/JEV-works	0.82	We asked one big question and got mush. · ML researcher reading an eval sheet
+problem.sb-06-06	First, check the <i>ruler</i>.	manutej/JEV-works	0.74	Our score jumped, but nothing had actually changed. · analyst presenting results to her cohort
+problem.sb-06-07	Coin flips go to a <i>person</i>.	manutej/jev-elder	0.8	It was fifty-fifty, and it paid out anyway. · claims handler at an insurer
+problem.sb-06-08	Leave the <i>flag</i> where it is.	manutej/jev-elder	0.7	The readme says it works. The code says no. · engineer on day one of a project
+problem.sb-06-09	Every claim faces the same <i>gates</i>.	manutej/the-twenty-nesy	0.77	Every paper says it reasons. Which ones actually do? · learner in a CETI cohort
+problem.sb-06-10	Readers pass a one-way <i>gate</i>.	manutej/jev-tape-wiki	0.71	I only wanted to look, and I broke production. · new team member in their first week
+problem.sb-07-01	Every miss gets a new <i>gate</i>.	notion:limits-and-escapes (Limits & escapes register)	0.82	It passed every check. Then a customer found the bug. · product owner, reading a support ticket
+problem.sb-07-02	Add a different <i>gate</i>.	notion:limits-and-escapes (Limits & escapes register)	0.8	We added more checks. The same bug still shipped. · head of engineering, at the quarterly review
+problem.sb-07-03	Turn every miss into a <i>gate</i>.	notion:the-jury (round 2 print gate)	0.85	It looked perfect on screen. The print got cut off. · teacher printing handouts for Monday
+problem.sb-07-04	The old bug hits a <i>gate</i>.	notion:the-jury (fail-first doctrine)	0.8	We fixed that bug in May. It came back in March. · engineer, reading a reopened bug report
+problem.sb-07-05	Fresh <i>eyes</i> try to break it.	notion:the-jury	0.78	I checked my own work twice. I still missed the obvious. · researcher, the night before submitting
+problem.sb-07-06	Check the <i>pin</i> before the work.	manutej/fstar-labs	0.72	The checker said yes. The program still did the wrong thing. · researcher reviewing AI-written verified code
+problem.sb-07-07	Find the first broken <i>joint</i>.	manutej/Lean4Agent (fork of RickySkywalker/Lean4Agent)	0.76	The agent ran for an hour. Where did it break? · engineer debugging an overnight agent run
+problem.sb-07-08	Show one real <i>example</i>.	manutej/intuitionistic-logic-framework	0.74	It said a fix exists. It couldn't show me one. · student asking an AI assistant for help
+problem.sb-07-09	Seven <i>gates</i> watch every frame.	notion:whale-line-brief-v1 (kh/caps/tool.cjs gates)	0.84	It looked smooth to me. Then it jerked on my phone. · a maker watching their own video on a phone
+problem.sb-07-10	Check the work, not its <i>label</i>.	notion:limits-and-escapes (Limits & escapes register)	0.79	The report said green. The screen said otherwise. · director reading a status dashboard
+problem.sb-08-01	Every answer keeps its <i>receipt</i>.	manutej/kraken-omnimemory-mcp	0.8	The bot quoted a rule, and nobody could say where from. · support lead after a wrong refund
+problem.sb-08-02	Give every note a <i>label</i>.	none	0.82	The agent cited a guess as if it had read it. · researcher checking an AI literature summary
+problem.sb-08-03	Every step leaves a <i>mark</i>.	manutej/volumetric-intelligence	0.78	It said done. Nobody could replay what it did. · engineer on call after an overnight agent run
+problem.sb-08-04	Draw only the <i>joins</i> you see.	Ormus-Solutions/ormus-agent-harness	0.85	Our diagram showed it all connected. Half of it was never built. · engineering director before a board review
+problem.sb-08-05	Test where the parts <i>join</i>.	manutej/ceti-clock-tree	0.75	Every part passed its test. Together, the page froze. · student shipping a first web app
+problem.sb-08-06	A <i>gate</i> after every step.	manutej/VERA	0.77	We checked the final answer. The mistake happened at step two. · ML engineer after a bad retrieval answer
+problem.sb-08-07	Let the <i>check</i> only look.	manutej/maat	0.74	The health check fixed things while it checked them. Now nothing matches. · ops lead reading the Monday report
+problem.sb-08-08	Some numbers get a <i>pin</i>.	manutej/aor-ki	0.8	I asked for a nicer grip. It came back twice as heavy. · product designer reviewing an AI redesign
+problem.sb-08-09	Start with the small <i>card</i>.	none	0.79	I gave it all my notes, and it missed the key fact. · student feeding course notes to a chatbot
+problem.sb-08-10	Three runs, one <i>gate</i>.	none	0.83	Two tools gave me two answers. Which one do I trust? · researcher re-running an analysis
+problem.sb-09-01	Let the colours <i>ring</i>.	manutej/orpheum-studio-pro	0.74	I stared at these colours so long they all looked fine. · designer at six, before the client call
+problem.sb-09-02	Keep the reading pair <i>pinned</i>.	manutej/orpheum-studio-pro	0.71	The brand colours are gorgeous. Nobody can read the slides. · marketing lead after the all-hands
+problem.sb-09-03	Three <i>parts</i>, many songs.	manutej/orpheum-studio-pro	0.66	Every new film means building the sound from scratch again. · composer-coder starting the fifth film
+problem.sb-09-04	Finished is when every <i>gate</i> opens.	manutej/glyph-foundry-studio-pro	0.73	It looks finished to me. Can we ship it? · studio lead at the Friday review
+problem.sb-09-05	Shrink it through the <i>gates</i>.	manutej/glyph-foundry-studio-pro	0.75	Our logo turns to mush as a tiny icon. · founder looking at the browser tab
+problem.sb-09-06	Draw the order as one <i>line</i>.	manutej/hekat	0.7	My agents ran in the wrong order and nobody could tell. · engineer reading the overnight log
+problem.sb-09-07	Pull every <i>thread</i> into view.	manutej/kochi	0.72	I have years of notes and can't see how they connect. · consultant prepping a client talk
+problem.sb-09-08	Every shape gets one <i>pin</i>.	manutej/visual-elements	0.68	In my slides a circle means three different things. · trainer rebuilding a course deck
+problem.sb-09-09	Taste, one <i>tick</i> at a time.	manutej/orpheum-trainer	0.55	The AI makes pretty pictures. None of them look like mine. · artist after a night of prompting
+problem.sb-09-10	Every sound on the <i>tick</i>.	none	0.76	The music never hits the moment the picture changes. · video editor late at night
+problem.sb-10-01	Every frame lives on the <i>line</i>.	manutej/ceti-explainer	0.74	I paused it to explain, and the frame was mush. · instructor pausing an explainer mid-class
+problem.sb-10-02	Every <i>join</i> must hold.	manutej/ceti-explainer	0.7	We made it longer and it stopped making sense. · course lead reviewing a stretched explainer
+problem.sb-10-03	Two copies, one <i>card</i>.	manutej/p5js-explainer-lab	0.78	The script says one thing. The screen says another. · researcher checking a film against its script
+problem.sb-10-04	Run the <i>ring</i> end to end.	manutej/p5js-explainer-lab	0.72	The start looked fine. The middle was broken. · learner previewing their first animated explainer
+problem.sb-10-05	Nothing fake gets past the <i>door</i>.	manutej/craft	0.76	The AI added a package that does not even exist. · engineer at code review
+problem.sb-10-06	Turn each rule into a <i>door</i>.	manutej/craft	0.68	We wrote the rules down. The AI ignored them. · engineering manager after a sprint
+problem.sb-10-07	The old bug meets a <i>door</i>.	ceti-ai-services/loop-engineering	0.66	We fixed that last month. Why is it back? · support lead reading a repeat bug report
+problem.sb-10-08	Lay the <i>cards</i> side by side.	tell-apart (skill)	0.7	The score said both bots were fine. One was not. · learner comparing two AI assistants
+problem.sb-10-09	Every version gets a <i>tick</i>.	provenance ledger (kh/registry)	0.71	Which version did the client actually see? · researcher preparing a client follow-up
+problem.sb-10-10	Put a <i>ring</i> on every turn.	Motion Atlas (this studio)	0.73	The animation made people feel a bit sick. · viewer comment under a course video

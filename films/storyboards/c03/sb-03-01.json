@@ -1,0 +1,528 @@
+{
+  "schema_version": "sb60-v1",
+  "id": "sb-03-01",
+  "meta_prompt_id": "mp-c03-v1",
+  "cluster": "03 Noether & conservation",
+  "repo": "skill:noether-wiki",
+  "capability": "Check what must stay true on every wiki edit",
+  "audience": "Everyone",
+  "wada": 296,
+  "bpm": 124,
+  "dur": 62.235,
+  "title": "A wiki with <i>pins</i>.",
+  "hook": {
+    "kind": "Example",
+    "picture": "Close on the whale (z 1.6) following a thin thread from one dot on the line to the next. The thread ends in empty air and the whale bumps into nothing.",
+    "words": "I followed the link. It went nowhere."
+  },
+  "problem_in_viewer_words": {
+    "kind": "Fact",
+    "body": "I followed the wiki's link, and it went nowhere.",
+    "who": "new hire on day one"
+  },
+  "why_it_keeps_happening": {
+    "kind": "Fact",
+    "picture": "Ghost lines of past edits stack behind the line. Each edit is saved at once and each snaps a different thread: every 2 beats, then 1, then half.",
+    "words": "Edits get saved. No one checks the rest."
+  },
+  "stakes": {
+    "kind": "Fact",
+    "body": "New people and AI helpers read the wiki as true. One broken link sends both to a dead page, and the wrong answer travels."
+  },
+  "solution_hint": "Name what must stay true. Check every edit.",
+  "metaphor": {
+    "kind": "Example",
+    "body": "The wiki is a line with dots joined by threads. Three pins hold what must stay true, so the line can bend freely and the threads still land.",
+    "symbols": [
+      "whale",
+      "line",
+      "pin",
+      "pod",
+      "tick"
+    ]
+  },
+  "mechanism_beats": {
+    "kind": "Method",
+    "steps": [
+      {
+        "t": 19.355,
+        "picture": "Three pins drop into the hollow dots. The line passes through each one. Two pins carry icons: a single page and a source tick.",
+        "words": "",
+        "sound": "Tuned tap on each pin."
+      },
+      {
+        "t": 20.323,
+        "picture": "A chip appears on the first pin.",
+        "words": "Links must land.",
+        "sound": "Soft click."
+      },
+      {
+        "t": 23.226,
+        "picture": "Free edits: the whale bends the line hard three times. It still runs through all three pins, and a ring flashes on each edit.",
+        "words": "Edit freely. These three laws never move.",
+        "sound": "Tap, varied brightness."
+      },
+      {
+        "t": 26.129,
+        "picture": "Push-in (z 1.28). An edit tugs the link pin, a copper offset shows the break, a gate before save closes, and the whale pulls the line back to the pin. The gate glows open.",
+        "words": "Breaks a link? Stopped and fixed before saving.",
+        "sound": "Tap goes flat, then snaps into tune."
+      },
+      {
+        "t": 29.032,
+        "picture": "One tick lands on the strip under the line.",
+        "words": "Every check written down.",
+        "sound": "Soft tick."
+      }
+    ]
+  },
+  "real_case": {
+    "kind": "Evidence",
+    "claim": "Merging the 437-entity p5.js atlas with 111 new lab entities gave 548 entities and 2,933 triples with exact violations 0 and provenance coverage 0.988.",
+    "numbers": [
+      "548",
+      "2,933",
+      "exact 0",
+      "prov.coverage 0.988",
+      "437",
+      "111"
+    ],
+    "source": {
+      "kind": "notion",
+      "title": "Memory graph map",
+      "url": "https://app.notion.com/p/3f3d50cfaf93813b8cfce21490365024"
+    },
+    "verified": true,
+    "illustrative": false
+  },
+  "honest_limit": {
+    "kind": "Constraint",
+    "picture": "One sourced dot's source tick opens into a grid of 60 ticks: 47 teal, 13 copper. The citation audit fails 13, but the pins never noticed.",
+    "words": "A source can still say something else."
+  },
+  "not_this": {
+    "kind": "Constraint",
+    "body": "Checked means no known breaks. Not true."
+  },
+  "ending_pattern": {
+    "kind": "Example",
+    "slug": "link-lands",
+    "body": "The new-hire whale follows the same thread from the same dot and lands on a pinned dot. The pod that answered with a cross now answers with a tick.",
+    "callback": "The thread that ended in empty air in bar 1 now lands on a pin, in the same framing."
+  },
+  "end_belief": {
+    "kind": "Goal",
+    "body": "Pick three things your wiki must keep."
+  },
+  "beats": [
+    {
+      "t": 0.0,
+      "picture": "Close on the whale (z 1.6) following a thin thread from one dot on the line to the next. The thread ends in empty air and the whale bumps into nothing.",
+      "words": "",
+      "sound": "Detuned wooden tap, no ring.",
+      "act": "felt",
+      "bars": "1",
+      "camera": "close z 1.6 on the whale"
+    },
+    {
+      "t": 0.968,
+      "picture": "The whale hangs at the loose thread end, looking around.",
+      "words": "I followed the link. It went nowhere.",
+      "sound": "Room tone.",
+      "act": "felt",
+      "bars": "1",
+      "camera": "close z 1.6 on the whale"
+    },
+    {
+      "t": 1.935,
+      "picture": "The loose thread flutters. The whale's spout droops.",
+      "words": "",
+      "sound": "Flat tap, softer.",
+      "act": "felt",
+      "bars": "2",
+      "camera": "close z 1.6 on the whale",
+      "cue_tags": [
+        "consequence"
+      ]
+    },
+    {
+      "t": 3.871,
+      "picture": "A pod swims in, reads the same dot and answers with a copper cross chip.",
+      "words": "",
+      "sound": "Dull thunk.",
+      "act": "felt",
+      "bars": "3",
+      "camera": "close z 1.6 on the whale",
+      "cue_tags": [
+        "consequence",
+        "focus"
+      ]
+    },
+    {
+      "t": 4.839,
+      "picture": "The pod's cross chip pulses once.",
+      "words": "The AI answered from that broken page.",
+      "sound": "Room tone.",
+      "act": "felt",
+      "bars": "3",
+      "camera": "close z 1.6 on the whale"
+    },
+    {
+      "t": 7.742,
+      "picture": "The whale looks back along the line: two more loose threads flutter behind it. Hold.",
+      "words": "",
+      "sound": "Silence creeps in.",
+      "act": "felt",
+      "bars": "5",
+      "camera": "close z 1.6 on the whale",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 10.645,
+      "picture": "Half a bar of stillness, then SERIES.open title.",
+      "words": "A wiki with <i>pins</i>.",
+      "sound": "Near-silence, then title tick.",
+      "act": "why",
+      "bars": "6",
+      "camera": "pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "hinge"
+      ]
+    },
+    {
+      "t": 11.613,
+      "picture": "Pull back (z 1.6 to 1.0): a long line with ghost lines of past edits stacked behind it.",
+      "words": "",
+      "sound": "Problem motif, low.",
+      "act": "why",
+      "bars": "7",
+      "camera": "pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 13.548,
+      "picture": "Three-times device: an edit lands and is saved, a thread snaps. Every 2 beats.",
+      "words": "Edits get saved. No one checks the rest.",
+      "sound": "Problem motif, first time.",
+      "act": "why",
+      "bars": "8",
+      "camera": "pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 15.484,
+      "picture": "Two more edits, every 1 beat then every half beat, each snapping a different thread.",
+      "words": "",
+      "sound": "Problem motif twice, faster.",
+      "act": "why",
+      "bars": "9",
+      "camera": "pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 17.419,
+      "picture": "All motion stops. Three hollow dots glow softly where the threads should land.",
+      "words": "Name what must stay true. Check every edit.",
+      "sound": "One clean in-tune tap: first signature.",
+      "act": "why",
+      "bars": "10",
+      "camera": "pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 19.355,
+      "picture": "Three pins drop into the hollow dots. The line passes through each one. Two pins carry icons: a single page and a source tick.",
+      "words": "",
+      "sound": "Tuned tap on each pin.",
+      "act": "move",
+      "bars": "11",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 20.323,
+      "picture": "A chip appears on the first pin.",
+      "words": "Links must land.",
+      "sound": "Soft click.",
+      "act": "move",
+      "bars": "11",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 23.226,
+      "picture": "Free edits: the whale bends the line hard three times. It still runs through all three pins, and a ring flashes on each edit.",
+      "words": "Edit freely. These three laws never move.",
+      "sound": "Tap, varied brightness.",
+      "act": "move",
+      "bars": "13",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 26.129,
+      "picture": "Push-in (z 1.28). An edit tugs the link pin, a copper offset shows the break, a gate before save closes, and the whale pulls the line back to the pin. The gate glows open.",
+      "words": "Breaks a link? Stopped and fixed before saving.",
+      "sound": "Tap goes flat, then snaps into tune.",
+      "act": "move",
+      "bars": "14",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech",
+        "focus"
+      ]
+    },
+    {
+      "t": 29.032,
+      "picture": "One tick lands on the strip under the line.",
+      "words": "Every check written down.",
+      "sound": "Soft tick.",
+      "act": "move",
+      "bars": "16",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 30.968,
+      "picture": "Wide. Two lines, chips 437 and 111, slide together and merge into one long line. The three pins hold through the merge and ticks stream on the strip.",
+      "words": "Real run: our own two wikis, merged.",
+      "sound": "Pulse bed, quiet ticks.",
+      "act": "case",
+      "bars": "17",
+      "camera": "steady wide, slow drift"
+    },
+    {
+      "t": 31.935,
+      "picture": "Card fades in on clean paper: Real run · Memory graph map.",
+      "words": "548 entities · sourced 0.988 · broken 0",
+      "sound": "Card tick.",
+      "act": "case",
+      "bars": "17",
+      "camera": "steady wide, slow drift"
+    },
+    {
+      "t": 36.774,
+      "picture": "Slow drift along the merged line: each new dot carries a small source tick and the strip ticks once per dot.",
+      "words": "Every new link came with its source.",
+      "sound": "Ticks, fast and quiet.",
+      "act": "case",
+      "bars": "20",
+      "camera": "steady wide, slow drift"
+    },
+    {
+      "t": 42.581,
+      "picture": "Still, then a slow push into one sourced dot. Its source tick opens into a grid of 60 small ticks: 47 turn teal, 13 turn copper. All three pins stay lit.",
+      "words": "A source can still say something else.",
+      "sound": "Signature tap once, unresolved.",
+      "act": "limit",
+      "bars": "23",
+      "camera": "still, then one slow push",
+      "cue_tags": [
+        "limit",
+        "focus"
+      ]
+    },
+    {
+      "t": 45.484,
+      "picture": "Pull back to the line, pins still lit.",
+      "words": "Checked means no known breaks. Not true.",
+      "sound": "Room tone.",
+      "act": "limit",
+      "bars": "24",
+      "camera": "still, then one slow push"
+    },
+    {
+      "t": 48.387,
+      "picture": "FELT framing restored (z 1.6). The new-hire whale follows the same thread from the same dot, and this time it lands on a pinned dot.",
+      "words": "",
+      "sound": "Tap rings true.",
+      "act": "payoff",
+      "bars": "26",
+      "camera": "FELT framing z 1.6, then wide reveal",
+      "cue_tags": [
+        "callback"
+      ]
+    },
+    {
+      "t": 50.323,
+      "picture": "A counter chip sits by the link pin.",
+      "words": "broken 0",
+      "sound": "Soft tick.",
+      "act": "payoff",
+      "bars": "27",
+      "camera": "FELT framing z 1.6, then wide reveal"
+    },
+    {
+      "t": 52.258,
+      "picture": "The pod from bar 3 swims back, reads the dot and answers with a teal tick chip. The whale spouts: delight, spark.",
+      "words": "",
+      "sound": "Full resolution, strummed.",
+      "act": "payoff",
+      "bars": "28",
+      "camera": "FELT framing z 1.6, then wide reveal",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 56.129,
+      "picture": "Still line, three pins, the whale breathing.",
+      "words": "Pick three things your wiki must keep.",
+      "sound": "Pad tail.",
+      "act": "belief",
+      "bars": "30",
+      "camera": "still, breathing only"
+    },
+    {
+      "t": 60.0,
+      "picture": "SERIES.lockup over the settled line.",
+      "words": "",
+      "sound": "Pad tail ends on the tonic.",
+      "act": "lockup",
+      "bars": "32",
+      "camera": "still"
+    }
+  ],
+  "captions": [
+    {
+      "t_in": 0.968,
+      "t_out": 3.871,
+      "text": "I followed the link. It went nowhere.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 4.839,
+      "t_out": 8.71,
+      "text": "The AI answered from that broken page.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 10.645,
+      "t_out": 13.548,
+      "text": "A wiki with <i>pins</i>.",
+      "kind": "title"
+    },
+    {
+      "t_in": 13.548,
+      "t_out": 16.935,
+      "text": "Edits get saved. No one checks the rest.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 17.419,
+      "t_out": 19.839,
+      "text": "Name what must stay true. Check every edit.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 20.323,
+      "t_out": 22.258,
+      "text": "Links must land.",
+      "kind": "label"
+    },
+    {
+      "t_in": 23.226,
+      "t_out": 26.129,
+      "text": "Edit freely. These three laws never move.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 26.129,
+      "t_out": 29.032,
+      "text": "Breaks a link? Stopped and fixed before saving.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 29.032,
+      "t_out": 31.935,
+      "text": "Every check written down.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 30.968,
+      "t_out": 34.839,
+      "text": "Real run: our own two wikis, merged.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 31.935,
+      "t_out": 39.677,
+      "text": "548 entities · sourced 0.988 · broken 0",
+      "kind": "card",
+      "src": "https://app.notion.com/p/3f3d50cfaf93813b8cfce21490365024"
+    },
+    {
+      "t_in": 36.774,
+      "t_out": 41.613,
+      "text": "Every new link came with its source.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 42.581,
+      "t_out": 45.484,
+      "text": "A source can still say something else.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 45.484,
+      "t_out": 48.387,
+      "text": "Checked means no known breaks. Not true.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 50.323,
+      "t_out": 55.161,
+      "text": "broken 0",
+      "kind": "counter",
+      "src": "https://app.notion.com/p/3f3d50cfaf93813b8cfce21490365024"
+    },
+    {
+      "t_in": 56.129,
+      "t_out": 60.0,
+      "text": "Pick three things your wiki must keep.",
+      "kind": "caption"
+    }
+  ],
+  "terms": [
+    {
+      "term": "laws",
+      "symbol": "pin",
+      "pictured_at": 19.355,
+      "named_at": 23.226
+    }
+  ],
+  "jargon": [
+    "pin",
+    "law",
+    "sourced",
+    "measured"
+  ],
+  "sound": {
+    "signature": "Wooden tap tuned to D that rings when a thread lands on a pin.",
+    "problem_motif": "The same tap muffled and flat, with no ring.",
+    "limit_unresolved": true
+  },
+  "score_self": {
+    "score": 0.8,
+    "reason": "Checked N3 N4 N5 N6 N8 N9 S1 and read time mechanically: pass. Broad pain, clear move. J1 unrun. The case card reuses the series worked numbers, so it adds little new.",
+    "weakest_piece": "real_case"
+  }
+}

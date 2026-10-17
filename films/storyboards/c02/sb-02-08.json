@@ -13,7 +13,7 @@
   "hook": {
     "kind": "Example",
     "picture": "Close on the whale drawing a neat diagram, adding an arrow between every pair of boxes so it all looks connected. A pod follows one arrow to nowhere.",
-    "words": "I drew it neat. Every box connected."
+    "words": "I drew it neat. All boxes joined."
   },
   "problem_in_viewer_words": {
     "kind": "Fact",
@@ -113,7 +113,7 @@
       "act": "felt",
       "bars": "1-2",
       "picture": "Close on the whale drawing boxes on the line and adding an arrow between every pair, so everything looks connected.",
-      "words": "I drew it neat. Every box connected.",
+      "words": "I drew it neat. All boxes joined.",
       "sound": "Quick pen scratches, pleasantly busy.",
       "camera": "close z 1.6 on the whale",
       "cue_tags": [
@@ -262,7 +262,7 @@
       "act": "case",
       "bars": "17-19",
       "picture": "Wide. The real harness map: four layers, teal links only where the docs show them, six terracotta gaps at the top layer. The card fades in on clean paper.",
-      "words": "Real review of an agent harness map.",
+      "words": "Real review of an agent system map.",
       "sound": "Pulse bed, quiet ticks.",
       "camera": "steady wide z 0.9, slow drift",
       "cue_tags": [
@@ -356,7 +356,7 @@
     {
       "t_in": 0.938,
       "t_out": 4.688,
-      "text": "I drew it neat. Every box connected.",
+      "text": "I drew it neat. All boxes joined.",
       "kind": "caption"
     },
     {
@@ -404,14 +404,14 @@
     {
       "t_in": 30.938,
       "t_out": 38.906,
-      "text": "Real review · 4 layers · 6 named gaps",
+      "text": "Real review · 4 layers, 6 named gaps",
       "kind": "card",
       "src": "https://app.notion.com/p/3d4d50cfaf9381a18059e8085c072932"
     },
     {
       "t_in": 31.875,
       "t_out": 35.156,
-      "text": "Real review of an agent harness map.",
+      "text": "Real review of an agent system map.",
       "kind": "caption"
     },
     {

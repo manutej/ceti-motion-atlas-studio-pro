@@ -84,7 +84,7 @@
  },
  "real_case": {
   "kind": "Evidence",
-  "claim": "Context Atoms checks the composed result (types, fact consistency across delegations, confidentiality, recursion bounds) before anything is sent; a disagreement is a RED finding, never last-write-wins",
+  "claim": "Context Atoms checks types, fact consistency across delegations, confidentiality and recursion bounds before sending; a disagreement is a RED finding, never last-write-wins.",
   "numbers": [],
   "source": {
    "kind": "notion",

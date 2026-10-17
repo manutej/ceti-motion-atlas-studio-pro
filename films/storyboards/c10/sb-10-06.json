@@ -71,7 +71,7 @@
   },
   "real_case": {
     "kind": "Evidence",
-    "claim": "The craft README says rules written as prose get far lower compliance than mechanical gates, but it gives no source for its figures, so they stay off screen and the card says Illustration. Its /senior-review gate \"can block a merge alongside a CI check\".",
+    "claim": "The craft README says gates beat prose rules on compliance but gives no source, so the figures stay off screen (Illustration). Its /senior-review gate can block a merge.",
     "numbers": [],
     "source": {
       "kind": "repo",

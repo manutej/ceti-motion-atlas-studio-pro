@@ -1,0 +1,525 @@
+{
+  "schema_version": "sb60-v1",
+  "id": "sb-07-05",
+  "meta_prompt_id": "mp-c07-v1",
+  "cluster": "07 Formal correctness & logic",
+  "repo": "notion:the-jury",
+  "capability": "The builder never judges its own work",
+  "audience": "Researchers",
+  "wada": 166,
+  "bpm": 124,
+  "dur": 62.24,
+  "title": "Fresh <i>eyes</i> try to break it.",
+  "hook": {
+    "kind": "Example",
+    "picture": "Close: the whale's eyes sweep its own line twice, sliding over a small gap. A pod answers ✕ at the gap.",
+    "words": "I checked my own work twice."
+  },
+  "problem_in_viewer_words": {
+    "kind": "Fact",
+    "body": "I checked my own work twice. I still missed the obvious.",
+    "who": "researcher, the night before submitting"
+  },
+  "why_it_keeps_happening": {
+    "kind": "Fact",
+    "picture": "Three builder whales each check their own line. Three times, faster each time, a pod answers ✕ at the gap each maker saw past.",
+    "words": "The maker sees what they meant."
+  },
+  "stakes": {
+    "kind": "Fact",
+    "body": "Self-review ships the mistakes the maker can't see, and a reader or reviewer finds them in public."
+  },
+  "solution_hint": "Let someone who didn't build it check.",
+  "metaphor": {
+    "kind": "Example",
+    "body": "Pods that didn't draw the line try to break it. A poke counts only with a tick of evidence, and a different pod fixes what they find.",
+    "symbols": [
+      "whale",
+      "line",
+      "pod",
+      "tick"
+    ]
+  },
+  "mechanism_beats": {
+    "kind": "Method",
+    "steps": [
+      {
+        "t": 19.355,
+        "picture": "Three fresh pods swim in. None of them drew this line.",
+        "words": "",
+        "sound": "Three knocks"
+      },
+      {
+        "t": 21.29,
+        "picture": "Each pod pokes the line. One poke lands on the gap with a tick: a ring around it, the evidence.",
+        "words": "Someone else tries to break it.",
+        "sound": "Knock plus a dry tick"
+      },
+      {
+        "t": 23.226,
+        "picture": "Push-in: a poke with no tick fades out. It is struck.",
+        "words": "",
+        "sound": "Knock with no tick, fading"
+      },
+      {
+        "t": 25.161,
+        "picture": "The struck poke is gone. Only ticked findings remain, ringed.",
+        "words": "No evidence? The finding is struck.",
+        "sound": "Two ticks"
+      },
+      {
+        "t": 27.097,
+        "picture": "A fixer pod, not the builder and not a checker, patches the ringed gap.",
+        "words": "",
+        "sound": "Soft patch tone"
+      },
+      {
+        "t": 29.032,
+        "picture": "The three checkers poke again, and the line holds.",
+        "words": "Fresh checkers with evidence: a jury.",
+        "sound": "Knocks land on solid, resolved"
+      }
+    ]
+  },
+  "real_case": {
+    "kind": "Evidence",
+    "claim": "Round 1 of Manu's jury: 57 rows, 0 struck → 14 P0 · 28 P1 · 8 P2. After separate fixers and a fresh round, the final re-run was 116 passed, 0 failed.",
+    "numbers": [
+      "57 rows",
+      "0 struck",
+      "116 passed, 0 failed"
+    ],
+    "source": {
+      "kind": "notion",
+      "title": "The jury: adversarial evaluation",
+      "url": "https://app.notion.com/p/3f2d50cfaf93811dafbdfac6f43bd8a9"
+    },
+    "verified": true,
+    "illustrative": false
+  },
+  "honest_limit": {
+    "kind": "Constraint",
+    "picture": "Three same-colour checker pods all face one way. A smudge behind them passes, and a downstream pod answers ✕.",
+    "words": "Same-family checkers share a blind spot."
+  },
+  "not_this": {
+    "kind": "Constraint",
+    "body": "Judges agreeing is not the same as right."
+  },
+  "ending_pattern": {
+    "kind": "Example",
+    "slug": "fresh-poke-lands",
+    "body": "The whale steps back from the line it checked twice. A fresh pod's poke lands on the gap with a tick, and another pod closes it.",
+    "callback": "Same close framing and gap as bar 1: the gap the builder missed is found by someone else."
+  },
+  "end_belief": {
+    "kind": "Goal",
+    "body": "Never let the builder be the judge."
+  },
+  "beats": [
+    {
+      "t": 0.0,
+      "picture": "Close: the whale swims along its own line, eyes sweeping it. There is a small gap in the line.",
+      "words": "I checked my own work twice.",
+      "sound": "A knock with no tick",
+      "act": "felt",
+      "bars": "1",
+      "camera": "close z 1.6 on the whale",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 2.903,
+      "picture": "The whale's gaze slides over the gap twice. It sends the line to a pod, which answers ✕ and points at the gap.",
+      "words": "",
+      "sound": "Knock decaying, then a thud",
+      "act": "felt",
+      "bars": "2",
+      "camera": "close z 1.6 on the whale",
+      "cue_tags": [
+        "consequence",
+        "focus"
+      ]
+    },
+    {
+      "t": 4.839,
+      "picture": "The whale stares at the gap it looked at twice.",
+      "words": "I still missed the obvious.",
+      "sound": "Low hum",
+      "act": "felt",
+      "bars": "3",
+      "camera": "close z 1.6 on the whale",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 7.742,
+      "picture": "Hold on the gap.",
+      "words": "",
+      "sound": "Silence",
+      "act": "felt",
+      "bars": "5",
+      "camera": "close z 1.6 on the whale",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 9.677,
+      "picture": "Hinge: half a bar of stillness, then the title card.",
+      "words": "Fresh <i>eyes</i> try to break it.",
+      "sound": "Near-silence, then the title tick",
+      "act": "why",
+      "bars": "6",
+      "camera": "pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "hinge"
+      ]
+    },
+    {
+      "t": 11.613,
+      "picture": "Pull back: three builder whales, each checking its own line.",
+      "words": "",
+      "sound": "Problem motif",
+      "act": "why",
+      "bars": "7",
+      "camera": "pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 13.065,
+      "picture": "Each builder's eye fills its own gap with a faint dotted line: what it meant.",
+      "words": "The maker sees what they meant.",
+      "sound": "Problem motif again",
+      "act": "why",
+      "bars": "7",
+      "camera": "pull back z 1.6 to 1.0"
+    },
+    {
+      "t": 14.516,
+      "picture": "Three times, faster: each line goes out and each pod answers ✕ at the gap.",
+      "words": "",
+      "sound": "Thud three times, accelerating",
+      "act": "why",
+      "bars": "8",
+      "camera": "pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 16.935,
+      "picture": "Freeze: outlines of three fresh pods appear at the frame edge.",
+      "words": "Let someone who didn't build it check.",
+      "sound": "First woodblock tick: the signature",
+      "act": "why",
+      "bars": "9",
+      "camera": "pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 19.355,
+      "picture": "Three fresh pods swim in. None of them drew this line.",
+      "words": "",
+      "sound": "Three knocks",
+      "act": "move",
+      "bars": "11",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 21.29,
+      "picture": "Each pod pokes the line. One poke lands on the gap with a tick: a ring around it, the evidence.",
+      "words": "Someone else tries to break it.",
+      "sound": "Knock plus a dry tick",
+      "act": "move",
+      "bars": "12",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 23.226,
+      "picture": "Push-in: a poke with no tick fades out. It is struck.",
+      "words": "",
+      "sound": "Knock with no tick, fading",
+      "act": "move",
+      "bars": "13",
+      "camera": "one push-in to z 1.3 on the decisive moment",
+      "cue_tags": [
+        "mech",
+        "focus"
+      ]
+    },
+    {
+      "t": 25.161,
+      "picture": "The struck poke is gone. Only ticked findings remain, ringed.",
+      "words": "No evidence? The finding is struck.",
+      "sound": "Two ticks",
+      "act": "move",
+      "bars": "14",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 27.097,
+      "picture": "A fixer pod, not the builder and not a checker, patches the ringed gap.",
+      "words": "",
+      "sound": "Soft patch tone",
+      "act": "move",
+      "bars": "15",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 29.032,
+      "picture": "The three checkers poke again, and the line holds.",
+      "words": "Fresh checkers with evidence: a jury.",
+      "sound": "Knocks land on solid, resolved",
+      "act": "move",
+      "bars": "16",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 30.968,
+      "picture": "Wide: a long line of the studio's work with many pods along it and ticks landing.",
+      "words": "",
+      "sound": "Pulse bed",
+      "act": "case",
+      "bars": "17",
+      "camera": "steady wide, slow drift"
+    },
+    {
+      "t": 32.903,
+      "picture": "The card fades in on clean paper.",
+      "words": "Real run: the jury on our own studio.",
+      "sound": "Ticks",
+      "act": "case",
+      "bars": "18",
+      "camera": "steady wide, slow drift"
+    },
+    {
+      "t": 36.774,
+      "picture": "Other pods patch, the checkers return, and the line holds. The counter sits beside the line.",
+      "words": "Fixed by other hands. Checked again.",
+      "sound": "Rising ticks that settle",
+      "act": "case",
+      "bars": "20",
+      "camera": "steady wide, slow drift"
+    },
+    {
+      "t": 42.581,
+      "picture": "Push to the three checker pods: they are all the same colour. Behind them, on the line, is a smudge none of them faces.",
+      "words": "Same-family checkers share a blind spot.",
+      "sound": "Signature, unresolved",
+      "act": "limit",
+      "bars": "23",
+      "camera": "still, then one slow push to what slipped",
+      "cue_tags": [
+        "limit",
+        "focus"
+      ]
+    },
+    {
+      "t": 44.516,
+      "picture": "The line goes out with the smudge, and a downstream pod answers ✕.",
+      "words": "",
+      "sound": "Thud",
+      "act": "limit",
+      "bars": "24",
+      "camera": "still, then one slow push to what slipped",
+      "cue_tags": [
+        "limit"
+      ]
+    },
+    {
+      "t": 45.968,
+      "picture": "Still on the three same-colour pods.",
+      "words": "Judges agreeing is not the same as right.",
+      "sound": "Room tone",
+      "act": "limit",
+      "bars": "24",
+      "camera": "still, then one slow push to what slipped"
+    },
+    {
+      "t": 48.387,
+      "picture": "FELT framing restored: the whale at its line, with the same gap as in bar 1.",
+      "words": "",
+      "sound": "Knock",
+      "act": "payoff",
+      "bars": "26",
+      "camera": "FELT framing restored, z 1.6",
+      "cue_tags": [
+        "callback"
+      ]
+    },
+    {
+      "t": 50.323,
+      "picture": "The whale backs off. A fresh pod pokes the gap with a tick.",
+      "words": "",
+      "sound": "Knock plus a tick",
+      "act": "payoff",
+      "bars": "27",
+      "camera": "FELT framing restored, z 1.6"
+    },
+    {
+      "t": 52.258,
+      "picture": "A fixer patches it and the gap closes. Whale delight, spark.",
+      "words": "",
+      "sound": "Resolved chord",
+      "act": "payoff",
+      "bars": "28",
+      "camera": "FELT framing restored, z 1.6"
+    },
+    {
+      "t": 56.129,
+      "picture": "The line whole. Whale and pod apart, breathing.",
+      "words": "Never let the builder be the judge.",
+      "sound": "Pad tail",
+      "act": "belief",
+      "bars": "30",
+      "camera": "still, breathing only"
+    },
+    {
+      "t": 60.0,
+      "picture": "SERIES.lockup over the still line.",
+      "words": "",
+      "sound": "Pad tail ends in room tone",
+      "act": "lockup",
+      "bars": "32",
+      "camera": "still"
+    }
+  ],
+  "captions": [
+    {
+      "t_in": 0.968,
+      "t_out": 4.355,
+      "text": "I checked my own work twice.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 4.839,
+      "t_out": 8.71,
+      "text": "I still missed the obvious.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 10.645,
+      "t_out": 13.065,
+      "text": "Fresh <i>eyes</i> try to break it.",
+      "kind": "title"
+    },
+    {
+      "t_in": 13.065,
+      "t_out": 16.452,
+      "text": "The maker sees what they meant.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 16.935,
+      "t_out": 19.839,
+      "text": "Let someone who didn't build it check.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 21.29,
+      "t_out": 24.677,
+      "text": "Someone else tries to break it.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 25.161,
+      "t_out": 28.548,
+      "text": "No evidence? The finding is struck.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 29.032,
+      "t_out": 31.935,
+      "text": "Fresh checkers with evidence: a jury.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 32.903,
+      "t_out": 36.29,
+      "text": "Real run: the jury on our own studio.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 33.871,
+      "t_out": 42.097,
+      "text": "Real run · 57 findings, 0 struck",
+      "kind": "card",
+      "src": "https://app.notion.com/p/3f2d50cfaf93811dafbdfac6f43bd8a9"
+    },
+    {
+      "t_in": 36.774,
+      "t_out": 41.613,
+      "text": "Fixed by other hands. Checked again.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 38.71,
+      "t_out": 42.097,
+      "text": "116 passed",
+      "kind": "counter",
+      "src": "https://app.notion.com/p/3f2d50cfaf93811dafbdfac6f43bd8a9"
+    },
+    {
+      "t_in": 43.065,
+      "t_out": 45.726,
+      "text": "Same-family checkers share a blind spot.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 45.968,
+      "t_out": 48.387,
+      "text": "Judges agreeing is not the same as right.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 56.129,
+      "t_out": 60.0,
+      "text": "Never let the builder be the judge.",
+      "kind": "caption"
+    }
+  ],
+  "terms": [
+    {
+      "term": "jury",
+      "symbol": "pod",
+      "pictured_at": 19.355,
+      "named_at": 29.032
+    }
+  ],
+  "jargon": [
+    "red team",
+    "reviewer"
+  ],
+  "sound": {
+    "signature": "A woodblock knock followed by a dry tick: a finding with evidence",
+    "problem_motif": "A knock with no tick, decaying into nothing",
+    "limit_unresolved": true
+  },
+  "score_self": {
+    "score": 0.78,
+    "reason": "Clear builder-versus-checker split, and an honest limit grounded in the one-model-family caveat. Pods playing three roles (checker, fixer, receiver) may blur on a phone.",
+    "weakest_piece": "metaphor"
+  }
+}

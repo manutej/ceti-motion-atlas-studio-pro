@@ -1,0 +1,515 @@
+{
+  "schema_version": "sb60-v1",
+  "id": "sb-07-08",
+  "meta_prompt_id": "mp-c07-v1",
+  "cluster": "07 Formal correctness & logic",
+  "repo": "manutej/intuitionistic-logic-framework",
+  "capability": "No claim without an example you can try",
+  "audience": "Learners",
+  "wada": 296,
+  "bpm": 122,
+  "dur": 63.25,
+  "title": "Show one real <i>example</i>.",
+  "hook": {
+    "kind": "Example",
+    "picture": "Close: a pod hands the whale a claim card with an empty socket. The whale tries it and nothing happens, ✕.",
+    "words": "It said a fix exists."
+  },
+  "problem_in_viewer_words": {
+    "kind": "Fact",
+    "body": "It said a fix exists. It couldn't show me one.",
+    "who": "student asking an AI assistant for help"
+  },
+  "why_it_keeps_happening": {
+    "kind": "Fact",
+    "picture": "Claim cards stream in from pods with bold tabs and empty sockets. Three times, faster each time, the whale tries one and nothing happens.",
+    "words": "Saying it exists is easy."
+  },
+  "stakes": {
+    "kind": "Fact",
+    "body": "Time goes into chasing fixes that were only ever promised, and confident claims are believed without anything to try."
+  },
+  "solution_hint": "Ask for one example you can try.",
+  "metaphor": {
+    "kind": "Example",
+    "body": "A claim is a card with a socket for an example. A gate refuses claims whose socket is empty, so every claim arrives with something you can try.",
+    "symbols": [
+      "whale",
+      "line",
+      "atom",
+      "gate",
+      "pod"
+    ]
+  },
+  "mechanism_beats": {
+    "kind": "Method",
+    "steps": [
+      {
+        "t": 19.672,
+        "picture": "A gate rises with an example-card icon on its lintel. A claim with an empty socket arrives, and the bar drops.",
+        "words": "",
+        "sound": "A key with no click: stop"
+      },
+      {
+        "t": 21.639,
+        "picture": "A claim with an example card snapped into its socket passes. The opening glows.",
+        "words": "No example, no pass.",
+        "sound": "The key turns and clicks"
+      },
+      {
+        "t": 23.607,
+        "picture": "Push-in: the whale lifts the example card out and tries it on the line. The broken spot mends. Tick.",
+        "words": "",
+        "sound": "The lock opens on a chord"
+      },
+      {
+        "t": 25.574,
+        "picture": "Empty claims keep stopping at the gate. Filled ones pass.",
+        "words": "Try the example yourself.",
+        "sound": "Stop, click, stop, click"
+      },
+      {
+        "t": 27.541,
+        "picture": "The example card glows in its socket.",
+        "words": "",
+        "sound": "Soft chime"
+      },
+      {
+        "t": 29.508,
+        "picture": "The whale holds up the card.",
+        "words": "An example you can try: a witness.",
+        "sound": "The chord resolves"
+      }
+    ]
+  },
+  "real_case": {
+    "kind": "Evidence",
+    "claim": "Illustration. The intuitionistic-logic-framework plugin (/ilf:witness plus 5 other commands) is v0.1.0, an initial release that 'Needs real-world validation'. There are no results to show yet.",
+    "numbers": [],
+    "source": {
+      "kind": "repo",
+      "title": "intuitionistic-logic-framework README",
+      "url": "https://github.com/manutej/intuitionistic-logic-framework"
+    },
+    "verified": false,
+    "illustrative": true
+  },
+  "honest_limit": {
+    "kind": "Constraint",
+    "picture": "A claim arrives with an example that fits the socket but shows a different line. It passes, and it doesn't mend the whale's line.",
+    "words": "An example can answer the wrong question."
+  },
+  "not_this": {
+    "kind": "Constraint",
+    "body": "One example shows it exists. Not best."
+  },
+  "ending_pattern": {
+    "kind": "Example",
+    "slug": "show-me-one",
+    "body": "The same pod hands over the same claim, now with an example in its socket. The whale tries it and its line mends.",
+    "callback": "Same close framing and pod as bar 1: the empty socket is now filled and the example works."
+  },
+  "end_belief": {
+    "kind": "Goal",
+    "body": "When it says it exists, ask for one."
+  },
+  "beats": [
+    {
+      "t": 0.0,
+      "picture": "Close: a pod hands the whale a claim card with a confident tab and an empty socket where an example should sit.",
+      "words": "It said a fix exists.",
+      "sound": "A key turning in an empty lock",
+      "act": "felt",
+      "bars": "1",
+      "camera": "close z 1.6 on the whale",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 2.951,
+      "picture": "The whale tries the claim on its broken line and nothing happens. A copper ✕ appears on the card.",
+      "words": "",
+      "sound": "An empty, dull click",
+      "act": "felt",
+      "bars": "2",
+      "camera": "close z 1.6 on the whale",
+      "cue_tags": [
+        "consequence",
+        "focus"
+      ]
+    },
+    {
+      "t": 4.918,
+      "picture": "The whale turns the card over. The socket is empty.",
+      "words": "It couldn't show me one.",
+      "sound": "Low note",
+      "act": "felt",
+      "bars": "3",
+      "camera": "close z 1.6 on the whale",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 7.869,
+      "picture": "Hold on the empty socket.",
+      "words": "",
+      "sound": "Silence",
+      "act": "felt",
+      "bars": "5",
+      "camera": "close z 1.6 on the whale",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 9.836,
+      "picture": "Hinge: half a bar of stillness, then the title card.",
+      "words": "Show one real <i>example</i>.",
+      "sound": "Near-silence, then the title tick",
+      "act": "why",
+      "bars": "6",
+      "camera": "pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "hinge"
+      ]
+    },
+    {
+      "t": 11.803,
+      "picture": "Pull back: more claim cards arrive from pods, each with a bold tab and an empty socket.",
+      "words": "",
+      "sound": "Problem motif",
+      "act": "why",
+      "bars": "7",
+      "camera": "pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 13.279,
+      "picture": "Each card's tab reads like a promise. The sockets are hollow.",
+      "words": "Saying it exists is easy.",
+      "sound": "Problem motif again",
+      "act": "why",
+      "bars": "7",
+      "camera": "pull back z 1.6 to 1.0"
+    },
+    {
+      "t": 14.754,
+      "picture": "Three times, faster: the whale tries a card, nothing happens, ✕.",
+      "words": "",
+      "sound": "Empty lock three times, accelerating",
+      "act": "why",
+      "bars": "8",
+      "camera": "pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 17.213,
+      "picture": "Freeze: a small example card hovers by one empty socket.",
+      "words": "Ask for one example you can try.",
+      "sound": "First key turning and opening",
+      "act": "why",
+      "bars": "9",
+      "camera": "pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 19.672,
+      "picture": "A gate rises with an example-card icon on its lintel. A claim with an empty socket arrives, and the bar drops.",
+      "words": "",
+      "sound": "A key with no click: stop",
+      "act": "move",
+      "bars": "11",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 21.639,
+      "picture": "A claim with an example card snapped into its socket passes. The opening glows.",
+      "words": "No example, no pass.",
+      "sound": "The key turns and clicks",
+      "act": "move",
+      "bars": "12",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 23.607,
+      "picture": "Push-in: the whale lifts the example card out and tries it on the line. The broken spot mends. Tick.",
+      "words": "",
+      "sound": "The lock opens on a chord",
+      "act": "move",
+      "bars": "13",
+      "camera": "one push-in to z 1.3 on the decisive moment",
+      "cue_tags": [
+        "mech",
+        "focus"
+      ]
+    },
+    {
+      "t": 25.574,
+      "picture": "Empty claims keep stopping at the gate. Filled ones pass.",
+      "words": "Try the example yourself.",
+      "sound": "Stop, click, stop, click",
+      "act": "move",
+      "bars": "14",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 27.541,
+      "picture": "The example card glows in its socket.",
+      "words": "",
+      "sound": "Soft chime",
+      "act": "move",
+      "bars": "15",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 29.508,
+      "picture": "The whale holds up the card.",
+      "words": "An example you can try: a witness.",
+      "sound": "The chord resolves",
+      "act": "move",
+      "bars": "16",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 31.475,
+      "picture": "Wide: a line with the gate. Claim cards arrive in a stream, each carrying an example.",
+      "words": "",
+      "sound": "Pulse bed",
+      "act": "case",
+      "bars": "17",
+      "camera": "steady wide, slow drift"
+    },
+    {
+      "t": 33.443,
+      "picture": "The Illustration card fades in on clean paper.",
+      "words": "Ask for a witness, not a promise.",
+      "sound": "Ticks",
+      "act": "case",
+      "bars": "18",
+      "camera": "steady wide, slow drift"
+    },
+    {
+      "t": 37.377,
+      "picture": "Pods now send claims with the example already attached.",
+      "words": "Claims arrive with something to try.",
+      "sound": "Ticks",
+      "act": "case",
+      "bars": "20",
+      "camera": "steady wide, slow drift"
+    },
+    {
+      "t": 43.279,
+      "picture": "A claim arrives with an example card that fits the socket, but its picture shows a different line. It passes the gate.",
+      "words": "An example can answer the wrong question.",
+      "sound": "Key turns, chord unresolved",
+      "act": "limit",
+      "bars": "23",
+      "camera": "still, then one slow push to what slipped",
+      "cue_tags": [
+        "limit",
+        "focus"
+      ]
+    },
+    {
+      "t": 45.246,
+      "picture": "Slow push: the whale tries it on its line and nothing mends.",
+      "words": "",
+      "sound": "Dull click",
+      "act": "limit",
+      "bars": "24",
+      "camera": "still, then one slow push to what slipped",
+      "cue_tags": [
+        "limit"
+      ]
+    },
+    {
+      "t": 46.721,
+      "picture": "Still on the mismatched card.",
+      "words": "One example shows it exists. Not best.",
+      "sound": "Room tone",
+      "act": "limit",
+      "bars": "24",
+      "camera": "still, then one slow push to what slipped"
+    },
+    {
+      "t": 49.18,
+      "picture": "FELT framing restored: the same pod hands over the same claim card, now with an example in the socket.",
+      "words": "",
+      "sound": "A key turning",
+      "act": "payoff",
+      "bars": "26",
+      "camera": "FELT framing restored, z 1.6",
+      "cue_tags": [
+        "callback"
+      ]
+    },
+    {
+      "t": 51.148,
+      "picture": "The whale tries the example on its broken line, and it mends.",
+      "words": "",
+      "sound": "The lock opens",
+      "act": "payoff",
+      "bars": "27",
+      "camera": "FELT framing restored, z 1.6"
+    },
+    {
+      "t": 53.115,
+      "picture": "Whale delight, spark.",
+      "words": "",
+      "sound": "Resolved chord",
+      "act": "payoff",
+      "bars": "28",
+      "camera": "FELT framing restored, z 1.6"
+    },
+    {
+      "t": 57.049,
+      "picture": "Card in socket and the mended line, still.",
+      "words": "When it says it exists, ask for one.",
+      "sound": "Pad tail",
+      "act": "belief",
+      "bars": "30",
+      "camera": "still, breathing only"
+    },
+    {
+      "t": 60.984,
+      "picture": "SERIES.lockup over the still line.",
+      "words": "",
+      "sound": "Pad tail ends in room tone",
+      "act": "lockup",
+      "bars": "32",
+      "camera": "still"
+    }
+  ],
+  "captions": [
+    {
+      "t_in": 0.984,
+      "t_out": 4.426,
+      "text": "It said a fix exists.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 4.918,
+      "t_out": 8.852,
+      "text": "It couldn't show me one.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 10.82,
+      "t_out": 13.279,
+      "text": "Show one real <i>example</i>.",
+      "kind": "title"
+    },
+    {
+      "t_in": 13.279,
+      "t_out": 16.721,
+      "text": "Saying it exists is easy.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 17.213,
+      "t_out": 20.164,
+      "text": "Ask for one example you can try.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 21.639,
+      "t_out": 25.082,
+      "text": "No example, no pass.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 25.574,
+      "t_out": 29.016,
+      "text": "Try the example yourself.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 29.508,
+      "t_out": 32.459,
+      "text": "An example you can try: a witness.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 33.443,
+      "t_out": 36.885,
+      "text": "Ask for a witness, not a promise.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 34.426,
+      "t_out": 42.787,
+      "text": "Illustration · an early plugin, not yet tested",
+      "kind": "card",
+      "src": "https://github.com/manutej/intuitionistic-logic-framework"
+    },
+    {
+      "t_in": 37.377,
+      "t_out": 42.295,
+      "text": "Claims arrive with something to try.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 43.77,
+      "t_out": 46.475,
+      "text": "An example can answer the wrong question.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 46.721,
+      "t_out": 49.18,
+      "text": "One example shows it exists. Not best.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 57.049,
+      "t_out": 60.984,
+      "text": "When it says it exists, ask for one.",
+      "kind": "caption"
+    }
+  ],
+  "terms": [
+    {
+      "term": "witness",
+      "symbol": "atom",
+      "pictured_at": 21.639,
+      "named_at": 29.508
+    }
+  ],
+  "jargon": [
+    "constructive",
+    "intuitionistic"
+  ],
+  "sound": {
+    "signature": "A key turning in a lock, then an open chord",
+    "problem_motif": "A key turning in an empty lock",
+    "limit_unresolved": true
+  },
+  "score_self": {
+    "score": 0.74,
+    "reason": "Very clear everyday pain (the AI says it exists but can't show it), and the payoff mirrors it. No real run (Illustration), and this gate is LLM-driven, not formal.",
+    "weakest_piece": "real_case"
+  }
+}

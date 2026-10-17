@@ -1,0 +1,512 @@
+{
+  "schema_version": "sb60-v1",
+  "id": "sb-07-09",
+  "meta_prompt_id": "mp-c07-v1",
+  "cluster": "07 Formal correctness & logic",
+  "repo": "notion:whale-line-brief-v1 (kh/caps/tool.cjs gates)",
+  "capability": "Seven kinds of check on every film",
+  "audience": "Everyone",
+  "wada": 279,
+  "bpm": 128,
+  "dur": 60.3,
+  "title": "Seven <i>gates</i> watch every frame.",
+  "hook": {
+    "kind": "Example",
+    "picture": "Close on the whale taking off from the line. One frame snaps round too fast, and a phone pod flinches ✕.",
+    "words": "It looked smooth to me."
+  },
+  "problem_in_viewer_words": {
+    "kind": "Fact",
+    "body": "It looked smooth to me. Then it jerked on my phone.",
+    "who": "a maker watching their own video on a phone"
+  },
+  "why_it_keeps_happening": {
+    "kind": "Fact",
+    "picture": "A long strip of frames runs past the maker's eye. Three times, faster each time, a different flaw slips by and the phone pod flinches.",
+    "words": "One person cannot watch every frame."
+  },
+  "stakes": {
+    "kind": "Fact",
+    "body": "Small flaws you can't see on your own screen reach every viewer, and they read as carelessness."
+  },
+  "solution_hint": "Give each kind of flaw its own check.",
+  "metaphor": {
+    "kind": "Example",
+    "body": "Seven gates, each with its own icon, watch a film's frames for seven different kinds of flaw, including the film's own whale turning too fast.",
+    "symbols": [
+      "whale",
+      "line",
+      "gate",
+      "pod"
+    ]
+  },
+  "mechanism_beats": {
+    "kind": "Method",
+    "steps": [
+      {
+        "t": 18.75,
+        "picture": "Three gates rise, each with an icon: a clock (time to read), a turn arrow (how fast the whale turns), a flash.",
+        "words": "",
+        "sound": "Three ticks, three pitches"
+      },
+      {
+        "t": 20.625,
+        "picture": "A caption that leaves too fast stops at the clock gate. The bar drops.",
+        "words": "Each gate watches for one kind of flaw.",
+        "sound": "Tick, then stop"
+      },
+      {
+        "t": 22.5,
+        "picture": "Push-in: the whale's own snap take-off stops at the turn gate.",
+        "words": "",
+        "sound": "Skip, then a stop knock"
+      },
+      {
+        "t": 24.375,
+        "picture": "The whale smooths its turn and passes. Tick.",
+        "words": "It caught our own whale turning too fast.",
+        "sound": "Smooth whoosh, then a tick"
+      },
+      {
+        "t": 26.25,
+        "picture": "Four more gates rise: loudness, size, colours and a watching eye. Seven icons, seven kinds.",
+        "words": "",
+        "sound": "Four new ticks, ascending"
+      },
+      {
+        "t": 28.125,
+        "picture": "The film's strip threads all seven gates.",
+        "words": "Seven gates. Seven different things.",
+        "sound": "Seven ticks, resolved"
+      }
+    ]
+  },
+  "real_case": {
+    "kind": "Evidence",
+    "claim": "Whale Line, The brief v1: seven gates (read time, frame jump, flash, loudness, ffprobe, contact sheet, colour provenance) found three fixes before render, including the whale's take-off snap.",
+    "numbers": [
+      "1.26 rad/frame → 0.11",
+      "41 → 26.5 px/frame"
+    ],
+    "source": {
+      "kind": "notion",
+      "title": "Whale Line: The brief v1",
+      "url": "https://app.notion.com/p/3fcd50cfaf9381bda8d6e0a53b1ddc79"
+    },
+    "verified": true,
+    "illustrative": false
+  },
+  "honest_limit": {
+    "kind": "Constraint",
+    "picture": "A dull, lifeless strip passes all seven gates, every opening glowing. The phone pod watches unmoved and scrolls away.",
+    "words": "A dull film passes every gate too."
+  },
+  "not_this": {
+    "kind": "Constraint",
+    "body": "Beauty is not a gate."
+  },
+  "ending_pattern": {
+    "kind": "Example",
+    "slug": "smooth-turn",
+    "body": "The same close take-off as bar 1 plays again, and the whale turns smoothly inside the turn gate's opening. The phone pod answers ✓.",
+    "callback": "Same close framing on the same take-off: the snap that made the pod flinch is gone."
+  },
+  "end_belief": {
+    "kind": "Goal",
+    "body": "Let machines count. You judge what matters."
+  },
+  "beats": [
+    {
+      "t": 0.0,
+      "picture": "Close on the whale taking off from the line. On one frame it snaps round too fast, leaving a smear.",
+      "words": "It looked smooth to me.",
+      "sound": "A scratched-record skip",
+      "act": "felt",
+      "bars": "1",
+      "camera": "close z 1.6 on the whale",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 2.812,
+      "picture": "A phone-sized pod that is watching flinches and answers ✕ in raw sienna.",
+      "words": "",
+      "sound": "Skip, then a dull thud",
+      "act": "felt",
+      "bars": "2",
+      "camera": "close z 1.6 on the whale",
+      "cue_tags": [
+        "consequence",
+        "focus"
+      ]
+    },
+    {
+      "t": 4.688,
+      "picture": "The whale replays its take-off. It looks fine to itself.",
+      "words": "Then it jerked on my phone.",
+      "sound": "Skip, quieter",
+      "act": "felt",
+      "bars": "3",
+      "camera": "close z 1.6 on the whale",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 7.5,
+      "picture": "Hold on the smear.",
+      "words": "",
+      "sound": "Silence",
+      "act": "felt",
+      "bars": "5",
+      "camera": "close z 1.6 on the whale",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 9.375,
+      "picture": "Hinge: half a bar of stillness, then the title card.",
+      "words": "Seven <i>gates</i> watch every frame.",
+      "sound": "Near-silence, then the title tick",
+      "act": "why",
+      "bars": "6",
+      "camera": "pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "hinge"
+      ]
+    },
+    {
+      "t": 11.25,
+      "picture": "Pull back: a strip of frames, which the maker whale checks by eye.",
+      "words": "",
+      "sound": "Problem motif",
+      "act": "why",
+      "bars": "7",
+      "camera": "pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 12.656,
+      "picture": "The strip runs on far past the whale's eye.",
+      "words": "One person cannot watch every frame.",
+      "sound": "Problem motif again",
+      "act": "why",
+      "bars": "7",
+      "camera": "pull back z 1.6 to 1.0"
+    },
+    {
+      "t": 14.062,
+      "picture": "Three times, faster: a caption too short to read, a flash, the snap. Each time the phone pod flinches ✕.",
+      "words": "",
+      "sound": "Skip three times, accelerating",
+      "act": "why",
+      "bars": "8",
+      "camera": "pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 16.406,
+      "picture": "Freeze: three gate outlines ghost onto the strip.",
+      "words": "Give each kind of flaw its own check.",
+      "sound": "First soft metronome tick: the signature",
+      "act": "why",
+      "bars": "9",
+      "camera": "pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 18.75,
+      "picture": "Three gates rise, each with an icon: a clock (time to read), a turn arrow (how fast the whale turns), a flash.",
+      "words": "",
+      "sound": "Three ticks, three pitches",
+      "act": "move",
+      "bars": "11",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 20.625,
+      "picture": "A caption that leaves too fast stops at the clock gate. The bar drops.",
+      "words": "Each gate watches for one kind of flaw.",
+      "sound": "Tick, then stop",
+      "act": "move",
+      "bars": "12",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 22.5,
+      "picture": "Push-in: the whale's own snap take-off stops at the turn gate.",
+      "words": "",
+      "sound": "Skip, then a stop knock",
+      "act": "move",
+      "bars": "13",
+      "camera": "one push-in to z 1.3 on the decisive moment",
+      "cue_tags": [
+        "mech",
+        "focus"
+      ]
+    },
+    {
+      "t": 24.375,
+      "picture": "The whale smooths its turn and passes. Tick.",
+      "words": "It caught our own whale turning too fast.",
+      "sound": "Smooth whoosh, then a tick",
+      "act": "move",
+      "bars": "14",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 26.25,
+      "picture": "Four more gates rise: loudness, size, colours and a watching eye. Seven icons, seven kinds.",
+      "words": "",
+      "sound": "Four new ticks, ascending",
+      "act": "move",
+      "bars": "15",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 28.125,
+      "picture": "The film's strip threads all seven gates.",
+      "words": "Seven gates. Seven different things.",
+      "sound": "Seven ticks, resolved",
+      "act": "move",
+      "bars": "16",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 30.0,
+      "picture": "Wide: the first whale film as a strip passing the seven gates. Three gates close once each, then open.",
+      "words": "",
+      "sound": "Pulse bed",
+      "act": "case",
+      "bars": "17",
+      "camera": "steady wide, slow drift"
+    },
+    {
+      "t": 31.875,
+      "picture": "The card fades in on clean paper.",
+      "words": "Real run: our first whale film.",
+      "sound": "Ticks",
+      "act": "case",
+      "bars": "18",
+      "camera": "steady wide, slow drift"
+    },
+    {
+      "t": 35.625,
+      "picture": "The three fixes land: the whale lifted off the letters, the turn eased, the swim slowed.",
+      "words": "Fixed before anyone saw it.",
+      "sound": "Three soft ticks",
+      "act": "case",
+      "bars": "20",
+      "camera": "steady wide, slow drift"
+    },
+    {
+      "t": 41.25,
+      "picture": "A dull, lifeless strip of frames passes all seven gates. Every opening glows.",
+      "words": "A dull film passes every gate too.",
+      "sound": "Tick, unresolved",
+      "act": "limit",
+      "bars": "23",
+      "camera": "still, then one slow push to what slipped",
+      "cue_tags": [
+        "limit",
+        "focus"
+      ]
+    },
+    {
+      "t": 43.125,
+      "picture": "Slow push: the phone pod watches, unmoved, and scrolls away.",
+      "words": "",
+      "sound": "Room tone",
+      "act": "limit",
+      "bars": "24",
+      "camera": "still, then one slow push to what slipped",
+      "cue_tags": [
+        "limit"
+      ]
+    },
+    {
+      "t": 44.531,
+      "picture": "Still on the empty frame.",
+      "words": "Beauty is not a gate.",
+      "sound": "Room tone",
+      "act": "limit",
+      "bars": "24",
+      "camera": "still, then one slow push to what slipped"
+    },
+    {
+      "t": 46.875,
+      "picture": "FELT framing restored: the same close take-off as in bar 1.",
+      "words": "",
+      "sound": "Whoosh",
+      "act": "payoff",
+      "bars": "26",
+      "camera": "FELT framing restored, z 1.6",
+      "cue_tags": [
+        "callback"
+      ]
+    },
+    {
+      "t": 48.75,
+      "picture": "This time the whale turns smoothly, inside the turn gate's opening.",
+      "words": "",
+      "sound": "Smooth tone",
+      "act": "payoff",
+      "bars": "27",
+      "camera": "FELT framing restored, z 1.6"
+    },
+    {
+      "t": 50.625,
+      "picture": "The phone pod answers ✓. Spark.",
+      "words": "",
+      "sound": "Resolved",
+      "act": "payoff",
+      "bars": "28",
+      "camera": "FELT framing restored, z 1.6"
+    },
+    {
+      "t": 54.375,
+      "picture": "The whale swims on calmly above the strip.",
+      "words": "Let machines count. You judge what matters.",
+      "sound": "Pad tail",
+      "act": "belief",
+      "bars": "30",
+      "camera": "still, breathing only"
+    },
+    {
+      "t": 58.125,
+      "picture": "SERIES.lockup over the still line.",
+      "words": "",
+      "sound": "Pad tail ends in room tone",
+      "act": "lockup",
+      "bars": "32",
+      "camera": "still"
+    }
+  ],
+  "captions": [
+    {
+      "t_in": 0.938,
+      "t_out": 4.219,
+      "text": "It looked smooth to me.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 4.688,
+      "t_out": 8.438,
+      "text": "Then it jerked on my phone.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 10.312,
+      "t_out": 12.656,
+      "text": "Seven <i>gates</i> watch every frame.",
+      "kind": "title"
+    },
+    {
+      "t_in": 12.656,
+      "t_out": 15.938,
+      "text": "One person cannot watch every frame.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 16.406,
+      "t_out": 19.219,
+      "text": "Give each kind of flaw its own check.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 20.625,
+      "t_out": 23.906,
+      "text": "Each gate watches for one kind of flaw.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 24.375,
+      "t_out": 27.656,
+      "text": "It caught our own whale turning too fast.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 28.125,
+      "t_out": 30.938,
+      "text": "Seven gates. Seven different things.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 31.875,
+      "t_out": 35.156,
+      "text": "Real run: our first whale film.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 32.812,
+      "t_out": 40.781,
+      "text": "Real run · 7 gates, 3 fixes",
+      "kind": "card",
+      "src": "https://app.notion.com/p/3fcd50cfaf9381bda8d6e0a53b1ddc79"
+    },
+    {
+      "t_in": 35.625,
+      "t_out": 40.312,
+      "text": "Fixed before anyone saw it.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 41.719,
+      "t_out": 44.297,
+      "text": "A dull film passes every gate too.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 44.531,
+      "t_out": 46.875,
+      "text": "Beauty is not a gate.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 54.375,
+      "t_out": 58.125,
+      "text": "Let machines count. You judge what matters.",
+      "kind": "caption"
+    }
+  ],
+  "terms": [],
+  "jargon": [
+    "frame-jump",
+    "ffprobe",
+    "lufs",
+    "render"
+  ],
+  "sound": {
+    "signature": "A soft metronome tick per gate, one pitch per kind",
+    "problem_motif": "A scratched-record skip",
+    "limit_unresolved": true
+  },
+  "score_self": {
+    "score": 0.84,
+    "reason": "Self-referential and fully sourced: the series' own gates caught its own whale. Seven kinds read at a glance. Risk: seven icons in bar 15 sit near the S2 element cap.",
+    "weakest_piece": "mechanism_beats"
+  }
+}

@@ -1,0 +1,516 @@
+{
+  "schema_version": "sb60-v1",
+  "id": "sb-07-03",
+  "meta_prompt_id": "mp-c07-v1",
+  "cluster": "07 Formal correctness & logic",
+  "repo": "notion:the-jury (round 2 print gate)",
+  "capability": "Every miss becomes a new kind of check",
+  "audience": "Learners",
+  "wada": 296,
+  "bpm": 120,
+  "dur": 64.3,
+  "title": "Turn every miss into a <i>gate</i>.",
+  "hook": {
+    "kind": "Example",
+    "picture": "Close: a line glows through a screen-icon gate and goes to a printer pod, which prints it with the end sliced off.",
+    "words": "It looked perfect on screen."
+  },
+  "problem_in_viewer_words": {
+    "kind": "Fact",
+    "body": "It looked perfect on screen. The print got cut off.",
+    "who": "teacher printing handouts for Monday"
+  },
+  "why_it_keeps_happening": {
+    "kind": "Fact",
+    "picture": "The screen gate passes run after run. Three times, faster each time, a cut print comes back and a flag lands on the growing pile.",
+    "words": "The check only looked at the screen."
+  },
+  "stakes": {
+    "kind": "Fact",
+    "body": "Every miss gets fixed by hand, one at a time, and the same kind of mistake returns next week."
+  },
+  "solution_hint": "Make each miss a new check.",
+  "metaphor": {
+    "kind": "Example",
+    "body": "The flag that marks a miss is folded into the icon of a new gate, so the next run is checked for that kind of mistake too.",
+    "symbols": [
+      "whale",
+      "line",
+      "gate",
+      "flag",
+      "pod"
+    ]
+  },
+  "mechanism_beats": {
+    "kind": "Method",
+    "steps": [
+      {
+        "t": 20.0,
+        "picture": "The whale picks the top flag off the pile.",
+        "words": "",
+        "sound": "A soft lift"
+      },
+      {
+        "t": 22.0,
+        "picture": "It folds the flag into a new icon: a page edge.",
+        "words": "Fold the miss into a new check.",
+        "sound": "A paper fold, tuned"
+      },
+      {
+        "t": 24.0,
+        "picture": "Push-in: the whale sets the page-edge icon on a new lintel behind the screen gate (a squash on placing it). A second gate stands.",
+        "words": "",
+        "sound": "Clean stamp"
+      },
+      {
+        "t": 26.0,
+        "picture": "The old cut run is replayed. It glows through the screen gate and stops at the page gate as the bar drops.",
+        "words": "The old mistake must stop here now.",
+        "sound": "Whoosh, then a stop knock"
+      },
+      {
+        "t": 28.0,
+        "picture": "The fixed run passes both gates and a tick lands. The used flag stays folded on the lintel.",
+        "words": "",
+        "sound": "Two stamps, resolved"
+      },
+      {
+        "t": 30.0,
+        "picture": "The whale points its fin at the folded flag on the lintel.",
+        "words": "A miss that slipped by is an escape.",
+        "sound": "Soft chime"
+      }
+    ]
+  },
+  "real_case": {
+    "kind": "Evidence",
+    "claim": "In round 2 of Manu's jury, a fresh user found there was no print gate (a P0). The fix added a print gate and 32 new fail-first checks.",
+    "numbers": [
+      "32 new fail-first checks"
+    ],
+    "source": {
+      "kind": "notion",
+      "title": "The jury: adversarial evaluation",
+      "url": "https://app.notion.com/p/3f2d50cfaf93811dafbdfac6f43bd8a9"
+    },
+    "verified": true,
+    "illustrative": false
+  },
+  "honest_limit": {
+    "kind": "Constraint",
+    "picture": "A pale print passes both the screen gate and the page gate. The printer pod answers ✕ and a fresh flag falls.",
+    "words": "The next new kind still gets through."
+  },
+  "not_this": {
+    "kind": "Constraint",
+    "body": "A gate only knows misses it has seen."
+  },
+  "ending_pattern": {
+    "kind": "Example",
+    "slug": "flag-on-the-lintel",
+    "body": "The printer pod prints the bar-2 sheet again and it comes out whole under a gate whose icon is the folded flag. The whale picks up the next flag.",
+    "callback": "Same close on the printer pod as bar 2: the sheet that was cut now prints whole."
+  },
+  "end_belief": {
+    "kind": "Goal",
+    "body": "Every miss is the start of a check."
+  },
+  "beats": [
+    {
+      "t": 0.0,
+      "picture": "Close: a line passes a gate with a small screen icon (it glows). The whale sends it to a printer pod.",
+      "words": "It looked perfect on screen.",
+      "sound": "A bright paper whoosh",
+      "act": "felt",
+      "bars": "1",
+      "camera": "close z 1.6 on the whale",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 3.0,
+      "picture": "The pod prints a sheet: the line's last third is sliced off at the paper edge. ✕ in copper.",
+      "words": "",
+      "sound": "A torn-paper rip, unresolved",
+      "act": "felt",
+      "bars": "2",
+      "camera": "close z 1.6 on the whale",
+      "cue_tags": [
+        "consequence",
+        "focus"
+      ]
+    },
+    {
+      "t": 5.0,
+      "picture": "The whale holds the cut sheet up to the screen gate. The gate glows as if all is well.",
+      "words": "The print got cut off.",
+      "sound": "The rip again, quieter",
+      "act": "felt",
+      "bars": "3",
+      "camera": "close z 1.6 on the whale",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 8.0,
+      "picture": "A copper flag falls beside the whale. Hold.",
+      "words": "",
+      "sound": "Silence",
+      "act": "felt",
+      "bars": "5",
+      "camera": "close z 1.6 on the whale",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 10.0,
+      "picture": "Hinge: half a bar of stillness, then the title card.",
+      "words": "Turn every miss into a <i>gate</i>.",
+      "sound": "Near-silence, then the title tick",
+      "act": "why",
+      "bars": "6",
+      "camera": "pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "hinge"
+      ]
+    },
+    {
+      "t": 12.0,
+      "picture": "Pull back: the screen gate passes run after run.",
+      "words": "",
+      "sound": "Paper whoosh, then a rip",
+      "act": "why",
+      "bars": "7",
+      "camera": "pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 13.5,
+      "picture": "The screen icon on the lintel pulses. Nothing on it knows about paper edges.",
+      "words": "The check only looked at the screen.",
+      "sound": "Problem motif",
+      "act": "why",
+      "bars": "7",
+      "camera": "pull back z 1.6 to 1.0"
+    },
+    {
+      "t": 15.0,
+      "picture": "Three times, faster: three more prints come back cut. Three copper flags pile up by the whale, which fixes each sheet by hand.",
+      "words": "",
+      "sound": "Rip three times, accelerating",
+      "act": "why",
+      "bars": "8",
+      "camera": "pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 17.5,
+      "picture": "Freeze on the pile of flags.",
+      "words": "Make each miss a new check.",
+      "sound": "First clean stamp: the signature",
+      "act": "why",
+      "bars": "9",
+      "camera": "pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 20.0,
+      "picture": "The whale picks the top flag off the pile.",
+      "words": "",
+      "sound": "A soft lift",
+      "act": "move",
+      "bars": "11",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 22.0,
+      "picture": "It folds the flag into a new icon: a page edge.",
+      "words": "Fold the miss into a new check.",
+      "sound": "A paper fold, tuned",
+      "act": "move",
+      "bars": "12",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 24.0,
+      "picture": "Push-in: the whale sets the page-edge icon on a new lintel behind the screen gate (a squash on placing it). A second gate stands.",
+      "words": "",
+      "sound": "Clean stamp",
+      "act": "move",
+      "bars": "13",
+      "camera": "one push-in to z 1.3 on the decisive moment",
+      "cue_tags": [
+        "mech",
+        "focus"
+      ]
+    },
+    {
+      "t": 26.0,
+      "picture": "The old cut run is replayed. It glows through the screen gate and stops at the page gate as the bar drops.",
+      "words": "The old mistake must stop here now.",
+      "sound": "Whoosh, then a stop knock",
+      "act": "move",
+      "bars": "14",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 28.0,
+      "picture": "The fixed run passes both gates and a tick lands. The used flag stays folded on the lintel.",
+      "words": "",
+      "sound": "Two stamps, resolved",
+      "act": "move",
+      "bars": "15",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 30.0,
+      "picture": "The whale points its fin at the folded flag on the lintel.",
+      "words": "A miss that slipped by is an escape.",
+      "sound": "Soft chime",
+      "act": "move",
+      "bars": "16",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 32.0,
+      "picture": "Wide: a line of gates. A fresh pod, a tester who didn't build it, holds up a printed sheet cut at the edge.",
+      "words": "",
+      "sound": "Pulse bed",
+      "act": "case",
+      "bars": "17",
+      "camera": "steady wide, slow drift"
+    },
+    {
+      "t": 34.0,
+      "picture": "The card fades in on clean paper.",
+      "words": "Real run: a fresh tester found this gap.",
+      "sound": "Quiet ticks",
+      "act": "case",
+      "bars": "18",
+      "camera": "steady wide, slow drift"
+    },
+    {
+      "t": 38.0,
+      "picture": "A print gate joins the row, and a cascade of small ticks fills in behind it.",
+      "words": "One miss. A whole new kind of check.",
+      "sound": "Ticks cascade",
+      "act": "case",
+      "bars": "20",
+      "camera": "steady wide, slow drift"
+    },
+    {
+      "t": 44.0,
+      "picture": "A pale, washed-out print passes the screen gate and the page gate. Both glow.",
+      "words": "The next new kind still gets through.",
+      "sound": "Stamp, unresolved",
+      "act": "limit",
+      "bars": "23",
+      "camera": "still, then one slow push to what slipped",
+      "cue_tags": [
+        "limit",
+        "focus"
+      ]
+    },
+    {
+      "t": 46.0,
+      "picture": "Slow push: the printer pod answers ✕ and a fresh copper flag falls.",
+      "words": "",
+      "sound": "Rip",
+      "act": "limit",
+      "bars": "24",
+      "camera": "still, then one slow push to what slipped",
+      "cue_tags": [
+        "limit"
+      ]
+    },
+    {
+      "t": 47.5,
+      "picture": "Still on the new flag.",
+      "words": "A gate only knows misses it has seen.",
+      "sound": "Room tone",
+      "act": "limit",
+      "bars": "24",
+      "camera": "still, then one slow push to what slipped"
+    },
+    {
+      "t": 50.0,
+      "picture": "FELT framing restored: the printer pod prints the same sheet as in bar 2, and it comes out whole.",
+      "words": "",
+      "sound": "Clean whoosh",
+      "act": "payoff",
+      "bars": "26",
+      "camera": "FELT framing restored, z 1.6",
+      "cue_tags": [
+        "callback"
+      ]
+    },
+    {
+      "t": 52.0,
+      "picture": "Above it, the page gate with the folded flag on its lintel glows.",
+      "words": "",
+      "sound": "Stamp",
+      "act": "payoff",
+      "bars": "27",
+      "camera": "FELT framing restored, z 1.6"
+    },
+    {
+      "t": 54.0,
+      "picture": "The whale picks up the new pale flag and starts to fold it. Spark.",
+      "words": "",
+      "sound": "Resolved chord with a fold sound",
+      "act": "payoff",
+      "bars": "28",
+      "camera": "FELT framing restored, z 1.6"
+    },
+    {
+      "t": 58.0,
+      "picture": "A row of two gates, and the whale holding a half-folded flag, breathing.",
+      "words": "Every miss is the start of a check.",
+      "sound": "Pad tail",
+      "act": "belief",
+      "bars": "30",
+      "camera": "still, breathing only"
+    },
+    {
+      "t": 62.0,
+      "picture": "SERIES.lockup over the still line.",
+      "words": "",
+      "sound": "Pad tail ends in room tone",
+      "act": "lockup",
+      "bars": "32",
+      "camera": "still"
+    }
+  ],
+  "captions": [
+    {
+      "t_in": 1.0,
+      "t_out": 4.5,
+      "text": "It looked perfect on screen.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 5.0,
+      "t_out": 9.0,
+      "text": "The print got cut off.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 11.0,
+      "t_out": 13.5,
+      "text": "Turn every miss into a <i>gate</i>.",
+      "kind": "title"
+    },
+    {
+      "t_in": 13.5,
+      "t_out": 17.0,
+      "text": "The check only looked at the screen.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 17.5,
+      "t_out": 20.5,
+      "text": "Make each miss a new check.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 22.0,
+      "t_out": 25.5,
+      "text": "Fold the miss into a new check.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 26.0,
+      "t_out": 29.5,
+      "text": "The old mistake must stop here now.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 30.0,
+      "t_out": 33.0,
+      "text": "A miss that slipped by is an escape.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 34.0,
+      "t_out": 37.5,
+      "text": "Real run: a fresh tester found this gap.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 35.0,
+      "t_out": 43.5,
+      "text": "No print gate → 32 new checks",
+      "kind": "card",
+      "src": "https://app.notion.com/p/3f2d50cfaf93811dafbdfac6f43bd8a9"
+    },
+    {
+      "t_in": 38.0,
+      "t_out": 43.0,
+      "text": "One miss. A whole new kind of check.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 44.5,
+      "t_out": 47.25,
+      "text": "The next new kind still gets through.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 47.5,
+      "t_out": 50.0,
+      "text": "A gate only knows misses it has seen.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 58.0,
+      "t_out": 62.0,
+      "text": "Every miss is the start of a check.",
+      "kind": "caption"
+    }
+  ],
+  "terms": [
+    {
+      "term": "escape",
+      "symbol": "flag",
+      "pictured_at": 15.0,
+      "named_at": 30.0
+    }
+  ],
+  "jargon": [
+    "fail-first"
+  ],
+  "sound": {
+    "signature": "A paper fold that lands as a clean stamp",
+    "problem_motif": "A torn-paper rip that never resolves",
+    "limit_unresolved": true
+  },
+  "score_self": {
+    "score": 0.85,
+    "reason": "The flag-to-icon fold makes 'a miss becomes a new kind of check' literal, and the whale builds the gate (REVIEW P2-5). The case is Manu's jury record. Risk: the pale-print limit is close to a colour check.",
+    "weakest_piece": "honest_limit"
+  }
+}

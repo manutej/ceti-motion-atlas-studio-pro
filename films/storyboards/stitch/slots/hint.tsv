@@ -1,0 +1,101 @@
+id	title	repo	self	body
+hint.sb-01-01	Notes must agree at the <i>joins</i>.	manutej/sheaf-knowledge-studio	0.74	Check each note where it meets another.
+hint.sb-01-02	Give each note its own <i>card</i>.	manutej/stalks-and-sections	0.68	Let each note keep its own shape.
+hint.sb-01-03	Keep the red <i>join</i> red.	manutej/cell-sheaf	0.77	Show where teams disagree. Never paint over.
+hint.sb-01-04	Map the <i>joins</i>, then merge.	manutej/sheaf-port	0.79	Draw each link before you move a thing.
+hint.sb-01-05	Show both sides of the <i>edge</i>.	manutej/glue	0.66	Keep both. Show where they disagree.
+hint.sb-01-06	One owner for every <i>join</i>.	none	0.8	Pick one owner for each shared piece.
+hint.sb-01-07	Seven opinions, one <i>line</i>.	none	0.7	Let each one check with its neighbours.
+hint.sb-01-08	Keep both. Mark the <i>join</i>.	none	0.75	Keep both. Ask a person which holds.
+hint.sb-01-09	Test the <i>gate</i> by breaking it.	manutej/sheaf-knowledge-studio	0.76	Break it on purpose. See if it notices.
+hint.sb-01-10	Trust the <i>parts</i> that agree.	manutej/stalks-and-sections	0.72	Check each part against its neighbours.
+hint.sb-02-01	Fold only the <i>joins</i> that agree.	manutej/cell-sheaf-swarm	0.8	Check each join. Keep only what agrees.
+hint.sb-02-02	Odd <i>joins</i> wait for a person.	manutej/cell-sheaf-swarm	0.78	Let odd parts wait for a person.
+hint.sb-02-03	Every push meets the <i>gate</i>.	manutej/cell-sheaf-swarm	0.68	Check every file the moment it lands.
+hint.sb-02-04	Let every <i>join</i> pull back.	manutej/sheaf-dirichlet-protein-3d	0.72	Let each touching pair pull together.
+hint.sb-02-05	Floppy parts have fewer <i>joins</i>.	manutej/sheaf-dirichlet-protein-3d	0.76	Count how many neighbours hold each part.
+hint.sb-02-06	See every <i>link</i> below the top.	manutej/sheaf-dep-ethereum	0.76	Lay out every link, row by row.
+hint.sb-02-07	Credit should flow down the <i>links</i>.	manutej/sheaf-dep-ethereum	0.7	Pass a share down every link.
+hint.sb-02-08	Draw only <i>links</i> you can show.	manutej/ormus-harness-sheaf-lattice	0.82	Draw a link only where it's written.
+hint.sb-02-09	Let the unfinished <i>joins</i> glow.	manutej/ormus-harness-sheaf-lattice	0.8	Give known gaps their own colour.
+hint.sb-02-10	Rules on top, <i>parts</i> below.	manutej/ormus-harness-sheaf-lattice	0.7	Put the rules first. Then the parts.
+hint.sb-03-01	A wiki with <i>pins</i>.	skill:noether-wiki	0.8	Name what must stay true. Check every edit.
+hint.sb-03-02	Merge, and keep the <i>seams</i>.	skill:noether-wiki	0.76	Keep both answers. Lose nothing without a note.
+hint.sb-03-03	The same mistake, <i>pinned</i>.	skill:noether-wiki	0.82	When you find a miss, add a check.
+hint.sb-03-04	Don't touch the <i>gate</i>.	skill:noether-wiki	0.79	Lock the checks. It may only fix.
+hint.sb-03-05	We choose the <i>pins</i>.	manutej/noether-resonance-core	0.7	Say what you borrowed. Say what you chose.
+hint.sb-03-06	Try first. Then the <i>gate</i> opens.	manutej/noether-wiki	0.74	Hide the answer until you try.
+hint.sb-03-07	Find the <i>pin</i> first.	manutej/noether-operadic-course	0.72	Turn it around. Find what doesn't move.
+hint.sb-03-08	Small changes, one <i>counter</i>.	skill:noether-wiki	0.77	Keep a running total. Stop when full.
+hint.sb-03-09	AI writes. The <i>gate</i> checks.	skill:noether-wiki	0.83	Let it write small batches. Check each one.
+hint.sb-03-10	Two copies, one <i>seam</i>.	skill:noether-wiki	0.78	Compare both copies on every change.
+hint.sb-04-01	Give every note a <i>label</i>.	operadic-stitch (Context Atoms)	0.78	Label each note by what it is.
+hint.sb-04-02	Hand over only the right <i>cards</i>.	operadic-stitch (Context Atoms)	0.74	Give it only what this job needs.
+hint.sb-04-03	One fact at every <i>joint</i>.	operadic-stitch (Context Atoms)	0.8	Send one fact. Check every copy.
+hint.sb-04-04	Private <i>cards</i> stay home.	operadic-stitch (Context Atoms)	0.76	Mark private notes. Check before they leave.
+hint.sb-04-05	Send the <i>wiring</i>, not the pile.	manutej/wiring-and-the-whole	0.72	Send how parts connect, not every line.
+hint.sb-04-06	Draw the <i>sockets</i> first.	manutej/discopy	0.66	Draw each step with its sockets.
+hint.sb-04-07	See every <i>joint</i> first.	manutej/catreview-go	0.7	Map every part and what it calls.
+hint.sb-04-08	Add the missing <i>piece</i>.	manutej/operadic-compositionality-course	0.74	Don't jam it. Put a converter between.
+hint.sb-04-09	Each helper gets its own <i>part</i>.	manutej/operadic-compositionality-course	0.72	Give each helper its own separate part.
+hint.sb-04-10	Find the <i>joint</i> that slipped.	manutej/wiring-and-the-whole	0.7	Build it twice. Compare at every joint.
+hint.sb-05-01	Build it once, with <i>slots</i>.	manutej/meta-suite	0.74	Write the steps once. Leave blanks for facts.
+hint.sb-05-02	Stop when the <i>counter</i> hits zero.	manutej/meta-suite	0.82	Let fresh eyes list the fixes. Repeat.
+hint.sb-05-03	Send only what clears the <i>gate</i>.	manutej/categorical-meta-prompting	0.75	Score every answer. Send only above the bar.
+hint.sb-05-04	One <i>line</i> for every puzzle.	manutej/categorical-meta-prompting	0.72	Ask for one method that solves all.
+hint.sb-05-05	Every try gets a <i>tick</i>.	manutej/meta-prompting-framework	0.78	Write down every try and its result.
+hint.sb-05-06	A small <i>gate</i> picks the road.	manutej/meta-prompting-framework	0.7	Size the task first. Then pick the road.
+hint.sb-05-07	Check every <i>join</i> in the chain.	manutej/meta-prompting-plugin	0.79	Check the work between every step.
+hint.sb-05-08	Keep the judge <i>pinned</i>.	operadic-stitch/references/RSI.md	0.8	Lock the test. Only the work may change.
+hint.sb-05-09	One change, then <i>measure</i>.	none	0.8	Change one thing. Measure. Keep or undo.
+hint.sb-05-10	Let it draft the <i>cards</i> first.	manutej/meta-prompting-plugin	0.77	Ask it to write the prompt first.
+hint.sb-06-01	Hunches don't fit the <i>slot</i>.	manutej/jev	0.72	Let only real test results ship it.
+hint.sb-06-02	When unsure, the <i>gate</i> stays shut.	manutej/jev	0.78	When unsure, stop. Go only on clear yes.
+hint.sb-06-03	Every step gets a <i>tick</i>.	manutej/jev-tape	0.8	Write down each step. Pay once, last.
+hint.sb-06-04	Doing waits behind the <i>gate</i>.	manutej/jev-tape	0.76	Let it write. Let rules decide the send.
+hint.sb-06-05	Five small <i>gates</i>, not one.	manutej/JEV-works	0.82	Ask five small questions, not one big one.
+hint.sb-06-06	First, check the <i>ruler</i>.	manutej/JEV-works	0.74	Check the ruler before you trust the score.
+hint.sb-06-07	Coin flips go to a <i>person</i>.	manutej/jev-elder	0.8	If it's a coin toss, ask a person.
+hint.sb-06-08	Leave the <i>flag</i> where it is.	manutej/jev-elder	0.7	Mark every mismatch. Do not smooth it.
+hint.sb-06-09	Every claim faces the same <i>gates</i>.	manutej/the-twenty-nesy	0.77	Test every paper the same few ways.
+hint.sb-06-10	Readers pass a one-way <i>gate</i>.	manutej/jev-tape-wiki	0.71	Give readers a copy with no keys.
+hint.sb-07-01	Every miss gets a new <i>gate</i>.	notion:limits-and-escapes (Limits & escapes register)	0.82	Let a machine check every run.
+hint.sb-07-02	Add a different <i>gate</i>.	notion:limits-and-escapes (Limits & escapes register)	0.8	Add a check that looks somewhere new.
+hint.sb-07-03	Turn every miss into a <i>gate</i>.	notion:the-jury (round 2 print gate)	0.85	Make each miss a new check.
+hint.sb-07-04	The old bug hits a <i>gate</i>.	notion:the-jury (fail-first doctrine)	0.8	Keep the old bug. Make it fail.
+hint.sb-07-05	Fresh <i>eyes</i> try to break it.	notion:the-jury	0.78	Let someone who didn't build it check.
+hint.sb-07-06	Check the <i>pin</i> before the work.	manutej/fstar-labs	0.72	Test the rule, not only the work.
+hint.sb-07-07	Find the first broken <i>joint</i>.	manutej/Lean4Agent (fork of RickySkywalker/Lean4Agent)	0.76	Check each step where it meets the next.
+hint.sb-07-08	Show one real <i>example</i>.	manutej/intuitionistic-logic-framework	0.74	Ask for one example you can try.
+hint.sb-07-09	Seven <i>gates</i> watch every frame.	notion:whale-line-brief-v1 (kh/caps/tool.cjs gates)	0.84	Give each kind of flaw its own check.
+hint.sb-07-10	Check the work, not its <i>label</i>.	notion:limits-and-escapes (Limits & escapes register)	0.79	Look at what really came out.
+hint.sb-08-01	Every answer keeps its <i>receipt</i>.	manutej/kraken-omnimemory-mcp	0.8	Tag each note with where it came from.
+hint.sb-08-02	Give every note a <i>label</i>.	none	0.82	Say how sure. Only raise it by checking.
+hint.sb-08-03	Every step leaves a <i>mark</i>.	manutej/volumetric-intelligence	0.78	Write each step down. Go on green.
+hint.sb-08-04	Draw only the <i>joins</i> you see.	Ormus-Solutions/ormus-agent-harness	0.85	Draw what the source shows. Mark the gaps.
+hint.sb-08-05	Test where the parts <i>join</i>.	manutej/ceti-clock-tree	0.75	Test the joins, not just the parts.
+hint.sb-08-06	A <i>gate</i> after every step.	manutej/VERA	0.77	Check after every step, not just the end.
+hint.sb-08-07	Let the <i>check</i> only look.	manutej/maat	0.74	Keep looking apart from changing.
+hint.sb-08-08	Some numbers get a <i>pin</i>.	manutej/aor-ki	0.8	Lock the numbers that must not move.
+hint.sb-08-09	Start with the small <i>card</i>.	none	0.79	Start small. Open more only if needed.
+hint.sb-08-10	Three runs, one <i>gate</i>.	none	0.83	Build it three ways. Trust what all agree.
+hint.sb-09-01	Let the colours <i>ring</i>.	manutej/orpheum-studio-pro	0.74	Hear the whole set at once.
+hint.sb-09-02	Keep the reading pair <i>pinned</i>.	manutej/orpheum-studio-pro	0.71	Pin the reading pair. Check it every time.
+hint.sb-09-03	Three <i>parts</i>, many songs.	manutej/orpheum-studio-pro	0.66	Build from a few parts you can check.
+hint.sb-09-04	Finished is when every <i>gate</i> opens.	manutej/glyph-foundry-studio-pro	0.73	Let a machine check it. Fix. Repeat.
+hint.sb-09-05	Shrink it through the <i>gates</i>.	manutej/glyph-foundry-studio-pro	0.75	Remove one thing at a time. Check each.
+hint.sb-09-06	Draw the order as one <i>line</i>.	manutej/hekat	0.7	Write the order down before anything runs.
+hint.sb-09-07	Pull every <i>thread</i> into view.	manutej/kochi	0.72	Draw the links, not just the notes.
+hint.sb-09-08	Every shape gets one <i>pin</i>.	manutej/visual-elements	0.68	One shape, one meaning. Keep a shelf.
+hint.sb-09-09	Taste, one <i>tick</i> at a time.	manutej/orpheum-trainer	0.55	Pick one of two, again and again.
+hint.sb-09-10	Every sound on the <i>tick</i>.	none	0.76	Place each sound on the picture's clock.
+hint.sb-10-01	Every frame lives on the <i>line</i>.	manutej/ceti-explainer	0.74	Draw each moment from the clock alone.
+hint.sb-10-02	Every <i>join</i> must hold.	manutej/ceti-explainer	0.7	Ship only the cut where parts join.
+hint.sb-10-03	Two copies, one <i>card</i>.	manutej/p5js-explainer-lab	0.78	Give each shared part one owner.
+hint.sb-10-04	Run the <i>ring</i> end to end.	manutej/p5js-explainer-lab	0.72	Check the whole film, not a peek.
+hint.sb-10-05	Nothing fake gets past the <i>door</i>.	manutej/craft	0.76	Check every package is real first.
+hint.sb-10-06	Turn each rule into a <i>door</i>.	manutej/craft	0.68	Turn each rule into a check.
+hint.sb-10-07	The old bug meets a <i>door</i>.	ceti-ai-services/loop-engineering	0.66	Ship each fix with its own check.
+hint.sb-10-08	Lay the <i>cards</i> side by side.	tell-apart (skill)	0.7	Find two cases your score cannot split.
+hint.sb-10-09	Every version gets a <i>tick</i>.	provenance ledger (kh/registry)	0.71	Stamp each version and link it back.
+hint.sb-10-10	Put a <i>ring</i> on every turn.	Motion Atlas (this studio)	0.73	Measure each turn before anyone sees it.

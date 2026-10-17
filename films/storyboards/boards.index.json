@@ -69,6 +69,146 @@
   "title": "Trust the <i>parts</i> that agree.",
   "wada": 296
  },
+ "sb-02-01": {
+  "file": "c02/sb-02-01.json",
+  "repo": "manutej/cell-sheaf-swarm",
+  "score_self": 0.8,
+  "title": "Fold only the <i>joins</i> that agree.",
+  "wada": 296
+ },
+ "sb-02-02": {
+  "file": "c02/sb-02-02.json",
+  "repo": "manutej/cell-sheaf-swarm",
+  "score_self": 0.78,
+  "title": "Odd <i>joins</i> wait for a person.",
+  "wada": 279
+ },
+ "sb-02-03": {
+  "file": "c02/sb-02-03.json",
+  "repo": "manutej/cell-sheaf-swarm",
+  "score_self": 0.68,
+  "title": "Every push meets the <i>gate</i>.",
+  "wada": 207
+ },
+ "sb-02-04": {
+  "file": "c02/sb-02-04.json",
+  "repo": "manutej/sheaf-dirichlet-protein-3d",
+  "score_self": 0.72,
+  "title": "Let every <i>join</i> pull back.",
+  "wada": 166
+ },
+ "sb-02-05": {
+  "file": "c02/sb-02-05.json",
+  "repo": "manutej/sheaf-dirichlet-protein-3d",
+  "score_self": 0.76,
+  "title": "Floppy parts have fewer <i>joins</i>.",
+  "wada": 339
+ },
+ "sb-02-06": {
+  "file": "c02/sb-02-06.json",
+  "repo": "manutej/sheaf-dep-ethereum",
+  "score_self": 0.76,
+  "title": "See every <i>link</i> below the top.",
+  "wada": 84
+ },
+ "sb-02-07": {
+  "file": "c02/sb-02-07.json",
+  "repo": "manutej/sheaf-dep-ethereum",
+  "score_self": 0.7,
+  "title": "Credit should flow down the <i>links</i>.",
+  "wada": 243
+ },
+ "sb-02-08": {
+  "file": "c02/sb-02-08.json",
+  "repo": "manutej/ormus-harness-sheaf-lattice",
+  "score_self": 0.82,
+  "title": "Draw only <i>links</i> you can show.",
+  "wada": 296
+ },
+ "sb-02-09": {
+  "file": "c02/sb-02-09.json",
+  "repo": "manutej/ormus-harness-sheaf-lattice",
+  "score_self": 0.8,
+  "title": "Let the unfinished <i>joins</i> glow.",
+  "wada": 279
+ },
+ "sb-02-10": {
+  "file": "c02/sb-02-10.json",
+  "repo": "manutej/ormus-harness-sheaf-lattice",
+  "score_self": 0.7,
+  "title": "Rules on top, <i>parts</i> below.",
+  "wada": 166
+ },
+ "sb-03-01": {
+  "file": "c03/sb-03-01.json",
+  "repo": "skill:noether-wiki",
+  "score_self": 0.8,
+  "title": "A wiki with <i>pins</i>.",
+  "wada": 296
+ },
+ "sb-03-02": {
+  "file": "c03/sb-03-02.json",
+  "repo": "skill:noether-wiki",
+  "score_self": 0.76,
+  "title": "Merge, and keep the <i>seams</i>.",
+  "wada": 279
+ },
+ "sb-03-03": {
+  "file": "c03/sb-03-03.json",
+  "repo": "skill:noether-wiki",
+  "score_self": 0.82,
+  "title": "The same mistake, <i>pinned</i>.",
+  "wada": 207
+ },
+ "sb-03-04": {
+  "file": "c03/sb-03-04.json",
+  "repo": "skill:noether-wiki",
+  "score_self": 0.79,
+  "title": "Don't touch the <i>gate</i>.",
+  "wada": 339
+ },
+ "sb-03-05": {
+  "file": "c03/sb-03-05.json",
+  "repo": "manutej/noether-resonance-core",
+  "score_self": 0.7,
+  "title": "We choose the <i>pins</i>.",
+  "wada": 243
+ },
+ "sb-03-06": {
+  "file": "c03/sb-03-06.json",
+  "repo": "manutej/noether-wiki",
+  "score_self": 0.74,
+  "title": "Try first. Then the <i>gate</i> opens.",
+  "wada": 166
+ },
+ "sb-03-07": {
+  "file": "c03/sb-03-07.json",
+  "repo": "manutej/noether-operadic-course",
+  "score_self": 0.72,
+  "title": "Find the <i>pin</i> first.",
+  "wada": 84
+ },
+ "sb-03-08": {
+  "file": "c03/sb-03-08.json",
+  "repo": "skill:noether-wiki",
+  "score_self": 0.77,
+  "title": "Small changes, one <i>counter</i>.",
+  "wada": 296
+ },
+ "sb-03-09": {
+  "file": "c03/sb-03-09.json",
+  "repo": "skill:noether-wiki",
+  "score_self": 0.83,
+  "title": "AI writes. The <i>gate</i> checks.",
+  "wada": 279
+ },
+ "sb-03-10": {
+  "file": "c03/sb-03-10.json",
+  "repo": "skill:noether-wiki",
+  "score_self": 0.78,
+  "title": "Two copies, one <i>seam</i>.",
+  "wada": 207
+ },
  "sb-04-01": {
   "file": "c04/sb-04-01.json",
   "repo": "operadic-stitch (Context Atoms)",
@@ -279,6 +419,76 @@
   "title": "Readers pass a one-way <i>gate</i>.",
   "wada": 166
  },
+ "sb-07-01": {
+  "file": "c07/sb-07-01.json",
+  "repo": "notion:limits-and-escapes (Limits & escapes register)",
+  "score_self": 0.82,
+  "title": "Every miss gets a new <i>gate</i>.",
+  "wada": 243
+ },
+ "sb-07-02": {
+  "file": "c07/sb-07-02.json",
+  "repo": "notion:limits-and-escapes (Limits & escapes register)",
+  "score_self": 0.8,
+  "title": "Add a different <i>gate</i>.",
+  "wada": 339
+ },
+ "sb-07-03": {
+  "file": "c07/sb-07-03.json",
+  "repo": "notion:the-jury (round 2 print gate)",
+  "score_self": 0.85,
+  "title": "Turn every miss into a <i>gate</i>.",
+  "wada": 296
+ },
+ "sb-07-04": {
+  "file": "c07/sb-07-04.json",
+  "repo": "notion:the-jury (fail-first doctrine)",
+  "score_self": 0.8,
+  "title": "The old bug hits a <i>gate</i>.",
+  "wada": 207
+ },
+ "sb-07-05": {
+  "file": "c07/sb-07-05.json",
+  "repo": "notion:the-jury",
+  "score_self": 0.78,
+  "title": "Fresh <i>eyes</i> try to break it.",
+  "wada": 166
+ },
+ "sb-07-06": {
+  "file": "c07/sb-07-06.json",
+  "repo": "manutej/fstar-labs",
+  "score_self": 0.72,
+  "title": "Check the <i>pin</i> before the work.",
+  "wada": 84
+ },
+ "sb-07-07": {
+  "file": "c07/sb-07-07.json",
+  "repo": "manutej/Lean4Agent (fork of RickySkywalker/Lean4Agent)",
+  "score_self": 0.76,
+  "title": "Find the first broken <i>joint</i>.",
+  "wada": 243
+ },
+ "sb-07-08": {
+  "file": "c07/sb-07-08.json",
+  "repo": "manutej/intuitionistic-logic-framework",
+  "score_self": 0.74,
+  "title": "Show one real <i>example</i>.",
+  "wada": 296
+ },
+ "sb-07-09": {
+  "file": "c07/sb-07-09.json",
+  "repo": "notion:whale-line-brief-v1 (kh/caps/tool.cjs gates)",
+  "score_self": 0.84,
+  "title": "Seven <i>gates</i> watch every frame.",
+  "wada": 279
+ },
+ "sb-07-10": {
+  "file": "c07/sb-07-10.json",
+  "repo": "notion:limits-and-escapes (Limits & escapes register)",
+  "score_self": 0.79,
+  "title": "Check the work, not its <i>label</i>.",
+  "wada": 207
+ },
  "sb-08-01": {
   "file": "c08/sb-08-01.json",
   "repo": "manutej/kraken-omnimemory-mcp",
@@ -348,6 +558,76 @@
   "score_self": 0.83,
   "title": "Three runs, one <i>gate</i>.",
   "wada": 339
+ },
+ "sb-09-01": {
+  "file": "c09/sb-09-01.json",
+  "repo": "manutej/orpheum-studio-pro",
+  "score_self": 0.74,
+  "title": "Let the colours <i>ring</i>.",
+  "wada": 339
+ },
+ "sb-09-02": {
+  "file": "c09/sb-09-02.json",
+  "repo": "manutej/orpheum-studio-pro",
+  "score_self": 0.71,
+  "title": "Keep the reading pair <i>pinned</i>.",
+  "wada": 84
+ },
+ "sb-09-03": {
+  "file": "c09/sb-09-03.json",
+  "repo": "manutej/orpheum-studio-pro",
+  "score_self": 0.66,
+  "title": "Three <i>parts</i>, many songs.",
+  "wada": 166
+ },
+ "sb-09-04": {
+  "file": "c09/sb-09-04.json",
+  "repo": "manutej/glyph-foundry-studio-pro",
+  "score_self": 0.73,
+  "title": "Finished is when every <i>gate</i> opens.",
+  "wada": 243
+ },
+ "sb-09-05": {
+  "file": "c09/sb-09-05.json",
+  "repo": "manutej/glyph-foundry-studio-pro",
+  "score_self": 0.75,
+  "title": "Shrink it through the <i>gates</i>.",
+  "wada": 207
+ },
+ "sb-09-06": {
+  "file": "c09/sb-09-06.json",
+  "repo": "manutej/hekat",
+  "score_self": 0.7,
+  "title": "Draw the order as one <i>line</i>.",
+  "wada": 279
+ },
+ "sb-09-07": {
+  "file": "c09/sb-09-07.json",
+  "repo": "manutej/kochi",
+  "score_self": 0.72,
+  "title": "Pull every <i>thread</i> into view.",
+  "wada": 296
+ },
+ "sb-09-08": {
+  "file": "c09/sb-09-08.json",
+  "repo": "manutej/visual-elements",
+  "score_self": 0.68,
+  "title": "Every shape gets one <i>pin</i>.",
+  "wada": 166
+ },
+ "sb-09-09": {
+  "file": "c09/sb-09-09.json",
+  "repo": "manutej/orpheum-trainer",
+  "score_self": 0.55,
+  "title": "Taste, one <i>tick</i> at a time.",
+  "wada": 243
+ },
+ "sb-09-10": {
+  "file": "c09/sb-09-10.json",
+  "repo": "none",
+  "score_self": 0.76,
+  "title": "Every sound on the <i>tick</i>.",
+  "wada": 84
  },
  "sb-10-01": {
   "file": "c10/sb-10-01.json",

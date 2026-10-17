@@ -1,0 +1,507 @@
+{
+  "schema_version": "sb60-v1",
+  "id": "sb-07-02",
+  "meta_prompt_id": "mp-c07-v1",
+  "cluster": "07 Formal correctness & logic",
+  "repo": "notion:limits-and-escapes (Limits & escapes register)",
+  "capability": "Add a new kind of check, not a copy",
+  "audience": "Leaders",
+  "wada": 339,
+  "bpm": 124,
+  "dur": 62.24,
+  "title": "Add a different <i>gate</i>.",
+  "hook": {
+    "kind": "Example",
+    "picture": "Close: the whale stacks a second identical gate behind the first. A rust run passes both and a pod answers ✕.",
+    "words": "We added more checks."
+  },
+  "problem_in_viewer_words": {
+    "kind": "Fact",
+    "body": "We added more checks. The same bug still shipped.",
+    "who": "head of engineering, at the quarterly review"
+  },
+  "why_it_keeps_happening": {
+    "kind": "Fact",
+    "picture": "A long row of identical wobble gates. Three times, faster each time, rust runs sail through all of them and each pod answers ✕.",
+    "words": "Every check looks at the same thing."
+  },
+  "stakes": {
+    "kind": "Fact",
+    "body": "Each extra copy of the same check costs time and money and catches nothing new, while customers keep hitting the same kind of bug."
+  },
+  "solution_hint": "Add a check that looks somewhere new.",
+  "metaphor": {
+    "kind": "Example",
+    "body": "A row of identical gates all ask the same question, so the same bug passes them all. Swapping one copy for a gate with a new icon catches it.",
+    "symbols": [
+      "whale",
+      "line",
+      "gate",
+      "pod"
+    ]
+  },
+  "mechanism_beats": {
+    "kind": "Method",
+    "steps": [
+      {
+        "t": 19.355,
+        "picture": "The whale lifts the wobble icon off the middle gate and sets a colour lens there (a squash on placing it).",
+        "words": "",
+        "sound": "Lens chime, a new timbre"
+      },
+      {
+        "t": 21.29,
+        "picture": "A rust run passes the first gate (glow), then stops at the lens gate. The bar drops.",
+        "words": "Swap one copy for a new kind.",
+        "sound": "Chime, then a stop knock"
+      },
+      {
+        "t": 23.226,
+        "picture": "Push-in: the last gate gets a gap icon. A run with a gap passes the other two and stops there.",
+        "words": "",
+        "sound": "Third timbre, stop knock"
+      },
+      {
+        "t": 25.161,
+        "picture": "A good run threads all three: three different glows.",
+        "words": "Three gates. Three different questions.",
+        "sound": "Three distinct chimes, resolved"
+      },
+      {
+        "t": 27.097,
+        "picture": "The old identical copies, faded, stand to one side.",
+        "words": "",
+        "sound": "Soft chord"
+      },
+      {
+        "t": 29.032,
+        "picture": "Runs keep flowing. Each kind of mistake stops at its own gate.",
+        "words": "More kinds catch more than more copies.",
+        "sound": "Chimes keep time"
+      }
+    ]
+  },
+  "real_case": {
+    "kind": "Evidence",
+    "claim": "A textbook landing page passed Manu's CSS-text detectors with 0 findings. Rendered-box detectors, a different kind of check, found 3 P0s.",
+    "numbers": [
+      "0 findings",
+      "3 P0s"
+    ],
+    "source": {
+      "kind": "notion",
+      "title": "Limits & escapes register",
+      "url": "https://app.notion.com/p/3f2d50cfaf9381a88b04f3837efcac6a"
+    },
+    "verified": true,
+    "illustrative": false
+  },
+  "honest_limit": {
+    "kind": "Constraint",
+    "picture": "A clean run goes to the wrong pod, a question no gate asks. All three gates glow and the wrong pod answers ✕.",
+    "words": "A question nobody asked still slips through."
+  },
+  "not_this": {
+    "kind": "Constraint",
+    "body": "All green means nothing known broke. Not good."
+  },
+  "ending_pattern": {
+    "kind": "Example",
+    "slug": "swap-the-stack",
+    "body": "The stacked identical gates from FELT peel apart into three gates of three kinds, and the same bug that passed them now stops.",
+    "callback": "Same close framing as bar 3: the stack that let the rust run through now stops it."
+  },
+  "end_belief": {
+    "kind": "Goal",
+    "body": "Don't add copies. Add a new kind."
+  },
+  "beats": [
+    {
+      "t": 0.0,
+      "picture": "Close: a line passes through one gate with a wobble icon (it glows). The whale sets a second, identical gate right behind it.",
+      "words": "We added more checks.",
+      "sound": "Two identical chimes in unison",
+      "act": "felt",
+      "bars": "1",
+      "camera": "close z 1.6 on the whale",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 2.903,
+      "picture": "A smooth rust-coloured run passes both gates and reaches a pod, which answers ✕.",
+      "words": "",
+      "sound": "Dull chime, then a thud",
+      "act": "felt",
+      "bars": "2",
+      "camera": "close z 1.6 on the whale",
+      "cue_tags": [
+        "consequence",
+        "focus"
+      ]
+    },
+    {
+      "t": 4.839,
+      "picture": "The whale adds a third identical gate. The next rust run passes all three and the pod answers ✕ again.",
+      "words": "The same bug still shipped.",
+      "sound": "Three identical chimes, flat",
+      "act": "felt",
+      "bars": "3",
+      "camera": "close z 1.6 on the whale",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 7.742,
+      "picture": "The whale looks at three identical gates and two ✕ chips. Hold.",
+      "words": "",
+      "sound": "Silence",
+      "act": "felt",
+      "bars": "5",
+      "camera": "close z 1.6 on the whale",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 9.677,
+      "picture": "Hinge: half a bar of stillness, then the title card.",
+      "words": "Add a different <i>gate</i>.",
+      "sound": "Near-silence, then the title tick",
+      "act": "why",
+      "bars": "6",
+      "camera": "pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "hinge"
+      ]
+    },
+    {
+      "t": 11.613,
+      "picture": "Pull back: a long row of identical wobble gates, all looking at the same thing.",
+      "words": "",
+      "sound": "Unison chimes, flat",
+      "act": "why",
+      "bars": "7",
+      "camera": "pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 13.065,
+      "picture": "Every gate's icon is the same wobble.",
+      "words": "Every check looks at the same thing.",
+      "sound": "Motif again",
+      "act": "why",
+      "bars": "7",
+      "camera": "pull back z 1.6 to 1.0"
+    },
+    {
+      "t": 14.516,
+      "picture": "Three times, faster: rust runs sail through the whole row and each pod answers ✕.",
+      "words": "",
+      "sound": "Thud three times, accelerating",
+      "act": "why",
+      "bars": "8",
+      "camera": "pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 16.935,
+      "picture": "Freeze. One gate's icon flickers into an empty outline.",
+      "words": "Add a check that looks somewhere new.",
+      "sound": "First clean chime of a new timbre",
+      "act": "why",
+      "bars": "9",
+      "camera": "pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 19.355,
+      "picture": "The whale lifts the wobble icon off the middle gate and sets a colour lens there (a squash on placing it).",
+      "words": "",
+      "sound": "Lens chime, a new timbre",
+      "act": "move",
+      "bars": "11",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 21.29,
+      "picture": "A rust run passes the first gate (glow), then stops at the lens gate. The bar drops.",
+      "words": "Swap one copy for a new kind.",
+      "sound": "Chime, then a stop knock",
+      "act": "move",
+      "bars": "12",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 23.226,
+      "picture": "Push-in: the last gate gets a gap icon. A run with a gap passes the other two and stops there.",
+      "words": "",
+      "sound": "Third timbre, stop knock",
+      "act": "move",
+      "bars": "13",
+      "camera": "one push-in to z 1.3 on the decisive moment",
+      "cue_tags": [
+        "mech",
+        "focus"
+      ]
+    },
+    {
+      "t": 25.161,
+      "picture": "A good run threads all three: three different glows.",
+      "words": "Three gates. Three different questions.",
+      "sound": "Three distinct chimes, resolved",
+      "act": "move",
+      "bars": "14",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 27.097,
+      "picture": "The old identical copies, faded, stand to one side.",
+      "words": "",
+      "sound": "Soft chord",
+      "act": "move",
+      "bars": "15",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 29.032,
+      "picture": "Runs keep flowing. Each kind of mistake stops at its own gate.",
+      "words": "More kinds catch more than more copies.",
+      "sound": "Chimes keep time",
+      "act": "move",
+      "bars": "16",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 30.968,
+      "picture": "Wide: a built page drawn as a long line. A row of old text-reading gates all glow over it.",
+      "words": "",
+      "sound": "Pulse bed",
+      "act": "case",
+      "bars": "17",
+      "camera": "steady wide, slow drift"
+    },
+    {
+      "t": 32.903,
+      "picture": "The card fades in beside the row.",
+      "words": "Real run: a page the old checks loved.",
+      "sound": "Quiet ticks",
+      "act": "case",
+      "bars": "18",
+      "camera": "steady wide, slow drift"
+    },
+    {
+      "t": 36.774,
+      "picture": "A new gate with a box icon looks at the drawn boxes and stops the page three times.",
+      "words": "A new kind of check found three blockers.",
+      "sound": "Three stop knocks",
+      "act": "case",
+      "bars": "20",
+      "camera": "steady wide, slow drift"
+    },
+    {
+      "t": 42.581,
+      "picture": "A smooth, right-coloured, gapless run heads to the wrong pod entirely. All three gates glow.",
+      "words": "A question nobody asked still slips through.",
+      "sound": "Signature chime, unresolved",
+      "act": "limit",
+      "bars": "23",
+      "camera": "still, then one slow push to what slipped",
+      "cue_tags": [
+        "limit",
+        "focus"
+      ]
+    },
+    {
+      "t": 44.516,
+      "picture": "Slow push: the wrong pod answers ✕.",
+      "words": "",
+      "sound": "Thud",
+      "act": "limit",
+      "bars": "24",
+      "camera": "still, then one slow push to what slipped",
+      "cue_tags": [
+        "limit"
+      ]
+    },
+    {
+      "t": 45.968,
+      "picture": "Still on the ✕.",
+      "words": "All green means nothing known broke. Not good.",
+      "sound": "Room tone",
+      "act": "limit",
+      "bars": "24",
+      "camera": "still, then one slow push to what slipped"
+    },
+    {
+      "t": 48.387,
+      "picture": "FELT framing restored: the same stacked identical gates from bar 3. They peel apart into three gates with three different icons.",
+      "words": "",
+      "sound": "Three timbres arrive one by one",
+      "act": "payoff",
+      "bars": "26",
+      "camera": "FELT framing restored, z 1.6",
+      "cue_tags": [
+        "callback"
+      ]
+    },
+    {
+      "t": 50.323,
+      "picture": "The same rust run from bar 2 arrives and stops at the lens gate. The whale recolours it.",
+      "words": "",
+      "sound": "Stop knock, then a lift",
+      "act": "payoff",
+      "bars": "27",
+      "camera": "FELT framing restored, z 1.6"
+    },
+    {
+      "t": 52.258,
+      "picture": "It passes. The pod that said ✕ answers ✓. Spark.",
+      "words": "",
+      "sound": "Resolved chord",
+      "act": "payoff",
+      "bars": "28",
+      "camera": "FELT framing restored, z 1.6"
+    },
+    {
+      "t": 56.129,
+      "picture": "Three different gates, with a quiet run threading them.",
+      "words": "Don't add copies. Add a new kind.",
+      "sound": "Pad tail",
+      "act": "belief",
+      "bars": "30",
+      "camera": "still, breathing only"
+    },
+    {
+      "t": 60.0,
+      "picture": "SERIES.lockup over the still line.",
+      "words": "",
+      "sound": "Pad tail ends in room tone",
+      "act": "lockup",
+      "bars": "32",
+      "camera": "still"
+    }
+  ],
+  "captions": [
+    {
+      "t_in": 0.968,
+      "t_out": 4.355,
+      "text": "We added more checks.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 4.839,
+      "t_out": 8.71,
+      "text": "The same bug still shipped.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 10.645,
+      "t_out": 13.065,
+      "text": "Add a different <i>gate</i>.",
+      "kind": "title"
+    },
+    {
+      "t_in": 13.065,
+      "t_out": 16.452,
+      "text": "Every check looks at the same thing.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 16.935,
+      "t_out": 19.839,
+      "text": "Add a check that looks somewhere new.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 21.29,
+      "t_out": 24.677,
+      "text": "Swap one copy for a new kind.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 25.161,
+      "t_out": 28.548,
+      "text": "Three gates. Three different questions.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 29.032,
+      "t_out": 31.935,
+      "text": "More kinds catch more than more copies.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 32.903,
+      "t_out": 36.29,
+      "text": "Real run: a page the old checks loved.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 33.871,
+      "t_out": 42.097,
+      "text": "Real run · 0 findings → 3 blockers",
+      "kind": "card",
+      "src": "https://app.notion.com/p/3f2d50cfaf9381a88b04f3837efcac6a"
+    },
+    {
+      "t_in": 36.774,
+      "t_out": 41.613,
+      "text": "A new kind of check found three blockers.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 43.065,
+      "t_out": 45.726,
+      "text": "A question nobody asked still slips through.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 45.968,
+      "t_out": 48.387,
+      "text": "All green means nothing known broke. Not good.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 56.129,
+      "t_out": 60.0,
+      "text": "Don't add copies. Add a new kind.",
+      "kind": "caption"
+    }
+  ],
+  "terms": [],
+  "jargon": [],
+  "sound": {
+    "signature": "Three distinct chimes, one timbre per kind of check",
+    "problem_motif": "Three identical chimes in flat unison",
+    "limit_unresolved": true
+  },
+  "score_self": {
+    "score": 0.8,
+    "reason": "Strong leader framing (spending on copies versus kinds). The escape differs in kind. The 'wrong pod' limit may read as routing, not checking.",
+    "weakest_piece": "honest_limit"
+  }
+}

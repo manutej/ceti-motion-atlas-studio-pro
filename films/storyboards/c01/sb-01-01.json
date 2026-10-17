@@ -22,7 +22,7 @@
  },
  "why_it_keeps_happening": {
   "kind": "Fact",
-  "picture": "Pull back: a long line of cards from a 600-page book. Three times, every 2 beats, then 1, then half, a new card lands far from its twin and the pod flashes ✕.",
+  "picture": "Pull back: a long line of cards from one thick textbook. Three times, every 2 beats, then 1, then half, a new card lands far from its twin and the pod flashes ✕.",
   "words": "No one reads both pages side by side."
  },
  "stakes": {
@@ -163,7 +163,7 @@
   },
   {
    "t": 11.613,
-   "picture": "Pull back: a long line of cards from a 600-page book. Three times, every 2 beats, then 1, then half, a new card lands far from its twin and the pod flashes ✕.",
+   "picture": "Pull back: a long line of cards from one thick textbook. Three times, every 2 beats, then 1, then half, a new card lands far from its twin and the pod flashes ✕.",
    "words": "No one reads both pages side by side.",
    "sound": "The detuned pair three times, accelerating.",
    "act": "why",

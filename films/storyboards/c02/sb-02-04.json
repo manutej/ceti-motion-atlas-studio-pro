@@ -13,7 +13,7 @@
   "hook": {
     "kind": "Example",
     "picture": "Close on the whale nudging a tightly knotted line. The knot springs out of shape and does not come back to its outline.",
-    "words": "One small nudge, and the shape wanders off."
+    "words": "I nudged it once. The shape wandered off."
   },
   "problem_in_viewer_words": {
     "kind": "Fact",
@@ -112,7 +112,7 @@
       "act": "felt",
       "bars": "1-2",
       "picture": "Close on the whale beside a tightly knotted line sitting inside a faint outline (its pinned home shape). The whale nudges one loop.",
-      "words": "One small nudge, and the shape wanders off.",
+      "words": "I nudged it once. The shape wandered off.",
       "sound": "A soft tap.",
       "camera": "close z 1.6 on the whale",
       "cue_tags": [
@@ -355,7 +355,7 @@
     {
       "t_in": 1.0,
       "t_out": 5.0,
-      "text": "One small nudge, and the shape wanders off.",
+      "text": "I nudged it once. The shape wandered off.",
       "kind": "caption"
     },
     {
@@ -453,8 +453,6 @@
     }
   ],
   "jargon": [
-    "protein",
-    "fold",
     "Dirichlet",
     "Laplacian",
     "residue",

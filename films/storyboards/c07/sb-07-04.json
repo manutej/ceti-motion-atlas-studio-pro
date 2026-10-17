@@ -1,0 +1,526 @@
+{
+  "schema_version": "sb60-v1",
+  "id": "sb-07-04",
+  "meta_prompt_id": "mp-c07-v1",
+  "cluster": "07 Formal correctness & logic",
+  "repo": "notion:the-jury (fail-first doctrine)",
+  "capability": "Every fix ships with a check that fails first",
+  "audience": "Engineers",
+  "wada": 207,
+  "bpm": 132,
+  "dur": 58.48,
+  "title": "The old bug hits a <i>gate</i>.",
+  "hook": {
+    "kind": "Example",
+    "picture": "Close: the whale smooths a wobble out of the line. Later the same wobble swims back in and a pod answers ✕.",
+    "words": "We fixed that bug."
+  },
+  "problem_in_viewer_words": {
+    "kind": "Fact",
+    "body": "We fixed that bug in May. It came back in March.",
+    "who": "engineer, reading a reopened bug report"
+  },
+  "why_it_keeps_happening": {
+    "kind": "Fact",
+    "picture": "Across a long line of edits, the same wobble returns three times, faster each time. Each fix leaves no trace.",
+    "words": "Nothing remembered what the old bug looked like."
+  },
+  "stakes": {
+    "kind": "Fact",
+    "body": "Fixed bugs come back, and each one is paid for twice: once to fix it and once to find it again."
+  },
+  "solution_hint": "Keep the old bug. Make it fail.",
+  "metaphor": {
+    "kind": "Example",
+    "body": "Keep the old bug as a ghost run. Build a gate that stops the ghost before the fix ships, so the bug can never swim back in unnoticed.",
+    "symbols": [
+      "whale",
+      "line",
+      "gate",
+      "pod",
+      "tick"
+    ]
+  },
+  "mechanism_beats": {
+    "kind": "Method",
+    "steps": [
+      {
+        "t": 18.182,
+        "picture": "The whale copies the wobbly run into a ghost line and keeps it.",
+        "words": "",
+        "sound": "Soft capture tone"
+      },
+      {
+        "t": 20.0,
+        "picture": "It builds a gate with the wobble icon and replays the ghost. The bar drops: the check fails on the old copy first.",
+        "words": "Test against the old bug first.",
+        "sound": "Stop knock on the low note"
+      },
+      {
+        "t": 21.818,
+        "picture": "Push-in: the fixed line passes the same gate and the opening glows.",
+        "words": "",
+        "sound": "High note: the figure resolves"
+      },
+      {
+        "t": 23.636,
+        "picture": "The ghost is filed beside the gate as a tick.",
+        "words": "Fail on the old copy. Then pass.",
+        "sound": "Tick"
+      },
+      {
+        "t": 25.455,
+        "picture": "New runs flow through, and the wobble gate checks each one.",
+        "words": "",
+        "sound": "Pulse"
+      },
+      {
+        "t": 27.273,
+        "picture": "The old wobble swims in again and bounces off the gate.",
+        "words": "We call that order fail-first.",
+        "sound": "Bounce, then the figure going up"
+      }
+    ]
+  },
+  "real_case": {
+    "kind": "Evidence",
+    "claim": "Three fixers on disjoint files went A 0/22 → 22/22, B 0/15 → 15/15 and C 0/16 → 16/16, under the rule that every fix ships with a check that fails on the old copy.",
+    "numbers": [
+      "0/22 → 22/22",
+      "0/15 → 15/15",
+      "0/16 → 16/16"
+    ],
+    "source": {
+      "kind": "notion",
+      "title": "The jury: adversarial evaluation",
+      "url": "https://app.notion.com/p/3f2d50cfaf93811dafbdfac6f43bd8a9"
+    },
+    "verified": true,
+    "illustrative": false
+  },
+  "honest_limit": {
+    "kind": "Constraint",
+    "picture": "A colour fault, in the old wobble's exact spot, passes the wobble gate cleanly. The pod answers ✕.",
+    "words": "It only knows the bug it saw."
+  },
+  "not_this": {
+    "kind": "Constraint",
+    "body": "One old bug stopped. Not every bug."
+  },
+  "ending_pattern": {
+    "kind": "Example",
+    "slug": "ghost-bounces",
+    "body": "The old wobble swims back in exactly as in bar 2, hits the gate that was built from it, bounces off and dissolves. The pod answers ✓.",
+    "callback": "Same framing and the same wobble as bar 2: this time it never reaches the pod."
+  },
+  "end_belief": {
+    "kind": "Goal",
+    "body": "Every fix ships with its failing check."
+  },
+  "beats": [
+    {
+      "t": 0.0,
+      "picture": "Close: the whale smooths a wobble out of the line with one sweep of its tail. The line runs on, calm.",
+      "words": "We fixed that bug.",
+      "sound": "Two-note figure going up: fixed",
+      "act": "felt",
+      "bars": "1",
+      "camera": "close z 1.6 on the whale",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 2.727,
+      "picture": "Later on the same line, the same wobble swims back in from the left and a pod answers ✕ in rust.",
+      "words": "",
+      "sound": "The figure loops back down",
+      "act": "felt",
+      "bars": "2",
+      "camera": "close z 1.6 on the whale",
+      "cue_tags": [
+        "consequence",
+        "focus"
+      ]
+    },
+    {
+      "t": 4.545,
+      "picture": "The whale smooths it again, by hand.",
+      "words": "It came back anyway.",
+      "sound": "The figure, tired",
+      "act": "felt",
+      "bars": "3",
+      "camera": "close z 1.6 on the whale",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 7.273,
+      "picture": "The wobble's shadow lingers on the line. Hold.",
+      "words": "",
+      "sound": "Silence",
+      "act": "felt",
+      "bars": "5",
+      "camera": "close z 1.6 on the whale",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 9.091,
+      "picture": "Hinge: half a bar of stillness, then the title card.",
+      "words": "The old bug hits a <i>gate</i>.",
+      "sound": "Near-silence, then the title tick",
+      "act": "why",
+      "bars": "6",
+      "camera": "pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "hinge"
+      ]
+    },
+    {
+      "t": 10.909,
+      "picture": "Pull back: a long line of many edits. The old wobble keeps resurfacing in new places.",
+      "words": "",
+      "sound": "Problem motif",
+      "act": "why",
+      "bars": "7",
+      "camera": "pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 12.273,
+      "picture": "Each fix leaves no trace. The line forgets.",
+      "words": "Nothing remembered what the old bug looked like.",
+      "sound": "Problem motif again",
+      "act": "why",
+      "bars": "7",
+      "camera": "pull back z 1.6 to 1.0"
+    },
+    {
+      "t": 13.636,
+      "picture": "Three times, faster: the wobble returns, the whale smooths it, and it returns.",
+      "words": "",
+      "sound": "The loop three times, accelerating",
+      "act": "why",
+      "bars": "8",
+      "camera": "pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 15.909,
+      "picture": "Freeze: a faint ghost copy of the wobble hangs above the line.",
+      "words": "Keep the old bug. Make it fail.",
+      "sound": "First clean two-note figure",
+      "act": "why",
+      "bars": "9",
+      "camera": "pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 18.182,
+      "picture": "The whale copies the wobbly run into a ghost line and keeps it.",
+      "words": "",
+      "sound": "Soft capture tone",
+      "act": "move",
+      "bars": "11",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 20.0,
+      "picture": "It builds a gate with the wobble icon and replays the ghost. The bar drops: the check fails on the old copy first.",
+      "words": "Test against the old bug first.",
+      "sound": "Stop knock on the low note",
+      "act": "move",
+      "bars": "12",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 21.818,
+      "picture": "Push-in: the fixed line passes the same gate and the opening glows.",
+      "words": "",
+      "sound": "High note: the figure resolves",
+      "act": "move",
+      "bars": "13",
+      "camera": "one push-in to z 1.3 on the decisive moment",
+      "cue_tags": [
+        "mech",
+        "focus"
+      ]
+    },
+    {
+      "t": 23.636,
+      "picture": "The ghost is filed beside the gate as a tick.",
+      "words": "Fail on the old copy. Then pass.",
+      "sound": "Tick",
+      "act": "move",
+      "bars": "14",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 25.455,
+      "picture": "New runs flow through, and the wobble gate checks each one.",
+      "words": "",
+      "sound": "Pulse",
+      "act": "move",
+      "bars": "15",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 27.273,
+      "picture": "The old wobble swims in again and bounces off the gate.",
+      "words": "We call that order fail-first.",
+      "sound": "Bounce, then the figure going up",
+      "act": "move",
+      "bars": "16",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 29.091,
+      "picture": "Wide: three lines side by side, one per fixer, each with its own row of gates, all closed.",
+      "words": "",
+      "sound": "Pulse bed",
+      "act": "case",
+      "bars": "17",
+      "camera": "steady wide, slow drift"
+    },
+    {
+      "t": 30.909,
+      "picture": "The card fades in on clean paper.",
+      "words": "Real run: every fix came with its check.",
+      "sound": "Ticks",
+      "act": "case",
+      "bars": "18",
+      "camera": "steady wide, slow drift"
+    },
+    {
+      "t": 34.545,
+      "picture": "Gate by gate the bars lift as fixes land, until every gate glows. The counter sits beside the first row.",
+      "words": "Each check failed first, then passed.",
+      "sound": "Rising ticks",
+      "act": "case",
+      "bars": "20",
+      "camera": "steady wide, slow drift"
+    },
+    {
+      "t": 40.0,
+      "picture": "A run with a colour fault, in the exact spot of the old wobble, passes the wobble gate. It glows.",
+      "words": "It only knows the bug it saw.",
+      "sound": "The figure plays, unresolved",
+      "act": "limit",
+      "bars": "23",
+      "camera": "still, then one slow push to what slipped",
+      "cue_tags": [
+        "limit",
+        "focus"
+      ]
+    },
+    {
+      "t": 41.818,
+      "picture": "Slow push: the pod answers ✕.",
+      "words": "",
+      "sound": "Low thud",
+      "act": "limit",
+      "bars": "24",
+      "camera": "still, then one slow push to what slipped",
+      "cue_tags": [
+        "limit"
+      ]
+    },
+    {
+      "t": 43.182,
+      "picture": "Still on the ✕.",
+      "words": "One old bug stopped. Not every bug.",
+      "sound": "Room tone",
+      "act": "limit",
+      "bars": "24",
+      "camera": "still, then one slow push to what slipped"
+    },
+    {
+      "t": 45.455,
+      "picture": "FELT framing restored: the old wobble swims in from the left, exactly as in bar 2.",
+      "words": "",
+      "sound": "The figure starts down",
+      "act": "payoff",
+      "bars": "26",
+      "camera": "FELT framing restored, z 1.6",
+      "cue_tags": [
+        "callback"
+      ]
+    },
+    {
+      "t": 47.273,
+      "picture": "It hits the wobble gate, bounces off and dissolves.",
+      "words": "",
+      "sound": "Bounce, then up",
+      "act": "payoff",
+      "bars": "27",
+      "camera": "FELT framing restored, z 1.6"
+    },
+    {
+      "t": 49.091,
+      "picture": "The same pod answers ✓. Spark.",
+      "words": "",
+      "sound": "Resolved",
+      "act": "payoff",
+      "bars": "28",
+      "camera": "FELT framing restored, z 1.6"
+    },
+    {
+      "t": 52.727,
+      "picture": "Line and gate, still. The ghost tick glints.",
+      "words": "Every fix ships with its failing check.",
+      "sound": "Pad tail",
+      "act": "belief",
+      "bars": "30",
+      "camera": "still, breathing only"
+    },
+    {
+      "t": 56.364,
+      "picture": "SERIES.lockup over the still line.",
+      "words": "",
+      "sound": "Pad tail ends in room tone",
+      "act": "lockup",
+      "bars": "32",
+      "camera": "still"
+    }
+  ],
+  "captions": [
+    {
+      "t_in": 0.909,
+      "t_out": 4.091,
+      "text": "We fixed that bug.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 4.545,
+      "t_out": 8.182,
+      "text": "It came back anyway.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 10.0,
+      "t_out": 12.273,
+      "text": "The old bug hits a <i>gate</i>.",
+      "kind": "title"
+    },
+    {
+      "t_in": 12.273,
+      "t_out": 15.455,
+      "text": "Nothing remembered what the old bug looked like.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 15.909,
+      "t_out": 18.636,
+      "text": "Keep the old bug. Make it fail.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 20.0,
+      "t_out": 23.182,
+      "text": "Test against the old bug first.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 23.636,
+      "t_out": 26.818,
+      "text": "Fail on the old copy. Then pass.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 27.273,
+      "t_out": 30.0,
+      "text": "We call that order fail-first.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 30.909,
+      "t_out": 34.091,
+      "text": "Real run: every fix came with its check.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 31.818,
+      "t_out": 39.545,
+      "text": "Real run · three fixers, checks failed first",
+      "kind": "card",
+      "src": "https://app.notion.com/p/3f2d50cfaf93811dafbdfac6f43bd8a9"
+    },
+    {
+      "t_in": 34.545,
+      "t_out": 39.091,
+      "text": "Each check failed first, then passed.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 36.364,
+      "t_out": 39.545,
+      "text": "0/22 → 22/22",
+      "kind": "counter",
+      "src": "https://app.notion.com/p/3f2d50cfaf93811dafbdfac6f43bd8a9"
+    },
+    {
+      "t_in": 40.455,
+      "t_out": 42.955,
+      "text": "It only knows the bug it saw.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 43.182,
+      "t_out": 45.455,
+      "text": "One old bug stopped. Not every bug.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 52.727,
+      "t_out": 56.364,
+      "text": "Every fix ships with its failing check.",
+      "kind": "caption"
+    }
+  ],
+  "terms": [
+    {
+      "term": "fail-first",
+      "symbol": "gate",
+      "pictured_at": 20.0,
+      "named_at": 27.273
+    }
+  ],
+  "jargon": [
+    "regression",
+    "test"
+  ],
+  "sound": {
+    "signature": "A two-note figure, low then up: caught, then passed",
+    "problem_motif": "The same figure looping back down, never landing",
+    "limit_unresolved": true
+  },
+  "score_self": {
+    "score": 0.8,
+    "reason": "Fail-first is pictured before it is named, and the callback is exact. The counter fraction may not read at a glance for non-engineers.",
+    "weakest_piece": "real_case"
+  }
+}

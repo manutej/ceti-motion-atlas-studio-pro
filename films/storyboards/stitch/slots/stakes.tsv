@@ -1,0 +1,101 @@
+id	title	repo	self	body
+stakes.sb-01-01	Notes must agree at the <i>joins</i>.	manutej/sheaf-knowledge-studio	0.74	You revise the wrong version, lose marks, and stop trusting your own notes.
+stakes.sb-01-02	Give each note its own <i>card</i>.	manutej/stalks-and-sections	0.68	A wrong link survives review, and every answer built on it inherits the error.
+stakes.sb-01-03	Keep the red <i>join</i> red.	manutej/cell-sheaf	0.77	The client finds the problem before you do, and trust in every report drops.
+stakes.sb-01-04	Map the <i>joins</i>, then merge.	manutej/sheaf-port	0.79	Broken imports and dead links ship, and a weekend goes to tracing them by hand.
+stakes.sb-01-05	Show both sides of the <i>edge</i>.	manutej/glue	0.66	You act on the wrong answer and never learn that a second answer existed.
+stakes.sb-01-06	One owner for every <i>join</i>.	none	0.8	The shipped version contradicts the plan, and nobody can say which copy was meant.
+stakes.sb-01-07	Seven opinions, one <i>line</i>.	none	0.7	The meeting stalls, someone picks a number by rank, and the rest stop reporting honestly.
+stakes.sb-01-08	Keep both. Mark the <i>join</i>.	none	0.75	The assistant answers confidently from the newest note, and the client's real words are lost.
+stakes.sb-01-09	Test the <i>gate</i> by breaking it.	manutej/sheaf-knowledge-studio	0.76	A checker that cannot fail gives false comfort, and the gaps reach readers.
+stakes.sb-01-10	Trust the <i>parts</i> that agree.	manutej/stalks-and-sections	0.72	You repeat a made-up detail to a client because it sounded as sure as the rest.
+stakes.sb-02-01	Fold only the <i>joins</i> that agree.	manutej/cell-sheaf-swarm	0.8	A disagreement between agents is erased without a trace, so the team ships an answer that another agent had already contradicted.
+stakes.sb-02-02	Odd <i>joins</i> wait for a person.	manutej/cell-sheaf-swarm	0.78	A strange result reaches a leader's report with no person ever having looked at it, and decisions get made on it.
+stakes.sb-02-03	Every push meets the <i>gate</i>.	manutej/cell-sheaf-swarm	0.68	One badly shaped file breaks the shared viewer for every reader, and nobody knows which push did it.
+stakes.sb-02-04	Let every <i>join</i> pull back.	manutej/sheaf-dirichlet-protein-3d	0.72	Every small change sends the model wandering, so hours go into hand-fixing shapes that should hold on their own.
+stakes.sb-02-05	Floppy parts have fewer <i>joins</i>.	manutej/sheaf-dirichlet-protein-3d	0.76	Guessing which part is firm wastes experiments and leads to building on the floppy end.
+stakes.sb-02-06	See every <i>link</i> below the top.	manutej/sheaf-dep-ethereum	0.76	Money and attention go to what is visible, while the small project everything stands on fails unnoticed.
+stakes.sb-02-07	Credit should flow down the <i>links</i>.	manutej/sheaf-dep-ethereum	0.7	The small projects everything depends on burn out unpaid, and one day the big ones fall with them.
+stakes.sb-02-08	Draw only <i>links</i> you can show.	manutej/ormus-harness-sheaf-lattice	0.82	Readers trust links nobody built, so reviews, plans and agents act on wiring that does not exist.
+stakes.sb-02-09	Let the unfinished <i>joins</i> glow.	manutej/ormus-harness-sheaf-lattice	0.8	Teams plan on top of work that does not exist yet, and the surprise lands late and expensive.
+stakes.sb-02-10	Rules on top, <i>parts</i> below.	manutej/ormus-harness-sheaf-lattice	0.7	New people and new agents can't find their way, so they guess, and the guesses become bugs.
+stakes.sb-03-01	A wiki with <i>pins</i>.	skill:noether-wiki	0.8	New people and AI helpers read the wiki as true. One broken link sends both to a dead page, and the wrong answer travels.
+stakes.sb-03-02	Merge, and keep the <i>seams</i>.	skill:noether-wiki	0.76	Two teams' knowledge becomes one source nobody believes. People go back to asking each other, and the merge was wasted.
+stakes.sb-03-03	The same mistake, <i>pinned</i>.	skill:noether-wiki	0.82	The team pays for the same mistake again and again, and readers stop believing fixes stick.
+stakes.sb-03-04	Don't touch the <i>gate</i>.	skill:noether-wiki	0.79	Green checks that were bent, not earned. The team ships the gap and trusts the dashboard.
+stakes.sb-03-05	We choose the <i>pins</i>.	manutej/noether-resonance-core	0.7	One overclaim and a careful audience stops trusting the parts that are real.
+stakes.sb-03-06	Try first. Then the <i>gate</i> opens.	manutej/noether-wiki	0.74	Hours of reading with nothing kept. The next puzzle starts from zero.
+stakes.sb-03-07	Find the <i>pin</i> first.	manutej/noether-operadic-course	0.72	Every problem costs full price. Nothing learned on one carries to the next.
+stakes.sb-03-08	Small changes, one <i>counter</i>.	skill:noether-wiki	0.77	A quarter of fine edits leaves docs nobody recognises. People who learned the old version get it wrong.
+stakes.sb-03-09	AI writes. The <i>gate</i> checks.	skill:noether-wiki	0.83	Either you read everything and lose the week, or you trust it blind and ship its mistakes to customers.
+stakes.sb-03-10	Two copies, one <i>seam</i>.	skill:noether-wiki	0.78	The doc lies to everyone who builds from it, and the next agent or hire builds the wrong thing.
+stakes.sb-04-01	Give every note a <i>label</i>.	operadic-stitch (Context Atoms)	0.78	A decision gets reversed in front of the client, and the team stops trusting the summary.
+stakes.sb-04-02	Hand over only the right <i>cards</i>.	operadic-stitch (Context Atoms)	0.74	The one rule that mattered is broken in public, and the fix is to read everything yourself next time.
+stakes.sb-04-03	One fact at every <i>joint</i>.	operadic-stitch (Context Atoms)	0.8	Two halves of the work are built for different dates, and nobody notices until they are joined.
+stakes.sb-04-04	Private <i>cards</i> stay home.	operadic-stitch (Context Atoms)	0.76	A client's private detail lands in someone else's work, and trust is gone for good.
+stakes.sb-04-05	Send the <i>wiring</i>, not the pile.	manutej/wiring-and-the-whole	0.72	Answers about how parts connect are guessed, and changes made on those answers break things.
+stakes.sb-04-06	Draw the <i>sockets</i> first.	manutej/discopy	0.66	Results cannot be reproduced, so every rerun costs a full rebuild and a week of doubt.
+stakes.sb-04-07	See every <i>joint</i> first.	manutej/catreview-go	0.7	Every release becomes a gamble, and teams stop changing anything at all.
+stakes.sb-04-08	Add the missing <i>piece</i>.	manutej/operadic-compositionality-course	0.74	Hours lost forcing joins, and a chain that breaks the moment one tool changes its output.
+stakes.sb-04-09	Each helper gets its own <i>part</i>.	manutej/operadic-compositionality-course	0.72	Work is done three times and undone twice, and the bill for helpers grows while nothing ships.
+stakes.sb-04-10	Find the <i>joint</i> that slipped.	manutej/wiring-and-the-whole	0.7	Every wrong answer means rereading the whole run, and fixes land in the wrong place.
+stakes.sb-05-01	Build it once, with <i>slots</i>.	manutej/meta-suite	0.74	Hours of prompt writing redone per client, and each rewrite forgets something the last one had.
+stakes.sb-05-02	Stop when the <i>counter</i> hits zero.	manutej/meta-suite	0.82	Endless rewriting by feel: time burned, and the author misses the flaws only a fresh reader would see.
+stakes.sb-05-03	Send only what clears the <i>gate</i>.	manutej/categorical-meta-prompting	0.75	Wrong answers shipped on gut feel, then found by a customer or a reviewer.
+stakes.sb-05-04	One <i>line</i> for every puzzle.	manutej/categorical-meta-prompting	0.72	Results change run to run, so nothing can be compared or trusted.
+stakes.sb-05-05	Every try gets a <i>tick</i>.	manutej/meta-prompting-framework	0.78	The good version is lost; hours redone; nobody can say what changed.
+stakes.sb-05-06	A small <i>gate</i> picks the road.	manutej/meta-prompting-framework	0.7	Money and minutes burned on easy questions; hard questions rushed.
+stakes.sb-05-07	Check every <i>join</i> in the chain.	manutej/meta-prompting-plugin	0.79	One small early slip spreads into a useless final result, and you only find it at the end.
+stakes.sb-05-08	Keep the judge <i>pinned</i>.	operadic-stitch/references/RSI.md	0.8	A loop that can move its own yardstick reports progress while quality falls, and nobody can tell from the numbers.
+stakes.sb-05-09	One change, then <i>measure</i>.	none	0.8	Gains can't be explained or repeated, and a harmful change hides inside a helpful bundle.
+stakes.sb-05-10	Let it draft the <i>cards</i> first.	manutej/meta-prompting-plugin	0.77	Vague one-line asks get vague answers, so people give up on the tool or trust a guess.
+stakes.sb-06-01	Hunches don't fit the <i>slot</i>.	manutej/jev	0.72	Releases ship on somebody's say-so, and afterwards nobody can tell what the ship decision actually rested on.
+stakes.sb-06-02	When unsure, the <i>gate</i> stays shut.	manutej/jev	0.78	Every "don't know" quietly becomes a yes. Wrong orders go out, and the incident report reads "the system was not sure".
+stakes.sb-06-03	Every step gets a <i>tick</i>.	manutej/jev-tape	0.8	Double payments, double emails, double merges. Each one costs money and trust, and has to be clawed back by hand.
+stakes.sb-06-04	Doing waits behind the <i>gate</i>.	manutej/jev-tape	0.76	A wrong price or the wrong client goes out in your name. Nothing reads it first, and nothing can call it back.
+stakes.sb-06-05	Five small <i>gates</i>, not one.	manutej/JEV-works	0.82	Real emails are flagged and real scams pass. The score looks like a model problem when it is really a question problem.
+stakes.sb-06-06	First, check the <i>ruler</i>.	manutej/JEV-works	0.74	Decisions get made on a number that moved because the ruler broke, not because the work changed.
+stakes.sb-06-07	Coin flips go to a <i>person</i>.	manutej/jev-elder	0.8	Money leaves on a coin toss, and no one can undo it. The customer loses trust and the money doesn't come back.
+stakes.sb-06-08	Leave the <i>flag</i> where it is.	manutej/jev-elder	0.7	Every smoothed-over mismatch becomes a trap for the next person. Hours are lost rediscovering what someone already saw.
+stakes.sb-06-09	Every claim faces the same <i>gates</i>.	manutej/the-twenty-nesy	0.77	Weeks spent reading hype, and a team picks a tool because of a title.
+stakes.sb-06-10	Readers pass a one-way <i>gate</i>.	manutej/jev-tape-wiki	0.71	Curious people break live systems, so teams stop sharing, and the people who need to understand the system never see it.
+stakes.sb-07-01	Every miss gets a new <i>gate</i>.	notion:limits-and-escapes (Limits & escapes register)	0.82	A customer finds the bug first, so trust is lost and the fix costs more than the check would have.
+stakes.sb-07-02	Add a different <i>gate</i>.	notion:limits-and-escapes (Limits & escapes register)	0.8	Each extra copy of the same check costs time and money and catches nothing new, while customers keep hitting the same kind of bug.
+stakes.sb-07-03	Turn every miss into a <i>gate</i>.	notion:the-jury (round 2 print gate)	0.85	Every miss gets fixed by hand, one at a time, and the same kind of mistake returns next week.
+stakes.sb-07-04	The old bug hits a <i>gate</i>.	notion:the-jury (fail-first doctrine)	0.8	Fixed bugs come back, and each one is paid for twice: once to fix it and once to find it again.
+stakes.sb-07-05	Fresh <i>eyes</i> try to break it.	notion:the-jury	0.78	Self-review ships the mistakes the maker can't see, and a reader or reviewer finds them in public.
+stakes.sb-07-06	Check the <i>pin</i> before the work.	manutej/fstar-labs	0.72	A perfectly checked program can still do the wrong thing, and the green result makes everyone stop looking.
+stakes.sb-07-07	Find the first broken <i>joint</i>.	manutej/Lean4Agent (fork of RickySkywalker/Lean4Agent)	0.76	Every failed agent run costs an hour of reading logs, and the real cause is often far from where it showed up.
+stakes.sb-07-08	Show one real <i>example</i>.	manutej/intuitionistic-logic-framework	0.74	Time goes into chasing fixes that were only ever promised, and confident claims are believed without anything to try.
+stakes.sb-07-09	Seven <i>gates</i> watch every frame.	notion:whale-line-brief-v1 (kh/caps/tool.cjs gates)	0.84	Small flaws you can't see on your own screen reach every viewer, and they read as carelessness.
+stakes.sb-07-10	Check the work, not its <i>label</i>.	notion:limits-and-escapes (Limits & escapes register)	0.79	Decisions get made on green reports while customers see the broken thing, and trust in every report drops.
+stakes.sb-08-01	Every answer keeps its <i>receipt</i>.	manutej/kraken-omnimemory-mcp	0.8	A wrong answer gets acted on, and nobody can trace it, fix it at the source, or warn anyone else.
+stakes.sb-08-02	Give every note a <i>label</i>.	none	0.82	A guess hardens into a citation, then into a decision, and nobody can tell which line was ever read.
+stakes.sb-08-03	Every step leaves a <i>mark</i>.	manutej/volumetric-intelligence	0.78	Every failure becomes a guessing game. The fix takes hours, and the same bad step runs again tonight.
+stakes.sb-08-04	Draw only the <i>joins</i> you see.	Ormus-Solutions/ormus-agent-harness	0.85	Leaders fund, promise and staff against a picture of a system that does not exist yet.
+stakes.sb-08-05	Test where the parts <i>join</i>.	manutej/ceti-clock-tree	0.75	Green tests ship a page that freezes for real users, and the bug hides between owners.
+stakes.sb-08-06	A <i>gate</i> after every step.	manutej/VERA	0.77	The bad answer ships, and debugging starts at the wrong end of the line.
+stakes.sb-08-07	Let the <i>check</i> only look.	manutej/maat	0.74	A report nobody can repeat. Leaders act on numbers that describe a workspace that no longer exists.
+stakes.sb-08-08	Some numbers get a <i>pin</i>.	manutej/aor-ki	0.8	Each AI redesign drifts a safety or comfort number, and someone has to catch it by hand, every time.
+stakes.sb-08-09	Start with the small <i>card</i>.	none	0.79	More context costs more and answers worse, and the one fact that mattered never gets read.
+stakes.sb-08-10	Three runs, one <i>gate</i>.	none	0.83	A slip in one tool becomes a published result, and nobody can tell it apart from a correct one.
+stakes.sb-09-01	Let the colours <i>ring</i>.	manutej/orpheum-studio-pro	0.74	A page ships with colours that fight, and the client sees it before you do.
+stakes.sb-09-02	Keep the reading pair <i>pinned</i>.	manutej/orpheum-studio-pro	0.71	Leaders present to a room that can't read the screen, and the message is lost.
+stakes.sb-09-03	Three <i>parts</i>, many songs.	manutej/orpheum-studio-pro	0.66	Weeks go into sound that cannot be rebuilt, reused or checked.
+stakes.sb-09-04	Finished is when every <i>gate</i> opens.	manutej/glyph-foundry-studio-pro	0.73	Clients find the problems first, and every fix after delivery costs trust.
+stakes.sb-09-05	Shrink it through the <i>gates</i>.	manutej/glyph-foundry-studio-pro	0.75	The brand vanishes exactly where people see it most: tabs, phones, feeds.
+stakes.sb-09-06	Draw the order as one <i>line</i>.	manutej/hekat	0.7	Nights of runs wasted, and wrong answers built on half-finished steps.
+stakes.sb-09-07	Pull every <i>thread</i> into view.	manutej/kochi	0.72	You repeat old work, and miss the idea that ties a talk together.
+stakes.sb-09-08	Every shape gets one <i>pin</i>.	manutej/visual-elements	0.68	Learners decode your shapes instead of your ideas, and they learn the wrong thing.
+stakes.sb-09-09	Taste, one <i>tick</i> at a time.	manutej/orpheum-trainer	0.55	Hours of describing, and still nothing that looks like your own work.
+stakes.sb-09-10	Every sound on the <i>tick</i>.	none	0.76	Hours of nudging, redone after every edit, and the film still feels off.
+stakes.sb-10-01	Every frame lives on the <i>line</i>.	manutej/ceti-explainer	0.74	A frame you cannot pause on is a frame you cannot teach from; screenshots, reviews and replays all disagree.
+stakes.sb-10-02	Every <i>join</i> must hold.	manutej/ceti-explainer	0.7	A long cut that does not hang together costs a class session and the learners' trust in every film after it.
+stakes.sb-10-03	Two copies, one <i>card</i>.	manutej/p5js-explainer-lab	0.78	Learners read the screen, reviewers read the script, and neither knows the other is wrong.
+stakes.sb-10-04	Run the <i>ring</i> end to end.	manutej/p5js-explainer-lab	0.72	The problem ships exactly where nobody looked: the middle of the lesson.
+stakes.sb-10-05	Nothing fake gets past the <i>door</i>.	manutej/craft	0.76	A build breaks at best. At worst, someone registers that fake name with bad code inside.
+stakes.sb-10-06	Turn each rule into a <i>door</i>.	manutej/craft	0.68	Teams lose trust in the AI and in their own rules, and review turns into rereading everything.
+stakes.sb-10-07	The old bug meets a <i>door</i>.	ceti-ai-services/loop-engineering	0.66	Every repeat costs the fix twice and tells users the team is not listening.
+stakes.sb-10-08	Lay the <i>cards</i> side by side.	tell-apart (skill)	0.7	Any choice built on that score cannot tell the good assistant from the bad one.
+stakes.sb-10-09	Every version gets a <i>tick</i>.	provenance ledger (kh/registry)	0.71	You cannot stand behind work you cannot trace, and a silent change becomes your mistake in front of a client.
+stakes.sb-10-10	Put a <i>ring</i> on every turn.	Motion Atlas (this studio)	0.73	Viewers drop off, and some cannot watch at all, so the lesson never lands.

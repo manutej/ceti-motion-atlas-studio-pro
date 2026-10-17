@@ -1,0 +1,518 @@
+{
+  "schema_version": "sb60-v1",
+  "id": "sb-03-07",
+  "meta_prompt_id": "mp-c03-v1",
+  "cluster": "03 Noether & conservation",
+  "repo": "manutej/noether-operadic-course",
+  "capability": "Solve by finding what doesn't change first",
+  "audience": "Learners",
+  "wada": 84,
+  "bpm": 120,
+  "dur": 64.3,
+  "title": "Find the <i>pin</i> first.",
+  "hook": {
+    "kind": "Example",
+    "picture": "Close: the whale faces a tangled line. It pulls one strand, the tangle shifts and re-forms, and it starts over.",
+    "words": "Each problem looks brand new."
+  },
+  "problem_in_viewer_words": {
+    "kind": "Fact",
+    "body": "Every problem looks brand new, so I start from zero.",
+    "who": "learner on module one"
+  },
+  "why_it_keeps_happening": {
+    "kind": "Fact",
+    "picture": "A page of tangles that are the same tangle turned, flipped and shifted. The whale attacks each one fresh, three times, accelerating.",
+    "words": "I watch what moves, not what stays."
+  },
+  "stakes": {
+    "kind": "Fact",
+    "body": "Every problem costs full price. Nothing learned on one carries to the next."
+  },
+  "solution_hint": "Turn it around. Find what doesn't move.",
+  "metaphor": {
+    "kind": "Example",
+    "body": "A problem is a tangled line. Turn it and one point never moves. Drop a pin there and the tangle unwinds around it, and the same pin works on every turned copy.",
+    "symbols": [
+      "whale",
+      "line",
+      "pin",
+      "ring"
+    ]
+  },
+  "mechanism_beats": {
+    "kind": "Method",
+    "steps": [
+      {
+        "t": 20.0,
+        "picture": "The whale turns the tangle a quarter turn, again, and again. One point stays exactly where it was, and a pin drops on it.",
+        "words": "",
+        "sound": "Open string, bowed."
+      },
+      {
+        "t": 21.0,
+        "picture": "A chip on the pin.",
+        "words": "This point never moved.",
+        "sound": "Click."
+      },
+      {
+        "t": 24.0,
+        "picture": "With the pin in, the whale pulls the tangle loose around it, strand by strand, into a line through the pin.",
+        "words": "Start from the part that stays.",
+        "sound": "String, rising."
+      },
+      {
+        "t": 27.0,
+        "picture": "Push-in (z 1.25). The turned second tangle from FELT slides in. Its pin lands at the same still point and it unwinds the same way, fast.",
+        "words": "Same pin, same moves. Solved twice.",
+        "sound": "Same phrase, faster."
+      },
+      {
+        "t": 30.0,
+        "picture": "A ring flashes on the pin: measured, still.",
+        "words": "What stays put is conserved.",
+        "sound": "Soft ring."
+      }
+    ]
+  },
+  "real_case": {
+    "kind": "Evidence",
+    "claim": "noether-operadic-course is a public course on operadic question trees and Noether symmetries in 9 curriculum modules, with a 12-section thesis. This describes the repo, not a run.",
+    "numbers": [
+      "9",
+      "12"
+    ],
+    "source": {
+      "kind": "repo",
+      "title": "manutej/noether-operadic-course README",
+      "url": "https://github.com/manutej/noether-operadic-course"
+    },
+    "verified": true,
+    "illustrative": false
+  },
+  "honest_limit": {
+    "kind": "Constraint",
+    "picture": "A tangle with no still point: the whale turns it, nothing stays, and the pin hovers with nowhere to land.",
+    "words": "Some problems have nothing that stays put."
+  },
+  "not_this": {
+    "kind": "Constraint",
+    "body": "A habit for finding handles, not a proof."
+  },
+  "ending_pattern": {
+    "kind": "Example",
+    "slug": "turn-and-see",
+    "body": "One turn of the original tangle finds the still point, the pin drops, and the tangle unwinds into a calm line in one pass.",
+    "callback": "In FELT the whale pulled strands and restarted. In the same framing one turn now finds the pin and the tangle comes undone."
+  },
+  "end_belief": {
+    "kind": "Goal",
+    "body": "Stuck? Ask what stays the same."
+  },
+  "beats": [
+    {
+      "t": 0.0,
+      "picture": "Close: the whale faces a tangled line. It pulls one strand, the tangle shifts and re-forms, and it starts over.",
+      "words": "",
+      "sound": "Knotted, scraping cello.",
+      "act": "felt",
+      "bars": "1",
+      "camera": "close z 1.6 on the whale"
+    },
+    {
+      "t": 1.0,
+      "picture": "The whale pulls another strand.",
+      "words": "Each problem looks brand new.",
+      "sound": "Room tone.",
+      "act": "felt",
+      "bars": "1",
+      "camera": "close z 1.6 on the whale"
+    },
+    {
+      "t": 2.0,
+      "picture": "The tangle re-forms differently and the whale's effort marks pile up.",
+      "words": "",
+      "sound": "Scrape again.",
+      "act": "felt",
+      "bars": "2",
+      "camera": "close z 1.6 on the whale",
+      "cue_tags": [
+        "consequence"
+      ]
+    },
+    {
+      "t": 4.0,
+      "picture": "A second tangle arrives: the same shape, turned. The whale starts from scratch and gets a copper cross chip.",
+      "words": "",
+      "sound": "Dull thunk.",
+      "act": "felt",
+      "bars": "3",
+      "camera": "close z 1.6 on the whale",
+      "cue_tags": [
+        "consequence",
+        "focus"
+      ]
+    },
+    {
+      "t": 5.0,
+      "picture": "The whale slumps.",
+      "words": "So I start from zero again.",
+      "sound": "Room tone.",
+      "act": "felt",
+      "bars": "3",
+      "camera": "close z 1.6 on the whale"
+    },
+    {
+      "t": 8.0,
+      "picture": "The whale looks at the two tangles. Hold.",
+      "words": "",
+      "sound": "Silence.",
+      "act": "felt",
+      "bars": "5",
+      "camera": "close z 1.6 on the whale",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 11.0,
+      "picture": "Stillness, then SERIES.open title.",
+      "words": "Find the <i>pin</i> first.",
+      "sound": "Near-silence, title tick.",
+      "act": "why",
+      "bars": "6",
+      "camera": "pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "hinge"
+      ]
+    },
+    {
+      "t": 12.0,
+      "picture": "Pull back: a page of tangles, all the same tangle turned, flipped and shifted.",
+      "words": "",
+      "sound": "Problem motif.",
+      "act": "why",
+      "bars": "7",
+      "camera": "pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 14.0,
+      "picture": "Three-times device: the whale tugs a moving strand. Every 2 beats.",
+      "words": "I watch what moves, not what stays.",
+      "sound": "Scrape.",
+      "act": "why",
+      "bars": "8",
+      "camera": "pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 16.0,
+      "picture": "Two more tugs on moving strands, every beat then every half beat.",
+      "words": "",
+      "sound": "Scrapes, faster.",
+      "act": "why",
+      "bars": "9",
+      "camera": "pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 18.0,
+      "picture": "Everything stops. The tangle turns slowly by itself, and one point in the middle glows faintly.",
+      "words": "Turn it around. Find what doesn't move.",
+      "sound": "First clean signature: an open cello string.",
+      "act": "why",
+      "bars": "10",
+      "camera": "pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 20.0,
+      "picture": "The whale turns the tangle a quarter turn, again, and again. One point stays exactly where it was, and a pin drops on it.",
+      "words": "",
+      "sound": "Open string, bowed.",
+      "act": "move",
+      "bars": "11",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 21.0,
+      "picture": "A chip on the pin.",
+      "words": "This point never moved.",
+      "sound": "Click.",
+      "act": "move",
+      "bars": "11",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 24.0,
+      "picture": "With the pin in, the whale pulls the tangle loose around it, strand by strand, into a line through the pin.",
+      "words": "Start from the part that stays.",
+      "sound": "String, rising.",
+      "act": "move",
+      "bars": "13",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 27.0,
+      "picture": "Push-in (z 1.25). The turned second tangle from FELT slides in. Its pin lands at the same still point and it unwinds the same way, fast.",
+      "words": "Same pin, same moves. Solved twice.",
+      "sound": "Same phrase, faster.",
+      "act": "move",
+      "bars": "14",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech",
+        "focus"
+      ]
+    },
+    {
+      "t": 30.0,
+      "picture": "A ring flashes on the pin: measured, still.",
+      "words": "What stays put is conserved.",
+      "sound": "Soft ring.",
+      "act": "move",
+      "bars": "16",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 32.0,
+      "picture": "Wide: nine short lines in a row, one per module, each with a pin in a different place. The whale swims from one to the next. At the far end a ring spins smoothly.",
+      "words": "The course: nine modules, one habit.",
+      "sound": "Pulse bed.",
+      "act": "case",
+      "bars": "17",
+      "camera": "steady wide, slow drift"
+    },
+    {
+      "t": 33.0,
+      "picture": "Card: Real repo · noether-operadic-course.",
+      "words": "9 modules · a 12-part thesis",
+      "sound": "Card tick.",
+      "act": "case",
+      "bars": "17",
+      "camera": "steady wide, slow drift"
+    },
+    {
+      "t": 38.0,
+      "picture": "In the last line, a ring spins smoothly: turn it any small amount and it looks the same, and a kept ring beside it never changes size.",
+      "words": "In physics, a smooth symmetry keeps something.",
+      "sound": "Open string, steady.",
+      "act": "case",
+      "bars": "20",
+      "camera": "steady wide, slow drift"
+    },
+    {
+      "t": 44.0,
+      "picture": "Still, then a slow push. A tangle with no still point at all. The whale turns it and nothing stays, and the pin hovers with nowhere to land.",
+      "words": "Some problems have nothing that stays put.",
+      "sound": "Signature string once, unresolved.",
+      "act": "limit",
+      "bars": "23",
+      "camera": "still, then one slow push",
+      "cue_tags": [
+        "limit",
+        "focus"
+      ]
+    },
+    {
+      "t": 47.0,
+      "picture": "Hold on the hovering pin.",
+      "words": "A habit for finding handles, not a proof.",
+      "sound": "Room tone.",
+      "act": "limit",
+      "bars": "24",
+      "camera": "still, then one slow push"
+    },
+    {
+      "t": 50.0,
+      "picture": "FELT framing (z 1.6). The original tangle. The whale turns it once and the pin drops at the still point.",
+      "words": "",
+      "sound": "Open string.",
+      "act": "payoff",
+      "bars": "26",
+      "camera": "FELT framing z 1.6, then wide reveal",
+      "cue_tags": [
+        "callback"
+      ]
+    },
+    {
+      "t": 54.0,
+      "picture": "The tangle unwinds into a calm line in one pass. Spark, delight.",
+      "words": "",
+      "sound": "Full resolution.",
+      "act": "payoff",
+      "bars": "28",
+      "camera": "FELT framing z 1.6, then wide reveal",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 58.0,
+      "picture": "Still line through the pin, whale breathing.",
+      "words": "Stuck? Ask what stays the same.",
+      "sound": "Pad tail.",
+      "act": "belief",
+      "bars": "30",
+      "camera": "still, breathing only"
+    },
+    {
+      "t": 62.0,
+      "picture": "SERIES.lockup over the settled line.",
+      "words": "",
+      "sound": "Pad tail ends on the tonic.",
+      "act": "lockup",
+      "bars": "32",
+      "camera": "still"
+    }
+  ],
+  "captions": [
+    {
+      "t_in": 1.0,
+      "t_out": 4.0,
+      "text": "Each problem looks brand new.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 5.0,
+      "t_out": 9.0,
+      "text": "So I start from zero again.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 11.0,
+      "t_out": 14.0,
+      "text": "Find the <i>pin</i> first.",
+      "kind": "title"
+    },
+    {
+      "t_in": 14.0,
+      "t_out": 17.5,
+      "text": "I watch what moves, not what stays.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 18.0,
+      "t_out": 20.5,
+      "text": "Turn it around. Find what doesn't move.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 21.0,
+      "t_out": 23.0,
+      "text": "This point never moved.",
+      "kind": "label"
+    },
+    {
+      "t_in": 24.0,
+      "t_out": 27.0,
+      "text": "Start from the part that stays.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 27.0,
+      "t_out": 30.0,
+      "text": "Same pin, same moves. Solved twice.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 30.0,
+      "t_out": 33.0,
+      "text": "What stays put is conserved.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 32.0,
+      "t_out": 36.0,
+      "text": "The course: nine modules, one habit.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 33.0,
+      "t_out": 41.0,
+      "text": "9 modules · a 12-part thesis",
+      "kind": "card",
+      "src": "https://github.com/manutej/noether-operadic-course"
+    },
+    {
+      "t_in": 38.0,
+      "t_out": 43.0,
+      "text": "In physics, a smooth symmetry keeps something.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 44.0,
+      "t_out": 47.0,
+      "text": "Some problems have nothing that stays put.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 47.0,
+      "t_out": 50.0,
+      "text": "A habit for finding handles, not a proof.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 58.0,
+      "t_out": 62.0,
+      "text": "Stuck? Ask what stays the same.",
+      "kind": "caption"
+    }
+  ],
+  "terms": [
+    {
+      "term": "conserved",
+      "symbol": "pin with ring",
+      "pictured_at": 20.0,
+      "named_at": 30.0
+    },
+    {
+      "term": "symmetry",
+      "symbol": "smoothly spinning ring",
+      "pictured_at": 32.0,
+      "named_at": 38.0
+    },
+    {
+      "term": "proof",
+      "symbol": "hovering pin",
+      "pictured_at": 44.0,
+      "named_at": 47.0
+    }
+  ],
+  "jargon": [
+    "invariant",
+    "symmetry",
+    "operad"
+  ],
+  "sound": {
+    "signature": "An open cello string, bowed clean.",
+    "problem_motif": "The same string scraping, bow pressed too hard.",
+    "limit_unresolved": true
+  },
+  "score_self": {
+    "score": 0.72,
+    "reason": "Mechanical gates N3 N4 N5 N6 N8 N9 S1 and read time pass. A fresh learner angle and a vivid tangle. The case is course structure, not evidence that the habit works. J1 unrun.",
+    "weakest_piece": "real_case"
+  }
+}

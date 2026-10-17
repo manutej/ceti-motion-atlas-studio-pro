@@ -1,0 +1,502 @@
+{
+  "schema_version": "sb60-v1",
+  "id": "sb-03-09",
+  "meta_prompt_id": "mp-c03-v1",
+  "cluster": "03 Noether & conservation",
+  "repo": "skill:noether-wiki",
+  "capability": "Let an AI grow the wiki under machine checks",
+  "audience": "Everyone",
+  "wada": 279,
+  "bpm": 130,
+  "dur": 59.377,
+  "title": "AI writes. The <i>gate</i> checks.",
+  "hook": {
+    "kind": "Example",
+    "picture": "Close: morning. A pod has written all night and the line has swollen into a huge pile of dots, stacked over the whale.",
+    "words": "The AI filled our wiki overnight."
+  },
+  "problem_in_viewer_words": {
+    "kind": "Fact",
+    "body": "The AI filled our wiki overnight. Which pages can I trust?",
+    "who": "small business owner on Monday morning"
+  },
+  "why_it_keeps_happening": {
+    "kind": "Fact",
+    "picture": "The pod pours dots in far faster than the whale can read. Three pours, each bigger, accelerating.",
+    "words": "It writes faster than anyone can read."
+  },
+  "stakes": {
+    "kind": "Fact",
+    "body": "Either you read everything and lose the week, or you trust it blind and ship its mistakes to customers."
+  },
+  "solution_hint": "Let it write small batches. Check each one.",
+  "metaphor": {
+    "kind": "Example",
+    "body": "The AI pod hands over small batches. A gate measures each batch against three pins, the pod fixes what was named, and anything it cannot fix comes to the whale with a flag.",
+    "symbols": [
+      "whale",
+      "line",
+      "gate",
+      "pod",
+      "flag"
+    ]
+  },
+  "mechanism_beats": {
+    "kind": "Method",
+    "steps": [
+      {
+        "t": 18.462,
+        "picture": "The pod hands over one small batch of five dots. A gate stands between the pod and the line.",
+        "words": "",
+        "sound": "Block chord."
+      },
+      {
+        "t": 19.385,
+        "picture": "A chip on the gate.",
+        "words": "Small batches only.",
+        "sound": "Click."
+      },
+      {
+        "t": 22.154,
+        "picture": "The gate measures the batch against three pins. A duplicate dot glows, the gate closes, and the pod fixes just that dot by merging the twin. Second try passes.",
+        "words": "A machine checks. Not the writer.",
+        "sound": "Thud, then chord."
+      },
+      {
+        "t": 24.923,
+        "picture": "Push-in (z 1.3). A batch fails three tries and its raw-sienna marks do not shrink. The gate stays shut and the pod carries the batch to the whale with a flag.",
+        "words": "Three tries, then it asks you.",
+        "sound": "Three thuds, then a held note."
+      },
+      {
+        "t": 27.692,
+        "picture": "Each passed batch lands on the line with a tick.",
+        "words": "Nothing saved quietly. Nothing dropped quietly.",
+        "sound": "Soft ticks."
+      }
+    ]
+  },
+  "real_case": {
+    "kind": "Evidence",
+    "claim": "The memory graph added 111 new entities and 95 new sources, each new triple citing a source file. The gates read exact 0, orphans 0 and stubs 0.",
+    "numbers": [
+      "111",
+      "95",
+      "exact 0",
+      "orphans 0",
+      "stubs 0"
+    ],
+    "source": {
+      "kind": "notion",
+      "title": "Memory graph map",
+      "url": "https://app.notion.com/p/3f3d50cfaf93813b8cfce21490365024"
+    },
+    "verified": true,
+    "illustrative": false
+  },
+  "honest_limit": {
+    "kind": "Constraint",
+    "picture": "A nearly empty page with a title, one line, a source and links passes every pin. A pod reads it and gets nothing useful.",
+    "words": "A near-empty page passes every check."
+  },
+  "not_this": {
+    "kind": "Constraint",
+    "body": "Passing checks is not a useful page."
+  },
+  "ending_pattern": {
+    "kind": "Example",
+    "slug": "the-short-list",
+    "body": "Same morning, same whale. Instead of a towering pile, a neat line and a short stack of two flagged batches wait for a human decision.",
+    "callback": "In FELT a huge pile loomed over the whale. In the same framing only two flagged questions wait."
+  },
+  "end_belief": {
+    "kind": "Goal",
+    "body": "Let AI write. Let machines check. You decide."
+  },
+  "beats": [
+    {
+      "t": 0.0,
+      "picture": "Close: morning. A pod has written all night and the line has swollen into a huge pile of dots, stacked over the whale.",
+      "words": "",
+      "sound": "Low rumble, a raw-sienna drone.",
+      "act": "felt",
+      "bars": "1",
+      "camera": "close z 1.6 on the whale"
+    },
+    {
+      "t": 0.923,
+      "picture": "The pile sways.",
+      "words": "The AI filled our wiki overnight.",
+      "sound": "Room tone.",
+      "act": "felt",
+      "bars": "1",
+      "camera": "close z 1.6 on the whale"
+    },
+    {
+      "t": 1.846,
+      "picture": "Dots in the pile overlap: two are the same thing twice, and one has no source tick.",
+      "words": "",
+      "sound": "Drone wavers.",
+      "act": "felt",
+      "bars": "2",
+      "camera": "close z 1.6 on the whale",
+      "cue_tags": [
+        "consequence"
+      ]
+    },
+    {
+      "t": 3.692,
+      "picture": "The whale pulls one dot out to read it, and three more slide off the pile.",
+      "words": "",
+      "sound": "Clatter.",
+      "act": "felt",
+      "bars": "3",
+      "camera": "close z 1.6 on the whale",
+      "cue_tags": [
+        "consequence",
+        "focus"
+      ]
+    },
+    {
+      "t": 4.615,
+      "picture": "The whale holds one dot, the pile still towering.",
+      "words": "I can't tell which pages to trust.",
+      "sound": "Room tone.",
+      "act": "felt",
+      "bars": "3",
+      "camera": "close z 1.6 on the whale"
+    },
+    {
+      "t": 7.385,
+      "picture": "The whale looks up at the pile. Hold.",
+      "words": "",
+      "sound": "Silence.",
+      "act": "felt",
+      "bars": "5",
+      "camera": "close z 1.6 on the whale",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 10.154,
+      "picture": "Stillness, then SERIES.open title.",
+      "words": "AI writes. The <i>gate</i> checks.",
+      "sound": "Near-silence, title tick.",
+      "act": "why",
+      "bars": "6",
+      "camera": "pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "hinge"
+      ]
+    },
+    {
+      "t": 11.077,
+      "picture": "Pull back: the pod writes far faster than the whale reads. Dots pour in while the whale's reading is a slow trickle.",
+      "words": "",
+      "sound": "Problem motif.",
+      "act": "why",
+      "bars": "7",
+      "camera": "pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 12.923,
+      "picture": "Three-times device: a pour of dots. Every 2 beats.",
+      "words": "It writes faster than anyone can read.",
+      "sound": "Drone swell.",
+      "act": "why",
+      "bars": "8",
+      "camera": "pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 14.769,
+      "picture": "Two bigger pours, every beat then every half beat.",
+      "words": "",
+      "sound": "Swells, faster.",
+      "act": "why",
+      "bars": "9",
+      "camera": "pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 16.615,
+      "picture": "Everything stops. The pile splits into small neat stacks of five.",
+      "words": "Let it write small batches. Check each one.",
+      "sound": "First clean signature: a wooden block chord.",
+      "act": "why",
+      "bars": "10",
+      "camera": "pull back z 1.6 to 1.0",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 18.462,
+      "picture": "The pod hands over one small batch of five dots. A gate stands between the pod and the line.",
+      "words": "",
+      "sound": "Block chord.",
+      "act": "move",
+      "bars": "11",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 19.385,
+      "picture": "A chip on the gate.",
+      "words": "Small batches only.",
+      "sound": "Click.",
+      "act": "move",
+      "bars": "11",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 22.154,
+      "picture": "The gate measures the batch against three pins. A duplicate dot glows, the gate closes, and the pod fixes just that dot by merging the twin. Second try passes.",
+      "words": "A machine checks. Not the writer.",
+      "sound": "Thud, then chord.",
+      "act": "move",
+      "bars": "13",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 24.923,
+      "picture": "Push-in (z 1.3). A batch fails three tries and its raw-sienna marks do not shrink. The gate stays shut and the pod carries the batch to the whale with a flag.",
+      "words": "Three tries, then it asks you.",
+      "sound": "Three thuds, then a held note.",
+      "act": "move",
+      "bars": "14",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech",
+        "focus"
+      ]
+    },
+    {
+      "t": 27.692,
+      "picture": "Each passed batch lands on the line with a tick.",
+      "words": "Nothing saved quietly. Nothing dropped quietly.",
+      "sound": "Soft ticks.",
+      "act": "move",
+      "bars": "16",
+      "camera": "medium z 1.2",
+      "cue_tags": [
+        "mech"
+      ]
+    },
+    {
+      "t": 29.538,
+      "picture": "Wide: 111 new dots join a line of 437 in small batches, each through the gate. Every new link carries a source tick.",
+      "words": "Real run: new pages, each one cited.",
+      "sound": "Pulse bed.",
+      "act": "case",
+      "bars": "17",
+      "camera": "steady wide, slow drift"
+    },
+    {
+      "t": 30.462,
+      "picture": "Card: Real run · Memory graph map.",
+      "words": "111 new entities · 95 new sources",
+      "sound": "Card tick.",
+      "act": "case",
+      "bars": "17",
+      "camera": "steady wide, slow drift"
+    },
+    {
+      "t": 35.077,
+      "picture": "The last batch passes. The gate row glows clean along the whole line.",
+      "words": "All checks clean at the end.",
+      "sound": "Chord, steady.",
+      "act": "case",
+      "bars": "20",
+      "camera": "steady wide, slow drift"
+    },
+    {
+      "t": 40.615,
+      "picture": "Still, then a slow push. One dot is nearly empty: a title and one line, sourced and linked. It passes every pin. A pod reads it and gets nothing useful.",
+      "words": "A near-empty page passes every check.",
+      "sound": "Signature chord once, unresolved.",
+      "act": "limit",
+      "bars": "23",
+      "camera": "still, then one slow push",
+      "cue_tags": [
+        "limit",
+        "focus"
+      ]
+    },
+    {
+      "t": 43.385,
+      "picture": "Hold on the nearly empty dot.",
+      "words": "Passing checks is not a useful page.",
+      "sound": "Room tone.",
+      "act": "limit",
+      "bars": "24",
+      "camera": "still, then one slow push"
+    },
+    {
+      "t": 46.154,
+      "picture": "FELT framing (z 1.6), same morning, same whale. Instead of a pile above it, the line is neat, and a short stack of two flagged batches waits.",
+      "words": "",
+      "sound": "Chord returns.",
+      "act": "payoff",
+      "bars": "26",
+      "camera": "FELT framing z 1.6, then wide reveal",
+      "cue_tags": [
+        "callback"
+      ]
+    },
+    {
+      "t": 49.846,
+      "picture": "The whale reads the two, decides, and spouts. Spark.",
+      "words": "",
+      "sound": "Full resolution.",
+      "act": "payoff",
+      "bars": "28",
+      "camera": "FELT framing z 1.6, then wide reveal",
+      "cue_tags": [
+        "focus"
+      ]
+    },
+    {
+      "t": 53.538,
+      "picture": "Still neat line, whale breathing.",
+      "words": "Let AI write. Let machines check. You decide.",
+      "sound": "Pad tail.",
+      "act": "belief",
+      "bars": "30",
+      "camera": "still, breathing only"
+    },
+    {
+      "t": 57.231,
+      "picture": "SERIES.lockup over the settled line.",
+      "words": "",
+      "sound": "Pad tail ends on the tonic.",
+      "act": "lockup",
+      "bars": "32",
+      "camera": "still"
+    }
+  ],
+  "captions": [
+    {
+      "t_in": 0.923,
+      "t_out": 3.692,
+      "text": "The AI filled our wiki overnight.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 4.615,
+      "t_out": 8.308,
+      "text": "I can't tell which pages to trust.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 10.154,
+      "t_out": 12.923,
+      "text": "AI writes. The <i>gate</i> checks.",
+      "kind": "title"
+    },
+    {
+      "t_in": 12.923,
+      "t_out": 16.154,
+      "text": "It writes faster than anyone can read.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 16.615,
+      "t_out": 18.923,
+      "text": "Let it write small batches. Check each one.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 19.385,
+      "t_out": 21.231,
+      "text": "Small batches only.",
+      "kind": "label"
+    },
+    {
+      "t_in": 22.154,
+      "t_out": 24.923,
+      "text": "A machine checks. Not the writer.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 24.923,
+      "t_out": 27.692,
+      "text": "Three tries, then it asks you.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 27.692,
+      "t_out": 30.462,
+      "text": "Nothing saved quietly. Nothing dropped quietly.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 29.538,
+      "t_out": 33.231,
+      "text": "Real run: new pages, each one cited.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 30.462,
+      "t_out": 37.846,
+      "text": "111 new entities · 95 new sources",
+      "kind": "card",
+      "src": "https://app.notion.com/p/3f3d50cfaf93813b8cfce21490365024"
+    },
+    {
+      "t_in": 35.077,
+      "t_out": 39.692,
+      "text": "All checks clean at the end.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 40.615,
+      "t_out": 43.385,
+      "text": "A near-empty page passes every check.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 43.385,
+      "t_out": 46.154,
+      "text": "Passing checks is not a useful page.",
+      "kind": "caption"
+    },
+    {
+      "t_in": 53.538,
+      "t_out": 57.231,
+      "text": "Let AI write. Let machines check. You decide.",
+      "kind": "caption"
+    }
+  ],
+  "terms": [],
+  "jargon": [
+    "agent",
+    "commit"
+  ],
+  "sound": {
+    "signature": "A wooden block chord, warm and dry.",
+    "problem_motif": "A low raw-sienna drone that wavers.",
+    "limit_unresolved": true
+  },
+  "score_self": {
+    "score": 0.83,
+    "reason": "Mechanical gates N3 N4 N5 N6 N8 N9 S1 and read time pass. The most broadly felt pain in the cluster, and the escalate-to-human ending is concrete. The case shows sourcing, not the batch loop itself. J1 unrun.",
+    "weakest_piece": "real_case"
+  }
+}

@@ -71,7 +71,7 @@
   },
   "real_case": {
     "kind": "Evidence",
-    "claim": "Whale Line, The brief v1: gates caught the whale's take-off turning at 1.26 rad/frame against a 0.35 limit (fixed to 0.11) and its swim at 41 px/frame (fixed to 26.5), before render. The numbers stay in NOTES.",
+    "claim": "The brief v1: gates caught the take-off at 1.26 rad/frame vs a 0.35 limit (fixed to 0.11) and the swim at 41 px/frame (fixed to 26.5) before render. Numbers stay in NOTES.",
     "numbers": [
       "1.26 rad/frame",
       "0.35",

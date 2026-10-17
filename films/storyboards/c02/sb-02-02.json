@@ -23,7 +23,7 @@
   "why_it_keeps_happening": {
     "kind": "Fact",
     "picture": "Three more bent cards slip through: every 2 beats, then 1, then a half. Each lands in a report.",
-    "words": "Machines merge anything close enough."
+    "words": "Bots merge anything that looks close enough."
   },
   "stakes": {
     "kind": "Fact",
@@ -181,7 +181,7 @@
       "act": "why",
       "bars": "8-9",
       "picture": "Three more bent cards slip through: every 2 beats, then 1, then a half. Each lands in a report.",
-      "words": "Machines merge anything close enough.",
+      "words": "Bots merge anything that looks close enough.",
       "sound": "Problem motif three times, accelerating.",
       "camera": "wide z 1.0, the pattern revealed",
       "cue_tags": [
@@ -368,7 +368,7 @@
     {
       "t_in": 13.548,
       "t_out": 16.935,
-      "text": "Machines merge anything close enough.",
+      "text": "Bots merge anything that looks close enough.",
       "kind": "caption"
     },
     {
@@ -444,6 +444,12 @@
       "symbol": "seam",
       "pictured_at": 19.355,
       "named_at": 23.226
+    },
+    {
+      "term": "strange",
+      "symbol": "seam",
+      "pictured_at": 23.226,
+      "named_at": 31.935
     }
   ],
   "jargon": [
