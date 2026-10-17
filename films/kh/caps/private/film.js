@@ -228,6 +228,9 @@ function drawFrame(c, t) {
       spray: win(t, 26.2, 27.3, 0.2, 0.6), sw: 3.2 });
     c.restore();
     const ya = RA(t, 'you'); if (ya > 0) S.chip(c, 'You', X(p.x), Y(p.y - 98), { f: 'sans', size: Math.round(30 * z), col: INK, a: ya, align: 'center', pad: 12, border: CARDEDGE });
+    const pa = win(t, 18.55, 19.6, 0.15, 0.2); if (pa > 0) { const n = nose(t), nx = X(n.x), ny = Y(n.y), k = z;   // a pencil: you write the note by hand
+      c.save(); c.globalAlpha = pa; c.lineCap = 'butt'; c.strokeStyle = INK; c.lineWidth = 12 * k; c.beginPath(); c.moveTo(nx, ny - 4 * k); c.lineTo(nx, ny + 38 * k); c.stroke();
+      c.fillStyle = SAL; c.strokeStyle = INK; c.lineWidth = 2.5 * k; c.beginPath(); c.moveTo(nx - 6 * k, ny + 38 * k); c.lineTo(nx + 6 * k, ny + 38 * k); c.lineTo(nx, ny + 54 * k); c.closePath(); c.fill(); c.stroke(); c.restore(); }
     const st = win(t, 6.95, 8.2, 0.2, 0.3); if (st > 0) { const n = nose(t), nx = X(n.x), ny = Y(n.y), k = z;
       c.save(); c.globalAlpha = st; c.fillStyle = INK; c.beginPath(); c.roundRect(nx - 10 * k, ny + 2 * k, 20 * k, 30 * k, 6 * k); c.fill();
       c.beginPath(); c.arc(nx, ny, 13 * k, 0, Math.PI * 2); c.fill();
