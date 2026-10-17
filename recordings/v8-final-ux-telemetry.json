@@ -1,0 +1,503 @@
+{
+  "tag": "v8-final",
+  "capturedAt": "2026-10-17T16:37:01.808Z",
+  "frames": [
+    {
+      "file": "01-surface1-living-canvas-default.png",
+      "label": "Surface I · Infinite-Zoom Living Canvas (Whole-Card Freeform Dragging · ● Src A / ◐ Src B Pills · Wada No. 343)",
+      "metrics": {
+        "viewport": {
+          "vw": 1680,
+          "vh": 1040
+        },
+        "surface": "infinite-canvas",
+        "charId": "ceti-whale",
+        "zoom": 0.78,
+        "headerHeightPx": 136,
+        "headerViewportSharePct": 13,
+        "mainTopPx": 136,
+        "ctrlStripDisplay": "flex",
+        "tabBarDisplay": "flex",
+        "canvasCount": 6,
+        "nonBlankCanvases": 6,
+        "dagNodeCount": 6,
+        "dagNodeOverlaps": 0,
+        "overlappingPairs": [],
+        "dagNodes": [
+          {
+            "id": "node-seed",
+            "x": 69,
+            "y": 277,
+            "w": 242,
+            "h": 312
+          },
+          {
+            "id": "node-fork-look",
+            "x": 357,
+            "y": 277,
+            "w": 246,
+            "h": 314
+          },
+          {
+            "id": "node-char-rig",
+            "x": 357,
+            "y": 674,
+            "w": 246,
+            "h": 301
+          },
+          {
+            "id": "node-proof-a",
+            "x": 650,
+            "y": 277,
+            "w": 250,
+            "h": 304
+          },
+          {
+            "id": "node-proof-b",
+            "x": 650,
+            "y": 674,
+            "w": 250,
+            "h": 315
+          },
+          {
+            "id": "node-storyboard",
+            "x": 946,
+            "y": 277,
+            "w": 257,
+            "h": 309
+          }
+        ]
+      }
+    },
+    {
+      "file": "02-surface1-tri-fork-ab-compare.png",
+      "label": "Surface I · 3-Direction Orthogonal Fork (α/β/γ) + Pushout Gluing (A ⊕ B) + Freeform Card Move & Copy",
+      "metrics": {
+        "viewport": {
+          "vw": 1680,
+          "vh": 1040
+        },
+        "surface": "infinite-canvas",
+        "charId": "ceti-whale",
+        "zoom": 0.78,
+        "headerHeightPx": 136,
+        "headerViewportSharePct": 13,
+        "mainTopPx": 136,
+        "ctrlStripDisplay": "flex",
+        "tabBarDisplay": "flex",
+        "canvasCount": 12,
+        "nonBlankCanvases": 12,
+        "dagNodeCount": 10,
+        "dagNodeOverlaps": 0,
+        "overlappingPairs": [],
+        "dagNodes": [
+          {
+            "id": "node-seed",
+            "x": 52,
+            "y": 676,
+            "w": 242,
+            "h": 312
+          },
+          {
+            "id": "node-fork-look",
+            "x": 357,
+            "y": 560,
+            "w": 246,
+            "h": 314
+          },
+          {
+            "id": "node-char-rig",
+            "x": 357,
+            "y": 957,
+            "w": 246,
+            "h": 301
+          },
+          {
+            "id": "node-proof-a",
+            "x": 650,
+            "y": 560,
+            "w": 250,
+            "h": 304
+          },
+          {
+            "id": "node-proof-b",
+            "x": 650,
+            "y": 957,
+            "w": 250,
+            "h": 315
+          },
+          {
+            "id": "node-storyboard",
+            "x": 946,
+            "y": 560,
+            "w": 257,
+            "h": 309
+          },
+          {
+            "id": "node-tri-alpha-6",
+            "x": 1254,
+            "y": 560,
+            "w": 250,
+            "h": 315
+          },
+          {
+            "id": "node-tri-beta-8",
+            "x": 1254,
+            "y": 962,
+            "w": 250,
+            "h": 304
+          },
+          {
+            "id": "node-tri-gamma-10",
+            "x": 1254,
+            "y": 1363,
+            "w": 250,
+            "h": 315
+          },
+          {
+            "id": "node-synth-10",
+            "x": 1566,
+            "y": 761,
+            "w": 250,
+            "h": 315
+          }
+        ]
+      }
+    },
+    {
+      "file": "03-surface1-micro-lod-rungs.png",
+      "label": "Surface I · 1.65x Micro-Inspection LOD + Multi-Frame Onion Skinning (-2Δt / -1Δt / +1Δt)",
+      "metrics": {
+        "viewport": {
+          "vw": 1680,
+          "vh": 1040
+        },
+        "surface": "infinite-canvas",
+        "charId": "ceti-whale",
+        "zoom": 1.65,
+        "headerHeightPx": 136,
+        "headerViewportSharePct": 13,
+        "mainTopPx": 136,
+        "ctrlStripDisplay": "flex",
+        "tabBarDisplay": "flex",
+        "canvasCount": 40,
+        "nonBlankCanvases": 40,
+        "dagNodeCount": 10,
+        "dagNodeOverlaps": 0,
+        "overlappingPairs": [],
+        "dagNodes": [
+          {
+            "id": "node-seed",
+            "x": 67,
+            "y": 251,
+            "w": 512,
+            "h": 811
+          },
+          {
+            "id": "node-fork-look",
+            "x": 714,
+            "y": 5,
+            "w": 520,
+            "h": 818
+          },
+          {
+            "id": "node-char-rig",
+            "x": 714,
+            "y": 845,
+            "w": 520,
+            "h": 790
+          },
+          {
+            "id": "node-proof-a",
+            "x": 1333,
+            "y": 5,
+            "w": 528,
+            "h": 797
+          },
+          {
+            "id": "node-proof-b",
+            "x": 1333,
+            "y": 845,
+            "w": 528,
+            "h": 820
+          },
+          {
+            "id": "node-storyboard",
+            "x": 1960,
+            "y": 5,
+            "w": 545,
+            "h": 811
+          },
+          {
+            "id": "node-tri-alpha-6",
+            "x": 2612,
+            "y": 5,
+            "w": 528,
+            "h": 820
+          },
+          {
+            "id": "node-tri-beta-8",
+            "x": 2612,
+            "y": 855,
+            "w": 528,
+            "h": 798
+          },
+          {
+            "id": "node-tri-gamma-10",
+            "x": 2612,
+            "y": 1705,
+            "w": 528,
+            "h": 820
+          },
+          {
+            "id": "node-synth-10",
+            "x": 3272,
+            "y": 431,
+            "w": 528,
+            "h": 821
+          }
+        ]
+      }
+    },
+    {
+      "file": "04-surface2-5lens-fork-explorer.png",
+      "label": "Surface II · 5-Lens Decision Fork Explorer (Look · Use · Story · Character · Register)",
+      "metrics": {
+        "viewport": {
+          "vw": 1680,
+          "vh": 1040
+        },
+        "surface": "fork-explorer",
+        "charId": "ceti-whale",
+        "zoom": 0.78,
+        "headerHeightPx": 136,
+        "headerViewportSharePct": 13,
+        "mainTopPx": 136,
+        "ctrlStripDisplay": "flex",
+        "tabBarDisplay": "flex",
+        "canvasCount": 4,
+        "nonBlankCanvases": 4,
+        "dagNodeCount": 0,
+        "dagNodeOverlaps": 0,
+        "overlappingPairs": [],
+        "dagNodes": []
+      }
+    },
+    {
+      "file": "05-surface3-character-foundry-orpheus.png",
+      "label": "Surface III · Character & Emblem Foundry — Orpheum Lyre-Sphere (Mythic D8 Harmonic Mandala)",
+      "metrics": {
+        "viewport": {
+          "vw": 1680,
+          "vh": 1040
+        },
+        "surface": "character-foundry",
+        "charId": "geome-orpheus",
+        "zoom": 0.78,
+        "headerHeightPx": 136,
+        "headerViewportSharePct": 13,
+        "mainTopPx": 136,
+        "ctrlStripDisplay": "flex",
+        "tabBarDisplay": "flex",
+        "canvasCount": 22,
+        "nonBlankCanvases": 22,
+        "dagNodeCount": 0,
+        "dagNodeOverlaps": 0,
+        "overlappingPairs": [],
+        "dagNodes": []
+      }
+    },
+    {
+      "file": "06-surface3-character-foundry-falcon.png",
+      "label": "Surface III · Character & Emblem Foundry — Peregrine Cut (Saul Bass Avian Raptor · Wada No. 126)",
+      "metrics": {
+        "viewport": {
+          "vw": 1680,
+          "vh": 1040
+        },
+        "surface": "character-foundry",
+        "charId": "saul-falcon",
+        "zoom": 0.78,
+        "headerHeightPx": 136,
+        "headerViewportSharePct": 13,
+        "mainTopPx": 136,
+        "ctrlStripDisplay": "flex",
+        "tabBarDisplay": "flex",
+        "canvasCount": 22,
+        "nonBlankCanvases": 22,
+        "dagNodeCount": 0,
+        "dagNodeOverlaps": 0,
+        "overlappingPairs": [],
+        "dagNodes": []
+      }
+    },
+    {
+      "file": "07-surface4-8beat-storyboard.png",
+      "label": "Surface IV · 8-Beat Draggable Storyboard Sheet, Beat Reordering (◀/▶) & Per-Beat #color/<tag> Pinning",
+      "metrics": {
+        "viewport": {
+          "vw": 1680,
+          "vh": 1040
+        },
+        "surface": "storyboard-sheet",
+        "charId": "origami-crane",
+        "zoom": 0.78,
+        "headerHeightPx": 136,
+        "headerViewportSharePct": 13,
+        "mainTopPx": 136,
+        "ctrlStripDisplay": "flex",
+        "tabBarDisplay": "flex",
+        "canvasCount": 8,
+        "nonBlankCanvases": 8,
+        "dagNodeCount": 0,
+        "dagNodeOverlaps": 0,
+        "overlappingPairs": [],
+        "dagNodes": []
+      }
+    },
+    {
+      "file": "08-surface5-sanzo-wada-348-hydrography.png",
+      "label": "Surface V · Tagged & Saved #Color Scheme Vault + Sanzo Wada 348 Dictionary + Orpheum 4-Voice Sonification",
+      "metrics": {
+        "viewport": {
+          "vw": 1680,
+          "vh": 1040
+        },
+        "surface": "wada-chord-matrix",
+        "charId": "astronav-compass",
+        "zoom": 0.78,
+        "headerHeightPx": 136,
+        "headerViewportSharePct": 13,
+        "mainTopPx": 136,
+        "ctrlStripDisplay": "flex",
+        "tabBarDisplay": "flex",
+        "canvasCount": 1,
+        "nonBlankCanvases": 1,
+        "dagNodeCount": 0,
+        "dagNodeOverlaps": 0,
+        "overlappingPairs": [],
+        "dagNodes": []
+      }
+    },
+    {
+      "file": "09-surface6-15styles-24elements.png",
+      "label": "Surface VI · All 15 Motion Styles & 24 Building Blocks (1-Click + Insert on Canvas / → Apply to Src A)",
+      "metrics": {
+        "viewport": {
+          "vw": 1680,
+          "vh": 1040
+        },
+        "surface": "contact-sheet",
+        "charId": "kelp-leviathan",
+        "zoom": 0.78,
+        "headerHeightPx": 136,
+        "headerViewportSharePct": 13,
+        "mainTopPx": 136,
+        "ctrlStripDisplay": "flex",
+        "tabBarDisplay": "flex",
+        "canvasCount": 39,
+        "nonBlankCanvases": 39,
+        "dagNodeCount": 0,
+        "dagNodeOverlaps": 0,
+        "overlappingPairs": [],
+        "dagNodes": []
+      }
+    },
+    {
+      "file": "10-surface7-compile-export-room.png",
+      "label": "Surface VII · Multi-Target Production Compiler (Brief · HyperFrames · Remotion · Anime.js · SVG · Lottie JSON)",
+      "metrics": {
+        "viewport": {
+          "vw": 1680,
+          "vh": 1040
+        },
+        "surface": "compile-export",
+        "charId": "kelp-leviathan",
+        "zoom": 0.78,
+        "headerHeightPx": 136,
+        "headerViewportSharePct": 13,
+        "mainTopPx": 136,
+        "ctrlStripDisplay": "flex",
+        "tabBarDisplay": "flex",
+        "canvasCount": 0,
+        "nonBlankCanvases": 0,
+        "dagNodeCount": 0,
+        "dagNodeOverlaps": 0,
+        "overlappingPairs": [],
+        "dagNodes": []
+      }
+    },
+    {
+      "file": "11-modal-oauth-pkce-rsi-critique.png",
+      "label": "Modal · OAuth 2.0 PKCE Live Enhancer with Direct Source A/B Selectors & # / Vocabulary Chips",
+      "metrics": {
+        "viewport": {
+          "vw": 1680,
+          "vh": 1040
+        },
+        "surface": "compile-export",
+        "charId": "kelp-leviathan",
+        "zoom": 0.78,
+        "headerHeightPx": 136,
+        "headerViewportSharePct": 13,
+        "mainTopPx": 136,
+        "ctrlStripDisplay": "flex",
+        "tabBarDisplay": "flex",
+        "canvasCount": 0,
+        "nonBlankCanvases": 0,
+        "dagNodeCount": 0,
+        "dagNodeOverlaps": 0,
+        "overlappingPairs": [],
+        "dagNodes": []
+      }
+    },
+    {
+      "file": "12-modal-vocab-themes-elements-library.png",
+      "label": "Modal · Plain-English # and / Design Vocabulary, Themes, Elements & #Color Vault Browser [K]",
+      "metrics": {
+        "viewport": {
+          "vw": 1680,
+          "vh": 1040
+        },
+        "surface": "compile-export",
+        "charId": "kelp-leviathan",
+        "zoom": 0.78,
+        "headerHeightPx": 136,
+        "headerViewportSharePct": 13,
+        "mainTopPx": 136,
+        "ctrlStripDisplay": "flex",
+        "tabBarDisplay": "flex",
+        "canvasCount": 0,
+        "nonBlankCanvases": 0,
+        "dagNodeCount": 0,
+        "dagNodeOverlaps": 0,
+        "overlappingPairs": [],
+        "dagNodes": []
+      }
+    },
+    {
+      "file": "13-modal-29gate-tellapart-sheaf.png",
+      "label": "Modal · 29-Gate Mechanical Contract Audit (29/29 PASS) + Tell-Apart Kernel + Alexandrov Sheaf Cohomology",
+      "metrics": {
+        "viewport": {
+          "vw": 1680,
+          "vh": 1040
+        },
+        "surface": "compile-export",
+        "charId": "kelp-leviathan",
+        "zoom": 0.78,
+        "headerHeightPx": 136,
+        "headerViewportSharePct": 13,
+        "mainTopPx": 136,
+        "ctrlStripDisplay": "flex",
+        "tabBarDisplay": "flex",
+        "canvasCount": 0,
+        "nonBlankCanvases": 0,
+        "dagNodeCount": 0,
+        "dagNodeOverlaps": 0,
+        "overlappingPairs": [],
+        "dagNodes": []
+      }
+    }
+  ]
+}

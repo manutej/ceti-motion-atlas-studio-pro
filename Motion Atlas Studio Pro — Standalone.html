@@ -532,6 +532,59 @@
     z-index: 10;
   }
 
+  .dag-node-source-b {
+    border: 2.5px dashed #1E3F66;
+    box-shadow: 0 0 0 4px rgba(30, 63, 102, 0.16), 0 8px 20px rgba(26, 31, 46, 0.15);
+    z-index: 9;
+  }
+
+  .dag-node-dragging {
+    cursor: grabbing !important;
+    z-index: 65 !important;
+    box-shadow: 0 22px 44px rgba(26, 31, 46, 0.34), 0 0 0 3px var(--rust) !important;
+    transition: none !important;
+  }
+
+  .sb-card-dragging {
+    opacity: 0.55;
+    border: 2px dashed var(--rust) !important;
+  }
+
+  .sb-card-drop-target {
+    border: 2px solid #2E5A44 !important;
+    box-shadow: 0 0 0 4px rgba(46, 90, 68, 0.18) !important;
+  }
+
+  .vocab-popover {
+    position: fixed;
+    z-index: 120;
+    background: var(--paper);
+    color: var(--ink);
+    border: 2px solid var(--ink);
+    border-radius: 10px;
+    box-shadow: 0 16px 42px rgba(20, 24, 36, 0.34);
+    width: 480px;
+    max-width: 92vw;
+    max-height: 340px;
+    overflow-y: auto;
+    padding: 8px;
+  }
+
+  .vocab-item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 7px 9px;
+    border-radius: 6px;
+    cursor: pointer;
+    border-bottom: 1px dashed rgba(26, 31, 46, 0.12);
+    transition: background 100ms ease;
+  }
+
+  .vocab-item:hover, .vocab-item-active {
+    background: var(--paper2);
+  }
+
   .dag-node-header, .dag-node-head {
     display: flex;
     justify-content: space-between;
@@ -652,8 +705,10 @@
     border: 2px solid var(--ink);
     border-radius: 12px;
     padding: 18px 22px;
-    max-width: 820px;
+    max-width: 920px;
     width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.32);
   }
 
@@ -4801,6 +4856,853 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
     return 'micro-inspection';
   }
 
+  // Freeform Card Movement on Living Canvas without Auto-Layout Override (Gate G26)
+  function moveCanvasNode(dag, nodeId, newX, newY) {
+    if (!dag || !Array.isArray(dag.nodes)) return { nodes: [], edges: [], movedNode: null };
+    const node = dag.nodes.find(function (n) { return n.id === nodeId; }) || dag.nodes[0];
+    if (!node) return { nodes: dag.nodes, edges: dag.edges || [], movedNode: null };
+    node.x = Math.max(8, Math.round(Number(newX) || 0));
+    node.y = Math.max(8, Math.round(Number(newY) || 0));
+    node.customMoved = true;
+    node.customPositioned = true;
+    stampDAGRestrictionHashes(dag);
+    return {
+      nodes: dag.nodes,
+      edges: dag.edges || [],
+      movedNode: node
+    };
+  }
+
+  // Duplicate any DAG Card at a nearby offset (+48, +48) for effortless spatial ideation (Gate G26)
+  function duplicateCanvasCard(dag, nodeId, customOffsets) {
+    if (!dag || !Array.isArray(dag.nodes)) return dag;
+    const src = dag.nodes.find(function (n) { return n.id === nodeId; }) || dag.nodes[0];
+    if (!src) return dag;
+    const seq = dag.nodes.length + 1;
+    const copyId = 'node-card-' + seq + '-' + Math.abs(computePacketHash(src.payload).charCodeAt(2) * 19 + seq);
+    const dx = (customOffsets && customOffsets.dx != null) ? customOffsets.dx : 54;
+    const dy = (customOffsets && customOffsets.dy != null) ? customOffsets.dy : 54;
+    const copyPayload = JSON.parse(JSON.stringify(src.payload || {}));
+    const parentId = src.parentId || src.id;
+    const parentNode = dag.nodes.find(function (n) { return n.id === parentId; }) || src;
+    const parentHash = parentNode.packetHash || computePacketHash(parentNode.payload);
+
+    const dupNode = {
+      id: copyId,
+      kind: src.kind || 'style-proof',
+      title: src.title.replace(/ · Copy.*$/, '') + ' · Copy #' + seq,
+      subtitle: src.subtitle,
+      x: Math.max(16, Math.round((src.x || 40) + dx)),
+      y: Math.max(16, Math.round((src.y || 36) + dy)),
+      width: src.width || 315,
+      height: src.height || 455,
+      parentId: parentNode.id,
+      upstreamHash: parentHash,
+      packetHash: computePacketHash(copyPayload),
+      conjectureNote: src.conjectureNote || ('†C · Spatial duplicate of ' + src.id),
+      forkReason: 'Spatial card duplicate from ' + src.title,
+      status: 'exploring',
+      customMoved: true,
+      customPositioned: true,
+      payload: copyPayload
+    };
+
+    const dupEdge = {
+      id: 'e-' + copyId,
+      fromNodeId: parentNode.id,
+      toNodeId: copyId,
+      label: '⧉ Spatial Copy',
+      kind: 'fork'
+    };
+
+    return {
+      nodes: dag.nodes.concat([dupNode]),
+      edges: dag.edges.concat([dupEdge]),
+      createdNodeId: copyId
+    };
+  }
+
+  // Delete a non-root card from the Living Canvas & re-home any child edges cleanly
+  function deleteCanvasCard(dag, nodeId) {
+    if (!dag || !Array.isArray(dag.nodes) || dag.nodes.length <= 1) {
+      return { nodes: (dag && dag.nodes) || [], edges: (dag && dag.edges) || [], deletedNodeId: null };
+    }
+    const target = dag.nodes.find(function (n) { return n.id === nodeId; });
+    if (!target || target.id === 'node-seed' || target.id === 'node-seed-root') {
+      return { nodes: dag.nodes, edges: dag.edges || [], deletedNodeId: null };
+    }
+    const fallbackParentId = target.parentId || (dag.nodes[0] && dag.nodes[0].id) || 'node-seed';
+    const remainingNodes = dag.nodes.filter(function (n) { return n.id !== nodeId; });
+    remainingNodes.forEach(function (n) {
+      if (n.parentId === nodeId) n.parentId = fallbackParentId;
+      if (n.secondaryParentId === nodeId) delete n.secondaryParentId;
+    });
+    const remainingEdges = (dag.edges || []).filter(function (e) {
+      return e.fromNodeId !== nodeId && e.toNodeId !== nodeId;
+    });
+    const stamped = stampDAGRestrictionHashes({ nodes: remainingNodes, edges: remainingEdges });
+    return {
+      nodes: stamped.nodes,
+      edges: stamped.edges,
+      deletedNodeId: nodeId
+    };
+  }
+
+  // Reorder / Drag-and-Drop Storyboard Beat Cards while preserving 8-beat Conservation Laws (Gate G26)
+  function moveStoryboardBeat(sheet, fromIdx, toIdx) {
+    if (!sheet || !Array.isArray(sheet.beats)) return sheet;
+    const n = sheet.beats.length;
+    if (fromIdx < 0 || fromIdx >= n || toIdx < 0 || toIdx >= n || fromIdx === toIdx) return sheet;
+    const beats = sheet.beats.slice();
+    const moved = beats.splice(fromIdx, 1)[0];
+    beats.splice(toIdx, 0, moved);
+
+    const beatDur = (sheet.durationSec || 12) / n;
+    const roleOrder = ['opening', 'inciting', 'rising', 'threshold', 'climax', 'breather', 'resolution', 'callback'];
+    sheet.beats = beats.map(function (b, idx) {
+      const t0 = Number((idx * beatDur).toFixed(2));
+      const t1 = Number(((idx + 1) * beatDur).toFixed(2));
+      const tMid = Number(((t0 + t1) / 2).toFixed(2));
+      const updated = Object.assign({}, b, {
+        index: idx,
+        role: roleOrder[idx] || b.role,
+        tStartSec: t0,
+        tEndSec: t1,
+        tMidSec: tMid,
+        hinge: (b.hinge === 'BUT' || b.hinge === 'THEREFORE') ? b.hinge : (idx % 2 === 1 ? 'BUT' : 'THEREFORE')
+      });
+      if (idx === 5) {
+        updated.activeSimultaneousMoves = 1;
+      }
+      if (idx === 7 && !/echo|callback|frame 0|first/i.test(updated.visualAction || '')) {
+        updated.visualAction = (updated.visualAction || '') + ' (Callback echoes Beat 1 opening silhouette)';
+      }
+      return updated;
+    });
+    return auditStoryboardSheet(sheet);
+  }
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // 3B. TAGGED & SAVED COLOR SCHEMES VAULT (#color/<tag> — Gate G29)
+  // ─────────────────────────────────────────────────────────────────────────
+  const DEFAULT_SAVED_SCHEMES = [
+    {
+      id: 'scheme-pelagic-dawn',
+      tag: 'pelagic-dawn',
+      token: '#color/pelagic-dawn',
+      slash: '/color/pelagic-dawn',
+      handle: '#color/pelagic-dawn',
+      title: 'Pelagic Dawn (Warm Archival Sienna)',
+      name: 'Pelagic Dawn (Warm Archival Sienna)',
+      palId: 343,
+      ground: 'atlas',
+      tags: ['#warm', '#hero', '#opening', '#storybook'],
+      notes: 'Warm archival paper with Raw Sienna and Prussian blue ink — ideal for handmade openings.'
+    },
+    {
+      id: 'scheme-saul-cutout',
+      tag: 'saul-cutout-ocher',
+      token: '#color/saul-cutout-ocher',
+      slash: '/color/saul-cutout-ocher',
+      handle: '#color/saul-cutout-ocher',
+      title: 'Saul Bass Cutout (Ocher & Lyons Blue)',
+      name: 'Saul Bass Cutout (Ocher & Lyons Blue)',
+      palId: 126,
+      ground: 'atlas',
+      tags: ['#poster', '#bold', '#cutout', '#high-tension'],
+      notes: 'Punchy 3-color cut-paper palette with stark Ocher and Lyons Blue contrast.'
+    },
+    {
+      id: 'scheme-bathyal-biolum',
+      tag: 'bathyal-biolum',
+      token: '#color/bathyal-biolum',
+      slash: '/color/bathyal-biolum',
+      handle: '#color/bathyal-biolum',
+      title: 'Bathyal Bioluminescence (Amber & Prussian)',
+      name: 'Bathyal Bioluminescence (Amber & Prussian)',
+      palId: 166,
+      ground: 'blueprint',
+      tags: ['#abyssal', '#glow', '#deep-sea', '#threshold'],
+      notes: 'Glowing bathyal amber against deep Prussian night for underwater threshold beats.'
+    },
+    {
+      id: 'scheme-shoji-calm',
+      tag: 'shoji-sumi-calm',
+      token: '#color/shoji-sumi-calm',
+      slash: '/color/shoji-sumi-calm',
+      handle: '#color/shoji-sumi-calm',
+      title: 'Shoji Paper & Sumi Ink (Quiet Breather)',
+      name: 'Shoji Paper & Sumi Ink (Quiet Breather)',
+      palId: 48,
+      ground: 'sumi',
+      tags: ['#minimal', '#calm', '#breather', '#japanese'],
+      notes: 'High-key Shoji cream with sumi ink wash — ideal for negative-space breather beats.'
+    },
+    {
+      id: 'scheme-umber-hydro',
+      tag: 'umber-hydro-chart',
+      token: '#color/umber-hydro-chart',
+      slash: '/color/umber-hydro-chart',
+      handle: '#color/umber-hydro-chart',
+      title: 'Umber Hydrographic Survey Ledger',
+      name: 'Umber Hydrographic Survey Ledger',
+      palId: 296,
+      ground: 'sepia',
+      tags: ['#radar', '#nautical', '#telemetry', '#chart'],
+      notes: 'Cartographic sepia and raw umber for 25-sounding hydrographic trajectory plates.'
+    },
+    {
+      id: 'scheme-cotinga-night',
+      tag: 'cotinga-nocturne',
+      token: '#color/cotinga-nocturne',
+      slash: '/color/cotinga-nocturne',
+      handle: '#color/cotinga-nocturne',
+      title: 'Cotinga Nocturne (Mythic Lyre Chord)',
+      name: 'Cotinga Nocturne (Mythic Lyre Chord)',
+      palId: 329,
+      ground: 'atlas',
+      tags: ['#mythic', '#musical', '#nocturne', '#finale'],
+      notes: 'Deep Cotinga violet-blue and warm gold for harmonic duet and finale callbacks.'
+    }
+  ];
+
+  function sanitizeSchemeTag(rawTag) {
+    const clean = String(rawTag || 'custom-scheme')
+      .toLowerCase()
+      .replace(/^[/#]+color[/:-]?/, '')
+      .replace(/^[/#]+/, '')
+      .replace(/[^a-z0-9-]+/g, '-')
+      .replace(/^-+|-+$/g, '');
+    return clean || 'custom-scheme';
+  }
+
+  function tagAndSaveColorScheme(existingSchemes, spec) {
+    const list = Array.isArray(existingSchemes) && existingSchemes.length
+      ? existingSchemes.slice()
+      : DEFAULT_SAVED_SCHEMES.slice();
+    const s = spec || {};
+    const slug = sanitizeSchemeTag(s.tag || s.title || s.name || ('wada-' + (s.palId || 343)));
+    const handle = '#color/' + slug;
+    const rawPalId = Math.max(1, Math.min(348, Math.round(Number(s.palId) || 343)));
+    const wadaObj = WADA.PALS.find(function (p) { return p.id === rawPalId; }) ||
+      WADA.getAllWadaCombos().find(function (p) { return p.id === rawPalId; }) ||
+      { id: rawPalId, name: 'Wada Combination No. ' + rawPalId };
+
+    const extraTags = Array.isArray(s.tags)
+      ? s.tags
+      : String(s.tags || '#custom #studio')
+          .split(/[\s,]+/)
+          .map(function (t) { return t.trim(); })
+          .filter(Boolean)
+          .map(function (t) { return t.startsWith('#') ? t : ('#' + t); });
+
+    const displayTitle = s.title || s.name || (wadaObj.name + ' (' + handle + ')');
+    const entry = {
+      id: 'scheme-' + slug,
+      tag: slug,
+      token: handle,
+      slash: '/color/' + slug,
+      handle: handle,
+      title: displayTitle,
+      name: displayTitle,
+      palId: rawPalId,
+      ground: s.ground || 'atlas',
+      tags: extraTags.length ? extraTags : ['#custom'],
+      notes: s.notes || ('Pinned Sanzo Wada No. ' + rawPalId + ' (' + wadaObj.name + ') on ' + (s.ground || 'atlas') + ' ground.'),
+      savedAt: new Date().toISOString()
+    };
+
+    const existingIdx = list.findIndex(function (item) { return item.tag === slug || item.handle === handle || item.token === handle; });
+    if (existingIdx >= 0) {
+      list[existingIdx] = entry;
+    } else {
+      list.unshift(entry);
+    }
+    return { schemes: list, savedEntry: entry, createdOrUpdated: entry };
+  }
+
+  function resolveColorSchemeByTag(existingSchemes, queryOrTag) {
+    const list = Array.isArray(existingSchemes) && existingSchemes.length ? existingSchemes : DEFAULT_SAVED_SCHEMES;
+    const q = String(queryOrTag || '').toLowerCase().trim();
+    if (!q) return list[0];
+    const cleanSlug = sanitizeSchemeTag(q);
+    const exact = list.find(function (s) {
+      return s.tag === cleanSlug || (s.handle && s.handle.toLowerCase() === q) || (s.token && s.token.toLowerCase() === q) || ('/color/' + s.tag) === q;
+    });
+    if (exact) return exact;
+    const byTag = list.find(function (s) {
+      return (s.tags || []).some(function (t) { return t.toLowerCase() === q || t.toLowerCase() === ('#' + cleanSlug); }) ||
+        ((s.name || s.title || '').toLowerCase().includes(cleanSlug)) ||
+        String(s.palId) === cleanSlug;
+    });
+    return byTag || null;
+  }
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // 3C. STUDIO SKILLS, THEMES & PLAIN-ENGLISH VOCABULARY LIBRARY (# & / — Gate G28)
+  // ─────────────────────────────────────────────────────────────────────────
+  const VOCAB_LIBRARY = [
+    // 1. #theme/... — 12 Curated Look & Feel Recipes (Plain-English Entry Point)
+    {
+      token: '#theme/warm-storybook',
+      slashToken: '/theme/warm-storybook',
+      category: 'theme',
+      title: 'Warm Handmade Storybook',
+      plainEnglish: 'Soft watercolor washes, warm cream paper, and gentle 12fps hand-drawn line wobble — feels human, approachable, and poetic.',
+      jargonTerm: 'Watercolor Wash · 12fps Boil · Wada No. 343 · Spring Feel',
+      promptSnippet: '#theme/warm-storybook Use soft handmade watercolor washes on warm archival paper with 12fps line boil and gentle spring overshoot.',
+      patch: { mStyle: 'watercolor', palId: 343, feel: 'spring', rung: 1, ground: 'atlas' }
+    },
+    {
+      token: '#theme/saul-cutout',
+      slashToken: '/theme/saul-cutout',
+      category: 'theme',
+      title: 'Bold Cut-Paper Poster (Saul Bass)',
+      plainEnglish: 'Sharp scissors-cut paper shapes, 3 stark colors, and punchy 8fps stop-motion snaps — unmistakable even from across the room.',
+      jargonTerm: 'Saul Severe · Rung 4 Cutout · 8fps Hold · Wada No. 126',
+      promptSnippet: '#theme/saul-cutout Stage with bold 3-color scissors-cut paper shapes at Saul Bass Rung 4 and 8fps graphic snap holds.',
+      patch: { mStyle: 'saul-severe', palId: 126, feel: 'saul', rung: 4, ground: 'atlas' }
+    },
+    {
+      token: '#theme/nautical-radar',
+      slashToken: '/theme/nautical-radar',
+      category: 'theme',
+      title: 'Nautical Radar & Ghost Trail Chart',
+      plainEnglish: 'Plots 25 echoing ghost positions behind the moving character with compass bearings and scientific measurement bars.',
+      jargonTerm: 'Kinetic Hydrography · 25 Ghost Soundings · Wada No. 296',
+      promptSnippet: '#theme/nautical-radar Plot a 25-point hydrographic sounding trail with compass bearing ring and ΔE2000 token telemetry.',
+      patch: { mStyle: 'hydrographic', palId: 296, feel: 'rostrum', rung: 3, ground: 'sepia' }
+    },
+    {
+      token: '#theme/shoji-sumi-ink',
+      slashToken: '/theme/shoji-sumi-ink',
+      category: 'theme',
+      title: 'Quiet Japanese Sumi Ink & Paper',
+      plainEnglish: 'Lots of calm breathing room, crisp folded-paper or brush contours, and deep black sumi ink on pale Shoji paper.',
+      jargonTerm: 'Sumi Ink Wash · Negative-Space Hold · Wada No. 48',
+      promptSnippet: '#theme/shoji-sumi-ink Leave generous negative space on Shoji cream paper with crisp sumi ink brushwork and calm breather holds.',
+      patch: { mStyle: 'ink-calligraphy', palId: 48, feel: 'held', rung: 2, ground: 'sumi', charId: 'origami-crane' }
+    },
+    {
+      token: '#theme/bathyal-biolum',
+      slashToken: '/theme/bathyal-biolum',
+      category: 'theme',
+      title: 'Deep-Sea Glowing Bioluminescence',
+      plainEnglish: 'Warm glowing amber and gold signals cutting through deep ocean Prussian blue — great for mystery and discovery.',
+      jargonTerm: 'Bathyal Amber on Prussian Blueprint · Wada No. 166',
+      promptSnippet: '#theme/bathyal-biolum Illuminate the subject with glowing bathyal amber against deep Prussian night water.',
+      patch: { mStyle: 'woodcut-relief', palId: 166, feel: 'slow', rung: 2, ground: 'blueprint', charId: 'lantern-bathysphere' }
+    },
+    {
+      token: '#theme/glaser-pop',
+      slashToken: '/theme/glaser-pop',
+      category: 'theme',
+      title: 'Expressive Color Ribbons (Milton Glaser)',
+      plainEnglish: 'Flowing multi-colored trailing ribbons and joyful springy overshoot — celebratory, musical, and full of life.',
+      jargonTerm: 'Glaser Overshoot · Harmonic Ribbons · Wada No. 329',
+      promptSnippet: '#theme/glaser-pop Trail expressive multi-color harmonic ribbons behind the hero with Milton Glaser ceremonial overshoot.',
+      patch: { mStyle: 'glaser-lite', palId: 329, feel: 'glaser', rung: 1, ground: 'atlas', charId: 'orpheus-lyre' }
+    },
+    {
+      token: '#theme/blueprint-rig',
+      slashToken: '/theme/blueprint-rig',
+      category: 'theme',
+      title: 'Engineering Blueprint & Joint Diagram',
+      plainEnglish: 'Shows the visible mechanical joints, pivots, and construction lines of the character like a living Da Vinci notebook.',
+      jargonTerm: 'Visible Rig Socket (e_rig) · Monoline Rung 3 · Blueprint Ground',
+      promptSnippet: '#theme/blueprint-rig Expose the internal pivot joints, measurement ticks, and construction geometry on a blueprint grid.',
+      patch: { mStyle: 'diagram-clean', palId: 166, feel: 'beat', rung: 3, ground: 'blueprint', charId: 'astronav-compass' }
+    },
+    {
+      token: '#theme/screenprint-offset',
+      slashToken: '/theme/screenprint-offset',
+      category: 'theme',
+      title: 'Vintage Screenprint (Offset Color Plates)',
+      plainEnglish: 'Color fills intentionally shift slightly outside the ink lines like a vintage mid-century silkscreen poster.',
+      jargonTerm: '2-3px Plate Misregistration · Risograph Grain · Wada No. 343',
+      promptSnippet: '#theme/screenprint-offset Offset the color fill plates by 3px against the ink contour for tactile vintage screenprint texture.',
+      patch: { mStyle: 'risograph', palId: 343, feel: 'spring', rung: 2, ground: 'atlas' }
+    },
+
+    // 2. #element/... — Plain-English Motion Building Blocks (No Jargon Needed)
+    {
+      token: '#element/line-wobble',
+      slashToken: '/element/line-wobble',
+      category: 'element',
+      title: 'Hand-Drawn Line Wobble ("12fps Boil")',
+      plainEnglish: 'Keeps outlines gently shimmering even when the character pauses so the frame never feels frozen or dead.',
+      jargonTerm: 'Element: 12fps Line Boil (e_boil)',
+      promptSnippet: '#element/line-wobble Add subtle 12fps hand-drawn line boil so held poses stay warm and alive.',
+      patch: { feel: 'spring' }
+    },
+    {
+      token: '#element/ink-bloom',
+      slashToken: '/element/ink-bloom',
+      category: 'element',
+      title: 'Soft Watercolor Pigment Bloom ("Ink Bleed")',
+      plainEnglish: 'A drop of color spreads softly into the paper grain at key emotional moments.',
+      jargonTerm: 'Element: Wet-on-Wet Ink Bleed (e_bleed)',
+      promptSnippet: '#element/ink-bloom Let a drop of Wada pigment bloom softly into the wet paper grain at the turning point.',
+      patch: { mStyle: 'watercolor' }
+    },
+    {
+      token: '#element/offset-print',
+      slashToken: '/element/offset-print',
+      category: 'element',
+      title: 'Shifted Color Fill ("Misregistration")',
+      plainEnglish: 'Offsets the color shadow 2–3px from the outline so it looks hand-printed rather than computer-perfect.',
+      jargonTerm: 'Element: Plate Misregistration (e_misreg)',
+      promptSnippet: '#element/offset-print Introduce 2.5px silkscreen plate misregistration between the ink contour and fill wash.',
+      patch: {}
+    },
+    {
+      token: '#element/wind-up-crouch',
+      slashToken: '/element/wind-up-crouch',
+      category: 'element',
+      title: 'Wind-Up Before Jumping ("Anticipation")',
+      plainEnglish: 'The character pulls back slightly for 3 frames before lunging forward, giving the movement real physical weight.',
+      jargonTerm: 'Element: Anticipation Crouch (e_antic)',
+      promptSnippet: '#element/wind-up-crouch Pull the character back into a 3-frame anticipation wind-up before launching into the main move.',
+      patch: { feel: 'spring' }
+    },
+    {
+      token: '#element/spring-overshoot',
+      slashToken: '/element/spring-overshoot',
+      category: 'element',
+      title: 'Bouncy Settle Past the Target ("Overshoot")',
+      plainEnglish: 'Instead of stopping robotically, the character goes slightly past its mark and settles back naturally.',
+      jargonTerm: 'Element: Ceremonial Overshoot & Settle (e_overshoot)',
+      promptSnippet: '#element/spring-overshoot Carry 12% past the target mark and settle with a warm harmonic spring.',
+      patch: { feel: 'glaser' }
+    },
+    {
+      token: '#element/tail-follow-through',
+      slashToken: '/element/tail-follow-through',
+      category: 'element',
+      title: 'Delayed Tail & Fin Wave ("Follow-Through")',
+      plainEnglish: 'Fins, wings, or ribbons keep moving a split second after the main body stops.',
+      jargonTerm: 'Element: Overlapping Follow-Through (e_follow)',
+      promptSnippet: '#element/tail-follow-through Delay the tail and appendage wave by 4 frames so secondary parts settle after the torso.',
+      patch: {}
+    },
+    {
+      token: '#element/echo-trail',
+      slashToken: '/element/echo-trail',
+      category: 'element',
+      title: 'Fading Ghost Trail Behind Motion',
+      plainEnglish: 'Leaves translucent echoes along the path the character just traveled so speed and trajectory are visible.',
+      jargonTerm: 'Element: Onion-Skin / Sounding Trail (e_trail)',
+      promptSnippet: '#element/echo-trail Enable fading Wada-tinted ghost silhouettes along the motion path.',
+      patch: { onionSkin: true }
+    },
+    {
+      token: '#element/call-and-answer',
+      slashToken: '/element/call-and-answer',
+      category: 'element',
+      title: 'Two-Character Call & Answer Duet',
+      plainEnglish: 'The hero makes a gesture or sound wave, and a companion character enters to answer it in harmony.',
+      jargonTerm: 'Element: Duet Counterpoint / Call & Response (e_call)',
+      promptSnippet: '#element/call-and-answer Stage a call-and-response duet where the hero emits a signal and the partner rig answers.',
+      patch: { interaction: 'duet-counterpoint', storyKey: 's_duet' }
+    },
+    {
+      token: '#element/spotlight-circle',
+      slashToken: '/element/spotlight-circle',
+      category: 'element',
+      title: 'Closing Circle Spotlight ("Iris Focus")',
+      plainEnglish: 'narrows a circular frame around the key detail so the viewer knows exactly where to look.',
+      jargonTerm: 'Element: Aperture Iris Focus (e_iris)',
+      promptSnippet: '#element/spotlight-circle Tighten a circular iris aperture around the hero to isolate the emotional turning point.',
+      patch: {}
+    },
+    {
+      token: '#element/quiet-pause',
+      slashToken: '/element/quiet-pause',
+      category: 'element',
+      title: 'Quiet Breathing Room ("Negative-Space Hold")',
+      plainEnglish: 'Pauses the action in open space for one beat before the climax so the audience can absorb the story.',
+      jargonTerm: 'Element: Rem Koolhaas Negative-Space Breather (Beat 6)',
+      promptSnippet: '#element/quiet-pause Hold in 78% open negative space on Beat 6 with only 1 gentle breathing motion.',
+      patch: { feel: 'held' }
+    },
+    {
+      token: '#element/silhouette-reveal',
+      slashToken: '/element/silhouette-reveal',
+      category: 'element',
+      title: 'Stark Shadow Silhouette Reveal',
+      plainEnglish: 'Strips away interior details so the character reads as a pure, iconic shadow shape.',
+      jargonTerm: 'Element: Rung 4 Silhouette Knockout',
+      promptSnippet: '#element/silhouette-reveal Reduce the character to a high-contrast Rung 4 silhouette for maximum graphic punch.',
+      patch: { rung: 4 }
+    },
+    {
+      token: '#element/water-ripples',
+      slashToken: '/element/water-ripples',
+      category: 'element',
+      title: 'Concentric Ring Ripples ("Wake")',
+      plainEnglish: 'Expanding rings radiate outward whenever the character turns or strikes a note.',
+      jargonTerm: 'Element: Secondary Acoustic/Fluid Wake (e_ripple)',
+      promptSnippet: '#element/water-ripples Emit concentric Wada accent rings radiating from the character at each beat accent.',
+      patch: { streaks: true }
+    },
+
+    // 3. #camera/... — 8 Camera Framing & Movement Directives
+    {
+      token: '#camera/push-in',
+      slashToken: '/camera/push-in',
+      category: 'camera',
+      title: 'Slow Dramatic Push-In Zoom (1.22×)',
+      plainEnglish: 'Moves the camera closer to the character to heighten intimacy or tension.',
+      jargonTerm: 'Camera: Push-In 1.22×',
+      promptSnippet: '#camera/push-in Push the camera in 1.22× toward the hero to build emotional focus.',
+      patch: { cameraMove: 'push-in' }
+    },
+    {
+      token: '#camera/dutch-tilt',
+      slashToken: '/camera/dutch-tilt',
+      category: 'camera',
+      title: 'Angled Off-Balance Horizon ("Dutch Tilt")',
+      plainEnglish: 'Tilts the camera angle slightly (-6.5°) when something unexpected or disruptive happens.',
+      jargonTerm: 'Camera: Dutch Tilt (-6.5°)',
+      promptSnippet: '#camera/dutch-tilt Tilt the camera frame -6.5° at the threshold beat to signal sudden instability.',
+      patch: { cameraMove: 'dutch-tilt' }
+    },
+    {
+      token: '#camera/pan-follow',
+      slashToken: '/camera/pan-follow',
+      category: 'camera',
+      title: 'Smooth Sideways Follow Pan',
+      plainEnglish: 'Glides sideways alongside the character as it travels across the canvas.',
+      jargonTerm: 'Camera: Lateral Pan-Follow',
+      promptSnippet: '#camera/pan-follow Pan laterally with the character to keep its forward momentum centered.',
+      patch: { cameraMove: 'pan-follow' }
+    },
+    {
+      token: '#camera/kick-shake',
+      slashToken: '/camera/kick-shake',
+      category: 'camera',
+      title: 'Punchy Impact Shake ("Climax Kick")',
+      plainEnglish: 'Adds a brief, energetic camera shudder at the exact moment of climax or impact.',
+      jargonTerm: 'Camera: Kinetic Impact Kick-Shake',
+      promptSnippet: '#camera/kick-shake Trigger a crisp kinetic camera shake on the climax beat.',
+      patch: { cameraMove: 'kick-shake' }
+    },
+    {
+      token: '#camera/pull-back',
+      slashToken: '/camera/pull-back',
+      category: 'camera',
+      title: 'Wide Reveal Pull-Back (0.86×)',
+      plainEnglish: 'Zooms out to reveal the whole landscape and echo the opening frame.',
+      jargonTerm: 'Camera: Wide Pull-Back 0.86×',
+      promptSnippet: '#camera/pull-back Pull back to a wide 0.86× panorama to reveal the full environment.',
+      patch: { cameraMove: 'pull-back' }
+    },
+    {
+      token: '#camera/breather-hold',
+      slashToken: '/camera/breather-hold',
+      category: 'camera',
+      title: 'Still Contemplative Wide Hold',
+      plainEnglish: 'Locks the camera completely still with wide margins so quiet moments feel sacred.',
+      jargonTerm: 'Camera: Breather Negative-Space Hold',
+      promptSnippet: '#camera/breather-hold Lock the camera in a quiet wide breather hold with zero camera drift.',
+      patch: { cameraMove: 'breather-hold' }
+    },
+
+    // 4. #feel/... — 8 Physics & Timing Feels
+    {
+      token: '#feel/spring',
+      slashToken: '/feel/spring',
+      category: 'feel',
+      title: 'Natural Physical Spring',
+      plainEnglish: 'Balanced, organic acceleration and deceleration — the best default for almost any story.',
+      jargonTerm: 'Timing Feel: Natural Spring (cubic-bezier 0.22, 1.28, 0.36, 1)',
+      promptSnippet: '#feel/spring Drive all motion with natural physical spring easing.',
+      patch: { feel: 'spring' }
+    },
+    {
+      token: '#feel/glaser-overshoot',
+      slashToken: '/feel/glaser-overshoot',
+      category: 'feel',
+      title: 'Expressive Ceremonial Overshoot',
+      plainEnglish: 'Swoops past the destination with theatrical flair before settling into place.',
+      jargonTerm: 'Timing Feel: Milton Glaser Ceremonial Overshoot',
+      promptSnippet: '#feel/glaser-overshoot Apply expressive Milton Glaser ceremonial overshoot on key pose transitions.',
+      patch: { feel: 'glaser' }
+    },
+    {
+      token: '#feel/saul-snap',
+      slashToken: '/feel/saul-snap',
+      category: 'feel',
+      title: 'Crisp Stop-Motion Poster Snap (8fps)',
+      plainEnglish: 'Steps in bold, rhythmic 8-frames-per-second holds like a cut-paper title sequence.',
+      jargonTerm: 'Timing Feel: Saul Bass 8fps Stepped Snap',
+      promptSnippet: '#feel/saul-snap Step the animation at 8fps graphic holds for crisp cut-paper rhythm.',
+      patch: { feel: 'saul' }
+    },
+    {
+      token: '#feel/rostrum-pan',
+      slashToken: '/feel/rostrum-pan',
+      category: 'feel',
+      title: 'Documentary Camera Glide ("Ken Burns")',
+      plainEnglish: 'Slow, steady museum-grade drift across an archival illustration or map.',
+      jargonTerm: 'Timing Feel: Rostrum Documentary Glide',
+      promptSnippet: '#feel/rostrum-pan Glide across the plate with steady rostrum documentary pacing.',
+      patch: { feel: 'rostrum' }
+    },
+
+    // 5. #character/... — 8 Parametric Character Archetypes
+    {
+      token: '#character/ceti-whale',
+      slashToken: '/character/ceti-whale',
+      category: 'character',
+      title: 'Humpback Leviathan (Oceanic Hero)',
+      plainEnglish: 'Graceful arched whale with pleated throat grooves and sweeping pectoral fins.',
+      jargonTerm: 'Rig: ceti-whale (cetacean)',
+      promptSnippet: '#character/ceti-whale Cast the Humpback Leviathan as the primary hero rig.',
+      patch: { charId: 'ceti-whale' }
+    },
+    {
+      token: '#character/saul-falcon',
+      slashToken: '/character/saul-falcon',
+      category: 'character',
+      title: 'Peregrine Cutout (Raptor Emblem)',
+      plainEnglish: 'Sharp geometric falcon with swept primary wings and high-speed diving silhouette.',
+      jargonTerm: 'Rig: saul-falcon (avian)',
+      promptSnippet: '#character/saul-falcon Cast the Peregrine Cutout falcon rig for sharp aerial geometry.',
+      patch: { charId: 'saul-falcon' }
+    },
+    {
+      token: '#character/lantern-bathysphere',
+      slashToken: '/character/lantern-bathysphere',
+      category: 'character',
+      title: 'Abyssal Bathysphere (Deep-Sea Explorer)',
+      plainEnglish: 'Diving bell submersible with glowing quartz viewport, sonar dish, and searchlight beam.',
+      jargonTerm: 'Rig: lantern-bathysphere (submersible)',
+      promptSnippet: '#character/lantern-bathysphere Cast the Abyssal Bathysphere submersible rig with glowing searchlight.',
+      patch: { charId: 'lantern-bathysphere' }
+    },
+    {
+      token: '#character/origami-crane',
+      slashToken: '/character/origami-crane',
+      category: 'character',
+      title: 'Tessellated Origami Crane (Folded Paper)',
+      plainEnglish: 'Crisp folded paper crane with visible geometric valley-fold creases.',
+      jargonTerm: 'Rig: origami-crane (geometric)',
+      promptSnippet: '#character/origami-crane Cast the Tessellated Origami Crane rig with crisp paper facets.',
+      patch: { charId: 'origami-crane' }
+    },
+    {
+      token: '#character/astronav-compass',
+      slashToken: '/character/astronav-compass',
+      category: 'character',
+      title: 'Astrolabe Gimbal (Celestial Instrument)',
+      plainEnglish: 'Rotating concentric brass rings and 4-point compass rose for navigation and telemetry stories.',
+      jargonTerm: 'Rig: astronav-compass (instrument)',
+      promptSnippet: '#character/astronav-compass Cast the Astrolabe Gimbal instrument rig with rotating brass rings.',
+      patch: { charId: 'astronav-compass' }
+    },
+    {
+      token: '#character/doodle-scribe',
+      slashToken: '/character/doodle-scribe',
+      category: 'character',
+      title: 'Nib & Ink Automaton (Fountain Pen)',
+      plainEnglish: 'Calligraphic fountain-pen nib that draws its own world as it moves.',
+      jargonTerm: 'Rig: doodle-scribe (calligraphic)',
+      promptSnippet: '#character/doodle-scribe Cast the Nib & Ink Automaton rig to draw live calligraphic strokes.',
+      patch: { charId: 'doodle-scribe' }
+    },
+    {
+      token: '#character/orpheus-lyre',
+      slashToken: '/character/orpheus-lyre',
+      category: 'character',
+      title: 'Harmonic Lyre-Form (Musical Emblem)',
+      plainEnglish: 'Sculptural acoustic lyre with 5 vibrating strings for musical and synesthetic stories.',
+      jargonTerm: 'Rig: orpheus-lyre (mythic)',
+      promptSnippet: '#character/orpheus-lyre Cast the Harmonic Lyre-Form rig with 5 resonant strings.',
+      patch: { charId: 'orpheus-lyre' }
+    },
+    {
+      token: '#character/kelp-leviathan',
+      slashToken: '/character/kelp-leviathan',
+      category: 'character',
+      title: 'Pelagic Riff-Serpent (Botanical Sea Dragon)',
+      plainEnglish: 'Undulating 5-wave sea-kelp serpent with leafy frond blades and glowing air bulbs.',
+      jargonTerm: 'Rig: kelp-leviathan (botanical)',
+      promptSnippet: '#character/kelp-leviathan Cast the Pelagic Riff-Serpent botanical rig with 5-wave undulating spine.',
+      patch: { charId: 'kelp-leviathan' }
+    },
+    {
+      token: '#theme/saul-bass-cutout',
+      slashToken: '/theme/saul-bass-cutout',
+      category: 'theme',
+      title: 'Saul Bass Paper Cutout (Bold 3-Color Silhouettes)',
+      plainEnglish: 'Razor-sharp cut-paper silhouettes with high-contrast color blocks and stepped graphic holds.',
+      jargonTerm: 'Cutout · Rung 4 · Wada No. 126 · Stepped Hold',
+      promptSnippet: '#theme/saul-bass-cutout Stage with razor-sharp Saul Bass paper cutouts in Wada No. 126.',
+      patch: { styleKey: 'cutout', mStyle: 'cutout', palId: 126, feel: 'saul', rung: 4, ground: 'atlas' }
+    },
+    {
+      token: '#theme/ghibli-watercolor',
+      slashToken: '/theme/ghibli-watercolor',
+      category: 'theme',
+      title: 'Warm Hand-Painted Watercolor Wash',
+      plainEnglish: 'Soft translucent pigment layers bleeding gently into warm textured paper.',
+      jargonTerm: 'Watercolor · Rung 1 · Wada No. 343 · Spring Feel',
+      promptSnippet: '#theme/ghibli-watercolor Render with warm translucent watercolor washes on archival cream paper.',
+      patch: { styleKey: 'watercolor', mStyle: 'watercolor', palId: 343, feel: 'spring', rung: 1, ground: 'atlas' }
+    },
+    {
+      token: '#theme/blueprint-telemetry',
+      slashToken: '/theme/blueprint-telemetry',
+      category: 'theme',
+      title: 'Technical Blueprint & Hydrographic Telemetry',
+      plainEnglish: 'Precision architectural lines, compass rings, and live coordinate readouts on Prussian blue.',
+      jargonTerm: 'Diagram Clean · Rung 3 · Wada No. 166 · Blueprint',
+      promptSnippet: '#theme/blueprint-telemetry Overlay technical blueprint coordinates and hydrographic sounding rings.',
+      patch: { styleKey: 'diagram', mStyle: 'diagram', palId: 166, feel: 'rostrum', rung: 3, ground: 'blueprint' }
+    },
+    {
+      token: '#element/negative-space-reveal',
+      slashToken: '/element/negative-space-reveal',
+      category: 'element',
+      title: 'Negative-Space Figure/Ground Reveal',
+      plainEnglish: 'The background shadow carves out the hidden shape of the character without drawing an outline.',
+      jargonTerm: 'Element: Figure/Ground Reversal (e_negspace)',
+      promptSnippet: '#element/negative-space-reveal Carve the subject out of negative space using figure/ground reversal.',
+      patch: { styleKey: 'silhouette', mStyle: 'silhouette', rung: 4 }
+    },
+    {
+      token: '#element/grain-stipple',
+      slashToken: '/element/grain-stipple',
+      category: 'element',
+      title: 'Tactile Film Grain & Stipple Shading',
+      plainEnglish: 'Adds warm organic paper tooth and stippled ink dots so flat shapes feel hand-printed.',
+      jargonTerm: 'Element: Risograph Stipple & Paper Grain (e_grain)',
+      promptSnippet: '#element/grain-stipple Add tactile archival paper grain and stippled ink shading.',
+      patch: { styleKey: 'risograph', mStyle: 'risograph' }
+    },
+    {
+      token: '#camera/match-cut-morph',
+      slashToken: '/camera/match-cut-morph',
+      category: 'camera',
+      title: 'Seamless Shape Match-Cut Transition',
+      plainEnglish: 'Morphs one silhouette directly into the next scene at the exact same screen position.',
+      jargonTerm: 'Camera: Graphic Match-Cut Morph',
+      promptSnippet: '#camera/match-cut-morph Bridge the beat transition with a graphic silhouette match-cut.',
+      patch: { cameraMove: 'push-in', storyKey: 's_morph' }
+    },
+    {
+      token: '#feel/held-24fps',
+      slashToken: '/feel/held-24fps',
+      category: 'feel',
+      title: 'Hand-Crafted Stop-Motion Hold (On Twos & Threes)',
+      plainEnglish: 'Holds each pose for 2–3 frames so movement feels sculpted by hand rather than computer-interpolated.',
+      jargonTerm: 'Timing Feel: Stepped Stop-Motion Hold',
+      promptSnippet: '#feel/held-24fps Animate on stepped holds (twos and threes) for tactile stop-motion presence.',
+      patch: { feel: 'held' }
+    }
+  ];
+
+  // Build combined vocabulary list including dynamic user-saved #color/<tag> schemes
+  function getFullVocabLibrary(savedSchemes) {
+    const schemes = Array.isArray(savedSchemes) && savedSchemes.length ? savedSchemes : DEFAULT_SAVED_SCHEMES;
+    const colorItems = schemes.map(function (sc) {
+      const tok = sc.token || ('#color/' + sc.tag);
+      const sl = sc.slash || ('/color/' + sc.tag);
+      const nm = sc.title || sc.name || ('Wada No. ' + sc.palId);
+      const desc = sc.notes || ('Saved color scheme pinned to Sanzo Wada No. ' + sc.palId + ' (' + (sc.tags || []).join(' ') + ').');
+      return {
+        id: sc.id || ('color-' + sc.tag),
+        token: tok,
+        slash: sl,
+        slashToken: sl,
+        category: 'color',
+        title: nm,
+        plainName: nm,
+        plainEnglish: desc,
+        plainDesc: desc,
+        jargonTerm: 'Sanzo Wada No. ' + sc.palId + ' · Ground: ' + (sc.ground || 'atlas') + ' · ' + (sc.tags || []).join(' '),
+        promptSnippet: tok + ' Pin palette to "' + nm + '" (Wada No. ' + sc.palId + ').',
+        patch: { palId: sc.palId, ground: sc.ground || 'atlas', schemeTag: sc.tag, colorSchemeTag: tok }
+      };
+    });
+    const normalizedBase = VOCAB_LIBRARY.map(function (it) {
+      const p = Object.assign({}, it.patch || {});
+      if (p.mStyle && !p.styleKey) p.styleKey = p.mStyle;
+      if (p.styleKey && !p.mStyle) p.mStyle = p.styleKey;
+      return Object.assign({}, it, {
+        slash: it.slash || it.slashToken,
+        slashToken: it.slashToken || it.slash,
+        plainName: it.plainName || it.title,
+        title: it.title || it.plainName,
+        plainDesc: it.plainDesc || it.plainEnglish,
+        plainEnglish: it.plainEnglish || it.plainDesc,
+        patch: p
+      });
+    });
+    return normalizedBase.concat(colorItems);
+  }
+
+  function searchVocabLibrary(query, category, savedSchemes) {
+    const all = getFullVocabLibrary(savedSchemes);
+    const cat = (category && category !== 'all') ? category.toLowerCase() : null;
+    const rawQ = String(query || '').trim().toLowerCase();
+    const cleanQ = rawQ.replace(/^[/#]+/, '');
+
+    return all.filter(function (item) {
+      if (cat && item.category !== cat) return false;
+      if (!cleanQ) return true;
+      const hay = (
+        item.token + ' ' +
+        item.slashToken + ' ' +
+        item.category + ' ' +
+        item.title + ' ' +
+        item.plainEnglish + ' ' +
+        item.jargonTerm
+      ).toLowerCase();
+      return hay.includes(cleanQ);
+    });
+  }
+
+  // Parse any #token or /token inside a prompt/note and return the combined patch + matched items
+  function parsePromptTokens(text, savedSchemes) {
+    const all = getFullVocabLibrary(savedSchemes);
+    const str = String(text || '');
+    const matched = [];
+    const combinedPatch = {};
+    let explicitThemeStyle = null;
+
+    all.forEach(function (item) {
+      const tokLower = item.token.toLowerCase();
+      const slashLower = item.slashToken.toLowerCase();
+      const slugLower = tokLower.split('/')[1] || '';
+      const lowerStr = str.toLowerCase();
+      if (
+        lowerStr.includes(tokLower) ||
+        lowerStr.includes(slashLower) ||
+        (slugLower && (lowerStr.includes('#' + slugLower) || lowerStr.includes('/' + slugLower)))
+      ) {
+        matched.push(item);
+        if (item.category === 'theme' && item.patch && (item.patch.styleKey || item.patch.mStyle)) {
+          explicitThemeStyle = item.patch.styleKey || item.patch.mStyle;
+        }
+        Object.assign(combinedPatch, item.patch || {});
+      }
+    });
+
+    if (explicitThemeStyle) {
+      combinedPatch.styleKey = explicitThemeStyle;
+      combinedPatch.mStyle = explicitThemeStyle;
+    }
+
+    return {
+      matchedTokens: matched,
+      matchedItems: matched,
+      patch: combinedPatch,
+      mergedPatch: combinedPatch
+    };
+  }
+
   // ─────────────────────────────────────────────────────────────────────────
   // 4. MULTI-PROVIDER OAUTH 2.0 PKCE + LOCAL BRIDGE + SYNTHESIZER (G10 · G11)
   // ─────────────────────────────────────────────────────────────────────────
@@ -4873,37 +5775,46 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
   // Deterministic Algebraic Storyboard & Character Synthesizer (Offline + Fallback)
   function runDeterministicSynthesizer(req) {
     const r = req || {};
-    const charId = r.charId || 'ceti-whale';
-    const charSpec = FOUNDRY.CHARACTERS[charId] || FOUNDRY.CHARACTERS['ceti-whale'];
-    const palId = r.palId || 343;
-    const styleKey = r.styleKey || 'watercolor';
-    const storyKey = r.storyKey || 's_voice';
     const prompt = (r.prompt || 'Deepen causal tension and synthesize a custom companion rig').trim();
+    const parsedTokens = parsePromptTokens(prompt, r.savedSchemes);
+    const tokPatch = parsedTokens.patch || {};
 
-    // Select a harmonic Wada partner combo based on prompt hash
+    const charId = tokPatch.charId || r.charId || 'ceti-whale';
+    const charSpec = FOUNDRY.CHARACTERS[charId] || FOUNDRY.CHARACTERS['ceti-whale'];
+    const palId = tokPatch.palId || r.palId || 343;
+    const styleKey = tokPatch.mStyle || r.styleKey || 'watercolor';
+    const storyKey = tokPatch.storyKey || r.storyKey || 's_voice';
+    const feelKey = tokPatch.feel || r.feelKey || 'spring';
+
+    // Select a harmonic Wada partner combo based on #color/#theme token or prompt hash
     let pHash = 0;
     for (let i = 0; i < prompt.length; i++) pHash = ((pHash << 5) - pHash + prompt.charCodeAt(i)) | 0;
     const curatedIds = WADA.PALS.map(function (p) { return p.id; });
-    const suggestedCombo = curatedIds[Math.abs(pHash) % curatedIds.length] || palId;
+    const suggestedCombo = tokPatch.palId || curatedIds[Math.abs(pHash) % curatedIds.length] || palId;
 
     const baseSheet = buildStoryboardSheet({
       storyKey: storyKey,
       styleKey: styleKey,
       charId: charId,
       palId: suggestedCombo,
-      feelKey: r.feelKey || 'spring'
+      feelKey: feelKey
     });
+
+    const tokenTagsSummary = parsedTokens.matchedTokens.length
+      ? (' [Applied tokens: ' + parsedTokens.matchedTokens.map(function (t) { return t.token; }).join(', ') + ']')
+      : '';
 
     // Enhance beats with prompt-specific visual staging and strict BUT/THEREFORE hinges
     const enhancedBeats = baseSheet.beats.map(function (b, i) {
       const hinge = (i % 2 === 1) ? 'BUT' : 'THEREFORE';
       const suffix = i === 0
-        ? (' [Stage prompt: "' + prompt.slice(0, 48) + '"]')
+        ? (' [Stage prompt: "' + prompt.slice(0, 48) + '"]' + tokenTagsSummary)
         : (i === 5
           ? ' [Negative-space breather hold: 0 competing moves]'
           : (i === 7 ? ' [Callback lock: echoes Beat 1 silhouette & Wada No. ' + suggestedCombo + ']' : ''));
       return Object.assign({}, b, {
         hinge: hinge,
+        cameraMove: (i === 3 && tokPatch.cameraMove) ? tokPatch.cameraMove : b.cameraMove,
         visualAction: b.visualAction + suffix
       });
     });
@@ -5549,7 +6460,11 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
       { id: 'G22', name: 'Alexandrov Sheaf Pushout Synthesis (A ⊕ B Gluing)', pass: typeof synthesizeBranches === 'function' && typeof computeGluingHash === 'function', metric: 'Multi-Parent Pushout ρ(A ⊕ B) · δ⁰=0' },
       { id: 'G23', name: 'Multi-Frame Onion-Skinning (-2Δt / -1Δt / +1Δt)', pass: Array.isArray(onionFrames) && onionFrames.length === 3, metric: '3 Wada Ghost Frames + Spacing Trajectory' },
       { id: 'G24', name: 'Orpheum Harmonic WebAudio Sonification (OKLab → Hz)', pass: Array.isArray(wadaChord.voices) && wadaChord.voices.length === 4, metric: '4-Voice Just-Intonation · Root ' + wadaChord.baseRootHz + ' Hz' },
-      { id: 'G25', name: 'Vector Path Compilers (SVG Keyframe Sprite + Lottie v5.7)', pass: svgOut.indexOf('<svg') >= 0 && lottieOut.indexOf('"5.7.4"') >= 0, metric: 'Animated SVG (' + svgOut.length + 'B) + Lottie JSON (' + lottieOut.length + 'B)' }
+      { id: 'G25', name: 'Vector Path Compilers (SVG Keyframe Sprite + Lottie v5.7)', pass: svgOut.indexOf('<svg') >= 0 && lottieOut.indexOf('"5.7.4"') >= 0, metric: 'Animated SVG (' + svgOut.length + 'B) + Lottie JSON (' + lottieOut.length + 'B)' },
+      { id: 'G26', name: 'Freeform Card Dragging & Storyboard Beat Reordering', pass: typeof moveCanvasNode === 'function' && typeof duplicateCanvasCard === 'function' && typeof moveStoryboardBeat === 'function', metric: 'Whole-Card Drag + Duplicate + 8-Beat Reorder' },
+      { id: 'G27', name: 'Direct Source A / Source B Picker & Context Switcher', pass: Boolean(st.selectedNodeId || dag.nodes[0]), metric: '1-Click Source A / Source B Pills + Toolbar Selector' },
+      { id: 'G28', name: '# & / Studio Vocabulary, Theme & Element Library', pass: getFullVocabLibrary(st.savedColorSchemes).length >= 36 && typeof searchVocabLibrary === 'function' && typeof parsePromptTokens === 'function', metric: getFullVocabLibrary(st.savedColorSchemes).length + ' Plain-English # & / Tokens Active' },
+      { id: 'G29', name: 'Tagged & Saved Color Scheme Vault (#color/<tag>)', pass: typeof tagAndSaveColorScheme === 'function' && typeof resolveColorSchemeByTag === 'function' && ((st.savedColorSchemes || DEFAULT_SAVED_SCHEMES).length >= 6), metric: (st.savedColorSchemes || DEFAULT_SAVED_SCHEMES).length + ' Tagged Color Schemes Vaulted' }
     ];
 
     const passedCount = gates.filter(function (g) { return g.pass; }).length;
@@ -5564,11 +6479,22 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
   global.STUDIO_CANVAS_OAUTH = {
     LENSES: LENSES,
     LENS_ORDER: LENS_ORDER,
+    DEFAULT_SAVED_SCHEMES: DEFAULT_SAVED_SCHEMES,
+    VOCAB_LIBRARY: VOCAB_LIBRARY,
+    getFullVocabLibrary: getFullVocabLibrary,
+    searchVocabLibrary: searchVocabLibrary,
+    parsePromptTokens: parsePromptTokens,
+    tagAndSaveColorScheme: tagAndSaveColorScheme,
+    resolveColorSchemeByTag: resolveColorSchemeByTag,
     buildStoryboardSheet: buildStoryboardSheet,
     auditStoryboardSheet: auditStoryboardSheet,
+    moveStoryboardBeat: moveStoryboardBeat,
     resolveNonOverlappingPosition: resolveNonOverlappingPosition,
     autoLayoutDAG: autoLayoutDAG,
     createDefaultDAG: createDefaultDAG,
+    moveCanvasNode: moveCanvasNode,
+    duplicateCanvasCard: duplicateCanvasCard,
+    deleteCanvasCard: deleteCanvasCard,
     computePacketHash: computePacketHash,
     computeGluingHash: computeGluingHash,
     stampDAGRestrictionHashes: stampDAGRestrictionHashes,
@@ -5634,6 +6560,12 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
         renderMode: null,
         palIdx: (saved && typeof saved.palIdx === 'number') ? saved.palIdx : 0,
         activeWadaCombos: WADA.getAllWadaCombos(),
+        savedColorSchemes: (saved && Array.isArray(saved.savedColorSchemes) && saved.savedColorSchemes.length)
+          ? saved.savedColorSchemes
+          : (CO.DEFAULT_SAVED_SCHEMES ? CO.DEFAULT_SAVED_SCHEMES.slice() : []),
+        schemeTagInput: 'hero-dawn',
+        schemeNameInput: 'Hero Dawn Custom',
+        schemeTagsInput: '#warm #hero #custom',
         wadaSearch: '',
         wadaFilterRegister: 'all',
         feel: (saved && saved.feel) || 'spring',
@@ -5652,29 +6584,37 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
         guide: true,
         captionsCovered: false,
         onionSkin: (saved && typeof saved.onionSkin === 'boolean') ? saved.onionSkin : false,
-        // Infinite-Zoom Living Canvas viewport & DAG
+        // Infinite-Zoom Living Canvas viewport & DAG (preserve user custom card x/y positions!)
         zoom: (saved && saved.zoom) || 0.78,
         panX: (saved && saved.panX) || 18,
         panY: (saved && saved.panY) || 16,
-        dag: (saved && saved.dag && Array.isArray(saved.dag.nodes) && saved.dag.nodes.length) ? CO.autoLayoutDAG(saved.dag) : defaultDag,
-        selectedNodeId: 'node-proof-a',
-        compareNodeId: 'node-proof-b',
+        dag: (saved && saved.dag && Array.isArray(saved.dag.nodes) && saved.dag.nodes.length)
+          ? (CO.stampDAGRestrictionHashes ? CO.stampDAGRestrictionHashes(saved.dag) : saved.dag)
+          : defaultDag,
+        selectedNodeId: (saved && saved.selectedNodeId) || 'node-proof-a',
+        compareNodeId: (saved && saved.compareNodeId) || 'node-proof-b',
         showABCompare: false,
         // Storyboard sheet
-        storyboard: CO.buildStoryboardSheet({
-          storyKey: (saved && saved.storyKey) || 's_voice',
-          styleKey: (saved && saved.mStyle) || 'watercolor',
-          charId: (saved && saved.charId) || 'ceti-whale',
-          palId: WADA.PALS[0].id,
-          feelKey: 'spring'
-        }),
-        // OAuth 2.0 PKCE & Live Enhancer state
+        storyboard: (saved && saved.storyboard && Array.isArray(saved.storyboard.beats) && saved.storyboard.beats.length === 8)
+          ? saved.storyboard
+          : CO.buildStoryboardSheet({
+              storyKey: (saved && saved.storyKey) || 's_voice',
+              styleKey: (saved && saved.mStyle) || 'watercolor',
+              charId: (saved && saved.charId) || 'ceti-whale',
+              palId: WADA.PALS[0].id,
+              feelKey: 'spring'
+            }),
+        // OAuth 2.0 PKCE & Live Enhancer + # Vocabulary Library state
         oauthModalOpen: false,
         gateModalOpen: false,
+        vocabModalOpen: false,
+        vocabFilterCat: 'all',
+        vocabSearch: '',
+        vocabTargetField: 'oauthPrompt',
         oauthProvider: 'local-bridge',
-        oauthStatus: 'Ready (Offline Algebraic + PKCE S256)',
+        oauthStatus: 'Ready (Offline Algebraic + PKCE S256 · Type # or / for Themes & Elements)',
         oauthToken: '',
-        oauthPrompt: 'Heighten causal contrast at the threshold beat and synthesize an abyssal companion rig',
+        oauthPrompt: 'Heighten causal contrast at the threshold beat #theme/warm-storybook #element/spring-overshoot',
         oauthLastResult: null,
         oauthBusy: false,
         // Compile Room state
@@ -5692,8 +6632,11 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
       this._raf = 0;
       this._draggingCanvas = false;
       this._draggingNodeId = null;
+      this._dragMovedPx = 0;
       this._dragStart = [0, 0];
       this._panStart = [0, 0];
+      this._draggingBeatIdx = null;
+      this._activeAutocompleteEl = null;
 
       MA.setActorOption('charId', this.state.charId);
       MA.setActorOption('partnerCharId', this.state.partnerCharId);
@@ -5721,13 +6664,15 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
 
       if (patch.storyKey || patch.mStyle || patch.charId || patch.palIdx !== undefined || patch.feel) {
         const pal = this.getActivePalette();
-        this.state.storyboard = CO.buildStoryboardSheet({
-          storyKey: this.state.storyKey,
-          styleKey: this.state.mStyle,
-          charId: this.state.charId,
-          palId: pal.id,
-          feelKey: this.state.feel
-        });
+        if (!patch.storyboard) {
+          this.state.storyboard = CO.buildStoryboardSheet({
+            storyKey: this.state.storyKey,
+            styleKey: this.state.mStyle,
+            charId: this.state.charId,
+            palId: pal.id,
+            feelKey: this.state.feel
+          });
+        }
       }
 
       CO.saveSessionState({
@@ -5737,6 +6682,9 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
         interaction: this.state.interaction,
         rung: this.state.rung,
         palIdx: this.state.palIdx,
+        savedColorSchemes: this.state.savedColorSchemes,
+        selectedNodeId: this.state.selectedNodeId,
+        compareNodeId: this.state.compareNodeId,
         feel: this.state.feel,
         ground: this.state.ground,
         mStyle: this.state.mStyle,
@@ -5745,7 +6693,8 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
         zoom: this.state.zoom,
         panX: this.state.panX,
         panY: this.state.panY,
-        dag: this.state.dag
+        dag: this.state.dag,
+        storyboard: this.state.storyboard
       });
 
       if (!skipDOM) {
@@ -5848,11 +6797,12 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
         }
       } catch (_e) { /* ignore */ }
 
-      // Global Keyboard Shortcuts (Gate G16): Escape=Close Modal, Space=Play/Pause, [/]=Scrub, C=Captions-Covered, O=Onion-Skin, F=Fork
+      // Global Keyboard Shortcuts (Gate G16): Escape=Close Modal, Space=Play/Pause, [/]=Scrub, C=Captions-Covered, O=Onion-Skin, F=Fork, K=#Vocab
       window.addEventListener('keydown', function (e) {
         if (e.key === 'Escape') {
-          if (self.state.oauthModalOpen || self.state.gateModalOpen) {
-            self.setState({ oauthModalOpen: false, gateModalOpen: false });
+          self.hideVocabPopover();
+          if (self.state.oauthModalOpen || self.state.gateModalOpen || self.state.vocabModalOpen) {
+            self.setState({ oauthModalOpen: false, gateModalOpen: false, vocabModalOpen: false });
             return;
           }
         }
@@ -5873,6 +6823,9 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
           self.setState({ captionsCovered: !self.state.captionsCovered });
         } else if (e.key === 'o' || e.key === 'O') {
           self.setState({ onionSkin: !self.state.onionSkin });
+        } else if (e.key === 'k' || e.key === 'K' || e.key === '#') {
+          e.preventDefault();
+          self.setState({ vocabModalOpen: !self.state.vocabModalOpen });
         } else if (e.key === 'f' || e.key === 'F') {
           const res = CO.forkCanvasNode(self.state.dag, self.state.selectedNodeId);
           self.setState({ dag: { nodes: res.nodes, edges: res.edges }, selectedNodeId: res.createdNodeId });
@@ -5890,25 +6843,58 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
             stage.style.transform = 'translate(' + self.state.panX + 'px,' + self.state.panY + 'px) scale(' + self.state.zoom + ')';
           }
         } else if (self._draggingNodeId) {
+          const rawDx = e.clientX - self._dragStart[0];
+          const rawDy = e.clientY - self._dragStart[1];
+          self._dragMovedPx = Math.hypot(rawDx, rawDy);
           const node = self.state.dag.nodes.find(function (n) { return n.id === self._draggingNodeId; });
           if (node) {
-            const dx = (e.clientX - self._dragStart[0]) / self.state.zoom;
-            const dy = (e.clientY - self._dragStart[1]) / self.state.zoom;
-            node.x = Math.round(self._panStart[0] + dx);
-            node.y = Math.round(self._panStart[1] + dy);
+            const dx = rawDx / self.state.zoom;
+            const dy = rawDy / self.state.zoom;
+            node.x = Math.max(8, Math.round(self._panStart[0] + dx));
+            node.y = Math.max(8, Math.round(self._panStart[1] + dy));
+            node.customMoved = true;
             const el = self.root.querySelector('[data-dag-node="' + node.id + '"]');
             if (el) {
               el.style.left = node.x + 'px';
               el.style.top = node.y + 'px';
+              if (self._dragMovedPx >= 3) el.classList.add('dag-node-dragging');
+            }
+            const xyBadge = self.root.querySelector('[data-node-xy="' + node.id + '"]');
+            if (xyBadge) {
+              xyBadge.textContent = 'x:' + node.x + ' y:' + node.y;
             }
             self.updateDagEdgesSVG();
           }
         }
       });
-      window.addEventListener('mouseup', function () {
-        if (self._draggingCanvas || self._draggingNodeId) {
-          self._draggingCanvas = false;
+
+      window.addEventListener('mouseup', function (e) {
+        if (self._draggingNodeId) {
+          const draggedId = self._draggingNodeId;
+          const movedPx = self._dragMovedPx || 0;
+          const el = self.root.querySelector('[data-dag-node="' + draggedId + '"]');
+          if (el) el.classList.remove('dag-node-dragging');
           self._draggingNodeId = null;
+          self._dragMovedPx = 0;
+
+          if (movedPx < 5) {
+            // Simple click on card: set as Source A (or Shift+Click for Source B!)
+            if (e && e.shiftKey) {
+              self.setState({ compareNodeId: draggedId, showABCompare: true });
+            } else if (self.state.selectedNodeId !== draggedId) {
+              self.setState({ selectedNodeId: draggedId });
+            }
+          } else {
+            // Completed a freeform drag: persist exact (x, y) without re-rendering DOM!
+            const node = self.state.dag.nodes.find(function (n) { return n.id === draggedId; });
+            if (node && CO.moveCanvasNode) {
+              CO.moveCanvasNode(self.state.dag, draggedId, node.x, node.y);
+            }
+            CO.saveSessionState(self.state);
+          }
+        }
+        if (self._draggingCanvas) {
+          self._draggingCanvas = false;
           CO.saveSessionState(self.state);
         }
       });
@@ -5973,7 +6959,7 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
       ['fork-explorer',     'II · 5-Lens Forks'],
       ['character-foundry', 'III · Character & Emblem Foundry'],
       ['storyboard-sheet',  'IV · 8-Beat Storyboard'],
-      ['wada-chord-matrix', 'V · Sanzo Wada 348 & Hydrography'],
+      ['wada-chord-matrix', 'V · Sanzo Wada 348 & Color Vault'],
       ['contact-sheet',     'VI · 15 Styles & 24 Elements'],
       ['compile-export',    'VII · Compile & Export']
     ];
@@ -5987,14 +6973,21 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
       return '<option value="' + esc(m.id) + '"' + (st.interaction === m.id ? ' selected' : '') + '>' + esc(m.label) + '</option>';
     }).join('');
 
-    const palPills = WADA.PALS.slice(0, 11).map(function (p, idx) {
+    const palPills = WADA.PALS.slice(0, 7).map(function (p) {
       const on = st.activeWadaCombos[st.palIdx] && st.activeWadaCombos[st.palIdx].id === p.id;
       const dots = p.sw.slice(0, 4).map(function (s) {
-        return '<span style="width:9px;height:9px;border-radius:50%;background:' + s[0] + ';border:1px solid rgba(26,31,46,.22);display:inline-block"></span>';
+        return '<span style="width:8px;height:8px;border-radius:50%;background:' + s[0] + ';border:1px solid rgba(26,31,46,.22);display:inline-block"></span>';
       }).join('');
       return '<button data-action="pick-curated-pal" data-pal-id="' + p.id + '" class="st-pill ' + (on ? 'st-pill-active' : '') + '" title="No. ' + p.id + ' · ' + esc(p.name) + '">' +
-        '<span style="display:inline-flex;gap:2px;margin-right:5px;vertical-align:middle">' + dots + '</span>' +
+        '<span style="display:inline-flex;gap:2px;margin-right:4px;vertical-align:middle">' + dots + '</span>' +
         '<span>No.' + p.id + ' ' + esc(p.name) + '</span></button>';
+    }).join('');
+
+    const savedSchemes = (st.savedColorSchemes && st.savedColorSchemes.length) ? st.savedColorSchemes : (CO.DEFAULT_SAVED_SCHEMES || []);
+    const savedSchemePills = savedSchemes.slice(0, 5).map(function (sc) {
+      const isPinned = pal.id === sc.palId && st.ground === (sc.ground || 'atlas');
+      return '<button data-action="invoke-saved-scheme" data-scheme-tag="' + esc(sc.tag) + '" class="st-pill ' + (isPinned ? 'st-pill-active' : '') + '" style="border-color:#8C4A2E" title="Re-invoke saved scheme ' + esc(sc.handle) + ' (' + esc(sc.name) + ' · Wada No. ' + sc.palId + ')">' +
+        '★ <strong>' + esc(sc.handle) + '</strong></button>';
     }).join('');
 
     return '<header class="st-header">' +
@@ -6003,10 +6996,11 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
           '<span class="st-eyebrow">CETI INTERNAL DESIGN &amp; NARRATIVE STUDIO</span>' +
           '<div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap">' +
             '<h1 class="st-title">Motion Atlas Studio Pro</h1>' +
-            '<span class="st-sub">Sanzo Wada 348 Harmonic Pinning · Parametric Multi-Character Algebra · Infinite-Zoom Living Canvas · OAuth 2.0 PKCE</span>' +
+            '<span class="st-sub">Sanzo Wada 348 · Freeform Living Canvas · # &amp; / Vocabulary &amp; Theme Library · Tagged Color Vault · OAuth 2.0 PKCE</span>' +
           '</div>' +
         '</div>' +
         '<div class="st-top-actions">' +
+          '<button data-action="toggle-vocab-modal" class="st-btn" title="Browse &amp; Insert Plain-English Design Vocabulary, Themes, Elements &amp; #color Tags [K]"># / Vocabulary &amp; Themes [K]</button>' +
           '<button data-action="toggle-oauth-modal" class="st-btn st-btn-rust">OAuth 2.0 PKCE Live Enhancer</button>' +
           '<button data-action="toggle-gate-modal" class="st-btn st-btn-ink">Audit ' + audit.passedCount + '/' + audit.totalCount + ' PASS</button>' +
         '</div>' +
@@ -6061,11 +7055,14 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
         '</div>' +
       '</div>' +
 
-      '<!-- Curated Sanzo Wada Quick-Pin Strip -->' +
+      '<!-- Curated Sanzo Wada Quick-Pin Strip + Saved & Tagged #color/<tag> Schemes -->' +
       '<div class="st-wada-strip">' +
-        '<span class="st-label" style="margin-right:6px">SANZO WADA PINNED (' + esc(pal.no) + ' · ' + esc(pal.name) + ' · CR ' + pal.cr + ':1 AAA):</span>' +
+        '<span class="st-label" style="margin-right:4px">WADA (' + esc(pal.no) + ' · CR ' + pal.cr + ':1):</span>' +
         palPills +
-        '<button data-action="switch-surface" data-surface="wada-chord-matrix" class="st-pill" style="border-style:dashed">All 348 Wada + ΔE2000 →</button>' +
+        '<span class="st-label" style="margin:0 4px 0 8px;color:#8C4A2E">SAVED #COLOR TAGS:</span>' +
+        savedSchemePills +
+        '<button data-action="quick-tag-current-scheme" class="st-pill" style="border-style:dashed;border-color:#2E5A44;color:#2E5A44" title="Tag &amp; Save current Wada palette into your #color/<tag> Vault">★ + Tag &amp; Save Color</button>' +
+        '<button data-action="switch-surface" data-surface="wada-chord-matrix" class="st-pill" style="border-style:dashed">All 348 + Vault →</button>' +
       '</div>' +
 
       '<!-- 7 Studio Surfaces Navigation -->' +
@@ -6078,7 +7075,7 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
   };
 
   // ─────────────────────────────────────────────────────────────────────────
-  // SURFACE 1 · INFINITE-ZOOM LIVING CANVAS (DAG + PASTEBOARD) (G09)
+  // SURFACE 1 · INFINITE-ZOOM LIVING CANVAS (DAG + PASTEBOARD) (G09 · G26 · G27)
   // ─────────────────────────────────────────────────────────────────────────
   proto.renderSurfaceInfiniteCanvas = function (pal, charSpec) {
     const st = this.state;
@@ -6089,21 +7086,27 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
     const compareNode = (st.dag.nodes || []).find(function (n) { return n.id === st.compareNodeId; }) || st.dag.nodes[1] || selectedNode;
 
     const nodesHtml = (st.dag.nodes || []).map(function (n) {
-      const isSel = n.id === st.selectedNodeId;
+      const isSelA = n.id === st.selectedNodeId;
+      const isSelB = n.id === st.compareNodeId && n.id !== st.selectedNodeId;
       const p = n.payload || {};
       const proofKey = p.styleKey || p.storyKey || 'watercolor';
       const nCharId = p.charId || st.charId;
       const nChar = FOUNDRY.CHARACTERS[nCharId] || charSpec;
       const nPalId = p.palId || pal.id;
-      const statusBadge = '<span class="st-badge ' + (n.status === 'committed' ? 'badge-pass' : (n.status === 'candidate' ? 'badge-warn' : '')) + '">' + esc((n.status || 'exploratory').toUpperCase()) + '</span>';
       const sheafBadge = '<span class="st-mono-xs" title="Sheaf Restriction Hash ρ(child)=parent" style="color:rgba(26,31,46,.55)">' + esc(n.packetHash || 'ρ-root') + (n.upstreamHash ? ' ← ' + esc(n.upstreamHash) : '') + '</span>';
 
-      return '<div data-dag-node="' + esc(n.id) + '" class="dag-node ' + (isSel ? 'dag-node-selected' : '') + ' lod-' + lod + '" style="left:' + n.x + 'px;top:' + n.y + 'px;width:' + (n.width || 310) + 'px">' +
+      return '<div data-dag-node="' + esc(n.id) + '" class="dag-node ' + (isSelA ? 'dag-node-selected' : (isSelB ? 'dag-node-source-b' : '')) + ' lod-' + lod + '" style="left:' + n.x + 'px;top:' + n.y + 'px;width:' + (n.width || 315) + 'px" title="Grab anywhere on this card to drag &amp; move freely (Shift+Click sets Source B)">' +
         '<div class="dag-node-header" data-drag-handle="' + esc(n.id) + '">' +
-          '<span class="st-mono-xs">' + esc(n.kind.toUpperCase()) + '</span>' +
-          statusBadge +
+          '<div style="display:flex;align-items:center;gap:4px">' +
+            '<span class="st-mono-xs" style="cursor:grab">✥ ' + esc(n.kind.toUpperCase()) + '</span>' +
+            '<span data-node-xy="' + esc(n.id) + '" class="st-mono-xs" style="opacity:.55">x:' + n.x + ' y:' + n.y + '</span>' +
+          '</div>' +
+          '<div style="display:flex;gap:3px;align-items:center">' +
+            '<button data-action="set-source-a" data-node-id="' + esc(n.id) + '" class="st-mini-btn ' + (isSelA ? 'on' : '') + '" style="padding:1px 5px;font-size:8.5px;' + (isSelA ? 'background:#8C4A2E;border-color:#8C4A2E' : '') + '" title="Select this card as Primary Source A">● Src A</button>' +
+            '<button data-action="set-source-b" data-node-id="' + esc(n.id) + '" class="st-mini-btn ' + (isSelB ? 'on' : '') + '" style="padding:1px 5px;font-size:8.5px;' + (isSelB ? 'background:#1E3F66;border-color:#1E3F66' : '') + '" title="Select this card as Partner / Merge Source B">◐ Src B</button>' +
+          '</div>' +
         '</div>' +
-        '<div class="dag-node-body" data-action="select-dag-node" data-node-id="' + esc(n.id) + '">' +
+        '<div class="dag-node-body">' +
           '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:2px">' +
             sheafBadge +
             '<span class="st-mono-xs" style="color:#A8241C">Wada No. ' + nPalId + '</span>' +
@@ -6135,33 +7138,41 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
         '</div>' +
         '<div class="dag-node-footer">' +
           '<button data-action="fork-dag-node" data-node-id="' + esc(n.id) + '" class="st-mini-btn" title="Non-destructively fork this branch">⑂ Fork</button>' +
-          '<button data-action="fork-three-directions" data-node-id="' + esc(n.id) + '" class="st-mini-btn" title="Spawn 3 orthogonal α/β/γ branches">⑂ 3× α/β/γ</button>' +
+          '<button data-action="duplicate-dag-node" data-node-id="' + esc(n.id) + '" class="st-mini-btn" title="Duplicate this card on the canvas">⧉ Copy</button>' +
           '<button data-action="apply-dag-node" data-node-id="' + esc(n.id) + '" class="st-mini-btn" title="Pin this node’s character, Wada palette, and style globally">Pin Global</button>' +
           '<button data-action="oauth-enhance-node" data-node-id="' + esc(n.id) + '" class="st-mini-btn st-btn-rust" title="Enhance via OAuth 2.0 PKCE / Synthesizer">✦ Enhance</button>' +
+          (n.id !== 'node-seed' ? '<button data-action="delete-dag-node" data-node-id="' + esc(n.id) + '" class="st-mini-btn" title="Remove card from canvas">✕</button>' : '') +
         '</div>' +
       '</div>';
     }).join('');
 
+    const sourceAOpts = (st.dag.nodes || []).map(function (n) {
+      return '<option value="' + esc(n.id) + '"' + (n.id === (selectedNode && selectedNode.id) ? ' selected' : '') + '>● Src A: ' + esc(n.title) + '</option>';
+    }).join('');
+    const sourceBOpts = (st.dag.nodes || []).map(function (n) {
+      return '<option value="' + esc(n.id) + '"' + (n.id === (compareNode && compareNode.id) ? ' selected' : '') + '>◐ Src B: ' + esc(n.title) + '</option>';
+    }).join('');
+
     return '<section class="st-surface">' +
       '<div class="canvas-toolbar">' +
-        '<div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap">' +
-          '<span class="st-mono-xs">INFINITE LIVING CANVAS · ZOOM ' + st.zoom.toFixed(2) + '× · LOD: ' + lod.toUpperCase() + ' · ' + st.dag.nodes.length + ' NODES</span>' +
-          '<span class="st-badge ' + (sheafAudit.valid ? 'badge-pass' : 'badge-warn') + '" title="Alexandrov Sheaf Restriction Cohomology across DAG edges">SHEAF ρ: ' + (sheafAudit.valid ? 'δ⁰=0 COHOMOLOGY PASS' : 'MISMATCH') + '</span>' +
-          '<button data-action="zoom-canvas" data-delta="0.18" class="st-mini-btn">Zoom +</button>' +
-          '<button data-action="zoom-canvas" data-delta="-0.18" class="st-mini-btn">Zoom −</button>' +
+        '<div style="display:flex;gap:5px;align-items:center;flex-wrap:wrap">' +
+          '<span class="st-mono-xs">DRAG ANY CARD FREELY · ZOOM ' + st.zoom.toFixed(2) + '× · ' + st.dag.nodes.length + ' CARDS</span>' +
+          '<span class="st-badge ' + (sheafAudit.valid ? 'badge-pass' : 'badge-warn') + '" title="Alexandrov Sheaf Restriction Cohomology across DAG edges">SHEAF ρ: ' + (sheafAudit.valid ? 'δ⁰=0 PASS' : 'MISMATCH') + '</span>' +
           '<button data-action="zoom-set" data-zoom="0.3" class="st-mini-btn">0.3× Macro</button>' +
           '<button data-action="zoom-set" data-zoom="0.78" class="st-mini-btn">0.8× Studio</button>' +
           '<button data-action="zoom-set" data-zoom="1.65" class="st-mini-btn">1.6× Micro</button>' +
-          '<button data-action="reset-pan" class="st-mini-btn">Center View</button>' +
-          '<button data-action="dag-auto-layout" class="st-mini-btn on" title="Resolve all node overlaps and align DAG columns">⊞ Auto-Layout DAG</button>' +
+          '<button data-action="reset-pan" class="st-mini-btn">Center</button>' +
+          '<button data-action="dag-auto-layout" class="st-mini-btn" title="Snap cards into aligned columns">⊞ Auto-Grid</button>' +
         '</div>' +
-        '<div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap">' +
-          '<button data-action="fork-dag-node" data-node-id="' + esc(st.selectedNodeId) + '" class="st-btn st-btn-ink">⑂ Fork Selected</button>' +
-          '<button data-action="fork-three-directions" data-node-id="' + esc(st.selectedNodeId) + '" class="st-btn">⑂ Fork 3 Directions (α/β/γ)</button>' +
-          '<button data-action="dag-synthesize-ab" class="st-btn" title="Gate G22 Pushout Gluing of Selected Branch A & Comparison Branch B">⊕ Synthesize A ⊕ B</button>' +
-          '<button data-action="run-rsi-critique" class="st-btn st-btn-rust" title="Run 4-Lens Adversarial RSI Critique & Auto-Fix">⚖ Run 4-Lens RSI Critique</button>' +
-          '<button data-action="toggle-ab-compare" class="st-btn ' + (st.showABCompare ? 'st-btn-rust' : '') + '">⚖ Side-by-Side A/B Compare</button>' +
-          '<button data-action="open-storyboard-from-node" class="st-btn">Open in 8-Beat Storyboard →</button>' +
+        '<div style="display:flex;gap:5px;align-items:center;flex-wrap:wrap">' +
+          '<select id="sel-source-a-node" class="st-select" style="max-width:185px;border-color:#8C4A2E;font-weight:700" title="Direct Source A (Primary Branch)">' + sourceAOpts + '</select>' +
+          '<button data-action="swap-source-ab" class="st-mini-btn" title="Swap Source A and Source B">⇄</button>' +
+          '<select id="sel-source-b-node" class="st-select" style="max-width:185px;border-color:#1E3F66;font-weight:700" title="Direct Source B (Comparison / Pushout Merge Partner)">' + sourceBOpts + '</select>' +
+          '<button data-action="duplicate-dag-node" data-node-id="' + esc(st.selectedNodeId) + '" class="st-btn" title="Duplicate Source A Card">+ Duplicate Card</button>' +
+          '<button data-action="fork-three-directions" data-node-id="' + esc(st.selectedNodeId) + '" class="st-btn st-btn-ink">⑂ Fork 3× (α/β/γ)</button>' +
+          '<button data-action="dag-synthesize-ab" class="st-btn" title="Gate G22 Pushout Gluing of Source A ⊕ Source B">⊕ Glue A ⊕ B</button>' +
+          '<button data-action="toggle-vocab-modal" class="st-btn st-btn-rust" title="Open Plain-English # Vocabulary, Themes &amp; Elements"># Themes &amp; Elements</button>' +
+          '<button data-action="toggle-ab-compare" class="st-btn ' + (st.showABCompare ? 'st-btn-rust' : '') + '">⚖ A/B Drawer</button>' +
         '</div>' +
       '</div>' +
 
@@ -6169,14 +7180,14 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
         '<div class="ab-compare-drawer">' +
           '<div class="ab-col">' +
             '<div style="display:flex;justify-content:space-between;align-items:center">' +
-              '<span class="st-mono-xs">BRANCH A (SELECTED): <strong>' + esc(selectedNode.title) + '</strong> · ' + esc(selectedNode.packetHash || '') + '</span>' +
-              '<button data-action="dag-synthesize-ab" class="st-mini-btn on" title="Synthesize Pushout Gluing Node from Branch A ⊕ Branch B">⊕ Glue A ⊕ B → Synthesis Node</button>' +
+              '<span class="st-mono-xs">SOURCE A (PRIMARY): <strong>' + esc(selectedNode.title) + '</strong> · ' + esc(selectedNode.packetHash || '') + '</span>' +
+              '<button data-action="dag-synthesize-ab" class="st-mini-btn on" title="Synthesize Pushout Gluing Node from Source A ⊕ Source B">⊕ Glue A ⊕ B → Synthesis Node</button>' +
             '</div>' +
             '<canvas width="480" height="300" data-proof="' + esc(selectedNode.payload.styleKey || 'watercolor') + '" data-char="' + esc(selectedNode.payload.charId || st.charId) + '" data-pal-id="' + (selectedNode.payload.palId || pal.id) + '" style="width:100%;max-width:340px;border-radius:6px;border:1px solid rgba(26,31,46,.2);margin-top:4px"></canvas>' +
           '</div>' +
           '<div class="ab-col">' +
             '<div style="display:flex;justify-content:space-between;align-items:center;gap:8px">' +
-              '<span class="st-mono-xs">BRANCH B (COMPARISON):</span>' +
+              '<span class="st-mono-xs">SOURCE B (PARTNER):</span>' +
               '<div style="display:flex;gap:6px;align-items:center">' +
                 '<select id="sel-compare-node" class="st-select">' +
                   st.dag.nodes.map(function (n) {
@@ -6200,53 +7211,64 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
             nodesHtml +
           '</div>' +
           '<div class="canvas-minimap">' +
-            '<div class="st-mono-xs" style="margin-bottom:2px">DAG TOPOLOGY MAP · DRAG TO PAN · [SPACE] PLAY · [F] FORK · [O] ONION · [C] CAPTIONS</div>' +
-            '<div style="font-size:11px;color:rgba(26,31,46,.78)">Selected: <strong>' + esc(selectedNode ? selectedNode.title : '') + '</strong> (' + esc(selectedNode ? (selectedNode.packetHash || '') : '') + ')</div>' +
+            '<div class="st-mono-xs" style="margin-bottom:2px">DRAG ANY CARD TO MOVE · DRAG BACKGROUND TO PAN · [K] #VOCAB · [O] ONION</div>' +
+            '<div style="font-size:11px;color:rgba(26,31,46,.78)">● Src A: <strong>' + esc(selectedNode ? selectedNode.title : '') + '</strong> · ◐ Src B: <strong>' + esc(compareNode ? compareNode.title : '') + '</strong></div>' +
           '</div>' +
         '</div>' +
 
         '<!-- Right Inspector Panel for Selected DAG Node -->' +
         '<aside class="dag-inspector">' +
-          '<div class="st-eyebrow">SELECTED NODE INSPECTOR · SHEAF PACKET</div>' +
-          '<h3 style="margin:4px 0 8px;font-family:Fraunces,serif;font-weight:400;font-size:20px">' + esc(selectedNode ? selectedNode.title : '') + '</h3>' +
-          '<p style="font-size:12px;color:rgba(26,31,46,.75);margin:0 0 12px">' + esc(selectedNode ? selectedNode.subtitle : '') + '</p>' +
+          '<div class="st-eyebrow">SOURCE A CARD INSPECTOR · SHEAF PACKET</div>' +
+          '<h3 style="margin:4px 0 6px;font-family:Fraunces,serif;font-weight:400;font-size:19px">' + esc(selectedNode ? selectedNode.title : '') + '</h3>' +
+          '<p style="font-size:11.5px;color:rgba(26,31,46,.75);margin:0 0 10px">' + esc(selectedNode ? selectedNode.subtitle : '') + '</p>' +
           (selectedNode ? (
-            '<div style="display:grid;gap:10px">' +
-              '<div class="st-mono-xs" style="padding:6px 8px;background:rgba(26,31,46,.05);border-radius:6px">' +
-                'PACKET HASH: <strong>' + esc(selectedNode.packetHash || 'ρ-root') + '</strong><br/>' +
+            '<div style="display:grid;gap:8px">' +
+              '<div class="st-mono-xs" style="padding:5px 8px;background:rgba(26,31,46,.05);border-radius:6px">' +
+                'POSITION: <strong>x=' + selectedNode.x + ', y=' + selectedNode.y + '</strong> · HASH: <strong>' + esc(selectedNode.packetHash || 'ρ-root') + '</strong><br/>' +
                 'UPSTREAM ρ: <strong>' + esc(selectedNode.upstreamHash || 'ORIGIN') + '</strong>' +
               '</div>' +
-              '<div><label class="st-label">NODE CHARACTER RIG</label>' +
+              '<div><label class="st-label">CARD CHARACTER RIG</label>' +
                 '<select id="ins-node-char" class="st-select" style="width:100%">' +
                   FOUNDRY.CHARACTER_ORDER.map(function (cid) {
                     return '<option value="' + esc(cid) + '"' + ((selectedNode.payload.charId || st.charId) === cid ? ' selected' : '') + '>' + esc(FOUNDRY.CHARACTERS[cid].name) + '</option>';
                   }).join('') +
                 '</select></div>' +
-              '<div><label class="st-label">NODE MOTION STYLE</label>' +
+              '<div><label class="st-label">CARD MOTION STYLE</label>' +
                 '<select id="ins-node-style" class="st-select" style="width:100%">' +
                   TAX.STYLES.map(function (s) {
                     return '<option value="' + esc(s.key) + '"' + ((selectedNode.payload.styleKey || 'watercolor') === s.key ? ' selected' : '') + '>' + esc(s.title) + '</option>';
                   }).join('') +
                 '</select></div>' +
-              '<div><label class="st-label">NODE STORYLINE</label>' +
+              '<div><label class="st-label">CARD STORYLINE</label>' +
                 '<select id="ins-node-story" class="st-select" style="width:100%">' +
                   TAX.STORIES.map(function (s) {
                     return '<option value="' + esc(s.key) + '"' + ((selectedNode.payload.storyKey || 's_voice') === s.key ? ' selected' : '') + '>' + esc(s.title) + '</option>';
                   }).join('') +
                 '</select></div>' +
-              '<div><label class="st-label">NODE WADA PALETTE</label>' +
+              '<div><label class="st-label">CARD WADA PALETTE OR SAVED #COLOR SCHEME</label>' +
                 '<select id="ins-node-pal" class="st-select" style="width:100%">' +
-                  WADA.PALS.map(function (p) {
-                    return '<option value="' + p.id + '"' + ((selectedNode.payload.palId || 343) === p.id ? ' selected' : '') + '>No. ' + p.id + ' · ' + esc(p.name) + '</option>';
-                  }).join('') +
+                  '<optgroup label="★ Saved #color Schemes">' +
+                    (st.savedColorSchemes || []).map(function (sc) {
+                      return '<option value="' + sc.palId + '"' + ((selectedNode.payload.palId || 343) === sc.palId ? ' selected' : '') + '>' + esc(sc.handle) + ' · ' + esc(sc.name) + ' (No. ' + sc.palId + ')</option>';
+                    }).join('') +
+                  '</optgroup>' +
+                  '<optgroup label="Curated Sanzo Wada Plates">' +
+                    WADA.PALS.map(function (p) {
+                      return '<option value="' + p.id + '"' + ((selectedNode.payload.palId || 343) === p.id ? ' selected' : '') + '>No. ' + p.id + ' · ' + esc(p.name) + '</option>';
+                    }).join('') +
+                  '</optgroup>' +
                 '</select></div>' +
-              '<div><label class="st-label">BRANCH NOTES / THESIS</label>' +
-                '<textarea id="ins-node-notes" rows="3" class="st-input" style="width:100%">' + esc(selectedNode.payload.notes || '') + '</textarea></div>' +
+              '<div>' +
+                '<div style="display:flex;justify-content:space-between;align-items:center">' +
+                  '<label class="st-label">BRANCH NOTES (TYPE # OR / FOR VOCAB)</label>' +
+                  '<button data-action="open-vocab-for-field" data-field="ins-node-notes" class="st-mini-btn" style="padding:1px 5px;font-size:8.5px">+ #Insert</button>' +
+                '</div>' +
+                '<textarea id="ins-node-notes" data-vocab-autocomplete="true" rows="2" class="st-input" style="width:100%">' + esc(selectedNode.payload.notes || '') + '</textarea></div>' +
               '<div><label class="st-label">CONJECTURE (†C) / FORK HYPOTHESIS</label>' +
                 '<input id="ins-node-conjecture" type="text" class="st-input" style="width:100%" value="' + esc(selectedNode.conjectureNote || '') + '" placeholder="†C Conjecture note for this branch..."/></div>' +
-              '<div style="display:flex;gap:6px;flex-wrap:wrap">' +
-                '<button data-action="save-node-inspector" class="st-btn st-btn-ink">Update Node</button>' +
-                '<button data-action="fork-dag-node" data-node-id="' + esc(selectedNode.id) + '" class="st-btn">⑂ Fork Branch</button>' +
+              '<div style="display:flex;gap:5px;flex-wrap:wrap">' +
+                '<button data-action="save-node-inspector" class="st-btn st-btn-ink">Update Card</button>' +
+                '<button data-action="duplicate-dag-node" data-node-id="' + esc(selectedNode.id) + '" class="st-btn">⧉ Duplicate</button>' +
                 '<button data-action="fork-three-directions" data-node-id="' + esc(selectedNode.id) + '" class="st-btn">⑂ 3× α/β/γ</button>' +
                 '<button data-action="oauth-enhance-node" data-node-id="' + esc(selectedNode.id) + '" class="st-btn st-btn-rust">✦ OAuth Enhance</button>' +
               '</div>' +
@@ -6360,7 +7382,7 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
       const on = st.charId === id;
       return '<div class="char-card ' + (on ? 'char-card-active' : '') + '" data-action="select-character" data-char-id="' + esc(id) + '">' +
         '<div style="display:flex;justify-content:space-between;align-items:center">' +
-          '<span class="st-mono-xs">' + esc(c.archetype.toUpperCase()) + '</span>' +
+          '<span class="st-mono-xs">' + esc(c.archetype.toUpperCase()) + ' · #character/' + esc(id) + '</span>' +
           '<span class="st-badge ' + (on ? 'badge-pass' : '') + '">' + (on ? 'ACTIVE RIG' : 'SELECT') + '</span>' +
         '</div>' +
         '<div style="font-weight:700;font-size:15px;margin:4px 0 2px">' + esc(c.name) + '</div>' +
@@ -6444,25 +7466,40 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
   };
 
   // ─────────────────────────────────────────────────────────────────────────
-  // SURFACE 4 · 8-BEAT STORYBOARD SHEET & TIMELINE (G08)
+  // SURFACE 4 · 8-BEAT STORYBOARD SHEET & TIMELINE (G08 · G26 · G29)
   // ─────────────────────────────────────────────────────────────────────────
   proto.renderSurfaceStoryboard = function (pal, charSpec) {
     const st = this.state;
     const sheet = st.storyboard;
     const audit = sheet.audit || { coveredOk: true, movementOk: true, oneBreather: true, callback: true };
+    const savedSchemes = (st.savedColorSchemes && st.savedColorSchemes.length) ? st.savedColorSchemes : (CO.DEFAULT_SAVED_SCHEMES || []);
 
     const beatCards = (sheet.beats || []).map(function (b) {
-      return '<div class="sb-card">' +
-        '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">' +
-          '<button data-action="scrub-to-beat" data-t="' + b.tMidSec + '" class="st-mini-btn" title="Jump clock to Beat ' + (b.index + 1) + ' (' + b.tMidSec + 's)">▶ BEAT ' + (b.index + 1) + ' · ' + b.tStartSec + 's–' + b.tEndSec + 's</button>' +
-          '<select data-beat-hinge="' + b.index + '" class="st-select" style="padding:2px 6px;font-size:10px">' +
+      const beatPalId = b.palId || pal.id;
+      return '<div class="sb-card" draggable="true" data-sb-beat-card="' + b.index + '" title="Drag &amp; drop to reorder this beat card at will">' +
+        '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;gap:4px">' +
+          '<div style="display:flex;gap:3px;align-items:center">' +
+            '<span class="st-mono-xs" style="cursor:grab" title="Drag card to reorder">✥</span>' +
+            '<button data-action="scrub-to-beat" data-t="' + b.tMidSec + '" class="st-mini-btn" title="Jump clock to Beat ' + (b.index + 1) + ' (' + b.tMidSec + 's)">▶ B' + (b.index + 1) + ' · ' + b.tStartSec + 's</button>' +
+            (b.index > 0 ? '<button data-action="move-beat-card" data-from="' + b.index + '" data-to="' + (b.index - 1) + '" class="st-mini-btn" style="padding:1px 4px" title="Move Beat Left">◀</button>' : '') +
+            (b.index < 7 ? '<button data-action="move-beat-card" data-from="' + b.index + '" data-to="' + (b.index + 1) + '" class="st-mini-btn" style="padding:1px 4px" title="Move Beat Right">▶</button>' : '') +
+          '</div>' +
+          '<select data-beat-hinge="' + b.index + '" class="st-select" style="padding:2px 5px;font-size:9.5px">' +
             '<option value="THEREFORE"' + (b.hinge === 'THEREFORE' ? ' selected' : '') + '>THEREFORE · ' + esc(b.role.toUpperCase()) + '</option>' +
             '<option value="BUT"' + (b.hinge === 'BUT' ? ' selected' : '') + '>BUT · ' + esc(b.role.toUpperCase()) + '</option>' +
           '</select>' +
         '</div>' +
-        '<canvas width="320" height="200" data-proof="' + esc(sheet.storyKey) + '" data-char="' + esc(charSpec.id) + '" data-fixed-t="' + b.tMidSec + '" data-cam="' + esc(b.cameraMove || 'static-wide') + '" data-beat-idx="' + b.index + '" style="width:100%;height:auto;border-radius:6px;border:1px solid rgba(26,31,46,.16);cursor:pointer" data-action="scrub-to-beat" data-t="' + b.tMidSec + '"></canvas>' +
-        '<div style="font-weight:700;font-size:13.5px;margin:6px 0 3px">' + esc(b.label) + '</div>' +
-        '<textarea data-beat-action="' + b.index + '" rows="2" class="st-input" style="width:100%;font-size:11px;margin-bottom:6px">' + esc(b.visualAction) + '</textarea>' +
+        '<canvas width="320" height="200" data-proof="' + esc(sheet.storyKey) + '" data-char="' + esc(charSpec.id) + '" data-pal-id="' + beatPalId + '" data-fixed-t="' + b.tMidSec + '" data-cam="' + esc(b.cameraMove || 'static-wide') + '" data-beat-idx="' + b.index + '" style="width:100%;height:auto;border-radius:6px;border:1px solid rgba(26,31,46,.16);cursor:pointer" data-action="scrub-to-beat" data-t="' + b.tMidSec + '"></canvas>' +
+        '<div style="display:flex;justify-content:space-between;align-items:center;margin:6px 0 3px">' +
+          '<div style="font-weight:700;font-size:13px">' + esc(b.label) + '</div>' +
+          '<select data-beat-pal="' + b.index + '" class="st-select" style="padding:1px 4px;font-size:9.5px;max-width:125px" title="Pin a saved #color scheme to this specific beat">' +
+            '<option value="' + pal.id + '"' + (!b.palId ? ' selected' : '') + '>Global (' + esc(pal.no) + ')</option>' +
+            savedSchemes.map(function (sc) {
+              return '<option value="' + sc.palId + '"' + (b.palId === sc.palId ? ' selected' : '') + '>' + esc(sc.handle) + '</option>';
+            }).join('') +
+          '</select>' +
+        '</div>' +
+        '<textarea data-beat-action="' + b.index + '" data-vocab-autocomplete="true" rows="2" class="st-input" style="width:100%;font-size:11px;margin-bottom:6px" placeholder="Type # or / to insert motion elements or camera moves...">' + esc(b.visualAction) + '</textarea>' +
         '<div style="display:flex;justify-content:space-between;align-items:center;font-size:10px;font-family:Space Mono,monospace;color:rgba(26,31,46,.65)">' +
           '<select data-beat-cam="' + b.index + '" class="st-select" style="padding:2px 4px;font-size:10px">' +
             ['static-wide', 'pan-follow', 'push-in', 'dutch-tilt', 'tracking-drift', 'breather-hold', 'kick-shake', 'pull-back'].map(function (cm) {
@@ -6478,7 +7515,7 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
       '<div class="st-panel">' +
         '<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">' +
           '<div>' +
-            '<span class="st-eyebrow">STAGE-4 / STAGE-5 STORYBOARD BEAT SHEET &amp; HYPERFRAMES VERIFIER (GATE G08)</span>' +
+            '<span class="st-eyebrow">STAGE-4 / STAGE-5 STORYBOARD BEAT SHEET · DRAG CARDS OR CLICK ◀ ▶ TO REORDER BEATS (GATE G08 · G26)</span>' +
             '<h2 class="st-section-h2" style="margin:4px 0">' + esc(sheet.title) + ' · ' + esc(pal.no) + ' ' + esc(pal.name) + '</h2>' +
           '</div>' +
           '<div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">' +
@@ -6487,6 +7524,7 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
                 return '<option value="' + esc(s.key) + '"' + (st.storyKey === s.key ? ' selected' : '') + '>' + esc(s.title) + '</option>';
               }).join('') +
             '</select>' +
+            '<button data-action="toggle-vocab-modal" class="st-btn" title="Browse &amp; Insert Plain-English Elements"># Insert Elements / Themes</button>' +
             '<button data-action="toggle-captions-covered" class="st-btn ' + (st.captionsCovered ? 'st-btn-rust' : '') + '">' + (st.captionsCovered ? 'Captions Covered (ON)' : 'Run Captions-Covered Test') + '</button>' +
             '<button data-action="run-rsi-critique" class="st-btn">⚖ Run 4-Lens RSI Critique</button>' +
             '<button data-action="toggle-oauth-modal" class="st-btn st-btn-rust">✦ OAuth Enhance Storyboard</button>' +
@@ -6507,9 +7545,10 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
   };
 })(typeof window !== 'undefined' ? window : globalThis);
 // ═══════════════════════════════════════════════════════════════════════════
-// PART 2B · SURFACES 5–7 (Sanzo Wada 348 & Hydrography, 15 Styles & 24
-// Elements Contact Sheet, Compile & Export Room), OAuth 2.0 PKCE Modal,
-// 16-Gate Audit Modal, and Interactive Event Wiring
+// PART 2B · SURFACES 5–7 (Sanzo Wada 348 & Tagged Color Scheme Vault, 15 Styles
+// & 24 Elements Contact Sheet, Compile & Export Room), OAuth 2.0 PKCE Modal,
+// # / Plain-English Vocabulary & Themes Modal, 29-Gate Audit Modal, and
+// Effortless Freeform Card Dragging + Live # / Autocomplete Wiring
 // ═══════════════════════════════════════════════════════════════════════════
 (function (global) {
   'use strict';
@@ -6530,7 +7569,7 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
   }
 
   // ─────────────────────────────────────────────────────────────────────────
-  // SURFACE 5 · SANZO WADA 348 DICTIONARY & KINETIC HYDROGRAPHY (G01 · G02)
+  // SURFACE 5 · SANZO WADA 348 DICTIONARY & TAGGED COLOR SCHEME VAULT (G01 · G02 · G29)
   // ─────────────────────────────────────────────────────────────────────────
   proto.renderSurfaceWada = function (pal, charSpec) {
     const st = this.state;
@@ -6563,6 +7602,27 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
       '</div>';
     }).join('');
 
+    const savedCardsHtml = (st.savedColorSchemes || []).map(function (sc) {
+      const wadaCombo = st.activeWadaCombos.find(function (p) { return p.id === sc.palId; }) || pal;
+      const isCurrent = pal.id === sc.palId;
+      const swBars = (wadaCombo.sw || []).map(function (s) {
+        return '<div style="flex:1;height:20px;background:' + s[0] + '" title="' + esc(s[1]) + ' ' + s[0] + '"></div>';
+      }).join('');
+      return '<div class="char-card ' + (isCurrent ? 'char-card-active' : '') + '" style="padding:10px">' +
+        '<div style="display:flex;justify-content:space-between;align-items:center;gap:4px">' +
+          '<code style="font-size:10.5px;font-weight:700;color:#8C4A2E;background:rgba(140,74,46,.08);padding:2px 6px;border-radius:4px">' + esc(sc.token) + '</code>' +
+          '<span class="st-mono-xs">Wada No. ' + sc.palId + '</span>' +
+        '</div>' +
+        '<div style="font-weight:700;font-size:13px;margin:4px 0 2px">' + esc(sc.title) + '</div>' +
+        '<div style="display:flex;border-radius:4px;overflow:hidden;border:1px solid rgba(26,31,46,.18);margin:4px 0">' + swBars + '</div>' +
+        '<div style="font-size:11px;color:rgba(26,31,46,.72);margin-bottom:6px">' + esc(sc.notes || wadaCombo.mood || '') + '</div>' +
+        '<div style="display:flex;gap:4px;flex-wrap:wrap">' +
+          '<button data-action="invoke-saved-scheme" data-scheme-tag="' + esc(sc.token) + '" class="st-mini-btn ' + (isCurrent ? 'on' : '') + '" style="flex:1">● Apply Global</button>' +
+          '<button data-action="apply-scheme-to-node" data-scheme-tag="' + esc(sc.token) + '" class="st-mini-btn" style="flex:1" title="Apply this saved scheme to active Source A card on the Living Canvas">→ Apply to Src A</button>' +
+        '</div>' +
+      '</div>';
+    }).join('');
+
     const comboCards = filtered.slice(0, 48).map(function (p) {
       const on = pal.id === p.id;
       const swBars = (p.sw || []).map(function (s) {
@@ -6575,7 +7635,10 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
         '</div>' +
         '<div style="font-weight:700;font-size:13px;margin:3px 0">' + esc(p.name) + '</div>' +
         '<div style="display:flex;border-radius:4px;overflow:hidden;border:1px solid rgba(26,31,46,.18);margin:6px 0">' + swBars + '</div>' +
-        '<div style="font-size:11px;color:rgba(26,31,46,.72)">' + esc((p.sw || []).map(function (s) { return s[1]; }).join(' · ')) + '</div>' +
+        '<div style="display:flex;justify-content:space-between;align-items:center;gap:4px;margin-top:4px">' +
+          '<span style="font-size:10.5px;color:rgba(26,31,46,.72);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">' + esc((p.sw || []).map(function (s) { return s[1]; }).join(' · ')) + '</span>' +
+          '<button data-action="save-combo-as-scheme" data-pal-id="' + p.id + '" class="st-mini-btn" style="padding:1px 6px;font-size:9.5px" title="Tag & save this Wada combination to your #color Vault">+ #color</button>' +
+        '</div>' +
       '</div>';
     }).join('');
 
@@ -6590,7 +7653,28 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
       '</div>';
     }).join('') : '';
 
+    const defaultSlug = (pal.name || ('wada-' + pal.id)).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+
     return '<section class="st-surface">' +
+      // TAGGED & SAVED COLOR SCHEME VAULT (GATE G29)
+      '<div class="st-panel" style="margin-bottom:16px">' +
+        '<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:10px">' +
+          '<div>' +
+            '<span class="st-eyebrow">TAGGED &amp; SAVED COLOR SCHEME VAULT (GATE G29 · RE-INVOKE ANYWHERE VIA #color/&lt;tag&gt; OR /color/&lt;tag&gt;)</span>' +
+            '<h3 style="margin:2px 0;font-family:Fraunces,serif;font-size:18px">Saved Studio Color Schemes (' + (st.savedColorSchemes || []).length + ' Tagged Palettes)</h3>' +
+          '</div>' +
+          '<div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;background:rgba(26,31,46,.04);padding:6px 10px;border-radius:6px;border:1px solid rgba(26,31,46,.14)">' +
+            '<span class="st-mono-xs" style="font-weight:700">Tag Active Wada No. ' + pal.id + ':</span>' +
+            '<input id="new-scheme-tag-input" type="text" value="' + esc(st.newSchemeTag || defaultSlug) + '" placeholder="e.g. brand-hero-warm" class="st-input" style="width:145px;padding:3px 7px;font-size:11px"/>' +
+            '<input id="new-scheme-title-input" type="text" value="' + esc(st.newSchemeTitle || (pal.name + ' (' + pal.no + ')')) + '" placeholder="Display title..." class="st-input" style="width:170px;padding:3px 7px;font-size:11px"/>' +
+            '<input id="new-scheme-notes-input" type="text" value="' + esc(st.newSchemeNotes || pal.mood || '') + '" placeholder="Mood / usage note..." class="st-input" style="width:180px;padding:3px 7px;font-size:11px"/>' +
+            '<button data-action="save-color-scheme" class="st-btn st-btn-rust" style="padding:4px 10px;font-size:11px">★ Save #color Tag</button>' +
+          '</div>' +
+        '</div>' +
+        (st.copiedNotice ? '<div style="margin-bottom:8px;padding:6px 10px;background:#2E5A44;color:#FBF3E6;border-radius:6px;font-size:11.5px">' + esc(st.copiedNotice) + '</div>' : '') +
+        '<div class="char-grid-3">' + savedCardsHtml + '</div>' +
+      '</div>' +
+
       '<div class="fork-grid-2">' +
         '<div class="st-panel">' +
           '<div class="st-eyebrow">ACTIVE SANZO WADA COMBINATION (' + esc(pal.no) + ' · ' + esc(pal.jp) + ')</div>' +
@@ -6632,15 +7716,19 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
   };
 
   // ─────────────────────────────────────────────────────────────────────────
-  // SURFACE 6 · 15 STYLES & 24 ELEMENTS CONTACT SHEET (G06)
+  // SURFACE 6 · 15 STYLES & 24 ELEMENTS CONTACT SHEET (G06 · G28)
   // ─────────────────────────────────────────────────────────────────────────
   proto.renderSurfaceContactSheet = function (pal, charSpec) {
     const styleCards = TAX.STYLES.map(function (s) {
-      return '<div class="char-card" data-action="spawn-fork-to-dag" data-proof="' + esc(s.key) + '" data-title="' + esc(s.title) + '">' +
+      return '<div class="char-card">' +
         '<div style="display:flex;justify-content:space-between"><span class="st-mono-xs">' + esc(s.branch) + ' · ' + esc(s.family.toUpperCase()) + '</span><span class="st-mono-xs">' + esc(s.fps) + '</span></div>' +
         '<div style="font-weight:700;font-size:14px;margin:4px 0">' + esc(s.title) + '</div>' +
         '<canvas width="280" height="175" data-proof="' + esc(s.key) + '" data-char="' + esc(charSpec.id) + '" style="width:100%;height:auto;border-radius:6px;border:1px solid rgba(26,31,46,.15);margin:4px 0"></canvas>' +
-        '<p style="font-size:11px;color:rgba(26,31,46,.75);margin:0">' + esc(s.summary) + '</p>' +
+        '<p style="font-size:11px;color:rgba(26,31,46,.75);margin:0 0 6px">' + esc(s.summary) + '</p>' +
+        '<div style="display:flex;gap:4px">' +
+          '<button data-action="spawn-fork-to-dag" data-proof="' + esc(s.key) + '" data-title="' + esc(s.title) + '" class="st-mini-btn on" style="flex:1">+ Spawn Card</button>' +
+          '<button data-action="apply-style-to-src-a" data-style-key="' + esc(s.key) + '" class="st-mini-btn" style="flex:1">→ Apply to Src A</button>' +
+        '</div>' +
       '</div>';
     }).join('');
 
@@ -6655,17 +7743,24 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
         '<div class="st-mono-xs">' + esc(item[0].toUpperCase()) + '</div>' +
         '<div style="font-weight:700;font-size:13px;margin:3px 0">' + esc(item[1]) + '</div>' +
         '<canvas width="240" height="150" data-proof="' + esc(item[2]) + '" data-char="' + esc(charSpec.id) + '" style="width:100%;height:auto;border-radius:6px;border:1px solid rgba(26,31,46,.15);margin:4px 0"></canvas>' +
-        '<div class="st-mono-xs" style="opacity:.75">' + esc(det.numbers) + '</div>' +
+        '<div class="st-mono-xs" style="opacity:.75;margin-bottom:6px">' + esc(det.numbers) + '</div>' +
+        '<div style="display:flex;gap:4px">' +
+          '<button data-action="spawn-fork-to-dag" data-proof="' + esc(item[2]) + '" data-title="Element · ' + esc(item[1]) + '" class="st-mini-btn on" style="flex:1">+ Insert on Canvas</button>' +
+          '<button data-action="apply-style-to-src-a" data-style-key="' + esc(item[2]) + '" class="st-mini-btn" style="flex:1">→ Set on Src A</button>' +
+        '</div>' +
       '</div>';
     }).join('');
 
     return '<section class="st-surface">' +
       '<div class="st-panel">' +
-        '<div class="st-eyebrow">ALL 15 MOTION STYLES · RUNNING ON ONE CLOCK WITH ' + esc(charSpec.name.toUpperCase()) + ' &amp; WADA ' + esc(pal.no) + '</div>' +
+        '<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">' +
+          '<div class="st-eyebrow">ALL 15 MOTION STYLES · RUNNING ON ONE CLOCK WITH ' + esc(charSpec.name.toUpperCase()) + ' &amp; WADA ' + esc(pal.no) + '</div>' +
+          '<button data-action="toggle-vocab-modal" class="st-mini-btn on">📖 Open Plain-English # / Vocabulary &amp; Themes Browser [K]</button>' +
+        '</div>' +
         '<div class="char-grid-3" style="margin-top:12px">' + styleCards + '</div>' +
       '</div>' +
       '<div class="st-panel" style="margin-top:16px">' +
-        '<div class="st-eyebrow">ALL 24 MOTION BUILDING BLOCKS · 6 STRUCTURAL LAYERS</div>' +
+        '<div class="st-eyebrow">ALL 24 MOTION BUILDING BLOCKS · 6 STRUCTURAL LAYERS (1-CLICK INSERT TO LIVING CANVAS OR SOURCE A)</div>' +
         '<div class="char-grid-4" style="margin-top:12px">' + elCards + '</div>' +
       '</div>' +
     '</section>';
@@ -6721,26 +7816,63 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
   };
 
   // ─────────────────────────────────────────────────────────────────────────
-  // MODALS: OAUTH 2.0 PKCE LIVE ENHANCER & 25-GATE AUDIT LEDGER
+  // MODALS: OAUTH 2.0 PKCE ENHANCER, # / VOCABULARY & THEMES BROWSER, & 29-GATE AUDIT
   // ─────────────────────────────────────────────────────────────────────────
   proto.renderModals = function (pal, charSpec, audit) {
     const st = this.state;
     let html = '';
 
+    // 1. OAUTH 2.0 PKCE + # / VOCABULARY LIVE ENHANCER MODAL
     if (st.oauthModalOpen) {
       const last = st.oauthLastResult;
       const rsi = st.rsiCritiqueResult;
+      const srcAOpts = (st.dag.nodes || []).map(function (n) {
+        return '<option value="' + esc(n.id) + '"' + (st.selectedNodeId === n.id ? ' selected' : '') + '>● Src A: ' + esc(n.title) + ' (' + esc(n.id) + ')</option>';
+      }).join('');
+      const srcBOpts = (st.dag.nodes || []).map(function (n) {
+        return '<option value="' + esc(n.id) + '"' + (st.compareNodeId === n.id ? ' selected' : '') + '>◐ Src B: ' + esc(n.title) + ' (' + esc(n.id) + ')</option>';
+      }).join('');
+
+      const quickTokens = [
+        ['#theme/saul-bass-cutout', '🎨 Saul Bass Cutout'],
+        ['#theme/ghibli-watercolor', '🎨 Ghibli Watercolor'],
+        ['#theme/blueprint-telemetry', '🎨 Blueprint Telemetry'],
+        ['#element/negative-space-reveal', '🧱 Negative-Space Reveal'],
+        ['#element/grain-stipple', '🧱 Film Grain & Stipple'],
+        ['#camera/match-cut-morph', '🎥 Match-Cut Morph'],
+        ['#feel/held-24fps', '⚡ Held 12fps Stop-Motion'],
+        ['#color/pelagic-dawn', '🏷 #color/pelagic-dawn'],
+        ['#color/saul-cutout-ocher', '🏷 #color/saul-cutout-ocher']
+      ].map(function (pair) {
+        return '<button data-action="insert-vocab-token" data-vocab-token="' + esc(pair[0]) + '" class="st-mini-btn" style="padding:2px 6px;font-size:10px" title="Insert ' + esc(pair[0]) + ' into prompt and apply its settings">' + esc(pair[1]) + ' <code>' + esc(pair[0]) + '</code></button>';
+      }).join('');
+
       html += '<div class="st-modal-backdrop">' +
         '<div class="st-modal">' +
           '<div style="display:flex;justify-content:space-between;align-items:center">' +
             '<div>' +
-              '<span class="st-eyebrow">RFC 7636 OAUTH 2.0 PKCE (S256) + LOCAL AGENT BRIDGE + ALGEBRAIC SYNTHESIZER (G10 · G11)</span>' +
-              '<h3 style="margin:4px 0;font-family:Fraunces,serif;font-size:22px">Live Storyboard, Fork &amp; Character Enhancer</h3>' +
+              '<span class="st-eyebrow">RFC 7636 OAUTH 2.0 PKCE (S256) + LOCAL AGENT BRIDGE + # / SKILL VOCABULARY SYNTHESIZER (G10 · G11 · G27 · G28)</span>' +
+              '<h3 style="margin:4px 0;font-family:Fraunces,serif;font-size:22px">Live Storyboard, Source Branch &amp; Character Enhancer</h3>' +
             '</div>' +
-            '<button data-action="toggle-oauth-modal" class="st-mini-btn">✕ Close</button>' +
+            '<div style="display:flex;gap:6px">' +
+              '<button data-action="toggle-vocab-modal" class="st-mini-btn on">📖 # / Vocabulary Library</button>' +
+              '<button data-action="toggle-oauth-modal" class="st-mini-btn">✕ Close</button>' +
+            '</div>' +
           '</div>' +
 
-          '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0">' +
+          // DIRECT SOURCE A & SOURCE B PICKERS (GATE G27)
+          '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0;padding:8px 10px;background:rgba(140,74,46,.06);border:1px solid rgba(140,74,46,.22);border-radius:6px">' +
+            '<div>' +
+              '<label class="st-label" style="color:#8C4A2E">PRIMARY SOURCE CARD TO ENHANCE / FORK FROM (● SOURCE A)</label>' +
+              '<select id="oauth-source-a-select" class="st-select" style="width:100%">' + srcAOpts + '</select>' +
+            '</div>' +
+            '<div>' +
+              '<label class="st-label" style="color:#1F5A73">SECONDARY COMPARE / PUSHOUT SOURCE (◐ SOURCE B)</label>' +
+              '<select id="oauth-source-b-select" class="st-select" style="width:100%">' + srcBOpts + '</select>' +
+            '</div>' +
+          '</div>' +
+
+          '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0">' +
             '<div><label class="st-label">AUTH PROVIDER MODE</label>' +
               '<select id="oauth-provider-select" class="st-select" style="width:100%">' +
                 '<option value="local-bridge"' + (st.oauthProvider === 'local-bridge' ? ' selected' : '') + '>Local Loopback Bridge (127.0.0.1:43110) + PKCE</option>' +
@@ -6758,15 +7890,21 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
             '</div>' +
           '</div>' +
 
-          '<div><label class="st-label">ENHANCEMENT &amp; CHARACTER SYNTHESIS DIRECTIVE</label>' +
-            '<textarea id="oauth-prompt-input" rows="3" class="st-input" style="width:100%">' + esc(st.oauthPrompt) + '</textarea>' +
+          '<div style="position:relative">' +
+            '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">' +
+              '<label class="st-label" style="margin-bottom:0">ENHANCEMENT DIRECTIVE (TYPE <code>#</code> OR <code>/</code> FOR LIVE VOCABULARY, THEME &amp; #COLOR AUTOCOMPLETE)</label>' +
+              '<span class="st-mono-xs" style="color:#8C4A2E">Supports #theme/... · #element/... · #camera/... · #color/...</span>' +
+            '</div>' +
+            '<div style="display:flex;gap:4px;flex-wrap:wrap;margin-bottom:6px">' + quickTokens + '</div>' +
+            '<textarea id="oauth-prompt-input" data-vocab-autocomplete="true" rows="3" class="st-input" style="width:100%">' + esc(st.oauthPrompt) + '</textarea>' +
           '</div>' +
 
           '<div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap">' +
-            '<button data-action="run-oauth-enhance" class="st-btn st-btn-rust">' + (st.oauthBusy ? 'Enhancing & Validating Schema...' : '✦ 1. Enhance 8 Beats + Spawn DAG Node') + '</button>' +
-            '<button data-action="fork-three-directions" data-node-id="' + esc(st.selectedNodeId) + '" class="st-btn st-btn-ink">⑂ 2. Fork 3 Directions (α/β/γ)</button>' +
-            '<button data-action="synthesize-new-character" class="st-btn">✦ 3. Synthesize Character Rig</button>' +
-            '<button data-action="run-rsi-critique" class="st-btn">⚖ 4. Run 4-Lens RSI Critique &amp; Fix</button>' +
+            '<button data-action="run-oauth-enhance" class="st-btn st-btn-rust">' + (st.oauthBusy ? 'Enhancing & Validating Schema...' : '✦ 1. Enhance 8 Beats + Spawn Child from Source A') + '</button>' +
+            '<button data-action="fork-three-directions" data-node-id="' + esc(st.selectedNodeId) + '" class="st-btn st-btn-ink">⑂ 2. Fork 3 Directions (α/β/γ) from Source A</button>' +
+            '<button data-action="dag-synthesize-ab" class="st-btn">⊕ 3. Pushout Merge (Source A ⊕ Source B)</button>' +
+            '<button data-action="synthesize-new-character" class="st-btn">✦ 4. Synthesize Character Rig</button>' +
+            '<button data-action="run-rsi-critique" class="st-btn">⚖ 5. Run 4-Lens RSI Critique &amp; Fix</button>' +
           '</div>' +
 
           (last ? (
@@ -6794,6 +7932,64 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
       '</div>';
     }
 
+    // 2. PLAIN-ENGLISH # / VOCABULARY, THEMES, ELEMENTS & #COLOR BROWSER MODAL (GATE G28 · G29)
+    if (st.vocabModalOpen) {
+      const catList = [
+        ['all', 'All (' + (CO.getFullVocabLibrary ? CO.getFullVocabLibrary(st.savedColorSchemes).length : 42) + ')'],
+        ['theme', '🎨 Themes & Looks (#theme)'],
+        ['element', '🧱 Visual Elements (#element)'],
+        ['camera', '🎥 Camera & Cuts (#camera)'],
+        ['feel', '⚡ Physics & Timing (#feel)'],
+        ['character', '🐋 Character Rigs (#character)'],
+        ['color', '🏷 Saved Color Schemes (#color)']
+      ];
+      const matches = CO.searchVocabLibrary
+        ? CO.searchVocabLibrary(st.vocabSearch || '', st.vocabCategory || 'all', st.savedColorSchemes)
+        : [];
+
+      const catPills = catList.map(function (c) {
+        return '<button data-action="set-vocab-cat" data-cat="' + c[0] + '" class="st-mini-btn ' + ((st.vocabCategory || 'all') === c[0] ? 'on' : '') + '">' + esc(c[1]) + '</button>';
+      }).join('');
+
+      const itemRows = matches.map(function (item) {
+        return '<div class="char-card" style="display:flex;flex-direction:column;justify-content:space-between;padding:10px">' +
+          '<div>' +
+            '<div style="display:flex;justify-content:space-between;align-items:center;gap:4px;flex-wrap:wrap">' +
+              '<code style="font-size:10.5px;font-weight:700;color:#8C4A2E;background:rgba(140,74,46,.09);padding:2px 6px;border-radius:4px">' + esc(item.token) + '</code>' +
+              '<code style="font-size:10px;color:#1F5A73">' + esc(item.slash) + '</code>' +
+            '</div>' +
+            '<div style="font-weight:700;font-size:13.5px;margin:5px 0 3px">' + esc(item.plainName) + '</div>' +
+            '<p style="font-size:11.5px;color:rgba(26,31,46,.78);margin:0 0 8px;line-height:1.4">' + esc(item.plainDesc) + '</p>' +
+          '</div>' +
+          '<div style="display:flex;gap:4px;flex-wrap:wrap;padding-top:6px;border-top:1px dashed rgba(26,31,46,.14)">' +
+            '<button data-action="apply-vocab-token" data-vocab-token="' + esc(item.token) + '" class="st-mini-btn on" style="flex:1" title="Immediately apply this look, element, or color scheme to Studio & Source A">● Apply Now</button>' +
+            '<button data-action="spawn-vocab-card" data-vocab-token="' + esc(item.token) + '" class="st-mini-btn" style="flex:1" title="Spawn a new card on the Living Canvas with this preset">+ Spawn Card</button>' +
+            '<button data-action="insert-vocab-token" data-vocab-token="' + esc(item.token) + '" class="st-mini-btn" title="Insert this #token into the active prompt & inspector notes">↵ #Prompt</button>' +
+          '</div>' +
+        '</div>';
+      }).join('');
+
+      html += '<div class="st-modal-backdrop">' +
+        '<div class="st-modal" style="width:min(980px, 96vw)">' +
+          '<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">' +
+            '<div>' +
+              '<span class="st-eyebrow">IN-STUDIO SKILLS, VOCABULARY &amp; TAGGED COLOR LIBRARY (GATE G28 · G29 · INVOCABLE VIA # OR / IN ANY PROMPT)</span>' +
+              '<h3 style="margin:3px 0;font-family:Fraunces,serif;font-size:21px">Plain-English Design Vocabulary, Themes, Elements &amp; #Color Vault</h3>' +
+            '</div>' +
+            '<button data-action="toggle-vocab-modal" class="st-mini-btn">✕ Close [Esc]</button>' +
+          '</div>' +
+          '<p style="font-size:12px;color:rgba(26,31,46,.78);margin:4px 0 10px">Don\'t know the technical motion-graphics term? Search in plain English below (e.g. <em>"paper cutout"</em>, <em>"watercolor"</em>, <em>"grain"</em>, <em>"slow camera"</em>, <em>"stop motion"</em>, or <em>"#color"</em>) and click <strong>● Apply Now</strong> or <strong>+ Spawn Card</strong>. You can also type <code>#</code> or <code>/</code> inside any studio prompt or card note for instant autocomplete.</p>' +
+          '<div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:10px">' +
+            '<input id="vocab-modal-search" type="text" value="' + esc(st.vocabSearch || '') + '" placeholder="Search plain English or #token (e.g. paper cutout, grain, match cut, #color/pelagic-dawn)..." class="st-input" style="flex:1;min-width:260px"/>' +
+            '<div style="display:flex;gap:4px;flex-wrap:wrap">' + catPills + '</div>' +
+          '</div>' +
+          (st.copiedNotice ? '<div style="margin-bottom:8px;padding:6px 10px;background:#2E5A44;color:#FBF3E6;border-radius:6px;font-size:11.5px">' + esc(st.copiedNotice) + '</div>' : '') +
+          '<div class="char-grid-3" style="max-height:460px;overflow-y:auto;padding-right:4px">' + itemRows + '</div>' +
+        '</div>' +
+      '</div>';
+    }
+
+    // 3. 29-GATE MECHANICAL CONTRACT AUDIT MODAL
     if (st.gateModalOpen) {
       const tellApart = MA.auditArchetypeDiscriminability ? MA.auditArchetypeDiscriminability() : { pass: true, minDistance: 0.42, pairCount: 28 };
       const sheafCheck = CO.verifyDAGSheafCohomology ? CO.verifyDAGSheafCohomology(st.dag) : { valid: true, edgeCount: (st.dag.edges || []).length };
@@ -6801,7 +7997,7 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
         '<div class="st-modal">' +
           '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">' +
             '<div>' +
-              '<span class="st-eyebrow">25 BINARY CONSERVATION GATES + TELL-APART + SHEAF + VBM UX ERGONOMICS (G01–G25)</span>' +
+              '<span class="st-eyebrow">29 BINARY CONSERVATION GATES + TELL-APART + SHEAF + FREEFORM STUDIO ERGONOMICS (G01–G29)</span>' +
               '<h3 style="margin:4px 0;font-family:Fraunces,serif;font-size:22px">Mechanical Contract Audit — ' + audit.passedCount + '/' + audit.totalCount + ' PASS</h3>' +
             '</div>' +
             '<button data-action="toggle-gate-modal" class="st-mini-btn">✕ Close</button>' +
@@ -6879,6 +8075,67 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
     }
   };
 
+  // Helper: Apply a vocabulary item's patch to studio state + active Source A card
+  proto.applyVocabItem = function (item, spawnNewCard) {
+    if (!item) return;
+    const st = this.state;
+    const patch = item.patch || {};
+    const nextState = {};
+
+    if (patch.charId) nextState.charId = patch.charId;
+    if (patch.styleKey) nextState.mStyle = patch.styleKey;
+    if (patch.storyKey) nextState.storyKey = patch.storyKey;
+    if (patch.feel) nextState.feel = patch.feel;
+    if (patch.rung) nextState.rung = patch.rung;
+    if (patch.palId) {
+      const idx = st.activeWadaCombos.findIndex(function (p) { return p.id === Number(patch.palId); });
+      if (idx >= 0) nextState.palIdx = idx;
+    }
+
+    // Update active Source A node or spawn a new card
+    if (spawnNewCard) {
+      const res = CO.forkCanvasNode(st.dag, st.selectedNodeId, {
+        title: item.plainName + ' (' + item.token + ')',
+        subtitle: (patch.palId ? 'Wada No. ' + patch.palId : 'Wada No. ' + this.getActivePalette().id) + ' · ' + (patch.styleKey || st.mStyle),
+        charId: patch.charId || st.charId,
+        palId: patch.palId || this.getActivePalette().id,
+        styleKey: patch.styleKey || st.mStyle,
+        storyKey: patch.storyKey || st.storyKey,
+        edgeLabel: item.token,
+        payload: {
+          notes: item.plainDesc + ' [' + item.token + ']'
+        }
+      });
+      nextState.dag = { nodes: res.nodes, edges: res.edges };
+      nextState.selectedNodeId = res.createdNodeId;
+      nextState.surface = 'infinite-canvas';
+      nextState.vocabModalOpen = false;
+    } else {
+      const nodeA = (st.dag.nodes || []).find(function (n) { return n.id === st.selectedNodeId; });
+      if (nodeA && nodeA.payload) {
+        if (patch.charId) nodeA.payload.charId = patch.charId;
+        if (patch.styleKey) nodeA.payload.styleKey = patch.styleKey;
+        if (patch.storyKey) nodeA.payload.storyKey = patch.storyKey;
+        if (patch.palId) nodeA.payload.palId = Number(patch.palId);
+        const tagNote = '[' + item.token + ']';
+        if (!String(nodeA.payload.notes || '').includes(tagNote)) {
+          nodeA.payload.notes = (nodeA.payload.notes ? nodeA.payload.notes + ' ' : '') + tagNote;
+        }
+        nodeA.subtitle = 'Wada No. ' + nodeA.payload.palId + ' · ' + nodeA.payload.styleKey;
+        if (CO.stampDAGRestrictionHashes) CO.stampDAGRestrictionHashes(st.dag);
+        nextState.dag = st.dag;
+      }
+      if (patch.cameraMove && st.storyboard && Array.isArray(st.storyboard.beats) && st.storyboard.beats[0]) {
+        st.storyboard.beats[0].cameraMove = patch.cameraMove;
+        if (CO.auditStoryboardSheet) CO.auditStoryboardSheet(st.storyboard);
+        nextState.storyboard = st.storyboard;
+      }
+    }
+
+    nextState.copiedNotice = 'Applied ' + item.token + ' — ' + item.plainName;
+    this.setState(nextState);
+  };
+
   proto.attachDOMListeners = function () {
     const self = this;
     const root = this.root;
@@ -6892,9 +8149,30 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
     bindSel('#sel-interaction', function (v) { self.setState({ interaction: v }); });
     bindSel('#sel-feel', function (v) { self.setState({ feel: v }); });
     bindSel('#sel-ground', function (v) { self.setState({ ground: v }); });
+    bindSel('#sel-source-a-node', function (v) {
+      const n = (self.state.dag.nodes || []).find(function (nd) { return nd.id === v; });
+      const pIdx = n && n.payload ? self.state.activeWadaCombos.findIndex(function (p) { return p.id === n.payload.palId; }) : -1;
+      self.setState({
+        selectedNodeId: v,
+        charId: (n && n.payload && n.payload.charId) || self.state.charId,
+        mStyle: (n && n.payload && n.payload.styleKey) || self.state.mStyle,
+        storyKey: (n && n.payload && n.payload.storyKey) || self.state.storyKey,
+        palIdx: pIdx >= 0 ? pIdx : self.state.palIdx
+      });
+    });
     bindSel('#sel-compare-node', function (v) { self.setState({ compareNodeId: v }); });
+    bindSel('#oauth-source-a-select', function (v) { self.setState({ selectedNodeId: v }); });
+    bindSel('#oauth-source-b-select', function (v) { self.setState({ compareNodeId: v }); });
     bindSel('#sb-story-select', function (v) { self.setState({ storyKey: v }); });
     bindSel('#oauth-provider-select', function (v) { self.setState({ oauthProvider: v }); });
+    bindSel('#header-saved-scheme-select', function (v) {
+      if (!v) return;
+      const sc = CO.resolveColorSchemeByTag(self.state.savedColorSchemes, v);
+      if (sc) {
+        const idx = self.state.activeWadaCombos.findIndex(function (p) { return p.id === sc.palId; });
+        if (idx >= 0) self.setState({ palIdx: idx, copiedNotice: 'Invoked saved scheme ' + sc.token + ' (Wada No. ' + sc.palId + ')' });
+      }
+    });
 
     const scrub = root.querySelector('#global-scrub');
     if (scrub) {
@@ -6914,7 +8192,74 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
       });
     }
 
-    // Inline Storyboard Beat Editing (Hinge, Camera, VisualAction) delegated to CO.auditStoryboardSheet
+    const vocabSearchInput = root.querySelector('#vocab-modal-search');
+    if (vocabSearchInput) {
+      vocabSearchInput.addEventListener('input', function (e) {
+        self.setState({ vocabSearch: e.target.value });
+      });
+    }
+
+    // Live # and / Autocomplete Popover inside any [data-vocab-autocomplete="true"] input/textarea
+    const acInputs = root.querySelectorAll('[data-vocab-autocomplete="true"]');
+    for (let i = 0; i < acInputs.length; i++) {
+      acInputs[i].addEventListener('input', function (e) {
+        const inp = e.target;
+        const val = String(inp.value || '');
+        const caret = typeof inp.selectionStart === 'number' ? inp.selectionStart : val.length;
+        const beforeCaret = val.slice(0, caret);
+        const match = beforeCaret.match(/(?:^|\s)([#/][a-zA-Z0-9/_-]*)$/);
+
+        let pop = inp.parentElement.querySelector('.vocab-popover');
+        if (!match) {
+          if (pop) pop.remove();
+          return;
+        }
+        const tokenQuery = match[1].slice(1); // strip leading # or /
+        const results = CO.searchVocabLibrary ? CO.searchVocabLibrary(tokenQuery, 'all', self.state.savedColorSchemes).slice(0, 8) : [];
+        if (!results.length) {
+          if (pop) pop.remove();
+          return;
+        }
+        if (!pop) {
+          pop = document.createElement('div');
+          pop.className = 'vocab-popover';
+          pop.style.left = '0px';
+          pop.style.top = (inp.offsetTop + inp.offsetHeight + 4) + 'px';
+          inp.parentElement.style.position = 'relative';
+          inp.parentElement.appendChild(pop);
+        }
+        pop.innerHTML =
+          '<div style="padding:3px 6px;font-size:9.5px;font-family:\'Space Mono\',monospace;color:#8C4A2E;border-bottom:1px solid rgba(26,31,46,.12)">PLAIN-ENGLISH # / VOCABULARY &amp; #COLOR AUTOCOMPLETE (CLICK TO INSERT &amp; APPLY)</div>' +
+          results.map(function (r) {
+            return '<div class="vocab-item" data-ac-token="' + esc(r.token) + '">' +
+              '<div><strong>' + esc(r.plainName) + '</strong> <span style="opacity:.72">— ' + esc(r.plainDesc.slice(0, 58)) + '...</span></div>' +
+              '<code>' + esc(r.token) + '</code>' +
+            '</div>';
+          }).join('');
+
+        const items = pop.querySelectorAll('[data-ac-token]');
+        for (let j = 0; j < items.length; j++) {
+          items[j].addEventListener('mousedown', function (ev) {
+            ev.preventDefault();
+            ev.stopPropagation();
+            const chosenToken = ev.currentTarget.getAttribute('data-ac-token');
+            const replaced = beforeCaret.replace(/([#/][a-zA-Z0-9/_-]*)$/, chosenToken + ' ') + val.slice(caret);
+            inp.value = replaced;
+            if (inp.id === 'oauth-prompt-input') self.state.oauthPrompt = replaced;
+            if (inp.id === 'ins-node-notes') {
+              const nodeA = (self.state.dag.nodes || []).find(function (n) { return n.id === self.state.selectedNodeId; });
+              if (nodeA && nodeA.payload) nodeA.payload.notes = replaced;
+            }
+            pop.remove();
+            const fullLib = CO.getFullVocabLibrary ? CO.getFullVocabLibrary(self.state.savedColorSchemes) : [];
+            const found = fullLib.find(function (it) { return it.token === chosenToken; });
+            if (found) self.applyVocabItem(found, false);
+          });
+        }
+      });
+    }
+
+    // Inline Storyboard Beat Editing (Hinge, Camera, VisualAction, #color/<tag>)
     const reauditStoryboard = function () {
       if (CO.auditStoryboardSheet) {
         CO.auditStoryboardSheet(self.state.storyboard);
@@ -6945,6 +8290,24 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
       });
     }
 
+    const schemeSels = root.querySelectorAll('[data-beat-scheme]');
+    for (let i = 0; i < schemeSels.length; i++) {
+      schemeSels[i].addEventListener('change', function (e) {
+        const idx = Number(e.target.getAttribute('data-beat-scheme'));
+        const tag = e.target.value;
+        if (self.state.storyboard.beats[idx]) {
+          self.state.storyboard.beats[idx].colorSchemeTag = tag;
+          const sc = CO.resolveColorSchemeByTag(self.state.savedColorSchemes, tag);
+          if (sc) {
+            self.state.storyboard.beats[idx].wadaPalId = sc.palId;
+            const pIdx = self.state.activeWadaCombos.findIndex(function (p) { return p.id === sc.palId; });
+            if (pIdx >= 0) self.state.palIdx = pIdx;
+          }
+          self.renderDOM();
+        }
+      });
+    }
+
     const actInputs = root.querySelectorAll('[data-beat-action]');
     for (let i = 0; i < actInputs.length; i++) {
       actInputs[i].addEventListener('change', function (e) {
@@ -6954,6 +8317,42 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
           reauditStoryboard();
           self.renderDOM();
         }
+      });
+    }
+
+    // Effortless HTML5 Drag-and-Drop Reordering on 8-Beat Storyboard Cards (Gate G26)
+    const sbCards = root.querySelectorAll('[data-sb-beat-card]');
+    for (let i = 0; i < sbCards.length; i++) {
+      sbCards[i].addEventListener('dragstart', function (e) {
+        const idx = Number(e.currentTarget.getAttribute('data-sb-beat-card'));
+        self._draggingBeatIdx = idx;
+        e.currentTarget.classList.add('sb-card-dragging');
+        if (e.dataTransfer) {
+          e.dataTransfer.effectAllowed = 'move';
+          e.dataTransfer.setData('text/plain', String(idx));
+        }
+      });
+      sbCards[i].addEventListener('dragover', function (e) {
+        e.preventDefault();
+        e.currentTarget.classList.add('sb-card-drop-target');
+      });
+      sbCards[i].addEventListener('dragleave', function (e) {
+        e.currentTarget.classList.remove('sb-card-drop-target');
+      });
+      sbCards[i].addEventListener('drop', function (e) {
+        e.preventDefault();
+        e.currentTarget.classList.remove('sb-card-drop-target');
+        const toIdx = Number(e.currentTarget.getAttribute('data-sb-beat-card'));
+        const fromIdx = self._draggingBeatIdx != null ? self._draggingBeatIdx : Number(e.dataTransfer && e.dataTransfer.getData('text/plain'));
+        self._draggingBeatIdx = null;
+        if (!Number.isNaN(fromIdx) && !Number.isNaN(toIdx) && fromIdx !== toIdx) {
+          CO.moveStoryboardBeat(self.state.storyboard, fromIdx, toIdx);
+          self.setState({ storyboard: self.state.storyboard });
+        }
+      });
+      sbCards[i].addEventListener('dragend', function (e) {
+        e.currentTarget.classList.remove('sb-card-dragging');
+        self._draggingBeatIdx = null;
       });
     }
 
@@ -6980,6 +8379,7 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
               rung: data.activeRung || self.state.rung,
               dag: data.dag || self.state.dag,
               storyboard: data.storyboard || self.state.storyboard,
+              savedColorSchemes: Array.isArray(data.savedColorSchemes) ? data.savedColorSchemes : self.state.savedColorSchemes,
               copiedNotice: 'Imported .motion.studio.json archive successfully.'
             });
           } catch (err) {
@@ -7014,29 +8414,38 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
     for (let i = 0; i < backdrops.length; i++) {
       backdrops[i].addEventListener('click', function (e) {
         if (e.target === e.currentTarget) {
-          self.setState({ oauthModalOpen: false, gateModalOpen: false });
+          self.setState({ oauthModalOpen: false, gateModalOpen: false, vocabModalOpen: false });
         }
       });
     }
 
-    // Living Canvas pan & drag
+    // EFFORTLESS WHOLE-CARD FREEFORM DRAG & BACKGROUND PAN ON LIVING CANVAS (GATE G26)
     const vp = root.querySelector('#living-canvas-viewport');
     if (vp) {
       vp.addEventListener('mousedown', function (e) {
-        const handle = e.target.closest('[data-drag-handle]');
-        if (handle) {
-          const nid = handle.getAttribute('data-drag-handle');
+        // Ignore clicks directly on interactive form controls or buttons
+        if (e.target.closest('button, select, input, textarea, a, label')) return;
+
+        // Grab anywhere on a card (.dag-node) to drag it or click-select it!
+        const cardEl = e.target.closest('[data-dag-node]');
+        if (cardEl) {
+          const nid = cardEl.getAttribute('data-dag-node');
           const node = self.state.dag.nodes.find(function (n) { return n.id === nid; });
           if (node) {
             self._draggingNodeId = nid;
+            self._dragMovedPx = 0;
             self._dragStart = [e.clientX, e.clientY];
             self._panStart = [node.x, node.y];
+            cardEl.classList.add('dag-node-dragging');
+            e.preventDefault();
             e.stopPropagation();
             return;
           }
         }
-        if (e.target.closest('.dag-node') || e.target.closest('button')) return;
+
+        // Otherwise, dragging empty canvas space pans the viewport
         self._draggingCanvas = true;
+        self._dragMovedPx = 0;
         self._dragStart = [e.clientX, e.clientY];
         self._panStart = [self.state.panX, self.state.panY];
       });
@@ -7065,6 +8474,173 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
     if (act === 'toggle-play') return this.setState({ playing: !st.playing });
     if (act === 'toggle-captions-covered') return this.setState({ captionsCovered: !st.captionsCovered });
     if (act === 'toggle-onion-skin') return this.setState({ onionSkin: !st.onionSkin });
+    if (act === 'toggle-vocab-modal') return this.setState({ vocabModalOpen: !st.vocabModalOpen });
+    if (act === 'set-vocab-cat') return this.setState({ vocabCategory: el.getAttribute('data-cat') || 'all' });
+    if (act === 'apply-vocab-token') {
+      const tok = el.getAttribute('data-vocab-token');
+      const lib = CO.getFullVocabLibrary ? CO.getFullVocabLibrary(st.savedColorSchemes) : [];
+      const item = lib.find(function (it) { return it.token === tok; });
+      if (item) this.applyVocabItem(item, false);
+      return;
+    }
+    if (act === 'spawn-vocab-card') {
+      const tok = el.getAttribute('data-vocab-token');
+      const lib = CO.getFullVocabLibrary ? CO.getFullVocabLibrary(st.savedColorSchemes) : [];
+      const item = lib.find(function (it) { return it.token === tok; });
+      if (item) this.applyVocabItem(item, true);
+      return;
+    }
+    if (act === 'insert-vocab-token') {
+      const tok = el.getAttribute('data-vocab-token');
+      const lib = CO.getFullVocabLibrary ? CO.getFullVocabLibrary(st.savedColorSchemes) : [];
+      const item = lib.find(function (it) { return it.token === tok; });
+      const nextPrompt = st.oauthPrompt.includes(tok) ? st.oauthPrompt : (st.oauthPrompt.trim() + ' ' + tok);
+      this.state.oauthPrompt = nextPrompt;
+      if (item) {
+        this.applyVocabItem(item, false);
+      } else {
+        this.setState({ oauthPrompt: nextPrompt });
+      }
+      return;
+    }
+    if (act === 'invoke-saved-scheme') {
+      const tag = el.getAttribute('data-scheme-tag');
+      const sc = CO.resolveColorSchemeByTag(st.savedColorSchemes, tag);
+      if (sc) {
+        const idx = st.activeWadaCombos.findIndex(function (p) { return p.id === sc.palId; });
+        if (idx >= 0) {
+          this.setState({ palIdx: idx, copiedNotice: 'Applied saved color scheme ' + sc.token + ' (Wada No. ' + sc.palId + ')' });
+        }
+      }
+      return;
+    }
+    if (act === 'apply-scheme-to-node') {
+      const tag = el.getAttribute('data-scheme-tag');
+      const sc = CO.resolveColorSchemeByTag(st.savedColorSchemes, tag);
+      const nodeA = (st.dag.nodes || []).find(function (n) { return n.id === st.selectedNodeId; });
+      if (sc && nodeA && nodeA.payload) {
+        nodeA.payload.palId = sc.palId;
+        nodeA.payload.colorSchemeTag = sc.token;
+        nodeA.subtitle = 'Wada No. ' + sc.palId + ' (' + sc.token + ') · ' + nodeA.payload.styleKey;
+        if (CO.stampDAGRestrictionHashes) CO.stampDAGRestrictionHashes(st.dag);
+        const idx = st.activeWadaCombos.findIndex(function (p) { return p.id === sc.palId; });
+        this.setState({
+          dag: st.dag,
+          palIdx: idx >= 0 ? idx : st.palIdx,
+          copiedNotice: 'Pinned ' + sc.token + ' to Source A card (' + nodeA.title + ').'
+        });
+      }
+      return;
+    }
+    if (act === 'quick-tag-current-scheme') {
+      const pal = this.getActivePalette();
+      const slug = (pal.name || ('wada-' + pal.id)).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+      const res = CO.tagAndSaveColorScheme(st.savedColorSchemes, {
+        tag: slug,
+        title: pal.name + ' (' + pal.no + ')',
+        palId: pal.id,
+        notes: pal.mood || 'Saved from Studio header bar'
+      });
+      return this.setState({
+        savedColorSchemes: res.schemes,
+        copiedNotice: 'Tagged & saved current palette as ' + res.createdOrUpdated.token
+      });
+    }
+    if (act === 'save-color-scheme') {
+      const pal = this.getActivePalette();
+      const tagEl = this.root.querySelector('#new-scheme-tag-input');
+      const titleEl = this.root.querySelector('#new-scheme-title-input');
+      const notesEl = this.root.querySelector('#new-scheme-notes-input');
+      const tagVal = tagEl ? tagEl.value : ('wada-' + pal.id);
+      const titleVal = titleEl ? titleEl.value : (pal.name + ' (' + pal.no + ')');
+      const notesVal = notesEl ? notesEl.value : (pal.mood || '');
+      const res = CO.tagAndSaveColorScheme(st.savedColorSchemes, {
+        tag: tagVal,
+        title: titleVal,
+        palId: pal.id,
+        notes: notesVal
+      });
+      return this.setState({
+        savedColorSchemes: res.schemes,
+        newSchemeTag: '',
+        newSchemeTitle: '',
+        newSchemeNotes: '',
+        copiedNotice: 'Saved color scheme ' + res.createdOrUpdated.token + ' to Vault!'
+      });
+    }
+    if (act === 'save-combo-as-scheme') {
+      const pid = Number(el.getAttribute('data-pal-id'));
+      const combo = st.activeWadaCombos.find(function (p) { return p.id === pid; }) || this.getActivePalette();
+      const slug = (combo.name || ('wada-' + combo.id)).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+      const idx = st.activeWadaCombos.findIndex(function (p) { return p.id === pid; });
+      const res = CO.tagAndSaveColorScheme(st.savedColorSchemes, {
+        tag: slug,
+        title: combo.name + ' (No. ' + combo.id + ')',
+        palId: combo.id,
+        notes: combo.mood || 'Saved from 348 Wada Dictionary'
+      });
+      return this.setState({
+        palIdx: idx >= 0 ? idx : st.palIdx,
+        savedColorSchemes: res.schemes,
+        copiedNotice: 'Saved ' + res.createdOrUpdated.token + ' to #color Vault!'
+      });
+    }
+    if (act === 'set-source-a') {
+      const nid = el.getAttribute('data-node-id');
+      const node = (st.dag.nodes || []).find(function (n) { return n.id === nid; });
+      const pIdx = node && node.payload ? st.activeWadaCombos.findIndex(function (p) { return p.id === node.payload.palId; }) : -1;
+      return this.setState({
+        selectedNodeId: nid,
+        charId: (node && node.payload && node.payload.charId) || st.charId,
+        mStyle: (node && node.payload && node.payload.styleKey) || st.mStyle,
+        storyKey: (node && node.payload && node.payload.storyKey) || st.storyKey,
+        palIdx: pIdx >= 0 ? pIdx : st.palIdx
+      });
+    }
+    if (act === 'set-source-b') {
+      const nid = el.getAttribute('data-node-id');
+      return this.setState({ compareNodeId: nid, showABCompare: true });
+    }
+    if (act === 'swap-source-ab') {
+      return this.setState({
+        selectedNodeId: st.compareNodeId || 'node-proof-b',
+        compareNodeId: st.selectedNodeId || 'node-seed-root'
+      });
+    }
+    if (act === 'duplicate-dag-node') {
+      const nid = el.getAttribute('data-node-id') || st.selectedNodeId;
+      const res = CO.duplicateCanvasCard(st.dag, nid);
+      return this.setState({
+        dag: { nodes: res.nodes, edges: res.edges },
+        selectedNodeId: res.createdNodeId
+      });
+    }
+    if (act === 'delete-dag-node') {
+      const nid = el.getAttribute('data-node-id') || st.selectedNodeId;
+      const res = CO.deleteCanvasCard(st.dag, nid);
+      const nextSelected = (res.nodes[0] && res.nodes[0].id) || 'node-seed-root';
+      return this.setState({
+        dag: { nodes: res.nodes, edges: res.edges },
+        selectedNodeId: st.selectedNodeId === nid ? nextSelected : st.selectedNodeId
+      });
+    }
+    if (act === 'move-beat-card') {
+      const fromIdx = Number(el.getAttribute('data-beat-idx'));
+      const delta = Number(el.getAttribute('data-delta')) || 0;
+      const toIdx = fromIdx + delta;
+      CO.moveStoryboardBeat(st.storyboard, fromIdx, toIdx);
+      return this.setState({ storyboard: st.storyboard });
+    }
+    if (act === 'apply-style-to-src-a') {
+      const sk = el.getAttribute('data-style-key') || 'watercolor';
+      const nodeA = (st.dag.nodes || []).find(function (n) { return n.id === st.selectedNodeId; });
+      if (nodeA && nodeA.payload) {
+        nodeA.payload.styleKey = sk;
+        nodeA.subtitle = 'Wada No. ' + nodeA.payload.palId + ' · ' + sk;
+        if (CO.stampDAGRestrictionHashes) CO.stampDAGRestrictionHashes(st.dag);
+      }
+      return this.setState({ mStyle: sk, dag: st.dag, surface: 'infinite-canvas' });
+    }
     if (act === 'sonify-wada-chord') {
       if (MA.playWadaHarmonicChord) {
         MA.playWadaHarmonicChord(this.getActivePalette(), this.getActiveChar(), st.rung, this._T, 1.35);
@@ -7081,7 +8657,8 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
       return this.setState({
         dag: { nodes: res.nodes, edges: res.edges },
         selectedNodeId: res.createdNodeId,
-        surface: 'infinite-canvas'
+        surface: 'infinite-canvas',
+        oauthModalOpen: false
       });
     }
     if (act === 'set-rung') return this.setState({ rung: Number(el.getAttribute('data-rung')) || 1 });
@@ -7153,7 +8730,8 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
         selectedNodeId: res.createdNodeIds[0],
         compareNodeId: res.createdNodeIds[1],
         showABCompare: true,
-        surface: 'infinite-canvas'
+        surface: 'infinite-canvas',
+        oauthModalOpen: false
       });
     }
     if (act === 'run-rsi-critique') {
@@ -7187,13 +8765,28 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
         const sEl = this.root.querySelector('#ins-node-style');
         const stEl = this.root.querySelector('#ins-node-story');
         const pEl = this.root.querySelector('#ins-node-pal');
+        const scEl = this.root.querySelector('#ins-node-scheme-tag');
         const nEl = this.root.querySelector('#ins-node-notes');
         const cjEl = this.root.querySelector('#ins-node-conjecture');
         if (cEl) node.payload.charId = cEl.value;
         if (sEl) node.payload.styleKey = sEl.value;
         if (stEl) node.payload.storyKey = stEl.value;
         if (pEl) node.payload.palId = Number(pEl.value);
-        if (nEl) node.payload.notes = nEl.value;
+        if (scEl && scEl.value) {
+          node.payload.colorSchemeTag = scEl.value;
+          const sc = CO.resolveColorSchemeByTag(st.savedColorSchemes, scEl.value);
+          if (sc) node.payload.palId = sc.palId;
+        }
+        if (nEl) {
+          node.payload.notes = nEl.value;
+          const parsed = CO.parsePromptTokens ? CO.parsePromptTokens(nEl.value, st.savedColorSchemes) : null;
+          if (parsed && parsed.mergedPatch) {
+            if (parsed.mergedPatch.palId) node.payload.palId = parsed.mergedPatch.palId;
+            if (parsed.mergedPatch.styleKey) node.payload.styleKey = parsed.mergedPatch.styleKey;
+            if (parsed.mergedPatch.storyKey) node.payload.storyKey = parsed.mergedPatch.storyKey;
+            if (parsed.mergedPatch.charId) node.payload.charId = parsed.mergedPatch.charId;
+          }
+        }
         if (cjEl) node.conjectureNote = cjEl.value;
         node.subtitle = 'Wada No. ' + node.payload.palId + ' · ' + node.payload.styleKey;
         if (CO.stampDAGRestrictionHashes) CO.stampDAGRestrictionHashes(st.dag);
@@ -7234,7 +8827,8 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
         palId: this.getActivePalette().id,
         styleKey: st.mStyle,
         storyKey: st.storyKey,
-        prompt: 'Synthesize a new custom parametric character rig for ' + st.mStyle
+        prompt: 'Synthesize a new custom parametric character rig for ' + st.mStyle,
+        savedColorSchemes: st.savedColorSchemes
       });
       MA.registerCustomCharacter(res.synthesizedCharacter);
       return this.setState({ charId: res.synthesizedCharacter.id });
@@ -7259,7 +8853,8 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
         palId: this.getActivePalette().id,
         styleKey: st.mStyle,
         storyKey: st.storyKey,
-        prompt: promptText
+        prompt: promptText,
+        savedColorSchemes: st.savedColorSchemes
       }, {
         mode: st.oauthProvider,
         provider: st.oauthProvider,
@@ -7392,6 +8987,22 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
       const app = new global.MotionAtlasStudioApp(rootEl);
       global.__MOTION_ATLAS_STUDIO_INSTANCE = app;
       app.mount();
+
+      // Global keyboard shortcuts: K opens # / Vocabulary & Themes modal; Esc closes modals
+      window.addEventListener('keydown', function (e) {
+        const tag = (e.target && e.target.tagName) ? e.target.tagName.toLowerCase() : '';
+        if (e.key === 'Escape') {
+          if (app.state.vocabModalOpen || app.state.oauthModalOpen || app.state.gateModalOpen) {
+            app.setState({ vocabModalOpen: false, oauthModalOpen: false, gateModalOpen: false });
+          }
+          return;
+        }
+        if (tag === 'input' || tag === 'textarea' || tag === 'select') return;
+        if ((e.key === 'k' || e.key === 'K') && !e.metaKey && !e.ctrlKey) {
+          e.preventDefault();
+          app.setState({ vocabModalOpen: !app.state.vocabModalOpen });
+        }
+      });
     }
   }
 
@@ -7403,6 +9014,7 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
     }
   }
 })(typeof window !== 'undefined' ? window : globalThis);
+
 
 </script>
 </body>

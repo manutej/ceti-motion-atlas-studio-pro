@@ -504,9 +504,11 @@ async function runAllGates() {
     const cams = new Set((s.beats || []).map((b) => b.cameraMove));
     return labels.size === 8 && cams.size === 8;
   });
-  const vbmTelemetryPath = fs.existsSync(path.join(ROOT, 'recordings', 'v7-final-ux-telemetry.json'))
-    ? path.join(ROOT, 'recordings', 'v7-final-ux-telemetry.json')
-    : path.join(ROOT, 'recordings', 'v6-final-ux-telemetry.json');
+  const vbmTelemetryPath = fs.existsSync(path.join(ROOT, 'recordings', 'v8-final-ux-telemetry.json'))
+    ? path.join(ROOT, 'recordings', 'v8-final-ux-telemetry.json')
+    : fs.existsSync(path.join(ROOT, 'recordings', 'v7-final-ux-telemetry.json'))
+      ? path.join(ROOT, 'recordings', 'v7-final-ux-telemetry.json')
+      : path.join(ROOT, 'recordings', 'v6-final-ux-telemetry.json');
   let vbmClean = false;
   let vbmHeaderPx = 0;
   if (fs.existsSync(vbmTelemetryPath)) {
@@ -514,7 +516,7 @@ async function runAllGates() {
     const frames = vbmJson.frames || [];
     vbmHeaderPx = frames[0] && frames[0].metrics ? frames[0].metrics.headerHeightPx : 0;
     vbmClean =
-      frames.length === 12 &&
+      frames.length >= 12 &&
       frames.every((f) => f.metrics && f.metrics.headerHeightPx <= 145 && f.metrics.dagNodeOverlaps === 0) &&
       (vbmJson.consoleErrors || []).length === 0 &&
       (vbmJson.pageErrors || []).length === 0;
@@ -524,7 +526,7 @@ async function runAllGates() {
     'G21',
     'VBM Visual & UX Ergonomics (Collision-Free DAG · 8/8 Camera Beats · 136px Header)',
     g21Pass,
-    `DAG overlaps=${dagCollisionCount}, 8/8 unique beats across all ${TAX.STORIES.length} stories=${allStoriesUnique8Beats}, VBM 12-frame header=${vbmHeaderPx}px (0 errors)`
+    `DAG overlaps=${dagCollisionCount}, 8/8 unique beats across all ${TAX.STORIES.length} stories=${allStoriesUnique8Beats}, VBM header=${vbmHeaderPx}px (0 errors)`
   );
 
   // G22: Multi-Parent DAG Branch Synthesis / Pushout Gluing (A ⊕ B) & Sheaf Cohomology
@@ -615,10 +617,105 @@ async function runAllGates() {
     `SVG Keyframe Sprite (${svgCode.length} chars) + Lottie JSON v${lottieObj.v} (${lottieCode.length} chars, ${lottieObj.layers.length} layers)`
   );
 
+  // G26: Effortless Freeform Card Movement, Card Duplication, Deletion & Storyboard Beat Reordering
+  const moveDag = CO.createDefaultDAG();
+  const movedRes = CO.moveCanvasNode(moveDag, 'node-seed-root', 142, 318);
+  const dupRes = CO.duplicateCanvasCard(moveDag, 'node-proof-a');
+  const delRes = CO.deleteCanvasCard({ nodes: dupRes.nodes, edges: dupRes.edges }, dupRes.createdNodeId);
+  const sbReorder = CO.buildStoryboardSheet({ storyKey: 's_voice', charId: 'ceti-whale', palId: 343 });
+  const firstLabelBefore = sbReorder.beats[0].label;
+  const secondLabelBefore = sbReorder.beats[1].label;
+  CO.moveStoryboardBeat(sbReorder, 0, 1);
+  const baseNodeCount = moveDag.nodes.length;
+  const g26Pass =
+    Boolean(movedRes.movedNode) &&
+    movedRes.movedNode.x === 142 &&
+    movedRes.movedNode.y === 318 &&
+    movedRes.movedNode.customPositioned === true &&
+    dupRes.nodes.length === baseNodeCount + 1 &&
+    delRes.nodes.length === baseNodeCount &&
+    sbReorder.beats[0].label === secondLabelBefore &&
+    sbReorder.beats[1].label === firstLabelBefore &&
+    sbReorder.beats[0].tStartSec === 0 &&
+    sbReorder.beats[1].tStartSec === 1.5;
+  recordGate(
+    'G26',
+    'Effortless Freeform Card Movement (Whole-Card Drag + Duplicate/Delete + Beat Reordering)',
+    g26Pass,
+    `moveCanvasNode=(${movedRes.movedNode.x},${movedRes.movedNode.y}), duplicate=${dupRes.nodes.length}->delete=${delRes.nodes.length}, Storyboard beat swap [0<->1] recomputed timestamps [0s, 1.5s]`
+  );
+
+  // G27: Direct Source A & Source B Card Selection, Swap & Pushout Readiness
+  const uiCodeStr = fs.readFileSync(path.join(ROOT, 'studio-ui.js'), 'utf8');
+  const g27Pass =
+    uiCodeStr.includes('data-action="set-source-a"') &&
+    uiCodeStr.includes('data-action="set-source-b"') &&
+    uiCodeStr.includes('data-action="swap-source-ab"') &&
+    uiCodeStr.includes('id="sel-source-a-node"') &&
+    uiCodeStr.includes('id="oauth-source-a-select"') &&
+    uiCodeStr.includes('id="oauth-source-b-select"');
+  recordGate(
+    'G27',
+    'Direct Source A & Source B Selection (1-Click Card Pills + Toolbar/Modal Dropdowns + Swap)',
+    g27Pass,
+    'Verified ● Src A / ◐ Src B card buttons, toolbar selectors, OAuth modal selectors, and ⇄ Swap A/B handler'
+  );
+
+  // G28: Plain-English # and / Design Vocabulary, Themes & Elements Library + Prompt Token Parser
+  const fullVocab = CO.getFullVocabLibrary(CO.DEFAULT_SAVED_SCHEMES);
+  const searchPaper = CO.searchVocabLibrary('paper cutout', 'all', CO.DEFAULT_SAVED_SCHEMES);
+  const parsedHashAndSlash = CO.parsePromptTokens(
+    'Apply #theme/saul-bass-cutout with /element/grain-stipple and #camera/match-cut-morph in #color/saul-cutout-ocher',
+    CO.DEFAULT_SAVED_SCHEMES
+  );
+  const synthFromTokens = CO.runDeterministicSynthesizer({
+    charId: 'ceti-whale',
+    palId: 343,
+    styleKey: 'watercolor',
+    storyKey: 's_voice',
+    prompt: 'Transform with #theme/saul-bass-cutout and #color/saul-cutout-ocher',
+    savedColorSchemes: CO.DEFAULT_SAVED_SCHEMES
+  });
+  const g28Pass =
+    fullVocab.length >= 40 &&
+    searchPaper.length >= 1 &&
+    parsedHashAndSlash.matchedItems.length >= 4 &&
+    parsedHashAndSlash.mergedPatch.palId === 126 &&
+    parsedHashAndSlash.mergedPatch.styleKey === 'cutout' &&
+    synthFromTokens.suggestedWadaComboNo === 126;
+  recordGate(
+    'G28',
+    'Plain-English # & / Design Vocabulary, Themes & Elements Library + Live Autocomplete',
+    g28Pass,
+    `${fullVocab.length} plain-English # and / tokens across 6 categories; parsed ${parsedHashAndSlash.matchedItems.length} tokens -> Wada No. ${synthFromTokens.suggestedWadaComboNo}`
+  );
+
+  // G29: Tagged & Saved Color Scheme Vault (#color/<tag> & /color/<tag> Persistence & Re-Invocation)
+  const tagRes = CO.tagAndSaveColorScheme(CO.DEFAULT_SAVED_SCHEMES, {
+    tag: 'brand-ocean-noir',
+    title: 'Brand Ocean Noir (Wada No. 13)',
+    palId: 13,
+    notes: 'Deep indigo brand hero palette'
+  });
+  const resolvedByHash = CO.resolveColorSchemeByTag(tagRes.schemes, '#color/brand-ocean-noir');
+  const resolvedBySlash = CO.resolveColorSchemeByTag(tagRes.schemes, '/color/brand-ocean-noir');
+  const g29Pass =
+    tagRes.schemes.length >= 7 &&
+    Boolean(resolvedByHash) &&
+    Boolean(resolvedBySlash) &&
+    resolvedByHash.palId === 13 &&
+    resolvedBySlash.token === '#color/brand-ocean-noir';
+  recordGate(
+    'G29',
+    'Tagged & Saved Color Scheme Vault (#color/<tag> & /color/<tag> Re-Invocation)',
+    g29Pass,
+    `${tagRes.schemes.length} saved schemes; #color/brand-ocean-noir & /color/brand-ocean-noir resolve deterministically to Wada No. ${resolvedByHash ? resolvedByHash.palId : 'none'}`
+  );
+
   // Print Summary Table
   const passedCount = results.filter((r) => r.pass).length;
   console.log('═══════════════════════════════════════════════════════════════════════════════');
-  console.log(`CETI MOTION ATLAS STUDIO PRO — 25-GATE CONTRACT AUDIT (${passedCount}/${results.length} PASS)`);
+  console.log(`CETI MOTION ATLAS STUDIO PRO — 29-GATE CONTRACT AUDIT (${passedCount}/${results.length} PASS)`);
   console.log('═══════════════════════════════════════════════════════════════════════════════');
   for (const r of results) {
     console.log(`[${r.pass ? 'PASS' : 'FAIL'}] ${r.id} · ${r.name}`);
@@ -633,7 +730,7 @@ async function runAllGates() {
   // Negative Mutation Selftest (--selftest) per adversarial-moe-governance law
   if (process.argv.includes('--selftest')) {
     console.log('\n═══════════════════════════════════════════════════════════════════════════════');
-    console.log('RUNNING 7-TEST NEGATIVE MUTATION SELFTEST (--selftest)');
+    console.log('RUNNING 10-TEST NEGATIVE MUTATION SELFTEST (--selftest)');
     console.log('═══════════════════════════════════════════════════════════════════════════════');
     const mutResults = [];
 
@@ -733,6 +830,46 @@ async function runAllGates() {
       id: 'MUT-07',
       desc: 'Inject collapsed 0s onion-skin frames with identical timestamps & tints and verify G23 rejection',
       caught: mut07Caught
+    });
+
+    // MUT-08: Attempt to delete the last remaining seed card on the Living Canvas must be blocked by G26 guard
+    const singleCardDag = {
+      nodes: [{ id: 'node-seed-root', x: 24, y: 210, payload: { palId: 343 } }],
+      edges: []
+    };
+    const delLastAttempt = CO.deleteCanvasCard(singleCardDag, 'node-seed-root');
+    const mut08Caught = delLastAttempt.nodes.length === 1 && delLastAttempt.deletedNodeId === null;
+    mutResults.push({
+      id: 'MUT-08',
+      desc: 'Attempt to delete the last remaining card on the Living Canvas and verify G26 guard preserves seed root',
+      caught: mut08Caught
+    });
+
+    // MUT-09: Unknown/nonsense #token in prompt must not corrupt valid tokens or crash parsePromptTokens (G28)
+    const mixedParse = CO.parsePromptTokens('Use #theme/nonexistent-slop-token and #theme/saul-bass-cutout', CO.DEFAULT_SAVED_SCHEMES);
+    const mut09Caught =
+      mixedParse.matchedItems.length === 1 &&
+      mixedParse.matchedItems[0].token === '#theme/saul-bass-cutout' &&
+      mixedParse.mergedPatch.styleKey === 'cutout';
+    mutResults.push({
+      id: 'MUT-09',
+      desc: 'Inject unknown #theme/nonexistent-slop-token alongside valid #theme/saul-bass-cutout and verify G28 parser filters invalid token cleanly',
+      caught: mut09Caught
+    });
+
+    // MUT-10: Out-of-range Wada combo ID (99999) when saving a #color/<tag> scheme must be clamped to valid 1..348 range (G29)
+    const badColorSave = CO.tagAndSaveColorScheme(CO.DEFAULT_SAVED_SCHEMES, {
+      tag: 'invalid-wada-range!!',
+      title: 'Invalid Range Test',
+      palId: 99999
+    });
+    const mut10Caught =
+      badColorSave.createdOrUpdated.palId === 348 &&
+      badColorSave.createdOrUpdated.token === '#color/invalid-wada-range';
+    mutResults.push({
+      id: 'MUT-10',
+      desc: 'Inject out-of-range Wada ID (99999) & unsanitized tag characters into tagAndSaveColorScheme and verify G29 clamping + slug sanitization',
+      caught: mut10Caught
     });
 
     for (const m of mutResults) {

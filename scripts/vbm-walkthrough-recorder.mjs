@@ -233,14 +233,14 @@ async function main() {
 
     await captureStep(
       '01-surface1-living-canvas-default.png',
-      'Surface I · Infinite-Zoom Living Canvas (0.78x Studio LOD · Pelagic Sovereign · Wada No. 343)',
+      'Surface I · Infinite-Zoom Living Canvas (Whole-Card Freeform Dragging · ● Src A / ◐ Src B Pills · Wada No. 343)',
       null
     );
 
     await captureStep(
       '02-surface1-tri-fork-ab-compare.png',
-      'Surface I · 3-Direction Orthogonal Fork (α/β/γ) + Pushout Gluing (A ⊕ B) + Side-by-Side Compare',
-      `window.__MOTION_ATLAS_STUDIO_INSTANCE.handleAction('fork-three-directions', { getAttribute: () => 'node-proof-a' }); window.__MOTION_ATLAS_STUDIO_INSTANCE.handleAction('dag-synthesize-ab');`
+      'Surface I · 3-Direction Orthogonal Fork (α/β/γ) + Pushout Gluing (A ⊕ B) + Freeform Card Move & Copy',
+      `window.__MOTION_ATLAS_STUDIO_INSTANCE.handleAction('fork-three-directions', { getAttribute: () => 'node-proof-a' }); window.__MOTION_ATLAS_STUDIO_INSTANCE.handleAction('dag-synthesize-ab'); window.STUDIO_CANVAS_OAUTH.moveCanvasNode(window.__MOTION_ATLAS_STUDIO_INSTANCE.state.dag, 'node-seed-root', 18, 185); window.__MOTION_ATLAS_STUDIO_INSTANCE.renderDOM();`
     );
 
     await captureStep(
@@ -269,19 +269,19 @@ async function main() {
 
     await captureStep(
       '07-surface4-8beat-storyboard.png',
-      'Surface IV · 8-Beat Storyboard Sheet & Inline Causal Hinge (BUT/THEREFORE) Editor + Onion Skinning',
+      'Surface IV · 8-Beat Draggable Storyboard Sheet, Beat Reordering (◀/▶) & Per-Beat #color/<tag> Pinning',
       `window.__MOTION_ATLAS_STUDIO_INSTANCE.setState({ surface: 'storyboard-sheet', charId: 'origami-crane', palIdx: 0, onionSkin: true });`
     );
 
     await captureStep(
       '08-surface5-sanzo-wada-348-hydrography.png',
-      'Surface V · Sanzo Wada 348 Dictionary, 4x4 OKLab Chord Matrix, Orpheum 4-Voice Sonification & CIEDE2000',
-      `window.__MOTION_ATLAS_STUDIO_INSTANCE.setState({ surface: 'wada-chord-matrix', charId: 'astronav-compass', palIdx: 3, onionSkin: false });`
+      'Surface V · Tagged & Saved #Color Scheme Vault + Sanzo Wada 348 Dictionary + Orpheum 4-Voice Sonification',
+      `window.__MOTION_ATLAS_STUDIO_INSTANCE.setState({ surface: 'wada-chord-matrix', charId: 'astronav-compass', palIdx: 3, onionSkin: false }); window.__MOTION_ATLAS_STUDIO_INSTANCE.handleAction('quick-tag-current-scheme');`
     );
 
     await captureStep(
       '09-surface6-15styles-24elements.png',
-      'Surface VI · All 15 Motion Styles & 24 Building Blocks Running on One Deterministic Clock',
+      'Surface VI · All 15 Motion Styles & 24 Building Blocks (1-Click + Insert on Canvas / → Apply to Src A)',
       `window.__MOTION_ATLAS_STUDIO_INSTANCE.setState({ surface: 'contact-sheet', charId: 'kelp-leviathan', palIdx: 0 });`
     );
 
@@ -293,14 +293,20 @@ async function main() {
 
     await captureStep(
       '11-modal-oauth-pkce-rsi-critique.png',
-      'Modal · OAuth 2.0 PKCE Live Enhancer & 4-Lens Adversarial RSI Critique Report',
+      'Modal · OAuth 2.0 PKCE Live Enhancer with Direct Source A/B Selectors & # / Vocabulary Chips',
       `window.__MOTION_ATLAS_STUDIO_INSTANCE.setState({ oauthModalOpen: true }); window.__MOTION_ATLAS_STUDIO_INSTANCE.handleAction('run-rsi-critique');`
     );
 
     await captureStep(
-      '12-modal-20gate-tellapart-sheaf.png',
-      'Modal · 25-Gate Mechanical Contract Audit (25/25 PASS) + Tell-Apart Kernel + Alexandrov Sheaf Cohomology',
-      `window.__MOTION_ATLAS_STUDIO_INSTANCE.setState({ oauthModalOpen: false, gateModalOpen: true });`
+      '12-modal-vocab-themes-elements-library.png',
+      'Modal · Plain-English # and / Design Vocabulary, Themes, Elements & #Color Vault Browser [K]',
+      `window.__MOTION_ATLAS_STUDIO_INSTANCE.setState({ oauthModalOpen: false, vocabModalOpen: true, vocabCategory: 'all' });`
+    );
+
+    await captureStep(
+      '13-modal-29gate-tellapart-sheaf.png',
+      'Modal · 29-Gate Mechanical Contract Audit (29/29 PASS) + Tell-Apart Kernel + Alexandrov Sheaf Cohomology',
+      `window.__MOTION_ATLAS_STUDIO_INSTANCE.setState({ vocabModalOpen: false, gateModalOpen: true });`
     );
   } finally {
     cdp.close();

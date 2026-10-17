@@ -13,12 +13,12 @@
 
 ## PART 1 · LIVE STATUS & DELIVERABLE MANIFEST
 
-# STATUS — CETI Motion Atlas Studio Pro (`v7.0.0` Locked)
+# STATUS — CETI Motion Atlas Studio Pro (`v8.0.0` Locked)
 
 **Last Updated:** 2026-10-17  
 **Workspace:** `/Users/cairo/Documents/CETI/ACCENTURE/content-factory v2/ARTE/motion-atlas/`  
 **Public Repository:** `https://github.com/manutej/ceti-motion-atlas-studio-pro`  
-**Current Version:** `v7.0.0` (7 Adversarial MOE + VBM Visual/UX Rounds Complete · `25/25 Gates PASS` · `7/7 Negative Mutation Selftests CAUGHT`)
+**Current Version:** `v8.0.0` (8 Adversarial MOE + VBM Visual/UX & Studio Ergonomics Rounds Complete · `29/29 Gates PASS` · `10/10 Negative Mutation Selftests CAUGHT`)
 
 ---
 
@@ -26,15 +26,15 @@
 
 | Deliverable | Path / URL | Status |
 |---|---|---|
-| **Public GitHub Repository** | `https://github.com/manutej/ceti-motion-atlas-studio-pro` | **PUBLIC (`v7.0.0`)** |
+| **Public GitHub Repository** | `https://github.com/manutej/ceti-motion-atlas-studio-pro` | **PUBLIC (`v8.0.0`)** |
 | **Live Local Studio & OAuth 2.0 PKCE Server** | `http://127.0.0.1:43110/` (served by [`scripts/oauth-bridge-server.mjs`](file:///Users/cairo/Documents/CETI/ACCENTURE/content-factory%20v2/ARTE/motion-atlas/scripts/oauth-bridge-server.mjs)) | **ONLINE** |
-| **Standalone Single-File Studio (Downloads)** | [`/Users/cairo/Downloads/CETI Motion Atlas Studio Pro.html`](file:///Users/cairo/Downloads/CETI%20Motion%20Atlas%20Studio%20Pro.html) (`483 KB`) | **LOCKED (`v7`)** |
-| **Standalone Single-File Studio (Workspace)** | [`ARTE/motion-atlas/Motion Atlas Studio Pro — Standalone.html`](file:///Users/cairo/Documents/CETI/ACCENTURE/content-factory%20v2/ARTE/motion-atlas/Motion%20Atlas%20Studio%20Pro%20%E2%80%94%20Standalone.html) (`483 KB`) | **LOCKED (`v7`)** |
-| **VBM `@2x` Walkthrough Video (`MP4` + `GIF`)** | [`recordings/v7-final-walkthrough.mp4`](file:///Users/cairo/Documents/CETI/ACCENTURE/content-factory%20v2/ARTE/motion-atlas/recordings/v7-final-walkthrough.mp4) & [`recordings/v7-final-walkthrough.gif`](file:///Users/cairo/Documents/CETI/ACCENTURE/content-factory%20v2/ARTE/motion-atlas/recordings/v7-final-walkthrough.gif) | **CAPTURED (`v7-final`)** |
-| **VBM `@2x` Screenshot Progression (`v4-baseline` → `v6-final` → `v7-final`)** | [`recordings/screenshots/v7-final/`](file:///Users/cairo/Documents/CETI/ACCENTURE/content-factory%20v2/ARTE/motion-atlas/recordings/screenshots/v7-final/) (`12` surfaces/modals at `@2x` Retina) | **VERIFIED (`136px` shell, `0` overlaps, `0` clips)** |
-| **VBM Automated CDP Walkthrough Recorder** | [`ARTE/motion-atlas/scripts/vbm-walkthrough-recorder.mjs`](file:///Users/cairo/Documents/CETI/ACCENTURE/content-factory%20v2/ARTE/motion-atlas/scripts/vbm-walkthrough-recorder.mjs) | **LOCKED (`v7`)** |
-| **25-Gate Mechanical Validator + Selftest** | [`ARTE/motion-atlas/scripts/validate-motion-studio.mjs`](file:///Users/cairo/Documents/CETI/ACCENTURE/content-factory%20v2/ARTE/motion-atlas/scripts/validate-motion-studio.mjs) | **`25/25 PASS` + `7/7 SELFTEST`** |
-| **Typed Contract, Meta-Plan & RSI Ledger** | [`docs/TYPED-CONTRACT-MOTION-ATLAS.md`](file:///Users/cairo/Documents/CETI/ACCENTURE/content-factory%20v2/ARTE/motion-atlas/docs/TYPED-CONTRACT-MOTION-ATLAS.md) · [`docs/META-PLAN-AND-RSI.md`](file:///Users/cairo/Documents/CETI/ACCENTURE/content-factory%20v2/ARTE/motion-atlas/docs/META-PLAN-AND-RSI.md) · [`docs/RSI-LEDGER.md`](file:///Users/cairo/Documents/CETI/ACCENTURE/content-factory%20v2/ARTE/motion-atlas/docs/RSI-LEDGER.md) | **COMPLETE (`v1 → v7`)** |
+| **Standalone Single-File Studio (Downloads)** | [`/Users/cairo/Downloads/CETI Motion Atlas Studio Pro.html`](file:///Users/cairo/Downloads/CETI%20Motion%20Atlas%20Studio%20Pro.html) (`556 KB`) | **LOCKED (`v8`)** |
+| **Standalone Single-File Studio (Workspace)** | [`ARTE/motion-atlas/Motion Atlas Studio Pro — Standalone.html`](file:///Users/cairo/Documents/CETI/ACCENTURE/content-factory%20v2/ARTE/motion-atlas/Motion%20Atlas%20Studio%20Pro%20%E2%80%94%20Standalone.html) (`556 KB`) | **LOCKED (`v8`)** |
+| **VBM `@2x` Walkthrough Video (`MP4` + `GIF`)** | [`recordings/v8-final-walkthrough.mp4`](file:///Users/cairo/Documents/CETI/ACCENTURE/content-factory%20v2/ARTE/motion-atlas/recordings/v8-final-walkthrough.mp4) & [`recordings/v8-final-walkthrough.gif`](file:///Users/cairo/Documents/CETI/ACCENTURE/content-factory%20v2/ARTE/motion-atlas/recordings/v8-final-walkthrough.gif) | **CAPTURED (`v8-final`)** |
+| **VBM `@2x` Screenshot Progression (`v4-baseline` → `v6-final` → `v7-final` → `v8-final`)** | [`recordings/screenshots/v8-final/`](file:///Users/cairo/Documents/CETI/ACCENTURE/content-factory%20v2/ARTE/motion-atlas/recordings/screenshots/v8-final/) (`13` surfaces/modals at `@2x` Retina) | **VERIFIED (`136px` shell, `0` overlaps, `0` clips)** |
+| **VBM Automated CDP Walkthrough Recorder** | [`ARTE/motion-atlas/scripts/vbm-walkthrough-recorder.mjs`](file:///Users/cairo/Documents/CETI/ACCENTURE/content-factory%20v2/ARTE/motion-atlas/scripts/vbm-walkthrough-recorder.mjs) | **LOCKED (`v8`)** |
+| **29-Gate Mechanical Validator + Selftest** | [`ARTE/motion-atlas/scripts/validate-motion-studio.mjs`](file:///Users/cairo/Documents/CETI/ACCENTURE/content-factory%20v2/ARTE/motion-atlas/scripts/validate-motion-studio.mjs) | **`29/29 PASS` + `10/10 SELFTEST`** |
+| **Typed Contract, Meta-Plan & RSI Ledger** | [`docs/TYPED-CONTRACT-MOTION-ATLAS.md`](file:///Users/cairo/Documents/CETI/ACCENTURE/content-factory%20v2/ARTE/motion-atlas/docs/TYPED-CONTRACT-MOTION-ATLAS.md) · [`docs/META-PLAN-AND-RSI.md`](file:///Users/cairo/Documents/CETI/ACCENTURE/content-factory%20v2/ARTE/motion-atlas/docs/META-PLAN-AND-RSI.md) · [`docs/RSI-LEDGER.md`](file:///Users/cairo/Documents/CETI/ACCENTURE/content-factory%20v2/ARTE/motion-atlas/docs/RSI-LEDGER.md) | **COMPLETE (`v1 → v8`)** |
 
 ---
 
@@ -52,7 +52,7 @@ npm run vbm
 
 ## PART 2 · COLD-RESUME ARCHITECTURE & EXTENSION HANDOFF
 
-# HANDOFF — CETI Motion Atlas Studio Pro (`v7.0.0`)
+# HANDOFF — CETI Motion Atlas Studio Pro (`v8.0.0`)
 
 **Cold-Resume Entry Point for Engineers, Motion Directors, and Autonomous Agents**  
 **Root:** `/Users/cairo/Documents/CETI/ACCENTURE/content-factory v2/ARTE/motion-atlas/`  
@@ -60,24 +60,22 @@ npm run vbm
 
 ---
 
-## 1. Executive Summary — What Was Built & Locked In (`v1 → v7.0.0`)
+## 1. Executive Summary — What Was Built & Locked In (`v1 → v8.0.0`)
 
 **CETI Motion Atlas Studio Pro** elevates the original single-character *Motion Atlas Explorer* (`whale.html`) into a complete, contract-governed **Transcendental Motion Graphic & Narrative Design Studio** inspired by **Orpheum / GEOME** (`Sanzo Wada 348` harmonic dictionary + 4-voice WebAudio Just-Intonation sonification), **Saul Bass** (5-rung graphic reduction ladder), **Milton Glaser / Push Pin Studios** (ceremonial overshoot & warm editorial ink), and **Alexandrov Sheaf Topology** ($\rho(\text{child}) = \text{parent}$ and multi-parent pushout gluing $\rho(A \oplus B)$ across living canvas forks).
 
-Across **7 rounds of Adversarial MOE + VBM Visual Browser Monitor evaluation (`v1 → v7.0.0`)**, the studio was hardened to pass **25 binary conservation gates (`G01–G25`)** and **7 negative mutation selftests (`MUT-01` through `MUT-07`)**, backed by automated `@2x` CDP screenshot and `.mp4`/`.gif` video walkthrough recording (`scripts/vbm-walkthrough-recorder.mjs`).
+Across **8 rounds of Adversarial MOE + VBM Visual Browser Monitor & Studio Workflow evaluation (`v1 → v8.0.0`)**, the studio was hardened to pass **29 binary conservation gates (`G01–G29`)** and **10 negative mutation selftests (`MUT-01` through `MUT-10`)**, backed by automated `@2x` CDP screenshot and `.mp4`/`.gif` video walkthrough recording (`scripts/vbm-walkthrough-recorder.mjs`).
 
 ---
 
-## 2. Round 7 (`v7.0.0`) Adversarial Audit & Improvements Summary (`v6-final` $\to$ `v7-final`)
+## 2. Round 8 (`v8.0.0`) Studio Ergonomics, `# /` Vocabulary Library & `#color/<tag>` Vault (`v7-final` $\to$ `v8-final`)
 
-| Area Audited | `v6-final` Finding (Before Round 7) | `v7-final` Resolution (After Round 7) | Verified Gate / Metric |
+| Area Upgraded | Why It Was Restricted in `v7` (Root Cause) | `v8.0.0` Resolution | Verified Gate / Metric |
 |---|---|---|---|
-| **Hydrography HUD Right-Edge Clipping (`s_hydro`)** | On `s_hydro` canvases (`Surface I Branch γ`, `Surface IV`, `Surface VI`), the `ΔE2000 CETI TOKEN FIT` HUD box at `x=306, w=160` clipped the right-hand `ΔE=4.3` readout at the `480px` canvas border. | Widened HUD box to `rrect(ctx, 290, 18, 176, 76, 6)` and right-aligned `ΔE=...` readouts via `ctx.textAlign = 'right'` at `x = 458` (`22px` right margin). | **Zero HUD text clipping across all `s_hydro` canvases (`02-surface1`, `08-surface4`, `10-surface6`)** |
-| **1.65× Micro-LOD Left-Edge Clipping & Minimap Overlap** | Clicking `1.65× Micro` zoomed in place (`panX=24`) so the seed card clipped on the left and the bottom-left `.canvas-minimap` overlapped the seed card footer. | Docked `.canvas-minimap` at `right: 12px; bottom: 10px;` and updated `zoom-set` (`1.65×`) to center the seed node (`panX=48, panY=18`). | **Full seed card & `R1–R5` strip visible at `1.65×` (`03-surface1-micro-lod-rung-strip.png`)** |
-| **Multi-Parent DAG Branch Synthesis / Pushout Gluing (`A ⊕ B`)** | Surface I could fork (`1 → 3`) and compare two nodes (`A/B`), but could not merge/glue two sibling branches into a combined synthesis node. | Implemented `CO.computeGluingHash(hashA, hashB)` and `CO.synthesizeBranches(dag, nodeAId, nodeBId)` (`⊕ Synthesize A ⊕ B` in toolbar & A/B drawer) with multi-parent pushout cohomology verification ($\rho(A \oplus B) = \text{FNV1a}(\rho(A) \| \rho(B))$, $\delta^0 = 0$). | **Gate `G22` PASS + `MUT-06` CAUGHT (`02-surface1-tri-fork-ab-compare.png`)** |
-| **Multi-Frame Onion-Skinning (`-2Δt / -1Δt / +1Δt`)** | Animators had no way to inspect frame-to-frame spacing and overshoot velocity curves directly on the canvas. | Added `MA.computeOnionSkinFrames` and Wada-tinted ghost contours (`pal.b` past `-2Δt/-1Δt`, `pal.a` future `+1Δt` + trajectory spine) inside `MA.render` with strict `ctx.save()/restore()` isolation, wired to `ONION` button & `[O]` shortcut. | **Gate `G23` PASS + `MUT-07` CAUGHT (`net saveDepth = 0`)** |
-| **Orpheum 4-Voice Harmonic WebAudio Sonification** | Wada $4\times 4$ OKLab chord matrix was purely visual; no auditory harmonic counterpart existed. | Added `MA.computeWadaHarmonicChord` and `MA.playWadaHarmonicChord` mapping Wada luminance $L \to$ root pitch (`C3..A4`), $\Delta_{\text{OKLab}} \to$ Just-Intonation intervals (`1:1`, `5:4`, `3:2`, `15:8`), and Saul Bass `Rung 1..5` $\to$ low-pass filter cutoff (`3200 Hz → 440 Hz`), wired to `♪ SONIFY` & Surface V panel. | **Gate `G24` PASS (`19/19` curated Wada chords verified)** |
-| **Resolution-Independent Vector Path Compilers (`SVG` + `Lottie JSON`)** | Surface VII exported DOM/Canvas scaffolds (`HyperFrames`, `Remotion`, `Anime.js`, `HTML5`), but lacked pure vector path exports. | Added `'svg-keyframes'` (animated `<svg>` with `@keyframes cetiActorSwim` + `<animate attributeName="d">`) and `'lottie-json'` (Lottie `v5.7.4` 2-layer parametric shape + Wada ground JSON) to `CO.compileCodeScaffold` & Surface VII. | **Gate `G25` PASS (`7` total export targets on Surface VII)** |
+| **Effortless Freeform Card Movement (`Surface I` & `Surface IV`)** | 1) On `Surface I`, `mousedown` only checked `[data-drag-handle]` (the 20px `.dag-node-header`) and blocked dragging if you grabbed the card body, title, canvas, or notes.<br>2) `.dag-node-body` had `data-action="select-dag-node"`, triggering a DOM re-render on click release.<br>3) Session reload called `CO.autoLayoutDAG(saved.dag)`, wiping custom `(x, y)` coordinates.<br>4) Storyboard beat cards (`Surface IV`) had no drag-and-drop or `◀`/`▶` reordering. | 1) Whole-card freeform dragging on `.dag-node` (grab anywhere except buttons/inputs) at 60fps with `< 5px` click vs `>= 5px` drag threshold.<br>2) Added `CO.moveCanvasNode`, `CO.duplicateCanvasCard` (`⧉ Copy`), and `CO.deleteCanvasCard` (`✕`).<br>3) Preserved custom `(x, y)` positions across session reloads (`CO.stampDAGRestrictionHashes`).<br>4) Added HTML5 drag-and-drop + `◀`/`▶` beat reordering on `Surface IV` (`CO.moveStoryboardBeat`). | **Gate `G26` PASS + `MUT-08` CAUGHT (`01-surface1`, `07-surface4`)** |
+| **Direct 1-Click `Source A` & `Source B` Selection** | Selecting which card was the primary source (`Source A`) or secondary comparison/pushout source (`Source B`) previously required hidden inspector or side-drawer steps. | Added 1-click **`● Src A`** (`rust`) and **`◐ Src B`** (`slate-blue` dashed outline) pills on every card (`Shift+Click` also sets `Source B`), plus always-visible **`Source A`** and **`Source B`** dropdowns and a **`⇄` Swap** button in both the Living Canvas toolbar and the OAuth Enhancer Modal. | **Gate `G27` PASS (`01-surface1`, `11-modal-oauth`)** |
+| **Plain-English `#` and `/` Vocabulary, Themes & Elements Library (`[K]`)** | Users who did not know technical motion-design jargon (*"12fps line boil"*, *"plate misregistration"*, *"Saul Bass Rung 4"*) had no plain-English way to browse or invoke looks and elements inside prompts. | Built a **52-item Plain-English In-Studio Skills & Vocabulary Library** (`#theme/...`, `#element/...`, `#camera/...`, `#feel/...`, `#character/...`, `#color/...`) invocable via **both `#` and `/`**:<br>• **Live Floating `.vocab-popover` Autocomplete** whenever you type `#` or `/` in any prompt or card note.<br>• **Full Visual Browser Modal (`# / Vocabulary & Themes [K]`)** with plain-English search, category filters, and 1-click `● Apply Now`, `+ Spawn Card`, and `↵ #Prompt` actions. | **Gate `G28` PASS + `MUT-09` CAUGHT (`12-modal-vocab-themes-elements-library.png`)** |
+| **Tagged & Saved Color Scheme Vault (`#color/<tag>`)** | Users could pick from the 348 Wada combinations, but could not tag, name, save, and re-invoke custom color schemes across cards, beats, and prompts. | Built the **Tagged & Saved Color Scheme Vault** (`CO.DEFAULT_SAVED_SCHEMES`, `CO.tagAndSaveColorScheme`, `CO.resolveColorSchemeByTag`) persisted in `localStorage` and `.motion.studio.json`. Users can tag any palette (e.g. `#color/pelagic-dawn`, `#color/saul-cutout-ocher`, `#color/brand-ocean-noir`) and re-invoke it from the top header bar, `Surface V` Vault panel, Living Canvas Card Inspector, per-beat Storyboard selector (`Surface IV`), or inside any `#`/`/` prompt. | **Gate `G29` PASS + `MUT-10` CAUGHT (`08-surface5-sanzo-wada-348-hydrography.png`)** |
 
 ---
 
@@ -87,31 +85,31 @@ Across **7 rounds of Adversarial MOE + VBM Visual Browser Monitor evaluation (`v
 ARTE/motion-atlas/
 ├── Motion Atlas Studio Pro.dc.html          # Modular HTML entry shell + complete .st-* editorial CSS
 ├── index.html                               # HTTP server default entry (identical to .dc.html)
-├── Motion Atlas Studio Pro — Standalone.html# 483 KB zero-dependency single-file bundle
+├── Motion Atlas Studio Pro — Standalone.html# 556 KB zero-dependency single-file bundle
 ├── geome-wada.js                            # Full 348 Sanzo Wada Dictionary (GEOME_WADA_LIST)
 ├── studio-motion-engine.js                  # Wada OKLab/CIEDE2000 + 8 Archetypes + Onion-Skin + Sonification + MA
-├── studio-canvas-oauth.js                   # Living Canvas Pushout DAG (A ⊕ B) + Sheaf ρ + OAuth PKCE + 7 Compilers
-├── studio-ui.js                             # 7 Interactive Studio Surfaces + Modals + MediaRecorder + Shortcuts
+├── studio-canvas-oauth.js                   # Freeform DAG + # / Vocab Library + #color Vault + OAuth PKCE + 7 Compilers
+├── studio-ui.js                             # 7 Interactive Studio Surfaces + 3 Modals + Whole-Card Drag + # / Popover
 ├── recordings/
-│   ├── v7-final-walkthrough.mp4             # ★ Full @2x MP4 video recording of all 12 studio states (v7.0.0)
-│   ├── v7-final-walkthrough.gif             # ★ Animated GIF walkthrough preview (v7.0.0)
-│   ├── v7-final-ux-telemetry.json           # ★ Automated DOM/UX layout & overlap telemetry (v7-final)
-│   ├── v6-final-ux-telemetry.json           # Round 6 telemetry
-│   ├── v4-baseline-ux-telemetry.json        # Baseline telemetry before Round 5/6 compaction
+│   ├── v8-final-walkthrough.mp4             # ★ Full @2x MP4 video recording of all 13 studio states (v8.0.0)
+│   ├── v8-final-walkthrough.gif             # ★ Animated GIF walkthrough preview (v8.0.0)
+│   ├── v8-final-ux-telemetry.json           # ★ Automated DOM/UX layout & overlap telemetry (v8-final)
+│   ├── v7-final-ux-telemetry.json           # Round 7 telemetry
 │   └── screenshots/
-│       ├── v7-final/                        # ★ 12 @2x Retina PNG screenshots after Round 7 improvements
+│       ├── v8-final/                        # ★ 13 @2x Retina PNG screenshots after Round 8 upgrades
+│       ├── v7-final/                        # 12 @2x Retina PNG screenshots (v7.0.0)
 │       ├── v6-final/                        # 12 @2x Retina PNG screenshots (v6.0.0)
 │       └── v4-baseline/                     # 12 @2x Retina PNG screenshots (v4.0.0 baseline)
 ├── scripts/
 │   ├── build-package.mjs                    # Deterministic compiler for dist/ and master dossier
-│   ├── validate-motion-studio.mjs           # 25-Gate Mechanical Contract Validator + 7-Mutation --selftest
+│   ├── validate-motion-studio.mjs           # 29-Gate Mechanical Contract Validator + 10-Mutation --selftest
 │   ├── vbm-walkthrough-recorder.mjs         # ★ Headless Chrome CDP @2x Screenshot, Telemetry & Video Recorder
 │   └── oauth-bridge-server.mjs              # Local HTTP Studio Server + OAuth 2.0 PKCE S256 Loopback Bridge
 ├── docs/
 │   ├── MASTER-PACKAGE-DOSSIER.md            # Unified single-file master spec, build & RSI dossier
 │   ├── TYPED-CONTRACT-MOTION-ATLAS.md       # Formal TypeScript/JSON-Schema domain contracts
 │   ├── META-PLAN-AND-RSI.md                 # Operadic decomposition, sheaf topology & RSI critique loops
-│   ├── RSI-LEDGER.md                        # v1 → v7 Adversarial MOE & VBM UX audit ledger
+│   ├── RSI-LEDGER.md                        # v1 → v8 Adversarial MOE & VBM UX audit ledger
 │   └── FINDINGS-MOTION-ATLAS-STUDIO.md      # Durable architectural QC findings
 ├── STATUS.md                                # Live status & verification commands
 └── HANDOFF.md                               # This cold-resume guide & extension playbook
@@ -121,18 +119,18 @@ ARTE/motion-atlas/
 
 ## 4. Quick Start & Verification Commands
 
-### A. Run the 25-Gate Mechanical Audit + 7-Test Negative Mutation Selftest
+### A. Run the 29-Gate Mechanical Audit + 10-Test Negative Mutation Selftest
 ```bash
 cd "/Users/cairo/Documents/CETI/ACCENTURE/content-factory v2/ARTE/motion-atlas"
 npm test
-# Runs: node scripts/validate-motion-studio.mjs --selftest (25/25 Gates PASS + 7/7 Selftests CAUGHT)
+# Runs: node scripts/validate-motion-studio.mjs --selftest (29/29 Gates PASS + 10/10 Selftests CAUGHT)
 ```
 
 ### B. Capture `@2x` VBM Screenshots, UX Telemetry & Walkthrough Video (`MP4` + `GIF`)
 ```bash
 cd "/Users/cairo/Documents/CETI/ACCENTURE/content-factory v2/ARTE/motion-atlas"
 npm run vbm
-# Runs: node scripts/vbm-walkthrough-recorder.mjs v7-final
+# Runs: node scripts/vbm-walkthrough-recorder.mjs v8-final
 ```
 
 ### C. Rebuild Standalone Bundles & Unified Master Dossier
@@ -147,17 +145,6 @@ cd "/Users/cairo/Documents/CETI/ACCENTURE/content-factory v2/ARTE/motion-atlas"
 npm start
 # Opens http://127.0.0.1:43110/ with live PKCE S256 handshake & /oauth/enhance endpoints
 ```
-
----
-
-## 5. Next-Horizon Extension Backlog (`v8.0` Horizon)
-
-1. **Interactive Cubic-Bezier Drag Handles inside Storyboard Beat Cards (`Surface IV`):**
-   - Allow direct pointer dragging of `(x1, y1, x2, y2)` control points inside each beat card's mini curve plot to override per-beat easing in real time.
-2. **Multi-Beat WAV / WebAudio Stem Export (`Surface VII`):**
-   - Render the 12-second 8-beat Orpheum 4-Voice Just-Intonation harmonic progression via `OfflineAudioContext` into a downloadable `.wav` soundtrack stem synchronized to the `WebM` video capture.
-3. **Collaborative WebRTC / CRDT Sheaf Sync:**
-   - Synchronize DAG node forks and pushout syntheses ($\rho(A \oplus B)$) across multiple connected studio browsers in real time over the local loopback server.
 
 
 ---

@@ -682,6 +682,853 @@
     return 'micro-inspection';
   }
 
+  // Freeform Card Movement on Living Canvas without Auto-Layout Override (Gate G26)
+  function moveCanvasNode(dag, nodeId, newX, newY) {
+    if (!dag || !Array.isArray(dag.nodes)) return { nodes: [], edges: [], movedNode: null };
+    const node = dag.nodes.find(function (n) { return n.id === nodeId; }) || dag.nodes[0];
+    if (!node) return { nodes: dag.nodes, edges: dag.edges || [], movedNode: null };
+    node.x = Math.max(8, Math.round(Number(newX) || 0));
+    node.y = Math.max(8, Math.round(Number(newY) || 0));
+    node.customMoved = true;
+    node.customPositioned = true;
+    stampDAGRestrictionHashes(dag);
+    return {
+      nodes: dag.nodes,
+      edges: dag.edges || [],
+      movedNode: node
+    };
+  }
+
+  // Duplicate any DAG Card at a nearby offset (+48, +48) for effortless spatial ideation (Gate G26)
+  function duplicateCanvasCard(dag, nodeId, customOffsets) {
+    if (!dag || !Array.isArray(dag.nodes)) return dag;
+    const src = dag.nodes.find(function (n) { return n.id === nodeId; }) || dag.nodes[0];
+    if (!src) return dag;
+    const seq = dag.nodes.length + 1;
+    const copyId = 'node-card-' + seq + '-' + Math.abs(computePacketHash(src.payload).charCodeAt(2) * 19 + seq);
+    const dx = (customOffsets && customOffsets.dx != null) ? customOffsets.dx : 54;
+    const dy = (customOffsets && customOffsets.dy != null) ? customOffsets.dy : 54;
+    const copyPayload = JSON.parse(JSON.stringify(src.payload || {}));
+    const parentId = src.parentId || src.id;
+    const parentNode = dag.nodes.find(function (n) { return n.id === parentId; }) || src;
+    const parentHash = parentNode.packetHash || computePacketHash(parentNode.payload);
+
+    const dupNode = {
+      id: copyId,
+      kind: src.kind || 'style-proof',
+      title: src.title.replace(/ · Copy.*$/, '') + ' · Copy #' + seq,
+      subtitle: src.subtitle,
+      x: Math.max(16, Math.round((src.x || 40) + dx)),
+      y: Math.max(16, Math.round((src.y || 36) + dy)),
+      width: src.width || 315,
+      height: src.height || 455,
+      parentId: parentNode.id,
+      upstreamHash: parentHash,
+      packetHash: computePacketHash(copyPayload),
+      conjectureNote: src.conjectureNote || ('†C · Spatial duplicate of ' + src.id),
+      forkReason: 'Spatial card duplicate from ' + src.title,
+      status: 'exploring',
+      customMoved: true,
+      customPositioned: true,
+      payload: copyPayload
+    };
+
+    const dupEdge = {
+      id: 'e-' + copyId,
+      fromNodeId: parentNode.id,
+      toNodeId: copyId,
+      label: '⧉ Spatial Copy',
+      kind: 'fork'
+    };
+
+    return {
+      nodes: dag.nodes.concat([dupNode]),
+      edges: dag.edges.concat([dupEdge]),
+      createdNodeId: copyId
+    };
+  }
+
+  // Delete a non-root card from the Living Canvas & re-home any child edges cleanly
+  function deleteCanvasCard(dag, nodeId) {
+    if (!dag || !Array.isArray(dag.nodes) || dag.nodes.length <= 1) {
+      return { nodes: (dag && dag.nodes) || [], edges: (dag && dag.edges) || [], deletedNodeId: null };
+    }
+    const target = dag.nodes.find(function (n) { return n.id === nodeId; });
+    if (!target || target.id === 'node-seed' || target.id === 'node-seed-root') {
+      return { nodes: dag.nodes, edges: dag.edges || [], deletedNodeId: null };
+    }
+    const fallbackParentId = target.parentId || (dag.nodes[0] && dag.nodes[0].id) || 'node-seed';
+    const remainingNodes = dag.nodes.filter(function (n) { return n.id !== nodeId; });
+    remainingNodes.forEach(function (n) {
+      if (n.parentId === nodeId) n.parentId = fallbackParentId;
+      if (n.secondaryParentId === nodeId) delete n.secondaryParentId;
+    });
+    const remainingEdges = (dag.edges || []).filter(function (e) {
+      return e.fromNodeId !== nodeId && e.toNodeId !== nodeId;
+    });
+    const stamped = stampDAGRestrictionHashes({ nodes: remainingNodes, edges: remainingEdges });
+    return {
+      nodes: stamped.nodes,
+      edges: stamped.edges,
+      deletedNodeId: nodeId
+    };
+  }
+
+  // Reorder / Drag-and-Drop Storyboard Beat Cards while preserving 8-beat Conservation Laws (Gate G26)
+  function moveStoryboardBeat(sheet, fromIdx, toIdx) {
+    if (!sheet || !Array.isArray(sheet.beats)) return sheet;
+    const n = sheet.beats.length;
+    if (fromIdx < 0 || fromIdx >= n || toIdx < 0 || toIdx >= n || fromIdx === toIdx) return sheet;
+    const beats = sheet.beats.slice();
+    const moved = beats.splice(fromIdx, 1)[0];
+    beats.splice(toIdx, 0, moved);
+
+    const beatDur = (sheet.durationSec || 12) / n;
+    const roleOrder = ['opening', 'inciting', 'rising', 'threshold', 'climax', 'breather', 'resolution', 'callback'];
+    sheet.beats = beats.map(function (b, idx) {
+      const t0 = Number((idx * beatDur).toFixed(2));
+      const t1 = Number(((idx + 1) * beatDur).toFixed(2));
+      const tMid = Number(((t0 + t1) / 2).toFixed(2));
+      const updated = Object.assign({}, b, {
+        index: idx,
+        role: roleOrder[idx] || b.role,
+        tStartSec: t0,
+        tEndSec: t1,
+        tMidSec: tMid,
+        hinge: (b.hinge === 'BUT' || b.hinge === 'THEREFORE') ? b.hinge : (idx % 2 === 1 ? 'BUT' : 'THEREFORE')
+      });
+      if (idx === 5) {
+        updated.activeSimultaneousMoves = 1;
+      }
+      if (idx === 7 && !/echo|callback|frame 0|first/i.test(updated.visualAction || '')) {
+        updated.visualAction = (updated.visualAction || '') + ' (Callback echoes Beat 1 opening silhouette)';
+      }
+      return updated;
+    });
+    return auditStoryboardSheet(sheet);
+  }
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // 3B. TAGGED & SAVED COLOR SCHEMES VAULT (#color/<tag> — Gate G29)
+  // ─────────────────────────────────────────────────────────────────────────
+  const DEFAULT_SAVED_SCHEMES = [
+    {
+      id: 'scheme-pelagic-dawn',
+      tag: 'pelagic-dawn',
+      token: '#color/pelagic-dawn',
+      slash: '/color/pelagic-dawn',
+      handle: '#color/pelagic-dawn',
+      title: 'Pelagic Dawn (Warm Archival Sienna)',
+      name: 'Pelagic Dawn (Warm Archival Sienna)',
+      palId: 343,
+      ground: 'atlas',
+      tags: ['#warm', '#hero', '#opening', '#storybook'],
+      notes: 'Warm archival paper with Raw Sienna and Prussian blue ink — ideal for handmade openings.'
+    },
+    {
+      id: 'scheme-saul-cutout',
+      tag: 'saul-cutout-ocher',
+      token: '#color/saul-cutout-ocher',
+      slash: '/color/saul-cutout-ocher',
+      handle: '#color/saul-cutout-ocher',
+      title: 'Saul Bass Cutout (Ocher & Lyons Blue)',
+      name: 'Saul Bass Cutout (Ocher & Lyons Blue)',
+      palId: 126,
+      ground: 'atlas',
+      tags: ['#poster', '#bold', '#cutout', '#high-tension'],
+      notes: 'Punchy 3-color cut-paper palette with stark Ocher and Lyons Blue contrast.'
+    },
+    {
+      id: 'scheme-bathyal-biolum',
+      tag: 'bathyal-biolum',
+      token: '#color/bathyal-biolum',
+      slash: '/color/bathyal-biolum',
+      handle: '#color/bathyal-biolum',
+      title: 'Bathyal Bioluminescence (Amber & Prussian)',
+      name: 'Bathyal Bioluminescence (Amber & Prussian)',
+      palId: 166,
+      ground: 'blueprint',
+      tags: ['#abyssal', '#glow', '#deep-sea', '#threshold'],
+      notes: 'Glowing bathyal amber against deep Prussian night for underwater threshold beats.'
+    },
+    {
+      id: 'scheme-shoji-calm',
+      tag: 'shoji-sumi-calm',
+      token: '#color/shoji-sumi-calm',
+      slash: '/color/shoji-sumi-calm',
+      handle: '#color/shoji-sumi-calm',
+      title: 'Shoji Paper & Sumi Ink (Quiet Breather)',
+      name: 'Shoji Paper & Sumi Ink (Quiet Breather)',
+      palId: 48,
+      ground: 'sumi',
+      tags: ['#minimal', '#calm', '#breather', '#japanese'],
+      notes: 'High-key Shoji cream with sumi ink wash — ideal for negative-space breather beats.'
+    },
+    {
+      id: 'scheme-umber-hydro',
+      tag: 'umber-hydro-chart',
+      token: '#color/umber-hydro-chart',
+      slash: '/color/umber-hydro-chart',
+      handle: '#color/umber-hydro-chart',
+      title: 'Umber Hydrographic Survey Ledger',
+      name: 'Umber Hydrographic Survey Ledger',
+      palId: 296,
+      ground: 'sepia',
+      tags: ['#radar', '#nautical', '#telemetry', '#chart'],
+      notes: 'Cartographic sepia and raw umber for 25-sounding hydrographic trajectory plates.'
+    },
+    {
+      id: 'scheme-cotinga-night',
+      tag: 'cotinga-nocturne',
+      token: '#color/cotinga-nocturne',
+      slash: '/color/cotinga-nocturne',
+      handle: '#color/cotinga-nocturne',
+      title: 'Cotinga Nocturne (Mythic Lyre Chord)',
+      name: 'Cotinga Nocturne (Mythic Lyre Chord)',
+      palId: 329,
+      ground: 'atlas',
+      tags: ['#mythic', '#musical', '#nocturne', '#finale'],
+      notes: 'Deep Cotinga violet-blue and warm gold for harmonic duet and finale callbacks.'
+    }
+  ];
+
+  function sanitizeSchemeTag(rawTag) {
+    const clean = String(rawTag || 'custom-scheme')
+      .toLowerCase()
+      .replace(/^[/#]+color[/:-]?/, '')
+      .replace(/^[/#]+/, '')
+      .replace(/[^a-z0-9-]+/g, '-')
+      .replace(/^-+|-+$/g, '');
+    return clean || 'custom-scheme';
+  }
+
+  function tagAndSaveColorScheme(existingSchemes, spec) {
+    const list = Array.isArray(existingSchemes) && existingSchemes.length
+      ? existingSchemes.slice()
+      : DEFAULT_SAVED_SCHEMES.slice();
+    const s = spec || {};
+    const slug = sanitizeSchemeTag(s.tag || s.title || s.name || ('wada-' + (s.palId || 343)));
+    const handle = '#color/' + slug;
+    const rawPalId = Math.max(1, Math.min(348, Math.round(Number(s.palId) || 343)));
+    const wadaObj = WADA.PALS.find(function (p) { return p.id === rawPalId; }) ||
+      WADA.getAllWadaCombos().find(function (p) { return p.id === rawPalId; }) ||
+      { id: rawPalId, name: 'Wada Combination No. ' + rawPalId };
+
+    const extraTags = Array.isArray(s.tags)
+      ? s.tags
+      : String(s.tags || '#custom #studio')
+          .split(/[\s,]+/)
+          .map(function (t) { return t.trim(); })
+          .filter(Boolean)
+          .map(function (t) { return t.startsWith('#') ? t : ('#' + t); });
+
+    const displayTitle = s.title || s.name || (wadaObj.name + ' (' + handle + ')');
+    const entry = {
+      id: 'scheme-' + slug,
+      tag: slug,
+      token: handle,
+      slash: '/color/' + slug,
+      handle: handle,
+      title: displayTitle,
+      name: displayTitle,
+      palId: rawPalId,
+      ground: s.ground || 'atlas',
+      tags: extraTags.length ? extraTags : ['#custom'],
+      notes: s.notes || ('Pinned Sanzo Wada No. ' + rawPalId + ' (' + wadaObj.name + ') on ' + (s.ground || 'atlas') + ' ground.'),
+      savedAt: new Date().toISOString()
+    };
+
+    const existingIdx = list.findIndex(function (item) { return item.tag === slug || item.handle === handle || item.token === handle; });
+    if (existingIdx >= 0) {
+      list[existingIdx] = entry;
+    } else {
+      list.unshift(entry);
+    }
+    return { schemes: list, savedEntry: entry, createdOrUpdated: entry };
+  }
+
+  function resolveColorSchemeByTag(existingSchemes, queryOrTag) {
+    const list = Array.isArray(existingSchemes) && existingSchemes.length ? existingSchemes : DEFAULT_SAVED_SCHEMES;
+    const q = String(queryOrTag || '').toLowerCase().trim();
+    if (!q) return list[0];
+    const cleanSlug = sanitizeSchemeTag(q);
+    const exact = list.find(function (s) {
+      return s.tag === cleanSlug || (s.handle && s.handle.toLowerCase() === q) || (s.token && s.token.toLowerCase() === q) || ('/color/' + s.tag) === q;
+    });
+    if (exact) return exact;
+    const byTag = list.find(function (s) {
+      return (s.tags || []).some(function (t) { return t.toLowerCase() === q || t.toLowerCase() === ('#' + cleanSlug); }) ||
+        ((s.name || s.title || '').toLowerCase().includes(cleanSlug)) ||
+        String(s.palId) === cleanSlug;
+    });
+    return byTag || null;
+  }
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // 3C. STUDIO SKILLS, THEMES & PLAIN-ENGLISH VOCABULARY LIBRARY (# & / — Gate G28)
+  // ─────────────────────────────────────────────────────────────────────────
+  const VOCAB_LIBRARY = [
+    // 1. #theme/... — 12 Curated Look & Feel Recipes (Plain-English Entry Point)
+    {
+      token: '#theme/warm-storybook',
+      slashToken: '/theme/warm-storybook',
+      category: 'theme',
+      title: 'Warm Handmade Storybook',
+      plainEnglish: 'Soft watercolor washes, warm cream paper, and gentle 12fps hand-drawn line wobble — feels human, approachable, and poetic.',
+      jargonTerm: 'Watercolor Wash · 12fps Boil · Wada No. 343 · Spring Feel',
+      promptSnippet: '#theme/warm-storybook Use soft handmade watercolor washes on warm archival paper with 12fps line boil and gentle spring overshoot.',
+      patch: { mStyle: 'watercolor', palId: 343, feel: 'spring', rung: 1, ground: 'atlas' }
+    },
+    {
+      token: '#theme/saul-cutout',
+      slashToken: '/theme/saul-cutout',
+      category: 'theme',
+      title: 'Bold Cut-Paper Poster (Saul Bass)',
+      plainEnglish: 'Sharp scissors-cut paper shapes, 3 stark colors, and punchy 8fps stop-motion snaps — unmistakable even from across the room.',
+      jargonTerm: 'Saul Severe · Rung 4 Cutout · 8fps Hold · Wada No. 126',
+      promptSnippet: '#theme/saul-cutout Stage with bold 3-color scissors-cut paper shapes at Saul Bass Rung 4 and 8fps graphic snap holds.',
+      patch: { mStyle: 'saul-severe', palId: 126, feel: 'saul', rung: 4, ground: 'atlas' }
+    },
+    {
+      token: '#theme/nautical-radar',
+      slashToken: '/theme/nautical-radar',
+      category: 'theme',
+      title: 'Nautical Radar & Ghost Trail Chart',
+      plainEnglish: 'Plots 25 echoing ghost positions behind the moving character with compass bearings and scientific measurement bars.',
+      jargonTerm: 'Kinetic Hydrography · 25 Ghost Soundings · Wada No. 296',
+      promptSnippet: '#theme/nautical-radar Plot a 25-point hydrographic sounding trail with compass bearing ring and ΔE2000 token telemetry.',
+      patch: { mStyle: 'hydrographic', palId: 296, feel: 'rostrum', rung: 3, ground: 'sepia' }
+    },
+    {
+      token: '#theme/shoji-sumi-ink',
+      slashToken: '/theme/shoji-sumi-ink',
+      category: 'theme',
+      title: 'Quiet Japanese Sumi Ink & Paper',
+      plainEnglish: 'Lots of calm breathing room, crisp folded-paper or brush contours, and deep black sumi ink on pale Shoji paper.',
+      jargonTerm: 'Sumi Ink Wash · Negative-Space Hold · Wada No. 48',
+      promptSnippet: '#theme/shoji-sumi-ink Leave generous negative space on Shoji cream paper with crisp sumi ink brushwork and calm breather holds.',
+      patch: { mStyle: 'ink-calligraphy', palId: 48, feel: 'held', rung: 2, ground: 'sumi', charId: 'origami-crane' }
+    },
+    {
+      token: '#theme/bathyal-biolum',
+      slashToken: '/theme/bathyal-biolum',
+      category: 'theme',
+      title: 'Deep-Sea Glowing Bioluminescence',
+      plainEnglish: 'Warm glowing amber and gold signals cutting through deep ocean Prussian blue — great for mystery and discovery.',
+      jargonTerm: 'Bathyal Amber on Prussian Blueprint · Wada No. 166',
+      promptSnippet: '#theme/bathyal-biolum Illuminate the subject with glowing bathyal amber against deep Prussian night water.',
+      patch: { mStyle: 'woodcut-relief', palId: 166, feel: 'slow', rung: 2, ground: 'blueprint', charId: 'lantern-bathysphere' }
+    },
+    {
+      token: '#theme/glaser-pop',
+      slashToken: '/theme/glaser-pop',
+      category: 'theme',
+      title: 'Expressive Color Ribbons (Milton Glaser)',
+      plainEnglish: 'Flowing multi-colored trailing ribbons and joyful springy overshoot — celebratory, musical, and full of life.',
+      jargonTerm: 'Glaser Overshoot · Harmonic Ribbons · Wada No. 329',
+      promptSnippet: '#theme/glaser-pop Trail expressive multi-color harmonic ribbons behind the hero with Milton Glaser ceremonial overshoot.',
+      patch: { mStyle: 'glaser-lite', palId: 329, feel: 'glaser', rung: 1, ground: 'atlas', charId: 'orpheus-lyre' }
+    },
+    {
+      token: '#theme/blueprint-rig',
+      slashToken: '/theme/blueprint-rig',
+      category: 'theme',
+      title: 'Engineering Blueprint & Joint Diagram',
+      plainEnglish: 'Shows the visible mechanical joints, pivots, and construction lines of the character like a living Da Vinci notebook.',
+      jargonTerm: 'Visible Rig Socket (e_rig) · Monoline Rung 3 · Blueprint Ground',
+      promptSnippet: '#theme/blueprint-rig Expose the internal pivot joints, measurement ticks, and construction geometry on a blueprint grid.',
+      patch: { mStyle: 'diagram-clean', palId: 166, feel: 'beat', rung: 3, ground: 'blueprint', charId: 'astronav-compass' }
+    },
+    {
+      token: '#theme/screenprint-offset',
+      slashToken: '/theme/screenprint-offset',
+      category: 'theme',
+      title: 'Vintage Screenprint (Offset Color Plates)',
+      plainEnglish: 'Color fills intentionally shift slightly outside the ink lines like a vintage mid-century silkscreen poster.',
+      jargonTerm: '2-3px Plate Misregistration · Risograph Grain · Wada No. 343',
+      promptSnippet: '#theme/screenprint-offset Offset the color fill plates by 3px against the ink contour for tactile vintage screenprint texture.',
+      patch: { mStyle: 'risograph', palId: 343, feel: 'spring', rung: 2, ground: 'atlas' }
+    },
+
+    // 2. #element/... — Plain-English Motion Building Blocks (No Jargon Needed)
+    {
+      token: '#element/line-wobble',
+      slashToken: '/element/line-wobble',
+      category: 'element',
+      title: 'Hand-Drawn Line Wobble ("12fps Boil")',
+      plainEnglish: 'Keeps outlines gently shimmering even when the character pauses so the frame never feels frozen or dead.',
+      jargonTerm: 'Element: 12fps Line Boil (e_boil)',
+      promptSnippet: '#element/line-wobble Add subtle 12fps hand-drawn line boil so held poses stay warm and alive.',
+      patch: { feel: 'spring' }
+    },
+    {
+      token: '#element/ink-bloom',
+      slashToken: '/element/ink-bloom',
+      category: 'element',
+      title: 'Soft Watercolor Pigment Bloom ("Ink Bleed")',
+      plainEnglish: 'A drop of color spreads softly into the paper grain at key emotional moments.',
+      jargonTerm: 'Element: Wet-on-Wet Ink Bleed (e_bleed)',
+      promptSnippet: '#element/ink-bloom Let a drop of Wada pigment bloom softly into the wet paper grain at the turning point.',
+      patch: { mStyle: 'watercolor' }
+    },
+    {
+      token: '#element/offset-print',
+      slashToken: '/element/offset-print',
+      category: 'element',
+      title: 'Shifted Color Fill ("Misregistration")',
+      plainEnglish: 'Offsets the color shadow 2–3px from the outline so it looks hand-printed rather than computer-perfect.',
+      jargonTerm: 'Element: Plate Misregistration (e_misreg)',
+      promptSnippet: '#element/offset-print Introduce 2.5px silkscreen plate misregistration between the ink contour and fill wash.',
+      patch: {}
+    },
+    {
+      token: '#element/wind-up-crouch',
+      slashToken: '/element/wind-up-crouch',
+      category: 'element',
+      title: 'Wind-Up Before Jumping ("Anticipation")',
+      plainEnglish: 'The character pulls back slightly for 3 frames before lunging forward, giving the movement real physical weight.',
+      jargonTerm: 'Element: Anticipation Crouch (e_antic)',
+      promptSnippet: '#element/wind-up-crouch Pull the character back into a 3-frame anticipation wind-up before launching into the main move.',
+      patch: { feel: 'spring' }
+    },
+    {
+      token: '#element/spring-overshoot',
+      slashToken: '/element/spring-overshoot',
+      category: 'element',
+      title: 'Bouncy Settle Past the Target ("Overshoot")',
+      plainEnglish: 'Instead of stopping robotically, the character goes slightly past its mark and settles back naturally.',
+      jargonTerm: 'Element: Ceremonial Overshoot & Settle (e_overshoot)',
+      promptSnippet: '#element/spring-overshoot Carry 12% past the target mark and settle with a warm harmonic spring.',
+      patch: { feel: 'glaser' }
+    },
+    {
+      token: '#element/tail-follow-through',
+      slashToken: '/element/tail-follow-through',
+      category: 'element',
+      title: 'Delayed Tail & Fin Wave ("Follow-Through")',
+      plainEnglish: 'Fins, wings, or ribbons keep moving a split second after the main body stops.',
+      jargonTerm: 'Element: Overlapping Follow-Through (e_follow)',
+      promptSnippet: '#element/tail-follow-through Delay the tail and appendage wave by 4 frames so secondary parts settle after the torso.',
+      patch: {}
+    },
+    {
+      token: '#element/echo-trail',
+      slashToken: '/element/echo-trail',
+      category: 'element',
+      title: 'Fading Ghost Trail Behind Motion',
+      plainEnglish: 'Leaves translucent echoes along the path the character just traveled so speed and trajectory are visible.',
+      jargonTerm: 'Element: Onion-Skin / Sounding Trail (e_trail)',
+      promptSnippet: '#element/echo-trail Enable fading Wada-tinted ghost silhouettes along the motion path.',
+      patch: { onionSkin: true }
+    },
+    {
+      token: '#element/call-and-answer',
+      slashToken: '/element/call-and-answer',
+      category: 'element',
+      title: 'Two-Character Call & Answer Duet',
+      plainEnglish: 'The hero makes a gesture or sound wave, and a companion character enters to answer it in harmony.',
+      jargonTerm: 'Element: Duet Counterpoint / Call & Response (e_call)',
+      promptSnippet: '#element/call-and-answer Stage a call-and-response duet where the hero emits a signal and the partner rig answers.',
+      patch: { interaction: 'duet-counterpoint', storyKey: 's_duet' }
+    },
+    {
+      token: '#element/spotlight-circle',
+      slashToken: '/element/spotlight-circle',
+      category: 'element',
+      title: 'Closing Circle Spotlight ("Iris Focus")',
+      plainEnglish: 'narrows a circular frame around the key detail so the viewer knows exactly where to look.',
+      jargonTerm: 'Element: Aperture Iris Focus (e_iris)',
+      promptSnippet: '#element/spotlight-circle Tighten a circular iris aperture around the hero to isolate the emotional turning point.',
+      patch: {}
+    },
+    {
+      token: '#element/quiet-pause',
+      slashToken: '/element/quiet-pause',
+      category: 'element',
+      title: 'Quiet Breathing Room ("Negative-Space Hold")',
+      plainEnglish: 'Pauses the action in open space for one beat before the climax so the audience can absorb the story.',
+      jargonTerm: 'Element: Rem Koolhaas Negative-Space Breather (Beat 6)',
+      promptSnippet: '#element/quiet-pause Hold in 78% open negative space on Beat 6 with only 1 gentle breathing motion.',
+      patch: { feel: 'held' }
+    },
+    {
+      token: '#element/silhouette-reveal',
+      slashToken: '/element/silhouette-reveal',
+      category: 'element',
+      title: 'Stark Shadow Silhouette Reveal',
+      plainEnglish: 'Strips away interior details so the character reads as a pure, iconic shadow shape.',
+      jargonTerm: 'Element: Rung 4 Silhouette Knockout',
+      promptSnippet: '#element/silhouette-reveal Reduce the character to a high-contrast Rung 4 silhouette for maximum graphic punch.',
+      patch: { rung: 4 }
+    },
+    {
+      token: '#element/water-ripples',
+      slashToken: '/element/water-ripples',
+      category: 'element',
+      title: 'Concentric Ring Ripples ("Wake")',
+      plainEnglish: 'Expanding rings radiate outward whenever the character turns or strikes a note.',
+      jargonTerm: 'Element: Secondary Acoustic/Fluid Wake (e_ripple)',
+      promptSnippet: '#element/water-ripples Emit concentric Wada accent rings radiating from the character at each beat accent.',
+      patch: { streaks: true }
+    },
+
+    // 3. #camera/... — 8 Camera Framing & Movement Directives
+    {
+      token: '#camera/push-in',
+      slashToken: '/camera/push-in',
+      category: 'camera',
+      title: 'Slow Dramatic Push-In Zoom (1.22×)',
+      plainEnglish: 'Moves the camera closer to the character to heighten intimacy or tension.',
+      jargonTerm: 'Camera: Push-In 1.22×',
+      promptSnippet: '#camera/push-in Push the camera in 1.22× toward the hero to build emotional focus.',
+      patch: { cameraMove: 'push-in' }
+    },
+    {
+      token: '#camera/dutch-tilt',
+      slashToken: '/camera/dutch-tilt',
+      category: 'camera',
+      title: 'Angled Off-Balance Horizon ("Dutch Tilt")',
+      plainEnglish: 'Tilts the camera angle slightly (-6.5°) when something unexpected or disruptive happens.',
+      jargonTerm: 'Camera: Dutch Tilt (-6.5°)',
+      promptSnippet: '#camera/dutch-tilt Tilt the camera frame -6.5° at the threshold beat to signal sudden instability.',
+      patch: { cameraMove: 'dutch-tilt' }
+    },
+    {
+      token: '#camera/pan-follow',
+      slashToken: '/camera/pan-follow',
+      category: 'camera',
+      title: 'Smooth Sideways Follow Pan',
+      plainEnglish: 'Glides sideways alongside the character as it travels across the canvas.',
+      jargonTerm: 'Camera: Lateral Pan-Follow',
+      promptSnippet: '#camera/pan-follow Pan laterally with the character to keep its forward momentum centered.',
+      patch: { cameraMove: 'pan-follow' }
+    },
+    {
+      token: '#camera/kick-shake',
+      slashToken: '/camera/kick-shake',
+      category: 'camera',
+      title: 'Punchy Impact Shake ("Climax Kick")',
+      plainEnglish: 'Adds a brief, energetic camera shudder at the exact moment of climax or impact.',
+      jargonTerm: 'Camera: Kinetic Impact Kick-Shake',
+      promptSnippet: '#camera/kick-shake Trigger a crisp kinetic camera shake on the climax beat.',
+      patch: { cameraMove: 'kick-shake' }
+    },
+    {
+      token: '#camera/pull-back',
+      slashToken: '/camera/pull-back',
+      category: 'camera',
+      title: 'Wide Reveal Pull-Back (0.86×)',
+      plainEnglish: 'Zooms out to reveal the whole landscape and echo the opening frame.',
+      jargonTerm: 'Camera: Wide Pull-Back 0.86×',
+      promptSnippet: '#camera/pull-back Pull back to a wide 0.86× panorama to reveal the full environment.',
+      patch: { cameraMove: 'pull-back' }
+    },
+    {
+      token: '#camera/breather-hold',
+      slashToken: '/camera/breather-hold',
+      category: 'camera',
+      title: 'Still Contemplative Wide Hold',
+      plainEnglish: 'Locks the camera completely still with wide margins so quiet moments feel sacred.',
+      jargonTerm: 'Camera: Breather Negative-Space Hold',
+      promptSnippet: '#camera/breather-hold Lock the camera in a quiet wide breather hold with zero camera drift.',
+      patch: { cameraMove: 'breather-hold' }
+    },
+
+    // 4. #feel/... — 8 Physics & Timing Feels
+    {
+      token: '#feel/spring',
+      slashToken: '/feel/spring',
+      category: 'feel',
+      title: 'Natural Physical Spring',
+      plainEnglish: 'Balanced, organic acceleration and deceleration — the best default for almost any story.',
+      jargonTerm: 'Timing Feel: Natural Spring (cubic-bezier 0.22, 1.28, 0.36, 1)',
+      promptSnippet: '#feel/spring Drive all motion with natural physical spring easing.',
+      patch: { feel: 'spring' }
+    },
+    {
+      token: '#feel/glaser-overshoot',
+      slashToken: '/feel/glaser-overshoot',
+      category: 'feel',
+      title: 'Expressive Ceremonial Overshoot',
+      plainEnglish: 'Swoops past the destination with theatrical flair before settling into place.',
+      jargonTerm: 'Timing Feel: Milton Glaser Ceremonial Overshoot',
+      promptSnippet: '#feel/glaser-overshoot Apply expressive Milton Glaser ceremonial overshoot on key pose transitions.',
+      patch: { feel: 'glaser' }
+    },
+    {
+      token: '#feel/saul-snap',
+      slashToken: '/feel/saul-snap',
+      category: 'feel',
+      title: 'Crisp Stop-Motion Poster Snap (8fps)',
+      plainEnglish: 'Steps in bold, rhythmic 8-frames-per-second holds like a cut-paper title sequence.',
+      jargonTerm: 'Timing Feel: Saul Bass 8fps Stepped Snap',
+      promptSnippet: '#feel/saul-snap Step the animation at 8fps graphic holds for crisp cut-paper rhythm.',
+      patch: { feel: 'saul' }
+    },
+    {
+      token: '#feel/rostrum-pan',
+      slashToken: '/feel/rostrum-pan',
+      category: 'feel',
+      title: 'Documentary Camera Glide ("Ken Burns")',
+      plainEnglish: 'Slow, steady museum-grade drift across an archival illustration or map.',
+      jargonTerm: 'Timing Feel: Rostrum Documentary Glide',
+      promptSnippet: '#feel/rostrum-pan Glide across the plate with steady rostrum documentary pacing.',
+      patch: { feel: 'rostrum' }
+    },
+
+    // 5. #character/... — 8 Parametric Character Archetypes
+    {
+      token: '#character/ceti-whale',
+      slashToken: '/character/ceti-whale',
+      category: 'character',
+      title: 'Humpback Leviathan (Oceanic Hero)',
+      plainEnglish: 'Graceful arched whale with pleated throat grooves and sweeping pectoral fins.',
+      jargonTerm: 'Rig: ceti-whale (cetacean)',
+      promptSnippet: '#character/ceti-whale Cast the Humpback Leviathan as the primary hero rig.',
+      patch: { charId: 'ceti-whale' }
+    },
+    {
+      token: '#character/saul-falcon',
+      slashToken: '/character/saul-falcon',
+      category: 'character',
+      title: 'Peregrine Cutout (Raptor Emblem)',
+      plainEnglish: 'Sharp geometric falcon with swept primary wings and high-speed diving silhouette.',
+      jargonTerm: 'Rig: saul-falcon (avian)',
+      promptSnippet: '#character/saul-falcon Cast the Peregrine Cutout falcon rig for sharp aerial geometry.',
+      patch: { charId: 'saul-falcon' }
+    },
+    {
+      token: '#character/lantern-bathysphere',
+      slashToken: '/character/lantern-bathysphere',
+      category: 'character',
+      title: 'Abyssal Bathysphere (Deep-Sea Explorer)',
+      plainEnglish: 'Diving bell submersible with glowing quartz viewport, sonar dish, and searchlight beam.',
+      jargonTerm: 'Rig: lantern-bathysphere (submersible)',
+      promptSnippet: '#character/lantern-bathysphere Cast the Abyssal Bathysphere submersible rig with glowing searchlight.',
+      patch: { charId: 'lantern-bathysphere' }
+    },
+    {
+      token: '#character/origami-crane',
+      slashToken: '/character/origami-crane',
+      category: 'character',
+      title: 'Tessellated Origami Crane (Folded Paper)',
+      plainEnglish: 'Crisp folded paper crane with visible geometric valley-fold creases.',
+      jargonTerm: 'Rig: origami-crane (geometric)',
+      promptSnippet: '#character/origami-crane Cast the Tessellated Origami Crane rig with crisp paper facets.',
+      patch: { charId: 'origami-crane' }
+    },
+    {
+      token: '#character/astronav-compass',
+      slashToken: '/character/astronav-compass',
+      category: 'character',
+      title: 'Astrolabe Gimbal (Celestial Instrument)',
+      plainEnglish: 'Rotating concentric brass rings and 4-point compass rose for navigation and telemetry stories.',
+      jargonTerm: 'Rig: astronav-compass (instrument)',
+      promptSnippet: '#character/astronav-compass Cast the Astrolabe Gimbal instrument rig with rotating brass rings.',
+      patch: { charId: 'astronav-compass' }
+    },
+    {
+      token: '#character/doodle-scribe',
+      slashToken: '/character/doodle-scribe',
+      category: 'character',
+      title: 'Nib & Ink Automaton (Fountain Pen)',
+      plainEnglish: 'Calligraphic fountain-pen nib that draws its own world as it moves.',
+      jargonTerm: 'Rig: doodle-scribe (calligraphic)',
+      promptSnippet: '#character/doodle-scribe Cast the Nib & Ink Automaton rig to draw live calligraphic strokes.',
+      patch: { charId: 'doodle-scribe' }
+    },
+    {
+      token: '#character/orpheus-lyre',
+      slashToken: '/character/orpheus-lyre',
+      category: 'character',
+      title: 'Harmonic Lyre-Form (Musical Emblem)',
+      plainEnglish: 'Sculptural acoustic lyre with 5 vibrating strings for musical and synesthetic stories.',
+      jargonTerm: 'Rig: orpheus-lyre (mythic)',
+      promptSnippet: '#character/orpheus-lyre Cast the Harmonic Lyre-Form rig with 5 resonant strings.',
+      patch: { charId: 'orpheus-lyre' }
+    },
+    {
+      token: '#character/kelp-leviathan',
+      slashToken: '/character/kelp-leviathan',
+      category: 'character',
+      title: 'Pelagic Riff-Serpent (Botanical Sea Dragon)',
+      plainEnglish: 'Undulating 5-wave sea-kelp serpent with leafy frond blades and glowing air bulbs.',
+      jargonTerm: 'Rig: kelp-leviathan (botanical)',
+      promptSnippet: '#character/kelp-leviathan Cast the Pelagic Riff-Serpent botanical rig with 5-wave undulating spine.',
+      patch: { charId: 'kelp-leviathan' }
+    },
+    {
+      token: '#theme/saul-bass-cutout',
+      slashToken: '/theme/saul-bass-cutout',
+      category: 'theme',
+      title: 'Saul Bass Paper Cutout (Bold 3-Color Silhouettes)',
+      plainEnglish: 'Razor-sharp cut-paper silhouettes with high-contrast color blocks and stepped graphic holds.',
+      jargonTerm: 'Cutout · Rung 4 · Wada No. 126 · Stepped Hold',
+      promptSnippet: '#theme/saul-bass-cutout Stage with razor-sharp Saul Bass paper cutouts in Wada No. 126.',
+      patch: { styleKey: 'cutout', mStyle: 'cutout', palId: 126, feel: 'saul', rung: 4, ground: 'atlas' }
+    },
+    {
+      token: '#theme/ghibli-watercolor',
+      slashToken: '/theme/ghibli-watercolor',
+      category: 'theme',
+      title: 'Warm Hand-Painted Watercolor Wash',
+      plainEnglish: 'Soft translucent pigment layers bleeding gently into warm textured paper.',
+      jargonTerm: 'Watercolor · Rung 1 · Wada No. 343 · Spring Feel',
+      promptSnippet: '#theme/ghibli-watercolor Render with warm translucent watercolor washes on archival cream paper.',
+      patch: { styleKey: 'watercolor', mStyle: 'watercolor', palId: 343, feel: 'spring', rung: 1, ground: 'atlas' }
+    },
+    {
+      token: '#theme/blueprint-telemetry',
+      slashToken: '/theme/blueprint-telemetry',
+      category: 'theme',
+      title: 'Technical Blueprint & Hydrographic Telemetry',
+      plainEnglish: 'Precision architectural lines, compass rings, and live coordinate readouts on Prussian blue.',
+      jargonTerm: 'Diagram Clean · Rung 3 · Wada No. 166 · Blueprint',
+      promptSnippet: '#theme/blueprint-telemetry Overlay technical blueprint coordinates and hydrographic sounding rings.',
+      patch: { styleKey: 'diagram', mStyle: 'diagram', palId: 166, feel: 'rostrum', rung: 3, ground: 'blueprint' }
+    },
+    {
+      token: '#element/negative-space-reveal',
+      slashToken: '/element/negative-space-reveal',
+      category: 'element',
+      title: 'Negative-Space Figure/Ground Reveal',
+      plainEnglish: 'The background shadow carves out the hidden shape of the character without drawing an outline.',
+      jargonTerm: 'Element: Figure/Ground Reversal (e_negspace)',
+      promptSnippet: '#element/negative-space-reveal Carve the subject out of negative space using figure/ground reversal.',
+      patch: { styleKey: 'silhouette', mStyle: 'silhouette', rung: 4 }
+    },
+    {
+      token: '#element/grain-stipple',
+      slashToken: '/element/grain-stipple',
+      category: 'element',
+      title: 'Tactile Film Grain & Stipple Shading',
+      plainEnglish: 'Adds warm organic paper tooth and stippled ink dots so flat shapes feel hand-printed.',
+      jargonTerm: 'Element: Risograph Stipple & Paper Grain (e_grain)',
+      promptSnippet: '#element/grain-stipple Add tactile archival paper grain and stippled ink shading.',
+      patch: { styleKey: 'risograph', mStyle: 'risograph' }
+    },
+    {
+      token: '#camera/match-cut-morph',
+      slashToken: '/camera/match-cut-morph',
+      category: 'camera',
+      title: 'Seamless Shape Match-Cut Transition',
+      plainEnglish: 'Morphs one silhouette directly into the next scene at the exact same screen position.',
+      jargonTerm: 'Camera: Graphic Match-Cut Morph',
+      promptSnippet: '#camera/match-cut-morph Bridge the beat transition with a graphic silhouette match-cut.',
+      patch: { cameraMove: 'push-in', storyKey: 's_morph' }
+    },
+    {
+      token: '#feel/held-24fps',
+      slashToken: '/feel/held-24fps',
+      category: 'feel',
+      title: 'Hand-Crafted Stop-Motion Hold (On Twos & Threes)',
+      plainEnglish: 'Holds each pose for 2–3 frames so movement feels sculpted by hand rather than computer-interpolated.',
+      jargonTerm: 'Timing Feel: Stepped Stop-Motion Hold',
+      promptSnippet: '#feel/held-24fps Animate on stepped holds (twos and threes) for tactile stop-motion presence.',
+      patch: { feel: 'held' }
+    }
+  ];
+
+  // Build combined vocabulary list including dynamic user-saved #color/<tag> schemes
+  function getFullVocabLibrary(savedSchemes) {
+    const schemes = Array.isArray(savedSchemes) && savedSchemes.length ? savedSchemes : DEFAULT_SAVED_SCHEMES;
+    const colorItems = schemes.map(function (sc) {
+      const tok = sc.token || ('#color/' + sc.tag);
+      const sl = sc.slash || ('/color/' + sc.tag);
+      const nm = sc.title || sc.name || ('Wada No. ' + sc.palId);
+      const desc = sc.notes || ('Saved color scheme pinned to Sanzo Wada No. ' + sc.palId + ' (' + (sc.tags || []).join(' ') + ').');
+      return {
+        id: sc.id || ('color-' + sc.tag),
+        token: tok,
+        slash: sl,
+        slashToken: sl,
+        category: 'color',
+        title: nm,
+        plainName: nm,
+        plainEnglish: desc,
+        plainDesc: desc,
+        jargonTerm: 'Sanzo Wada No. ' + sc.palId + ' · Ground: ' + (sc.ground || 'atlas') + ' · ' + (sc.tags || []).join(' '),
+        promptSnippet: tok + ' Pin palette to "' + nm + '" (Wada No. ' + sc.palId + ').',
+        patch: { palId: sc.palId, ground: sc.ground || 'atlas', schemeTag: sc.tag, colorSchemeTag: tok }
+      };
+    });
+    const normalizedBase = VOCAB_LIBRARY.map(function (it) {
+      const p = Object.assign({}, it.patch || {});
+      if (p.mStyle && !p.styleKey) p.styleKey = p.mStyle;
+      if (p.styleKey && !p.mStyle) p.mStyle = p.styleKey;
+      return Object.assign({}, it, {
+        slash: it.slash || it.slashToken,
+        slashToken: it.slashToken || it.slash,
+        plainName: it.plainName || it.title,
+        title: it.title || it.plainName,
+        plainDesc: it.plainDesc || it.plainEnglish,
+        plainEnglish: it.plainEnglish || it.plainDesc,
+        patch: p
+      });
+    });
+    return normalizedBase.concat(colorItems);
+  }
+
+  function searchVocabLibrary(query, category, savedSchemes) {
+    const all = getFullVocabLibrary(savedSchemes);
+    const cat = (category && category !== 'all') ? category.toLowerCase() : null;
+    const rawQ = String(query || '').trim().toLowerCase();
+    const cleanQ = rawQ.replace(/^[/#]+/, '');
+
+    return all.filter(function (item) {
+      if (cat && item.category !== cat) return false;
+      if (!cleanQ) return true;
+      const hay = (
+        item.token + ' ' +
+        item.slashToken + ' ' +
+        item.category + ' ' +
+        item.title + ' ' +
+        item.plainEnglish + ' ' +
+        item.jargonTerm
+      ).toLowerCase();
+      return hay.includes(cleanQ);
+    });
+  }
+
+  // Parse any #token or /token inside a prompt/note and return the combined patch + matched items
+  function parsePromptTokens(text, savedSchemes) {
+    const all = getFullVocabLibrary(savedSchemes);
+    const str = String(text || '');
+    const matched = [];
+    const combinedPatch = {};
+    let explicitThemeStyle = null;
+
+    all.forEach(function (item) {
+      const tokLower = item.token.toLowerCase();
+      const slashLower = item.slashToken.toLowerCase();
+      const slugLower = tokLower.split('/')[1] || '';
+      const lowerStr = str.toLowerCase();
+      if (
+        lowerStr.includes(tokLower) ||
+        lowerStr.includes(slashLower) ||
+        (slugLower && (lowerStr.includes('#' + slugLower) || lowerStr.includes('/' + slugLower)))
+      ) {
+        matched.push(item);
+        if (item.category === 'theme' && item.patch && (item.patch.styleKey || item.patch.mStyle)) {
+          explicitThemeStyle = item.patch.styleKey || item.patch.mStyle;
+        }
+        Object.assign(combinedPatch, item.patch || {});
+      }
+    });
+
+    if (explicitThemeStyle) {
+      combinedPatch.styleKey = explicitThemeStyle;
+      combinedPatch.mStyle = explicitThemeStyle;
+    }
+
+    return {
+      matchedTokens: matched,
+      matchedItems: matched,
+      patch: combinedPatch,
+      mergedPatch: combinedPatch
+    };
+  }
+
   // ─────────────────────────────────────────────────────────────────────────
   // 4. MULTI-PROVIDER OAUTH 2.0 PKCE + LOCAL BRIDGE + SYNTHESIZER (G10 · G11)
   // ─────────────────────────────────────────────────────────────────────────
@@ -754,37 +1601,46 @@
   // Deterministic Algebraic Storyboard & Character Synthesizer (Offline + Fallback)
   function runDeterministicSynthesizer(req) {
     const r = req || {};
-    const charId = r.charId || 'ceti-whale';
-    const charSpec = FOUNDRY.CHARACTERS[charId] || FOUNDRY.CHARACTERS['ceti-whale'];
-    const palId = r.palId || 343;
-    const styleKey = r.styleKey || 'watercolor';
-    const storyKey = r.storyKey || 's_voice';
     const prompt = (r.prompt || 'Deepen causal tension and synthesize a custom companion rig').trim();
+    const parsedTokens = parsePromptTokens(prompt, r.savedSchemes);
+    const tokPatch = parsedTokens.patch || {};
 
-    // Select a harmonic Wada partner combo based on prompt hash
+    const charId = tokPatch.charId || r.charId || 'ceti-whale';
+    const charSpec = FOUNDRY.CHARACTERS[charId] || FOUNDRY.CHARACTERS['ceti-whale'];
+    const palId = tokPatch.palId || r.palId || 343;
+    const styleKey = tokPatch.mStyle || r.styleKey || 'watercolor';
+    const storyKey = tokPatch.storyKey || r.storyKey || 's_voice';
+    const feelKey = tokPatch.feel || r.feelKey || 'spring';
+
+    // Select a harmonic Wada partner combo based on #color/#theme token or prompt hash
     let pHash = 0;
     for (let i = 0; i < prompt.length; i++) pHash = ((pHash << 5) - pHash + prompt.charCodeAt(i)) | 0;
     const curatedIds = WADA.PALS.map(function (p) { return p.id; });
-    const suggestedCombo = curatedIds[Math.abs(pHash) % curatedIds.length] || palId;
+    const suggestedCombo = tokPatch.palId || curatedIds[Math.abs(pHash) % curatedIds.length] || palId;
 
     const baseSheet = buildStoryboardSheet({
       storyKey: storyKey,
       styleKey: styleKey,
       charId: charId,
       palId: suggestedCombo,
-      feelKey: r.feelKey || 'spring'
+      feelKey: feelKey
     });
+
+    const tokenTagsSummary = parsedTokens.matchedTokens.length
+      ? (' [Applied tokens: ' + parsedTokens.matchedTokens.map(function (t) { return t.token; }).join(', ') + ']')
+      : '';
 
     // Enhance beats with prompt-specific visual staging and strict BUT/THEREFORE hinges
     const enhancedBeats = baseSheet.beats.map(function (b, i) {
       const hinge = (i % 2 === 1) ? 'BUT' : 'THEREFORE';
       const suffix = i === 0
-        ? (' [Stage prompt: "' + prompt.slice(0, 48) + '"]')
+        ? (' [Stage prompt: "' + prompt.slice(0, 48) + '"]' + tokenTagsSummary)
         : (i === 5
           ? ' [Negative-space breather hold: 0 competing moves]'
           : (i === 7 ? ' [Callback lock: echoes Beat 1 silhouette & Wada No. ' + suggestedCombo + ']' : ''));
       return Object.assign({}, b, {
         hinge: hinge,
+        cameraMove: (i === 3 && tokPatch.cameraMove) ? tokPatch.cameraMove : b.cameraMove,
         visualAction: b.visualAction + suffix
       });
     });
@@ -1430,7 +2286,11 @@
       { id: 'G22', name: 'Alexandrov Sheaf Pushout Synthesis (A ⊕ B Gluing)', pass: typeof synthesizeBranches === 'function' && typeof computeGluingHash === 'function', metric: 'Multi-Parent Pushout ρ(A ⊕ B) · δ⁰=0' },
       { id: 'G23', name: 'Multi-Frame Onion-Skinning (-2Δt / -1Δt / +1Δt)', pass: Array.isArray(onionFrames) && onionFrames.length === 3, metric: '3 Wada Ghost Frames + Spacing Trajectory' },
       { id: 'G24', name: 'Orpheum Harmonic WebAudio Sonification (OKLab → Hz)', pass: Array.isArray(wadaChord.voices) && wadaChord.voices.length === 4, metric: '4-Voice Just-Intonation · Root ' + wadaChord.baseRootHz + ' Hz' },
-      { id: 'G25', name: 'Vector Path Compilers (SVG Keyframe Sprite + Lottie v5.7)', pass: svgOut.indexOf('<svg') >= 0 && lottieOut.indexOf('"5.7.4"') >= 0, metric: 'Animated SVG (' + svgOut.length + 'B) + Lottie JSON (' + lottieOut.length + 'B)' }
+      { id: 'G25', name: 'Vector Path Compilers (SVG Keyframe Sprite + Lottie v5.7)', pass: svgOut.indexOf('<svg') >= 0 && lottieOut.indexOf('"5.7.4"') >= 0, metric: 'Animated SVG (' + svgOut.length + 'B) + Lottie JSON (' + lottieOut.length + 'B)' },
+      { id: 'G26', name: 'Freeform Card Dragging & Storyboard Beat Reordering', pass: typeof moveCanvasNode === 'function' && typeof duplicateCanvasCard === 'function' && typeof moveStoryboardBeat === 'function', metric: 'Whole-Card Drag + Duplicate + 8-Beat Reorder' },
+      { id: 'G27', name: 'Direct Source A / Source B Picker & Context Switcher', pass: Boolean(st.selectedNodeId || dag.nodes[0]), metric: '1-Click Source A / Source B Pills + Toolbar Selector' },
+      { id: 'G28', name: '# & / Studio Vocabulary, Theme & Element Library', pass: getFullVocabLibrary(st.savedColorSchemes).length >= 36 && typeof searchVocabLibrary === 'function' && typeof parsePromptTokens === 'function', metric: getFullVocabLibrary(st.savedColorSchemes).length + ' Plain-English # & / Tokens Active' },
+      { id: 'G29', name: 'Tagged & Saved Color Scheme Vault (#color/<tag>)', pass: typeof tagAndSaveColorScheme === 'function' && typeof resolveColorSchemeByTag === 'function' && ((st.savedColorSchemes || DEFAULT_SAVED_SCHEMES).length >= 6), metric: (st.savedColorSchemes || DEFAULT_SAVED_SCHEMES).length + ' Tagged Color Schemes Vaulted' }
     ];
 
     const passedCount = gates.filter(function (g) { return g.pass; }).length;
@@ -1445,11 +2305,22 @@
   global.STUDIO_CANVAS_OAUTH = {
     LENSES: LENSES,
     LENS_ORDER: LENS_ORDER,
+    DEFAULT_SAVED_SCHEMES: DEFAULT_SAVED_SCHEMES,
+    VOCAB_LIBRARY: VOCAB_LIBRARY,
+    getFullVocabLibrary: getFullVocabLibrary,
+    searchVocabLibrary: searchVocabLibrary,
+    parsePromptTokens: parsePromptTokens,
+    tagAndSaveColorScheme: tagAndSaveColorScheme,
+    resolveColorSchemeByTag: resolveColorSchemeByTag,
     buildStoryboardSheet: buildStoryboardSheet,
     auditStoryboardSheet: auditStoryboardSheet,
+    moveStoryboardBeat: moveStoryboardBeat,
     resolveNonOverlappingPosition: resolveNonOverlappingPosition,
     autoLayoutDAG: autoLayoutDAG,
     createDefaultDAG: createDefaultDAG,
+    moveCanvasNode: moveCanvasNode,
+    duplicateCanvasCard: duplicateCanvasCard,
+    deleteCanvasCard: deleteCanvasCard,
     computePacketHash: computePacketHash,
     computeGluingHash: computeGluingHash,
     stampDAGRestrictionHashes: stampDAGRestrictionHashes,
