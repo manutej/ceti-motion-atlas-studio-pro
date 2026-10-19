@@ -73,9 +73,11 @@
         compareNodeId: (saved && saved.compareNodeId) || 'node-proof-b',
         showABCompare: false,
         // Storyboard sheet
-        storyboard: (saved && saved.storyboard && Array.isArray(saved.storyboard.beats) && saved.storyboard.beats.length === 8)
-          ? saved.storyboard
+        boardKey: (saved && saved.boardKey) || null,
+        storyboard: (saved && saved.storyboard && Array.isArray(saved.storyboard.beats) && saved.storyboard.beats.length >= 6 && saved.storyboard.beats.length <= 8)
+          ? (CO.applyStoryboardGrammarDefaults ? CO.applyStoryboardGrammarDefaults(saved.storyboard) : saved.storyboard)
           : CO.buildStoryboardSheet({
+              boardKey: (saved && saved.boardKey) || null,
               storyKey: (saved && saved.storyKey) || 's_voice',
               styleKey: (saved && saved.mStyle) || 'watercolor',
               charId: (saved && saved.charId) || 'ceti-whale',
@@ -145,6 +147,7 @@
         const pal = this.getActivePalette();
         if (!patch.storyboard) {
           this.state.storyboard = CO.buildStoryboardSheet({
+            boardKey: this.state.boardKey,
             storyKey: this.state.storyKey,
             styleKey: this.state.mStyle,
             charId: this.state.charId,
@@ -175,6 +178,7 @@
         onionSkin: this.state.onionSkin,
         musicOn: this.state.musicOn,
         vectorOn: this.state.vectorOn,
+        boardKey: this.state.boardKey,
         zoom: this.state.zoom,
         panX: this.state.panX,
         panY: this.state.panY,
@@ -206,6 +210,7 @@
 
     musicSheet() {
       const sb = this.state.storyboard || {};
+      if (CO.storyboardToMusicSheet) return CO.storyboardToMusicSheet(sb, this.state.feel);
       return Object.assign({}, sb, { feelKey: this.state.feel });
     }
 
@@ -1037,7 +1042,7 @@
             '<span class="st-mono-xs" style="cursor:grab" title="Drag card to reorder">✥</span>' +
             '<button data-action="scrub-to-beat" data-t="' + b.tMidSec + '" class="st-mini-btn" title="Jump clock to Beat ' + (b.index + 1) + ' (' + b.tMidSec + 's)">▶ B' + (b.index + 1) + ' · ' + b.tStartSec + 's</button>' +
             (b.index > 0 ? '<button data-action="move-beat-card" data-from="' + b.index + '" data-to="' + (b.index - 1) + '" class="st-mini-btn" style="padding:1px 4px" title="Move Beat Left">◀</button>' : '') +
-            (b.index < 7 ? '<button data-action="move-beat-card" data-from="' + b.index + '" data-to="' + (b.index + 1) + '" class="st-mini-btn" style="padding:1px 4px" title="Move Beat Right">▶</button>' : '') +
+            (b.index < (sheet.beats || []).length - 1 ? '<button data-action="move-beat-card" data-from="' + b.index + '" data-to="' + (b.index + 1) + '" class="st-mini-btn" style="padding:1px 4px" title="Move Beat Right">▶</button>' : '') +
           '</div>' +
           '<select data-beat-hinge="' + b.index + '" class="st-select" style="padding:2px 5px;font-size:9.5px">' +
             '<option value="THEREFORE"' + (b.hinge === 'THEREFORE' ? ' selected' : '') + '>THEREFORE · ' + esc(b.role.toUpperCase()) + '</option>' +
@@ -1046,7 +1051,7 @@
         '</div>' +
         '<canvas width="320" height="200" data-proof="' + esc(sheet.storyKey) + '" data-char="' + esc(charSpec.id) + '" data-pal-id="' + beatPalId + '" data-fixed-t="' + b.tMidSec + '" data-cam="' + esc(b.cameraMove || 'static-wide') + '" data-beat-idx="' + b.index + '" style="width:100%;height:auto;border-radius:6px;border:1px solid rgba(26,31,46,.16);cursor:pointer" data-action="scrub-to-beat" data-t="' + b.tMidSec + '"></canvas>' +
         '<div style="display:flex;justify-content:space-between;align-items:center;margin:6px 0 3px">' +
-          '<div style="font-weight:700;font-size:13px">' + esc(b.label) + '</div>' +
+          '<div style="font-weight:700;font-size:13px" title="' + esc(b.label) + '">' + esc(b.say || b.label) + '</div>' +
           '<select data-beat-pal="' + b.index + '" class="st-select" style="padding:1px 4px;font-size:9.5px;max-width:125px" title="Pin a saved #color scheme to this specific beat">' +
             '<option value="' + pal.id + '"' + (!b.palId ? ' selected' : '') + '>Global (' + esc(pal.no) + ')</option>' +
             savedSchemes.map(function (sc) {
@@ -1054,6 +1059,7 @@
             }).join('') +
           '</select>' +
         '</div>' +
+        (b.because ? '<div class="st-mono-xs" style="margin:0 0 4px;opacity:.75" title="Every beat has a because (MovementOk)">↳ ' + esc(b.because) + '</div>' : '') +
         '<textarea data-beat-action="' + b.index + '" data-vocab-autocomplete="true" rows="2" class="st-input" style="width:100%;font-size:11px;margin-bottom:6px" placeholder="Type # or / to insert motion elements or camera moves...">' + esc(b.visualAction) + '</textarea>' +
         '<div style="display:flex;justify-content:space-between;align-items:center;font-size:10px;font-family:Space Mono,monospace;color:rgba(26,31,46,.65)">' +
           '<select data-beat-cam="' + b.index + '" class="st-select" style="padding:2px 4px;font-size:10px">' +
@@ -1075,9 +1081,13 @@
           '</div>' +
           '<div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">' +
             '<select id="sb-story-select" class="st-select">' +
+              (CO.V9_STORYBOARDS ? '<optgroup label="Plain-language boards (v9)">' + Object.keys(CO.V9_STORYBOARDS).map(function (k) {
+                return '<option value="v9:' + esc(k) + '"' + (st.boardKey === k ? ' selected' : '') + '>' + esc(CO.V9_STORYBOARDS[k].title) + '</option>';
+              }).join('') + '</optgroup><optgroup label="Visual stories">' : '') +
               TAX.STORIES.map(function (s) {
-                return '<option value="' + esc(s.key) + '"' + (st.storyKey === s.key ? ' selected' : '') + '>' + esc(s.title) + '</option>';
+                return '<option value="' + esc(s.key) + '"' + (!st.boardKey && st.storyKey === s.key ? ' selected' : '') + '>' + esc(s.title) + '</option>';
               }).join('') +
+              (CO.V9_STORYBOARDS ? '</optgroup>' : '') +
             '</select>' +
             '<button data-action="toggle-vocab-modal" class="st-btn" title="Browse &amp; Insert Plain-English Elements"># Insert Elements / Themes</button>' +
             '<button data-action="toggle-captions-covered" class="st-btn ' + (st.captionsCovered ? 'st-btn-rust' : '') + '">' + (st.captionsCovered ? 'Captions Covered (ON)' : 'Run Captions-Covered Test') + '</button>' +
@@ -1718,7 +1728,12 @@
     bindSel('#sel-compare-node', function (v) { self.setState({ compareNodeId: v }); });
     bindSel('#oauth-source-a-select', function (v) { self.setState({ selectedNodeId: v }); });
     bindSel('#oauth-source-b-select', function (v) { self.setState({ compareNodeId: v }); });
-    bindSel('#sb-story-select', function (v) { self.setState({ storyKey: v }); });
+    bindSel('#sb-story-select', function (v) {
+      const v9 = String(v || '').indexOf('v9:') === 0 ? String(v).slice(3) : null;
+      const board = v9 && CO.V9_STORYBOARDS ? CO.V9_STORYBOARDS[v9] : null;
+      if (board) self.setState({ boardKey: v9, storyKey: board.proofKey || self.state.storyKey });
+      else self.setState({ boardKey: null, storyKey: v });
+    });
     bindSel('#oauth-provider-select', function (v) { self.setState({ oauthProvider: v }); });
     bindSel('#header-saved-scheme-select', function (v) {
       if (!v) return;

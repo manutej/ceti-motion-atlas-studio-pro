@@ -70,6 +70,551 @@
   // ─────────────────────────────────────────────────────────────────────────
   // 2. 8-BEAT STORYBOARD SHEET & HYPERFRAMES STRUCTURAL VERIFIER (G08)
   // ─────────────────────────────────────────────────────────────────────────
+  // ─────────────────────────────────────────────────────────────────────────
+  // 2A. v9 STORYBOARD GRAMMAR (additive): HOOK → CLAIM → PROOF → BREATHER → CALLBACK → LANDING
+  //     Per-beat fields grammar, claimId, say, show, hear, because, plant, returns, readingLevel
+  //     (work/wording/storyboard-grammar.md). Legacy fields stay untouched for G08 / G11 / G21 / G26.
+  // ─────────────────────────────────────────────────────────────────────────
+  const GRAMMAR_ROLES = ['hook', 'claim', 'proof', 'breather', 'callback', 'landing'];
+  const HEAR_SECTIONS = ['intro', 'build', 'peak', 'rest', 'return', 'outro'];
+  const SFX_CUE_NAMES = ['WHOOSH', 'THUD', 'CLICK', 'BOOP', 'BOING', 'CHORD'];
+  const LEGACY_ROLE_GRAMMAR = { hook: 'hook', threshold: 'claim', escalation: 'proof', turn: 'proof', filter: 'proof', breather: 'breather', climax: 'callback', callback: 'landing' };
+  const GRAMMAR_SECTION = { hook: 'intro', claim: 'build', proof: 'build', breather: 'rest', callback: 'return', landing: 'outro' };
+
+  const V9_STORYBOARDS = {
+    'v9-mcp-server': {
+      "id": "sb-mcp-server",
+      "title": "What an MCP server is",
+      "totalDurationSec": 14,
+      "beats": [
+        {
+          "id": "beat-1",
+          "index": 0,
+          "grammar": "hook",
+          "role": "hook",
+          "hinge": "THEREFORE",
+          "say": "Your AI is smart, but it cannot touch your files.",
+          "plant": "locked drawer",
+          "show": "Robot reaches for a filing drawer; the drawer is locked.",
+          "hear": {
+            "music": "intro",
+            "sfx": [
+              {
+                "name": "CLICK",
+                "at": 0.9
+              }
+            ]
+          },
+          "because": "So we need a way in.",
+          "readingLevel": 7,
+          "label": "Locked Drawer",
+          "visualAction": "Robot reaches for a filing drawer; the drawer is locked.",
+          "cameraMove": "static-wide",
+          "activeSimultaneousMoves": 1
+        },
+        {
+          "id": "beat-2",
+          "index": 1,
+          "grammar": "claim",
+          "role": "threshold",
+          "hinge": "BUT",
+          "say": "An MCP server is a plug adapter for tools.",
+          "show": "A small adapter box appears between robot and drawer.",
+          "hear": {
+            "music": "build",
+            "sfx": [
+              {
+                "name": "BOOP",
+                "at": 0.3
+              }
+            ]
+          },
+          "because": "But a single adapter can open any drawer.",
+          "readingLevel": 6,
+          "label": "The Adapter",
+          "visualAction": "A small adapter box appears between robot and drawer.",
+          "cameraMove": "push-in",
+          "activeSimultaneousMoves": 1
+        },
+        {
+          "id": "beat-3",
+          "index": 2,
+          "grammar": "proof",
+          "claimId": "beat-2",
+          "role": "escalation",
+          "hinge": "THEREFORE",
+          "say": "The server lists what it can do.",
+          "show": "Three labeled cards slide out of the adapter: read, search, write.",
+          "hear": {
+            "music": "build",
+            "sfx": [
+              {
+                "name": "WHOOSH",
+                "at": 0.2
+              },
+              {
+                "name": "CLICK",
+                "at": 0.6
+              }
+            ]
+          },
+          "because": "So the AI sees a menu, not a mystery.",
+          "readingLevel": 5,
+          "label": "The Menu",
+          "visualAction": "Three labeled cards slide out of the adapter: read, search, write.",
+          "cameraMove": "pan-follow",
+          "activeSimultaneousMoves": 2
+        },
+        {
+          "id": "beat-4",
+          "index": 3,
+          "grammar": "proof",
+          "claimId": "beat-2",
+          "role": "turn",
+          "hinge": "THEREFORE",
+          "say": "The AI picks one and the server does it.",
+          "show": "Robot taps 'read'; the drawer opens and a page floats back.",
+          "hear": {
+            "music": "peak",
+            "sfx": [
+              {
+                "name": "THUD",
+                "at": 0.4
+              }
+            ]
+          },
+          "because": "So the AI never touches the drawer itself.",
+          "readingLevel": 6,
+          "label": "One Call",
+          "visualAction": "Robot taps read; the drawer opens and a page floats back.",
+          "cameraMove": "dutch-tilt",
+          "activeSimultaneousMoves": 2
+        },
+        {
+          "id": "beat-5",
+          "index": 4,
+          "grammar": "breather",
+          "role": "breather",
+          "hinge": "THEREFORE",
+          "say": "That is the whole trick.",
+          "show": "Robot, adapter, open drawer hold still in wide empty space.",
+          "hear": {
+            "music": "rest",
+            "sfx": []
+          },
+          "because": "So take a second with it.",
+          "readingLevel": 3,
+          "label": "Breather Hold",
+          "visualAction": "Robot, adapter and open drawer hold still in wide negative space.",
+          "cameraMove": "breather-hold",
+          "activeSimultaneousMoves": 1
+        },
+        {
+          "id": "beat-6",
+          "index": 5,
+          "grammar": "callback",
+          "role": "climax",
+          "hinge": "BUT",
+          "returns": "locked drawer",
+          "say": "Same adapter, any drawer: calendar, database, your inbox.",
+          "show": "The locked drawer turns into six. The one adapter plugs into each.",
+          "hear": {
+            "music": "return",
+            "sfx": [
+              {
+                "name": "BOING",
+                "at": 0.5
+              }
+            ]
+          },
+          "because": "But the first drawer was only the start.",
+          "readingLevel": 7,
+          "label": "Every Drawer",
+          "visualAction": "The locked drawer multiplies into six; the one adapter plugs into each.",
+          "cameraMove": "kick-shake",
+          "activeSimultaneousMoves": 2
+        },
+        {
+          "id": "beat-7",
+          "index": 6,
+          "grammar": "landing",
+          "role": "callback",
+          "hinge": "THEREFORE",
+          "say": "MCP: one plug, every tool.",
+          "show": "Pull back to the first frame; drawer open, robot calm, echoing beat 1.",
+          "hear": {
+            "music": "outro",
+            "sfx": [
+              {
+                "name": "CLICK",
+                "at": 1.2
+              }
+            ]
+          },
+          "because": "So remember the plug, not the wiring.",
+          "readingLevel": 4,
+          "label": "Calm Callback",
+          "visualAction": "Final frame echoes Beat 1: drawer open, robot calm, first pose held.",
+          "cameraMove": "pull-back",
+          "activeSimultaneousMoves": 1
+        }
+      ],
+      "boardKey": "v9-mcp-server",
+      "proofKey": "s_retrieve",
+      "grammarVersion": 9
+    },
+    'v9-planning-fallacy': {
+      "id": "sb-planning-fallacy",
+      "title": "The planning fallacy",
+      "totalDurationSec": 16,
+      "beats": [
+        {
+          "id": "beat-1",
+          "index": 0,
+          "grammar": "hook",
+          "role": "hook",
+          "hinge": "THEREFORE",
+          "plant": "two-week sign",
+          "say": "You said two weeks. It took three months.",
+          "show": "A character hammers a sign reading 'two weeks' into the ground.",
+          "hear": {
+            "music": "intro",
+            "sfx": [
+              {
+                "name": "THUD",
+                "at": 0.6
+              }
+            ]
+          },
+          "because": "So why does this keep happening?",
+          "readingLevel": 4,
+          "label": "Two Weeks",
+          "visualAction": "A character hammers a sign reading two weeks into the ground.",
+          "cameraMove": "static-wide",
+          "activeSimultaneousMoves": 1
+        },
+        {
+          "id": "beat-2",
+          "index": 1,
+          "grammar": "claim",
+          "role": "threshold",
+          "hinge": "BUT",
+          "say": "We plan from the best case, not the record.",
+          "show": "A thought bubble shows a smooth straight road.",
+          "hear": {
+            "music": "build",
+            "sfx": [
+              {
+                "name": "BOOP",
+                "at": 0.3
+              }
+            ]
+          },
+          "because": "But the road we imagine is not the road.",
+          "readingLevel": 6,
+          "label": "Best Case",
+          "visualAction": "A thought bubble shows a smooth straight road.",
+          "cameraMove": "push-in",
+          "activeSimultaneousMoves": 1
+        },
+        {
+          "id": "beat-3",
+          "index": 2,
+          "grammar": "proof",
+          "claimId": "beat-2",
+          "role": "escalation",
+          "hinge": "THEREFORE",
+          "say": "Real roads have potholes we never draw.",
+          "show": "The bubble road sprouts potholes, detours, and a flat tire.",
+          "hear": {
+            "music": "build",
+            "sfx": [
+              {
+                "name": "BOING",
+                "at": 0.4
+              },
+              {
+                "name": "CLICK",
+                "at": 0.9
+              }
+            ]
+          },
+          "because": "So the plan was already wrong on day one.",
+          "readingLevel": 5,
+          "label": "Potholes",
+          "visualAction": "The bubble road sprouts potholes, detours and a flat tire.",
+          "cameraMove": "pan-follow",
+          "activeSimultaneousMoves": 2
+        },
+        {
+          "id": "beat-4",
+          "index": 3,
+          "grammar": "proof",
+          "claimId": "beat-2",
+          "role": "turn",
+          "hinge": "THEREFORE",
+          "say": "Students guessed 34 days. Average: 55.",
+          "show": "Two bars grow side by side; the second keeps growing past the first.",
+          "hear": {
+            "music": "peak",
+            "sfx": [
+              {
+                "name": "WHOOSH",
+                "at": 0.2
+              }
+            ]
+          },
+          "because": "So even careful people miss by half.",
+          "readingLevel": 5,
+          "label": "The Numbers",
+          "visualAction": "Two bars grow side by side; the second keeps growing past the first.",
+          "cameraMove": "dutch-tilt",
+          "activeSimultaneousMoves": 1
+        },
+        {
+          "id": "beat-5",
+          "index": 4,
+          "grammar": "breather",
+          "role": "filter",
+          "hinge": "THEREFORE",
+          "say": "Everyone does this. Not just you.",
+          "show": "The two bars hold still in wide open space.",
+          "hear": {
+            "music": "rest",
+            "sfx": []
+          },
+          "because": "So no shame, just a pattern.",
+          "readingLevel": 3,
+          "label": "Breather Hold",
+          "visualAction": "The two bars hold still in wide negative space.",
+          "cameraMove": "breather-hold",
+          "activeSimultaneousMoves": 1
+        },
+        {
+          "id": "beat-6",
+          "index": 5,
+          "grammar": "claim",
+          "role": "breather",
+          "hinge": "BUT",
+          "say": "The fix: ask how long it took last time.",
+          "show": "Character flips open a notebook of past projects.",
+          "hear": {
+            "music": "return",
+            "sfx": [
+              {
+                "name": "CLICK",
+                "at": 0.3
+              }
+            ]
+          },
+          "because": "But the record beats the imagination.",
+          "readingLevel": 5,
+          "label": "Look Back",
+          "visualAction": "Character flips open a notebook of past projects.",
+          "cameraMove": "push-in",
+          "activeSimultaneousMoves": 1
+        },
+        {
+          "id": "beat-7",
+          "index": 6,
+          "grammar": "proof",
+          "claimId": "beat-6",
+          "role": "climax",
+          "hinge": "THEREFORE",
+          "say": "Past projects say ten weeks. Plan ten.",
+          "show": "Notebook pages fan out; a new sign reads 'ten weeks'.",
+          "hear": {
+            "music": "return",
+            "sfx": [
+              {
+                "name": "THUD",
+                "at": 0.7
+              }
+            ]
+          },
+          "because": "So the new sign comes from evidence.",
+          "readingLevel": 4,
+          "label": "Ten Weeks",
+          "visualAction": "Notebook pages fan out; a new sign reads ten weeks.",
+          "cameraMove": "kick-shake",
+          "activeSimultaneousMoves": 2
+        },
+        {
+          "id": "beat-8",
+          "index": 7,
+          "grammar": "landing",
+          "role": "callback",
+          "hinge": "THEREFORE",
+          "returns": "two-week sign",
+          "say": "Plan from the record, not the dream.",
+          "show": "Pull back; the old two-week sign leans in the corner, echoing beat 1.",
+          "hear": {
+            "music": "outro",
+            "sfx": [
+              {
+                "name": "CLICK",
+                "at": 1.0
+              }
+            ]
+          },
+          "because": "So the first sign becomes the lesson.",
+          "readingLevel": 4,
+          "label": "Calm Callback",
+          "visualAction": "Final frame echoes Beat 1: the old sign leans in the corner, first pose held.",
+          "cameraMove": "pull-back",
+          "activeSimultaneousMoves": 1
+        }
+      ],
+      "boardKey": "v9-planning-fallacy",
+      "proofKey": "s_filter",
+      "grammarVersion": 9
+    }
+  };
+
+  function countSyllables(word) {
+    let w = String(word || '').toLowerCase().replace(/[^a-z]/g, '');
+    if (!w) return 0;
+    if (w.length > 2 && /e$/.test(w) && !/le$/.test(w)) w = w.slice(0, -1);
+    const m = w.match(/[aeiouy]+/g);
+    return Math.max(1, m ? m.length : 0);
+  }
+
+  // Flesch-Kincaid grade with a vowel-group syllable heuristic (G33 · P8)
+  function readingGrade(text) {
+    const str = String(text || '').trim();
+    const words = str.split(/\s+/).filter(function (w) { return /[A-Za-z0-9]/.test(w); });
+    if (!words.length) return 0;
+    const sentences = Math.max(1, (str.match(/[.!?]+(\s|$)/g) || []).length);
+    const syl = words.reduce(function (n, w) { return n + Math.max(1, countSyllables(w)); }, 0);
+    return Number((0.39 * words.length / sentences + 11.8 * syl / words.length - 15.59).toFixed(2));
+  }
+
+  // Fill the v9 fields on any sheet without overwriting what is already there (old boards keep loading).
+  function applyStoryboardGrammarDefaults(sheet) {
+    if (!sheet || !Array.isArray(sheet.beats)) return sheet;
+    const n = sheet.beats.length;
+    let lastClaimId = null;
+    sheet.beats.forEach(function (b, i) {
+      if (GRAMMAR_ROLES.indexOf(b.grammar) < 0) {
+        b.grammar = LEGACY_ROLE_GRAMMAR[b.role] || (i === 0 ? 'hook' : (i === n - 1 ? 'landing' : (b.cameraMove === 'breather-hold' ? 'breather' : 'proof')));
+      }
+      if (b.grammar === 'claim') lastClaimId = b.id;
+      if (b.grammar === 'proof' && b.claimId == null) b.claimId = lastClaimId;
+      if (typeof b.say !== 'string' || !b.say.trim()) b.say = String(b.label || '').trim();
+      if (typeof b.show !== 'string' || !b.show.trim()) b.show = String(b.visualAction || '').trim();
+      if (!b.hear || typeof b.hear !== 'object') b.hear = { music: GRAMMAR_SECTION[b.grammar] || 'build', sfx: [] };
+      if (!Array.isArray(b.hear.sfx)) b.hear.sfx = [];
+      if (HEAR_SECTIONS.indexOf(b.hear.music) < 0) b.hear.music = GRAMMAR_SECTION[b.grammar] || 'build';
+      if (typeof b.because !== 'string' || !b.because.trim()) b.because = b.hinge === 'BUT' ? 'But something changes here.' : 'So the story moves on.';
+      if (b.plant === undefined) b.plant = null;
+      if (b.returns === undefined) b.returns = null;
+      if (typeof b.readingLevel !== 'number') b.readingLevel = Math.round(readingGrade(b.say + ' ' + b.show));
+    });
+    return sheet;
+  }
+
+  function buildV9Board(boardKey, o) {
+    const sheet = JSON.parse(JSON.stringify(V9_STORYBOARDS[boardKey]));
+    const n = sheet.beats.length;
+    const total = Number(sheet.totalDurationSec) || n * 2;
+    sheet.storyKey = sheet.proofKey || 's_voice';
+    sheet.styleKey = o.styleKey || 'watercolor';
+    sheet.charId = o.charId || 'ceti-whale';
+    sheet.feelKey = o.feelKey || 'spring';
+    sheet.palId = o.palId || 343;
+    sheet.totalDurationSec = total;
+    sheet.beats.forEach(function (b, i) {
+      const t0 = Number(((i / n) * total).toFixed(2));
+      const t1 = Number((((i + 1) / n) * total).toFixed(2));
+      b.index = i;
+      if (b.tStartSec == null) b.tStartSec = t0;
+      if (b.tEndSec == null) b.tEndSec = t1;
+      if (b.tMidSec == null) b.tMidSec = Number(((t0 + t1) / 2).toFixed(2));
+      if (b.captionOnScreen == null) b.captionOnScreen = b.grammar === 'breather' ? '' : b.say;
+      if (!b.wadaFocusRole) b.wadaFocusRole = b.role === 'climax' ? 'accentFocal' : (i % 2 === 0 ? 'secondaryStructure' : 'supportWash');
+      if (!b.characterPose) {
+        const k = n > 1 ? i / (n - 1) : 0;
+        b.characterPose = {
+          x: Number((0.18 + 0.64 * k).toFixed(2)), y: Number((0.52 - 0.14 * Math.sin(Math.PI * k)).toFixed(2)),
+          rot: Number((0.12 * Math.cos(Math.PI * i / 4)).toFixed(2)), scale: i === n - 1 ? 1.0 : Number((0.92 + 0.16 * Math.sin(Math.PI * k)).toFixed(2)),
+          fin: Number((0.45 * Math.sin(i * 1.1)).toFixed(2)), fluke: Number((0.50 * Math.cos(i * 0.9)).toFixed(2)),
+          streak: i >= 3 ? 0.9 : 0.25, rung: i === n - 1 ? 2 : 1
+        };
+      }
+    });
+    applyStoryboardGrammarDefaults(sheet);
+    return auditStoryboardSheet(sheet);
+  }
+
+  // `hear` drives the score: MUSIC.plan/scoreForBeat read `role` + `sfx`, so derive them from hear.music / hear.sfx.
+  // Legacy beats keep their role unless it contradicts the section; empty hear.sfx keeps the engine's default cues.
+  const SECTION_MUSIC_ROLE = { intro: 'hook', rest: 'breather', outro: 'callback' };
+  function storyboardToMusicSheet(sheet, feelKey) {
+    const sb = sheet || {};
+    const beats = (sb.beats || []).map(function (b) {
+      const out = Object.assign({}, b);
+      const sec = b.hear && b.hear.music;
+      if (SECTION_MUSIC_ROLE[sec]) out.role = SECTION_MUSIC_ROLE[sec];
+      else if (out.role === 'breather' || out.role === 'hook' || out.role === 'callback') {
+        out.role = sec === 'peak' ? 'turn' : (sec === 'return' ? 'climax' : 'escalation');
+      }
+      if (b.hear && Array.isArray(b.hear.sfx) && b.hear.sfx.length) {
+        const t0 = Number(b.tStartSec) || 0;
+        out.sfx = b.hear.sfx.map(function (x) { return { t: Number((t0 + (Number(x.at) || 0)).toFixed(3)), name: String(x.name).toUpperCase(), gain: x.gain }; });
+      }
+      return out;
+    });
+    return Object.assign({}, sb, { feelKey: feelKey || sb.feelKey, beats: beats });
+  }
+
+  // G32 · Storyboard grammar audit (pure; storyboard-grammar.md rules 1–7)
+  function auditStoryboardGrammar(sheet) {
+    const beats = (sheet && sheet.beats) || [];
+    const n = beats.length;
+    const errors = [];
+    const count = function (g) { return beats.filter(function (b) { return b.grammar === g; }).length; };
+    const idxOf = function (g) { for (let i = 0; i < n; i++) if (beats[i].grammar === g) return i; return -1; };
+    if (n < 6 || n > 8) errors.push('needs 6–8 beats (has ' + n + ')');
+    beats.forEach(function (b, i) {
+      if (GRAMMAR_ROLES.indexOf(b.grammar) < 0) errors.push('beat ' + (i + 1) + ': unknown grammar "' + b.grammar + '"');
+      if (typeof b.say !== 'string' || !b.say.trim()) errors.push('beat ' + (i + 1) + ': missing say');
+      if (typeof b.show !== 'string' || !b.show.trim()) errors.push('beat ' + (i + 1) + ': missing show');
+      if (!b.hear || HEAR_SECTIONS.indexOf(b.hear.music) < 0) errors.push('beat ' + (i + 1) + ': hear.music not a section');
+      else if (!Array.isArray(b.hear.sfx) || !b.hear.sfx.every(function (x) { return x && SFX_CUE_NAMES.indexOf(String(x.name).toUpperCase()) >= 0; })) errors.push('beat ' + (i + 1) + ': hear.sfx uses an unknown cue');
+      const bec = String(b.because || '').trim();
+      if (b.hinge === 'BUT' ? !/^But\b/.test(bec) : (b.hinge === 'THEREFORE' ? !/^So\b/.test(bec) : true)) errors.push('beat ' + (i + 1) + ': because must start with ' + (b.hinge === 'BUT' ? '"But"' : '"So"'));
+    });
+    if (count('hook') !== 1 || idxOf('hook') !== 0) errors.push('exactly one hook, first');
+    if (count('landing') !== 1 || idxOf('landing') !== n - 1) errors.push('exactly one landing, last');
+    const claims = beats.filter(function (b) { return b.grammar === 'claim'; });
+    if (claims.length < 1 || claims.length > 2) errors.push('1–2 claims (has ' + claims.length + ')');
+    beats.forEach(function (b, i) {
+      if (b.grammar !== 'proof') return;
+      const ci = beats.findIndex(function (c) { return c.id === b.claimId; });
+      if (ci < 0 || ci >= i || beats[ci].grammar !== 'claim') errors.push('beat ' + (i + 1) + ': proof does not cite an earlier claim');
+    });
+    claims.forEach(function (c) {
+      const k = beats.filter(function (b) { return b.grammar === 'proof' && b.claimId === c.id; }).length;
+      if (k < 1 || k > 3) errors.push('claim ' + c.id + ' has ' + k + ' proofs (needs 1–3)');
+    });
+    const bi = idxOf('breather');
+    if (count('breather') !== 1) errors.push('exactly one breather (has ' + count('breather') + ')');
+    else {
+      if (bi === 0 || bi === 1 || bi === n - 1) errors.push('breather not first, last, or right after the hook');
+      if (beats[bi].activeSimultaneousMoves !== 1 || beats[bi].cameraMove !== 'breather-hold') errors.push('breather must hold still (1 move, breather-hold)');
+    }
+    const cb = count('callback');
+    const landing = beats[n - 1] || {};
+    if (cb > 1) errors.push('at most one callback');
+    if (cb === 0 && !(landing.grammar === 'landing' && landing.returns)) errors.push('no callback (and the landing carries no returns)');
+    const plant = beats[0] && beats[0].plant;
+    const returners = beats.filter(function (b) { return (b.grammar === 'callback' || b.grammar === 'landing') && b.returns; });
+    if (plant && !returners.some(function (b) { return b.returns === plant; })) errors.push('plant "' + plant + '" never returns');
+    if (returners.some(function (b) { return b.returns !== plant; })) errors.push('returns does not match the hook plant');
+    if (!/echo|calm|first|hold|frame 0/i.test(String(landing.show || ''))) errors.push('landing show must echo the hook frame');
+    return { valid: errors.length === 0, errors: errors, beats: n, claims: claims.length, breatherIdx: bi, plant: plant || null };
+  }
+
   function buildStoryboardSheet(opts) {
     const o = opts || {};
     const storyKey = o.storyKey || 's_voice';
@@ -80,6 +625,9 @@
     const charSpec = FOUNDRY.CHARACTERS[charId] || FOUNDRY.CHARACTERS['ceti-whale'];
     const story = TAX.STMETA[storyKey] || TAX.STORIES[0];
     const totalSec = (global.MA && global.MA.len(storyKey)) || 10;
+    if (o.boardKey && V9_STORYBOARDS[o.boardKey]) {
+      return buildV9Board(o.boardKey, { styleKey: styleKey, charId: charId, feelKey: feelKey, palId: palId });
+    }
 
     // Expand story beats into a canonical 8-beat S4/S5 storyboard sheet with causal hinges & distinct titles
     const rawBeats = story.beats || [];
@@ -142,7 +690,7 @@
       });
     }
 
-    return auditStoryboardSheet({
+    return auditStoryboardSheet(applyStoryboardGrammarDefaults({
       id: 'sb-' + storyKey + '-' + charId,
       title: story.title.replace(/\bwhale\b/gi, charSpec.name),
       storyKey: storyKey,
@@ -152,7 +700,7 @@
       palId: palId,
       totalDurationSec: totalSec,
       beats: beats
-    });
+    }));
   }
 
   function auditStoryboardSheet(sheet) {
@@ -1892,7 +2440,7 @@
         copy.activeSimultaneousMoves = 2;
         fixesApplied.push('A1 · Reduced simultaneous moves on Beat ' + (idx + 1) + ' to ≤2 (Saul Bass subtraction)');
       }
-      if (idx === 5 && copy.role !== 'breather') {
+      if (idx === 5 && copy.role !== 'breather' && !(sheet.beats || []).some(function (x, j) { return x.grammar === 'breather' && j !== 5; })) {
         copy.role = 'breather';
         copy.activeSimultaneousMoves = 1;
         copy.cameraMove = 'breather-hold';
@@ -2256,6 +2804,7 @@
     const sampleEnh = runDeterministicSynthesizer({ charId: charSpec.id, palId: activePal.id, prompt: 'Audit verification test' });
     const schemaCheck = validateEnhancementResponse(sampleEnh);
     const uniqueBeatLabels = new Set((sheet.beats || []).map(function (b) { return b.label; })).size;
+    const beatCount = (sheet.beats || []).length;
     const onionFrames = (global.MA && global.MA.computeOnionSkinFrames) ? global.MA.computeOnionSkinFrames(charSpec, activePal, null, 2.4) : [{}, {}, {}];
     const wadaChord = (global.MA && global.MA.computeWadaHarmonicChord) ? global.MA.computeWadaHarmonicChord(activePal, charSpec, st.rung || 1, 2.4) : { voices: [{}, {}, {}, {}], baseRootHz: 220 };
     const svgOut = compileCodeScaffold(st, 'svg-keyframes');
@@ -2269,7 +2818,7 @@
       { id: 'G05', name: '5-Rung Reduction Ladder', pass: charSpec.reductionLadder.length === 5 && gauntlet.allPassed, metric: '5/5 rungs + 4/4 gauntlet' },
       { id: 'G06', name: 'Single-Clock Determinism', pass: typeof (global.MA && global.MA.render) === 'function' && global.MA.keys.length >= 25, metric: global.MA.keys.length + ' deterministic frame(t) proofs' },
       { id: 'G07', name: '5-Lens Fork Completeness', pass: LENS_ORDER.length === 5, metric: 'Look · Use · Story · Character · Register' },
-      { id: 'G08', name: 'Storyboard Structural Laws', pass: !!(sheet.audit && sheet.audit.allPassed) && uniqueBeatLabels === 8, metric: '8/8 unique beats · Covered · Movement · Breather · Callback' },
+      { id: 'G08', name: 'Storyboard Structural Laws', pass: !!(sheet.audit && sheet.audit.allPassed) && beatCount >= 6 && uniqueBeatLabels === beatCount, metric: uniqueBeatLabels + '/' + beatCount + ' unique beats · Covered · Movement · Breather · Callback' },
       { id: 'G09', name: 'Infinite-Zoom Living Canvas & Sheaf ρ', pass: Array.isArray(dag.nodes) && dag.nodes.length >= 6 && sheaf.valid, metric: dag.nodes.length + ' DAG nodes · δ⁰=0 verified' },
       { id: 'G10', name: 'OAuth 2.0 PKCE + Local Bridge', pass: typeof generateCodeVerifier === 'function' && typeof exchangeOAuthPKCECode === 'function', metric: 'RFC 7636 S256 PKCE + Bridge + Synth' },
       { id: 'G11', name: 'Typed Contract Schema Guard', pass: schemaCheck.valid, metric: schemaCheck.valid ? '0 schema violations' : schemaCheck.errors.join(', ') },
@@ -2282,7 +2831,7 @@
       { id: 'G18', name: 'Alexandrov Sheaf Cohomology δ⁰ = 0', pass: Boolean(sheaf.valid), metric: sheaf.edgeCount + ' DAG edges · 0 coboundary defects' },
       { id: 'G19', name: 'Multi-Branch α/β/γ Fork & Auto-Layout', pass: typeof forkThreeDirections === 'function' && typeof autoLayoutDAG === 'function', metric: '3× α/β/γ + Collision-Free Auto-Layout' },
       { id: 'G20', name: 'Live OAuth PKCE Code Exchange & RSI Fix', pass: typeof exchangeOAuthPKCECode === 'function' && typeof runRSICritiqueAndFix === 'function', metric: 'PKCE Token Exchange + 4-Lens Surgical Fix' },
-      { id: 'G21', name: 'VBM Visual & UX Ergonomics (0 Overlaps · 136px Header)', pass: uniqueBeatLabels === 8 && typeof autoLayoutDAG === 'function', metric: '136px Shell · 0 DAG Overlaps · 8/8 Camera Beats' },
+      { id: 'G21', name: 'VBM Visual & UX Ergonomics (0 Overlaps · 136px Header)', pass: beatCount >= 6 && uniqueBeatLabels === beatCount && typeof autoLayoutDAG === 'function', metric: '136px Shell · 0 DAG Overlaps · 8/8 Camera Beats' },
       { id: 'G22', name: 'Alexandrov Sheaf Pushout Synthesis (A ⊕ B Gluing)', pass: typeof synthesizeBranches === 'function' && typeof computeGluingHash === 'function', metric: 'Multi-Parent Pushout ρ(A ⊕ B) · δ⁰=0' },
       { id: 'G23', name: 'Multi-Frame Onion-Skinning (-2Δt / -1Δt / +1Δt)', pass: Array.isArray(onionFrames) && onionFrames.length === 3, metric: '3 Wada Ghost Frames + Spacing Trajectory' },
       { id: 'G24', name: 'Orpheum Harmonic WebAudio Sonification (OKLab → Hz)', pass: Array.isArray(wadaChord.voices) && wadaChord.voices.length === 4, metric: '4-Voice Just-Intonation · Root ' + wadaChord.baseRootHz + ' Hz' },
@@ -2314,6 +2863,13 @@
     resolveColorSchemeByTag: resolveColorSchemeByTag,
     buildStoryboardSheet: buildStoryboardSheet,
     auditStoryboardSheet: auditStoryboardSheet,
+    V9_STORYBOARDS: V9_STORYBOARDS,
+    GRAMMAR_ROLES: GRAMMAR_ROLES,
+    HEAR_SECTIONS: HEAR_SECTIONS,
+    applyStoryboardGrammarDefaults: applyStoryboardGrammarDefaults,
+    auditStoryboardGrammar: auditStoryboardGrammar,
+    storyboardToMusicSheet: storyboardToMusicSheet,
+    readingGrade: readingGrade,
     moveStoryboardBeat: moveStoryboardBeat,
     resolveNonOverlappingPosition: resolveNonOverlappingPosition,
     autoLayoutDAG: autoLayoutDAG,
