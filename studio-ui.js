@@ -73,11 +73,11 @@
         compareNodeId: (saved && saved.compareNodeId) || 'node-proof-b',
         showABCompare: false,
         // Storyboard sheet
-        boardKey: (saved && saved.boardKey) || null,
+        boardKey: saved ? (saved.boardKey || null) : 'v9-mcp-server',
         storyboard: (saved && saved.storyboard && Array.isArray(saved.storyboard.beats) && saved.storyboard.beats.length >= 6 && saved.storyboard.beats.length <= 8)
           ? (CO.applyStoryboardGrammarDefaults ? CO.applyStoryboardGrammarDefaults(saved.storyboard) : saved.storyboard)
           : CO.buildStoryboardSheet({
-              boardKey: (saved && saved.boardKey) || null,
+              boardKey: saved ? (saved.boardKey || null) : 'v9-mcp-server',
               storyKey: (saved && saved.storyKey) || 's_voice',
               styleKey: (saved && saved.mStyle) || 'watercolor',
               charId: (saved && saved.charId) || 'ceti-whale',
@@ -143,7 +143,8 @@
       MA.setActorOption('captionsCovered', this.state.captionsCovered);
       MA.setActorOption('onionSkin', this.state.onionSkin);
 
-      if (patch.storyKey || patch.mStyle || patch.charId || patch.palIdx !== undefined || patch.feel) {
+      if (patch.storyKey && patch.boardKey === undefined) this.state.boardKey = null; // picking a visual story leaves the v9 board
+      if (patch.storyKey || patch.boardKey !== undefined || patch.mStyle || patch.charId || patch.palIdx !== undefined || patch.feel) {
         const pal = this.getActivePalette();
         if (!patch.storyboard) {
           this.state.storyboard = CO.buildStoryboardSheet({
@@ -312,6 +313,7 @@
           renderMode: nodeMode || null,
           cameraMove: nodeCam,
           beatIdx: nodeBeatIdx,
+          beatCount: (sbSheet && sbSheet.beats) ? sbSheet.beats.length : 8,
           captionsCovered: this.state.captionsCovered,
           onionSkin: this.state.onionSkin,
           // v9 two.js vector layer: storyboard beat cards only (Surface IV)

@@ -2779,7 +2779,7 @@
           ctx.beginPath(); ctx.moveTo(c[0], c[1] + 10 * c[3]); ctx.lineTo(c[0], c[1]); ctx.lineTo(c[0] + 10 * c[2], c[1]); ctx.stroke();
         });
         if (op.beatIdx != null) {
-          txt(ctx, 'BEAT ' + (Number(op.beatIdx) + 1) + '/8 · CAM ' + String(op.cameraMove).toUpperCase(), LW - 16, 24, '700 8.5px ' + MONO, rgba(P.ink, 0.72), 'right');
+          txt(ctx, 'BEAT ' + (Number(op.beatIdx) + 1) + '/' + (op.beatCount || 8) + ' · CAM ' + String(op.cameraMove).toUpperCase(), LW - 16, 24, '700 8.5px ' + MONO, rgba(P.ink, 0.72), 'right');
         }
         ctx.restore();
       }
