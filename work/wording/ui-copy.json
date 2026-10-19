@@ -1,0 +1,237 @@
+[
+  {
+    "selector_or_key": "canvas-oauth:run16GateAudit:gates[].plainName (NEW field; keep id+name; HUD tooltip = `${id} · ${plainName}`; modal table shows plainName, old name as hover title)",
+    "old": {
+      "G01": "Wada Palette Closure",
+      "G02": "WCAG AAA Contrast & Budget",
+      "G03": "Zero Hardcoded Whale & Tell-Apart",
+      "G04": "Multi-Archetype & 8 Interactions",
+      "G05": "5-Rung Reduction Ladder",
+      "G06": "Single-Clock Determinism",
+      "G07": "5-Lens Fork Completeness",
+      "G08": "Storyboard Structural Laws",
+      "G09": "Infinite-Zoom Living Canvas & Sheaf ρ",
+      "G10": "OAuth 2.0 PKCE + Local Bridge",
+      "G11": "Typed Contract Schema Guard",
+      "G12": "100% Offline Corpus Integrity",
+      "G13": "Multi-Target Compiler",
+      "G14": "Session Persistence",
+      "G15": "CETI Editorial Typography & Voice",
+      "G16": "RSI Ledger & Mechanical Audit",
+      "G17": "Tell-Apart Archetype Discriminability",
+      "G18": "Alexandrov Sheaf Cohomology δ⁰ = 0",
+      "G19": "Multi-Branch α/β/γ Fork & Auto-Layout",
+      "G20": "Live OAuth PKCE Code Exchange & RSI Fix",
+      "G21": "VBM Visual & UX Ergonomics (0 Overlaps · 136px Header)",
+      "G22": "Alexandrov Sheaf Pushout Synthesis (A ⊕ B Gluing)",
+      "G23": "Multi-Frame Onion-Skinning (-2Δt / -1Δt / +1Δt)",
+      "G24": "Orpheum Harmonic WebAudio Sonification (OKLab → Hz)",
+      "G25": "Vector Path Compilers (SVG Keyframe Sprite + Lottie v5.7)",
+      "G26": "Freeform Card Dragging & Storyboard Beat Reordering",
+      "G27": "Direct Source A / Source B Picker & Context Switcher",
+      "G28": "# & / Studio Vocabulary, Theme & Element Library",
+      "G29": "Tagged & Saved Color Scheme Vault (#color/<tag>)"
+    },
+    "new": {
+      "G01": "Color palette is one of the 348 Wada sets",
+      "G02": "Text contrast passes AAA (7:1)",
+      "G03": "Any character can be the hero",
+      "G04": "Eight characters, eight ways to interact",
+      "G05": "Character simplifies cleanly to a logo",
+      "G06": "Every frame is reproducible from the clock",
+      "G07": "All five planning questions answered",
+      "G08": "Storyboard has hook, breather, and callback",
+      "G09": "Canvas cards agree with their parents",
+      "G10": "Secure sign-in to the AI enhancer",
+      "G11": "AI responses match the expected shape",
+      "G12": "Works fully offline",
+      "G13": "Exports to HyperFrames, Remotion, anime.js, HTML",
+      "G14": "Your session saves and restores",
+      "G15": "House fonts and voice",
+      "G16": "Self-critique and auto-fix available",
+      "G17": "Characters look different from each other",
+      "G18": "Branch consistency: child cards match parents",
+      "G19": "Three-way forks and tidy layout",
+      "G20": "Live sign-in and auto-fix work",
+      "G21": "No overlapping cards; header fits",
+      "G22": "Two cards can merge into one",
+      "G23": "Ghost frames before and after",
+      "G24": "Colors can be played as sound",
+      "G25": "Exports to SVG and Lottie",
+      "G26": "Cards and beats can be dragged",
+      "G27": "Pick which cards to work from",
+      "G28": "Plain-English # and / vocabulary",
+      "G29": "Saved color schemes"
+    }
+  },
+  {
+    "selector_or_key": "ui:L471 .st-eyebrow",
+    "old": "CETI INTERNAL DESIGN & NARRATIVE STUDIO",
+    "new": "CETI MOTION STUDIO"
+  },
+  {
+    "selector_or_key": "ui:L480 [data-action=toggle-gate-modal]",
+    "old": "Audit {n}/{total} PASS",
+    "new": "Checks {n}/{total} OK"
+  },
+  {
+    "selector_or_key": "ui:L1475 .st-eyebrow (gate modal)",
+    "old": "29 BINARY CONSERVATION GATES + TELL-APART + SHEAF + FREEFORM STUDIO ERGONOMICS (G01–G29)",
+    "new": "QUALITY CHECKS (G01–G29)"
+  },
+  {
+    "selector_or_key": "ui:L1476 h3 (gate modal)",
+    "old": "Mechanical Contract Audit — {n}/{total} PASS",
+    "new": "Quality checks — {n} of {total} passing"
+  },
+  {
+    "selector_or_key": "ui:L1481 .st-badge",
+    "old": "TELL-APART KERNEL: min Δ={d} across {p} pairs ({PASS|FAIL})",
+    "new": "Characters look distinct: {p} pairs checked ({PASS|FAIL})"
+  },
+  {
+    "selector_or_key": "ui:L1482 .st-badge",
+    "old": "ALEXANDROV SHEAF δ⁰=0: {e} edges ({PASS|FAIL})",
+    "new": "Branches consistent: {e} links checked ({PASS|FAIL})"
+  },
+  {
+    "selector_or_key": "ui:L993 .st-eyebrow (storyboard)",
+    "old": "STAGE-4 / STAGE-5 STORYBOARD BEAT SHEET · DRAG CARDS OR CLICK ◀ ▶ TO REORDER BEATS (GATE G08 · G26)",
+    "new": "STORYBOARD · DRAG CARDS OR USE ◀ ▶ TO REORDER"
+  },
+  {
+    "selector_or_key": "ui:L1011-1014 storyboard audit badges",
+    "old": "CoveredOk (Visual-Only Legible) / MovementOk (BUT/THEREFORE Hinges) / OneBreather (Negative-Space Hold) / Callback (Beat 8 Echoes Beat 1)",
+    "new": "Works with sound off / Every beat has a because / Exactly one quiet pause / Ending echoes the opening"
+  },
+  {
+    "selector_or_key": "ui:L963-964 select[data-beat-hinge] options",
+    "old": "THEREFORE · {ROLE} / BUT · {ROLE}",
+    "new": "So… ({role}) / But… ({role})"
+  },
+  {
+    "selector_or_key": "ui:L981 select option",
+    "old": "CAM: {cameraMove}",
+    "new": "Camera: {plain camera name from vocab-rewrite}"
+  },
+  {
+    "selector_or_key": "ui:L984 span",
+    "old": "MOVES: {n}/2",
+    "new": "Things moving: {n} of 2"
+  },
+  {
+    "selector_or_key": "ui:L977 textarea placeholder",
+    "old": "Type # or / to insert motion elements or…",
+    "new": "What does the viewer see in this beat? Type # for a visual element."
+  },
+  {
+    "selector_or_key": "ui:L893 .st-eyebrow (foundry)",
+    "old": "UNIVERSAL PARAMETRIC ACTOR SOCKET · ZERO HARDCODED MASCOTS (GATE G03 · G04 · G05)",
+    "new": "CHARACTERS · ANY RIG CAN BE THE HERO"
+  },
+  {
+    "selector_or_key": "ui:L696 .st-eyebrow (inspector)",
+    "old": "SOURCE A CARD INSPECTOR · SHEAF PACKET",
+    "new": "SELECTED CARD"
+  },
+  {
+    "selector_or_key": "ui:L635 .st-badge",
+    "old": "SHEAF ρ: δ⁰=0 PASS | MISMATCH",
+    "new": "Branches consistent: OK | MISMATCH"
+  },
+  {
+    "selector_or_key": "ui:L571 span title",
+    "old": "Sheaf Restriction Hash ρ(child)=parent",
+    "new": "Card fingerprint (child ← parent)"
+  },
+  {
+    "selector_or_key": "ui:L743 input placeholder",
+    "old": "†C Conjecture note for this branch...",
+    "new": "What are you trying with this branch?"
+  },
+  {
+    "selector_or_key": "ui:L648 + L659 buttons",
+    "old": "⊕ Glue A ⊕ B / ⊕ Glue A ⊕ B → Synthesis Node",
+    "new": "⊕ Merge A + B / ⊕ Merge A + B into a new card"
+  },
+  {
+    "selector_or_key": "ui:L645 select title",
+    "old": "Direct Source B (Comparison / Pushout Merge Partner)",
+    "new": "Card B (to compare or merge with A)"
+  },
+  {
+    "selector_or_key": "ui:L1329 .st-eyebrow (enhancer modal)",
+    "old": "RFC 7636 OAUTH 2.0 PKCE (S256) + LOCAL AGENT BRIDGE + # / SKILL VOCABULARY SYNTHESIZER (G10 · G11 · G27 · G28)",
+    "new": "AI ENHANCER · SIGN IN OR WORK OFFLINE"
+  },
+  {
+    "selector_or_key": "ui:L1330 h3",
+    "old": "Live Storyboard, Source Branch & Character Enhancer",
+    "new": "Improve this storyboard, branch, or character"
+  },
+  {
+    "selector_or_key": "ui:L1341 + L1345 labels",
+    "old": "PRIMARY SOURCE CARD TO ENHANCE / FORK FROM (● SOURCE A) / SECONDARY COMPARE / PUSHOUT SOURCE (◐ SOURCE B)",
+    "new": "CARD TO IMPROVE (● A) / CARD TO COMPARE OR MERGE (◐ B)"
+  },
+  {
+    "selector_or_key": "ui:L1352 option",
+    "old": "Offline Deterministic Algebraic Synthesizer",
+    "new": "Offline (no sign-in, same result every time)"
+  },
+  {
+    "selector_or_key": "ui:L1370 label",
+    "old": "ENHANCEMENT DIRECTIVE (TYPE # OR / FOR LIVE VOCABULARY, THEME & #COLOR AUTOCOMPLETE)",
+    "new": "WHAT SHOULD CHANGE? (type # or / for suggestions)"
+  },
+  {
+    "selector_or_key": "ui:L1378 button",
+    "old": "✦ 1. Enhance 8 Beats + Spawn Child from Source A",
+    "new": "✦ 1. Improve the storyboard (makes a new card)"
+  },
+  {
+    "selector_or_key": "ui:L1379 button",
+    "old": "⑂ 2. Fork 3 Directions (α/β/γ) from Source A",
+    "new": "⑂ 2. Try three variations"
+  },
+  {
+    "selector_or_key": "ui:L1380 button",
+    "old": "⊕ 3. Pushout Merge (Source A ⊕ Source B)",
+    "new": "⊕ 3. Merge A + B"
+  },
+  {
+    "selector_or_key": "ui:L1382 button",
+    "old": "⚖ 5. Run 4-Lens RSI Critique & Fix",
+    "new": "⚖ 5. Critique and auto-fix"
+  },
+  {
+    "selector_or_key": "ui:L1389 .st-badge",
+    "old": "G11 SCHEMA VALID: {PASS|FAIL}",
+    "new": "Response checked: {OK|FAIL}"
+  },
+  {
+    "selector_or_key": "ui:L1398 div",
+    "old": "4-LENS ADVERSARIAL RSI CRITIQUE · {summary}",
+    "new": "CRITIQUE · {summary}"
+  },
+  {
+    "selector_or_key": "ui:L1455 .st-eyebrow (vocab modal)",
+    "old": "IN-STUDIO SKILLS, VOCABULARY & TAGGED COLOR LIBRARY (GATE G28 · G29 · INVOCABLE VIA # OR / IN ANY PROMPT)",
+    "new": "LOOKS, ELEMENTS & COLORS · TYPE # OR / IN ANY PROMPT"
+  },
+  {
+    "selector_or_key": "ui:L1165 .st-label",
+    "old": "ORPHEUM 4-VOICE JUST-INTONATION HARMONIC SYNTHESIZER (GATE G24 · ROOT {note} {hz} Hz · {wave})",
+    "new": "PLAY THIS PALETTE AS A CHORD (root {note}, {hz} Hz)"
+  },
+  {
+    "selector_or_key": "ui:L526-528 mini-button titles (ONION / SONIFY / NO-TEXT)",
+    "old": "Gate G23 Multi-Frame Onion Skinning (-2Δt / -1Δt / +1Δt) [O] / Gate G24 Orpheum 4-Voice Harmonic Chord Sonification / Gate G08 Captions-Covered Test [C]",
+    "new": "Show ghost frames before and after [O] / Play the current colors as a chord / Hide all text to check it works silent [C]"
+  },
+  {
+    "selector_or_key": "ui:L433-439 tabs",
+    "old": "I · Living Canvas (DAG) / II · 5-Lens Forks / III · Character & Emblem Foundry / IV · 8-Beat Storyboard / V · Sanzo Wada 348 & Color Vault / VI · 15 Styles & 24 Elements / VII · Compile & Export",
+    "new": "I · Canvas / II · Plan / III · Characters / IV · Storyboard / V · Colors / VI · Styles & Elements / VII · Export"
+  }
+]

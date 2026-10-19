@@ -1,0 +1,410 @@
+[
+  {
+    "id": "#theme/warm-storybook",
+    "old_label": "Warm Handmade Storybook",
+    "new_label": "Warm storybook (watercolor wash, 12 fps line boil)",
+    "old_blurb": "Soft watercolor washes, warm cream paper, and gentle 12fps hand-drawn line wobble — feels human, approachable, and poetic.",
+    "new_blurb": "Soft watercolor on cream paper; lines wobble gently, like a hand-drawn picture book.",
+    "why": "19-word blurb; \"12fps\" unexplained; jargon now parenthetical in label."
+  },
+  {
+    "id": "#theme/saul-cutout",
+    "old_label": "Bold Cut-Paper Poster (Saul Bass)",
+    "new_label": "Bold cut-paper poster (Saul Bass, 3 colors, 8 fps snaps)",
+    "old_blurb": "Sharp scissors-cut paper shapes, 3 stark colors, and punchy 8fps stop-motion snaps — unmistakable even from across the room.",
+    "new_blurb": "Sharp scissor-cut shapes in three flat colors, snapping between poses like stop-motion.",
+    "why": "19 words; moved fps into label; blurb now describes the visible effect."
+  },
+  {
+    "id": "#theme/nautical-radar",
+    "old_label": "Nautical Radar & Ghost Trail Chart",
+    "new_label": "Radar ghost-trail chart (kinetic hydrography)",
+    "old_blurb": "Plots 25 echoing ghost positions behind the moving character with compass bearings and scientific measurement bars.",
+    "new_blurb": "Leaves 25 fading ghost copies behind the character, plus compass rings and rulers.",
+    "why": "\"ghost positions\", \"measurement bars\" vague; 16 words."
+  },
+  {
+    "id": "#theme/shoji-sumi-ink",
+    "old_label": "Quiet Japanese Sumi Ink & Paper",
+    "new_label": "Quiet ink on paper (sumi-e, Japanese brush)",
+    "old_blurb": "Lots of calm breathing room, crisp folded-paper or brush contours, and deep black sumi ink on pale Shoji paper.",
+    "new_blurb": "Black brush ink on pale paper with lots of calm empty space.",
+    "why": "19 words; \"Shoji\"/\"sumi\" unexplained; now plain first, term in parentheses."
+  },
+  {
+    "id": "#theme/bathyal-biolum",
+    "old_label": "Deep-Sea Glowing Bioluminescence",
+    "new_label": "Deep-sea glow (bioluminescence, amber on navy)",
+    "old_blurb": "Warm glowing amber and gold signals cutting through deep ocean Prussian blue — great for mystery and discovery.",
+    "new_blurb": "Glowing amber lights cut through deep blue water; feels mysterious and exploratory.",
+    "why": "17 words; \"Prussian blue\" is a pigment name most authors do not know."
+  },
+  {
+    "id": "#theme/glaser-pop",
+    "old_label": "Expressive Color Ribbons (Milton Glaser)",
+    "new_label": "Rainbow ribbon trails (Milton Glaser overshoot)",
+    "old_blurb": "Flowing multi-colored trailing ribbons and joyful springy overshoot — celebratory, musical, and full of life.",
+    "new_blurb": "Colorful ribbons stream behind the hero, who bounces past each mark joyfully.",
+    "why": "\"overshoot\" used without explanation; 15 words."
+  },
+  {
+    "id": "#theme/blueprint-rig",
+    "old_label": "Engineering Blueprint & Joint Diagram",
+    "new_label": "Blueprint with visible joints (exposed rig)",
+    "old_blurb": "Shows the visible mechanical joints, pivots, and construction lines of the character like a living Da Vinci notebook.",
+    "new_blurb": "Shows the character's joints, pivots, and construction lines on a blueprint grid.",
+    "why": "18 words; Da Vinci simile replaced with what is actually drawn."
+  },
+  {
+    "id": "#theme/screenprint-offset",
+    "old_label": "Vintage Screenprint (Offset Color Plates)",
+    "new_label": "Vintage screenprint (offset color plates)",
+    "old_blurb": "Color fills intentionally shift slightly outside the ink lines like a vintage mid-century silkscreen poster.",
+    "new_blurb": "Color fills sit slightly off the ink lines, like an old silkscreen poster.",
+    "why": "16 words; trimmed."
+  },
+  {
+    "id": "#theme/saul-bass-cutout",
+    "old_label": "Saul Bass Paper Cutout (Bold 3-Color Silhouettes)",
+    "new_label": "Paper-cutout silhouettes (Saul Bass, 3 colors)",
+    "old_blurb": "Razor-sharp cut-paper silhouettes with high-contrast color blocks and stepped graphic holds.",
+    "new_blurb": "Razor-sharp paper silhouettes in three bold colors with stepped, held poses.",
+    "why": "Near-duplicate of #theme/saul-cutout; recommend merging or renaming to show the difference (mStyle cutout vs saul-severe)."
+  },
+  {
+    "id": "#theme/ghibli-watercolor",
+    "old_label": "Warm Hand-Painted Watercolor Wash",
+    "new_label": "Hand-painted watercolor (Ghibli-style wash)",
+    "old_blurb": "Soft translucent pigment layers bleeding gently into warm textured paper.",
+    "new_blurb": "Soft see-through paint layers bleed gently into warm textured paper.",
+    "why": "\"translucent pigment\" -> plain; near-duplicate of #theme/warm-storybook, flag for merge."
+  },
+  {
+    "id": "#theme/blueprint-telemetry",
+    "old_label": "Technical Blueprint & Hydrographic Telemetry",
+    "new_label": "Technical blueprint with readouts (telemetry overlay)",
+    "old_blurb": "Precision architectural lines, compass rings, and live coordinate readouts on Prussian blue.",
+    "new_blurb": "Precise drafting lines, compass rings, and live coordinate numbers on navy blue.",
+    "why": "\"hydrographic\", \"Prussian blue\" unexplained."
+  },
+  {
+    "id": "#element/line-wobble",
+    "old_label": "Hand-Drawn Line Wobble (\"12fps Boil\")",
+    "new_label": "Line boil (hand-drawn wobble, 12 fps)",
+    "old_blurb": "Keeps outlines gently shimmering even when the character pauses so the frame never feels frozen or dead.",
+    "new_blurb": "Outlines keep shimmering during pauses so held poses never look frozen.",
+    "why": "18 words; label pattern now \"plain (jargon)\"."
+  },
+  {
+    "id": "#element/ink-bloom",
+    "old_label": "Soft Watercolor Pigment Bloom (\"Ink Bleed\")",
+    "new_label": "Ink bloom (wet-on-wet pigment bleed)",
+    "old_blurb": "A drop of color spreads softly into the paper grain at key emotional moments.",
+    "new_blurb": "A drop of color spreads softly into the paper at key moments.",
+    "why": "\"paper grain\" and \"emotional\" trimmed; 14 -> 12 words."
+  },
+  {
+    "id": "#element/offset-print",
+    "old_label": "Shifted Color Fill (\"Misregistration\")",
+    "new_label": "Shifted color fill (misregistration)",
+    "old_blurb": "Offsets the color shadow 2–3px from the outline so it looks hand-printed rather than computer-perfect.",
+    "new_blurb": "Nudges the color 2–3 pixels off the outline so it looks hand-printed.",
+    "why": "16 words; \"px\" expanded to pixels."
+  },
+  {
+    "id": "#element/wind-up-crouch",
+    "old_label": "Wind-Up Before Jumping (\"Anticipation\")",
+    "new_label": "Wind-up before the move (anticipation)",
+    "old_blurb": "The character pulls back slightly for 3 frames before lunging forward, giving the movement real physical weight.",
+    "new_blurb": "Character pulls back for three frames before lunging, giving the move weight.",
+    "why": "17 words; trimmed."
+  },
+  {
+    "id": "#element/spring-overshoot",
+    "old_label": "Bouncy Settle Past the Target (\"Overshoot\")",
+    "new_label": "Bounce past the mark (overshoot and settle)",
+    "old_blurb": "Instead of stopping robotically, the character goes slightly past its mark and settles back naturally.",
+    "new_blurb": "Character goes slightly past its target, then settles back naturally.",
+    "why": "15 words; leads with the visible effect."
+  },
+  {
+    "id": "#element/tail-follow-through",
+    "old_label": "Delayed Tail & Fin Wave (\"Follow-Through\")",
+    "new_label": "Tail keeps moving (follow-through)",
+    "old_blurb": "Fins, wings, or ribbons keep moving a split second after the main body stops.",
+    "new_blurb": "Fins, wings, or ribbons keep moving a moment after the body stops.",
+    "why": "Label now says what you see; blurb 14 -> 12 words."
+  },
+  {
+    "id": "#element/echo-trail",
+    "old_label": "Fading Ghost Trail Behind Motion",
+    "new_label": "Ghost trail (onion-skin echoes)",
+    "old_blurb": "Leaves translucent echoes along the path the character just traveled so speed and trajectory are visible.",
+    "new_blurb": "Leaves fading copies along the path so speed and direction read instantly.",
+    "why": "\"translucent\", \"trajectory\" -> plain; 17 words."
+  },
+  {
+    "id": "#element/call-and-answer",
+    "old_label": "Two-Character Call & Answer Duet",
+    "new_label": "Call and answer (two-character duet)",
+    "old_blurb": "The hero makes a gesture or sound wave, and a companion character enters to answer it in harmony.",
+    "new_blurb": "Hero sends a signal; a second character enters and answers it.",
+    "why": "18 words; trimmed."
+  },
+  {
+    "id": "#element/spotlight-circle",
+    "old_label": "Closing Circle Spotlight (\"Iris Focus\")",
+    "new_label": "Circle spotlight (iris focus)",
+    "old_blurb": "narrows a circular frame around the key detail so the viewer knows exactly where to look.",
+    "new_blurb": "Narrows a circle around the key detail so viewers know where to look.",
+    "why": "Lowercase start (audit D); 16 words."
+  },
+  {
+    "id": "#element/quiet-pause",
+    "old_label": "Quiet Breathing Room (\"Negative-Space Hold\")",
+    "new_label": "Quiet pause (negative-space breather)",
+    "old_blurb": "Pauses the action in open space for one beat before the climax so the audience can absorb the story.",
+    "new_blurb": "Holds the action in open space for one beat so the story sinks in.",
+    "why": "19 words; \"before the climax\" removed because v9 grammar places the breather, not the author."
+  },
+  {
+    "id": "#element/silhouette-reveal",
+    "old_label": "Stark Shadow Silhouette Reveal",
+    "new_label": "Pure silhouette (shadow knockout)",
+    "old_blurb": "Strips away interior details so the character reads as a pure, iconic shadow shape.",
+    "new_blurb": "Strips away inner detail so the character reads as one iconic shape.",
+    "why": "jargonTerm \"Rung 4\" leaks into modal; rung numbers are internal."
+  },
+  {
+    "id": "#element/water-ripples",
+    "old_label": "Concentric Ring Ripples (\"Wake\")",
+    "new_label": "Ripple rings (wake)",
+    "old_blurb": "Expanding rings radiate outward whenever the character turns or strikes a note.",
+    "new_blurb": "Rings spread outward whenever the character turns or hits a note.",
+    "why": "\"Concentric\", \"radiate\" -> plain."
+  },
+  {
+    "id": "#element/negative-space-reveal",
+    "old_label": "Negative-Space Figure/Ground Reveal",
+    "new_label": "Hidden shape in the background (figure-ground reversal)",
+    "old_blurb": "The background shadow carves out the hidden shape of the character without drawing an outline.",
+    "new_blurb": "The background carves out the character's shape without drawing an outline.",
+    "why": "Label was pure jargon; 16 words."
+  },
+  {
+    "id": "#element/grain-stipple",
+    "old_label": "Tactile Film Grain & Stipple Shading",
+    "new_label": "Paper grain and dot shading (stipple)",
+    "old_blurb": "Adds warm organic paper tooth and stippled ink dots so flat shapes feel hand-printed.",
+    "new_blurb": "Adds paper texture and tiny ink dots so flat shapes feel printed.",
+    "why": "\"paper tooth\" is printer jargon."
+  },
+  {
+    "id": "#camera/push-in",
+    "old_label": "Slow Dramatic Push-In Zoom (1.22×)",
+    "new_label": "Slow push-in (zoom to 1.22×)",
+    "old_blurb": "Moves the camera closer to the character to heighten intimacy or tension.",
+    "new_blurb": "Camera creeps closer to the character to build focus or tension.",
+    "why": "Fine already; tightened to lead with the visible effect."
+  },
+  {
+    "id": "#camera/dutch-tilt",
+    "old_label": "Angled Off-Balance Horizon (\"Dutch Tilt\")",
+    "new_label": "Tilted horizon (Dutch tilt, −6.5°)",
+    "old_blurb": "Tilts the camera angle slightly (-6.5°) when something unexpected or disruptive happens.",
+    "new_blurb": "Tips the frame slightly when something unexpected or unsettling happens.",
+    "why": "Degree value moved to label parenthetical."
+  },
+  {
+    "id": "#camera/pan-follow",
+    "old_label": "Smooth Sideways Follow Pan",
+    "new_label": "Sideways follow (pan)",
+    "old_blurb": "Glides sideways alongside the character as it travels across the canvas.",
+    "new_blurb": "Camera glides alongside the character as it crosses the screen.",
+    "why": "\"canvas\" is a studio term; \"screen\" is what the viewer sees."
+  },
+  {
+    "id": "#camera/kick-shake",
+    "old_label": "Punchy Impact Shake (\"Climax Kick\")",
+    "new_label": "Impact shake (climax kick)",
+    "old_blurb": "Adds a brief, energetic camera shudder at the exact moment of climax or impact.",
+    "new_blurb": "Camera shudders briefly at the exact moment of impact.",
+    "why": "Trimmed; 14 -> 9 words."
+  },
+  {
+    "id": "#camera/pull-back",
+    "old_label": "Wide Reveal Pull-Back (0.86×)",
+    "new_label": "Wide reveal (pull back to 0.86×)",
+    "old_blurb": "Zooms out to reveal the whole landscape and echo the opening frame.",
+    "new_blurb": "Zooms out to show the whole scene and echo the opening frame.",
+    "why": "Minor; \"landscape\" -> \"scene\"."
+  },
+  {
+    "id": "#camera/breather-hold",
+    "old_label": "Still Contemplative Wide Hold",
+    "new_label": "Still wide hold (breather)",
+    "old_blurb": "Locks the camera completely still with wide margins so quiet moments feel sacred.",
+    "new_blurb": "Camera stops completely, with wide margins, so quiet moments feel sacred.",
+    "why": "Label now names the role it serves (breather)."
+  },
+  {
+    "id": "#camera/match-cut-morph",
+    "old_label": "Seamless Shape Match-Cut Transition",
+    "new_label": "Shape-to-shape cut (match cut)",
+    "old_blurb": "Morphs one silhouette directly into the next scene at the exact same screen position.",
+    "new_blurb": "One shape morphs into the next scene at the same screen spot.",
+    "why": "14 -> 12 words; \"silhouette\" -> \"shape\"."
+  },
+  {
+    "id": "#feel/spring",
+    "old_label": "Natural Physical Spring",
+    "new_label": "Natural spring (default easing)",
+    "old_blurb": "Balanced, organic acceleration and deceleration — the best default for almost any story.",
+    "new_blurb": "Speeds up and slows down like a real object; the safe default.",
+    "why": "\"acceleration and deceleration\" -> plain; jargonTerm cubic-bezier numbers should not show in modal."
+  },
+  {
+    "id": "#feel/glaser-overshoot",
+    "old_label": "Expressive Ceremonial Overshoot",
+    "new_label": "Theatrical overshoot (Milton Glaser)",
+    "old_blurb": "Swoops past the destination with theatrical flair before settling into place.",
+    "new_blurb": "Swoops past the destination with flair, then settles into place.",
+    "why": "\"Ceremonial\" is in-house vocabulary."
+  },
+  {
+    "id": "#feel/saul-snap",
+    "old_label": "Crisp Stop-Motion Poster Snap (8fps)",
+    "new_label": "Stop-motion snap (Saul Bass, 8 fps)",
+    "old_blurb": "Steps in bold, rhythmic 8-frames-per-second holds like a cut-paper title sequence.",
+    "new_blurb": "Steps between poses in bold rhythmic holds, like a cut-paper title sequence.",
+    "why": "fps moved to label."
+  },
+  {
+    "id": "#feel/rostrum-pan",
+    "old_label": "Documentary Camera Glide (\"Ken Burns\")",
+    "new_label": "Documentary glide (Ken Burns, rostrum)",
+    "old_blurb": "Slow, steady museum-grade drift across an archival illustration or map.",
+    "new_blurb": "Drifts slowly and steadily across a still illustration or map.",
+    "why": "\"museum-grade\", \"archival\" are tone words, not effects."
+  },
+  {
+    "id": "#feel/held-24fps",
+    "old_label": "Hand-Crafted Stop-Motion Hold (On Twos & Threes)",
+    "new_label": "Hand-crafted holds (on twos and threes)",
+    "old_blurb": "Holds each pose for 2–3 frames so movement feels sculpted by hand rather than computer-interpolated.",
+    "new_blurb": "Holds each pose for 2–3 frames so motion feels sculpted by hand.",
+    "why": "16 words; \"computer-interpolated\" dropped."
+  },
+  {
+    "id": "#character/ceti-whale",
+    "old_label": "Humpback Leviathan (Oceanic Hero)",
+    "new_label": "Humpback whale (ocean hero)",
+    "old_blurb": "Graceful arched whale with pleated throat grooves and sweeping pectoral fins.",
+    "new_blurb": "Graceful arched whale with throat grooves and long sweeping fins.",
+    "why": "\"Leviathan\", \"pectoral\" -> plain."
+  },
+  {
+    "id": "#character/saul-falcon",
+    "old_label": "Peregrine Cutout (Raptor Emblem)",
+    "new_label": "Cut-paper falcon (raptor emblem)",
+    "old_blurb": "Sharp geometric falcon with swept primary wings and high-speed diving silhouette.",
+    "new_blurb": "Sharp geometric falcon with swept wings and a high-speed diving outline.",
+    "why": "\"Peregrine\", \"primary wings\" -> plain."
+  },
+  {
+    "id": "#character/lantern-bathysphere",
+    "old_label": "Abyssal Bathysphere (Deep-Sea Explorer)",
+    "new_label": "Deep-sea diving bell (bathysphere)",
+    "old_blurb": "Diving bell submersible with glowing quartz viewport, sonar dish, and searchlight beam.",
+    "new_blurb": "Round submersible with a glowing window, sonar dish, and searchlight beam.",
+    "why": "\"Abyssal\", \"quartz viewport\" -> plain."
+  },
+  {
+    "id": "#character/origami-crane",
+    "old_label": "Tessellated Origami Crane (Folded Paper)",
+    "new_label": "Folded paper crane (origami)",
+    "old_blurb": "Crisp folded paper crane with visible geometric valley-fold creases.",
+    "new_blurb": "Crisp paper crane with visible fold creases.",
+    "why": "\"Tessellated\", \"valley-fold\" are origami jargon."
+  },
+  {
+    "id": "#character/astronav-compass",
+    "old_label": "Astrolabe Gimbal (Celestial Instrument)",
+    "new_label": "Brass navigation instrument (astrolabe)",
+    "old_blurb": "Rotating concentric brass rings and 4-point compass rose for navigation and telemetry stories.",
+    "new_blurb": "Spinning brass rings and a compass rose for navigation and data stories.",
+    "why": "\"Gimbal\", \"telemetry\" -> plain."
+  },
+  {
+    "id": "#character/doodle-scribe",
+    "old_label": "Nib & Ink Automaton (Fountain Pen)",
+    "new_label": "Living fountain pen (ink nib)",
+    "old_blurb": "Calligraphic fountain-pen nib that draws its own world as it moves.",
+    "new_blurb": "A pen nib that draws its own world as it moves.",
+    "why": "\"Automaton\" -> plain."
+  },
+  {
+    "id": "#character/orpheus-lyre",
+    "old_label": "Harmonic Lyre-Form (Musical Emblem)",
+    "new_label": "Musical lyre (Orpheus emblem)",
+    "old_blurb": "Sculptural acoustic lyre with 5 vibrating strings for musical and synesthetic stories.",
+    "new_blurb": "Sculpted lyre with five vibrating strings for music and sound stories.",
+    "why": "\"synesthetic\" -> plain."
+  },
+  {
+    "id": "#character/kelp-leviathan",
+    "old_label": "Pelagic Riff-Serpent (Botanical Sea Dragon)",
+    "new_label": "Kelp sea dragon (botanical serpent)",
+    "old_blurb": "Undulating 5-wave sea-kelp serpent with leafy frond blades and glowing air bulbs.",
+    "new_blurb": "Wavy kelp serpent with leafy fronds and glowing air bulbs.",
+    "why": "\"Pelagic\", \"Riff-Serpent\", \"undulating\" -> plain."
+  },
+  {
+    "id": "#color/pelagic-dawn",
+    "old_label": "Pelagic Dawn (Warm Archival Sienna)",
+    "new_label": "Warm dawn paper (sienna and Prussian blue)",
+    "old_blurb": "Warm archival paper with Raw Sienna and Prussian blue ink — ideal for handmade openings.",
+    "new_blurb": "Warm cream paper with rust-brown and deep blue ink; good for openings.",
+    "why": "\"Pelagic\", \"archival\" -> plain; pigment names kept once in label."
+  },
+  {
+    "id": "#color/saul-cutout-ocher",
+    "old_label": "Saul Bass Cutout (Ocher & Lyons Blue)",
+    "new_label": "Bold poster trio (ocher and Lyons blue)",
+    "old_blurb": "Punchy 3-color cut-paper palette with stark Ocher and Lyons Blue contrast.",
+    "new_blurb": "Three punchy flat colors with stark yellow-brown against blue.",
+    "why": "Leads with what the colors look like."
+  },
+  {
+    "id": "#color/bathyal-biolum",
+    "old_label": "Bathyal Bioluminescence (Amber & Prussian)",
+    "new_label": "Deep-sea glow (amber on Prussian blue)",
+    "old_blurb": "Glowing bathyal amber against deep Prussian night for underwater threshold beats.",
+    "new_blurb": "Glowing amber against deep night-blue water; good for turning points.",
+    "why": "\"threshold beats\" is legacy role jargon; v9 calls it the CLAIM/turn."
+  },
+  {
+    "id": "#color/shoji-sumi-calm",
+    "old_label": "Shoji Paper & Sumi Ink (Quiet Breather)",
+    "new_label": "Calm paper and ink (shoji and sumi)",
+    "old_blurb": "High-key Shoji cream with sumi ink wash — ideal for negative-space breather beats.",
+    "new_blurb": "Pale cream with black ink wash; good for the quiet pause beat.",
+    "why": "\"High-key\", \"negative-space\" -> plain."
+  },
+  {
+    "id": "#color/umber-hydro-chart",
+    "old_label": "Umber Hydrographic Survey Ledger",
+    "new_label": "Old sea chart (sepia and umber)",
+    "old_blurb": "Cartographic sepia and raw umber for 25-sounding hydrographic trajectory plates.",
+    "new_blurb": "Map-like sepia and brown for radar trails and survey charts.",
+    "why": "\"25-sounding hydrographic trajectory plates\" is pure jargon."
+  },
+  {
+    "id": "#color/cotinga-nocturne",
+    "old_label": "Cotinga Nocturne (Mythic Lyre Chord)",
+    "new_label": "Night violet and gold (Cotinga nocturne)",
+    "old_blurb": "Deep Cotinga violet-blue and warm gold for harmonic duet and finale callbacks.",
+    "new_blurb": "Deep violet-blue with warm gold; good for duets and finales.",
+    "why": "\"Cotinga\" (a bird pigment name) moved to parenthetical."
+  }
+]
