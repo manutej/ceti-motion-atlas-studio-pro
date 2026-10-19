@@ -59,6 +59,9 @@
         guide: true,
         captionsCovered: false,
         onionSkin: (saved && typeof saved.onionSkin === 'boolean') ? saved.onionSkin : false,
+        // v9: adaptive score + two.js vector layer toggles (default ON, persisted)
+        musicOn: (saved && typeof saved.musicOn === 'boolean') ? saved.musicOn : true,
+        vectorOn: (saved && typeof saved.vectorOn === 'boolean') ? saved.vectorOn : true,
         // Infinite-Zoom Living Canvas viewport & DAG (preserve user custom card x/y positions!)
         zoom: (saved && saved.zoom) || 0.78,
         panX: (saved && saved.panX) || 18,
@@ -123,6 +126,7 @@
     }
 
     mount() {
+      this.musicReplan();
       this.renderDOM();
       this.bindGlobalEvents();
       this._raf = requestAnimationFrame(this.tick);
@@ -150,6 +154,10 @@
         }
       }
 
+      if (patch.storyKey || patch.mStyle || patch.charId || patch.palIdx !== undefined || patch.feel || patch.storyboard || patch.ground || patch.musicOn !== undefined) {
+        this.musicReplan();
+      }
+
       CO.saveSessionState({
         surface: this.state.surface,
         charId: this.state.charId,
@@ -165,6 +173,8 @@
         mStyle: this.state.mStyle,
         storyKey: this.state.storyKey,
         onionSkin: this.state.onionSkin,
+        musicOn: this.state.musicOn,
+        vectorOn: this.state.vectorOn,
         zoom: this.state.zoom,
         panX: this.state.panX,
         panY: this.state.panY,
@@ -187,6 +197,61 @@
       return FOUNDRY.CHARACTERS[this.state.charId] || FOUNDRY.CHARACTERS['ceti-whale'];
     }
 
+    // v9 MUSIC hooks (studio-music-engine.js). Every call is guarded so the studio runs without the engine.
+    musicT() {
+      const loop = (this._musicPlan && this._musicPlan.loopSec) || 12;
+      const t = this._T % loop;
+      return t < 0 ? t + loop : t;
+    }
+
+    musicSheet() {
+      const sb = this.state.storyboard || {};
+      return Object.assign({}, sb, { feelKey: this.state.feel });
+    }
+
+    musicReplan() {
+      if (typeof MUSIC === 'undefined') return null;
+      try {
+        const pal = this.getActivePalette();
+        const sheet = this.musicSheet();
+        const seed = String(sheet.id || 'sb') + '|' + (pal.id || 0);
+        MUSIC.setEnabled(this.state.musicOn !== false);
+        MUSIC.setPalette(pal);
+        this._musicPlan = MUSIC.plan(sheet, pal, seed);
+        MUSIC.schedule(null, this._musicPlan, this.musicT());
+      } catch (_e) { this._musicPlan = null; }
+      return this._musicPlan;
+    }
+
+    musicSeek() {
+      if (typeof MUSIC === 'undefined') return;
+      MUSIC.seek(this.musicT());
+      this.updateMusicReadout();
+    }
+
+    musicBeatCue(beatIdx) {
+      if (typeof MUSIC === 'undefined' || !this._musicPlan || !this.state.musicOn) return null;
+      const cue = (this._musicPlan.sfx || []).find(function (s) { return s.beat === beatIdx && s.name !== 'CHORD'; });
+      return cue ? MUSIC.sfx(cue.name, null, cue.gain) : null;
+    }
+
+    updateMusicReadout() {
+      if (!this.root || typeof MUSIC === 'undefined') return;
+      const el = this.root.querySelector('#music-readout');
+      if (!el) return;
+      const p = this._musicPlan;
+      let txt = 'music: off';
+      if (p && this.state.musicOn) {
+        const t = this.musicT();
+        const cue = (p.cues || []).find(function (c) { return t >= c.tStart && t < c.tEnd; }) || (p.cues || [])[p.cues.length - 1];
+        const beats = (this.state.storyboard && this.state.storyboard.beats) || [];
+        const b = cue ? beats[cue.beatIndex] : null;
+        const section = (b && b.hear && b.hear.music) || (cue ? cue.mood : '—');
+        txt = 'music: ' + p.key.root + ' ' + p.key.modeName + ' · ' + Math.round(p.bpm) + ' bpm · ' + section;
+      }
+      if (el.textContent !== txt) el.textContent = txt;
+    }
+
     tick(now) {
       if (this._lastNow == null) this._lastNow = now;
       const dt = Math.min(0.08, (now - this._lastNow) / 1000);
@@ -198,6 +263,10 @@
         const tReadout = this.root.querySelector('#global-t-readout');
         if (scrub && document.activeElement !== scrub) scrub.value = (this._T % 12).toFixed(2);
         if (tReadout) tReadout.textContent = 't = ' + (this._T % 12).toFixed(2) + 's';
+      }
+      if (typeof MUSIC !== 'undefined') {
+        MUSIC.sync(this.musicT(), this.state.playing && this.state.musicOn);
+        this.updateMusicReadout();
       }
       this._raf = requestAnimationFrame(this.tick);
     }
@@ -289,10 +358,12 @@
         } else if (e.key === '[') {
           self._T = Math.max(0, self._T - 0.5);
           self.setState({ playing: false }, true);
+          self.musicSeek();
           self.drawAllCanvases();
         } else if (e.key === ']') {
           self._T = self._T + 0.5;
           self.setState({ playing: false }, true);
+          self.musicSeek();
           self.drawAllCanvases();
         } else if (e.key === 'c' || e.key === 'C') {
           self.setState({ captionsCovered: !self.state.captionsCovered });
@@ -525,8 +596,10 @@
             '<input id="global-scrub" type="range" min="0" max="12" step="0.02" value="' + (this._T % 12).toFixed(2) + '" style="width:82px;accent-color:#8C4A2E"/>' +
             '<button data-action="toggle-onion-skin" class="st-mini-btn ' + (st.onionSkin ? 'on' : '') + '" title="Gate G23 Multi-Frame Onion Skinning (-2Δt / -1Δt / +1Δt) [O]">ONION</button>' +
             '<button data-action="sonify-wada-chord" class="st-mini-btn" title="Gate G24 Orpheum 4-Voice Harmonic Chord Sonification">♪ SONIFY</button>' +
+            '<button data-action="toggle-music" class="st-mini-btn ' + (st.musicOn ? 'on' : '') + '" title="G30 · Background music that follows the storyboard">♪ Music</button>' +
             '<button data-action="toggle-captions-covered" class="st-mini-btn ' + (st.captionsCovered ? 'on' : '') + '" title="Gate G08 Captions-Covered Test [C]">NO-TEXT</button>' +
           '</div>' +
+          '<span id="music-readout" class="st-label" style="display:block;margin-top:3px;opacity:.72;white-space:nowrap">music: ' + (st.musicOn ? '…' : 'off') + '</span>' +
         '</div>' +
       '</div>' +
 
@@ -1656,6 +1729,7 @@
         const tReadout = root.querySelector('#global-t-readout');
         if (tReadout) tReadout.textContent = 't = ' + (self._T % 12).toFixed(2) + 's';
         self.setState({ playing: false }, true);
+        self.musicSeek();
         self.drawAllCanvases();
       });
     }
@@ -1949,6 +2023,11 @@
     if (act === 'toggle-play') return this.setState({ playing: !st.playing });
     if (act === 'toggle-captions-covered') return this.setState({ captionsCovered: !st.captionsCovered });
     if (act === 'toggle-onion-skin') return this.setState({ onionSkin: !st.onionSkin });
+    if (act === 'toggle-music') {
+      const on = !st.musicOn;
+      if (typeof MUSIC !== 'undefined') MUSIC.setEnabled(on);
+      return this.setState({ musicOn: on });
+    }
     if (act === 'toggle-vocab-modal') return this.setState({ vocabModalOpen: !st.vocabModalOpen });
     if (act === 'set-vocab-cat') return this.setState({ vocabCategory: el.getAttribute('data-cat') || 'all' });
     if (act === 'apply-vocab-token') {
@@ -2117,6 +2196,10 @@
       return this.setState({ mStyle: sk, dag: st.dag, surface: 'infinite-canvas' });
     }
     if (act === 'sonify-wada-chord') {
+      if (typeof MUSIC !== 'undefined' && st.musicOn) {
+        MUSIC.setPalette(this.getActivePalette());
+        if (MUSIC.sfx('CHORD')) return;
+      }
       if (MA.playWadaHarmonicChord) {
         MA.playWadaHarmonicChord(this.getActivePalette(), this.getActiveChar(), st.rung, this._T, 1.35);
       }
@@ -2145,6 +2228,10 @@
       const tReadout = this.root.querySelector('#global-t-readout');
       if (scrub) scrub.value = String((targetT % 12).toFixed(2));
       if (tReadout) tReadout.textContent = 't = ' + (targetT % 12).toFixed(2) + 's';
+      this.musicSeek();
+      const sbBeats = (st.storyboard && st.storyboard.beats) || [];
+      const hitBeat = sbBeats.find(function (b) { return targetT >= b.tStartSec && targetT < b.tEndSec; });
+      if (hitBeat) this.musicBeatCue(hitBeat.index);
       this.drawAllCanvases();
       return;
     }
