@@ -513,13 +513,13 @@
   proto.renderHeaderBar = function (pal, charSpec, audit) {
     const st = this.state;
     const tabs = [
-      ['infinite-canvas',   'I · Living Canvas (DAG)'],
-      ['fork-explorer',     'II · 5-Lens Forks'],
-      ['character-foundry', 'III · Character & Emblem Foundry'],
-      ['storyboard-sheet',  'IV · 8-Beat Storyboard'],
-      ['wada-chord-matrix', 'V · Sanzo Wada 348 & Color Vault'],
-      ['contact-sheet',     'VI · 15 Styles & 24 Elements'],
-      ['compile-export',    'VII · Compile & Export']
+      ['infinite-canvas',   'I · Canvas'],
+      ['fork-explorer',     'II · Plan'],
+      ['character-foundry', 'III · Characters'],
+      ['storyboard-sheet',  'IV · Storyboard'],
+      ['wada-chord-matrix', 'V · Colors'],
+      ['contact-sheet',     'VI · Styles & Elements'],
+      ['compile-export',    'VII · Export']
     ];
 
     const charOpts = FOUNDRY.CHARACTER_ORDER.map(function (id) {
@@ -551,7 +551,7 @@
     return '<header class="st-header">' +
       '<div class="st-topbar">' +
         '<div class="st-brand">' +
-          '<span class="st-eyebrow">CETI INTERNAL DESIGN &amp; NARRATIVE STUDIO</span>' +
+          '<span class="st-eyebrow">CETI MOTION STUDIO</span>' +
           '<div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap">' +
             '<h1 class="st-title">Motion Atlas Studio Pro</h1>' +
             '<span class="st-sub">Sanzo Wada 348 · Freeform Living Canvas · # &amp; / Vocabulary &amp; Theme Library · Tagged Color Vault · OAuth 2.0 PKCE</span>' +
@@ -560,7 +560,7 @@
         '<div class="st-top-actions">' +
           '<button data-action="toggle-vocab-modal" class="st-btn" title="Browse &amp; Insert Plain-English Design Vocabulary, Themes, Elements &amp; #color Tags [K]"># / Vocabulary &amp; Themes [K]</button>' +
           '<button data-action="toggle-oauth-modal" class="st-btn st-btn-rust">OAuth 2.0 PKCE Live Enhancer</button>' +
-          '<button data-action="toggle-gate-modal" class="st-btn st-btn-ink">Audit ' + audit.passedCount + '/' + audit.totalCount + ' PASS</button>' +
+          '<button data-action="toggle-gate-modal" class="st-btn st-btn-ink" title="Run all quality checks">Checks ' + audit.passedCount + '/' + audit.totalCount + ' OK</button>' +
         '</div>' +
       '</div>' +
 
@@ -606,11 +606,11 @@
           '<div style="display:flex;gap:5px;align-items:center">' +
             '<button data-action="toggle-play" class="st-mini-btn on">' + (st.playing ? 'PAUSE' : 'PLAY') + '</button>' +
             '<input id="global-scrub" type="range" min="0" max="12" step="0.02" value="' + (this._T % 12).toFixed(2) + '" style="width:82px;accent-color:#8C4A2E"/>' +
-            '<button data-action="toggle-onion-skin" class="st-mini-btn ' + (st.onionSkin ? 'on' : '') + '" title="Gate G23 Multi-Frame Onion Skinning (-2Δt / -1Δt / +1Δt) [O]">ONION</button>' +
-            '<button data-action="sonify-wada-chord" class="st-mini-btn" title="Gate G24 Orpheum 4-Voice Harmonic Chord Sonification">♪ SONIFY</button>' +
+            '<button data-action="toggle-onion-skin" class="st-mini-btn ' + (st.onionSkin ? 'on' : '') + '" title="Show ghost frames before and after [O]">ONION</button>' +
+            '<button data-action="sonify-wada-chord" class="st-mini-btn" title="Play the current colors as a chord">♪ SONIFY</button>' +
             '<button data-action="toggle-music" class="st-mini-btn ' + (st.musicOn ? 'on' : '') + '" title="G30 · Background music that follows the storyboard">♪ Music</button>' +
             '<button data-action="toggle-vector-layer" class="st-mini-btn ' + (st.vectorOn ? 'on' : '') + '" title="G31 · Vector layer: spotlight, captions and diagrams on storyboard cards">✦ Vector layer</button>' +
-            '<button data-action="toggle-captions-covered" class="st-mini-btn ' + (st.captionsCovered ? 'on' : '') + '" title="Gate G08 Captions-Covered Test [C]">NO-TEXT</button>' +
+            '<button data-action="toggle-captions-covered" class="st-mini-btn ' + (st.captionsCovered ? 'on' : '') + '" title="Hide all text to check it works silent [C]">NO-TEXT</button>' +
           '</div>' +
         '</div>' +
       '</div>' +
@@ -653,7 +653,7 @@
       const nCharId = p.charId || st.charId;
       const nChar = FOUNDRY.CHARACTERS[nCharId] || charSpec;
       const nPalId = p.palId || pal.id;
-      const sheafBadge = '<span class="st-mono-xs" title="Sheaf Restriction Hash ρ(child)=parent" style="color:rgba(26,31,46,.55)">' + esc(n.packetHash || 'ρ-root') + (n.upstreamHash ? ' ← ' + esc(n.upstreamHash) : '') + '</span>';
+      const sheafBadge = '<span class="st-mono-xs" title="Card fingerprint (child ← parent)" style="color:rgba(26,31,46,.55)">' + esc(n.packetHash || 'ρ-root') + (n.upstreamHash ? ' ← ' + esc(n.upstreamHash) : '') + '</span>';
 
       return '<div data-dag-node="' + esc(n.id) + '" class="dag-node ' + (isSelA ? 'dag-node-selected' : (isSelB ? 'dag-node-source-b' : '')) + ' lod-' + lod + '" style="left:' + n.x + 'px;top:' + n.y + 'px;width:' + (n.width || 315) + 'px" title="Grab anywhere on this card to drag &amp; move freely (Shift+Click sets Source B)">' +
         '<div class="dag-node-header" data-drag-handle="' + esc(n.id) + '">' +
@@ -717,7 +717,7 @@
       '<div class="canvas-toolbar">' +
         '<div style="display:flex;gap:5px;align-items:center;flex-wrap:wrap">' +
           '<span class="st-mono-xs">DRAG ANY CARD FREELY · ZOOM ' + st.zoom.toFixed(2) + '× · ' + st.dag.nodes.length + ' CARDS</span>' +
-          '<span class="st-badge ' + (sheafAudit.valid ? 'badge-pass' : 'badge-warn') + '" title="Alexandrov Sheaf Restriction Cohomology across DAG edges">SHEAF ρ: ' + (sheafAudit.valid ? 'δ⁰=0 PASS' : 'MISMATCH') + '</span>' +
+          '<span class="st-badge ' + (sheafAudit.valid ? 'badge-pass' : 'badge-warn') + '" title="G18 · Branch consistency: child cards match parents">Branches consistent: ' + (sheafAudit.valid ? 'OK' : 'MISMATCH') + '</span>' +
           '<button data-action="zoom-set" data-zoom="0.3" class="st-mini-btn">0.3× Macro</button>' +
           '<button data-action="zoom-set" data-zoom="0.78" class="st-mini-btn">0.8× Studio</button>' +
           '<button data-action="zoom-set" data-zoom="1.65" class="st-mini-btn">1.6× Micro</button>' +
@@ -727,10 +727,10 @@
         '<div style="display:flex;gap:5px;align-items:center;flex-wrap:wrap">' +
           '<select id="sel-source-a-node" class="st-select" style="max-width:185px;border-color:#8C4A2E;font-weight:700" title="Direct Source A (Primary Branch)">' + sourceAOpts + '</select>' +
           '<button data-action="swap-source-ab" class="st-mini-btn" title="Swap Source A and Source B">⇄</button>' +
-          '<select id="sel-source-b-node" class="st-select" style="max-width:185px;border-color:#1E3F66;font-weight:700" title="Direct Source B (Comparison / Pushout Merge Partner)">' + sourceBOpts + '</select>' +
+          '<select id="sel-source-b-node" class="st-select" style="max-width:185px;border-color:#1E3F66;font-weight:700" title="Card B (to compare or merge with A)">' + sourceBOpts + '</select>' +
           '<button data-action="duplicate-dag-node" data-node-id="' + esc(st.selectedNodeId) + '" class="st-btn" title="Duplicate Source A Card">+ Duplicate Card</button>' +
           '<button data-action="fork-three-directions" data-node-id="' + esc(st.selectedNodeId) + '" class="st-btn st-btn-ink">⑂ Fork 3× (α/β/γ)</button>' +
-          '<button data-action="dag-synthesize-ab" class="st-btn" title="Gate G22 Pushout Gluing of Source A ⊕ Source B">⊕ Glue A ⊕ B</button>' +
+          '<button data-action="dag-synthesize-ab" class="st-btn" title="Gate G22 Pushout Gluing of Source A ⊕ Source B">⊕ Merge A + B</button>' +
           '<button data-action="toggle-vocab-modal" class="st-btn st-btn-rust" title="Open Plain-English # Vocabulary, Themes &amp; Elements"># Themes &amp; Elements</button>' +
           '<button data-action="toggle-ab-compare" class="st-btn ' + (st.showABCompare ? 'st-btn-rust' : '') + '">⚖ A/B Drawer</button>' +
         '</div>' +
@@ -741,7 +741,7 @@
           '<div class="ab-col">' +
             '<div style="display:flex;justify-content:space-between;align-items:center">' +
               '<span class="st-mono-xs">SOURCE A (PRIMARY): <strong>' + esc(selectedNode.title) + '</strong> · ' + esc(selectedNode.packetHash || '') + '</span>' +
-              '<button data-action="dag-synthesize-ab" class="st-mini-btn on" title="Synthesize Pushout Gluing Node from Source A ⊕ Source B">⊕ Glue A ⊕ B → Synthesis Node</button>' +
+              '<button data-action="dag-synthesize-ab" class="st-mini-btn on" title="Synthesize Pushout Gluing Node from Source A ⊕ Source B">⊕ Merge A + B into a new card</button>' +
             '</div>' +
             '<canvas width="480" height="300" data-proof="' + esc(selectedNode.payload.styleKey || 'watercolor') + '" data-char="' + esc(selectedNode.payload.charId || st.charId) + '" data-pal-id="' + (selectedNode.payload.palId || pal.id) + '" style="width:100%;max-width:340px;border-radius:6px;border:1px solid rgba(26,31,46,.2);margin-top:4px"></canvas>' +
           '</div>' +
@@ -778,7 +778,7 @@
 
         '<!-- Right Inspector Panel for Selected DAG Node -->' +
         '<aside class="dag-inspector">' +
-          '<div class="st-eyebrow">SOURCE A CARD INSPECTOR · SHEAF PACKET</div>' +
+          '<div class="st-eyebrow">SELECTED CARD</div>' +
           '<h3 style="margin:4px 0 6px;font-family:Fraunces,serif;font-weight:400;font-size:19px">' + esc(selectedNode ? selectedNode.title : '') + '</h3>' +
           '<p style="font-size:11.5px;color:rgba(26,31,46,.75);margin:0 0 10px">' + esc(selectedNode ? selectedNode.subtitle : '') + '</p>' +
           (selectedNode ? (
@@ -825,7 +825,7 @@
                 '</div>' +
                 '<textarea id="ins-node-notes" data-vocab-autocomplete="true" rows="2" class="st-input" style="width:100%">' + esc(selectedNode.payload.notes || '') + '</textarea></div>' +
               '<div><label class="st-label">CONJECTURE (†C) / FORK HYPOTHESIS</label>' +
-                '<input id="ins-node-conjecture" type="text" class="st-input" style="width:100%" value="' + esc(selectedNode.conjectureNote || '') + '" placeholder="†C Conjecture note for this branch..."/></div>' +
+                '<input id="ins-node-conjecture" type="text" class="st-input" style="width:100%" value="' + esc(selectedNode.conjectureNote || '') + '" placeholder="What are you trying with this branch?"/></div>' +
               '<div style="display:flex;gap:5px;flex-wrap:wrap">' +
                 '<button data-action="save-node-inspector" class="st-btn st-btn-ink">Update Card</button>' +
                 '<button data-action="duplicate-dag-node" data-node-id="' + esc(selectedNode.id) + '" class="st-btn">⧉ Duplicate</button>' +
@@ -975,7 +975,7 @@
       '<div class="st-panel">' +
         '<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">' +
           '<div>' +
-            '<span class="st-eyebrow">UNIVERSAL PARAMETRIC ACTOR SOCKET · ZERO HARDCODED MASCOTS (GATE G03 · G04 · G05)</span>' +
+            '<span class="st-eyebrow">CHARACTERS · ANY RIG CAN BE THE HERO</span>' +
             '<h2 class="st-section-h2" style="margin:4px 0">Character &amp; Emblem Foundry — ' + esc(charSpec.name) + '</h2>' +
           '</div>' +
           '<button data-action="synthesize-new-character" class="st-btn st-btn-rust">+ Synthesize New Parametric Rig</button>' +
@@ -1025,6 +1025,13 @@
     '</section>';
   };
 
+  // Plain camera names (work/wording/vocab-rewrite.json #camera/* labels)
+  const CAM_PLAIN = {
+    'static-wide': 'Still wide shot', 'pan-follow': 'Sideways follow (pan)', 'push-in': 'Slow push-in',
+    'dutch-tilt': 'Tilted horizon (Dutch tilt)', 'tracking-drift': 'Slow drift', 'breather-hold': 'Still wide hold (breather)',
+    'kick-shake': 'Impact shake', 'pull-back': 'Wide reveal (pull back)'
+  };
+
   // ─────────────────────────────────────────────────────────────────────────
   // SURFACE 4 · 8-BEAT STORYBOARD SHEET & TIMELINE (G08 · G26 · G29)
   // ─────────────────────────────────────────────────────────────────────────
@@ -1045,8 +1052,8 @@
             (b.index < (sheet.beats || []).length - 1 ? '<button data-action="move-beat-card" data-from="' + b.index + '" data-to="' + (b.index + 1) + '" class="st-mini-btn" style="padding:1px 4px" title="Move Beat Right">▶</button>' : '') +
           '</div>' +
           '<select data-beat-hinge="' + b.index + '" class="st-select" style="padding:2px 5px;font-size:9.5px">' +
-            '<option value="THEREFORE"' + (b.hinge === 'THEREFORE' ? ' selected' : '') + '>THEREFORE · ' + esc(b.role.toUpperCase()) + '</option>' +
-            '<option value="BUT"' + (b.hinge === 'BUT' ? ' selected' : '') + '>BUT · ' + esc(b.role.toUpperCase()) + '</option>' +
+            '<option value="THEREFORE"' + (b.hinge === 'THEREFORE' ? ' selected' : '') + '>So… (' + esc(b.grammar || b.role) + ')</option>' +
+            '<option value="BUT"' + (b.hinge === 'BUT' ? ' selected' : '') + '>But… (' + esc(b.grammar || b.role) + ')</option>' +
           '</select>' +
         '</div>' +
         '<canvas width="320" height="200" data-proof="' + esc(sheet.storyKey) + '" data-char="' + esc(charSpec.id) + '" data-pal-id="' + beatPalId + '" data-fixed-t="' + b.tMidSec + '" data-cam="' + esc(b.cameraMove || 'static-wide') + '" data-beat-idx="' + b.index + '" style="width:100%;height:auto;border-radius:6px;border:1px solid rgba(26,31,46,.16);cursor:pointer" data-action="scrub-to-beat" data-t="' + b.tMidSec + '"></canvas>' +
@@ -1060,14 +1067,14 @@
           '</select>' +
         '</div>' +
         (b.because ? '<div class="st-mono-xs" style="margin:0 0 4px;opacity:.75" title="Every beat has a because (MovementOk)">↳ ' + esc(b.because) + '</div>' : '') +
-        '<textarea data-beat-action="' + b.index + '" data-vocab-autocomplete="true" rows="2" class="st-input" style="width:100%;font-size:11px;margin-bottom:6px" placeholder="Type # or / to insert motion elements or camera moves...">' + esc(b.visualAction) + '</textarea>' +
+        '<textarea data-beat-action="' + b.index + '" data-vocab-autocomplete="true" rows="2" class="st-input" style="width:100%;font-size:11px;margin-bottom:6px" placeholder="What does the viewer see in this beat? Type # for a visual element.">' + esc(b.visualAction) + '</textarea>' +
         '<div style="display:flex;justify-content:space-between;align-items:center;font-size:10px;font-family:Space Mono,monospace;color:rgba(26,31,46,.65)">' +
           '<select data-beat-cam="' + b.index + '" class="st-select" style="padding:2px 4px;font-size:10px">' +
             ['static-wide', 'pan-follow', 'push-in', 'dutch-tilt', 'tracking-drift', 'breather-hold', 'kick-shake', 'pull-back'].map(function (cm) {
-              return '<option value="' + cm + '"' + (b.cameraMove === cm ? ' selected' : '') + '>CAM: ' + cm + '</option>';
+              return '<option value="' + cm + '"' + (b.cameraMove === cm ? ' selected' : '') + '>Camera: ' + (CAM_PLAIN[cm] || cm) + '</option>';
             }).join('') +
           '</select>' +
-          '<span>MOVES: ' + b.activeSimultaneousMoves + '/2</span>' +
+          '<span>Things moving: ' + b.activeSimultaneousMoves + ' of 2</span>' +
         '</div>' +
       '</div>';
     }).join('');
@@ -1076,7 +1083,7 @@
       '<div class="st-panel">' +
         '<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">' +
           '<div>' +
-            '<span class="st-eyebrow">STAGE-4 / STAGE-5 STORYBOARD BEAT SHEET · DRAG CARDS OR CLICK ◀ ▶ TO REORDER BEATS (GATE G08 · G26)</span>' +
+            '<span class="st-eyebrow">STORYBOARD · DRAG CARDS OR USE ◀ ▶ TO REORDER</span>' +
             '<h2 class="st-section-h2" style="margin:4px 0">' + esc(sheet.title) + ' · ' + esc(pal.no) + ' ' + esc(pal.name) + '</h2>' +
           '</div>' +
           '<div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">' +
@@ -1098,10 +1105,10 @@
 
         '<!-- Conservation Law Badges -->' +
         '<div style="display:flex;gap:10px;flex-wrap:wrap;margin:10px 0 14px">' +
-          '<span class="st-badge ' + (audit.coveredOk ? 'badge-pass' : 'badge-warn') + '">CoveredOk (Visual-Only Legible): ' + (audit.coveredOk ? 'PASS' : 'FAIL') + '</span>' +
-          '<span class="st-badge ' + (audit.movementOk ? 'badge-pass' : 'badge-warn') + '">MovementOk (BUT/THEREFORE Hinges): ' + (audit.movementOk ? 'PASS' : 'FAIL') + '</span>' +
-          '<span class="st-badge ' + (audit.oneBreather ? 'badge-pass' : 'badge-warn') + '">OneBreather (Negative-Space Hold): ' + (audit.oneBreather ? 'PASS' : 'FAIL') + '</span>' +
-          '<span class="st-badge ' + (audit.callback ? 'badge-pass' : 'badge-warn') + '">Callback (Beat 8 Echoes Beat 1): ' + (audit.callback ? 'PASS' : 'FAIL') + '</span>' +
+          '<span class="st-badge ' + (audit.coveredOk ? 'badge-pass' : 'badge-warn') + '" title="G08 · CoveredOk">Works with sound off: ' + (audit.coveredOk ? 'PASS' : 'FAIL') + '</span>' +
+          '<span class="st-badge ' + (audit.movementOk ? 'badge-pass' : 'badge-warn') + '" title="G08 · MovementOk">Every beat has a because: ' + (audit.movementOk ? 'PASS' : 'FAIL') + '</span>' +
+          '<span class="st-badge ' + (audit.oneBreather ? 'badge-pass' : 'badge-warn') + '" title="G08 · OneBreather">Exactly one quiet pause: ' + (audit.oneBreather ? 'PASS' : 'FAIL') + '</span>' +
+          '<span class="st-badge ' + (audit.callback ? 'badge-pass' : 'badge-warn') + '" title="G08 · Callback">Ending echoes the opening: ' + (audit.callback ? 'PASS' : 'FAIL') + '</span>' +
         '</div>' +
 
         '<div class="char-grid-4">' + beatCards + '</div>' +
@@ -1252,7 +1259,7 @@
           (wadaChord ? (
             '<div style="margin-top:12px;padding-top:10px;border-top:1px dashed rgba(26,31,46,.18)">' +
               '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">' +
-                '<span class="st-label" style="margin-bottom:0">ORPHEUM 4-VOICE JUST-INTONATION HARMONIC SYNTHESIZER (GATE G24 · ROOT ' + esc(wadaChord.rootNote) + ' ' + wadaChord.baseFreqHz + ' Hz · ' + esc(wadaChord.waveform.toUpperCase()) + ')</span>' +
+                '<span class="st-label" style="margin-bottom:0" title="G24 · Colors can be played as sound">PLAY THIS PALETTE AS A CHORD (root ' + esc(wadaChord.rootNote) + ', ' + wadaChord.baseFreqHz + ' Hz)</span>' +
                 '<button data-action="sonify-wada-chord" class="st-mini-btn on">♪ Play Wada Chord</button>' +
               '</div>' +
               '<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">' + chordVoiceHtml + '</div>' +
@@ -1416,8 +1423,8 @@
         '<div class="st-modal">' +
           '<div style="display:flex;justify-content:space-between;align-items:center">' +
             '<div>' +
-              '<span class="st-eyebrow">RFC 7636 OAUTH 2.0 PKCE (S256) + LOCAL AGENT BRIDGE + # / SKILL VOCABULARY SYNTHESIZER (G10 · G11 · G27 · G28)</span>' +
-              '<h3 style="margin:4px 0;font-family:Fraunces,serif;font-size:22px">Live Storyboard, Source Branch &amp; Character Enhancer</h3>' +
+              '<span class="st-eyebrow">AI ENHANCER · SIGN IN OR WORK OFFLINE</span>' +
+              '<h3 style="margin:4px 0;font-family:Fraunces,serif;font-size:22px">Improve this storyboard, branch, or character</h3>' +
             '</div>' +
             '<div style="display:flex;gap:6px">' +
               '<button data-action="toggle-vocab-modal" class="st-mini-btn on">📖 # / Vocabulary Library</button>' +
@@ -1428,11 +1435,11 @@
           // DIRECT SOURCE A & SOURCE B PICKERS (GATE G27)
           '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0;padding:8px 10px;background:rgba(140,74,46,.06);border:1px solid rgba(140,74,46,.22);border-radius:6px">' +
             '<div>' +
-              '<label class="st-label" style="color:#8C4A2E">PRIMARY SOURCE CARD TO ENHANCE / FORK FROM (● SOURCE A)</label>' +
+              '<label class="st-label" style="color:#8C4A2E">CARD TO IMPROVE (● A)</label>' +
               '<select id="oauth-source-a-select" class="st-select" style="width:100%">' + srcAOpts + '</select>' +
             '</div>' +
             '<div>' +
-              '<label class="st-label" style="color:#1F5A73">SECONDARY COMPARE / PUSHOUT SOURCE (◐ SOURCE B)</label>' +
+              '<label class="st-label" style="color:#1F5A73">CARD TO COMPARE OR MERGE (◐ B)</label>' +
               '<select id="oauth-source-b-select" class="st-select" style="width:100%">' + srcBOpts + '</select>' +
             '</div>' +
           '</div>' +
@@ -1443,7 +1450,7 @@
                 '<option value="local-bridge"' + (st.oauthProvider === 'local-bridge' ? ' selected' : '') + '>Local Loopback Bridge (127.0.0.1:43110) + PKCE</option>' +
                 '<option value="openrouter-pkce"' + (st.oauthProvider === 'openrouter-pkce' ? ' selected' : '') + '>OpenRouter OAuth 2.0 PKCE (S256)</option>' +
                 '<option value="google-oauth-pkce"' + (st.oauthProvider === 'google-oauth-pkce' ? ' selected' : '') + '>Google OAuth 2.0 PKCE (GIS)</option>' +
-                '<option value="algebraic-synthesizer"' + (st.oauthProvider === 'algebraic-synthesizer' ? ' selected' : '') + '>Offline Deterministic Algebraic Synthesizer</option>' +
+                '<option value="algebraic-synthesizer"' + (st.oauthProvider === 'algebraic-synthesizer' ? ' selected' : '') + '>Offline (no sign-in, same result every time)</option>' +
               '</select>' +
             '</div>' +
             '<div><label class="st-label">PKCE STATUS / BEARER TOKEN</label>' +
@@ -1457,7 +1464,7 @@
 
           '<div style="position:relative">' +
             '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">' +
-              '<label class="st-label" style="margin-bottom:0">ENHANCEMENT DIRECTIVE (TYPE <code>#</code> OR <code>/</code> FOR LIVE VOCABULARY, THEME &amp; #COLOR AUTOCOMPLETE)</label>' +
+              '<label class="st-label" style="margin-bottom:0">WHAT SHOULD CHANGE? (type <code>#</code> or <code>/</code> for suggestions)</label>' +
               '<span class="st-mono-xs" style="color:#8C4A2E">Supports #theme/... · #element/... · #camera/... · #color/...</span>' +
             '</div>' +
             '<div style="display:flex;gap:4px;flex-wrap:wrap;margin-bottom:6px">' + quickTokens + '</div>' +
@@ -1465,18 +1472,18 @@
           '</div>' +
 
           '<div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap">' +
-            '<button data-action="run-oauth-enhance" class="st-btn st-btn-rust">' + (st.oauthBusy ? 'Enhancing & Validating Schema...' : '✦ 1. Enhance 8 Beats + Spawn Child from Source A') + '</button>' +
-            '<button data-action="fork-three-directions" data-node-id="' + esc(st.selectedNodeId) + '" class="st-btn st-btn-ink">⑂ 2. Fork 3 Directions (α/β/γ) from Source A</button>' +
-            '<button data-action="dag-synthesize-ab" class="st-btn">⊕ 3. Pushout Merge (Source A ⊕ Source B)</button>' +
+            '<button data-action="run-oauth-enhance" class="st-btn st-btn-rust">' + (st.oauthBusy ? 'Enhancing & Validating Schema...' : '✦ 1. Improve the storyboard (makes a new card)') + '</button>' +
+            '<button data-action="fork-three-directions" data-node-id="' + esc(st.selectedNodeId) + '" class="st-btn st-btn-ink">⑂ 2. Try three variations</button>' +
+            '<button data-action="dag-synthesize-ab" class="st-btn">⊕ 3. Merge A + B</button>' +
             '<button data-action="synthesize-new-character" class="st-btn">✦ 4. Synthesize Character Rig</button>' +
-            '<button data-action="run-rsi-critique" class="st-btn">⚖ 5. Run 4-Lens RSI Critique &amp; Fix</button>' +
+            '<button data-action="run-rsi-critique" class="st-btn">⚖ 5. Critique and auto-fix</button>' +
           '</div>' +
 
           (last ? (
             '<div style="margin-top:14px;padding:12px;background:rgba(26,31,46,.04);border-radius:8px;border:1px solid rgba(26,31,46,.16)">' +
               '<div style="display:flex;justify-content:space-between">' +
                 '<span class="st-mono-xs">SOURCE: ' + esc(last.source.toUpperCase()) + '</span>' +
-                '<span class="st-badge badge-pass">G11 SCHEMA VALID: ' + (last.validation.valid ? 'PASS' : 'FAIL') + '</span>' +
+                '<span class="st-badge badge-pass" title="G11 · AI responses match the expected shape">Response checked: ' + (last.validation.valid ? 'OK' : 'FAIL') + '</span>' +
               '</div>' +
               '<p style="font-size:13px;font-weight:600;margin:6px 0">' + esc(last.response.summary) + '</p>' +
               '<div style="font-size:12px">Registered New Character Rig: <strong>' + esc(last.response.synthesizedCharacter.name) + '</strong> (<code>' + esc(last.response.synthesizedCharacter.id) + '</code>) · Pinned Wada No. ' + last.response.suggestedWadaComboNo + '</div>' +
@@ -1485,7 +1492,7 @@
 
           (rsi ? (
             '<div style="margin-top:12px;padding:12px;background:rgba(46,90,68,.06);border-radius:8px;border:1px solid rgba(46,90,68,.25)">' +
-              '<div class="st-mono-xs" style="color:#2E5A44;margin-bottom:6px">4-LENS ADVERSARIAL RSI CRITIQUE · ' + esc(rsi.summary) + '</div>' +
+              '<div class="st-mono-xs" style="color:#2E5A44;margin-bottom:6px">CRITIQUE · ' + esc(rsi.summary) + '</div>' +
               '<div style="display:grid;gap:4px;font-size:11px">' +
                 rsi.lenses.map(function (l) {
                   return '<div><strong>[' + esc(l.id) + ' ' + esc(l.lens) + ']</strong>: ' + esc(l.verdict) + ' — ' + esc(l.finding) + '</div>';
@@ -1538,7 +1545,7 @@
         '<div class="st-modal" style="width:min(980px, 96vw)">' +
           '<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">' +
             '<div>' +
-              '<span class="st-eyebrow">IN-STUDIO SKILLS, VOCABULARY &amp; TAGGED COLOR LIBRARY (GATE G28 · G29 · INVOCABLE VIA # OR / IN ANY PROMPT)</span>' +
+              '<span class="st-eyebrow">LOOKS, ELEMENTS &amp; COLORS · TYPE # OR / IN ANY PROMPT</span>' +
               '<h3 style="margin:3px 0;font-family:Fraunces,serif;font-size:21px">Plain-English Design Vocabulary, Themes, Elements &amp; #Color Vault</h3>' +
             '</div>' +
             '<button data-action="toggle-vocab-modal" class="st-mini-btn">✕ Close [Esc]</button>' +
@@ -1562,21 +1569,21 @@
         '<div class="st-modal">' +
           '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">' +
             '<div>' +
-              '<span class="st-eyebrow">29 BINARY CONSERVATION GATES + TELL-APART + SHEAF + FREEFORM STUDIO ERGONOMICS (G01–G29)</span>' +
-              '<h3 style="margin:4px 0;font-family:Fraunces,serif;font-size:22px">Mechanical Contract Audit — ' + audit.passedCount + '/' + audit.totalCount + ' PASS</h3>' +
+              '<span class="st-eyebrow">QUALITY CHECKS (' + audit.gates[0].id + '–' + audit.gates[audit.gates.length - 1].id + ')</span>' +
+              '<h3 style="margin:4px 0;font-family:Fraunces,serif;font-size:22px">Quality checks — ' + audit.passedCount + ' of ' + audit.totalCount + ' passing</h3>' +
             '</div>' +
             '<button data-action="toggle-gate-modal" class="st-mini-btn">✕ Close</button>' +
           '</div>' +
           '<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px">' +
-            '<span class="st-badge ' + (tellApart.pass ? 'badge-pass' : 'badge-warn') + '">TELL-APART KERNEL: min Δ=' + tellApart.minDistance + ' across ' + tellApart.pairCount + ' pairs (' + (tellApart.pass ? 'PASS' : 'FAIL') + ')</span>' +
-            '<span class="st-badge ' + (sheafCheck.valid ? 'badge-pass' : 'badge-warn') + '">ALEXANDROV SHEAF δ⁰=0: ' + sheafCheck.edgeCount + ' edges (' + (sheafCheck.valid ? 'PASS' : 'FAIL') + ')</span>' +
+            '<span class="st-badge ' + (tellApart.pass ? 'badge-pass' : 'badge-warn') + '">Characters look distinct: ' + tellApart.pairCount + ' pairs checked (' + (tellApart.pass ? 'PASS' : 'FAIL') + ')</span>' +
+            '<span class="st-badge ' + (sheafCheck.valid ? 'badge-pass' : 'badge-warn') + '">Branches consistent: ' + sheafCheck.edgeCount + ' links checked (' + (sheafCheck.valid ? 'PASS' : 'FAIL') + ')</span>' +
           '</div>' +
           '<div style="max-height:420px;overflow-y:auto">' +
             '<table style="width:100%;border-collapse:collapse;font-size:12px">' +
               audit.gates.map(function (g) {
-                return '<tr style="border-bottom:1px solid rgba(26,31,46,.1)">' +
+                return '<tr style="border-bottom:1px solid rgba(26,31,46,.1)" title="' + esc(g.id + ' · ' + (g.plainName || g.name)) + '">' +
                   '<td class="st-mono-xs" style="padding:6px"><strong>' + g.id + '</strong></td>' +
-                  '<td style="padding:6px;font-weight:600">' + esc(g.name) + '</td>' +
+                  '<td style="padding:6px;font-weight:600" title="' + esc(g.name) + '">' + esc(g.plainName || g.name) + '</td>' +
                   '<td class="st-mono-xs" style="padding:6px">' + esc(g.metric) + '</td>' +
                   '<td style="padding:6px;text-align:right"><span class="st-badge ' + (g.pass ? 'badge-pass' : 'badge-warn') + '">' + (g.pass ? 'PASS' : 'FAIL') + '</span></td>' +
                 '</tr>';
