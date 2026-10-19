@@ -293,6 +293,8 @@
           if (found) usePal = WADA.enrichPalette(found, this.state.ground);
         }
         const tVal = fixedT != null && fixedT !== '' ? Number(fixedT) : this._T;
+        const sbSheet = this.state.storyboard;
+        const twoBeat = (nodeBeatIdx != null && sbSheet && sbSheet.beats) ? sbSheet.beats[nodeBeatIdx] : null;
         MA.render(c, key, usePal, feel, tVal, {
           wob: this.state.wob,
           grain: this.state.grain,
@@ -306,7 +308,12 @@
           cameraMove: nodeCam,
           beatIdx: nodeBeatIdx,
           captionsCovered: this.state.captionsCovered,
-          onionSkin: this.state.onionSkin
+          onionSkin: this.state.onionSkin,
+          // v9 two.js vector layer: storyboard beat cards only (Surface IV)
+          twoLayer: !!(this.state.vectorOn && twoBeat),
+          beat: twoBeat,
+          sheet: twoBeat ? sbSheet : null,
+          seed: (usePal && usePal.id) | 0
         });
       }
     }
@@ -590,16 +597,16 @@
         '</div>' +
 
         '<div class="st-ctrl-group st-transport">' +
-          '<label class="st-label">SINGLE CLOCK TRANSPORT · <span id="global-t-readout">t = ' + (this._T % 12).toFixed(2) + 's</span></label>' +
+          '<label class="st-label">SINGLE CLOCK TRANSPORT · <span id="global-t-readout">t = ' + (this._T % 12).toFixed(2) + 's</span> · <span id="music-readout" style="opacity:.72">music: ' + (st.musicOn ? '…' : 'off') + '</span></label>' +
           '<div style="display:flex;gap:5px;align-items:center">' +
             '<button data-action="toggle-play" class="st-mini-btn on">' + (st.playing ? 'PAUSE' : 'PLAY') + '</button>' +
             '<input id="global-scrub" type="range" min="0" max="12" step="0.02" value="' + (this._T % 12).toFixed(2) + '" style="width:82px;accent-color:#8C4A2E"/>' +
             '<button data-action="toggle-onion-skin" class="st-mini-btn ' + (st.onionSkin ? 'on' : '') + '" title="Gate G23 Multi-Frame Onion Skinning (-2Δt / -1Δt / +1Δt) [O]">ONION</button>' +
             '<button data-action="sonify-wada-chord" class="st-mini-btn" title="Gate G24 Orpheum 4-Voice Harmonic Chord Sonification">♪ SONIFY</button>' +
             '<button data-action="toggle-music" class="st-mini-btn ' + (st.musicOn ? 'on' : '') + '" title="G30 · Background music that follows the storyboard">♪ Music</button>' +
+            '<button data-action="toggle-vector-layer" class="st-mini-btn ' + (st.vectorOn ? 'on' : '') + '" title="G31 · Vector layer: spotlight, captions and diagrams on storyboard cards">✦ Vector layer</button>' +
             '<button data-action="toggle-captions-covered" class="st-mini-btn ' + (st.captionsCovered ? 'on' : '') + '" title="Gate G08 Captions-Covered Test [C]">NO-TEXT</button>' +
           '</div>' +
-          '<span id="music-readout" class="st-label" style="display:block;margin-top:3px;opacity:.72;white-space:nowrap">music: ' + (st.musicOn ? '…' : 'off') + '</span>' +
         '</div>' +
       '</div>' +
 
@@ -2023,6 +2030,7 @@
     if (act === 'toggle-play') return this.setState({ playing: !st.playing });
     if (act === 'toggle-captions-covered') return this.setState({ captionsCovered: !st.captionsCovered });
     if (act === 'toggle-onion-skin') return this.setState({ onionSkin: !st.onionSkin });
+    if (act === 'toggle-vector-layer') return this.setState({ vectorOn: !st.vectorOn });
     if (act === 'toggle-music') {
       const on = !st.musicOn;
       if (typeof MUSIC !== 'undefined') MUSIC.setEnabled(on);
@@ -2549,6 +2557,10 @@
       const app = new global.MotionAtlasStudioApp(rootEl);
       global.__MOTION_ATLAS_STUDIO_INSTANCE = app;
       app.mount();
+      // v9: two.js vector layer (vendored/inlined Two; cdnjs fallback); redraw once it is usable
+      if (typeof TWO_LAYER !== 'undefined') {
+        try { TWO_LAYER.init({ onReady: function () { app.drawAllCanvases(); } }); } catch (_e) { /* layer stays a no-op */ }
+      }
 
       // Global keyboard shortcuts: K opens # / Vocabulary & Themes modal; Esc closes modals
       window.addEventListener('keydown', function (e) {
