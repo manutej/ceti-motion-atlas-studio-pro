@@ -1,9 +1,9 @@
 # CETI MOTION ATLAS STUDIO PRO — 7-ROUND ADVERSARIAL MOE & VBM UX LEDGER (`v1 → v7`)
 
-**Workspace:** `/Users/cairo/Documents/CETI/ACCENTURE/content-factory v2/ARTE/motion-atlas/`  
+**Workspace:** `<workspace>/ARTE/motion-atlas/`  
 **Public Repository:** `https://github.com/manutej/ceti-motion-atlas-studio-pro`  
-**Contracts:** [`docs/TYPED-CONTRACT-MOTION-ATLAS.md`](file:///Users/cairo/Documents/CETI/ACCENTURE/content-factory%20v2/ARTE/motion-atlas/docs/TYPED-CONTRACT-MOTION-ATLAS.md) · [`docs/META-PLAN-AND-RSI.md`](file:///Users/cairo/Documents/CETI/ACCENTURE/content-factory%20v2/ARTE/motion-atlas/docs/META-PLAN-AND-RSI.md)  
-**Validators:** [`scripts/validate-motion-studio.mjs`](file:///Users/cairo/Documents/CETI/ACCENTURE/content-factory%20v2/ARTE/motion-atlas/scripts/validate-motion-studio.mjs) (`--selftest`) · [`scripts/vbm-walkthrough-recorder.mjs`](file:///Users/cairo/Documents/CETI/ACCENTURE/content-factory%20v2/ARTE/motion-atlas/scripts/vbm-walkthrough-recorder.mjs)
+**Contracts:** [`docs/TYPED-CONTRACT-MOTION-ATLAS.md`](file://WORKSPACE/ARTE/motion-atlas/docs/TYPED-CONTRACT-MOTION-ATLAS.md) · [`docs/META-PLAN-AND-RSI.md`](file://WORKSPACE/ARTE/motion-atlas/docs/META-PLAN-AND-RSI.md)  
+**Validators:** [`scripts/validate-motion-studio.mjs`](file://WORKSPACE/ARTE/motion-atlas/scripts/validate-motion-studio.mjs) (`--selftest`) · [`scripts/vbm-walkthrough-recorder.mjs`](file://WORKSPACE/ARTE/motion-atlas/scripts/vbm-walkthrough-recorder.mjs)
 
 ---
 
