@@ -137,6 +137,9 @@ vm.createContext(sandbox);
 const filesToLoad = [
   'geome-wada.js',
   'studio-motion-engine.js',
+  'vendor/two.min.js',
+  'studio-two-renderer.js',
+  'studio-music-engine.js',
   'studio-canvas-oauth.js',
   'studio-ui.js'
 ];
@@ -414,6 +417,9 @@ async function runAllGates() {
     'studio-motion-engine.js',
     'studio-canvas-oauth.js',
     'studio-ui.js',
+    'vendor/two.min.js',
+    'studio-two-renderer.js',
+    'studio-music-engine.js',
     'scripts/oauth-bridge-server.mjs',
     'docs/TYPED-CONTRACT-MOTION-ATLAS.md',
     'docs/META-PLAN-AND-RSI.md'
@@ -422,7 +428,7 @@ async function runAllGates() {
     'G16',
     'Zero Runtime Errors & Full Bundle Integrity',
     allFilesExist,
-    `All 9 core files present and executed in VM with 0 runtime exceptions`
+    `All 12 core files present and executed in VM with 0 runtime exceptions`
   );
 
   // G17: Tell-Apart Archetype Discriminability Kernel & 8 Timing Feels

@@ -25,14 +25,25 @@ if (!fs.existsSync(DOCS)) fs.mkdirSync(DOCS, { recursive: true });
 const html = fs.readFileSync(path.join(ROOT, 'Motion Atlas Studio Pro.dc.html'), 'utf8');
 const wada = fs.readFileSync(path.join(ROOT, 'geome-wada.js'), 'utf8');
 const eng = fs.readFileSync(path.join(ROOT, 'studio-motion-engine.js'), 'utf8');
+const twoVendor = fs.readFileSync(path.join(ROOT, 'vendor', 'two.min.js'), 'utf8'); // MIT license header comment kept verbatim
+const twoLayer = fs.readFileSync(path.join(ROOT, 'studio-two-renderer.js'), 'utf8');
+const music = fs.readFileSync(path.join(ROOT, 'studio-music-engine.js'), 'utf8');
 const co = fs.readFileSync(path.join(ROOT, 'studio-canvas-oauth.js'), 'utf8');
 const ui = fs.readFileSync(path.join(ROOT, 'studio-ui.js'), 'utf8');
 
 const standalone = html
   .replace('<script src="./geome-wada.js"></script>', () => '<script>\n' + wada + '\n</script>')
   .replace('<script src="./studio-motion-engine.js"></script>', () => '<script>\n' + eng + '\n</script>')
+  .replace('<script src="./vendor/two.min.js"></script>', () => '<script>\n' + twoVendor + '\n</script>')
+  .replace('<script src="./studio-two-renderer.js"></script>', () => '<script>\n' + twoLayer + '\n</script>')
+  .replace('<script src="./studio-music-engine.js"></script>', () => '<script>\n' + music + '\n</script>')
   .replace('<script src="./studio-canvas-oauth.js"></script>', () => '<script>\n' + co + '\n</script>')
   .replace('<script src="./studio-ui.js"></script>', () => '<script>\n' + ui + '\n</script>');
+
+// Zero-dependency promise: every <script src=...> must have been inlined above (AUDIT-v8 risk 5).
+if (/<script[^>]*\ssrc=/i.test(standalone)) {
+  throw new Error('build-package: Standalone still contains an external <script src=...> tag');
+}
 
 const standaloneRootPath = path.join(ROOT, 'Motion Atlas Studio Pro — Standalone.html');
 const standaloneDistPath = path.join(DIST, 'ceti-motion-atlas-studio-pro.standalone.html');
@@ -40,7 +51,8 @@ fs.writeFileSync(standaloneRootPath, standalone, 'utf8');
 fs.writeFileSync(standaloneDistPath, standalone, 'utf8');
 
 // Copy modular assets to dist/ as well for clean static deployment
-for (const file of ['index.html', 'Motion Atlas Studio Pro.dc.html', 'geome-wada.js', 'studio-motion-engine.js', 'studio-canvas-oauth.js', 'studio-ui.js']) {
+if (!fs.existsSync(path.join(DIST, 'vendor'))) fs.mkdirSync(path.join(DIST, 'vendor'), { recursive: true });
+for (const file of ['index.html', 'Motion Atlas Studio Pro.dc.html', 'geome-wada.js', 'studio-motion-engine.js', 'vendor/two.min.js', 'vendor/two.js-LICENSE', 'studio-two-renderer.js', 'studio-music-engine.js', 'studio-canvas-oauth.js', 'studio-ui.js']) {
   fs.copyFileSync(path.join(ROOT, file), path.join(DIST, file));
 }
 
