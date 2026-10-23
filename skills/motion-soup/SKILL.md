@@ -5,6 +5,8 @@ description: Build or upgrade any animated explainer / motion-graphics deliverab
 
 # motion-soup
 
+**Scripts.** This skill's scripts, references and configs ship in the repo `github.com/manutej/ceti-motion-atlas-studio-pro` under `skills/motion-soup/` (the four sibling folders together). Run the commands below from a repo root that has those folders; copy them in if absent.
+
 A model soup for motion work. N independent candidates per lane, one merger per lane, one integrator, one blind critic, the repo's test command as the only judge, a ledger that writes the next round's prompts. Workers are **Opus subagents** spawned with the `Agent` tool; the orchestrator (you — Fable when available, Opus otherwise) only frames, spawns, runs gates, and decides. Nothing here is accepted because an agent said so.
 
 **The set.** This skill is the build loop of four. Each sibling owns part of the 9-element film spec, ships a runnable checker, and is called from a named step here:

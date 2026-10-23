@@ -5,6 +5,8 @@ description: Write the brief every animated explainer or motion graphic starts f
 
 # motion-brief
 
+**Scripts.** This skill's scripts, references and configs ship in the repo `github.com/manutej/ceti-motion-atlas-studio-pro` under `skills/motion-brief/` (the four sibling folders together). Run the commands below from a repo root that has those folders; copy them in if absent.
+
 Intake for the four-skill motion set: **motion-brief** (this: what the film is) → **motion-soup** (parallel build loop) → **motion-critique** (stills scored to 8+) → **motion-deliver** (MP4 and deliverables). This skill owns items 1–6 of the owner's film spec (`docs/rsi/FILM-SPEC-9.md`) and writes defaults for 7–9 that the sibling skills read. Everything downstream reads the three files it produces; nothing downstream re-asks the owner.
 
 Read `references/brief-template.md` before writing the brief (the nine sections, the question to ask for each blank slot, who reads each line). Read `references/beat-grammar.md` before writing `beats.json`. `examples/` holds a passing brief, board and bible made from the repo's `v9-mcp-server` board.

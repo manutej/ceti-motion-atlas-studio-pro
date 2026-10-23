@@ -5,6 +5,8 @@ description: Critique loop for animated explainers and motion graphics (film spe
 
 # motion-critique — stills → score → worst 3 → fix → repeat until 8+
 
+**Scripts.** This skill's scripts, references and configs ship in the repo `github.com/manutej/ceti-motion-atlas-studio-pro` under `skills/motion-critique/` (the four sibling folders together). Run the commands below from a repo root that has those folders; copy them in if absent.
+
 Third of four: **motion-brief** (writes `work/BRIEF.md`, `work/beats.json`) → **motion-soup** (parallel lane build) →
 **motion-critique** (this) → **motion-deliver** (MP4, loop check, poster, contact sheet). This skill owns FILM-SPEC-9
 item 8: *"Render stills, score them, write the 3 worst problems, fix, repeat until every score is 8+."* The gate it

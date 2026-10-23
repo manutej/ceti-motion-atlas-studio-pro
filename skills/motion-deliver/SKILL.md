@@ -5,6 +5,8 @@ description: Deliverables for animated explainers and motion graphics (film spec
 
 # motion-deliver — seek every frame → MP4 → verify → loop check → gate
 
+**Scripts.** This skill's scripts, references and configs ship in the repo `github.com/manutej/ceti-motion-atlas-studio-pro` under `skills/motion-deliver/` (the four sibling folders together). Run the commands below from a repo root that has those folders; copy them in if absent.
+
 Last of four: **motion-brief** (`work/BRIEF.md`, `work/beats.json`) → **motion-soup** (lane build loop) →
 **motion-critique** (stills scored to 8+) → **motion-deliver** (this). It owns FILM-SPEC-9 item 9: *"Final MP4, loop
 check, poster frame, contact sheet, clean source with a README."* It feeds two gates from motion-soup
