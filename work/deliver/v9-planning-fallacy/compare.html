@@ -1,0 +1,10 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>v9-planning-fallacy · v9.1 vs v9.2</title>
+<!-- Wipe compare adapted from motion-graphics/skills/motion-broll/templates/compare.html (MIT, Bart); stills instead of video. -->
+<style>:root{--resolvedAt: 2026-10-23T00:20:44.021Z;} body{margin:0;padding:16px;font:15px/1.4 system-ui,sans-serif;background:var(--paper, Canvas);color:var(--ink, CanvasText)}
+.wipe{position:relative;max-width:1100px;margin:auto} .wipe img{display:block;width:100%} .top{position:absolute;inset:0;overflow:hidden;width:50%} .top img{width:calc(100% * 2)}
+input{width:100%;max-width:1100px;display:block;margin:12px auto} p{max-width:1100px;margin:8px auto}</style></head><body>
+<p><b>v9-planning-fallacy</b> · landing frame · left: v9.1 · right: v9.2 (drag to wipe)</p>
+<div class="wipe"><img src="poster.png" alt="v9.2 landing frame"><div class="top" id="top"><img src="poster-v9.1.png" alt="v9.1 landing frame"></div></div>
+<input type="range" min="0" max="100" value="50" aria-label="Wipe position" oninput="var t=document.getElementById('top');t.style.width=this.value+'%';t.firstElementChild.style.width=(this.value>0?10000/this.value:100)+'%'">
+</body></html>

@@ -1,0 +1,9 @@
+{
+  "board": "v9-planning-fallacy",
+  "totalSec": 16,
+  "seek0_vs_seekEnd": 0.0016,
+  "seek0_vs_seekWrap": 0,
+  "limit": 0.01,
+  "pass": true,
+  "note": "seekWrap = seek(totalSec), which the studio clock wraps onto the loop; seekEnd = the last landing frame (expected to differ: the landing echoes, not repeats, the hook)."
+}

@@ -1080,8 +1080,12 @@ async function runAllGates() {
   const g37 = v9Boards.map((sh) => CO.auditFilmSpec(sh));
   const coSrc = fs.readFileSync(path.join(ROOT, 'studio-canvas-oauth.js'), 'utf8');
   const hud37 = /\{ id: 'G37', name: 'Film Spec on Boards', plainName: '[^']{12,}'/.test(coSrc);
-  recordGate('G37', 'Film Spec on Boards (quick hook, payoff every 3–5 s, one pause, text boxes)', g37.every((r) => r.valid) && hud37,
-    g37.map((r, i) => v9Boards[i].id + ': ' + (r.valid ? r.detail : r.errors.join('; '))).join(' · ') + ` · HUD plain name ${hud37}`);
+  // deliverables sub-predicate (v9.2 step 7): work/deliver/<board>/ holds the five deliverables and the loop check passes
+  const DEL = ['poster.png', 'contact-sheet.png', 'loop-check.json', 'README.md', 'compare.html'];
+  const delOk = Object.keys(CO.V9_STORYBOARDS).every((k) => { const d = path.join(ROOT, 'work', 'deliver', k);
+    return DEL.every((f) => fs.existsSync(path.join(d, f))) && JSON.parse(fs.readFileSync(path.join(d, 'loop-check.json'), 'utf8')).pass === true; });
+  recordGate('G37', 'Film Spec on Boards (quick hook, payoff every 3–5 s, one pause, text boxes)', g37.every((r) => r.valid) && hud37 && delOk,
+    g37.map((r, i) => v9Boards[i].id + ': ' + (r.valid ? r.detail : r.errors.join('; '))).join(' · ') + ` · HUD plain name ${hud37} · 5 deliverables + loop check per board ${delOk}`);
 
   // Print Summary Table
   const passedCount = results.filter((r) => r.pass).length;
