@@ -31,7 +31,7 @@ Do not use for a one-line fix, a prose-only task with no checkable output, or wh
 
 Every step names what runs, how it is spawned, and what verifies it. Steps 3, 5 and 7 spawn **in a single message** so agents run concurrently.
 
-**0. Frame (you, ~3 min).** Read the brief. Confirm the test command exits 0 before anything changes (`npm test`). Pick lanes. Pick N (2 for a known lane, 3 for a new one). Pick the audit set. Freeze the contract: write `work/<lane>/CONTRACT.md` per lane (API stub + self-test shape from `references/lanes.md`, ≤ 60 lines).
+**0. Frame (you, ~3 min).** Read the brief. Confirm the test command exits 0 before anything changes (`npm test`). Pick lanes. Pick N (2 for a known lane, 3 for a new one). Pick the audit set. Freeze the contract: write `work/<lane>/CONTRACT.md` per lane (API stub + self-test shape from `references/lanes.md`, ≤ 60 lines) and walk the checklist in §Authoring a lane CONTRACT.md — every item the contract leaves silent is a gap all N candidates will hit independently (round 2: three of them, three times).
 
 **1. Resolve tokens (you, 1 min).**
 ```
@@ -39,7 +39,7 @@ node skills/motion-soup/scripts/soup-runner.mjs resolve-tokens <source>... --out
 ```
 Sources: `css:<file>`, `json:<file>`, `wada:<id>[@<engine.js>]`, `cjs:<file>#<export>`. Later sources override earlier ones. Check `missing` in the output; fill missing roles from another source or state in the brief that the lane may not need them. Every candidate prompt references this file **by path**; nobody pastes values.
 
-**2. Self-query (you, 2 min).** Run the 12 questions in `references/prompts.md` §Self-queries against the current accepted artifact (round 0: the brief). Each unanswered question becomes a `required_slots` line in the candidate prompt. A question with no gate and no predictor is not asked.
+**2. Self-query + lens check (you, 3 min).** Run the 12 questions in `references/prompts.md` §Self-queries against the current accepted artifact (round 0: the brief). Each unanswered question becomes a `required_slots` line in the candidate prompt. A question with no gate and no predictor is not asked. Then check every lens seed against the ledger (§Lens seeds vs ledger) before it goes into a prompt.
 
 **3. Fan-out (Opus, parallel, 8–15 min wall).** For every lane × candidate, one `Agent` call, all in one message:
 ```
@@ -65,12 +65,7 @@ Each prompt is self-contained (no shared chat context): lens, contract path, tok
 
 **8. Gate audit (you, 3 min).** Run the repo test command. Run `check-literals` on every touched file. Dominance: on the audit set, soup ≥ bestSingle on every gate and strictly better on ≥ 1 metric, else ship bestSingle. Pair compatibility: old inputs × new module and new inputs × old module both pass; seek-hash unchanged for untouched nodes.
 
-**9. Ledger (you, 2 min).** One row per candidate, soup, gate, critic prediction, open item, verdict:
-```
-node skills/motion-soup/scripts/soup-runner.mjs ledger add '{"round":K,"lane":"music","kind":"candidate","id":"A","selftest":"exit0","bytes":25519,"minutes":11}'
-node skills/motion-soup/scripts/soup-runner.mjs report
-```
-Compare critic `predicted` with observed `firstFlag`; a wrong prediction becomes an `avoid:` line in next round's `required_slots`.
+**9. Ledger (you, 2 min).** One row per candidate, merge, critic, integrate, verdict (plus `gate`/`open` rows as needed), in the exact shapes of §Ledger row schema — `ledger add` rejects anything else with exit 1 and the missing field names. Rows are best written as each agent hands back (step 3, 5, 7), not all at the end. Then `soup-runner.mjs report --round K`. Compare critic `predicted` with observed `firstFlag`; a wrong prediction becomes an `avoid:` line in next round's `required_slots`.
 
 **10. Accept or retain old.** Accept only if 8 passed in full. Otherwise keep the **whole** previous (prompts, predictor, artifact); the round's atoms survive as E1 proposals. No partial acceptance — that is how coupling breaks silently.
 
@@ -91,18 +86,21 @@ Every lane also inherits the universal gates below.
 
 ## Budgets & timing
 
-| Phase | Runs | Parallel? | Expected wall |
-|---|---|---|---|
-| 0–2 frame, tokens, self-query | orchestrator | — | 5 min |
-| 3 candidates | lanes × N Opus agents | all at once | 8–15 min |
-| 4 diversity | runner | — | 1 min |
-| 5 mergers | one Opus per lane | all at once | 10–15 min |
-| 6 soup gates | runner + node | — | 2 min |
-| 7 integrator + critic | 2 agents | together | 10–20 min |
-| 8–10 audit, ledger, verdict | orchestrator | — | 5 min |
-| **Round total (3 lanes, N=2)** | 9 agents | | **≈ 40–60 min** |
+Measured on the round-2 rail test (one lane `transitions`, N=3, all workers Opus 5.5 via `Agent` with `run_in_background`, 2026-10-23); phases not run that day keep their round-1 estimates and say so.
 
-Per-agent budgets written into every prompt: candidate file ≤ 40 KB, self-test ≤ 12 KB, ≤ 25 tool calls hint, ≤ 8-line report, stop when the self-test exits 0. Merger ≤ 40 KB soup. Integrator ≤ 1 touched line-range per step. Agents never read a file > 300 lines whole: `grep -n` then `Read` with `offset`/`limit`.
+| Phase | Runs | Parallel? | Wall (measured r2) | Tool calls | Note |
+|---|---|---|---|---|---|
+| 0–2 frame, contract, tokens, self-query | orchestrator | — | ≈ 3 min | — | 37-line CONTRACT.md authored inside this window |
+| 3 candidates | lane × N Opus agents | all at once, one message | **3.5 / 4 / 4 min** | **10 / 11 / 9** | all three selftest exit 0, 0 literals; 12.3 / 15.8 / 9.9 KB |
+| 4 diversity | runner | — | < 1 min | — | min 0.897 (floor 0.35) |
+| 5 merger | one Opus per lane | all at once | **8.5 min** | **19** | soup 25/25, bestSingle A 20/25, 4 open contradictions, 10 E1 atoms |
+| 6 soup gates | runner + node | — | 1 min | — | selftest-merged, check-literals, size cap, forbidden grep |
+| 7 integrator + critic | 2 agents | together | 10–20 min (est., not run r2) | ≤ 40 / ≤ 20 | round 1 integrator was run as a one-off, unmeasured |
+| 8–10 audit, ledger, verdict | orchestrator | — | 2–5 min | — | |
+| **One lane, N=3, through merge (measured)** | 4 agents | | **≈ 16 min** orchestrator wall (00:20:35 → 00:36:19) | 49 | fan-out + merge ≈ 12.5 min of it; the rest is contract authoring and orchestration |
+| **Round total (3 lanes, N=2–3, with integrator + critic)** | 9–12 agents | | **≈ 35–50 min** (est.) | | lanes run concurrently, so wall ≈ one lane + integrator |
+
+Per-agent budgets written into every prompt: candidate file ≤ 40 KB (lane may cap lower — transitions caps at 18 KB), self-test ≤ 12 KB, ≤ 25 tool calls hint (measured: 9–11 is normal for a candidate, 19 for a merger), ≤ 8-line report, stop when the self-test exits 0. Merger ≤ 40 KB soup. Integrator ≤ 1 touched line-range per step. Agents never read a file > 300 lines whole: `grep -n` then `Read` with `offset`/`limit`.
 
 ## Token resolver
 
@@ -116,6 +114,8 @@ tempo:  range[min,max], byFeel{}
 ```
 Candidates read roles (`tokens.color.accent`), never values. `resolve-tokens` prints `missing`; `--strict` turns missing into exit 1. A lane that needs no tempo may ignore `tempo`, but the file still declares it so the gate has something to compare against.
 
+**Source order when roles come back `missing` (measured r2: the host CSS alone left `color.accent`, `color.highlight`, `color.contrast` missing).** Later sources override earlier ones, so add in this order and re-run until `missing` is empty or explained: (1) `css:<shell>` — paper/ink/type come from here; (2) `wada:<non-audit id>@<palette engine>` — accent/highlight/contrast come from a palette combination, never from the shell CSS, which only names surfaces; (3) `cjs:<module>#<export>` — tempo range + feel names; (4) `json:<brand>` for anything still missing. If a role is still missing, write it into the brief as "lane may not need it" or into `work/tokens.missing.md` for a human — never invent it. Note what the resolved file does **not** carry (r2: `motion.feels` had names but no easing; `type.scale` absent) and say so in the contract, otherwise every candidate rediscovers it.
+
 ## Gates
 
 **Universal** (every host, implemented by the runner or a 10-line node predicate; see `references/gates.md`): determinism (same `(t, seed)` → identical output; no `Math.random|Date.now|performance.now|requestAnimationFrame` in render/schedule paths), no-literal-token (`check-literals` exit 0), size caps, selftest-exit-0, dominance (soup ≥ best single on the audit set), diversity floor (≥ 0.35), additive-schema-only (existing fields untouched; new fields optional).
@@ -125,6 +125,95 @@ Candidates read roles (`tokens.color.accent`), never values. `resolve-tokens` pr
 ## Retain-old rule
 
 If dominance, pair compatibility, or the held-out comparison fails, keep the **entire** previous pair (prompt-set, predictor) and the previous artifact. Ship `bestSingle` only if it alone passes every gate. Record the round's atoms as E1. Never merge "the good half".
+
+## Ledger row schema
+
+`work/soup-ledger.jsonl`: one JSON object per line, `kind` selects the shape, `ts` is added on write. `ledger add` validates against this table (mirrored in the runner's `SCHEMA`) and exits 1 naming the missing/mistyped fields; `report` renders exactly these shapes. A pre-schema combined row (candidates{} + merge{} in one object, no `kind`) is expanded for display with a one-line `warn:` — re-add it properly. Numbers are numbers (`"selftest":0`, not `"exit0"`); `n/n` is a string.
+
+| kind | required | optional |
+|---|---|---|
+| `candidate` | `round` `lane` `id` `selftest` (exit code) `literals` (check-literals exit) `minutes` | `bytes` `wow`∈[0,1] `firstFlag` `toolCalls` `lens` `gaps` (count of 'contract gaps' lines) |
+| `merge` | `round` `lane` `predicates` "n/n" `bestSingle` `minutes` | `diversity` (min pairwise) `bestSinglePredicates` "n/n" `openContradictions` `atoms` `literals` `bytes` `toolCalls` |
+| `critic` | `round` `lane` `firstFlag` (predicted, soup) `wow` (soup) `rank` soup\|best `authority` `minutes` | `phi` `bestFirstFlag` `bestWow` `bassCut` |
+| `integrate` | `round` `test` (before → after) `steps` "n/n" `reverted` [] `minutes` | `gates` [] `mutations` [] `literals` `toolCalls` `openItems` [] |
+| `verdict` | `round` `result` accept\|retain-old\|bestSingle\|… `lanes` {lane → soup\|bestSingle\|nothing} `wallMinutes` | `why` `observedFirstFlag` {lane → G##} |
+| `gate` / `open` | `round` `gate` `pass` / `round` `text` | `lane` `detail` |
+
+Exact rows the orchestrator passes (round-2 values):
+```
+ledger add '{"round":2,"lane":"transitions","kind":"candidate","id":"A","selftest":0,"literals":0,"bytes":12266,"wow":0.55,"firstFlag":"P5 number scan on SECONDS_PER_MINUTE","toolCalls":10,"minutes":3.5}'
+ledger add '{"round":2,"lane":"transitions","kind":"merge","diversity":0.897,"predicates":"25/25","bestSingle":"A","bestSinglePredicates":"20/25","openContradictions":4,"atoms":10,"literals":0,"bytes":17869,"toolCalls":19,"minutes":8.5}'
+ledger add '{"round":2,"lane":"transitions","kind":"critic","phi":"φ-0","firstFlag":"G35.5","wow":0.6,"bestFirstFlag":"G35.4","bestWow":0.5,"rank":"soup","authority":"advisory","minutes":6}'
+ledger add '{"round":2,"kind":"integrate","test":"33/33 gates, 14/14 mut → 34/34, 15/15","steps":"9/9","reverted":[],"gates":["G35"],"mutations":["MUT-15"],"literals":0,"minutes":12}'
+ledger add '{"round":2,"kind":"verdict","result":"accept","lanes":{"transitions":"soup"},"wallMinutes":16,"why":"soup 25/25 ≥ bestSingle 20/25 on every predicate"}'
+```
+`report` then prints per round: verdict + shipped lanes, wall, agent-minutes (sum of candidate/merge/critic/integrate), per lane one line per candidate (selftest · literals · wow · minutes), diversity min, merge n/n + bestSingle (n/n) + open + atoms, critic line or `not run`, integrate line or `not run`, then FAIL/OPEN rows.
+
+## Authoring a lane CONTRACT.md (checklist)
+
+Round 2 proved that whatever the contract leaves silent, every candidate decides alone and differently (three candidates, three identical gaps: boards had no `start/dur/feel`; zoom lived in `cameraMove`, the contract said `show`; `tokens.motion.feels` carried no easing). ≤ 60 lines; copy the stub from `references/lanes.md`; then tick every line below — an unticked line is a gap, so write the default *into* the contract:
+
+1. **API** — every function with argument order, return shape (optional fields marked `?`), the enum for every string field (`kind ∈ …`), and the module name on `window` / `module.exports`. Extra return fields: allowed or forbidden, say which.
+2. **Beat fields with defaults + where each tag lives** — for every beat field the lane reads: its path (`beat.show` vs `beat.cameraMove` vs `beat.visualAction`), its type, and the default when the host board omits it (`start`/`dur` from `totalDurationSec / n`; `feel` from grammar role; `focus` from thirds grid). Open the real example boards and check each field is actually present before naming it.
+3. **Timing source** — where seconds come from (`tokens.tempo.byFeel[feel]`, a feel duration, a board field), the fallback order, and what the lane does when none exists (a number, not "NaN").
+4. **Relation / state inference order** — the full precedence list, top to bottom, including every trigger token (`hinge: BUT`, `say` starts with "But", `claimId` differs, `returns` set). Two candidates ranking two rules differently is a contradiction the merger cannot resolve without this line.
+5. **Tokens the lane may rely on** — which roles the resolved file carries and which it does **not** (r2: feels have names, no easing). Say what to do when a role is empty (linear, not invented).
+6. **Size cap** per file, in KB, for candidate, self-test and soup.
+7. **Self-test predicates, numbered** — each one checkable by a node script with no deps; name the fixture (which board, how loaded); say which numeric literals are exempt (unit constants like `60 s/min`), otherwise a candidate's own scan flags them.
+8. **Negative mutation** — the one `sed`-able line to break and the predicate number that must fail.
+9. **Host read ranges** — ≤ 5 `file:lineStart-lineEnd` ranges the candidate may read whole; everything else grep-only. Include the storyboard schema file.
+10. **Lane tie-breaks that are contract** — the sentences the merger may cite as law (`focus from B governs`, `hold length applies to cut only`); anything not here is logged open.
+11. **Gap rule** — the line "if the contract is silent, choose the simplest default, state it under 'contract gaps' in cand-<I>.md, do not ask" (the prompt repeats it; the contract owns it).
+
+## Lens seeds vs ledger
+
+A lens is wasted when a ratified atom already decides what the lens would vary (r2: candidate C's "cuts only" lens was overridden by the E2 atom *direction encodes relation* — wipe/split/iris fixed for most relations — so C differed from A/B only on hook/callback/breather and scored last at 18/25). Rule, before step 3:
+
+- For each lens seed, grep the ledger digest (E2/E3 atoms for the lane) for the lens's key nouns (`cut`, `focus`, `hold`, `reading order`, …). If an atom fixes that dimension, the lens is dead: replace it with one that varies a dimension no atom names (r2 replacement for C: "meaning carried by focus *travel* between beats", or "semantic-first: templates drive kinds").
+- A lens must name **one** dimension and the direction it pushes; "minimal" is not a lens.
+- Keep the lens text in the candidate row (`lens`) so the next round can see which lenses produced the bestSingle and which were dead.
+- Three live lenses ≥ the diversity floor by construction; if a check still fails at step 4, the lenses were restatements, not dimensions.
+
+## Orchestrator runbook (copy-paste)
+
+One lane round, in order. `R=node skills/motion-soup/scripts/soup-runner.mjs`, `L=<lane>`, `K=<round>`. Steps marked **one message** spawn every `Agent` call in a single assistant turn so they run concurrently; wait for all hand-backs before the next step.
+
+```
+# 0 frame
+npm test                                                      # exit 0 or stop
+mkdir -p work/$L && $EDITOR work/$L/CONTRACT.md               # §Authoring checklist, ≤ 60 lines
+# 1 tokens (source order: css → wada → cjs → json; re-run until missing is empty or explained)
+$R resolve-tokens css:index.html wada:<non-audit-id>@geome-wada.js cjs:studio-music-engine.js#TEMPO --out work/tokens.resolved.json
+# 2 self-queries → required_slots; lens check
+$R report --round $((K-1))                                    # digest of atoms; grep each lens noun (§Lens seeds vs ledger)
+# 3 fan-out — ONE MESSAGE, N Agent calls (prompts.md §1, slots filled, {{CONTRACT_GAPS}} line present)
+Agent({description:"soup r$K $L cand-A", subagent_type:"general-purpose", model:"opus", run_in_background:true, prompt:<CANDIDATE A>})
+Agent({description:"soup r$K $L cand-B", ... prompt:<CANDIDATE B>})
+Agent({description:"soup r$K $L cand-C", ... prompt:<CANDIDATE C>})
+#   as each hands back: verify its two VERIFY commands yourself, then ledger it
+node work/$L/selftest-A.js; $R check-literals work/$L/cand-A.js --tokens work/tokens.resolved.json
+$R ledger add '{"round":K,"lane":"L","kind":"candidate","id":"A","selftest":0,"literals":0,"bytes":N,"wow":0.55,"firstFlag":"…","toolCalls":10,"minutes":3.5}'
+# 4 diversity — between fan-out and merge, never skipped
+$R diversity work/$L/cand-*.js --min 0.35                      # FAIL → one more candidate with a forced different lens, back to 3
+# 5 merge — ONE MESSAGE, one Agent per lane (prompts.md §2; GATE_TABLE = your step-3 verifications)
+Agent({description:"soup r$K $L merger", subagent_type:"general-purpose", model:"opus", run_in_background:true, prompt:<MERGER>})
+$R ledger add '{"round":K,"lane":"L","kind":"merge","diversity":0.897,"predicates":"25/25","bestSingle":"A","bestSinglePredicates":"20/25","openContradictions":4,"atoms":10,"literals":0,"bytes":N,"toolCalls":19,"minutes":8.5}'
+# 6 soup gates (you)
+node work/$L/selftest-merged.js
+$R check-literals work/$L/soup.js --tokens work/tokens.resolved.json
+test $(wc -c < work/$L/soup.js) -le $((CAP_KB*1024)) && ! grep -nE 'Math\.random|Date\.now|performance\.now|requestAnimationFrame' work/$L/soup.js
+# 7 integrate + critic — ONE MESSAGE, two Agent calls (prompts.md §3, §4); critic sees no test output
+Agent({description:"soup r$K integrator", model:"opus", run_in_background:true, prompt:<INTEGRATOR>})
+Agent({description:"soup r$K blind critic", model:"<fable|opus>", run_in_background:true, prompt:<CRITIC>})
+$R ledger add '{"round":K,"kind":"integrate","test":"33/33,14/14 → 34/34,15/15","steps":"9/9","reverted":[],"gates":["G35"],"mutations":["MUT-15"],"literals":0,"minutes":12}'
+$R ledger add '{"round":K,"lane":"L","kind":"critic","firstFlag":"G35.5","wow":0.6,"rank":"soup","authority":"advisory","minutes":6}'
+# 8 audit (you)
+npm test; $R check-literals <every touched file> --tokens work/tokens.resolved.json      # + dominance on the audit set, pair compatibility
+# 9–10 verdict + report
+$R ledger add '{"round":K,"kind":"verdict","result":"accept","lanes":{"L":"soup"},"wallMinutes":16,"why":"…"}'
+$R report --round $K
+```
+Round-level check after step 3: all N back within ~5 min of each other means the contract was equally clear to all; one straggler usually means it hit a gap the others defaulted past — read its `contract gaps` first.
 
 ## Report format
 
@@ -153,3 +242,6 @@ Orchestrator round report = `soup-runner.mjs report` output + one line per lane:
 - **Critic that saw the test output** — then it is not a predictor and its reliability record is void.
 - **Gate without a mutation** — nobody knows if it can fail.
 - **Naming the audit set in a prompt** — dominance is then measured on tuned data.
+- **A ledger row in your own shape** — `report` cannot read it, so the round leaves no trace (r2: one combined row rendered as "candidates 0"). Use §Ledger row schema; the runner now refuses anything else.
+- **A lens a ledger atom already decides** — the candidate converges on its siblings and the soup gains nothing from it (r2: "cuts only" vs E2 *direction encodes relation*). Check §Lens seeds vs ledger before spawning.
+- **A contract that trusts the board** — if the contract names `beat.show` but the boards carry `cameraMove`, every candidate reads one or the other and the merger inherits a contradiction nobody can cite. Open the boards while writing the contract.

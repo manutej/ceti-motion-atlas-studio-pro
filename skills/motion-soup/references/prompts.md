@@ -19,6 +19,7 @@ Shared slots:
 | `{{FORBIDDEN}}` | lane forbidden tokens (regex) + elements that failed in ≥ 2 candidates last round |
 | `{{LEDGER_DIGEST}}` | ≤ 40 lines of E2/E3 atoms for this lane, newest first (empty in round 1) |
 | `{{HOST_READS}}` | ≤ 5 `file:lineStart-lineEnd` ranges the agent may read; everything else is grep-only |
+| `{{CONTRACT_GAPS}}` | gaps the orchestrator already knows and has decided (one line each: field → default), or `none known`; the candidate adds its own under 'contract gaps' |
 
 ---
 
@@ -36,11 +37,12 @@ RULES
 - Big files: never Read a file over 300 lines whole. grep -n for the symbol, then Read with offset/limit (≤ 120 lines per read). Allowed ranges: {{HOST_READS}}.
 - Determinism: output is f(t, seed, tokens). Forbidden in render/schedule paths: Math.random, Date.now, performance.now, requestAnimationFrame, {{FORBIDDEN}}.
 - Do not touch any file outside work/{{LANE}}/. Do not modify the validator or package.json.
+- {{CONTRACT_GAPS}}: if the contract is silent on a field you need, choose the simplest default, state it in cand-{{I}}.md under 'contract gaps' (one line: field → default chosen → why simplest), do not ask. Known gaps already decided: {{CONTRACT_GAPS}}.
 - Budget: ≤ 25 tool calls. Stop as soon as deliverable 3 exits 0.
 
 DELIVERABLES (exact paths)
 1. {{REPO}}/work/{{LANE}}/cand-{{I}}.js — IIFE exposing the contract API on window.<NAME>_{{I}} and module.exports; ≤ {{SIZE_KB}} KB; node --check clean.
-2. {{REPO}}/work/{{LANE}}/cand-{{I}}.md — ≤ 60 lines: rationale (3 lines), the slots below answered one line each, table of modules with the gate that checks each, predicted.wow ∈ [0,1], predicted.firstFlag (gate id you expect to fail first + 1 line why), mutationProof (the one line you broke, which predicate caught it, restored).
+2. {{REPO}}/work/{{LANE}}/cand-{{I}}.md — ≤ 60 lines: rationale (3 lines), the slots below answered one line each, table of modules with the gate that checks each, predicted.wow ∈ [0,1], predicted.firstFlag (gate id you expect to fail first + 1 line why), mutationProof (the one line you broke, which predicate caught it, restored), 'contract gaps' (every default you chose where the contract was silent; 'none' if none).
 3. {{REPO}}/work/{{LANE}}/selftest-{{I}}.js — node script, no deps, ≤ 12 KB, exit 0 only if every predicate in {{CONTRACT_PATH}} §self-test holds, including: same (t, seed) twice → deep-equal; forbidden-token regex on your own source; one negative mutation (patch a copy, assert a predicate fails).
 
 REQUIRED SLOTS (answer in cand-{{I}}.md; the answer IS the value)
@@ -76,13 +78,14 @@ MERGE LAW (the only three moves)
 - UNION: keep every module/element that passes a gate in ≥ 1 candidate. Drop elements that fail in all.
 - INTERSECTION: a rule every candidate states becomes a proposedAtom (evidence E1). Write it; do not enforce it beyond this round.
 - CONTRADICTION: resolve by a contract clause (cite it), else by a ledger E2/E3 atom (cite the row), else write it to openContradictions. "I prefer" is not a resolution.
+- CONTRACT GAPS: read the 'contract gaps' section of every cand-*.md; write every gap line that ≥ 2 candidates share as an E1 atom of type `contract` (text: field → the default to write into CONTRACT.md next round). A gap only one candidate hit goes into MERGE-NOTES §open risk.
 Lane tie-breaks that ARE contract: {{LANE_TIEBREAKS}}.
 
 DELIVERABLES
 1. {{REPO}}/work/{{LANE}}/soup.js — one module exposing the contract API; ≤ {{SIZE_KB}} KB; node --check clean; token roles only; same forbidden-token rule as candidates.
 2. {{REPO}}/work/{{LANE}}/selftest-merged.js — superset of every candidate self-test predicate that survived + the contract predicates; exit 0; includes one negative mutation.
 3. {{REPO}}/work/{{LANE}}/MERGE-NOTES.md — ≤ 80 lines: provenance table (module · source candidate · law applied); intersection list; contradictions table (topic · A · B · resolution · cite); DOMINANCE ARGUMENT: for each candidate, why soup ⊇ it (which predicate the single fails or lacks that the soup passes); the lane's gate predicates as text/node checks + one negative mutation (sed-able, verified); bestSingle = candidate with most predicates passed, ties by predicted.wow.
-4. {{REPO}}/work/{{LANE}}/proposed-atoms.json — [{type: gate|mutation|vocab|motif|transition, text, evidence: "E1"}].
+4. {{REPO}}/work/{{LANE}}/proposed-atoms.json — [{type: gate|mutation|vocab|motif|transition|contract, text, evidence: "E1"}].
 
 VERIFY before reporting (paste exit codes):
   node {{REPO}}/work/{{LANE}}/selftest-merged.js

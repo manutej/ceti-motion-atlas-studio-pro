@@ -5,6 +5,8 @@
 //   node skills/motion-soup/scripts/soup-runner.mjs check-literals <dir|file>... [--tokens work/tokens.resolved.json] [--ignore <substr>]...
 //   node skills/motion-soup/scripts/soup-runner.mjs diversity <file>... [--min 0.35]
 //   node skills/motion-soup/scripts/soup-runner.mjs ledger add '<json>' | @file.json | -   [--ledger work/soup-ledger.jsonl]
+//                                 row.kind ∈ candidate|merge|critic|integrate|verdict|gate|open; a row missing a required
+//                                 field exits 1 naming the fields (schema: SKILL.md §Ledger row schema, SCHEMA below)
 //   node skills/motion-soup/scripts/soup-runner.mjs report [--ledger work/soup-ledger.jsonl] [--round N]
 //
 // Token sources (later sources override earlier ones for the same role):
@@ -199,21 +201,73 @@ function diversity(files) {
 }
 
 // ---------- ledger ----------
+// Row schema (SKILL.md §Ledger row schema). One JSON object per line; `kind` selects the shape; `ts` is added on write.
+// Types: num = finite number · n/n = string like "25/25" · arr = array · obj = object · str = string.
+const SCHEMA = {
+  candidate: { req: { round: 'num', lane: 'str', id: 'str', selftest: 'num', literals: 'num', minutes: 'num' },
+               opt: { bytes: 'num', wow: 'num', firstFlag: 'str', toolCalls: 'num', lens: 'str', gaps: 'num' } },
+  merge:     { req: { round: 'num', lane: 'str', predicates: 'n/n', bestSingle: 'str', minutes: 'num' },
+               opt: { diversity: 'num', bestSinglePredicates: 'n/n', openContradictions: 'num', atoms: 'num', literals: 'num', bytes: 'num', toolCalls: 'num' } },
+  critic:    { req: { round: 'num', lane: 'str', firstFlag: 'str', wow: 'num', rank: 'str', authority: 'str', minutes: 'num' },
+               opt: { phi: 'str', bestFirstFlag: 'str', bestWow: 'num', bassCut: 'str' } },
+  integrate: { req: { round: 'num', test: 'str', steps: 'n/n', reverted: 'arr', minutes: 'num' },
+               opt: { gates: 'arr', mutations: 'arr', literals: 'num', toolCalls: 'num', openItems: 'arr' } },
+  verdict:   { req: { round: 'num', result: 'str', lanes: 'obj', wallMinutes: 'num' },
+               opt: { why: 'str', observedFirstFlag: 'obj' } },
+  gate:      { req: { round: 'num', gate: 'str', pass: 'bool' }, opt: { lane: 'str', detail: 'str' } },
+  open:      { req: { round: 'num', text: 'str' }, opt: { lane: 'str' } },
+};
+const typeOk = (v, t) => t === 'num' ? (typeof v === 'number' && Number.isFinite(v)) : t === 'str' ? typeof v === 'string' && v.length > 0
+  : t === 'n/n' ? /^\d+\/\d+$/.test(String(v)) : t === 'arr' ? Array.isArray(v) : t === 'obj' ? (v && typeof v === 'object' && !Array.isArray(v)) : t === 'bool' ? typeof v === 'boolean' : true;
+function validateRow(row) {
+  const errs = [];
+  if (!row || typeof row !== 'object' || Array.isArray(row)) return ['row is not a JSON object'];
+  const sch = SCHEMA[row.kind];
+  if (!sch) return [`kind "${row.kind ?? '(none)'}" unknown — use one of ${Object.keys(SCHEMA).join('|')}`];
+  const missing = Object.keys(sch.req).filter((k) => !(k in row));
+  if (missing.length) errs.push('missing: ' + missing.join(', '));
+  for (const [k, t] of Object.entries({ ...sch.req, ...sch.opt })) if (k in row && !typeOk(row[k], t)) errs.push(`bad type: ${k} (want ${t})`);
+  if (row.kind === 'candidate' && row.wow != null && (row.wow < 0 || row.wow > 1)) errs.push('bad range: wow must be in [0,1]');
+  return errs;
+}
 function ledgerAdd(raw) {
   const ledger = flag('ledger', DEFAULT_LEDGER);
   if (!raw) die('ledger add needs a JSON argument, @file or -');
   let text = raw === '-' ? fs.readFileSync(0, 'utf8') : raw.startsWith('@') ? readText(raw.slice(1)) : raw;
-  const row = JSON.parse(text);
+  let row; try { row = JSON.parse(text); } catch (e) { console.error('ledger add: not JSON — ' + e.message); process.exit(1); }
+  const errs = validateRow(row);
+  if (errs.length) { console.error(`ledger add: row kind=${row && row.kind ? row.kind : '(none)'} rejected — ${errs.join('; ')}`); process.exit(1); }
   row.ts ??= new Date().toISOString();
   fs.mkdirSync(path.dirname(ledger), { recursive: true });
   fs.appendFileSync(ledger, JSON.stringify(row) + '\n');
-  console.log(`ledger: +1 row -> ${ledger} (round=${row.round ?? '?'} lane=${row.lane ?? '-'} kind=${row.kind ?? '-'})`);
+  console.log(`ledger: +1 row -> ${ledger} (round=${row.round} lane=${row.lane ?? '-'} kind=${row.kind}${row.id ? ' id=' + row.id : ''})`);
+}
+// A pre-schema "combined" row (one object with candidates{} + merge{} and no kind) is expanded for display only, with a warning.
+function expandLegacy(row, where) {
+  if (!row || row.kind || !row.candidates || typeof row.candidates !== 'object') return null;
+  const out = [];
+  for (const [id, c] of Object.entries(row.candidates)) out.push({ round: row.round, lane: row.lane, kind: 'candidate', id, selftest: c.selftest, literals: c.literals, wow: c.wow, minutes: c.minutes });
+  if (row.merge) out.push({ round: row.round, lane: row.lane, kind: 'merge', diversity: row.diversity_min, predicates: row.merge.predicates, bestSingle: row.merge.bestSingle, bestSinglePredicates: row.merge.bestSinglePredicates, openContradictions: row.merge.openContradictions, atoms: row.atoms, minutes: row.merge.minutes });
+  if (row.verdict) out.push({ round: row.round, kind: 'verdict', result: row.verdict, lanes: { [row.lane]: 'soup' }, wallMinutes: row.wallMinutes });
+  console.log(`warn: ${where} is a legacy combined row (no "kind") — expanded for display into ${out.length} rows; re-add it in the documented shape (SKILL.md §Ledger row schema)`);
+  return out;
 }
 function readLedger() {
   const ledger = flag('ledger', DEFAULT_LEDGER);
   if (!fs.existsSync(ledger)) return [];
-  return readText(ledger).split('\n').filter(Boolean).map((l) => { try { return JSON.parse(l); } catch { return null; } }).filter(Boolean);
+  const rows = [];
+  readText(ledger).split('\n').forEach((l, i) => {
+    if (!l.trim()) return;
+    const where = `${ledger}:${i + 1}`;
+    let row; try { row = JSON.parse(l); } catch { console.log(`warn: ${where} is not JSON — skipped`); return; }
+    const legacy = expandLegacy(row, where);
+    if (legacy) { rows.push(...legacy); return; }
+    if (!SCHEMA[row.kind]) { console.log(`warn: ${where} has unknown kind "${row.kind ?? '(none)'}" — skipped`); return; }
+    rows.push(row);
+  });
+  return rows;
 }
+const fmtMin = (m) => (typeof m === 'number' ? m + 'm' : '?m');
 function report() {
   const rows = readLedger();
   if (!rows.length) { console.log('report: ledger empty'); return; }
@@ -226,18 +280,22 @@ function report() {
     const gates = rr.filter((r) => r.kind === 'gate');
     const pass = gates.filter((g) => g.pass).length;
     const verdict = rr.find((r) => r.kind === 'verdict');
-    const mins = rr.filter((r) => typeof r.minutes === 'number').reduce((a, r) => a + r.minutes, 0);
-    console.log(`\n== round ${R} == lanes: ${lanes.join(', ') || '-'} | rows ${rr.length} | gates ${pass}/${gates.length} | agent-minutes ${mins || '?'} | verdict: ${verdict ? verdict.result : 'open'}`);
+    const integ = rr.find((r) => r.kind === 'integrate');
+    const agentMins = rr.filter((r) => ['candidate', 'merge', 'critic', 'integrate'].includes(r.kind) && typeof r.minutes === 'number').reduce((a, r) => a + r.minutes, 0);
+    const ship = verdict && verdict.lanes ? ' (' + Object.entries(verdict.lanes).map(([l, v]) => l + '=' + v).join(', ') + ')' : '';
+    console.log(`\n== round ${R} == lanes: ${lanes.join(', ') || '-'} | rows ${rr.length} | verdict: ${verdict ? verdict.result + ship : 'open'} | wall ${verdict ? fmtMin(verdict.wallMinutes) : '?m'} | agent-minutes ${agentMins || '?'}${gates.length ? ` | host gates ${pass}/${gates.length}` : ''}`);
     for (const lane of lanes) {
       const c = rr.filter((r) => r.lane === lane && r.kind === 'candidate');
-      const s = rr.find((r) => r.lane === lane && r.kind === 'soup');
+      const m = rr.find((r) => r.lane === lane && r.kind === 'merge');
       const crit = rr.find((r) => r.lane === lane && r.kind === 'critic');
-      console.log(`  ${lane.padEnd(10)} candidates ${c.length}${c.length ? ' (' + c.map((x) => (x.id || '?') + (x.selftest ? ':' + x.selftest : '')).join(', ') + ')' : ''}` +
-        `${s ? ` | soup: ${s.result || '?'}${s.bestSingle ? ' best=' + s.bestSingle : ''}` : ''}${crit ? ` | critic firstFlag=${crit.firstFlag || '?'} wow=${crit.wow ?? '?'}` : ''}`);
+      const pad = ' '.repeat(15);
+      console.log(`  ${lane.padEnd(12)} candidates ${c.length}${c.length ? ' — ' + c.map((x) => `${x.id} selftest ${x.selftest ?? '?'} literals ${x.literals ?? '?'}${x.wow != null ? ' wow ' + x.wow : ''} ${fmtMin(x.minutes)}`).join(' · ') : ''}`);
+      console.log(`${pad}diversity min ${m && m.diversity != null ? m.diversity : '?'} | merge ${m ? `${m.predicates} bestSingle ${m.bestSingle}${m.bestSinglePredicates ? ' (' + m.bestSinglePredicates + ')' : ''} open ${m.openContradictions ?? '?'} atoms ${m.atoms ?? '?'} ${fmtMin(m.minutes)}` : 'not run'}`);
+      console.log(`${pad}critic ${crit ? `rank ${crit.rank} firstFlag(soup) ${crit.firstFlag} wow ${crit.wow}${crit.bestFirstFlag ? ' firstFlag(best) ' + crit.bestFirstFlag : ''} authority ${crit.authority} ${fmtMin(crit.minutes)}` : 'not run'}`);
     }
-    for (const g of gates.filter((g) => !g.pass)) console.log(`  FAIL ${g.gate || g.id}: ${g.detail || ''}`);
-    const open = rr.filter((r) => r.kind === 'open');
-    for (const o of open) console.log(`  OPEN ${o.text}`);
+    console.log(`  integrate    ${integ ? `${integ.test} | steps ${integ.steps} reverted ${integ.reverted.length ? integ.reverted.join(',') : 'none'}${integ.gates ? ' gates ' + integ.gates.join(',') : ''}${integ.mutations ? ' mutations ' + integ.mutations.join(',') : ''} ${fmtMin(integ.minutes)}` : 'not run'}`);
+    for (const g of gates.filter((g) => !g.pass)) console.log(`  FAIL ${g.gate}: ${g.detail || ''}`);
+    for (const o of rr.filter((r) => r.kind === 'open')) console.log(`  OPEN ${o.lane ? o.lane + ': ' : ''}${o.text}`);
   }
 }
 
@@ -262,6 +320,6 @@ switch (cmd) {
   case 'ledger': { const sub = pos.shift(); if (sub === 'add') ledgerAdd(pos[0]); else die('ledger subcommand: add'); break; }
   case 'report': report(); break;
   default:
-    console.log(readText(new URL(import.meta.url)).split('\n').slice(1, 17).map((l) => l.replace(/^\/\/ ?/, '')).join('\n'));
+    console.log(readText(new URL(import.meta.url)).split('\n').slice(1, 19).map((l) => l.replace(/^\/\/ ?/, '')).join('\n'));
     process.exit(cmd ? 2 : 0);
 }

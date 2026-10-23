@@ -7,8 +7,9 @@ SKILL.md                       runbook (inputs, loop, lanes, budgets, tokens, ga
 references/prompts.md          verbatim Agent-call templates: candidate, merger, integrator, blind critic, token resolver; the 12 self-queries
 references/gates.md            7 universal gate predicates, each with a node/text implementation and a negative mutation
 references/lanes.md            lane catalog: API stub + self-test predicates + lens seeds per lane
-scripts/soup-runner.mjs        resolve-tokens · check-literals · diversity · ledger add · report  (no deps)
-examples/round-1-motion-atlas.md   this repo's v9 round written in the skill's terms
+scripts/soup-runner.mjs        resolve-tokens · check-literals · diversity · ledger add (schema-validated) · report  (no deps)
+examples/round-1-motion-atlas.md   this repo's v9 round written in the skill's terms (retro)
+examples/round-2-transitions.md    the rail test: one lane, N=3, measured minutes and tool calls, the contract gaps and skill defects it found
 ```
 
 Brand-agnostic by construction: the skill holds no colour, font, easing or tempo value. `resolve-tokens` reads them from the host (CSS custom properties, brand JSON, a palette-engine id, a CommonJS export) into `work/tokens.resolved.json`; every prompt references that path; `check-literals` fails any output that spells a colour not in it.
@@ -45,11 +46,11 @@ PASS diversity min 0.953 >= 0.35
   candidate-A.js vs candidate-B.js: distance 0.971
 PASS diversity min 0.971 >= 0.35
 
-$ node skills/motion-soup/scripts/soup-runner.mjs ledger add '{"round":1,"lane":"music","kind":"candidate","id":"A","selftest":"exit0","bytes":25519}'
-ledger: +1 row -> work/soup-ledger.jsonl (round=1 lane=music kind=candidate)
+$ node skills/motion-soup/scripts/soup-runner.mjs ledger add '{"round":1,"lane":"music","kind":"candidate","id":"A","selftest":0,"literals":1,"bytes":25519,"minutes":11}'
+ledger: +1 row -> work/soup-ledger.jsonl (round=1 lane=music kind=candidate id=A)
   … (+10 rows)
 
-$ node skills/motion-soup/scripts/soup-runner.mjs report
+$ node skills/motion-soup/scripts/soup-runner.mjs report      # pre-schema renderer; the current layout is shown in the round-2 block below
 
 == round 1 == lanes: music, vector, wording | rows 11 | gates 1/2 | agent-minutes ? | verdict: accept (host gates green; literal gate retro-fails as E1)
   music      candidates 2 (A:exit0, B:exit0) | soup: dominates best=A
@@ -60,3 +61,25 @@ $ node skills/motion-soup/scripts/soup-runner.mjs report
 ```
 
 Observations: `type.scale` is reported missing because the host shell defines no `--type-scale`; the rest resolved from the host alone. The 23 + 46 literal failures are real: round-1 candidates and their self-tests hard-coded fallback palettes and fixture colours before this gate existed — round 2 candidates read token roles and fixtures take colours from the resolved file.
+
+## Round-2 rail test — `report` on the real ledger (2026-10-23, Node 22)
+
+`work/soup-ledger.jsonl` holds the one row the round-2 orchestrator wrote: a combined object (`candidates{}` + `merge{}` + `verdict`, no `kind`) that the previous `report` rendered as `candidates 0 | gates 0/0`. The runner now validates every `ledger add` against SKILL.md §Ledger row schema (exit 1 naming the missing fields) and expands that legacy row for display with a warning; the ledger file itself was not modified.
+
+```
+$ node skills/motion-soup/scripts/soup-runner.mjs report --ledger work/soup-ledger.jsonl
+warn: work/soup-ledger.jsonl:1 is a legacy combined row (no "kind") — expanded for display into 5 rows; re-add it in the documented shape (SKILL.md §Ledger row schema)
+
+== round 2 == lanes: transitions | rows 5 | verdict: soup>best-single (transitions=soup) | wall ?m | agent-minutes 20
+  transitions  candidates 3 — A selftest 0 literals 0 wow 0.55 3.5m · B selftest 0 literals 0 wow 0.62 4m · C selftest 0 literals 0 wow 0.46 4m
+               diversity min 0.897 | merge 25/25 bestSingle A (20/25) open 4 atoms 10 8.5m
+               critic not run
+  integrate    not run
+exit=0
+
+$ node skills/motion-soup/scripts/soup-runner.mjs ledger add '{"round":2,"lane":"transitions","kind":"candidate","id":"A"}'
+ledger add: row kind=candidate rejected — missing: selftest, literals, minutes
+exit=1
+```
+
+`wall ?m` because the legacy row carries no `wallMinutes` (measured 16 min, 00:20:35 → 00:36:19); the documented `verdict` row carries it. Full numbers, lenses, contract gaps and the contradictions table: `examples/round-2-transitions.md`.
