@@ -380,6 +380,50 @@ function readSfxKit() {
   return { man: JSON.parse(fs.readFileSync(path.join(ROOT, 'vendor', 'sfx', 'manifest.json'), 'utf8')), lic: fs.readFileSync(path.join(ROOT, 'vendor', 'sfx-kit-LICENSES.md'), 'utf8'), kit: fs.readFileSync(path.join(ROOT, 'vendor', 'sfx-kit.js'), 'utf8') };
 }
 
+// G36 (v9.2 step 3): measured sound pass. Plan part runs under Node on every v9 board × feel (raw sheet and the app's
+// storyboardToMusicSheet view): no two SFX < 120 ms apart, duck law {-6,10,250,150}, every SFX cue maps to a kit sample.
+const G36_GAP_MS = 120;
+function checkSoundPlan(plans, K) {
+  const failed = [];
+  const ck = (n, ok) => { if (!ok) failed.push(n); };
+  let minGap = Infinity, cues = 0;
+  for (const p of plans) {
+    const ts = p.sfx.map((x) => x.t).sort((a, b) => a - b);
+    for (let i = 1; i < ts.length; i++) minGap = Math.min(minGap, (ts[i] - ts[i - 1]) * 1000);
+    cues += p.sfx.length;
+  }
+  ck('spacing', plans.length > 0 && minGap >= G36_GAP_MS - 1e-6);
+  ck('duck', plans.every((p) => JSON.stringify(p.duck) === JSON.stringify({ dB: -6, attackMs: 10, holdMs: 250, releaseMs: 150 })));
+  ck('kit-map', Boolean(K) && plans.every((p) => p.sfx.every((x) => K.names.includes(K.MAP[x.name]))));
+  ck('gains', plans.every((p) => p.sfx.every((x) => Number.isFinite(x.gain) && x.gain > 0 && x.gain <= 1)));
+  return { pass: failed.length === 0, failed, minGap: Math.round(minGap), cues };
+}
+// Report part (when work/eval-v9/audio-probe/<tag>-audio-report.json exists): thresholds from INTEGRATION-PLAN-v9.2 step 3.
+// `waivers` (WAIVERS.json) may waive a metric, but a waived metric must not regress below the synth-only baseline.
+function checkSoundReport(rep, waivers, base) {
+  const v = rep && rep.v92;
+  if (!v) return { pass: false, failed: ['missing'], waived: [] };
+  const T = { lufs: () => Math.abs(v.lufs_i_proxy + 16) <= 1.5, true_peak: () => v.true_peak_dBTP_proxy < -1.5,
+    sfx_over_bed: () => v.sfx_over_bed.length > 0 && v.sfx_over_bed.every((o) => o.over_bed_dB >= 6),
+    spacing: () => v.sfx_pairs_under_120ms === 0 && v.sfx_min_gap_ms >= G36_GAP_MS, holes: () => v.holes_inside.length === 0,
+    seam: () => v.seam_min_dBFS >= -20, breather: () => v.breather_floor_dBFS >= -30, riskiest: () => Array.isArray(v.riskiest) && v.riskiest.length === 5 };
+  const noRegress = { lufs: () => !base || v.lufs_i_proxy >= base.v92.lufs_i_proxy - 0.5, sfx_over_bed: () => !base || v.sfx_over_bed_min_dB >= base.v92.sfx_over_bed_min_dB };
+  const failed = [], waived = [];
+  for (const k of Object.keys(T)) {
+    if (T[k]()) continue;
+    if (waivers && waivers[k] && noRegress[k] && noRegress[k]()) waived.push(k); else failed.push(k);
+  }
+  return { pass: failed.length === 0, failed, waived };
+}
+function g36Plans(CO, M, boards) {
+  const pal = { id: 343, a: '#ebd3a2', h: '#ae5224', b: '#527e91' };
+  const out = [];
+  for (const sh of boards) for (const feel of Object.keys(M.TEMPO)) {
+    for (const view of [Object.assign({}, sh, { feelKey: feel }), CO.storyboardToMusicSheet ? CO.storyboardToMusicSheet(sh, feel) : sh]) out.push(M.plan(view, pal, sh.id + '|343|' + feel));
+  }
+  return out;
+}
+
 const results = [];
 function recordGate(id, name, pass, detail) {
   results.push({ id, name, pass: Boolean(pass), detail });
@@ -996,6 +1040,16 @@ async function runAllGates() {
   const g35 = checkSfxKit(kitFiles.man, kitFiles.lic, kitFiles.kit, sandbox.SFX_KIT);
   recordGate('G35', 'Real Sound-Effect Kit (all CC0, credited, checksummed, small)', g35.pass, g35.detail);
 
+  // G36: measured sound pass (plan always; probe report when present)
+  const g36p = checkSoundPlan(g36Plans(CO, MUSIC, v9Boards), sandbox.SFX_KIT);
+  const AP = path.join(ROOT, 'work', 'eval-v9', 'audio-probe');
+  const rj = (f) => (fs.existsSync(path.join(AP, f)) ? JSON.parse(fs.readFileSync(path.join(AP, f), 'utf8')) : null);
+  const rep36 = rj('v9.2-audio-report.json');
+  const g36r = rep36 ? checkSoundReport(rep36, rj('WAIVERS.json'), rj('v9.2-synth-audio-report.json')) : null;
+  recordGate('G36', 'Measured Sound Pass (SFX spaced, duck law, every cue has a real sample; loudness report)', g36p.pass && (!g36r || g36r.pass),
+    `plan: ${g36p.cues} SFX over ${Object.keys(MUSIC.TEMPO).length * 4} board×feel plans, min gap ${g36p.minGap} ms (≥ ${G36_GAP_MS}), duck -6/10/250/150, kit map complete${g36p.failed.length ? ' · FAILED ' + g36p.failed.join(',') : ''}` +
+    (rep36 ? ` · report: ${rep36.v92.lufs_i_proxy} LUFS, TP ${rep36.v92.true_peak_dBTP_proxy} dBTP, SFX over bed min ${rep36.v92.sfx_over_bed_min_dB} dB, gap ${rep36.v92.sfx_min_gap_ms} ms${g36r.waived.length ? ' · WAIVED→soup: ' + g36r.waived.join(',') : ''}${g36r.failed.length ? ' · FAILED ' + g36r.failed.join(',') : ''}` : ' · report: not present (npm run test:audio)'));
+
   // Print Summary Table
   const passedCount = results.filter((r) => r.pass).length;
   console.log('═══════════════════════════════════════════════════════════════════════════════');
@@ -1220,6 +1274,19 @@ async function runAllGates() {
       id: 'MUT-15',
       desc: "Inject a literal '</script>' string into an inlined block of the Standalone and verify G34 rejects the truncated bundle",
       caught: checkStandaloneBoots(sa15).pass === false && checkStandaloneBoots(sa).pass === true
+    });
+
+    // MUT-16: G36 — two SFX 40 ms apart in a copy of a plan, and a report cue only +2 dB over the bed (no waivers), must each fail
+    const p16 = g36Plans(CO, MUSIC, v9Boards).map((p) => JSON.parse(JSON.stringify(p)));
+    p16[0].sfx[1].t = +(p16[0].sfx[0].t + 0.04).toFixed(3);
+    const okRep = { v92: { lufs_i_proxy: -16.2, true_peak_dBTP_proxy: -2, sfx_over_bed: [{ t: 0, name: 'WHOOSH', over_bed_dB: 7 }, { t: 2, name: 'CLICK', over_bed_dB: 6.5 }], sfx_over_bed_min_dB: 6.5,
+      sfx_min_gap_ms: 400, sfx_pairs_under_120ms: 0, holes_inside: [], seam_min_dBFS: -17, breather_floor_dBFS: -29, riskiest: [1, 2, 3, 4, 5] } };
+    const badRep = JSON.parse(JSON.stringify(okRep)); badRep.v92.sfx_over_bed[1].over_bed_dB = 2; badRep.v92.sfx_over_bed_min_dB = 2;
+    mutResults.push({
+      id: 'MUT-16',
+      desc: 'Put two SFX 40 ms apart in a copy of a plan, and drop one cue to +2 dB over the bed in a copy of the sound report; G36 rejects both',
+      caught: checkSoundPlan(p16, sandbox.SFX_KIT).failed.includes('spacing') && checkSoundPlan(g36Plans(CO, MUSIC, v9Boards), sandbox.SFX_KIT).pass &&
+        checkSoundReport(badRep, null, null).failed.includes('sfx_over_bed') && checkSoundReport(okRep, null, null).pass
     });
 
     // MUT-18: one kit licence flipped to CC-BY in a copy of the manifest must fail G35

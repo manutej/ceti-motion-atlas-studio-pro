@@ -9,7 +9,8 @@ const OUT = process.env.PROBE_OUT || path.dirname(fileURLToPath(import.meta.url)
 const TAG = process.env.TAG || 'v9';
 const URL = process.env.STUDIO_URL || pathToFileURL(path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../../index.html')).href;
 const SR = 44100, DUR = 30;
-const browser = await chromium.launch({ args: ['--autoplay-policy=no-user-gesture-required'] });
+const KIT = process.env.KIT !== '0';   // v9.2: KIT=0 renders the synth-only SFX (pre-kit baseline)
+const browser = await chromium.launch({ args: ['--autoplay-policy=no-user-gesture-required'], ...(process.env.CHROME_PATH ? { executablePath: process.env.CHROME_PATH } : {}) });
 const page = await browser.newPage({ viewport: { width: 1600, height: 1000 } });
 page.on('pageerror', e => console.log('[pageerror]', e.message));
 await page.goto(URL, { waitUntil: 'load' });
@@ -20,7 +21,8 @@ await page.evaluate(() => { const sel = document.querySelector('#sb-story-select
 await page.waitForTimeout(600);
 
 async function render(mode) {
-  return page.evaluate(async ({ mode, SR, DUR }) => {
+  return page.evaluate(async ({ mode, SR, DUR, KIT }) => {
+    if (!KIT) window.SFX_KIT = null;
     const a = window.__MOTION_ATLAS_STUDIO_INSTANCE;
     // stop the app from driving MUSIC while we render offline
     cancelAnimationFrame(a._raf); MUSIC.sync = function () {};
@@ -31,6 +33,7 @@ async function render(mode) {
     const plan = MUSIC.plan(sheet, pal, seed);
     const ctx = new OfflineAudioContext(1, SR * DUR, SR);
     const info = MUSIC.schedule(ctx, plan, 0);
+    if (window.SFX_KIT) await window.SFX_KIT.decode(ctx);   // v9.2: decode the CC0 kit once before rendering (deterministic trigger times)
     if (mode === 'musicOnly') MUSIC.mix.sfx.gain.value = 0;
     if (mode === 'sfxOnly') MUSIC.mix.music.gain.value = 0;
     // step the lookahead scheduler: suspend every 100 ms, let the 40 ms interval tick fire, resume
@@ -46,7 +49,7 @@ async function render(mode) {
     const u8 = new Uint8Array(ch.buffer); let s = ''; for (let i = 0; i < u8.length; i += 0x8000) s += String.fromCharCode.apply(null, u8.subarray(i, i + 0x8000));
     const planLite = { bpm: plan.bpm, key: plan.key, feel: plan.feel, archetype: plan.archetype, totalSec: plan.totalSec, loopSec: plan.loopSec, endSec: plan.endSec, cues: plan.cues.map(c => ({ i: c.beatIndex, t0: c.tStart, t1: c.tEnd, mood: c.mood, role: c.role, voices: c.voices, dyn: c.dyn, chords: (c.chordProgression || []).map(x => x.quality + '@' + (x.t != null ? x.t : '')) })), sfx: plan.sfx, callback: plan.callback, motif: plan.motif, duck: plan.duck, targetLUFS: plan.targetLUFS, events: plan.events.length, eventTypes: plan.events.reduce((m, e) => { m[e.type] = (m[e.type] || 0) + 1; return m; }, {}) };
     return { info: { live: info.live, events: info.events, bpm: info.bpm, key: info.key }, plan: planLite, b64: btoa(s), sr: buf.sampleRate, len: buf.length, mode };
-  }, { mode, SR, DUR });
+  }, { mode, SR, DUR, KIT });
 }
 
 const out = {};

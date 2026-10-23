@@ -9,7 +9,9 @@
     "validate": "node scripts/validate-motion-studio.mjs",
     "selftest": "node scripts/validate-motion-studio.mjs --selftest",
     "vbm": "node scripts/vbm-walkthrough-recorder.mjs v8-final",
-    "test": "node scripts/validate-motion-studio.mjs --selftest"
+    "test": "node scripts/validate-motion-studio.mjs --selftest",
+    "test:audio": "node work/eval-v9/audio-probe/audio.mjs && python3 -I work/eval-v9/audio-probe/analyze.py work/eval-v9/audio-probe ${TAG:-v9.2}",
+    "sfx-kit": "node scripts/build-sfx-kit.mjs"
   },
   "keywords": [
     "motion-graphics",

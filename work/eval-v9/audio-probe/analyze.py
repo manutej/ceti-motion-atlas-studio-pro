@@ -77,3 +77,60 @@ rep['v91']=dict(
   bell_delta_return_dB=round(rep['return']['rms_during']-rep['return']['rms_before'],1))
 json.dump(rep,open(D+TAG+'-audio-report.json','w'),indent=1)
 print(json.dumps(rep['v91'],indent=1))
+# ---- v9.2 measured sound pass (G36) ----
+import os
+from scipy.signal import lfilter, resample_poly
+TH=dict(lufs_target=-16.0, lufs_tol=1.5, true_peak_max_dBTP=-1.5, sfx_over_bed_min_dB=6.0, sfx_min_gap_ms=120, seam_min_dBFS=-20.0, breather_floor_min_dBFS=-30.0, holes_inside_max=0)
+def kweight(x,fs=SR):
+    K=np.tan(np.pi*1681.974450955533/fs); Vh=10**(3.999843853973347/20); Vb=Vh**0.4996667741545416; Q=0.7071752369554196; a0=1+K/Q+K*K
+    y=lfilter([(Vh+Vb*K/Q+K*K)/a0,2*(K*K-Vh)/a0,(Vh-Vb*K/Q+K*K)/a0],[1,2*(K*K-1)/a0,(1-K/Q+K*K)/a0],x)
+    K=np.tan(np.pi*38.13547087602444/fs); Q=0.5003270373238773; a0=1+K/Q+K*K
+    return lfilter([1,-2,1],[1,2*(K*K-1)/a0,(1-K/Q+K*K)/a0],y)
+def lufs_i(x):
+    y=kweight(x); n=int(0.4*SR); hop=n//4
+    ms=np.array([np.mean(y[i:i+n]**2) for i in range(0,len(y)-n+1,hop)]); L=-0.691+10*np.log10(np.maximum(ms,1e-12))
+    g=ms[L>-70]; rel=-0.691+10*np.log10(np.mean(g))-10; g2=ms[(L>-70)&(L>rel)]
+    return round(float(-0.691+10*np.log10(np.mean(g2))),2), L, hop
+seg=full[:int(min(2*L,30)*SR)]
+lufs,mom,hop=lufs_i(seg)
+up=resample_poly(seg,4,1); tp=round(db(float(np.max(np.abs(up)))),2)
+tpw=[(round(i*0.5,2),db(float(np.max(np.abs(up[int(i*0.5*SR*4):int((i+1)*0.5*SR*4)]))))) for i in range(int(len(seg)/SR/0.5))]
+cues=[s for s in plan['sfx'] if s['t']<L]
+over=[]
+for s in cues:
+    a,b=int(s['t']*SR),int((s['t']+0.3)*SR)
+    sp=db(float(np.max(np.abs(sfx[a:b])))); bp=db(float(np.max(np.abs(mus[a:b]))))
+    over.append(dict(t=s['t'],name=s['name'],sfx_peak_dBFS=round(sp,1),bed_peak_dBFS=round(bp,1),over_bed_dB=round(sp-bp,1)))
+ts=sorted(s['t'] for s in cues); gaps=[(ts[i],round((ts[i+1]-ts[i])*1000)) for i in range(len(ts)-1)]
+hl=[h for h in holes(mus,0,L) if h[0]>0.15]
+seam=rep['v91']['seam_min_dBFS']; brf=rep['v91']['breather_floor_dBFS']
+risk=[]
+for o in over: risk.append(((o['over_bed_dB']-TH['sfx_over_bed_min_dB'])/6,o['t'],f"{o['name']} {o['over_bed_dB']} dB over the bed (needs >= +6)"))
+for t,g in gaps: risk.append(((g-TH['sfx_min_gap_ms'])/120,t,f"two SFX {g} ms apart (needs >= 120)"))
+for t,v in tpw: risk.append(((TH['true_peak_max_dBTP']-v)/6,t,f"true peak {round(v,1)} dBTP (needs < -1.5)"))
+for i,v in enumerate(mom): risk.append(((lufs+8-v)/6,round(i*hop/SR,2),f"momentary {round(float(v),1)} LUFS jumps {round(float(v)-lufs,1)} LU over integrated"))
+for t,d in hl: risk.append((-1,t,f"{d}s hole in the bed"))
+seen=set(); top=[]
+for m,t,why in sorted(risk,key=lambda r:r[0]):
+    k=round(t*2)/2
+    if k in seen: continue
+    seen.add(k); top.append(dict(t=round(float(t),2),margin=round(float(m),2),why=why))
+    if len(top)==5: break
+v92=dict(thresholds=TH, lufs_i_proxy=lufs, true_peak_dBTP_proxy=tp, sfx_over_bed=over,
+  sfx_over_bed_min_dB=min(o['over_bed_dB'] for o in over) if over else None, sfx_min_gap_ms=min(g for _,g in gaps) if gaps else None,
+  sfx_pairs_under_120ms=sum(1 for _,g in gaps if g<120), holes_inside=hl, seam_min_dBFS=seam, breather_floor_dBFS=brf, riskiest=top)
+v92['pass']={'lufs':abs(lufs-TH['lufs_target'])<=TH['lufs_tol'],'true_peak':tp<TH['true_peak_max_dBTP'],'sfx_over_bed':bool(over) and v92['sfx_over_bed_min_dB']>=TH['sfx_over_bed_min_dB'],
+  'spacing':v92['sfx_pairs_under_120ms']==0,'holes':len(hl)<=TH['holes_inside_max'],'seam':seam>=TH['seam_min_dBFS'],'breather':brf>=TH['breather_floor_min_dBFS']}
+v92['pass']={k:bool(v) for k,v in v92['pass'].items()}
+rep['v92']=v92
+json.dump(rep,open(D+TAG+'-audio-report.json','w'),indent=1)
+with open(D+'SOUND.md','w') as f:
+    f.write(f"# Sound pass — {TAG} (MCP board, 2 loops)\n\nIntegrated loudness proxy {lufs} LUFS (target -16 ± 1.5) · true peak proxy {tp} dBTP (< -1.5) · SFX over bed min {v92['sfx_over_bed_min_dB']} dB (>= +6) · min SFX gap {v92['sfx_min_gap_ms']} ms (>= 120) · holes inside {len(hl)} · seam {seam} dBFS · breather floor {brf} dBFS\n\n## Five riskiest timestamps\n\n| t (s) | margin | why |\n|---|---|---|\n")
+    for r in top: f.write(f"| {r['t']} | {r['margin']} | {r['why']} |\n")
+man=os.path.join(os.path.dirname(os.path.abspath(__file__)),'../../../vendor/sfx/manifest.json')
+if os.path.exists(man):
+    m=json.load(open(man))
+    with open(D+'CREDITS.txt','w') as f:
+        f.write('Sound effects (CC0 1.0, credit optional). Sound-pass approach: Vox (@Voxyz_ai).\n')
+        for x in m['files']: f.write(f"{x['title']} by {x['author']} ({x['source']}), CC0 1.0\n")
+print(json.dumps({k:v for k,v in v92.items() if k not in ('sfx_over_bed','thresholds')},indent=1))

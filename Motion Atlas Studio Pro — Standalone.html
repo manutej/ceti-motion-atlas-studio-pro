@@ -5084,7 +5084,7 @@ var Two=(()=>{var Re=Object.defineProperty;var $i=Object.getOwnPropertyDescripto
     (sb.sfxCues || []).forEach(function (e) { addCue(e, -1); });
     sfx.forEach(function (s) { var q = quantize(s.t, bs); s.tRaw = s.t; s.t = q.t; s.quantized = q.q; });
     sfx.sort(function (a, b) { return a.t - b.t; });
-    return sfx.filter(function (s, i) { return !(i > 0 && sfx[i - 1].name === s.name && s.t - sfx[i - 1].t < 0.1); });
+    var last = -9; return sfx.filter(function (s) { var ok = s.t - last >= 0.12; if (ok) last = s.t; return ok; });   // G36: no two SFX within 120 ms
   }
   // Flat time-sorted event list for the scheduler (pads first at equal t).
   function flatten(cues, sfx) {
