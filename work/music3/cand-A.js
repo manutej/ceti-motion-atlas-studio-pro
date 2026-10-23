@@ -51,14 +51,14 @@
   }
 
   // Headroom lives in the limiter. The limiter sits BEFORE master (comp -> limiter -> master) and a WebAudio compressor adds
-  // automatic makeup gain K = makeupExp * |threshold| * (1 - 1/ratio) (spec: (1/fullRangeGain)^0.6). masterGain trims exactly K,
-  // so the output ceiling stays at threshold + overshoot = tpMax and the limiter's makeup is the loudness. predict() cannot see K
-  // (contract law), so the bed lift is split: predicted lufs sits K/2 under target, the measured one K/2 over (both inside tol).
+  // automatic makeup gain K = makeupExp * |threshold| * (1 - 1/ratio) (spec: (1/fullRangeGain)^0.6). masterGain trims half of K:
+  // the other half is the limiter's share of the loudness, and the output ceiling stays near threshold + K/2 (< tpMax, measured).
+  // The rest of the bed lift is the pad (breatherFloorGain): sustained, low crest, so it lifts lufs and the breather, not the peaks.
   function threshold() { return TARGETS.tpMax - BASE.lim.overshoot; }
   function makeup() { var T = threshold(); return BASE.lim.makeupExp * -T * (1 - 1 / BASE.lim.ratio); }
   function levels() {
-    var K = makeup(), E = TARGETS.lufs - BASE.lufs - K / 2;              // predicted bed lift elsewhere
-    var M = -K;                                                            // master trim (dB): cancels the makeup at the ceiling
+    var K = makeup(), E = TARGETS.lufs - BASE.lufs;                      // bed lift elsewhere (predict law)
+    var M = -K / 2;                                                        // master trim (dB): half the limiter's makeup
     var B = TARGETS.breatherMin + TARGETS.lufsTol - BASE.breather;         // breather lift wanted (one tolerance of margin)
     var P = Math.max((E - M) / BASE.padShare, B - M);                       // pad lift (dB) = breather floor gain: the bed's loudness
     return { M: M, P: P };
