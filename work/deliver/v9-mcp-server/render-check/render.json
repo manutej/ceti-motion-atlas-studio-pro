@@ -1,0 +1,113 @@
+{
+  "video": "work/deliver/v9-mcp-server/final-preview.mp4",
+  "preview": true,
+  "gate": {
+    "round": 3,
+    "open": false,
+    "renderRow": false,
+    "why": "no critique row for round 3"
+  },
+  "fps": 30,
+  "duration": 14,
+  "frames": 420,
+  "captureSec": 153,
+  "framesPerSec": 2.75,
+  "totalSec": 176.4,
+  "probe": {
+    "format": "mov,mp4,m4a,3gp,3g2,mj2",
+    "duration": 14,
+    "size": 2442634,
+    "video": {
+      "codec": "h264",
+      "pix_fmt": "yuv420p",
+      "width": 1040,
+      "height": 650,
+      "fps": "30/1",
+      "frames": 420,
+      "duration": 14
+    },
+    "audio": {
+      "codec": "aac",
+      "sr": 44100,
+      "channels": 1,
+      "duration": 14
+    },
+    "boxes": [
+      "ftyp",
+      "moov",
+      "free",
+      "mdat"
+    ]
+  },
+  "compare": [
+    {
+      "t": 1,
+      "frame": 30,
+      "meanAbsDiff": 0.00312,
+      "vsOtherStill": 0.07688,
+      "pass": true
+    },
+    {
+      "t": 7,
+      "frame": 210,
+      "meanAbsDiff": 0.00323,
+      "vsOtherStill": 0.12269,
+      "pass": true
+    },
+    {
+      "t": 13,
+      "frame": 390,
+      "meanAbsDiff": 0.0035,
+      "vsOtherStill": 0.12245,
+      "pass": true
+    }
+  ],
+  "compareLimit": 0.02,
+  "loop": {
+    "seamDelta": 0,
+    "lastVsFirst": 0.0056,
+    "audioSeam": {
+      "sampleJump": 0.0222,
+      "headGapMs": 32,
+      "windowSec": 0.4,
+      "headRmsDb": -16.7,
+      "tailRmsDb": -15,
+      "attack20msDb": -33.8,
+      "tail20msDb": -15.2,
+      "levelStepDb": 1.7,
+      "pass": true
+    },
+    "pass": true
+  },
+  "audio": {
+    "bpm": 104,
+    "key": {
+      "root": "C4",
+      "rootMidi": 60,
+      "rootHz": 261.63,
+      "wadaIdx": 343,
+      "mode": "mixolydian",
+      "modeName": "Mixolydian",
+      "scale": [
+        0,
+        2,
+        4,
+        5,
+        7,
+        9,
+        10
+      ],
+      "family": "ochre",
+      "hue": 45,
+      "L": 0.63,
+      "C": 0.084
+    },
+    "totalSec": 14,
+    "loopSec": 14,
+    "events": 113,
+    "sr": 44100,
+    "samples": 617400
+  },
+  "fails": [],
+  "pass": true
+}

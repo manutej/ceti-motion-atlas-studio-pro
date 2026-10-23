@@ -5,5 +5,27 @@
   "seek0_vs_seekWrap": 0,
   "limit": 0.01,
   "pass": true,
-  "note": "seekWrap = seek(totalSec), which the studio clock wraps onto the loop; seekEnd = the last landing frame (expected to differ: the landing echoes, not repeats, the hook)."
+  "note": "seekWrap = seek(totalSec), which the studio clock wraps onto the loop; seekEnd = the last landing frame (expected to differ: the landing echoes, not repeats, the hook).",
+  "seamDelta": 0,
+  "seamLimit": 0.01,
+  "mp4LastVsFirst": 0.0056,
+  "lastVsFirstLimit": 0.02,
+  "audioSeam": {
+    "sampleJump": 0.0222,
+    "headGapMs": 32,
+    "windowSec": 0.4,
+    "headRmsDb": -16.7,
+    "tailRmsDb": -15,
+    "attack20msDb": -33.8,
+    "tail20msDb": -15.2,
+    "levelStepDb": 1.7,
+    "pass": true
+  },
+  "audioLimits": {
+    "sampleJump": 0.1,
+    "levelStepDb": 12,
+    "headGapMs": 34
+  },
+  "video": "final-preview.mp4",
+  "seamNote": "seamDelta = mean abs RGB diff (fraction of full scale) of seek(0) vs seek(totalSec), the deliver.mjs wrap measure; mp4LastVsFirst = decoded MP4 frame N-1 vs frame 0; audioSeam = last-vs-first sample jump (click), silence before the first onset (a gap at the loop point) and tail-vs-head RMS step over the EBU R128 momentary window (400 ms) of the offline score; the 20 ms values are reported, not gated (they measure the hook attack, not a level)."
 }

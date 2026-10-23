@@ -1,0 +1,42 @@
+{
+  "about": "Extends the motion-critique stills config (same page, same board selection, same seek: data-fixed-t + _T + drawAllCanvases), adding what an MP4 needs: fps, duration, the frames to cross-check against stills, the loop limits and the host's own offline audio render (MUSIC.plan/schedule + MIX + SFX_KIT into an OfflineAudioContext, the approach of work/eval-v9/audio-probe/audio.mjs; no new music).",
+  "extends": "../../motion-critique/configs/motion-atlas.json",
+  "fps": 30,
+  "duration": "from-beats",
+  "frameSettleMs": 0,
+  "compareTimes": "auto",
+  "compareLimit": 0.02,
+  "loop": { "seamLimit": 0.01, "lastVsFirstLimit": 0.02, "audioJumpMax": 0.1, "audioStepDbMax": 12, "audioHeadGapMaxMs": 34, "audioWindowSec": 0.4 },
+  "encode": { "crf": 16, "preset": "medium", "audioBitrate": "192k" },
+  "launchArgs": ["--autoplay-policy=no-user-gesture-required"],
+  "audio": {
+    "sampleRate": 44100,
+    "channels": 1,
+    "expr": [
+      "const a = window.__MOTION_ATLAS_STUDIO_INSTANCE;",
+      "a.setState({ surface: 'storyboard-sheet', playing: false, musicOn: true });",
+      "await new Promise((r) => setTimeout(r, 400));",
+      "cancelAnimationFrame(a._raf); MUSIC.sync = function () {};",
+      "try { MUSIC.pause(); } catch (_e) {}",
+      "const pal = a.getActivePalette(), sheet = a.musicSheet();",
+      "const seed = String(sheet.id || 'sb') + '|' + (pal.id || 0);",
+      "MUSIC.setEnabled(true); MUSIC.setPalette(pal);",
+      "const plan = MUSIC.plan(sheet, pal, seed);",
+      "const ctx = new OfflineAudioContext(params.channels, Math.round(params.sr * params.dur), params.sr);",
+      "MUSIC.schedule(ctx, plan, 0);",
+      "if (window.MIX && typeof MIX.apply === 'function') MIX.apply(ctx, MUSIC.mix, MIX.design(plan, null, 7), plan);",
+      "if (window.SFX_KIT) await window.SFX_KIT.decode(ctx);",
+      "const step = 0.1, susp = [];",
+      "for (let t = step; t < params.dur - 1e-6; t += step) susp.push(ctx.suspend(Number(t.toFixed(3))));",
+      "MUSIC.play();",
+      "await new Promise((r) => setTimeout(r, 60));",
+      "const done = ctx.startRendering();",
+      "for (const p of susp) { await p; await new Promise((r) => setTimeout(r, 55)); ctx.resume(); }",
+      "const buf = await done;",
+      "try { MUSIC.pause(); } catch (_e) {}",
+      "const u8 = new Uint8Array(buf.getChannelData(0).buffer); let s = '';",
+      "for (let i = 0; i < u8.length; i += 0x8000) s += String.fromCharCode.apply(null, u8.subarray(i, i + 0x8000));",
+      "return { b64: btoa(s), sr: buf.sampleRate, channels: 1, meta: { bpm: plan.bpm, key: plan.key, totalSec: plan.totalSec, loopSec: plan.loopSec, events: plan.events.length } };"
+    ]
+  }
+}
