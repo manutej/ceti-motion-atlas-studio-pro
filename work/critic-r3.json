@@ -1,0 +1,85 @@
+{
+  "phi": "phi-r3",
+  "lanes": {
+    "vector": {
+      "answers": {
+        "soup": {
+          "Q1": "The whale/robot as a character: character.visible is false on all 15 beats, so with captions hidden the viewer sees labelled pills and arrows but nobody acting.",
+          "Q2": "'A robot' on every beat: the robot is matched only by a card label, never by a drawn character, so the actor claim has a word for proof and no figure.",
+          "Q3": "The motion-verb arrows (<=2 per beat, e.g. mcp#3 and mcp#5 'turns'). MERGE-NOTES logs them as the weakest resolution, kept against 'fewer primitives win'.",
+          "Q4": "unanswered",
+          "Q5": "The breather beat (mcp 2 primitives, pf 1 stack n=2). On mcp it ties the 2-primitive beat at index 6, so it is not uniquely the emptiest frame.",
+          "Q6": "G38 'show = drawn' is met by substring coverage. Cards that print the caption's own nouns as text are words in boxes, not drawings.",
+          "Q7": "The mcp#5 mask (draws nothing, exists only to move the hotspot) and the 'turns' arrow that overlaps the anchored fan.",
+          "Q8": "adapter (also 'protocol' wherever the MCP board's show names it)",
+          "Q9": "The cut into the breather: the noun ring keeps the slots, so the frame just loses marks. No transition says 'pause'."
+        },
+        "best": {
+          "Q1": "The second bar on pf#3: C draws one counter for 'two bars'. The robot is also absent (visible false on all beats).",
+          "Q2": "pf#3 'two bars': one mark for a two-count claim, which fails G38 literal.",
+          "Q3": "None: C has no verb arrows. The direction of 'opens' and 'plugs into each' is not drawn at all, and mcp#1 'between' has no arrow.",
+          "Q4": "unanswered",
+          "Q5": "The breather beat, which C chunks to <=2 cards. With 36 primitives total, several of C's other beats are nearly as empty, so the breath barely registers.",
+          "Q6": "G38: pf#3 'two bars' drawn as one counter (merge notes confirm). Then the mcp#6 hotspot lands on the robot instead of the drawer.",
+          "Q7": "The robot's HOME card on mcp#6, which is where the last-to-land hotspot sits.",
+          "Q8": "adapter",
+          "Q9": "mcp#1: 'between X and Y' is placed without an arrow, so the robot-to-drawer handoff carries no relation."
+        }
+      },
+      "predicted": {
+        "soup": { "wow": 0.6, "grade": 6.5, "firstFlag": "G38", "why": "G38 'show = drawn' passes 15/15 by substring coverage. A stills critic with captions hidden still reads mcp#3 and mcp#5 as up to 6 labelled text boxes, which restate the claim instead of drawing it, so 'every claim is drawn on screen' is satisfied only in letter. Falsifier: G38 strict (non-arrow mark per term) passes, but a stills readability score below 8 on those beats." },
+        "best": { "wow": 0.55, "grade": 6.0, "firstFlag": "G38", "why": "C fails G38 literal on pf#3: 'two bars' is said and one counter is drawn, so the claim is not drawn the moment it is said. Its mcp#6 hotspot lands on the robot, not the last object. Falsifier: selftest-merged G38 literal on cand-C reports pf#3 count<2." }
+      },
+      "bassCut": "The motion-verb arrows (<=2 per beat, the open 'E1 direction' resolution). They add up to 2 marks per beat and the overlap on mcp#5. A Bass frame keeps the nouns and lets the single hotspot carry the verb.",
+      "rank": "soup",
+      "authority": "provisional"
+    },
+    "music": {
+      "answers": {
+        "soup": {
+          "Q1": "unanswered",
+          "Q2": "'every effect must pop': the +6 dB over-bed target is shown only by a waiver (min measured +3.6 at CLICK@0.865 and WHOOSH@3.75), not by a pass.",
+          "Q3": "The kit multipliers tick/riser x3.362 (+10.5 dB). They are solved for cues TICK/RISER that have no measured anchor and inherit the WHOOSH worst case.",
+          "Q4": "Every cue after 13.2 s: BASE.cues stop at CLICK@13.2, so later beats of the 60 s film have no measured hear and inherit the worst anchor.",
+          "Q5": "The breather cue window (role 'breather', else [8,10] s). The pad carries it at BASE.pad x1.239, measured -28.2 dBFS (>= -30, 1.8 dB margin).",
+          "Q6": "G36 sfx_over_bed still waived (3.6 < 6). Also, soup.predict departs from the contract's shared prediction law (makeup K, cap, calibrated shares), so it cannot be compared like-for-like.",
+          "Q7": "The SFX_KIT.play wrapper's large kit boosts (ding 2.017, tick/riser 3.362): gain that the limiter then pins back.",
+          "Q8": "unanswered",
+          "Q9": "The loop seam (-15.2 dB): nothing marks it; it is the same bed level as elsewhere."
+        },
+        "best": {
+          "Q1": "unanswered",
+          "Q2": "'every effect must pop': C's min over-bed is +3.4 dB, below +6, and C's own predict was 3-4.6 dB optimistic.",
+          "Q3": "C carries the loudness gap on the music bus. That lifts the bed the SFX must clear, with no SFX-side reason.",
+          "Q4": "CLICK@0.865 (over-bed lowest, under the hook) and every cue after 13.2 s (no anchor).",
+          "Q5": "The breather window [8,10] s, measured at -26.5 dBFS. It is audible but closer to the bed, so the breath is shallower than the soup's.",
+          "Q6": "G36 sfx_over_bed (3.4 < 6, waived) and true peak -1.63, only 0.13 dB inside tpMax -1.5.",
+          "Q7": "Music-bus lift beyond what loudness needs (LUFS -16.27 is the closest to target, bought with over-bed).",
+          "Q8": "unanswered",
+          "Q9": "The loop seam (-14.5 dB): loudest seam of the four mixes and unmarked."
+        }
+      },
+      "predicted": {
+        "soup": { "wow": 0.5, "grade": 6.5, "firstFlag": "G36", "why": "G36 sfx_over_bed measures +3.6 dB, below the +6 target, and stays waived. CLICK@0.865 under the hook and WHOOSH@3.75 sit 3.6 dB over the bed in the 10 ms duck attack, so 'the score breathes once so the SFX land' holds for the breath (-28.2) but not for the landing. Falsifier: the analyze.py min over-bed on the integrated build is >= 6." },
+        "best": { "wow": 0.45, "grade": 6.0, "firstFlag": "G36", "why": "C misses G36 sfx_over_bed at +3.4 dB and has TP -1.63 against a -1.5 ceiling, so the SFX are masked at the onset and the peak has no headroom. The effects do not land. Falsifier: the cand-C audio report shows min over-bed >= 6 or TP <= -2." }
+      },
+      "bassCut": "The SFX_KIT.play kit-multiplier wrap (tick/riser x3.362, ding x2.017): gain the limiter throws away. Cut it, and let the one limiter law plus the per-cue plan gains carry the pop.",
+      "rank": "soup",
+      "authority": "provisional"
+    }
+  },
+  "predictedCritique": {
+    "stills": [],
+    "scores": { "hook": 6, "cadence": 7, "readability": 5, "identity": 5, "music fit": 6, "polish": 6 },
+    "worst3": [
+      "G38 'show = drawn': mcp#3 and mcp#5 carry 6 primitives each, mostly cards printed with the caption's own nouns. With captions hidden, the still is a cluster of labelled word-boxes rather than a drawing of the claim (readability).",
+      "G36 sfx_over_bed: min +3.6 dB (< +6, waived) at CLICK@0.865 and WHOOSH@3.75. The hook's first effect does not pop over the bed, so the SFX do not land (hook, music fit).",
+      "G38 'show = drawn' (open, no gate on overlap): the mcp#5 'turns' arrow overlaps its anchored fan, and the whale is hidden on all 15 beats. The landing frame looks crowded, and the film has no character to identify it (polish, identity)."
+    ],
+    "fixes": [
+      "vector: cap non-breather beats at 4 primitives by dropping the motion-verb arrows, keeping one labelled noun mark per G38 term.",
+      "music: take the round-4 lookahead duck (ramp starts 13 ms before each deterministic SFX; depth -6 and 10/250/150 unchanged) to lift the min over-bed past +6.",
+      "vector: end the mcp#5 'turns' arrow at the fan's first pill edge, outside the fan box (or drop it per fix 1)."
+    ]
+  }
+}
