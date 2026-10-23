@@ -1,8 +1,26 @@
-# HANDOFF — CETI Motion Atlas Studio Pro (`v8.0.0`)
+# HANDOFF — CETI Motion Atlas Studio Pro (`v9.0.0`)
 
 **Cold-Resume Entry Point for Engineers, Motion Directors, and Autonomous Agents**  
 **Root:** `/Users/cairo/Documents/CETI/ACCENTURE/content-factory v2/ARTE/motion-atlas/`  
 **Public Repository:** `https://github.com/manutej/ceti-motion-atlas-studio-pro`
+
+---
+
+## 0. Round 9 (`v9.0.0`) — Fable model soup
+
+Independent candidates per lane (music A/B, two.js A/B, wording) were merged under the typed contract; nothing was accepted on one agent's say-so. Merge logs: `work/music/MERGE-NOTES.md`, `work/two/MERGE-NOTES.md`, `work/wording/`.
+
+| What changed | Gate | Where |
+|---|---|---|
+| Adaptive WebAudio score (harmonic bed + leitmotif, −6 dB duck under every SFX, seekable lookahead scheduler); `♪ Music` toggle + `key · bpm · section` readout; `♪ SONIFY` now fires the CHORD stab through the mix (old `playWadaHarmonicChord` kept for G24) | **G30** · MUT-11 | `studio-music-engine.js`, `studio-ui.js` (tick / scrub / replan hooks) |
+| two.js vector stage layer (back pass: parallax, ribbons, cutouts · front pass: spotlight, diagram, counter, kinetic `say`, end card); offscreen, rebuilt from t, no play loop; no-op without `Two`; `✦ Vector layer` toggle on storyboard cards | **G31** · MUT-12 | `vendor/two.min.js`, `studio-two-renderer.js`, `MA.render` in `studio-motion-engine.js` |
+| Storyboard grammar hook → claim → proof → breather → callback → landing; additive beat fields `grammar, claimId, say, show, hear, because, plant, returns, readingLevel`; two example boards (MCP server, planning fallacy) in Surface IV; `say` = caption, `because` = MovementOk tag, `hear` drives the score | **G32** · MUT-13 | `studio-canvas-oauth.js` (`V9_STORYBOARDS`, `auditStoryboardGrammar`), `studio-ui.js` |
+| Plain-language wording: 51 vocab entries rewritten (2 near-duplicate pairs merged), UI copy for header/tabs/storyboard/modals, HUD gates carry `plainName` (tooltip `id · plainName`) | **G33** · MUT-14 | `studio-canvas-oauth.js` (`auditWordingClarity`), `studio-ui.js` |
+| Standalone inlines two.js (MIT header kept) → TWO_LAYER → MUSIC; build asserts zero `<script src=` | G16 | `scripts/build-package.mjs` |
+
+**Score:** `npm test` = **33/33 gates PASS · 14/14 mutations CAUGHT**. Standalone 580,339 → 866,352 B.
+
+**Cold-resume notes (v9):** script order is `geome-wada → studio-motion-engine → vendor/two.min.js → studio-two-renderer → studio-music-engine → studio-canvas-oauth → studio-ui` (shells, build, validator `filesToLoad`). Every `MUSIC`/`TWO_LAYER` call is guarded with `typeof … !== 'undefined'`. The validator mock 2D context gained `transform`/`resetTransform` no-ops so two.js can render headless.
 
 ---
 
