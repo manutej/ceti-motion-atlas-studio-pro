@@ -118,7 +118,7 @@
           "grammar": "claim",
           "role": "threshold",
           "hinge": "BUT",
-          "say": "An MCP server is a plug adapter for tools.",
+          "say": "An MCP server is a plug that fits any tool.",
           "show": "A small adapter box appears between robot and drawer.",
           "hear": {
             "music": "build",
@@ -172,7 +172,7 @@
           "claimId": "beat-2",
           "role": "turn",
           "hinge": "THEREFORE",
-          "say": "The AI picks one and the server does it.",
+          "say": "The AI picks one. The server does the work.",
           "show": "Robot taps 'read'; the drawer opens and a page floats back.",
           "hear": {
             "music": "peak",
@@ -202,7 +202,7 @@
             "music": "rest",
             "sfx": []
           },
-          "because": "So take a second with it.",
+          "because": "So let it sink in.",
           "readingLevel": 3,
           "label": "Breather Hold",
           "visualAction": "Robot, adapter and open drawer hold still in wide negative space.",
@@ -216,7 +216,7 @@
           "role": "climax",
           "hinge": "BUT",
           "returns": "locked drawer",
-          "say": "Same adapter, any drawer: calendar, database, your inbox.",
+          "say": "One adapter opens every drawer: files, mail, dates.",
           "show": "The locked drawer turns into six. The one adapter plugs into each.",
           "hear": {
             "music": "return",
@@ -353,7 +353,7 @@
           "claimId": "beat-2",
           "role": "turn",
           "hinge": "THEREFORE",
-          "say": "Students guessed 34 days. Average: 55.",
+          "say": "Students guessed 34 days. It took 55.",
           "show": "Two bars grow side by side; the second keeps growing past the first.",
           "hear": {
             "music": "peak",

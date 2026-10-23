@@ -1,4 +1,4 @@
-# STATUS — CETI Motion Atlas Studio Pro (`v9.0.0` Fable Soup)
+# STATUS — CETI Motion Atlas Studio Pro (`v9.1.0` Fable Soup · blind-critic fix round: D1–D3, D5–D9 closed, D4 open · 34/34 + 15/15)
 
 **Last Updated:** 2026-10-23  
 **Workspace:** `/Users/cairo/Documents/CETI/ACCENTURE/content-factory v2/ARTE/motion-atlas/`  
