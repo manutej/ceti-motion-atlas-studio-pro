@@ -1,0 +1,11 @@
+[
+  {"type": "gate", "text": "Arrow/path tail = the previous drawable primitive (card|pill|stack|bracket) in list order; toDiagram emits the edge from that primitive's head node (stack: last fan node).", "evidence": "E1"},
+  {"type": "contract", "text": "coverage(scene, show?) resolves show from the argument, else the scene object, else a structural clone (same primitives JSON); an unknown scene fails loudly with unmatched ['(show unknown)'].", "evidence": "E1"},
+  {"type": "motif", "text": "Breather keeps the primitives that preserve show-coverage: chunk nouns into <= 2 marks with joined labels; never drop a term to get under the cap.", "evidence": "E1"},
+  {"type": "transition", "text": "'X between A and B' draws an arrow A->B; the referents land first and the newcomer X lands last, on the edge (direction encodes relation).", "evidence": "E1"},
+  {"type": "gate", "text": "G38 strict: every terms(show) term is matched by a non-edge mark (card|pill|stack|counter label or from); an arrow's from-span never counts as a noun's mark.", "evidence": "E1"},
+  {"type": "gate", "text": "G38 literal: an unquoted '<count> <plural>' in show draws >= count marks (stack counts n).", "evidence": "E1"},
+  {"type": "mutation", "text": "sed 's/if (f0) join(f0, d, null);/if (f0) P.splice(P.indexOf(d), 1);/' (drop a same-noun duplicate instead of merging its span) must fail G38 on mcp#0 (unmatched 'locked').", "evidence": "E1"},
+  {"type": "motif", "text": "Actor lands first; the last-landing noun (the hotspot) is the object of the film line (adapter/drawer/sign), never the character.", "evidence": "E1"},
+  {"type": "vocab", "text": "Noun continuity: a noun key (normalised head noun; robot|character = actor) owns one slot across a board's beats; callback stacks fan one step off their noun's slot.", "evidence": "E1"}
+]
