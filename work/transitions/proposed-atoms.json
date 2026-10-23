@@ -1,0 +1,12 @@
+[
+  {"type": "gate", "text": "Example storyboards carry no start/dur/feel: transition timing is derived from grammar role + board.totalDurationSec (uniform split).", "evidence": "E1"},
+  {"type": "vocab", "text": "On the example boards zoom/push-in lives in beat.cameraMove, not beat.show; relation inference must read cameraMove.", "evidence": "E1"},
+  {"type": "gate", "text": "tokens.motion.feels carry no easing curve, so transition progress is linear in u until a feel supplies a monotone 4-tuple.", "evidence": "E1"},
+  {"type": "transition", "text": "callback kind = REVERSE[table.hook], derived in code, never typed as a literal.", "evidence": "E1"},
+  {"type": "transition", "text": "breather -> cut; landing -> iris-back.", "evidence": "E1"},
+  {"type": "gate", "text": "Every transition window is clamped to min(fromBeat.dur, toBeat.dur) and centred on toBeat.start, so consecutive windows cannot overlap.", "evidence": "E1"},
+  {"type": "vocab", "text": "transitionFor returns relation, because and feel beside the contract fields {kind, semantic, t0, t1, focus?}.", "evidence": "E1"},
+  {"type": "gate", "text": "Iris polygons divide the radius by cos(pi/N) so that coverage(u=1) = 1 over the full frame.", "evidence": "E1"},
+  {"type": "gate", "text": "G31: the two.js layer returns null and touches nothing when Two is absent.", "evidence": "E1"},
+  {"type": "mutation", "text": "sed \"s/breather: 'cut',/breather: 'wipe',/\" on the lane module must flip predicate 2 (breather -> cut) to FAIL.", "evidence": "E1"}
+]
