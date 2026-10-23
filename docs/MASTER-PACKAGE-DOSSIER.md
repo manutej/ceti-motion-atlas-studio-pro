@@ -13,12 +13,12 @@
 
 ## PART 1 · LIVE STATUS & DELIVERABLE MANIFEST
 
-# STATUS — CETI Motion Atlas Studio Pro (`v9.2.0` · real CC0 SFX kit, measured sound pass, film spec on boards, beat-grid snap, deliverables · 38/38 + 19/19 · D4 and the mix soup open)
+# STATUS — CETI Motion Atlas Studio Pro (`v9.3.0` · SCENE (show = drawn, character kept) + MIX (one limiter, loudness and pause floor in band) · 40/40 + 22/22 · over-bed +3.6 dB still waived)
 
 **Last Updated:** 2026-10-23  
 **Workspace:** `/Users/cairo/Documents/CETI/ACCENTURE/content-factory v2/ARTE/motion-atlas/`  
 **Public Repository:** `https://github.com/manutej/ceti-motion-atlas-studio-pro`  
-**Current Version:** `v9.2.0` (see `work/FIX-NOTES-v9.2.md`; earlier: `v9.0.0` (Round 9 Fable model soup · `33/33 Gates PASS` · `14/14 Negative Mutation Selftests CAUGHT`; branch `v9-fable-soup`)
+**Current Version:** `v9.3.0` (see `work/FIX-NOTES-v9.3.md`; earlier: `v9.2.0`, `work/FIX-NOTES-v9.2.md`; branch `v9-fable-soup`)  
 
 ---
 
@@ -629,6 +629,7 @@ flowchart LR
 | **Round 9 (`v9.0.0`)** | **Fable model soup: adaptive WebAudio score, two.js vector stage layer, say/show/hear/because storyboard grammar, plain-language wording** | **Soup mechanism:** independent candidates per lane (music A/B, two.js A/B, wording) merged under the typed contract; contradictions resolved by gate predicates (duck law −6 dB/10/250/150 ms; two passes; one clock per beat). Integrator probes: validator mock ctx lacked `transform` (two.js could not render headless); one MCP beat read at grade 10.1 (split into two sentences → 7.1); two v9 vocab labels left `boil`/`overshoot` outside parentheses; legacy RSI fixer would force a second breather on v9 boards. | `studio-music-engine.js` + `studio-two-renderer.js` + vendored two.js wired into shells, Standalone bundle (no external `<script src>`), `MA.render` (back/front passes) and `studio-ui.js` (tick/seek/replan hooks, ♪ Music + ✦ Vector layer toggles); `V9_STORYBOARDS`, `auditStoryboardGrammar`, `auditWordingClarity`, `storyboardToMusicSheet`; gates **G30–G33** + **MUT-11…MUT-14**; HUD mirrors with `plainName`. | **`33/33 PASS` + `14/14 SELFTEST CAUGHT`** |
 | **Round 9.1 (`v9.1.0`)** | **Blind-critic fix round (`work/EVAL-v9.md`, D1–D3, D5–D9, wording)** | **Critic measured:** Standalone bundle truncated at a literal `'</script>'` (never mounted); PLAY/♪ Music/✦ Vector/NO-TEXT off-screen at 1366–1920 px (strip 2151 px wide); `say` typed half-way over the legacy beat label in 10–11 px mono caps; score at −25.7 LUFS with 13 holes ≥100 ms per loop, breather floor −91 dBFS, loop seam −180 dBFS, return bell Δ 0.0 dB; 5 weak `say`/because lines. | `</script` escaped + build assertion + **G34 Standalone boots** + **MUT-15**; control strip wraps; one caption per card (beat label suppressed under the vector layer, `say` 14 px body face on a paper plate, landed by 35% of the beat); legato pad (150 ms attack, overlapping release), pad floor, soft loop seam, music bus 0.36→0.72, plant/return bell 0.4→1.8; 5 rewrites (2 adapted for G32/G33). **New numbers:** −18.3 LUFS (RMS −17.4 dBFS), holes 1 (render-start attack only), breather floor −29.5 dBFS, seam −16.8 dBFS, bell Δ +5.6/+4.4 dB, duck law −6 dB unchanged; transport visible at 1366/1600/1920; Standalone boots in Chromium. **Open:** D4 (`show` ≠ drawn), D10. | **`34/34 PASS` + `15/15 SELFTEST CAUGHT`** |
 | **Round 9.2 (`v9.2.0`)** | **Bart's motion-graphics kit + film spec (`work/INTEGRATION-PLAN-v9.2.md` steps 1–5, 7; step 6 / D4 skipped)** | **Measured (v9.1):** SFX were synth-only and sat -7.5…+2.9 dB against the bed; two SFX could land 81 ms apart; beats were an even split with no payoff or text-box spec. | CC0 kit (7 files, sha256 + per-file credits, Vox credit) inlined as `vendor/sfx-kit.js`; kit sample on the SFX bus + synth at −9 dB; SFX ≥ 120 ms apart; probe reports LUFS/true-peak/over-bed/5 riskiest; boards carry `dur`/`payoff`/`textBox`; `snap` + `MUSIC.gridTimes`; `npm run deliver`. **New numbers:** -18.45 LUFS, TP -2.08 dBTP, SFX over bed min -3.1 dB (kit +1.2…+4.0 dB per cue vs synth), min gap 350 ms, breather floor -31.3 dBFS. **Open (waived → soup):** loudness, over-bed, breather floor; D4. | **`38/38 PASS` + `19/19 SELFTEST CAUGHT`** (G35–G37, G32b; MUT-16–19) |
+| **Round 9.3 (`v9.3.0`)** | **Round-3 integration: SCENE (vector soup) + MIX (music soup)** | **Measured (v9.2):** -18.45 LUFS, breather -31.3 dBFS, over-bed min -3.1 dB (three G36 waivers); vector layer drew the 12-s story clock, not the beat's `show`. | `studio-scene.js` + `studio-mix-design.js` shipped verbatim; SCENE drives both vector passes per beat with the actor pass kept every beat; MIX applied after `MUSIC.schedule` (comp→limiter→master, duck untouched). **New numbers:** -17.01 LUFS, TP -2.33 dBTP, over-bed min +3.6 dB, breather -28.2 dBFS, seam -15.2. **Open:** over-bed waived (floor +3.6, look-ahead duck r4); dense word boxes mcp#3/#5; pf#3 one counter for two bars; breather ties landing; borrowed s_retrieve set. | **`40/40 PASS` + `22/22 SELFTEST CAUGHT`** (G38, G39; MUT-20–22) |
 
 ---
 
@@ -691,4 +692,7 @@ flowchart LR
 | **MUT-05** | Inject malformed OAuth payload (`1` beat, Wada `#9999`, `null` character rig) | `G11` | **CAUGHT (PASS)** |
 | **MUT-06** | Tamper with multi-parent synthesis pushout hash $\rho(A \oplus B)$ and verify Sheaf cohomology catches mismatch | `G22` | **CAUGHT (PASS)** |
 | **MUT-07** | Inject collapsed `0s` onion-skin frames with identical timestamps & tints and verify `G23` rejection | `G23` | **CAUGHT (PASS)** |
+| **MUT-20** | Drop one merged noun mark in a copy of the SCENE module | `G38` | **CAUGHT (PASS)** |
+| **MUT-21** | Duck depth -6 → -5 dB in a copy of the MIX module | `G39` | **CAUGHT (PASS)** |
+| **MUT-22** | Engine copy skips the actor pass when a SCENE is drawn | `G38` | **CAUGHT (PASS)** |
 

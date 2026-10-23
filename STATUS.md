@@ -1,9 +1,9 @@
-# STATUS — CETI Motion Atlas Studio Pro (`v9.2.0` · real CC0 SFX kit, measured sound pass, film spec on boards, beat-grid snap, deliverables · 38/38 + 19/19 · D4 and the mix soup open)
+# STATUS — CETI Motion Atlas Studio Pro (`v9.3.0` · SCENE (show = drawn, character kept) + MIX (one limiter, loudness and pause floor in band) · 40/40 + 22/22 · over-bed +3.6 dB still waived)
 
 **Last Updated:** 2026-10-23  
 **Workspace:** `/Users/cairo/Documents/CETI/ACCENTURE/content-factory v2/ARTE/motion-atlas/`  
 **Public Repository:** `https://github.com/manutej/ceti-motion-atlas-studio-pro`  
-**Current Version:** `v9.2.0` (see `work/FIX-NOTES-v9.2.md`; earlier: `v9.0.0` (Round 9 Fable model soup · `33/33 Gates PASS` · `14/14 Negative Mutation Selftests CAUGHT`; branch `v9-fable-soup`)
+**Current Version:** `v9.3.0` (see `work/FIX-NOTES-v9.3.md`; earlier: `v9.2.0`, `work/FIX-NOTES-v9.2.md`; branch `v9-fable-soup`)  
 
 ---
 

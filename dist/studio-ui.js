@@ -225,13 +225,22 @@
         MUSIC.setPalette(pal);
         this._musicPlan = MUSIC.plan(sheet, pal, seed);
         MUSIC.schedule(null, this._musicPlan, this.musicT());
+        this.musicMixDesign();
       } catch (_e) { this._musicPlan = null; }
       return this._musicPlan;
+    }
+
+    // v9.3 MIX (studio-mix-design.js): static mix design over MUSIC.mix (one limiter comp→limiter→master, bus/cue gains, breather floor).
+    // Guarded and idempotent; MUSIC.DUCK is never touched.
+    musicMixDesign() {
+      if (typeof MIX === 'undefined' || !MIX || typeof MIX.apply !== 'function' || typeof MUSIC === 'undefined' || !MUSIC.mix || !this._musicPlan) return null;
+      try { return MIX.apply(MUSIC.mix._ctx || null, MUSIC.mix, MIX.design(this._musicPlan, null, 7), this._musicPlan); } catch (_e) { return null; }
     }
 
     musicSeek() {
       if (typeof MUSIC === 'undefined') return;
       MUSIC.seek(this.musicT());
+      this.musicMixDesign();
       this.updateMusicReadout();
     }
 
