@@ -106,9 +106,14 @@
     padding: 4px 18px;
     background: rgba(242, 228, 206, 0.45);
     border-bottom: 1px solid rgba(26, 31, 46, 0.1);
-    flex-wrap: nowrap;
-    overflow-x: auto;
+    /* D2 (EVAL-v9): wrap to a second row so PLAY and the v9 toggles stay on screen at 1366–1920 px */
+    flex-wrap: wrap;
+    row-gap: 4px;
+    overflow-x: visible;
   }
+
+  .st-ctrl-group.st-transport { flex-shrink: 1; min-width: 0; flex-wrap: wrap; }
+  .st-ctrl-group.st-transport > div { flex-wrap: wrap; }
 
   .st-ctrl-group {
     display: flex;
