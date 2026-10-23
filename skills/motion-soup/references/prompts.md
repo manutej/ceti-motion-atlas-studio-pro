@@ -20,6 +20,8 @@ Shared slots:
 | `{{LEDGER_DIGEST}}` | ≤ 40 lines of E2/E3 atoms for this lane, newest first (empty in round 1) |
 | `{{HOST_READS}}` | ≤ 5 `file:lineStart-lineEnd` ranges the agent may read; everything else is grep-only |
 | `{{CONTRACT_GAPS}}` | gaps the orchestrator already knows and has decided (one line each: field → default), or `none known`; the candidate adds its own under 'contract gaps' |
+| `{{AXES}}` · `{{P}}` · `{{LANES}}` | BRIEF §8 critique axes (≤ 6 names) · critique pass number · lanes in this round (critic prompts only) |
+| `{{FILM_LINE}}` | BRIEF §1 verbatim — the one-line film (logline + the joke). Every deliverable `.md` restates it on line 1 and checks each decision against it; a decision that does not serve the line is logged, not shipped |
 
 ---
 
@@ -28,6 +30,9 @@ Shared slots:
 ```
 Agent({ description: "soup r{{K}} {{LANE}} cand-{{I}}", subagent_type: "general-purpose", model: "opus", run_in_background: true, prompt: `
 Repo: {{REPO}}. Round {{K}}, lane {{LANE}}, candidate {{I}}. You are ONE independent ingredient of a model soup.
+
+FILM: {{FILM_LINE}}
+  Every decision you make serves this line. cand-{{I}}.md restates it verbatim on line 1 and, in the modules table, gives each module a 'serves the film by' cell (≤ 8 words). A module you cannot tie to the line goes under 'open risk', not into the file.
 
 LENS: {{LENS}}
 
@@ -42,7 +47,7 @@ RULES
 
 DELIVERABLES (exact paths)
 1. {{REPO}}/work/{{LANE}}/cand-{{I}}.js — IIFE exposing the contract API on window.<NAME>_{{I}} and module.exports; ≤ {{SIZE_KB}} KB; node --check clean.
-2. {{REPO}}/work/{{LANE}}/cand-{{I}}.md — ≤ 60 lines: rationale (3 lines), the slots below answered one line each, table of modules with the gate that checks each, predicted.wow ∈ [0,1], predicted.firstFlag (gate id you expect to fail first + 1 line why), mutationProof (the one line you broke, which predicate caught it, restored), 'contract gaps' (every default you chose where the contract was silent; 'none' if none).
+2. {{REPO}}/work/{{LANE}}/cand-{{I}}.md — ≤ 60 lines: line 1 = FILM line verbatim, rationale (3 lines), the slots below answered one line each, table of modules with the gate that checks each and 'serves the film by', predicted.wow ∈ [0,1], predicted.firstFlag (gate id you expect to fail first + 1 line why), mutationProof (the one line you broke, which predicate caught it, restored), 'contract gaps' (every default you chose where the contract was silent; 'none' if none).
 3. {{REPO}}/work/{{LANE}}/selftest-{{I}}.js — node script, no deps, ≤ 12 KB, exit 0 only if every predicate in {{CONTRACT_PATH}} §self-test holds, including: same (t, seed) twice → deep-equal; forbidden-token regex on your own source; one negative mutation (patch a copy, assert a predicate fails).
 
 REQUIRED SLOTS (answer in cand-{{I}}.md; the answer IS the value)
@@ -71,6 +76,9 @@ Per-lane `{{LENS}}` seeds (pick different ones per `{{I}}`; see `lanes.md`): mus
 Agent({ description: "soup r{{K}} {{LANE}} merger", subagent_type: "general-purpose", model: "opus", run_in_background: true, prompt: `
 Repo: {{REPO}}. Round {{K}}, lane {{LANE}}. Soup candidates {{CANDIDATE_IDS}} into one module. You have no taste.
 
+FILM: {{FILM_LINE}}
+  MERGE-NOTES.md restates it verbatim on line 1. Every contradiction row carries a 'film' column: which side serves the line, citing its words. The film line is NOT a resolution (contract → ledger → open stays the law); it is the check that catches a lawful resolution that drifted off the film — such a row is resolved by law AND flagged 'off-film' in §open risk.
+
 INPUTS (read these only): {{CONTRACT_PATH}}; {{TOKENS_PATH}}; work/{{LANE}}/cand-*.js, cand-*.md, selftest-*.js; gate table: {{GATE_TABLE}} (orchestrator-supplied, per candidate); ledger atoms: {{LEDGER_ATOMS}}.
 Never Read a file over 300 lines whole: grep -n, then Read with offset/limit.
 
@@ -84,7 +92,7 @@ Lane tie-breaks that ARE contract: {{LANE_TIEBREAKS}}.
 DELIVERABLES
 1. {{REPO}}/work/{{LANE}}/soup.js — one module exposing the contract API; ≤ {{SIZE_KB}} KB; node --check clean; token roles only; same forbidden-token rule as candidates.
 2. {{REPO}}/work/{{LANE}}/selftest-merged.js — superset of every candidate self-test predicate that survived + the contract predicates; exit 0; includes one negative mutation.
-3. {{REPO}}/work/{{LANE}}/MERGE-NOTES.md — ≤ 80 lines: provenance table (module · source candidate · law applied); intersection list; contradictions table (topic · A · B · resolution · cite); DOMINANCE ARGUMENT: for each candidate, why soup ⊇ it (which predicate the single fails or lacks that the soup passes); the lane's gate predicates as text/node checks + one negative mutation (sed-able, verified); bestSingle = candidate with most predicates passed, ties by predicted.wow.
+3. {{REPO}}/work/{{LANE}}/MERGE-NOTES.md — ≤ 80 lines: line 1 = FILM line verbatim; provenance table (module · source candidate · law applied); intersection list; contradictions table (topic · A · B · resolution · cite · film); DOMINANCE ARGUMENT: for each candidate, why soup ⊇ it (which predicate the single fails or lacks that the soup passes); the lane's gate predicates as text/node checks + one negative mutation (sed-able, verified); bestSingle = candidate with most predicates passed, ties by predicted.wow.
 4. {{REPO}}/work/{{LANE}}/proposed-atoms.json — [{type: gate|mutation|vocab|motif|transition|contract, text, evidence: "E1"}].
 
 VERIFY before reporting (paste exit codes):
@@ -137,6 +145,8 @@ REPORT ≤ 8 lines: 1 files touched + line ranges · 2 TEST before → after (ga
 Agent({ description: "soup r{{K}} blind critic", subagent_type: "general-purpose", model: "{{CRITIC_MODEL}}", run_in_background: true, prompt: `
 Repo: {{REPO}}. Round {{K}}. You are a predictor. You see packets, never renders, never test output, never the audit set. Your record is scored per version; a confident wrong call lowers your authority.
 
+FILM: {{FILM_LINE}}   — every 'why' names how the flagged element fails or serves this line.
+
 READ ONLY: {{CONTRACT_PATH}} for each lane; work/<lane>/soup.js and work/<lane>/cand-{{BEST}}.js (grep + ≤ 120-line reads; never the whole file); work/<lane>/MERGE-NOTES.md. Do NOT run the test command. Do NOT open the validator. Do NOT read work/soup-ledger.jsonl.
 Reliability for your version {{PHI_VERSION}}: {{RELIABILITY}} → authority = {{AUTHORITY}}.
 
@@ -146,13 +156,37 @@ DELIVERABLE: {{REPO}}/work/critic-r{{K}}.json
     "predicted": { "soup": { "wow": num, "grade": num, "firstFlag": "G##", "why": str },
                    "best": { "wow": num, "grade": num, "firstFlag": "G##", "why": str } },
     "bassCut": str,            // the one element a Saul Bass would remove
-    "rank": "soup|best", "authority": "{{AUTHORITY}}" } } }
+    "rank": "soup|best", "authority": "{{AUTHORITY}}" } },
+  "predictedCritique": {       // the critique-row shape (SKILL.md §Ledger row schema `critique`), predicted from packets only
+    "stills": [],              // empty: you saw none
+    "scores": { "{{AXES}}": 1..10 },   // one integer per brief-§8 axis, for the soup
+    "worst3": [str, str, str], // the three worst problems the stills critic will find, each tied to a gate id
+    "fixes": [str] } }
 
 SELF-QUERIES (answer each for soup AND best single; one line each):
 Q1 what does the viewer not yet see with captions hidden? · Q2 which claim has no proof mark on screen? · Q3 which motion has no "because"? · Q4 which beat has no "hear"? · Q5 where does it breathe, exactly once? · Q6 what would a stricter critic flag first? · Q7 what is in frame that need not be? · Q8 which word would an eighth-grader stumble on? · Q9 which transition carries no meaning?
 
+THE 8+ RULE: no render stage is permitted until the last observed critique row has every score ≥ 8 (gate FS-critique). Your predictedCritique is compared axis by axis with the stills critic's observed row; a predicted ≥ 8 that observes < 8 counts against your reliability exactly like a missed firstFlag.
 Every firstFlag must be a gate id that exists in the contract or the host validator; every "why" must be falsifiable by a gate or by the audit set.
-Budget ≤ 20 tool calls. REPORT ≤ 8 lines: 1 file · 2 per lane: rank + firstFlag(soup) + firstFlag(best) · 3 bassCut per lane · 4 authority · 5 minutes.
+Budget ≤ 20 tool calls. REPORT ≤ 8 lines: 1 file · 2 per lane: rank + firstFlag(soup) + firstFlag(best) · 3 bassCut per lane · 4 predicted min score + axis · 5 authority · 6 minutes.
+` })
+```
+
+### 4b. STILLS CRITIC (one per critique pass; step 8c; the only critic that sees renders)
+
+```
+Agent({ description: "soup r{{K}} stills critic p{{P}}", subagent_type: "general-purpose", model: "{{CRITIC_MODEL}}", run_in_background: true, prompt: `
+Repo: {{REPO}}. Round {{K}}, critique pass {{P}}. Score the rendered stills against the film. You see stills and the brief only — no module source, no test output, no ledger.
+
+FILM: {{FILM_LINE}}
+STILLS: {{REPO}}/work/stills/r{{K}}/p{{P}}/*.png — one per payoff mark, filename = time in seconds. Read every one (Read shows images).
+AXES (brief §8, score each 1–10, integers): {{AXES}}   — 10 = nothing a stricter critic would change; 8 = ships; < 8 = a named problem.
+
+DELIVERABLE: {{REPO}}/work/critique-r{{K}}-p{{P}}.json, exactly the ledger `critique` row:
+{ "round": {{K}}, "kind": "critique", "pass": {{P}}, "stills": [paths read], "scores": { axis: int }, "worst3": [exactly 3 strings: still + what is wrong + which brief line it breaks], "fixes": [one per worst3: "<lane>: <one-line change>"], "minutes": n }
+
+RULES: a score < 8 must appear in worst3 (lowest first); worst3 names a still by filename; a fix names one lane from {{LANES}} and one change a candidate can make under the contract — never "make it better". Nothing in the stills is fixed by you.
+Budget ≤ 15 tool calls. REPORT ≤ 8 lines: 1 file · 2 scores one line · 3 worst3 · 4 fixes · 5 exit? (all ≥ 8 → yes | no) · 6 minutes.
 ` })
 ```
 

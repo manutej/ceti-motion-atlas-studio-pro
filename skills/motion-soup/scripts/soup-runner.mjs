@@ -5,8 +5,9 @@
 //   node skills/motion-soup/scripts/soup-runner.mjs check-literals <dir|file>... [--tokens work/tokens.resolved.json] [--ignore <substr>]...
 //   node skills/motion-soup/scripts/soup-runner.mjs diversity <file>... [--min 0.35]
 //   node skills/motion-soup/scripts/soup-runner.mjs ledger add '<json>' | @file.json | -   [--ledger work/soup-ledger.jsonl]
-//                                 row.kind ∈ candidate|merge|critic|integrate|verdict|gate|open; a row missing a required
-//                                 field exits 1 naming the fields (schema: SKILL.md §Ledger row schema, SCHEMA below)
+//                                 row.kind ∈ candidate|merge|critic|integrate|stage|critique|verdict|gate|open; a row missing a
+//                                 required field exits 1 naming the fields (schema: SKILL.md §Ledger row schema, SCHEMA below)
+//                                 stage.stage ∈ plan|rig|stills|animatic|full|polish|audio|render (film-spec §7 order)
 //   node skills/motion-soup/scripts/soup-runner.mjs report [--ledger work/soup-ledger.jsonl] [--round N]
 //
 // Token sources (later sources override earlier ones for the same role):
@@ -212,11 +213,17 @@ const SCHEMA = {
                opt: { phi: 'str', bestFirstFlag: 'str', bestWow: 'num', bassCut: 'str' } },
   integrate: { req: { round: 'num', test: 'str', steps: 'n/n', reverted: 'arr', minutes: 'num' },
                opt: { gates: 'arr', mutations: 'arr', literals: 'num', toolCalls: 'num', openItems: 'arr' } },
+  // film-spec rows (FILM-SPEC-9 §7 workflow gates, §8 critique loop; gates FS-gateorder / FS-critique read them)
+  stage:     { req: { round: 'num', stage: 'str', pass: 'bool', minutes: 'num' },
+               opt: { bibleHash: 'str', artifacts: 'arr', lane: 'str', detail: 'str' } },
+  critique:  { req: { round: 'num', pass: 'num', stills: 'arr', scores: 'obj', worst3: 'arr', fixes: 'arr' },
+               opt: { lane: 'str', minutes: 'num', minScore: 'num' } },
   verdict:   { req: { round: 'num', result: 'str', lanes: 'obj', wallMinutes: 'num' },
                opt: { why: 'str', observedFirstFlag: 'obj' } },
   gate:      { req: { round: 'num', gate: 'str', pass: 'bool' }, opt: { lane: 'str', detail: 'str' } },
   open:      { req: { round: 'num', text: 'str' }, opt: { lane: 'str' } },
 };
+const STAGES = ['plan', 'rig', 'stills', 'animatic', 'full', 'polish', 'audio', 'render'];
 const typeOk = (v, t) => t === 'num' ? (typeof v === 'number' && Number.isFinite(v)) : t === 'str' ? typeof v === 'string' && v.length > 0
   : t === 'n/n' ? /^\d+\/\d+$/.test(String(v)) : t === 'arr' ? Array.isArray(v) : t === 'obj' ? (v && typeof v === 'object' && !Array.isArray(v)) : t === 'bool' ? typeof v === 'boolean' : true;
 function validateRow(row) {
@@ -228,6 +235,11 @@ function validateRow(row) {
   if (missing.length) errs.push('missing: ' + missing.join(', '));
   for (const [k, t] of Object.entries({ ...sch.req, ...sch.opt })) if (k in row && !typeOk(row[k], t)) errs.push(`bad type: ${k} (want ${t})`);
   if (row.kind === 'candidate' && row.wow != null && (row.wow < 0 || row.wow > 1)) errs.push('bad range: wow must be in [0,1]');
+  if (row.kind === 'stage' && typeof row.stage === 'string' && !STAGES.includes(row.stage)) errs.push(`bad value: stage must be one of ${STAGES.join('|')}`);
+  if (row.kind === 'critique' && row.scores && typeof row.scores === 'object') {
+    for (const [ax, s] of Object.entries(row.scores)) if (!Number.isInteger(s) || s < 1 || s > 10) errs.push(`bad range: scores.${ax} must be an integer 1..10`);
+    if (Array.isArray(row.worst3) && row.worst3.length !== 3) errs.push('bad length: worst3 must name exactly 3 problems');
+  }
   return errs;
 }
 function ledgerAdd(raw) {
@@ -281,7 +293,7 @@ function report() {
     const pass = gates.filter((g) => g.pass).length;
     const verdict = rr.find((r) => r.kind === 'verdict');
     const integ = rr.find((r) => r.kind === 'integrate');
-    const agentMins = rr.filter((r) => ['candidate', 'merge', 'critic', 'integrate'].includes(r.kind) && typeof r.minutes === 'number').reduce((a, r) => a + r.minutes, 0);
+    const agentMins = rr.filter((r) => ['candidate', 'merge', 'critic', 'integrate', 'critique'].includes(r.kind) && typeof r.minutes === 'number').reduce((a, r) => a + r.minutes, 0);
     const ship = verdict && verdict.lanes ? ' (' + Object.entries(verdict.lanes).map(([l, v]) => l + '=' + v).join(', ') + ')' : '';
     console.log(`\n== round ${R} == lanes: ${lanes.join(', ') || '-'} | rows ${rr.length} | verdict: ${verdict ? verdict.result + ship : 'open'} | wall ${verdict ? fmtMin(verdict.wallMinutes) : '?m'} | agent-minutes ${agentMins || '?'}${gates.length ? ` | host gates ${pass}/${gates.length}` : ''}`);
     for (const lane of lanes) {
@@ -294,6 +306,23 @@ function report() {
       console.log(`${pad}critic ${crit ? `rank ${crit.rank} firstFlag(soup) ${crit.firstFlag} wow ${crit.wow}${crit.bestFirstFlag ? ' firstFlag(best) ' + crit.bestFirstFlag : ''} authority ${crit.authority} ${fmtMin(crit.minutes)}` : 'not run'}`);
     }
     console.log(`  integrate    ${integ ? `${integ.test} | steps ${integ.steps} reverted ${integ.reverted.length ? integ.reverted.join(',') : 'none'}${integ.gates ? ' gates ' + integ.gates.join(',') : ''}${integ.mutations ? ' mutations ' + integ.mutations.join(',') : ''} ${fmtMin(integ.minutes)}` : 'not run'}`);
+    // film-spec §7 stage ladder (FS-gateorder) and §8 critique loop (FS-critique)
+    const stages = rr.filter((r) => r.kind === 'stage');
+    if (stages.length) {
+      const seen = []; let orderFail = '';
+      for (const s of stages) { const i = STAGES.indexOf(s.stage); const miss = STAGES.slice(0, Math.max(i, 0)).filter((p) => !seen.includes(p)); if (!orderFail && (i < 0 || miss.length)) orderFail = `${s.stage} before ${miss.join(',') || '?'}`; seen.push(s.stage); }
+      const ladder = STAGES.map((s) => { const r = stages.find((x) => x.stage === s); return s + (r ? (r.pass ? ' ✓' : ' ✗') : ' —'); }).join(' › ');
+      const hashes = new Set(stages.map((s) => s.bibleHash).filter(Boolean));
+      console.log(`  stages       ${ladder}${orderFail ? ` | ORDER FAIL ${orderFail}` : ''}${hashes.size > 1 ? ' | IDENTITY FAIL bible hash changed' : ''}`);
+    }
+    const crits = rr.filter((r) => r.kind === 'critique');
+    if (crits.length) {
+      const last = crits[crits.length - 1]; const scores = Object.entries(last.scores || {});
+      const minS = scores.length ? Math.min(...scores.map(([, s]) => s)) : null; const low = scores.filter(([, s]) => s < 8).map(([a, s]) => a + '=' + s);
+      const render = stages.find((s) => s.stage === 'render');
+      console.log(`  critique     ${crits.length} pass(es) | last: ${scores.map(([a, s]) => a + ' ' + s).join(' · ') || 'no scores'} | min ${minS ?? '?'} → ${low.length ? 'repeat (' + low.join(',') + ' < 8)' : 'exit ≥ 8'}${render && low.length ? ' | CRITIQUE FAIL render row with a score < 8' : ''}`);
+      for (const w of last.worst3 || []) console.log(`               worst: ${w}`);
+    } else if (stages.some((s) => s.stage === 'render')) console.log('  critique     CRITIQUE FAIL render row without a critique row');
     for (const g of gates.filter((g) => !g.pass)) console.log(`  FAIL ${g.gate}: ${g.detail || ''}`);
     for (const o of rr.filter((r) => r.kind === 'open')) console.log(`  OPEN ${o.lane ? o.lane + ': ' : ''}${o.text}`);
   }

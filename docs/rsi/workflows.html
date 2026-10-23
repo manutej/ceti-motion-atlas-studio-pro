@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Meta-Compound Workflows</title>
-<meta name="description" content="Four diagrams of the recursive self-query loop that makes motion graphics at scale in Motion Atlas Studio Pro v9.">
+<meta name="description" content="Five diagrams of the recursive self-query loop that makes motion graphics at scale in Motion Atlas Studio Pro v9, including the 9-element film brief and its gates.">
 <style>
 :root{
   --paper:#f6f1e7;--ink:#1f1b16;--mute:#6b625a;--line:#b9ad9c;
@@ -406,9 +406,92 @@ The self-queries on the right turn any empty field into a required slot for the 
 Humans ratify atoms (E3) or change the brief; nobody rewrites prompts by hand.</figcaption>
 </figure>
 
-<section class="pending" id="youtube-transcript">
-  <h2>YouTube transcript integration (pending link)</h2>
-  <p>Reserved. When the reference video link arrives, this section will hold: the transcript ingestion step (transcript → claims[] → Brief B), the beats it seeds, and which self-queries it answers before round 1. Nothing here yet.</p>
+<!-- ========== (v) 9-element brief → gates → stages → critique → deliverables ========== -->
+<section id="youtube-transcript">
+<h2>v · The 9-element brief → gates → workflow stages → critique loop → deliverables <small>FILM-SPEC-9 · motion-soup intake contract</small></h2>
+<figure>
+<svg viewBox="0 0 960 430" role="img" aria-label="Nine-element film brief feeding gates, workflow stages, the critique loop and deliverables">
+  <!-- column A: the brief -->
+  <text class="tb" x="20" y="34">Brief B · 9 elements</text>
+  <g>
+    <rect class="bx" x="20" y="46" width="180" height="26" rx="5"/><text class="t" x="30" y="63">1 Film in one line</text>
+    <rect class="bx" x="20" y="78" width="180" height="26" rx="5"/><text class="t" x="30" y="95">2 References</text>
+    <rect class="bx" x="20" y="110" width="180" height="26" rx="5"/><text class="t" x="30" y="127">3 Tools &amp; keys</text>
+    <rect class="bx" x="20" y="142" width="180" height="26" rx="5" style="stroke:var(--gate)"/><text class="t" x="30" y="159">4 Character bible ⟂</text>
+    <rect class="bx" x="20" y="174" width="180" height="26" rx="5" style="stroke:var(--gate)"/><text class="t" x="30" y="191">5 Beat sheet ⟂</text>
+    <rect class="bx" x="20" y="206" width="180" height="26" rx="5" style="stroke:var(--gate)"/><text class="t" x="30" y="223">6 Text on screen ⟂</text>
+    <rect class="bx" x="20" y="238" width="180" height="26" rx="5" style="stroke:var(--gate)"/><text class="t" x="30" y="255">7 Workflow gates ⟂</text>
+    <rect class="bx" x="20" y="270" width="180" height="26" rx="5" style="stroke:var(--gate)"/><text class="t" x="30" y="287">8 Critique loop ⟂</text>
+    <rect class="bx" x="20" y="302" width="180" height="26" rx="5" style="stroke:var(--gate)"/><text class="t" x="30" y="319">9 Deliverables ⟂</text>
+  </g>
+  <!-- column B: what reads each line -->
+  <text class="tb" x="250" y="34">reads it</text>
+  <g>
+    <path class="ar2" d="M200 59H246"/><rect class="ba" x="250" y="46" width="170" height="26" rx="5"/><text class="ts" x="258" y="63">{{FILM_LINE}} in every prompt</text>
+    <path class="ar" d="M200 91H246"/><rect class="bx" x="250" y="78" width="170" height="26" rx="5"/><text class="ts" x="258" y="95">HOST_READS · audit set</text>
+    <path class="ar" d="M200 123H246"/><rect class="bx" x="250" y="110" width="170" height="26" rx="5"/><text class="ts" x="258" y="127">budget {agentCalls, wallMin}</text>
+    <path class="ar" d="M200 155H246"/><rect class="bg" x="250" y="142" width="170" height="26" rx="5"/><text class="tg" x="258" y="159">FS-identity · hash</text>
+    <path class="ar" d="M200 187H246"/><rect class="bg" x="250" y="174" width="170" height="26" rx="5"/><text class="tg" x="258" y="191">FS-hook · FS-cadence</text>
+    <path class="ar" d="M200 219H246"/><rect class="bg" x="250" y="206" width="170" height="26" rx="5"/><text class="tg" x="258" y="223">FS-textroom · box</text>
+    <path class="ar" d="M200 251H246"/><rect class="bg" x="250" y="238" width="170" height="26" rx="5"/><text class="tg" x="258" y="255">FS-gateorder · order</text>
+    <path class="ar" d="M200 283H246"/><rect class="bg" x="250" y="270" width="170" height="26" rx="5"/><text class="tg" x="258" y="287">FS-critique · ≥ 8</text>
+    <path class="ar" d="M200 315H246"/><rect class="bg" x="250" y="302" width="170" height="26" rx="5"/><text class="tg" x="258" y="319">FS-deliverables · 5</text>
+  </g>
+  <text class="ts" x="20" y="352">each FS gate = ≤ 15-line node predicate + one negative mutation (gates.md §Film-spec gates)</text>
+  <text class="ts" x="20" y="368">blank ⟂ slot → asked once → still blank → the round does not start (film-brief.md)</text>
+  <text class="ts" x="20" y="384">ledger rows: stage {plan…render, bibleHash} · critique {stills, scores, worst3, fixes}</text>
+
+  <!-- column C: stage ladder -->
+  <text class="tb" x="450" y="34">7 · Workflow stages, in order</text>
+  <g>
+    <rect class="bx" x="450" y="46" width="54" height="40" rx="5"/><text class="ts" x="477" y="70" text-anchor="middle">plan</text>
+    <rect class="bx" x="512" y="46" width="54" height="40" rx="5"/><text class="ts" x="539" y="70" text-anchor="middle">rig</text>
+    <rect class="bx" x="574" y="46" width="54" height="40" rx="5" style="stroke:var(--copper)"/><text class="ts" x="601" y="70" text-anchor="middle">stills</text>
+    <rect class="bx" x="636" y="46" width="54" height="40" rx="5"/><text class="ts" x="663" y="70" text-anchor="middle">animatic</text>
+    <rect class="bx" x="698" y="46" width="54" height="40" rx="5"/><text class="ts" x="725" y="70" text-anchor="middle">full</text>
+    <rect class="bx" x="760" y="46" width="54" height="40" rx="5" style="stroke:var(--copper)"/><text class="ts" x="787" y="70" text-anchor="middle">polish</text>
+    <rect class="bx" x="822" y="46" width="54" height="40" rx="5"/><text class="ts" x="849" y="70" text-anchor="middle">audio</text>
+    <rect class="bg" x="884" y="46" width="54" height="40" rx="5"/><text class="tg" x="911" y="70" text-anchor="middle">render</text>
+  </g>
+  <path class="ar" d="M504 66H510"/><path class="ar" d="M566 66H572"/><path class="ar" d="M628 66H634"/><path class="ar" d="M690 66H696"/><path class="ar" d="M752 66H758"/><path class="ar" d="M814 66H820"/><path class="ar" d="M876 66H882"/>
+  <text class="tg" x="450" y="104">FS-gateorder · order</text>
+
+  <!-- critique loop -->
+  <text class="tb" x="612" y="140">8 · Critique loop <tspan class="ts">at stills, again at polish</tspan></text>
+  <path class="ar" d="M601 86V120H535V150" style="stroke-dasharray:3 3"/>
+  <path class="ar" d="M787 86V120H640" style="stroke-dasharray:3 3"/>
+  <rect class="ba" x="470" y="152" width="130" height="50" rx="8"/><text class="tb" x="535" y="174" text-anchor="middle">render stills</text><text class="ts" x="535" y="191" text-anchor="middle">one per payoff mark</text>
+  <rect class="ba" x="700" y="152" width="130" height="50" rx="8"/><text class="tb" x="765" y="174" text-anchor="middle">score 1–10</text><text class="ts" x="765" y="191" text-anchor="middle">per brief-§8 axis</text>
+  <rect class="bx" x="700" y="242" width="130" height="50" rx="8"/><text class="tb" x="765" y="264" text-anchor="middle">worst 3</text><text class="ts" x="765" y="281" text-anchor="middle">still · wrong · brief line</text>
+  <rect class="bx" x="470" y="242" width="130" height="50" rx="8"/><text class="tb" x="535" y="264" text-anchor="middle">fix</text><text class="ts" x="535" y="281" text-anchor="middle">one lane, one candidate</text>
+  <path class="ar" d="M600 177H698"/>
+  <path class="ar" d="M765 202V240"/>
+  <path class="ar" d="M700 267H602"/>
+  <path class="arr" d="M535 242V204"/>
+  <text class="ts" x="545" y="226" style="fill:var(--rust)">any score &lt; 8 → repeat</text>
+  <path class="ar" d="M830 177H870V88"/>
+  <text class="tg" x="862" y="130" text-anchor="end">all ≥ 8</text>
+  <text class="ts" x="862" y="146" text-anchor="end">FS-critique</text>
+  <rect class="bl" x="855" y="200" width="85" height="92" rx="8"/>
+  <text class="tw" x="897" y="222" text-anchor="middle">ledger</text>
+  <text class="tw" x="897" y="242" text-anchor="middle" style="font-weight:400;font-size:11px">critique row</text>
+  <text class="tw" x="897" y="258" text-anchor="middle" style="font-weight:400;font-size:11px">per pass</text>
+  <text class="tw" x="897" y="278" text-anchor="middle" style="font-weight:400;font-size:11px">stage rows</text>
+  <path class="ar2" d="M830 267H853"/>
+
+  <!-- deliverables -->
+  <path class="ar" d="M911 86V96H950V365H942" style="stroke-dasharray:3 3"/>
+  <path class="ar" d="M420 315H440V365H468"/>
+  <rect class="bx" x="470" y="332" width="470" height="66" rx="8" style="stroke:var(--gate);stroke-width:1.6"/>
+  <text class="tb" x="705" y="354" text-anchor="middle">9 · Deliverables at the verdict row</text>
+  <text class="ts" x="705" y="372" text-anchor="middle">final.mp4 · loop-check.json · poster.png · contact-sheet.png · clean source + README.md</text>
+  <text class="tg" x="705" y="389" text-anchor="middle">FS-deliverables · FS-identity (bible hash unchanged since plan)</text>
+  <text class="ts" x="20" y="418">a round that stops early logs its last stage; the next round resumes there — the ladder never jumps and the MP4 is never a deliverable without a critique behind it</text>
+</svg>
+<figcaption>The owner's nine elements are the intake contract: three feed prompts and budget, six are ⟂ lines a predicate reads, and the brief cannot start a round with a ⟂ slot blank.
+Stages are ledger rows in fixed order; the critique loop gates <code>render</code> on every score ≥ 8; the five deliverables are checked at the verdict.</figcaption>
+</figure>
+<p id="video-lessons" class="sub" style="margin-top:12px">Video lessons: pending the reference link.</p>
 </section>
 </main>
 </body>
