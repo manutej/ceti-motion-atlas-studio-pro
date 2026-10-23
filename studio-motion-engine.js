@@ -2759,11 +2759,20 @@
       const twoOn = !!op.twoLayer && typeof global.TWO_LAYER !== 'undefined' && global.TWO_LAYER.isAvailable();
       // D3 (EVAL-v9): one caption per card — when the vector layer types the beat's `say`, the legacy beat label stays silent.
       O.hideBeatLabel = twoOn && !!(op.beat && op.beat.say);
-      if (twoOn) global.TWO_LAYER.renderFrame(ctx, T, op.beat || null, pal, op.seed | 0, P, { pass: 'back', sheet: op.sheet || null, captionsCovered: O.captionsCovered });
-      pr.draw(ctx, t, P, easeObj, bg);
+      // v9.3 SCENE (studio-scene.js): when the beat has a `show`, the scene drawn is the beat's own primitives (show = drawn, G38).
+      let sc = null;
+      if (twoOn && typeof global.SCENE !== 'undefined' && global.SCENE && typeof global.SCENE.fromBeat === 'function' && op.beat && op.beat.show) {
+        try { sc = global.SCENE.fromBeat(op.beat, null, op.seed | 0); } catch (e) { sc = null; }
+      }
+      const scOpts = { beat: op.beat, palette: pal, seed: op.seed | 0, P: P, sheet: op.sheet || null, captionsCovered: O.captionsCovered };
+      if (sc) global.SCENE.render(ctx, sc, T, 'back', scOpts);
+      else if (twoOn) global.TWO_LAYER.renderFrame(ctx, T, op.beat || null, pal, op.seed | 0, P, { pass: 'back', sheet: op.sheet || null, captionsCovered: O.captionsCovered });
+      // Legacy story art (whale / s_retrieve) is the character layer: drawn only when the beat names a character.
+      if (!sc || (sc.character && sc.character.visible)) pr.draw(ctx, t, P, easeObj, bg);
       ctx.restore();
       // v9 two.js vector layer, front pass (after the camera restore, before the viewfinder): spotlight, diagram, counter, kinetic say, end card.
-      if (twoOn) global.TWO_LAYER.renderFrame(ctx, T, op.beat || null, pal, op.seed | 0, P, { pass: 'front', sheet: op.sheet || null, captionsCovered: O.captionsCovered });
+      if (sc) global.SCENE.render(ctx, sc, T, 'front', scOpts);
+      else if (twoOn) global.TWO_LAYER.renderFrame(ctx, T, op.beat || null, pal, op.seed | 0, P, { pass: 'front', sheet: op.sheet || null, captionsCovered: O.captionsCovered });
 
       if (O.onionSkin && !O.captionsCovered) {
         ctx.save();
