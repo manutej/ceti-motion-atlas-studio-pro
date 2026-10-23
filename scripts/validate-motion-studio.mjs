@@ -169,8 +169,10 @@ const filesToLoad = [
   'studio-motion-engine.js',
   'vendor/two.min.js',
   'studio-two-renderer.js',
+  'studio-scene.js',
   'vendor/sfx-kit.js',
   'studio-music-engine.js',
+  'studio-mix-design.js',
   'studio-canvas-oauth.js',
   'studio-ui.js'
 ];
