@@ -134,6 +134,32 @@ const sandbox = {
 sandbox.window = sandbox;
 sandbox.globalThis = sandbox;
 vm.createContext(sandbox);
+const SANDBOX_BASE_KEYS = Object.keys(sandbox).filter((k) => k !== 'window' && k !== 'globalThis');
+
+// G34 helper: boot a built Standalone the way an HTML parser would. Each inline <script> ends at the FIRST
+// `</script` (D1, EVAL-v9), so a literal close tag inside a string truncates the block. Blocks are cut that way,
+// syntax-checked, then run in a fresh copy of the mock sandbox; the expected globals must all exist afterwards.
+const STANDALONE_GLOBALS = ['MA', 'STUDIO_CANVAS_OAUTH', 'MUSIC', 'TWO_LAYER', 'GEOME_WADA_LIST'];
+function checkStandaloneBoots(html) {
+  const opens = (html.match(/<script\b/gi) || []).length;
+  const closes = (html.match(/<\/script/gi) || []).length;
+  const blocks = [];
+  const re = /<script\b[^>]*>([\s\S]*?)<\/script/gi;
+  let m;
+  while ((m = re.exec(html))) blocks.push(m[1]);
+  const sb = {};
+  for (const k of SANDBOX_BASE_KEYS) sb[k] = sandbox[k];
+  sb.window = sb; sb.globalThis = sb;
+  vm.createContext(sb);
+  let error = null;
+  for (let i = 0; i < blocks.length && !error; i++) {
+    try { vm.runInContext(blocks[i], sb, { filename: 'standalone-block-' + i + '.js' }); } catch (e) { error = 'block ' + i + ': ' + e.message; }
+  }
+  const missing = STANDALONE_GLOBALS.filter((g) => sb[g] == null);
+  const pass = opens === closes && blocks.length >= 7 && !error && missing.length === 0;
+  return { pass, detail: `${blocks.length} inline blocks, <script ${opens} = </script ${closes}: ${opens === closes}, boot error: ${error || 'none'}, globals ${STANDALONE_GLOBALS.length - missing.length}/${STANDALONE_GLOBALS.length}${missing.length ? ' (missing ' + missing.join(',') + ')' : ''}` };
+}
+const STANDALONE_PATH = path.join(ROOT, 'Motion Atlas Studio Pro — Standalone.html');
 
 // Load the 4 Studio JS modules in order
 const filesToLoad = [
@@ -906,6 +932,10 @@ async function runAllGates() {
     g33.detail
   );
 
+  // G34: Standalone boots (D1, EVAL-v9) — the single-file bundle mounts every module, no truncated script block
+  const g34 = checkStandaloneBoots(fs.readFileSync(STANDALONE_PATH, 'utf8'));
+  recordGate('G34', 'Standalone Boots (every inline block parses and runs; expected globals exist)', g34.pass, g34.detail);
+
   // Print Summary Table
   const passedCount = results.filter((r) => r.pass).length;
   console.log('═══════════════════════════════════════════════════════════════════════════════');
@@ -1118,6 +1148,16 @@ async function runAllGates() {
       id: 'MUT-14',
       desc: 'Apply the 8 clarity corruptions (13-word say, long blurb, bare jargon, orphan proof, no breather, lost return, internal names, grade-50 say) and verify G33 rejects each',
       caught: mut14Caught
+    });
+
+    // MUT-15: a literal `</script>` inside an inlined string truncates the block (D1) — G34 must reject it
+    const sa = fs.readFileSync(STANDALONE_PATH, 'utf8');
+    const maBlockAt = sa.indexOf('<script>', sa.indexOf('<script>') + 1) + '<script>'.length;
+    const sa15 = sa.slice(0, maBlockAt) + "\nvar __mut15 = '</script>';\n" + sa.slice(maBlockAt);
+    mutResults.push({
+      id: 'MUT-15',
+      desc: "Inject a literal '</script>' string into an inlined block of the Standalone and verify G34 rejects the truncated bundle",
+      caught: checkStandaloneBoots(sa15).pass === false && checkStandaloneBoots(sa).pass === true
     });
 
     for (const m of mutResults) {

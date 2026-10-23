@@ -40,6 +40,14 @@ const standalone = html
   .replace('<script src="./studio-canvas-oauth.js"></script>', () => '<script>\n' + co + '\n</script>')
   .replace('<script src="./studio-ui.js"></script>', () => '<script>\n' + ui + '\n</script>');
 
+// D1 (EVAL-v9): an inlined module containing `</script` would end its <script> block early and dump source as page text.
+for (const [name, src] of Object.entries({ wada, eng, twoVendor, twoLayer, music, co, ui })) {
+  if (/<\/script/i.test(src)) throw new Error('build-package: inlined module "' + name + '" contains a literal </script — write <\\/script instead');
+}
+const opensN = (standalone.match(/<script\b/gi) || []).length;
+const closesN = (standalone.match(/<\/script/gi) || []).length;
+if (opensN !== closesN) throw new Error('build-package: Standalone has ' + opensN + ' <script opens but ' + closesN + ' </script closes');
+
 // Zero-dependency promise: every <script src=...> must have been inlined above (AUDIT-v8 risk 5).
 if (/<script[^>]*\ssrc=/i.test(standalone)) {
   throw new Error('build-package: Standalone still contains an external <script src=...> tag');

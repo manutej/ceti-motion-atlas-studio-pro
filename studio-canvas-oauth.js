@@ -2783,7 +2783,7 @@
       '<div id="ceti-stage" data-wada="' + pal.no + '" data-actor="' + charSpec.id + '" data-duration="' + sheet.totalDurationSec + '">',
       '  <canvas id="stage-canvas" width="960" height="600"></canvas>',
       '</div>',
-      '<script>',
+      '\x3Cscript>',
       'const WADA_PALETTE = ' + JSON.stringify({ id: pal.id, name: pal.name, paper: pal.paper, ink: pal.ink, a: pal.a, h: pal.h, b: pal.b, c: pal.c, sw: pal.sw }, null, 2) + ';',
       'const CHARACTER_SPEC = ' + JSON.stringify(charSpec, null, 2) + ';',
       'const BEATS = ' + JSON.stringify(sheet.beats, null, 2) + ';',
@@ -2798,7 +2798,7 @@
       '    });',
       '  }',
       '};',
-      '</script>'
+      '<\/script>'
     ].join('\n');
   }
 
