@@ -258,6 +258,6 @@ else {
   if (pos.length !== 2) { console.error('usage: brief-check.mjs <BRIEF.md> <beats.json> [--bible f] [--tokens f] [--ready] | --hash <bible.json> | --selftest'); process.exit(2); }
   const R = runAll(loadCtx(pos[0], pos[1], opt), !!opt.ready); print(R);
   const f = R.filter((r) => r.kind === 'FAIL').length, o = R.filter((r) => r.kind === 'OPEN').length;
-  console.log(f ? `FAIL ${f} check(s) failed${o ? `, ${o} OPEN` : ''}` : `PASS all checks${o ? ` · ${o} OPEN line(s) carried to the ledger` : ''}`);
+  console.log(f ? `FAIL ${f} check(s) failed${o ? `, ${o} OPEN` : ''}` : `PASS all checks${o ? ` · ${o} OPEN line(s): add each to the ledger as kind "open"` : ''}`);
   process.exit(f ? 1 : 0);
 }
