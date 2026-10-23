@@ -12,7 +12,7 @@ Branch `v9-fable-soup`. Every step kept `npm test` green; the gate count grew fr
 | D7 loop hard cut | a seek that wraps the loop seam keeps the live voices (`rescheduleFrom(t, soft)`), so the resolve chord rings under the restart | seam minimum −180 → −16.8 dBFS |
 | D8 quiet bed | `mix.music` 0.36 → 0.72; duck law unchanged (−6 dB, 10·250·150 ms, G30 8/12 still exact) | −25.7 → −18.3 LUFS integrated |
 | D9 bell inaudible | plant/return bell peak 0.4 → 1.8 (echo stays 0.4) | Δ plant +2.3 → +5.6 dB, Δ return 0.0 → +4.4 dB |
-| Wording | the 5 rewrites from EVAL-v9.md (see commit "v9 fix: wording") | G32/G33 green |
+| Wording | 3 critic rewrites verbatim (plug that fits any tool · The AI picks one. The server does the work. · It took 55.); 2 adapted to keep the gates green: "One adapter opens every drawer: files, mail, dates." (critic's "calendar, files, inbox" scored grade 8.25 > 8 on G33) and "So let it sink in." (G32 requires a because-line to open with So/But) | G32 2/2 boards, G33 grade 7.07 |
 
 ## Audio: before / after (critic's offline-render probe, `work/eval-v9/audio-probe/`)
 
