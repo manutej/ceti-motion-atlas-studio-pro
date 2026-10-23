@@ -53,7 +53,7 @@ plan → rig → stills → animatic → full pass → polish → audio → rend
 ## 8. Critique loop.
 - axes scored 1–10: hook, cadence, readability, identity, music fit, polish
 - stills per pass: 4, at the payoff marks 2 / 5.5 / 8.5 / 12 s   exit ⟂: every axis ≥ 8
-- who fixes: hook, cadence → wording lane · readability → vector lane · identity → rig · music fit → music lane · polish → integrator
+- who fixes: hook → transitions, cadence → wording, readability → typography, identity → vector, music fit → music, polish → vector
 
 ## 9. Deliverables.
 - dir: work/deliver/v9-mcp-server/

@@ -1,7 +1,21 @@
 {
   "about": "Drives the Motion Atlas Studio Pro Standalone the way scripts/deliver.mjs does: storyboard-sheet surface, board chosen by --param board=<id>, largest storyboard canvas pinned to time t via data-fixed-t + the studio clock _T.",
+  "hostAdapter": {
+    "page": "Motion Atlas Studio Pro — Standalone.html (this repo's host page)",
+    "seek": "pins the largest storyboard canvas with the data-fixed-t attribute and the studio clock _T, then calls drawAllCanvases() — the same way scripts/deliver.mjs does",
+    "boards": "board ids come from V9_STORYBOARDS in studio-canvas-oauth.js; choose one with --param board=<id>",
+    "env": {
+      "PW_MODULE": "/opt/npm-tools/node_modules/playwright/index.js",
+      "CHROME_PATH": "/opt/pw-browsers/chromium-1194/chrome-linux/chrome",
+      "PLAYWRIGHT_BROWSERS_PATH": "/opt/pw-browsers"
+    },
+    "note": "example values for this repo's container; set them for your environment"
+  },
   "url": "Motion Atlas Studio Pro — Standalone.html",
-  "viewport": { "width": 1600, "height": 1000 },
+  "viewport": {
+    "width": 1600,
+    "height": 1000
+  },
   "deviceScaleFactor": 3,
   "readyExpr": "!!(window.__MOTION_ATLAS_STUDIO_INSTANCE && window.__MOTION_ATLAS_STUDIO_INSTANCE.setState)",
   "setupExpr": [

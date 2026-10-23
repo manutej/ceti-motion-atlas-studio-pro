@@ -1,14 +1,31 @@
 {
   "about": "Extends the motion-critique stills config (same page, same board selection, same seek: data-fixed-t + _T + drawAllCanvases), adding what an MP4 needs: fps, duration, the frames to cross-check against stills, the loop limits and the host's own offline audio render (MUSIC.plan/schedule + MIX + SFX_KIT into an OfflineAudioContext, the approach of work/eval-v9/audio-probe/audio.mjs; no new music).",
+  "hostAdapter": {
+    "seek": "inherited from the stills config (data-fixed-t + _T + drawAllCanvases())",
+    "env": "same as ../../motion-critique/configs/motion-atlas.json → hostAdapter.env"
+  },
   "extends": "../../motion-critique/configs/motion-atlas.json",
   "fps": 30,
   "duration": "from-beats",
   "frameSettleMs": 0,
   "compareTimes": "auto",
   "compareLimit": 0.02,
-  "loop": { "seamLimit": 0.01, "lastVsFirstLimit": 0.02, "audioJumpMax": 0.1, "audioStepDbMax": 12, "audioHeadGapMaxMs": 34, "audioWindowSec": 0.4 },
-  "encode": { "crf": 16, "preset": "medium", "audioBitrate": "192k" },
-  "launchArgs": ["--autoplay-policy=no-user-gesture-required"],
+  "loop": {
+    "seamLimit": 0.01,
+    "lastVsFirstLimit": 0.02,
+    "audioJumpMax": 0.1,
+    "audioStepDbMax": 12,
+    "audioHeadGapMaxMs": 34,
+    "audioWindowSec": 0.4
+  },
+  "encode": {
+    "crf": 16,
+    "preset": "medium",
+    "audioBitrate": "192k"
+  },
+  "launchArgs": [
+    "--autoplay-policy=no-user-gesture-required"
+  ],
   "audio": {
     "sampleRate": 44100,
     "channels": 1,

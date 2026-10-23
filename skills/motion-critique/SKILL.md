@@ -46,11 +46,12 @@ moment that is not one of those; never drop the hook or the landing.
 
 **2. Capture.**
 ```
-PW_MODULE=/opt/npm-tools/node_modules/playwright/index.js \
-CHROME_PATH=/opt/pw-browsers/chromium-1194/chrome-linux/chrome PLAYWRIGHT_BROWSERS_PATH=/opt/pw-browsers \
 $S --config skills/motion-critique/configs/motion-atlas.json --out work/stills/rK/pP \
    --param board=<board id> [--beats work/beats.json] [--times auto]
 ```
+Set `PW_MODULE` / `CHROME_PATH` (and `PLAYWRIGHT_BROWSERS_PATH`) for your environment; see `configs/motion-atlas.json`
+→ `hostAdapter.env` for an example. `--beats` takes motion-brief's dur-only `beats.json` as is (t0/t1 accumulate from
+`dur`); `--times auto` exits 1 if it resolves a NaN or fewer than 3 times. `--selftest` unit-tests that path.
 Writes `<t>s.png` per time and `stills.json`. Exit 1 on a missing stage element, a blank still (< 4 colours), a page
 error, or a failed **determinism check** (one time captured again after seeking elsewhere must match byte for byte,
 else by RGBA pixel diff = 0). A non-deterministic page is a G06-class bug for the lane that owns the clock, not a
@@ -109,9 +110,9 @@ wrong cause; say so in the report rather than sending the same fix a third time.
 | `settleMs`, `times` | wait after seek; default times (`"auto"` or an array) |
 
 Each `*Expr` is a string (an expression) or an array of strings (a function body that may `return`); `params` holds
-the `--param k=v` pairs. `configs/motion-atlas.json` drives `Motion Atlas Studio Pro — Standalone.html` exactly as
-`scripts/deliver.mjs` does: storyboard-sheet surface, board via the story select, largest storyboard canvas pinned
-with `data-fixed-t` and the studio clock `_T`, then `drawAllCanvases()`. For a Remotion/HyperFrames-style host the
+the `--param k=v` pairs. **Host adapter:** everything specific to one host page (file name, how its clock is pinned,
+board selection, browser paths) lives in its config; `configs/motion-atlas.json` is this repo's example, and its
+`hostAdapter` block says in prose what the exprs do. For a Remotion/HyperFrames-style host the
 seek is usually one call (`player.seekTo(t * fps)`) and a `readyExpr` on the player.
 
 ## Rules
@@ -137,4 +138,4 @@ seek is usually one call (`player.seekTo(t * fps)`) and a `readyExpr` on the pla
 - `scripts/stills.mjs` — capture + blank guard + determinism check → `work/stills/rK/pP/`.
 - `scripts/critique-check.mjs` — row validation and the exit decision; `--selftest` runs 10 negative mutations;
   `--axes-from <brief>` prints axes, fixers and lanes.
-- `configs/motion-atlas.json` — this repo's Standalone studio.
+- `configs/motion-atlas.json` — this repo's host adapter (page, seek, env example).

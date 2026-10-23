@@ -135,7 +135,7 @@ Candidates read roles (`tokens.color.accent`), never values. `resolve-tokens` pr
 
 **Universal** (every host, implemented by the runner or a 10-line node predicate; see `references/gates.md`): determinism (same `(t, seed)` → identical output; no `Math.random|Date.now|performance.now|requestAnimationFrame` in render/schedule paths), no-literal-token (`check-literals` exit 0), size caps, selftest-exit-0, dominance (soup ≥ best single on the audit set), diversity floor (≥ 0.35), additive-schema-only (existing fields untouched; new fields optional).
 
-**Host-specific**: whatever the repo's test command already checks (here: `scripts/validate-motion-studio.mjs --selftest`, gates G01–G33, MUT-01…14). The integrator adds one gate id + one negative mutation per lane shipped; a new gate without a mutation is not a gate.
+**Host-specific**: whatever the repo's test command already checks (the host validator; `references/gates.md` §Host validator names this repo's as an example). The integrator adds one gate id + one negative mutation per lane shipped; a new gate without a mutation is not a gate.
 
 ## Film spec gates
 

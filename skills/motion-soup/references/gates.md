@@ -239,3 +239,9 @@ Whatever the repo test command already checks is host-specific and stays the fin
 | E1 | merger intersection / candidate proposal | no (expires after 2 rounds) |
 | E2 | observed by a gate or telemetry | yes, via integrator |
 | E3 | ratified by the owner | yes |
+
+## Host validator
+
+The host-specific gates are whatever the host repo's own validator already checks. Example, this repo:
+`scripts/validate-motion-studio.mjs --selftest` — gates G01–G33, negative mutations MUT-01…14. The integrator adds one
+gate id + one negative mutation per lane shipped.

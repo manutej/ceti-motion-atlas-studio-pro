@@ -16,6 +16,21 @@ export const DEFAULT_FIXERS = { hook: 'transitions', cadence: 'wording', readabi
 const EXIT_AT = 8;
 const VAGUE = /^(make it better|improve( it)?|fix( it)?|polish( it)?|tweak( it)?|better|tbd|todo)\.?$/i;
 
+// §8 "who fixes": one `axis → lane` per comma-separated item (lanes are motion-soup/references/lanes.md's bare names).
+// Tolerated: a trailing " lane" word (stripped), and a group `a, b → lane` (every axis before the arrow gets the lane).
+export function parseWhoFixes(raw) {
+  const fixers = {}, dangling = []; let pending = [];
+  for (const part of String(raw).split(/[,;·]/).map((x) => x.trim()).filter(Boolean)) {
+    const kv = part.split(/\s*(?:→|->|=)\s*/);
+    if (kv.length === 1) { pending.push(kv[0].toLowerCase()); continue; }
+    const lane = kv[kv.length - 1].trim().toLowerCase().replace(/\s+lane$/, '');
+    for (const a of [...pending, kv[0].trim().toLowerCase()]) if (a && lane) fixers[a] = lane;
+    pending = [];
+  }
+  dangling.push(...pending);
+  return { fixers, dangling };
+}
+
 export function parseBrief(text) {
   const m = text.match(/^##\s*8\.[^\n]*\n([\s\S]*?)(?=^##\s|(?![\s\S]))/m);
   if (!m) return { error: 'brief has no "## 8." critique-loop section' };
@@ -26,7 +41,7 @@ export function parseBrief(text) {
   const axes = isDefault(axesRaw) ? DEFAULT_AXES.slice() : axesRaw.replace(/\(.*?\)/g, '').split(/[,;·]/).map((s) => s.trim().toLowerCase()).filter(Boolean);
   let fixers = {};
   if (!whoRaw || isDefault(whoRaw) || /^<.*>$/.test(whoRaw)) fixers = Object.fromEntries(axes.map((a) => [a, DEFAULT_FIXERS[a]]).filter(([, l]) => l));
-  else for (const part of whoRaw.split(/[,;·]/)) { const kv = part.split(/\s*(?:→|->|=|:)\s*/); if (kv.length === 2 && kv[0] && kv[1]) fixers[kv[0].trim().toLowerCase()] = kv[1].trim().toLowerCase(); }
+  else fixers = parseWhoFixes(whoRaw).fixers;
   const unmapped = axes.filter((a) => !fixers[a]);
   return { axes, fixers, lanes: [...new Set(Object.values(fixers))], ...(unmapped.length ? { warn: `no fixer lane for: ${unmapped.join(', ')}` } : {}) };
 }
@@ -57,7 +72,7 @@ export function check(row, { axes, lanes, root = '.', fsCheck = true } = {}) {
   if (fixes.length !== w3.length) errs.push(`fixes must have one entry per worst3 item (${fixes.length} vs ${w3.length})`);
   const routes = [];
   fixes.forEach((f, i) => {
-    const m = typeof f === 'string' && f.match(/^\s*([a-z][a-z0-9-]*)\s*:\s*(.+)$/i);
+    const m = typeof f === 'string' && f.match(/^\s*([a-z][a-z0-9-]*)(?:\s+lane)?\s*:\s*(.+)$/i);
     if (!m) return errs.push(`fixes[${i}] is not "<lane>: <change>"`);
     const lane = m[1].toLowerCase(), change = m[2].trim();
     if (lanes && lanes.length && !lanes.includes(lane)) errs.push(`fixes[${i}] lane "${lane}" is not a §8 fixer lane (${lanes.join('|')})`);
@@ -99,6 +114,10 @@ function selftest() {
   good &= ok('brief "default" → 6 default axes + fixers', b1.axes && b1.axes.length === 6 && b1.fixers.hook === 'transitions');
   const b2 = parseBrief('## 8. Critique loop.\n- axes scored 1–10: hook, legibility\n- who fixes: hook → transitions, legibility → typography\n');
   good &= ok('brief custom axes parsed, defaults not applied', b2.axes.join() === 'hook,legibility' && b2.lanes.join() === 'transitions,typography');
+  const b3 = parseBrief('## 8. Critique loop.\n- axes scored 1–10: hook, cadence, readability\n- who fixes: hook, cadence → wording lane · readability → typography\n');
+  good &= ok('group "hook, cadence → wording lane" maps both axes, " lane" stripped', b3.fixers.hook === 'wording' && b3.fixers.cadence === 'wording' && !b3.warn);
+  const lr = check({ ...clone(), fixes: ['wording lane: lengthen breather beat by one second', ...base.fixes.slice(1)] }, opts);
+  good &= ok('fix line "wording lane: …" accepted as lane wording', lr.valid && lr.routes[0].lane === 'wording');
   good &= ok('blank §8 axes refused', !!parseBrief('## 8. Critique loop.\n- axes scored 1–10: <≤ 6 axes>\n').error);
   console.log(results.join('\n')); console.log(good ? `PASS selftest (${MUT.length} mutations caught)` : 'FAIL selftest');
   process.exit(good ? 0 : 1);

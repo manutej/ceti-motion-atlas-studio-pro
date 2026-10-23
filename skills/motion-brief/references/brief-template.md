@@ -88,9 +88,9 @@ plan → rig → stills → animatic → full pass → polish → audio → rend
 ## 8. Critique loop.
 - axes scored 1–10: hook, cadence, readability, identity, music fit, polish
 - stills per pass: one per payoff mark   exit ⟂: every axis ≥ 8
-- who fixes: hook, cadence → wording · readability → vector · identity → rig · music fit → music · polish → integrator
+- who fixes: hook → transitions, cadence → wording, readability → typography, identity → vector, music fit → music, polish → vector
 ```
-- **checked:** S8 — the exit rule is "every axis ≥ 8". **read by:** motion-critique (scores, worst 3, fixes) and FS-critique.
+- **checked:** S8 — the exit rule is "every axis ≥ 8", and every lane in "who fixes" is a bare name from motion-soup `references/lanes.md` (music, vector, wording, transitions, typography, data-viz). One `axis → lane` per comma-separated item; this default map is the same as critique-check's `DEFAULT_FIXERS`. **read by:** motion-critique (scores, worst 3, fixes) and FS-critique.
 
 ```markdown
 ## 9. Deliverables.

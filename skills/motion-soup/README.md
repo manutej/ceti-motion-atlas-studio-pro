@@ -21,16 +21,16 @@ Demo paths were redirected into a scratch folder so no `work/` file was created;
 ```
 $ node skills/motion-soup/scripts/soup-runner.mjs resolve-tokens css:index.html cjs:studio-music-engine.js#TEMPO wada:207 --out work/tokens.resolved.json
 tokens -> work/tokens.resolved.json
-  color: paper=#111314 ink=#b4cdc2 accent=#b4cdc2 highlight=#a36752 contrast=#b4cdc2 extra=paper2,ink-soft,ink-faint,rust,sage,ochre,tint,disc
-  type:  display="'Fraunces'…" body="'DM Sans'…" mono="'Space Mono'…" scale=∅
+  color: paper=<paper> ink=<ink> accent=<accent> highlight=<highlight> contrast=<contrast> extra=paper2,ink-soft,ink-faint,rust,sage,ochre,tint,disc
+  type:  display=<display font> body=<body font> mono=<mono font> scale=∅
   motion.feels: rest,slow,held,glaser,rostrum,saul,beat,spring
   tempo.range: 60–120 | literals: 10 | missing: type.scale
 
 $ node skills/motion-soup/scripts/soup-runner.mjs check-literals work/music
 check-literals: 7 files, 23 colour literals, 10 allowed from work/tokens.resolved.json
-  FAIL work/music/candidate-A.js:19: #888888
-  FAIL work/music/candidate-A.js:46: #ae5224
-  FAIL work/music/candidate-A.js:46: #ebd3a2
+  FAIL work/music/candidate-A.js:19: <grey literal>
+  FAIL work/music/candidate-A.js:46: <rust literal>
+  FAIL work/music/candidate-A.js:46: <ochre literal>
   … (23 lines)
 FAIL 23 literal(s) not in tokens
 exit=1

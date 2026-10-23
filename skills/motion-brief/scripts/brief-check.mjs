@@ -19,6 +19,8 @@ const RULE = { hookMaxS: 2, gapMinS: 3, gapMaxS: 5, sayMaxWords: 12, gradeMax: 8
 const SECTIONS = ['Film in one line.', 'References.', 'Tools & keys.', 'Character bible.', 'Beat sheet.', 'Text on screen.', 'Workflow gates.', 'Critique loop.', 'Deliverables.'];
 const LADDER = ['plan', 'rig', 'stills', 'animatic', 'full', 'polish', 'audio', 'render'];
 const DELIVERABLES = ['final mp4', 'loop check', 'poster frame', 'contact sheet', 'readme'];
+// Fixer lanes: the bare names in skills/motion-soup/references/lanes.md. §8 "who fixes" may name only these.
+const LANES = ['music', 'vector', 'wording', 'transitions', 'typography', 'data-viz'];
 const ROLES = ['hook', 'claim', 'proof', 'breather', 'callback', 'landing'];
 const INTERNAL_RX = /\bG\d\d\b|\brung ?\d|\be_[a-z]+\b|[δρ⊕]|Wada No\.? ?\d|cohomology|sheaf|pushout|PKCE/i;
 const COLOR_RE = /#(?:[0-9a-fA-F]{8}|[0-9a-fA-F]{6}|[0-9a-fA-F]{3,4})(?![0-9a-zA-Z_-])|(?:rgba?|hsla?|oklch|oklab)\(\s*[\d.%\s,/deg-]+\)/;
@@ -93,7 +95,15 @@ function checkBrief(ctx, ready) {
       const ladders = content.filter((l) => l.includes('→')).map((l) => l.split('→').map(stage));
       const ok = ladders.some((s) => s.join(' ') === LADDER.join(' '));
       return add(id, ok, ok ? 'ladder ' + LADDER.join('→') : `no line reads ${LADDER.join(' → ')} (found: ${ladders.map((s) => s.join('→')).join(' | ') || 'none'})`); }
-    if (n === 8) return add(id, /(≥|>=)\s*8|\b8\+/.test(txt), 'exit rule: every axis ≥ 8');
+    if (n === 8) {
+      const exitOk = /(≥|>=)\s*8|\b8\+/.test(txt);
+      const who = (txt.match(/who fixes[^:\n]*:\s*(.+)/i) || [])[1];
+      const lanes = !who || /^default\b/i.test(who.trim()) ? [] : who.split(/[,;·]/).map((p) => p.split(/\s*(?:→|->|=)\s*/)).filter((kv) => kv.length > 1)
+        .map((kv) => kv[kv.length - 1].trim().toLowerCase().replace(/\s+lane$/, ''));
+      const bad = [...new Set(lanes.filter((l) => !LANES.includes(l)))];
+      if (!exitOk) return add(id, false, 'exit rule missing: every axis ≥ 8');
+      return add(id, !bad.length, bad.length ? `who fixes names lane(s) outside the catalog: ${bad.join(', ')} (lanes: ${LANES.join('|')})` : `exit rule ≥ 8 · who fixes → ${[...new Set(lanes)].join(', ') || 'default'}`);
+    }
     if (n === 9) { const miss = DELIVERABLES.filter((d) => !low.includes(d)); return add(id, !miss.length, miss.length ? 'missing: ' + miss.join(', ') : 'five deliverables listed'); }
     add(id, true, `${content.length} line(s)`);
   });
@@ -231,6 +241,7 @@ function selftest() {
     ['MUT-section-6-blank', 'S6', (c) => { c.briefText = replaceSection(c.briefText, 6, ''); }],
     ['MUT-section-2-slot', 'S2', (c) => { c.briefText = replaceSection(c.briefText, 2, '- source video: <url or path | none>'); }],
     ['MUT-ladder-skip', 'S7', (c) => { c.briefText = c.briefText.replace(/→\s*animatic\s*/, ''); }],
+    ['MUT-s8-lane-off-catalog', 'S8', (c) => { c.briefText = c.briefText.replace(/polish → vector/, 'polish → integrator'); }],
     ['MUT-bible-drift', 'BIBLE-hash', (c) => { c.bible.characters[0].identityLock[0] += ' (now taller)'; }],
     ['MUT-bible-literal', 'BIBLE-shape', (c) => { c.bible.characters[0].palette.body = '#' + 'c0ffee'; }],
     ['MUT-bible-open-ready', 'S4', (c) => { c.briefText = replaceSection(c.briefText, 4, '- OPEN: who is on screen?'); c.bible = null; }],

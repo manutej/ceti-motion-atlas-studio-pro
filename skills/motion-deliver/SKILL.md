@@ -31,10 +31,11 @@ must exit 0.
 ## The render
 
 ```
-PW_MODULE=/opt/npm-tools/node_modules/playwright/index.js \
-CHROME_PATH=/opt/pw-browsers/chromium-1194/chrome-linux/chrome PLAYWRIGHT_BROWSERS_PATH=/opt/pw-browsers \
 $RD --config skills/motion-deliver/configs/motion-atlas.json --param board=<board id> [--fps 30] [--allow-preview]
+    [--ledger work/soup-ledger.jsonl] [--round K] [--duration <sec>|from-beats] [--out work/deliver/<board id>]
 ```
+Set `PW_MODULE` / `CHROME_PATH` (and `PLAYWRIGHT_BROWSERS_PATH`) for your environment; see `configs/motion-atlas.json`
+→ `hostAdapter.env` for an example. `--ledger` defaults to `work/soup-ledger.jsonl`; `--round` to the highest round.
 
 What it does, in order (each step fails the run with exit 1 and a named reason):
 1. **Gate.** Reads the ledger. The latest critique row of the round (`--round`, default the highest) must exist with
@@ -44,8 +45,8 @@ What it does, in order (each step fails the run with exit 1 and a named reason):
 3. **Audio, offline.** A fresh load of the page runs the config's `audio.expr`: the host's own engine scheduled into
    an `OfflineAudioContext` and stepped with suspend/resume (the work/eval-v9/audio-probe/audio.mjs approach). No new
    music. A host whose audio lives outside the page gives `audio.cmd` instead (env `DUR`, `SR`, `OUT_WAV`).
-4. **Frames.** For n = 0..N−1 the stage is seeked to t = n/fps with the stills config's `seekExpr` (here
-   `data-fixed-t`, `_T`, `drawAllCanvases()`), screenshotted and piped as PNG into ffmpeg. Never real-time playback.
+4. **Frames.** For n = 0..N−1 the stage is seeked to t = n/fps with the stills config's `seekExpr`
+   (the host adapter's clock pin; see `configs/`), screenshotted and piped as PNG into ffmpeg. Never real-time playback.
 5. **Encode.** libx264 yuv420p (BT.709, tagged), even dimensions, AAC, `-movflags +faststart`.
 6. **Verify (ffprobe).** H.264 yuv420p, even size; video, audio and container durations within 1 frame of the board
    total; counted frames = fps × duration; `moov` before `mdat`.
