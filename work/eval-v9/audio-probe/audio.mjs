@@ -33,6 +33,7 @@ async function render(mode) {
     const plan = MUSIC.plan(sheet, pal, seed);
     const ctx = new OfflineAudioContext(1, SR * DUR, SR);
     const info = MUSIC.schedule(ctx, plan, 0);
+    if (window.MIX && typeof MIX.apply === 'function') MIX.apply(ctx, MUSIC.mix, MIX.design(plan, null, 7), plan);   // v9.3: host MIX hook (studio-ui musicMixDesign)
     if (window.SFX_KIT) await window.SFX_KIT.decode(ctx);   // v9.2: decode the CC0 kit once before rendering (deterministic trigger times)
     if (mode === 'musicOnly') MUSIC.mix.sfx.gain.value = 0;
     if (mode === 'sfxOnly') MUSIC.mix.music.gain.value = 0;
