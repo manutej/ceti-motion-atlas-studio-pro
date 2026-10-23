@@ -1,0 +1,57 @@
+{
+  "id": "bible-mcp-server",
+  "film": "sb-mcp-server",
+  "paletteSource": "tokens: css:index.html + wada:296 (no reference sheet supplied)",
+  "tokens": "work/tokens.resolved.json",
+  "characters": [
+    {
+      "name": "Robot",
+      "proportions": {
+        "headToBody": "1:1.6 (big head, short body: friendly, not menacing)",
+        "arms": "0.9 x body height, one elbow, mitten hands",
+        "eyes": "two round eyes, gap = one eye width, no mouth"
+      },
+      "palette": {
+        "body": "color.accent",
+        "outline": "color.ink",
+        "eyes": "color.highlight",
+        "shadow": "color.tint"
+      },
+      "expressions": [
+        { "name": "reaching", "trigger": "hook" },
+        { "name": "curious tilt", "trigger": "claim" },
+        { "name": "tap and wait", "trigger": "proof" },
+        { "name": "still and calm", "trigger": "breather" },
+        { "name": "delighted bounce", "trigger": "callback" },
+        { "name": "calm first pose", "trigger": "landing" }
+      ],
+      "identityLock": [
+        "head-to-body ratio stays 1:1.6 in every style",
+        "two round eyes and no mouth; emotion lives in the eyes and the tilt",
+        "the outline always uses the ink role, never the body role"
+      ]
+    },
+    {
+      "name": "Adapter",
+      "proportions": {
+        "box": "0.35 x robot height, square, two prongs on top",
+        "cable": "one cable, never more, from box to drawer"
+      },
+      "palette": {
+        "body": "color.ochre",
+        "outline": "color.ink",
+        "prongs": "color.highlight"
+      },
+      "expressions": [
+        { "name": "appears with a pop", "trigger": "claim" },
+        { "name": "fans out three cards", "trigger": "proof" },
+        { "name": "plugs into each drawer", "trigger": "callback" }
+      ],
+      "identityLock": [
+        "one box, two prongs, one cable",
+        "the box is the only ochre-role object on screen",
+        "it never grows bigger than the robot's head"
+      ]
+    }
+  ]
+}
