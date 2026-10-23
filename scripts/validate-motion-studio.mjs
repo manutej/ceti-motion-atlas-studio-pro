@@ -1050,6 +1050,13 @@ async function runAllGates() {
     `plan: ${g36p.cues} SFX over ${Object.keys(MUSIC.TEMPO).length * 4} board×feel plans, min gap ${g36p.minGap} ms (≥ ${G36_GAP_MS}), duck -6/10/250/150, kit map complete${g36p.failed.length ? ' · FAILED ' + g36p.failed.join(',') : ''}` +
     (rep36 ? ` · report: ${rep36.v92.lufs_i_proxy} LUFS, TP ${rep36.v92.true_peak_dBTP_proxy} dBTP, SFX over bed min ${rep36.v92.sfx_over_bed_min_dB} dB, gap ${rep36.v92.sfx_min_gap_ms} ms${g36r.waived.length ? ' · WAIVED→soup: ' + g36r.waived.join(',') : ''}${g36r.failed.length ? ' · FAILED ' + g36r.failed.join(',') : ''}` : ' · report: not present (npm run test:audio)'));
 
+  // G37: film spec on boards (v9.2 step 4) — hook ≤ 2 s, payoff every 3–5 s, one breather, a text box per say; HUD lists G37 in plain words
+  const g37 = v9Boards.map((sh) => CO.auditFilmSpec(sh));
+  const coSrc = fs.readFileSync(path.join(ROOT, 'studio-canvas-oauth.js'), 'utf8');
+  const hud37 = /\{ id: 'G37', name: 'Film Spec on Boards', plainName: '[^']{12,}'/.test(coSrc);
+  recordGate('G37', 'Film Spec on Boards (quick hook, payoff every 3–5 s, one pause, text boxes)', g37.every((r) => r.valid) && hud37,
+    g37.map((r, i) => v9Boards[i].id + ': ' + (r.valid ? r.detail : r.errors.join('; '))).join(' · ') + ` · HUD plain name ${hud37}`);
+
   // Print Summary Table
   const passedCount = results.filter((r) => r.pass).length;
   console.log('═══════════════════════════════════════════════════════════════════════════════');
@@ -1287,6 +1294,16 @@ async function runAllGates() {
       desc: 'Put two SFX 40 ms apart in a copy of a plan, and drop one cue to +2 dB over the bed in a copy of the sound report; G36 rejects both',
       caught: checkSoundPlan(p16, sandbox.SFX_KIT).failed.includes('spacing') && checkSoundPlan(g36Plans(CO, MUSIC, v9Boards), sandbox.SFX_KIT).pass &&
         checkSoundReport(badRep, null, null).failed.includes('sfx_over_bed') && checkSoundReport(okRep, null, null).pass
+    });
+
+    // MUT-17: G37 — remove one payoff (MCP beat 3) and the rhythm breaks; a beat with a say but no text box also fails
+    const m17 = CO.buildStoryboardSheet({ boardKey: 'v9-mcp-server', charId: 'ceti-whale', palId: 343 }); m17.beats[2].payoff = false;
+    const m17b = CO.buildStoryboardSheet({ boardKey: 'v9-planning-fallacy', charId: 'ceti-whale', palId: 343 }); delete m17b.beats[1].textBox;
+    mutResults.push({
+      id: 'MUT-17',
+      desc: 'Remove one payoff from the MCP board (and, separately, one text box) and verify G37 rejects it',
+      caught: !CO.auditFilmSpec(m17).valid && CO.auditFilmSpec(m17).errors.some((e) => /rhythm/.test(e)) && !CO.auditFilmSpec(m17b).valid &&
+        CO.auditFilmSpec(CO.buildStoryboardSheet({ boardKey: 'v9-mcp-server', charId: 'ceti-whale', palId: 343 })).valid
     });
 
     // MUT-18: one kit licence flipped to CC-BY in a copy of the manifest must fail G35

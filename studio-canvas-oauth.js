@@ -91,6 +91,9 @@
           "id": "beat-1",
           "index": 0,
           "grammar": "hook",
+          "dur": 2,
+          "payoff": true,
+          "textBox": { "x": 0.08, "y": 0.76, "w": 0.84, "h": 0.16 },
           "role": "hook",
           "hinge": "THEREFORE",
           "say": "Your AI is smart, but it cannot touch your files.",
@@ -116,6 +119,9 @@
           "id": "beat-2",
           "index": 1,
           "grammar": "claim",
+          "dur": 1.5,
+          "payoff": false,
+          "textBox": { "x": 0.08, "y": 0.76, "w": 0.84, "h": 0.16 },
           "role": "threshold",
           "hinge": "BUT",
           "say": "An MCP server is a plug that fits any tool.",
@@ -140,6 +146,9 @@
           "id": "beat-3",
           "index": 2,
           "grammar": "proof",
+          "dur": 2,
+          "payoff": true,
+          "textBox": { "x": 0.08, "y": 0.76, "w": 0.84, "h": 0.16 },
           "claimId": "beat-2",
           "role": "escalation",
           "hinge": "THEREFORE",
@@ -169,6 +178,9 @@
           "id": "beat-4",
           "index": 3,
           "grammar": "proof",
+          "dur": 3,
+          "payoff": true,
+          "textBox": { "x": 0.08, "y": 0.76, "w": 0.84, "h": 0.16 },
           "claimId": "beat-2",
           "role": "turn",
           "hinge": "THEREFORE",
@@ -194,6 +206,9 @@
           "id": "beat-5",
           "index": 4,
           "grammar": "breather",
+          "dur": 1.5,
+          "payoff": false,
+          "textBox": { "x": 0.3, "y": 0.42, "w": 0.4, "h": 0.12 },
           "role": "breather",
           "hinge": "THEREFORE",
           "say": "That is the whole trick.",
@@ -213,6 +228,9 @@
           "id": "beat-6",
           "index": 5,
           "grammar": "callback",
+          "dur": 2,
+          "payoff": true,
+          "textBox": { "x": 0.08, "y": 0.76, "w": 0.84, "h": 0.16 },
           "role": "climax",
           "hinge": "BUT",
           "returns": "locked drawer",
@@ -238,6 +256,9 @@
           "id": "beat-7",
           "index": 6,
           "grammar": "landing",
+          "dur": 2,
+          "payoff": false,
+          "textBox": { "x": 0.08, "y": 0.76, "w": 0.84, "h": 0.16 },
           "role": "callback",
           "hinge": "THEREFORE",
           "say": "MCP: one plug, every tool.",
@@ -272,6 +293,9 @@
           "id": "beat-1",
           "index": 0,
           "grammar": "hook",
+          "dur": 2,
+          "payoff": true,
+          "textBox": { "x": 0.08, "y": 0.76, "w": 0.84, "h": 0.16 },
           "role": "hook",
           "hinge": "THEREFORE",
           "plant": "two-week sign",
@@ -297,6 +321,9 @@
           "id": "beat-2",
           "index": 1,
           "grammar": "claim",
+          "dur": 1.5,
+          "payoff": false,
+          "textBox": { "x": 0.08, "y": 0.76, "w": 0.84, "h": 0.16 },
           "role": "threshold",
           "hinge": "BUT",
           "say": "We plan from the best case, not the record.",
@@ -321,6 +348,9 @@
           "id": "beat-3",
           "index": 2,
           "grammar": "proof",
+          "dur": 2,
+          "payoff": true,
+          "textBox": { "x": 0.08, "y": 0.76, "w": 0.84, "h": 0.16 },
           "claimId": "beat-2",
           "role": "escalation",
           "hinge": "THEREFORE",
@@ -350,6 +380,9 @@
           "id": "beat-4",
           "index": 3,
           "grammar": "proof",
+          "dur": 3,
+          "payoff": true,
+          "textBox": { "x": 0.08, "y": 0.76, "w": 0.84, "h": 0.16 },
           "claimId": "beat-2",
           "role": "turn",
           "hinge": "THEREFORE",
@@ -375,6 +408,9 @@
           "id": "beat-5",
           "index": 4,
           "grammar": "breather",
+          "dur": 1.5,
+          "payoff": false,
+          "textBox": { "x": 0.3, "y": 0.42, "w": 0.4, "h": 0.12 },
           "role": "filter",
           "hinge": "THEREFORE",
           "say": "Everyone does this. Not just you.",
@@ -394,6 +430,9 @@
           "id": "beat-6",
           "index": 5,
           "grammar": "claim",
+          "dur": 1,
+          "payoff": false,
+          "textBox": { "x": 0.08, "y": 0.76, "w": 0.84, "h": 0.16 },
           "role": "breather",
           "hinge": "BUT",
           "say": "The fix: ask how long it took last time.",
@@ -418,6 +457,9 @@
           "id": "beat-7",
           "index": 6,
           "grammar": "proof",
+          "dur": 2,
+          "payoff": true,
+          "textBox": { "x": 0.08, "y": 0.76, "w": 0.84, "h": 0.16 },
           "claimId": "beat-6",
           "role": "climax",
           "hinge": "THEREFORE",
@@ -443,6 +485,9 @@
           "id": "beat-8",
           "index": 7,
           "grammar": "landing",
+          "dur": 3,
+          "payoff": false,
+          "textBox": { "x": 0.08, "y": 0.76, "w": 0.84, "h": 0.16 },
           "role": "callback",
           "hinge": "THEREFORE",
           "returns": "two-week sign",
@@ -523,10 +568,14 @@
     sheet.feelKey = o.feelKey || 'spring';
     sheet.palId = o.palId || 343;
     sheet.totalDurationSec = total;
+    // v9.2 film spec: beat times come from each beat's `dur` (seconds) when every beat has one; else an even split
+    const durs = sheet.beats.every(function (b) { return Number(b.dur) > 0; }) ? sheet.beats.map(function (b) { return Number(b.dur); }) : null;
+    let acc = 0;
     sheet.beats.forEach(function (b, i) {
-      const t0 = Number(((i / n) * total).toFixed(2));
-      const t1 = Number((((i + 1) / n) * total).toFixed(2));
+      const t0 = durs ? Number(acc.toFixed(2)) : Number(((i / n) * total).toFixed(2));
+      const t1 = durs ? Number((acc += durs[i]).toFixed(2)) : Number((((i + 1) / n) * total).toFixed(2));
       b.index = i;
+      if (b.payoff == null) b.payoff = false;
       if (b.tStartSec == null) b.tStartSec = t0;
       if (b.tEndSec == null) b.tEndSec = t1;
       if (b.tMidSec == null) b.tMidSec = Number(((t0 + t1) / 2).toFixed(2));
@@ -544,6 +593,29 @@
     });
     applyStoryboardGrammarDefaults(sheet);
     return auditStoryboardSheet(sheet);
+  }
+
+  // G37 · Film spec on boards (v9.2; docs/rsi/FILM-SPEC-9.md). Pure. A payoff lands at its beat's end.
+  //   hook: the hook beat ends <= 2 s (or the first payoff lands <= 2 s) · rhythm: consecutive payoffs 3-5 s apart and the
+  //   last payoff <= 5 s before the end · pause: exactly one breather, and it is not a payoff · words: every beat with a say
+  //   reserves a textBox {x,y,w,h} (fractions, inside the frame) · fields: every beat carries a boolean payoff.
+  function auditFilmSpec(sheet) {
+    const beats = (sheet && sheet.beats) || [];
+    const total = Number(sheet && sheet.totalDurationSec) || (beats.length ? beats[beats.length - 1].tEndSec : 0);
+    const errors = [];
+    const pays = beats.filter(function (b) { return b.payoff === true; }).map(function (b) { return Number(b.tEndSec); }).sort(function (a, b) { return a - b; });
+    const hook = beats[0] || {};
+    if (!(hook.grammar === 'hook' && (Number(hook.tEndSec) <= 2 || (pays.length && pays[0] <= 2)))) errors.push('hook: the hook must land within 2 s');
+    const gaps = pays.slice(1).map(function (t, i) { return Number((t - pays[i]).toFixed(2)); });
+    if (pays.length < 2 || gaps.some(function (g) { return g < 3 || g > 5; }) || total - pays[pays.length - 1] > 5) errors.push('rhythm: payoffs must land every 3-5 s (gaps ' + gaps.join('/') + ')');
+    const br = beats.filter(function (b) { return b.grammar === 'breather'; });
+    if (br.length !== 1 || br[0].payoff === true) errors.push('pause: exactly one breather, with no payoff');
+    const boxOk = function (t) { return t && ['x', 'y', 'w', 'h'].every(function (k) { return typeof t[k] === 'number' && t[k] >= 0 && t[k] <= 1; }) && t.w > 0 && t.h > 0 && t.x + t.w <= 1 + 1e-9 && t.y + t.h <= 1 + 1e-9; };
+    const noBox = beats.filter(function (b) { return String(b.say || '').trim() && !boxOk(b.textBox); }).map(function (b) { return b.index + 1; });
+    if (noBox.length) errors.push('words: beat(s) ' + noBox.join(',') + ' have a say but no text box');
+    if (!beats.every(function (b) { return typeof b.payoff === 'boolean'; })) errors.push('fields: every beat needs payoff true|false');
+    return { valid: errors.length === 0, errors: errors, payoffs: pays, gaps: gaps, breathers: br.length,
+      detail: pays.length + ' payoffs at ' + pays.join('/') + ' s · gaps ' + gaps.join('/') + ' s · ' + br.length + ' pause · text boxes ' + (beats.length - noBox.length) + '/' + beats.length };
   }
 
   // G33 · Wording clarity (work/wording/clarity-gate.md P1–P8). Pure; runs on v9 boards + vocabulary + saved schemes.
@@ -2919,7 +2991,8 @@
       { id: 'G30', name: 'Adaptive Procedural Music Score', plainName: 'Music follows the storyboard and ducks under sound effects', pass: !!(musPlan && musPlan.cues.length === (sheet.beats || []).length && musPlan.duck.dB === -6 && musPlan.cues.filter(function (c) { return c.role === 'breather'; }).length === 1), metric: musPlan ? (musPlan.key.root + ' ' + musPlan.key.modeName + ' · ' + Math.round(musPlan.bpm) + ' bpm · ' + musPlan.cues.length + ' cues') : 'music engine not loaded' },
       { id: 'G31', name: 'two.js Vector Stage Layer', plainName: 'Vector layer stays on-palette and repeatable', pass: !!(twoAudit && twoAudit.offPalette.length === 0 && twoAudit.spotlights === 1), metric: twoAudit ? ((TWO.isAvailable() ? 'two.js live' : 'two.js not loaded (layer off)') + ' · ' + twoAudit.count + ' items · 1 spotlight') : 'vector layer not loaded' },
       { id: 'G32', name: 'Storyboard Grammar', plainName: 'Story runs hook, claim, proof, pause, callback, landing', pass: grammarCheck.valid, metric: grammarCheck.valid ? (grammarCheck.beats + ' beats · ' + grammarCheck.claims + ' claim(s) · pause at beat ' + (grammarCheck.breatherIdx + 1)) : grammarCheck.errors[0] },
-      { id: 'G33', name: 'Wording Clarity', plainName: 'Wording is plain and clear', pass: wording.valid, metric: wording.detail }
+      { id: 'G33', name: 'Wording Clarity', plainName: 'Wording is plain and clear', pass: wording.valid, metric: wording.detail },
+      { id: 'G37', name: 'Film Spec on Boards', plainName: 'Quick hook, a payoff every few seconds, one pause, room for words', pass: v9Sheets.every(function (sh) { return auditFilmSpec(sh).valid; }), metric: v9Sheets.map(function (sh) { return auditFilmSpec(sh).detail; }).join(' | ') }
     ];
 
     const passedCount = gates.filter(function (g) { return g.pass; }).length;
@@ -2949,6 +3022,7 @@
     applyStoryboardGrammarDefaults: applyStoryboardGrammarDefaults,
     auditStoryboardGrammar: auditStoryboardGrammar,
     storyboardToMusicSheet: storyboardToMusicSheet,
+    auditFilmSpec: auditFilmSpec,
     auditWordingClarity: auditWordingClarity,
     readingGrade: readingGrade,
     moveStoryboardBeat: moveStoryboardBeat,
