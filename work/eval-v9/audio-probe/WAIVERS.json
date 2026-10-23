@@ -1,5 +1,15 @@
 {
   "note": "v9.2 G36 waivers: thresholds the current score does not meet and that need a mix design round (INTEGRATION-PLAN-v9.2 step 3: 'soup only if thresholds fight the score'). A waived metric must still not regress below its synth-only baseline (v9.2-synth-audio-report.json). Remove a waiver once the soup lands.",
-  "lufs": { "reason": "integrated loudness proxy is about -18.6 LUFS; reaching -16 needs master gain + limiter work that would push true peak past -1.5 dBTP", "owner": "soup (music lane)" },
-  "sfx_over_bed": { "reason": "quiet cues (CLICK) sit 2-3 dB under the ducked bed; +6 dB needs per-cue sample gains or a deeper duck, and the -6 dB duck law is frozen", "owner": "soup (music lane)" }
+  "lufs": {
+    "reason": "integrated loudness proxy is about -18.6 LUFS; reaching -16 needs master gain + limiter work that would push true peak past -1.5 dBTP",
+    "owner": "soup (music lane)"
+  },
+  "sfx_over_bed": {
+    "reason": "quiet cues (CLICK) sit 2-3 dB under the ducked bed; +6 dB needs per-cue sample gains or a deeper duck, and the -6 dB duck law is frozen",
+    "owner": "soup (music lane)"
+  },
+  "breather": {
+    "reason": "measured regression from v9.2 step 4: the film-spec timings shortened the breather to 1.5 s (8.5-10 s on MCP) and its floor fell from -29.5 (v9.1) to -31.3 dBFS, 1.3 dB under the -30 line; same value with and without the kit. Needs the pad floor raised in the music lane or a 2-s breather (re-check G37 payoff gaps).",
+    "owner": "soup (music lane) or board timing revisit"
+  }
 }

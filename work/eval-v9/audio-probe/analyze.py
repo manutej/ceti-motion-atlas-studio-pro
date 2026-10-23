@@ -67,10 +67,13 @@ def holes(x,t0,t1,thr=-38,minlen=0.1,w=0.01):
     if run and len(run)*w>=minlen-1e-9: out.append((run[0],round(len(run)*w,2)))
     return out
 L=plan['loopSec']
+# v9.2: the breather window comes from the plan (beat timings are no longer an even 2-s split)
+BR=next(((c['t0'],c['t1']) for c in plan['cues'] if c.get('role')=='breather' or c.get('mood')=='breather'),(8,10))
+BR=(round(BR[0]*10)/10,round(BR[1]*10)/10)
 rep['v91']=dict(
   rms_full_dBFS=rep['full']['rms_dBFS'], rms_music_dBFS=rep['musicOnly']['rms_dBFS'],
   holes_loop1=holes(mus,0,L), holes_loop1_count=len(holes(mus,0,L)),
-  breather_floor_dBFS=round(min(v for _,v in wins(mus,8,10,0.1)),1), breather_rms_dBFS=rep['sections']['breather'],
+  breather_floor_dBFS=round(min(v for _,v in wins(mus,*BR,0.1)),1), breather_rms_dBFS=rep['sections']['breather'],
   seam_min_dBFS=round(min(v for _,v in wins(full,L-0.25,L+0.25,0.05)),1),
   duck_dip_mean_dB=round(float(np.mean([d['dip_dB'] for d in ducks])),2) if ducks else None,
   bell_delta_plant_dB=round(rep['plant']['rms_during']-rep['plant']['rms_before'],1),

@@ -407,7 +407,8 @@ function checkSoundReport(rep, waivers, base) {
     sfx_over_bed: () => v.sfx_over_bed.length > 0 && v.sfx_over_bed.every((o) => o.over_bed_dB >= 6),
     spacing: () => v.sfx_pairs_under_120ms === 0 && v.sfx_min_gap_ms >= G36_GAP_MS, holes: () => v.holes_inside.length === 0,
     seam: () => v.seam_min_dBFS >= -20, breather: () => v.breather_floor_dBFS >= -30, riskiest: () => Array.isArray(v.riskiest) && v.riskiest.length === 5 };
-  const noRegress = { lufs: () => !base || v.lufs_i_proxy >= base.v92.lufs_i_proxy - 0.5, sfx_over_bed: () => !base || v.sfx_over_bed_min_dB >= base.v92.sfx_over_bed_min_dB };
+  const noRegress = { lufs: () => !base || v.lufs_i_proxy >= base.v92.lufs_i_proxy - 0.5, sfx_over_bed: () => !base || v.sfx_over_bed_min_dB >= base.v92.sfx_over_bed_min_dB,
+    breather: () => !base || v.breather_floor_dBFS >= base.v92.breather_floor_dBFS - 0.5 };
   const failed = [], waived = [];
   for (const k of Object.keys(T)) {
     if (T[k]()) continue;
