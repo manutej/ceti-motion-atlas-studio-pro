@@ -1,0 +1,31 @@
+{
+  "about": "Drives the Motion Atlas Studio Pro Standalone the way scripts/deliver.mjs does: storyboard-sheet surface, board chosen by --param board=<id>, largest storyboard canvas pinned to time t via data-fixed-t + the studio clock _T.",
+  "url": "Motion Atlas Studio Pro — Standalone.html",
+  "viewport": { "width": 1600, "height": 1000 },
+  "deviceScaleFactor": 3,
+  "readyExpr": "!!(window.__MOTION_ATLAS_STUDIO_INSTANCE && window.__MOTION_ATLAS_STUDIO_INSTANCE.setState)",
+  "setupExpr": [
+    "const a = window.__MOTION_ATLAS_STUDIO_INSTANCE;",
+    "a.setState({ surface: 'storyboard-sheet', playing: false, musicOn: false });",
+    "const sel = document.querySelector('[id=sb-story-select]');",
+    "if (sel && params.board && sel.value !== 'v9:' + params.board) { sel.value = 'v9:' + params.board; sel.dispatchEvent(new Event('change', { bubbles: true })); }",
+    "return sel ? sel.value : null;"
+  ],
+  "setupWaitMs": 600,
+  "timelineExpr": [
+    "const sb = window.__MOTION_ATLAS_STUDIO_INSTANCE.state.storyboard || {};",
+    "return { total: sb.totalDurationSec, beats: (sb.beats || []).map((b) => ({ t0: b.tStartSec, t1: b.tEndSec, payoff: b.payoff === true })) };"
+  ],
+  "selector": "largest-canvas",
+  "seekExpr": [
+    "const a = window.__MOTION_ATLAS_STUDIO_INSTANCE, beats = (a.state.storyboard && a.state.storyboard.beats) || [];",
+    "const tt = beats.length ? t % beats[beats.length - 1].tEndSec : t;",
+    "const b = beats.find((x) => tt >= x.tStartSec && tt < x.tEndSec) || beats[0];",
+    "el.setAttribute('data-fixed-t', String(tt));",
+    "if (b) el.getAttributeNames().filter((n) => /beat/.test(n)).forEach((n) => el.setAttribute(n, String(b.index)));",
+    "a._T = tt; a.drawAllCanvases();",
+    "return tt;"
+  ],
+  "settleMs": 150,
+  "times": "auto"
+}

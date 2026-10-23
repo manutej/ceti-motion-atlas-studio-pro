@@ -1,0 +1,68 @@
+{
+  "url": "Motion Atlas Studio Pro — Standalone.html",
+  "params": {
+    "board": "v9-mcp-server"
+  },
+  "times": [
+    1,
+    1.95,
+    5.45,
+    8.45,
+    11.95,
+    13
+  ],
+  "stills": [
+    {
+      "t": 1,
+      "file": "work/stills/skilltest/1.00s.png",
+      "bytes": 498483,
+      "sha1": "75717a851191d9560c6f77c6f67d038f6a7806b9",
+      "colours": 64
+    },
+    {
+      "t": 1.95,
+      "file": "work/stills/skilltest/1.95s.png",
+      "bytes": 497086,
+      "sha1": "29e904e59b753c92640f6ac5af582710db073639",
+      "colours": 64
+    },
+    {
+      "t": 5.45,
+      "file": "work/stills/skilltest/5.45s.png",
+      "bytes": 508991,
+      "sha1": "69053bc6f6c559b9629c04d3ebaf3d67fb2fb0eb",
+      "colours": 64
+    },
+    {
+      "t": 8.45,
+      "file": "work/stills/skilltest/8.45s.png",
+      "bytes": 514661,
+      "sha1": "e98f9465d6065dc10f472a1f880e10d5b8a61bd8",
+      "colours": 64
+    },
+    {
+      "t": 11.95,
+      "file": "work/stills/skilltest/11.95s.png",
+      "bytes": 503940,
+      "sha1": "7dec394f5f1601cb1d77007b284856bb1b288767",
+      "colours": 64
+    },
+    {
+      "t": 13,
+      "file": "work/stills/skilltest/13.00s.png",
+      "bytes": 491666,
+      "sha1": "91b3dc2b77d9a24c40cf488811af8a6dbe93c3aa",
+      "colours": 64
+    }
+  ],
+  "determinism": {
+    "t": 8.45,
+    "seekedVia": 1,
+    "bytesEqual": true,
+    "diffPixels": 0,
+    "pass": true
+  },
+  "pageErrors": [],
+  "problems": [],
+  "pass": true
+}
