@@ -2754,8 +2754,13 @@
         ctx.restore();
       }
 
+      // v9 two.js vector layer, back pass (inside the camera save, after onion ghosts): parallax, ribbons, cutouts. No-op without Two.
+      const twoOn = !!op.twoLayer && typeof global.TWO_LAYER !== 'undefined' && global.TWO_LAYER.isAvailable();
+      if (twoOn) global.TWO_LAYER.renderFrame(ctx, T, op.beat || null, pal, op.seed | 0, P, { pass: 'back', sheet: op.sheet || null, captionsCovered: O.captionsCovered });
       pr.draw(ctx, t, P, easeObj, bg);
       ctx.restore();
+      // v9 two.js vector layer, front pass (after the camera restore, before the viewfinder): spotlight, diagram, counter, kinetic say, end card.
+      if (twoOn) global.TWO_LAYER.renderFrame(ctx, T, op.beat || null, pal, op.seed | 0, P, { pass: 'front', sheet: op.sheet || null, captionsCovered: O.captionsCovered });
 
       if (O.onionSkin && !O.captionsCovered) {
         ctx.save();
@@ -2774,7 +2779,7 @@
           ctx.beginPath(); ctx.moveTo(c[0], c[1] + 10 * c[3]); ctx.lineTo(c[0], c[1]); ctx.lineTo(c[0] + 10 * c[2], c[1]); ctx.stroke();
         });
         if (op.beatIdx != null) {
-          txt(ctx, 'BEAT ' + (Number(op.beatIdx) + 1) + '/8 · CAM ' + String(op.cameraMove).toUpperCase(), LW - 16, 24, '700 8.5px ' + MONO, rgba(P.ink, 0.72), 'right');
+          txt(ctx, 'BEAT ' + (Number(op.beatIdx) + 1) + '/' + (op.beatCount || 8) + ' · CAM ' + String(op.cameraMove).toUpperCase(), LW - 16, 24, '700 8.5px ' + MONO, rgba(P.ink, 0.72), 'right');
         }
         ctx.restore();
       }

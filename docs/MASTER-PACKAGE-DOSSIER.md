@@ -13,12 +13,28 @@
 
 ## PART 1 · LIVE STATUS & DELIVERABLE MANIFEST
 
-# STATUS — CETI Motion Atlas Studio Pro (`v8.0.0` Locked)
+# STATUS — CETI Motion Atlas Studio Pro (`v9.0.0` Fable Soup)
 
-**Last Updated:** 2026-10-17  
+**Last Updated:** 2026-10-23  
 **Workspace:** `/Users/cairo/Documents/CETI/ACCENTURE/content-factory v2/ARTE/motion-atlas/`  
 **Public Repository:** `https://github.com/manutej/ceti-motion-atlas-studio-pro`  
-**Current Version:** `v8.0.0` (8 Adversarial MOE + VBM Visual/UX & Studio Ergonomics Rounds Complete · `29/29 Gates PASS` · `10/10 Negative Mutation Selftests CAUGHT`)
+**Current Version:** `v9.0.0` (Round 9 Fable model soup · `33/33 Gates PASS` · `14/14 Negative Mutation Selftests CAUGHT`; branch `v9-fable-soup`)
+
+---
+
+## Round 9 (`v9.0.0`) — Fable model soup
+
+Independent candidates per lane (music A/B, two.js A/B, wording) were merged under the typed contract; nothing was accepted on one agent's say-so. Merge logs: `work/music/MERGE-NOTES.md`, `work/two/MERGE-NOTES.md`, `work/wording/`.
+
+| What changed | Gate | Where |
+|---|---|---|
+| Adaptive WebAudio score (harmonic bed + leitmotif, −6 dB duck under every SFX, seekable lookahead scheduler); `♪ Music` toggle + `key · bpm · section` readout; `♪ SONIFY` now fires the CHORD stab through the mix (old `playWadaHarmonicChord` kept for G24) | **G30** · MUT-11 | `studio-music-engine.js`, `studio-ui.js` (tick / scrub / replan hooks) |
+| two.js vector stage layer (back pass: parallax, ribbons, cutouts · front pass: spotlight, diagram, counter, kinetic `say`, end card); offscreen, rebuilt from t, no play loop; no-op without `Two`; `✦ Vector layer` toggle on storyboard cards | **G31** · MUT-12 | `vendor/two.min.js`, `studio-two-renderer.js`, `MA.render` in `studio-motion-engine.js` |
+| Storyboard grammar hook → claim → proof → breather → callback → landing; additive beat fields `grammar, claimId, say, show, hear, because, plant, returns, readingLevel`; two example boards (MCP server, planning fallacy) in Surface IV; `say` = caption, `because` = MovementOk tag, `hear` drives the score | **G32** · MUT-13 | `studio-canvas-oauth.js` (`V9_STORYBOARDS`, `auditStoryboardGrammar`), `studio-ui.js` |
+| Plain-language wording: 51 vocab entries rewritten (2 near-duplicate pairs merged), UI copy for header/tabs/storyboard/modals, HUD gates carry `plainName` (tooltip `id · plainName`) | **G33** · MUT-14 | `studio-canvas-oauth.js` (`auditWordingClarity`), `studio-ui.js` |
+| Standalone inlines two.js (MIT header kept) → TWO_LAYER → MUSIC; build asserts zero `<script src=` | G16 | `scripts/build-package.mjs` |
+
+**Score:** `npm test` = **33/33 gates PASS · 14/14 mutations CAUGHT**. Standalone 580,339 → 866,352 B.
 
 ---
 
@@ -52,11 +68,29 @@ npm run vbm
 
 ## PART 2 · COLD-RESUME ARCHITECTURE & EXTENSION HANDOFF
 
-# HANDOFF — CETI Motion Atlas Studio Pro (`v8.0.0`)
+# HANDOFF — CETI Motion Atlas Studio Pro (`v9.0.0`)
 
 **Cold-Resume Entry Point for Engineers, Motion Directors, and Autonomous Agents**  
 **Root:** `/Users/cairo/Documents/CETI/ACCENTURE/content-factory v2/ARTE/motion-atlas/`  
 **Public Repository:** `https://github.com/manutej/ceti-motion-atlas-studio-pro`
+
+---
+
+## 0. Round 9 (`v9.0.0`) — Fable model soup
+
+Independent candidates per lane (music A/B, two.js A/B, wording) were merged under the typed contract; nothing was accepted on one agent's say-so. Merge logs: `work/music/MERGE-NOTES.md`, `work/two/MERGE-NOTES.md`, `work/wording/`.
+
+| What changed | Gate | Where |
+|---|---|---|
+| Adaptive WebAudio score (harmonic bed + leitmotif, −6 dB duck under every SFX, seekable lookahead scheduler); `♪ Music` toggle + `key · bpm · section` readout; `♪ SONIFY` now fires the CHORD stab through the mix (old `playWadaHarmonicChord` kept for G24) | **G30** · MUT-11 | `studio-music-engine.js`, `studio-ui.js` (tick / scrub / replan hooks) |
+| two.js vector stage layer (back pass: parallax, ribbons, cutouts · front pass: spotlight, diagram, counter, kinetic `say`, end card); offscreen, rebuilt from t, no play loop; no-op without `Two`; `✦ Vector layer` toggle on storyboard cards | **G31** · MUT-12 | `vendor/two.min.js`, `studio-two-renderer.js`, `MA.render` in `studio-motion-engine.js` |
+| Storyboard grammar hook → claim → proof → breather → callback → landing; additive beat fields `grammar, claimId, say, show, hear, because, plant, returns, readingLevel`; two example boards (MCP server, planning fallacy) in Surface IV; `say` = caption, `because` = MovementOk tag, `hear` drives the score | **G32** · MUT-13 | `studio-canvas-oauth.js` (`V9_STORYBOARDS`, `auditStoryboardGrammar`), `studio-ui.js` |
+| Plain-language wording: 51 vocab entries rewritten (2 near-duplicate pairs merged), UI copy for header/tabs/storyboard/modals, HUD gates carry `plainName` (tooltip `id · plainName`) | **G33** · MUT-14 | `studio-canvas-oauth.js` (`auditWordingClarity`), `studio-ui.js` |
+| Standalone inlines two.js (MIT header kept) → TWO_LAYER → MUSIC; build asserts zero `<script src=` | G16 | `scripts/build-package.mjs` |
+
+**Score:** `npm test` = **33/33 gates PASS · 14/14 mutations CAUGHT**. Standalone 580,339 → 866,352 B.
+
+**Cold-resume notes (v9):** script order is `geome-wada → studio-motion-engine → vendor/two.min.js → studio-two-renderer → studio-music-engine → studio-canvas-oauth → studio-ui` (shells, build, validator `filesToLoad`). Every `MUSIC`/`TWO_LAYER` call is guarded with `typeof … !== 'undefined'`. The validator mock 2D context gained `transform`/`resetTransform` no-ops so two.js can render headless.
 
 ---
 
@@ -592,6 +626,7 @@ flowchart LR
 | **Round 5 (`v5`)** | **VBM `@2x` Visual Browser Monitor Audit & Multi-Agent Expert Design/UX Critique** | **VBM Telemetry (`v4-baseline-ux-telemetry.json`) + Subagent Critic Team (`A1/A3 Editorial UX Critic` + `A2/A4 Motion & Rig Critic`):** 1. **460px Header Bloat:** Missing `.st-*` CSS rules in `Motion Atlas Studio Pro.dc.html` caused header controls to stack vertically to `460px` (`44.2%` of viewport height!). 2. **DAG Node Collisions:** Default DAG had `2` AABB node overlaps (`node-fork-1` vs `node-char-rig`, `node-style-a` vs `node-style-b`), escalating to `8` overlaps after 3-direction $\alpha/\beta/\gamma$ fork. 3. **Duplicate Storyboard Beats:** `STORIES` had only 4 beats doubled via `Math.floor(i/2)`, producing duplicate titles (`Silence` ×2, `One Drop` ×2) and identical `t=2.4s` frames. 4. **Shared `O` Mutation Leak in `MA.render`:** Mutating shared `O` caused options (`rung`, `charId`, `renderMode`) to bleed across canvases. 5. **Archetype & Rung Polish:** `doodle-scribe` was mis-tagged `'instrument'` instead of `'calligraphic'`; Rungs 1–5 and all 8 character cards needed unmistakable silhouette & surface separation. | Compiled comprehensive 18-point engineering & UX remediation plan across `Motion Atlas Studio Pro.dc.html`, `studio-motion-engine.js`, `studio-canvas-oauth.js`, and `studio-ui.js`. | Diagnostic Baseline Captured |
 | **Round 6 (`v6.0.0`)** | **Full UX/CSS Compaction, Collision-Free DAG Auto-Layout, 8-Beat Camera Viewfinder Engine, 5-Rung Separation & Gate `G21`** | **VBM Verification (`v6-final-ux-telemetry.json` + `v6-final-walkthrough.mp4`):** Verified all 12 `@2x` screenshots and walkthrough video. Header height dropped from **`460px → 136px`** (`-70.4%`); DAG overlaps dropped from **`8 → 0`** across all zoom levels (`0.3×`, `0.78×`, `1.65×`); `tell-apart` min pairwise distance rose from **`0.1906 → 0.6327`**; all 8 storylines now have **8 unique beat titles + 8 distinct camera moves + viewfinder HUD**. | Implemented complete `.st-*` studio CSS architecture (`136px` sticky header), `resolveNonOverlappingPosition()` + `autoLayoutDAG()` (`⊞ Auto-Layout DAG`), 8-beat `STORIES` with 2D camera transforms & viewfinder HUD, `try/finally` `O` isolation in `MA.render`, and **Gate `G21`** in `validate-motion-studio.mjs`. | `21/21 PASS` + `5/5 SELFTEST` |
 | **Round 7 (`v7.0.0`)** | **Deep Pixel-Level VBM Inspection, Sheaf Pushout Gluing (`A ⊕ B`), Multi-Frame Onion-Skinning, Orpheum 4-Voice WebAudio Sonification & Vector Path Compilers (`SVG` + `Lottie JSON`)** | **VBM `@2x` Pixel Inspection of `v6-final` (`02`, `03`, `08`, `10`, `12`) + Feature Horizon:** 1. **Hydrography HUD Right-Edge Clip (`s_hydro`):** `ΔE2000 CETI TOKEN FIT` HUD box at `x=306, w=160` clipped right-aligned `ΔE=4.3` digits at the `480px` border. 2. **1.65× Micro-LOD Left Clip & Minimap Overlap (`03-surface1`):** Zooming to `1.65×` kept `panX=24`, clipping the seed card on the left while `.canvas-minimap` (`left: 12px`) covered its footer. 3. **DAG Branch Convergence:** DAG needed multi-parent pushout synthesis (`A ⊕ B`) with $\rho(A \oplus B)$ sheaf cohomology verification. 4. **Temporal Spacing Inspection:** Needed live `-2Δt / -1Δt / +1Δt` Wada-tinted onion-skin ghosts. 5. **Orpheum Harmonic Audio:** Needed 4-voice WebAudio Just-Intonation chord synthesizer mapped from the $4\times 4$ OKLab matrix. 6. **Vector Path Compilers:** Needed resolution-independent `SVG Keyframe Sprite` and `Lottie JSON v5.7.4` compilers. | 1. Widened `s_hydro` HUD box to `x=290, w=176` with `ctx.textAlign='right'` at `x=458`. 2. Docked `.canvas-minimap` at `right: 12px` and centered `node-seed` on `1.65×` zoom (`panX=48, panY=18`). 3. Built `CO.synthesizeBranches` (`⊕ Synthesize A ⊕ B`, Gate `G22`). 4. Built `MA.computeOnionSkinFrames` + `[O]` toggle (Gate `G23`). 5. Built `MA.computeWadaHarmonicChord` + `♪ SONIFY` WebAudio engine (Gate `G24`). 6. Added `'svg-keyframes'` + `'lottie-json'` (`v5.7.4`) compilers (Gate `G25`) and `MUT-06` + `MUT-07`. | **`25/25 PASS` + `7/7 SELFTEST CAUGHT`** |
+| **Round 9 (`v9.0.0`)** | **Fable model soup: adaptive WebAudio score, two.js vector stage layer, say/show/hear/because storyboard grammar, plain-language wording** | **Soup mechanism:** independent candidates per lane (music A/B, two.js A/B, wording) merged under the typed contract; contradictions resolved by gate predicates (duck law −6 dB/10/250/150 ms; two passes; one clock per beat). Integrator probes: validator mock ctx lacked `transform` (two.js could not render headless); one MCP beat read at grade 10.1 (split into two sentences → 7.1); two v9 vocab labels left `boil`/`overshoot` outside parentheses; legacy RSI fixer would force a second breather on v9 boards. | `studio-music-engine.js` + `studio-two-renderer.js` + vendored two.js wired into shells, Standalone bundle (no external `<script src>`), `MA.render` (back/front passes) and `studio-ui.js` (tick/seek/replan hooks, ♪ Music + ✦ Vector layer toggles); `V9_STORYBOARDS`, `auditStoryboardGrammar`, `auditWordingClarity`, `storyboardToMusicSheet`; gates **G30–G33** + **MUT-11…MUT-14**; HUD mirrors with `plainName`. | **`33/33 PASS` + `14/14 SELFTEST CAUGHT`** |
 
 ---
 
