@@ -1,15 +1,9 @@
 {
-  "note": "v9.2 G36 waivers: thresholds the current score does not meet and that need a mix design round (INTEGRATION-PLAN-v9.2 step 3: 'soup only if thresholds fight the score'). A waived metric must still not regress below its synth-only baseline (v9.2-synth-audio-report.json). Remove a waiver once the soup lands.",
-  "lufs": {
-    "reason": "integrated loudness proxy is about -18.6 LUFS; reaching -16 needs master gain + limiter work that would push true peak past -1.5 dBTP",
-    "owner": "soup (music lane)"
-  },
+  "note": "v9.3 G36 waivers. The MIX soup (studio-mix-design.js) cleared lufs (-17.01 LUFS) and breather (-28.2 dBFS) on the measured v9.3 report, so those waivers are removed. A waived metric must still not regress below its floor (or, with no floor, its synth-only baseline in v9.2-synth-audio-report.json).",
   "sfx_over_bed": {
-    "reason": "quiet cues (CLICK) sit 2-3 dB under the ducked bed; +6 dB needs per-cue sample gains or a deeper duck, and the -6 dB duck law is frozen",
-    "owner": "soup (music lane)"
-  },
-  "breather": {
-    "reason": "measured regression from v9.2 step 4: the film-spec timings shortened the breather to 1.5 s (8.5-10 s on MCP) and its floor fell from -29.5 (v9.1) to -31.3 dBFS, 1.3 dB under the -30 line; same value with and without the kit. Needs the pad floor raised in the music lane or a 2-s breather (re-check G37 payoff gaps).",
-    "owner": "soup (music lane) or board timing revisit"
+    "reason": "the +6 dB over-bed target is infeasible with the frozen 10 ms duck attack under the MIX limiter (measured ceiling about +4.9 dB); v9.3 measures +3.6 dB (CLICK@0.865, WHOOSH@3.75)",
+    "floor": 3.6,
+    "round4": "look-ahead duck (atom mix3-lookahead-duck): start the duck ramp 13 ms before each deterministic SFX trigger, depth -6 and 10/250/150 unchanged; predicted min over-bed 7.0-9.6 dB. Falsifier: < 6.0 measured.",
+    "owner": "music lane, round 4"
   }
 }

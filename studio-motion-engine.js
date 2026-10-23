@@ -2767,8 +2767,8 @@
       const scOpts = { beat: op.beat, palette: pal, seed: op.seed | 0, P: P, sheet: op.sheet || null, captionsCovered: O.captionsCovered };
       if (sc) global.SCENE.render(ctx, sc, T, 'back', scOpts);
       else if (twoOn) global.TWO_LAYER.renderFrame(ctx, T, op.beat || null, pal, op.seed | 0, P, { pass: 'back', sheet: op.sheet || null, captionsCovered: O.captionsCovered });
-      // Legacy story art (whale / s_retrieve) is the character layer: drawn only when the beat names a character.
-      if (!sc || (sc.character && sc.character.visible)) pr.draw(ctx, t, P, easeObj, bg);
+      // Actor pass (identity lock): the host character always renders between SCENE back and SCENE front; SCENE draws the props around it.
+      pr.draw(ctx, t, P, easeObj, bg);
       ctx.restore();
       // v9 two.js vector layer, front pass (after the camera restore, before the viewfinder): spotlight, diagram, counter, kinetic say, end card.
       if (sc) global.SCENE.render(ctx, sc, T, 'front', scOpts);

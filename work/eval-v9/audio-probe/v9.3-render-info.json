@@ -1,0 +1,32 @@
+{
+  "full": {
+    "info": {
+      "live": true,
+      "events": 113,
+      "bpm": 104,
+      "key": "C4 Mixolydian"
+    },
+    "len": 1323000,
+    "sr": 44100
+  },
+  "musicOnly": {
+    "info": {
+      "live": true,
+      "events": 113,
+      "bpm": 104,
+      "key": "C4 Mixolydian"
+    },
+    "len": 1323000,
+    "sr": 44100
+  },
+  "sfxOnly": {
+    "info": {
+      "live": true,
+      "events": 113,
+      "bpm": 104,
+      "key": "C4 Mixolydian"
+    },
+    "len": 1323000,
+    "sr": 44100
+  }
+}

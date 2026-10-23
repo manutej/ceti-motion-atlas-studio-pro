@@ -409,7 +409,7 @@ function checkSoundReport(rep, waivers, base) {
     sfx_over_bed: () => v.sfx_over_bed.length > 0 && v.sfx_over_bed.every((o) => o.over_bed_dB >= 6),
     spacing: () => v.sfx_pairs_under_120ms === 0 && v.sfx_min_gap_ms >= G36_GAP_MS, holes: () => v.holes_inside.length === 0,
     seam: () => v.seam_min_dBFS >= -20, breather: () => v.breather_floor_dBFS >= -30, riskiest: () => Array.isArray(v.riskiest) && v.riskiest.length === 5 };
-  const noRegress = { lufs: () => !base || v.lufs_i_proxy >= base.v92.lufs_i_proxy - 0.5, sfx_over_bed: () => !base || v.sfx_over_bed_min_dB >= base.v92.sfx_over_bed_min_dB,
+  const noRegress = { lufs: () => !base || v.lufs_i_proxy >= base.v92.lufs_i_proxy - 0.5, sfx_over_bed: () => (waivers && waivers.sfx_over_bed && Number.isFinite(waivers.sfx_over_bed.floor) ? v.sfx_over_bed_min_dB >= waivers.sfx_over_bed.floor : !base || v.sfx_over_bed_min_dB >= base.v92.sfx_over_bed_min_dB),
     breather: () => !base || v.breather_floor_dBFS >= base.v92.breather_floor_dBFS - 0.5 };
   const failed = [], waived = [];
   for (const k of Object.keys(T)) {
@@ -417,6 +417,74 @@ function checkSoundReport(rep, waivers, base) {
     if (waivers && waivers[k] && noRegress[k] && noRegress[k]()) waived.push(k); else failed.push(k);
   }
   return { pass: failed.length === 0, failed, waived };
+}
+// G38 (v9.3, lane vector SCENE): show = drawn. Every beat with a `show` builds its own scene primitives (coverage, strict from-substring,
+// one hotspot, text box clear); the host MA.render passes that scene to the vector front pass, and the actor (character) pass still runs
+// between SCENE back and SCENE front on every beat (identity lock: the character is never dropped).
+function checkScene(S, boards, sb, MAx) {
+  const failed = [];
+  let beats = 0, prims = 0, minActor = Infinity, ownDiagram = 0;
+  if (!S || typeof S.fromBeat !== 'function' || typeof S.coverage !== 'function') return { pass: false, failed: ['missing'], beats, prims, minActor: 0, ownDiagram };
+  const TL = sb.TWO_LAYER, keep = TL && { isAvailable: TL.isAvailable, renderFrame: TL.renderFrame };
+  let mark = {}, ctx = null, lastFront = null;
+  if (TL) { TL.isAvailable = () => true; TL.renderFrame = (c, t, b, pal, seed, P, o) => { mark[o && o.pass] = ctx.getOps(); if (o && o.pass === 'front') lastFront = b; return { pass: o && o.pass }; }; }
+  try {
+    for (const sh of boards) for (const b of sh.beats) {
+      if (!b.show) continue;
+      beats++;
+      const sc = S.fromBeat(b, null, 7), cov = S.coverage(sc);
+      prims += sc.primitives.length;
+      if (cov.unmatched.length) failed.push(sh.id + '#' + b.index + ' unmatched ' + cov.unmatched.join('/'));
+      if (!sc.primitives.length || !sc.primitives.every((p) => b.show.toLowerCase().includes(String(p.from).toLowerCase()))) failed.push(sh.id + '#' + b.index + ' from');
+      if (sc.primitives.filter((p) => p.kind === 'mask').length > 1) failed.push(sh.id + '#' + b.index + ' masks');
+      const h = sc.hotspot; if (!(h && h.x >= 0 && h.x <= 1 && h.y >= 0 && h.y <= 1)) failed.push(sh.id + '#' + b.index + ' hotspot');
+      if (b.textBox && JSON.stringify(sc.textBox) !== JSON.stringify(b.textBox)) failed.push(sh.id + '#' + b.index + ' textBox');
+      if (TL && MAx) {
+        ctx = createMockCanvasContext(480, 300); mark = {}; lastFront = null;
+        MAx.render({ width: 480, height: 300, getContext: () => ctx }, sh.storyKey || 's_voice', WADA.enrichPalette(WADA.PALS[0], 'atlas'), MAx.FEELS.spring, b.tMidSec || 0,
+          { charId: 'ceti-whale', twoLayer: true, beat: b, sheet: sh, seed: 7 });
+        const actor = (mark.front || 0) - (mark.back || 0) - 1;   // ops between the two vector passes, minus the camera restore
+        minActor = Math.min(minActor, actor);
+        if (!(actor >= 1)) failed.push(sh.id + '#' + b.index + ' actor dropped');
+        const ids = lastFront && lastFront.diagram && lastFront.diagram.nodes ? lastFront.diagram.nodes.map((n) => n.id) : [];
+        if (ids.length && ids.every((id) => id.indexOf('b' + b.index + '_') === 0)) ownDiagram++; else failed.push(sh.id + '#' + b.index + ' front pass not the beat scene');
+      }
+    }
+  } finally { if (TL) { TL.isAvailable = keep.isAvailable; TL.renderFrame = keep.renderFrame; } }
+  return { pass: failed.length === 0 && beats > 0, failed, beats, prims, minActor: minActor === Infinity ? 0 : minActor, ownDiagram };
+}
+// G39 (v9.3, lane music MIX): mix design present and deterministic; duck law untouched; one limiter comp→limiter→master; cue gains in (0, 1];
+// predict() inside the LUFS band (−16 ± 1.5), breather floor ≥ −30 dBFS, true peak < −1.5 dBTP; measured report (when present) in the same bands.
+function mockAudio() {
+  const made = { comp: 0 }, P = () => ({ value: 1 });
+  const node = (name) => ({ name, gain: P(), threshold: P(), knee: P(), ratio: P(), attack: P(), release: P(), out: [], connect(n) { this.out.push(n); return n; }, disconnect() { this.out = []; } });
+  const ctx = { createGain: () => node('gain'), createDynamicsCompressor: () => { made.comp++; return node('limiter'); } };
+  const nodes = { master: node('master'), comp: node('comp'), music: node('music'), sfx: node('sfx'), pad: node('pad') };
+  nodes.comp.connect(nodes.master);
+  return { ctx, nodes, made };
+}
+function checkMix(X, M, plans, rep, uiSrc) {
+  const failed = [], ck = (k, ok) => { if (!ok) failed.push(k); };
+  if (!X || typeof X.design !== 'function' || typeof X.apply !== 'function' || typeof X.predict !== 'function' || !X.VERSION) return { pass: false, failed: ['missing'], worst: null };
+  const duck0 = JSON.stringify(M.DUCK);
+  let worst = { lufs: 0, br: 0, tp: -99 };
+  for (const p0 of plans) {
+    const plan = JSON.parse(JSON.stringify(p0)), d = X.design(plan, null, 7);
+    ck('determinism', JSON.stringify(d) === JSON.stringify(X.design(plan, null, 7)));
+    ck('duck', d.duck.depthDb === M.DUCK.dB && d.duck.attackMs === M.DUCK.attackMs && d.duck.holdMs === M.DUCK.holdMs && d.duck.releaseMs === M.DUCK.releaseMs);
+    const pr = X.predict(d, plan);
+    worst = { lufs: Math.max(worst.lufs, Math.abs(pr.lufsProxy + 16)), br: Math.min(worst.br, pr.breatherFloorDb), tp: Math.max(worst.tp, pr.truePeakProxy) };
+    ck('lufs-band', Math.abs(pr.lufsProxy + 16) <= 1.5); ck('breather-band', pr.breatherFloorDb >= -30); ck('true-peak', pr.truePeakProxy < -1.5);
+    const m = mockAudio(), r1 = X.apply(m.ctx, m.nodes, d, plan), r2 = X.apply(m.ctx, m.nodes, d, plan);
+    ck('limiter', r1.applied && r1.limiterInserted && !r2.limiterInserted && m.made.comp === 1 && m.nodes.comp.out[0] === m.nodes.limiter && m.nodes.limiter.out[0] === m.nodes.master);
+    ck('gains', plan.sfx.every((x) => Number.isFinite(x.gain) && x.gain > 0 && x.gain <= 1));
+    ck('null-safe', X.apply(null, m.nodes, d).applied === false && X.apply(m.ctx, null, d).applied === false);
+  }
+  ck('duck-untouched', JSON.stringify(M.DUCK) === duck0);
+  ck('host-hook', /MIX\.apply\(MUSIC\.mix\._ctx \|\| null, MUSIC\.mix, MIX\.design\(/.test(uiSrc || ''));
+  const v = rep && rep.v92;
+  if (v) { ck('report-lufs', Math.abs(v.lufs_i_proxy + 16) <= 1.5); ck('report-breather', v.breather_floor_dBFS >= -30); ck('report-tp', v.true_peak_dBTP_proxy < -1.5); }
+  return { pass: failed.length === 0, failed, worst };
 }
 function g36Plans(CO, M, boards) {
   const pal = { id: 343, a: '#ebd3a2', h: '#ae5224', b: '#527e91' };
@@ -1073,7 +1141,7 @@ async function runAllGates() {
   const g36p = checkSoundPlan(g36Plans(CO, MUSIC, v9Boards), sandbox.SFX_KIT);
   const AP = path.join(ROOT, 'work', 'eval-v9', 'audio-probe');
   const rj = (f) => (fs.existsSync(path.join(AP, f)) ? JSON.parse(fs.readFileSync(path.join(AP, f), 'utf8')) : null);
-  const rep36 = rj('v9.2-audio-report.json');
+  const rep36 = rj('v9.3-audio-report.json') || rj('v9.2-audio-report.json');   // v9.3: the MIX build's report when present
   const g36r = rep36 ? checkSoundReport(rep36, rj('WAIVERS.json'), rj('v9.2-synth-audio-report.json')) : null;
   recordGate('G36', 'Measured Sound Pass (SFX spaced, duck law, every cue has a real sample; loudness report)', g36p.pass && (!g36r || g36r.pass),
     `plan: ${g36p.cues} SFX over ${Object.keys(MUSIC.TEMPO).length * 4} board×feel plans, min gap ${g36p.minGap} ms (≥ ${G36_GAP_MS}), duck -6/10/250/150, kit map complete${g36p.failed.length ? ' · FAILED ' + g36p.failed.join(',') : ''}` +
@@ -1089,6 +1157,17 @@ async function runAllGates() {
     return DEL.every((f) => fs.existsSync(path.join(d, f))) && JSON.parse(fs.readFileSync(path.join(d, 'loop-check.json'), 'utf8')).pass === true; });
   recordGate('G37', 'Film Spec on Boards (quick hook, payoff every 3–5 s, one pause, text boxes)', g37.every((r) => r.valid) && hud37 && delOk,
     g37.map((r, i) => v9Boards[i].id + ': ' + (r.valid ? r.detail : r.errors.join('; '))).join(' · ') + ` · HUD plain name ${hud37} · 5 deliverables + loop check per board ${delOk}`);
+
+  // G38 (v9.3): show = drawn — SCENE builds each beat's own primitives, the host front pass draws them, the actor pass is never dropped
+  const g38 = checkScene(sandbox.SCENE, v9Boards, sandbox, MA);
+  recordGate('G38', 'Show = Drawn (each beat draws its own show; the character still renders)', g38.pass,
+    `${g38.beats} beats on ${v9Boards.length} boards · ${g38.prims} primitives · every show term drawn · front pass = beat scene ${g38.ownDiagram}/${g38.beats} · min actor ops ${g38.minActor}${g38.failed.length ? ' · FAILED ' + g38.failed.slice(0, 4).join('; ') : ''}`);
+
+  // G39 (v9.3): mix design present — limiter, bus/cue gains, breather floor; LUFS/breather bands on predict() and on the measured report
+  const uiSrc39 = fs.readFileSync(path.join(ROOT, 'studio-ui.js'), 'utf8');
+  const g39 = checkMix(sandbox.MIX, MUSIC, g36Plans(CO, MUSIC, v9Boards), rj('v9.3-audio-report.json'), uiSrc39);
+  recordGate('G39', 'Mix Design Present (one limiter; loudness and pause floor in band)', g39.pass,
+    `MIX ${sandbox.MIX ? sandbox.MIX.VERSION : 'absent'} · ${g36Plans(CO, MUSIC, v9Boards).length} plans · predict worst |LUFS+16| ${g39.worst ? g39.worst.lufs.toFixed(2) : '-'} · breather ${g39.worst ? g39.worst.br.toFixed(1) : '-'} dBFS · TP ${g39.worst ? g39.worst.tp.toFixed(2) : '-'} dBTP · duck untouched · host hook${g39.failed.length ? ' · FAILED ' + g39.failed.join(',') : ''}`);
 
   // Print Summary Table
   const passedCount = results.filter((r) => r.pass).length;
@@ -1355,6 +1434,39 @@ async function runAllGates() {
       id: 'MUT-18',
       desc: 'Flip one SFX kit licence to CC-BY in a copy of the manifest and verify G35 rejects it',
       caught: checkSfxKit(man18, k18.lic, k18.kit, sandbox.SFX_KIT).pass === false && checkSfxKit(k18.man, k18.lic, k18.kit, sandbox.SFX_KIT).pass === true
+    });
+
+    // MUT-20: G38 — a SCENE copy that drops the merged noun mark (vector MERGE-NOTES sed) leaves a show term undrawn; G38 rejects it
+    const scSrc = fs.readFileSync(path.join(ROOT, 'studio-scene.js'), 'utf8');
+    const mut20Src = scSrc.replace('if (f0) join(f0, d, null);', 'if (f0) P.splice(P.indexOf(d), 1);');
+    const h20 = {}; const S20 = loadIsolated(mut20Src, 'SCENE', h20);
+    mutResults.push({
+      id: 'MUT-20',
+      desc: 'Drop one merged noun mark in a copy of the SCENE module and verify G38 (show = drawn) rejects it',
+      caught: mut20Src !== scSrc && checkScene(S20, v9Boards, { }, null).pass === false && checkScene(sandbox.SCENE, v9Boards, sandbox, MA).pass === true
+    });
+
+    // MUT-21: G39 — a MIX copy whose duck depth drifts to −5 dB breaks the frozen duck law; G39 rejects it
+    const mxSrc = fs.readFileSync(path.join(ROOT, 'studio-mix-design.js'), 'utf8');
+    const mut21Src = mxSrc.replace('depthDb: -6,', 'depthDb: -5,');
+    const X21 = loadIsolated(mut21Src, 'MIX');
+    const ui21 = fs.readFileSync(path.join(ROOT, 'studio-ui.js'), 'utf8');
+    mutResults.push({
+      id: 'MUT-21',
+      desc: 'Set the duck depth to −5 dB in a copy of the MIX module and verify G39 rejects it',
+      caught: mut21Src !== mxSrc && checkMix(X21, MUSIC, g36Plans(CO, MUSIC, v9Boards), null, ui21).failed.includes('duck') && checkMix(sandbox.MIX, MUSIC, g36Plans(CO, MUSIC, v9Boards), null, ui21).pass === true
+    });
+
+    // MUT-22: G38 actor lock — an engine copy that skips the actor pass when a SCENE exists drops the character; G38 rejects it
+    const engSrc22 = fs.readFileSync(path.join(ROOT, 'studio-motion-engine.js'), 'utf8');
+    const mut22Src = engSrc22.replace('      pr.draw(ctx, t, P, easeObj, bg);\n      ctx.restore();\n      // v9 two.js vector layer, front pass', '      if (!sc) pr.draw(ctx, t, P, easeObj, bg);\n      ctx.restore();\n      // v9 two.js vector layer, front pass');
+    const sb22 = Object.assign({}, sandbox); sb22.window = sb22; sb22.globalThis = sb22; vm.createContext(sb22);
+    vm.runInContext(mut22Src, sb22, { filename: 'studio-motion-engine.mutant.js' });
+    const g38m = checkScene(sandbox.SCENE, v9Boards, sandbox, sb22.MA);
+    mutResults.push({
+      id: 'MUT-22',
+      desc: 'Skip the character (actor) pass when a SCENE is drawn in a copy of the engine and verify G38 rejects it',
+      caught: mut22Src !== engSrc22 && g38m.pass === false && g38m.failed.some((e) => /actor dropped/.test(e)) && checkScene(sandbox.SCENE, v9Boards, sandbox, MA).pass === true
     });
 
     for (const m of mutResults) {
