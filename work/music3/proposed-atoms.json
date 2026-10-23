@@ -1,0 +1,51 @@
+{
+  "round": 3,
+  "lane": "music",
+  "module": "MIX",
+  "film_line": "A robot finds one adapter that opens every drawer",
+  "source": "work/music3/MERGE-NOTES.md; probes cand-A/B/C-audio-report.json + soup-audio-report.json (MCP board)",
+  "atoms": [
+    {
+      "id": "mix3-overbed-infeasible",
+      "evidence": "E1",
+      "kind": "type-contract",
+      "text": "The +6 dB sfx_over_bed target is infeasible with the frozen 10 ms duck attack under a -3 dB limiter at lufs >= -17.5. The bed is at full level for the cue's first 10 ms, and the limiter pins SFX peaks near -2...-3.5 dBFS. Measured min over-bed: A 2.9, B 2.9, C 3.4, soup 3.6. Over-bed ~= TP - LUFS - k, where k = 11.08 (soup), 11.24 (C), 11.72 (A), 12.24 (B). With TP < -1.5 and LUFS >= -17.5 the ceiling is about +4.9 dB.",
+      "measured": { "A": 2.9, "B": 2.9, "C": 3.4, "soup": 3.6, "ceiling_est_dB": 4.9 }
+    },
+    {
+      "id": "mix3-predict-makeup-cap",
+      "evidence": "E1",
+      "kind": "type-contract",
+      "text": "MIX.predict must model the limiter's automatic makeup gain K = 0.6*abs(T)*(1-1/R) on every bed term. It must also cap SFX peaks at the limiter output ceiling (threshold + K + master): perCue = min(contract law, cap law). Without both, over-bed predictions are 3-4.6 dB optimistic (A 4.6, B 4.1, C 3.1). soup.predict's error against the soup probe: lufs 0.09, overBedMin 0.03, breather 0.13, seam 0.27, TP 0.78 (safe side, because the contract's 1.5 dB overshoot is kept).",
+      "measured": { "optimism_dB": { "A": 4.6, "B": 4.1, "C": 3.1 }, "soup_abs_err_dB": { "lufs": 0.09, "tp": 0.78, "overBedMin": 0.03, "breather": 0.13, "seam": 0.27 } }
+    },
+    {
+      "id": "mix3-probe-recipe",
+      "evidence": "E1",
+      "kind": "recipe",
+      "text": "audio.mjs reloads the page between renders, so the probe must re-inject the MIX script after every reload; the soup probe re-adds it at the top of render() when window.MIX is missing. The script path and index.html must resolve from the probe's own folder, not the cwd. The probe must run with PROBE_OUT in an isolated scratch folder, because work/music3 is shared and the .f32 files raced. Copy back only the JSON report; never commit .wav or .f32.",
+      "measured": { "probe": "work/music3/probe-soup.mjs", "renders": 3, "samples_each": 1323000 }
+    },
+    {
+      "id": "mix3-uncovered-worst",
+      "evidence": "E1",
+      "kind": "type-contract",
+      "text": "A plan cue with no same-name measured anchor within holeMs (100 ms) inherits the worst measured cue. For the cap law this is WHOOSH@3.75; for the contract law it is the worst measured instance of that name, else the board's worst (-3.1). Predicted soup over-bed for such a cue is 3.63 dB, which equals the MCP board's predicted minimum.",
+      "measured": { "worst_anchor": "WHOOSH@3.75", "soup_measured_worst_dB": 3.6 }
+    },
+    {
+      "id": "mix3-tp-lufs-identity",
+      "evidence": "E1",
+      "kind": "law",
+      "text": "With SFX pinned at the limiter, master gain and limiter makeup move TP, LUFS and bed together. So min over-bed ~= TP - LUFS - k, and k depends only on the bed's make-up (pad vs music bus) and the overshoot. Bed peak rises 0.318 dB per pad dB and 0.77 dB per music-bus dB. LUFS rises 0.196 dB per pad dB and 0.534 dB per music-bus dB (the -18 dB 3:1 comp compresses the bed). All coefficients are fitted on the A/B/C probes; the soup probe was predicted within 0.27 dB.",
+      "measured": { "k": { "soup": 11.08, "C": 11.24, "A": 11.72, "B": 12.24 }, "padPeak": 0.318, "padLoud": 0.196, "musicPeak": 0.77, "musicLoud": 0.534 }
+    },
+    {
+      "id": "mix3-lookahead-duck",
+      "evidence": "E0-prediction (measure in round 4)",
+      "kind": "lever",
+      "text": "Look-ahead duck: start the duck ramp N = 13 ms before each deterministic SFX trigger (10 ms attack + one 128-frame render quantum of 2.9 ms at 44.1 kHz). Depth -6 and 10/250/150 stay unchanged. The predicted over-bed gain is about the bed level at cue onset: in the [t, t+0.3 s] window the onset bed drops 0 -> -6 dB, while the tail is at -3.4 dB instead of -4.0. That gives a gain of 3.4 dB (full-height bed note in the tail) to 6.0 dB (onset-dominated). Soup onset bed peaks are -6.5 / -7.9 / -6.8 dBFS (CLICK@0.865 / WHOOSH@3.75 / BOING@10.529). Predicted min over-bed: 3.6 + 3.4...6.0 = 7.0...9.6 dB (>= 6). Predicted LUFS change about -0.03 dB; TP unchanged. Falsifier: measured min over-bed < 6.0 (gain < 2.4 dB). The engine owns the duck (studio-music-engine.js duckAt), so this is a round-4 engine change; it is not a MIX change.",
+      "predicted": { "N_ms": 13, "gain_dB": [3.4, 6.0], "overBedMin_dB": [7.0, 9.6], "lufs_delta_dB": -0.03 }
+    }
+  ]
+}
