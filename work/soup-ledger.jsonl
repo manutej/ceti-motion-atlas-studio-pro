@@ -7,3 +7,7 @@
 {"round":3,"lane":"music","kind":"candidate","id":"A","selftest":0,"literals":0,"bytes":9526,"wow":0.55,"firstFlag":"G36 sfx_over_bed measured +2.9 vs +6; lufs/breather/truepeak clear","toolCalls":23,"minutes":25,"lens":"headroom in the limiter","gaps":4,"ts":"2026-10-23T04:37:50.181Z"}
 {"round":3,"lane":"vector","kind":"merge","diversity":0.82,"predicates":"333/333","bestSingle":"C","bestSinglePredicates":"329/333","openContradictions":3,"atoms":9,"literals":0,"bytes":16126,"toolCalls":20,"minutes":7,"ts":"2026-10-23T04:44:50.616Z"}
 {"round":3,"lane":"music","kind":"merge","diversity":0.777,"predicates":"56/56","bestSingle":"C","bestSinglePredicates":"55/56","openContradictions":3,"atoms":6,"literals":0,"bytes":10940,"toolCalls":30,"minutes":15,"ts":"2026-10-23T04:54:43.412Z"}
+{"round":3,"kind":"critic","lane":"vector","firstFlag":"G38","wow":0.6,"rank":"soup","authority":"provisional","minutes":8,"bestFirstFlag":"G38","ts":"2026-10-23T13:57:35.649Z"}
+{"round":3,"kind":"critic","lane":"music","firstFlag":"G36","wow":0.55,"rank":"soup","authority":"provisional","minutes":8,"bestFirstFlag":"G36","ts":"2026-10-23T13:57:35.679Z"}
+{"round":3,"kind":"integrate","test":"npm test 40/40 + 22/22","steps":"6/6","reverted":[],"minutes":9,"gates":["G38","G39"],"mutations":["MUT-20","MUT-21","MUT-22"],"ts":"2026-10-23T13:57:35.708Z"}
+{"round":3,"kind":"verdict","result":"accept","lanes":{"vector":"soup","music":"soup"},"wallMinutes":95,"ts":"2026-10-23T13:57:35.737Z"}
