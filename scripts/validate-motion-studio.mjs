@@ -90,6 +90,7 @@ function createMockCanvasContext(width = 480, height = 300) {
 // Create VM sandbox with browser globals
 const storageMap = new Map();
 const sandbox = {
+  atob: (s) => Buffer.from(String(s), 'base64').toString('latin1'),   // v9.2: lets the SFX kit decode under the validator (browser parity)
   window: null,
   globalThis: null,
   console,
@@ -188,8 +189,9 @@ const MA = sandbox.MA;
 
 // ───────────────────────── v9 gate helpers (shared by G30/G31 and MUT-11/MUT-12) ─────────────────────────
 // Load one module's source into a fresh sandbox (used for mutated copies, so the live sandbox stays untouched).
-function loadIsolated(src, globalName) {
+function loadIsolated(src, globalName, holder) {
   const sb = { console, Math, Date, JSON, Array, Object, String, Number, Boolean, RegExp, Map, Set, Promise, Float32Array, Uint8Array };
+  if (holder) holder.sb = sb;
   sb.window = sb; sb.globalThis = sb;
   vm.createContext(sb);
   vm.runInContext(src, sb, { filename: globalName + '.mutant.js' });
@@ -209,7 +211,7 @@ function g30Sheet(extra) {
 }
 
 // G30 predicates (1)–(12) from work/music/MERGE-NOTES.md. Returns { pass, failed:[n], detail }.
-function checkMusic(src, M) {
+function checkMusic(src, M, R) {
   const failed = [];
   const ck = (n, ok) => { if (!ok) failed.push(n); };
   const pal = { id: 343, a: '#ebd3a2', h: '#ae5224', b: '#527e91' };
@@ -275,10 +277,35 @@ function checkMusic(src, M) {
   ck(11, seekOk && (dry.live === false || typeof dry.live === 'boolean'));
   M.dispose();
   ck(12, p1.key.rootMidi === [48, 50, 52, 53, 55, 57, 59, 60][343 % 8]);
+  // (13)(14) v9.2 SFX kit: a decoded kit sample rides mix.sfx (never mix.duck) layered with the synth; no kit => synth only.
+  R = R || {};
+  const savedKit = R.SFX_KIT, wasOn = M.enabled;
+  let made = [];
+  const wired = (n) => { n.outs = []; n.connect = function (d) { this.outs.push(d); return d; }; return n; };
+  const kitCtx = Object.assign({}, actx, { currentTime: 0,
+    createBufferSource: () => { const n = wired(node({ buffer: null, loop: false })); made.push(n); return n; },
+    createGain: () => wired(node({ gain: param('gain') })) });
+  const mockKit = (on) => ({ MAP: {}, names: [], decode() { return null; }, play(ctx, bus, cue, at, g) {
+    if (!on) return null;
+    const s = ctx.createBufferSource(), gn = ctx.createGain(); s.buffer = { duration: 0.4, kit: cue }; gn.gain.value = g; s.connect(gn); gn.connect(bus); s.start(at); return [s, gn, 0.4]; } });
+  const fireWith = (on, cue) => {
+    made = []; R.SFX_KIT = mockKit(on); M.dispose(); M.setEnabled(true); M.schedule(kitCtx, p1, 0);
+    const d0 = dLog.length, dp = M.mix.duck.gain;
+    ['setValueAtTime', 'linearRampToValueAtTime', 'cancelScheduledValues'].forEach((k) => { dp[k] = (v, t) => { dLog.push([k, v, t]); return dp; }; });
+    const r = M.sfx(cue);
+    const kit = made.filter((s) => s.buffer && s.buffer.kit), synth = made.filter((s) => s.buffer && !s.buffer.kit);
+    return { r, kit: kit.length, synth: synth.length, ducks: dLog.length - d0,
+      onSfx: kit.every((s) => s.outs.every((g) => g.outs.includes(M.mix.sfx) && !g.outs.includes(M.mix.duck))) };
+  };
+  let k13 = null, k14 = null, k14t = null, k13t = null;
+  try { k13 = fireWith(true, 'WHOOSH'); k13t = fireWith(true, 'TICK'); k14 = fireWith(false, 'WHOOSH'); k14t = fireWith(false, 'TICK'); } catch (_e) {}
+  R.SFX_KIT = savedKit; M.dispose(); M.setEnabled(wasOn);
+  ck(13, Boolean(k13 && k13.r && k13.kit === 1 && k13.synth >= 1 && k13.onSfx && k13.ducks === 5 && k13t && k13t.r && k13t.kit === 1));
+  ck(14, Boolean(k14 && k14.r && k14.kit === 0 && k14.synth >= 1 && k14.ducks === 5 && k14t && k14t.r === null));
   return {
     pass: failed.length === 0,
     failed,
-    detail: `${12 - failed.length}/12 predicates · ${p1.key.root} ${p1.key.modeName} · ${p1.bpm} bpm · ${p1.cues.length} cues · ${p1.sfx.length} SFX · duck ${p1.duck.dB} dB / ${p1.duck.attackMs}·${p1.duck.holdMs}·${p1.duck.releaseMs} ms${failed.length ? ' · FAILED ' + failed.join(',') : ''}`
+    detail: `${14 - failed.length}/14 predicates · ${p1.key.root} ${p1.key.modeName} · ${p1.bpm} bpm · ${p1.cues.length} cues · ${p1.sfx.length} SFX · duck ${p1.duck.dB} dB / ${p1.duck.attackMs}·${p1.duck.holdMs}·${p1.duck.releaseMs} ms · kit on mix.sfx + synth −9 dB, synth-only w/o kit${failed.length ? ' · FAILED ' + failed.join(',') : ''}`
   };
 }
 
@@ -339,6 +366,12 @@ function checkSfxKit(man, lic, kit, K) {
   const rows = lic.split('\n').filter((l) => /^\| sfx\//.test(l));
   ck('licenses', rows.length === files.length && files.every((f) => rows.some((r) => r.includes(f.file) && r.includes(f.sha256) && r.includes(f.source) && r.includes(f.license) && r.includes(f.author))) && /Vox/.test(lic));
   ck('no-mixkit', !files.some((f) => /typing|mixkit/i.test(f.file + f.source)));
+  let realPlay = false;
+  try {
+    const fctx = { decodeAudioData: (ab, ok) => ok({ duration: ab.byteLength / 48000 }), createGain: () => ({ gain: { value: 0 }, connect() {} }), createBufferSource: () => ({ connect() {}, start() {} }) };
+    K.decode(fctx); const r = K.play(fctx, {}, 'THUD', 0, 0.5); realPlay = Boolean(r && r[0].buffer && K.names.every((n) => K.buffer(fctx, Object.keys(K.MAP).find((c) => K.MAP[c] === n))));
+  } catch (_e) { realPlay = false; }
+  ck('decode', realPlay);
   ck('map', Boolean(K) && ['WHOOSH', 'THUD', 'CLICK', 'BOOP', 'BOING', 'CHORD', 'TICK', 'RISER'].every((c) => files.some((f) => f.name === K.MAP[c])) && K.names.join() === files.map((f) => f.name).join() && K.decode({}) === null && K.play({}, {}, 'WHOOSH', 0, 1) === null);
   const total = files.reduce((s, f) => s + f.bytes, 0);
   return { pass: failed.length === 0, failed, detail: `${files.length} CC0 files · ${(total / 1024).toFixed(1)} KB raw / ${(Buffer.byteLength(kit) / 1024).toFixed(1)} KB inline · sha256 ${failed.includes('sha') ? 'MISMATCH' : 'match'} · LICENSES = manifest ${!failed.includes('licenses')} · no Mixkit · Node no-op${failed.length ? ' · FAILED ' + failed.join(',') : ''}` };
@@ -914,7 +947,7 @@ async function runAllGates() {
   const TWO_LAYER = sandbox.TWO_LAYER;
 
   // G30: Adaptive procedural music score (work/music/MERGE-NOTES.md predicates 1–12)
-  const g30 = checkMusic(fs.readFileSync(path.join(ROOT, 'studio-music-engine.js'), 'utf8'), MUSIC);
+  const g30 = checkMusic(fs.readFileSync(path.join(ROOT, 'studio-music-engine.js'), 'utf8'), MUSIC, sandbox);
   recordGate(
     'G30',
     'Adaptive Procedural Music Score (deterministic, seekable, ducks under SFX)',
@@ -1126,11 +1159,13 @@ async function runAllGates() {
     // MUT-11: duck law -6 dB → -5 dB in a copy of studio-music-engine.js must fail G30 (predicate 8)
     const musicSrc = fs.readFileSync(path.join(ROOT, 'studio-music-engine.js'), 'utf8');
     const mutMusicSrc = musicSrc.replace('dB: -6', 'dB: -5');
-    const mut11 = checkMusic(mutMusicSrc, loadIsolated(mutMusicSrc, 'MUSIC'));
+    const h11 = {}; const mut11 = checkMusic(mutMusicSrc, loadIsolated(mutMusicSrc, 'MUSIC', h11), h11.sb);
+    const mutKitSrc = musicSrc.replace('K.play(S.ctx, mix.sfx,', 'K.play(S.ctx, mix.duck,');   // v9.2: kit routed through the duck bus
+    const h11b = {}; const mut11b = checkMusic(mutKitSrc, loadIsolated(mutKitSrc, 'MUSIC', h11b), h11b.sb);
     mutResults.push({
       id: 'MUT-11',
-      desc: 'Weaken the duck law (-6 dB → -5 dB) in a copy of the music engine and verify G30 rejects it',
-      caught: mutMusicSrc !== musicSrc && mut11.pass === false && mut11.failed.includes(8)
+      desc: 'Weaken the duck law (-6 dB → -5 dB) and, separately, route the SFX kit through mix.duck in copies of the music engine; G30 rejects both',
+      caught: mutMusicSrc !== musicSrc && mut11.pass === false && mut11.failed.includes(8) && mutKitSrc !== musicSrc && mut11b.pass === false && mut11b.failed.includes(13)
     });
 
     // MUT-12: `two.update();` → `two.play(); two.update();` in a copy must fail G31's no-play-loop predicate

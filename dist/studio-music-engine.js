@@ -1,8 +1,7 @@
 /*
  * studio-music-engine.js - CETI Motion Atlas Studio Pro | v9.0.0 "Fable Soup"
- * Adaptive procedural score: WebAudio only, no audio files, seeded + t-driven.
- * Soup of candidates A (harmonic bed, OKLCH key, dynamics arc, seek re-entry) and B (archetype
- * leitmotif, FM-bell plant/return, Karplus-Strong pluck, pulse, 16th-quantized SFX). See work/music/MERGE-NOTES.md.
+ * Adaptive procedural score, seeded + t-driven. Soup of A (bed, OKLCH key, dynamics, seek) + B (leitmotif,
+ * FM bell, KS pluck, pulse, 16th SFX): work/music/MERGE-NOTES.md. v9.2: SFX layer CC0 kit samples (vendor/sfx-kit.js).
  *
  *   plan(sheet, palette, seed)             pure planner - runs under Node, no AudioContext
  *   scoreForBeat(beat, pal, feel, seed, o) one cue (chords, motif, bell, pulse, dynamics)
@@ -10,9 +9,9 @@
  *   seek(t) | play() | pause() | sync(t, playing) | sfx(name, t, gain) | duck(ms) | mix
  *   setPalette(pal) | setEnabled(bool) | dispose() | keyFor(pal) | tempoFor(feel)
  *
- * Load after studio-motion-engine.js (MA.computeWadaHarmonicChord feeds the G24 CHORD stab), before studio-ui.js.
+ * Load after studio-motion-engine.js (G24 CHORD stab) + vendor/sfx-kit.js, before studio-ui.js.
  * Hooks: tick() -> sync(_T, playing); scrub -> seek(T); sheet/palette/feel change -> schedule(null, plan(sheet, pal), T).
- * Determinism: mulberry32 seeded by FNV-1a only; no unseeded randomness, no wall clock.
+ * Determinism: mulberry32 seeded by FNV-1a only; no wall clock.
  */
 (function (root) {
   'use strict';
@@ -132,7 +131,7 @@
   var ROLES = {};
   Object.keys(ROLE_ROWS).forEach(function (r) { ROLES[r] = {}; ROLE_COLS.forEach(function (c, i) { ROLES[r][c] = ROLE_ROWS[r][i]; }); });
   var PULSE_FEEL = { beat: 1, spring: 0.9, saul: 0.9, glaser: 0.7, rostrum: 0.7, held: 0.6, rest: 0.45, slow: 0.45 };
-  var SFX_GAIN = { WHOOSH: 0.45, THUD: 0.5, CLICK: 0.4, BOOP: 0.45, BOING: 0.45, CHORD: 0.6 };
+  var SFX_GAIN = { WHOOSH: 0.45, THUD: 0.5, CLICK: 0.4, BOOP: 0.45, BOING: 0.45, CHORD: 0.6, TICK: 0.4, RISER: 0.5 };
   var SFX_LEN = { WHOOSH: 0.4, THUD: 0.35, CLICK: 0.02, BOOP: 0.22, BOING: 0.7, CHORD: 1.4 };
 
   function roleOf(beat, i, n) {
@@ -462,9 +461,14 @@
     g.cancelScheduledValues(at); g.setValueAtTime(1, at); g.linearRampToValueAtTime(lo, at + a);
     g.setValueAtTime(lo, at + a + hold); g.linearRampToValueAtTime(1, at + a + hold + rel);
   }
+  // v9.2: decoded kit sample -> mix.sfx (never mix.duck); synth layered under it at -9 dB, or alone without a kit
   function fireSfx(name, at, k) {
-    var f = SFX[String(name).toUpperCase()]; if (!f || !S.ctx || !mix.sfx) return false;
-    f(at, k == null ? (SFX_GAIN[String(name).toUpperCase()] || 0.5) : k); duckAt(at); return true;
+    var n = String(name).toUpperCase(), f = SFX[n], K = root.SFX_KIT; if (!S.ctx || !mix.sfx) return false;
+    k = k == null ? (SFX_GAIN[n] || 0.5) : k;
+    var kb = K && K.play ? K.play(S.ctx, mix.sfx, n, at, k) : null;
+    if (kb) track(kb.slice(0, 2), at + kb[2]); else if (!f) return false;
+    if (f) f(at, kb ? k * 0.355 : k);
+    duckAt(at); return true;
   }
 
   // ---- lookahead scheduler ----
@@ -499,7 +503,7 @@
   function ensureCtx(ctx) {
     if (ctx) S.ctx = ctx; else if (!S.ctx && Ctx) S.ctx = new Ctx();
     if (!S.ctx) return null;
-    buildMix(S.ctx); installGesture(); return S.ctx;
+    buildMix(S.ctx); installGesture(); if (root.SFX_KIT) root.SFX_KIT.decode(S.ctx); return S.ctx;
   }
   function resumeCtx() { if (S.ctx && S.ctx.state === 'suspended' && S.ctx.resume) { try { S.ctx.resume(); } catch (_e) {} } }
   function installGesture() {

@@ -30,6 +30,8 @@ Lookahead scheduler, seeded PRNG only, gesture resume, duck under every SFX, CHO
 ## G30 predicates (integrator)
 Text: (1) ≤ 40 KB, `node --check`, zero `Math.random|Date.now|requestAnimationFrame`; (2) `MUSIC` exposes the 15 contract members + `VERSION:'9.0.0'`.
 Node run: (3) `plan` deep-equal on same seed, differs by seed; (4) exactly one breather cue, 0 pulse/0 motif; (5) 8 archetypes ⇒ 8 distinct `motif.rel`; (6) hook bell MIDI === callback bell MIDI, `returnT > plantT`; (7) `quantized ⇒ |t−tRaw| ≤ 0.06 ∧ t on 16th grid`, else `t === tRaw`; (8) `plan.duck` = `{−6,10,250,150}` and mock duck-param log = cancel→1→0.501@+10ms→hold 250→1@+150; (9) `beat` ⇒ Σ motif ≤ totalSec; (10) `tempoFor(saul|held|rostrum)`: beatSec·fps integer; (11) `schedule(null,p,0).live === false`, `seek(5)` on mock ctx never throws; (12) `key.rootMidi === [48,50,52,53,55,57,59,60][wadaIdx % 8]`.
+
+v9.2 (SFX kit, `vendor/sfx-kit.js`): (13) with a decoded kit on a mock ctx, `sfx('WHOOSH')` makes exactly one kit BufferSource whose gain feeds `mix.sfx` (never `mix.duck`) plus the synth chain layered at −9 dB (×0.355), and the duck log still gets its 5 entries; (14) with no kit (Node, validator, or decode not finished) the same call is synth-only with the same 5-entry duck log, and a kit-only cue (`TICK`, `RISER`) returns `null`. Cue map: WHOOSH→whoosh, THUD→impact, CLICK→click, BOOP/BOING→pop, CHORD→ding, TICK→tick, RISER→riser. MUT-11 also routes the kit through `mix.duck` and must fail (13).
 **MUT-11**: `sed 's/dB: -6/dB: -5/'` ⇒ (8) fails (verified; also cap feels `[]` ⇒ (9), return bell `t0+0.3` ⇒ (6)).
 
 Open risks: no browser listen yet (LUFS unmeasured); saul/held bpm intentionally differ from AUDIT's "saul=92".
