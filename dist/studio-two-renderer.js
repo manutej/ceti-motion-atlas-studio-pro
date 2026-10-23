@@ -12,6 +12,7 @@
   var CDN_URL = 'https://cdnjs.cloudflare.com/ajax/libs/two.js/0.8.17/two.min.js';
   var MONO = '"JetBrains Mono","Space Mono",ui-monospace,Menlo,monospace';
   var SANS = '"DM Sans",system-ui,sans-serif', SERIF = '"Fraunces",Georgia,serif';
+  var SAY_PX = 14; // body size at 1x (index.html body font-size), the floor for any `say` caption (D3)
   var GRAMMAR = ['hook', 'claim', 'proof', 'proof', 'breather', 'callback', 'claim', 'landing']; // G32 order for the synthesized grid
   var S = { two: null, ready: false, loading: false, cbs: [], disposed: false, cdn: CDN_URL, reduced: false, covered: false, alpha: 1 };
 
@@ -75,7 +76,8 @@
   }
   function sayTiming(e) { // draw-on timing law: `say` lands word by word (~3.3 w/s); at(i) = instant word i shows
     var say = String(e.beat.say || e.beat.label || '').replace(/\s+/g, ' ').trim(), words = say ? say.split(' ') : [], n = Math.max(1, words.length);
-    var start = e.t0 + Math.min(0.35, e.len * 0.12), span = Math.min(e.len * 0.64, n * 0.30);
+    // D3 (EVAL-v9): the whole line has landed by 35% of the beat, so a card sampled at tMid shows the full sentence
+    var start = e.t0 + Math.min(0.35, e.len * 0.08), span = Math.max(0.05, Math.min(e.len * 0.35 - (start - e.t0), n * 0.30));
     var at = function (i) { return start + (clamp(i, 0, n - 1) + 1) / n * span; };
     return { say: say, words: words, n: n, start: start, end: start + span, at: at, D: clamp(span / n * 1.6, 0.18, 0.5),
       shown: function (t) { return clamp(Math.floor((t - start) / span * n + 1e-6), 0, n); } };
@@ -293,16 +295,27 @@
   // ---------- (A3 × B) kinetic typography: the `say` line draws on letter by letter, each word completing exactly at
   // at(word) (the diagram's clock), tracking tightening 11→7.4 px on the Glaser curve; the spotlight governs its
   // brightness (one hot spot per frame); hidden when captions are covered (G11) ----------
-  function kinetic(e, C, out, focus) {
+  function kinetic(e, C, out, focus, mz) {
+    // D3 (EVAL-v9): sentence case in the body face at the body size (index.html body = 14 px at 1x), wrapped onto a
+    // paper plate; words land one by one on at(word) so the diagram clock is unchanged.
     if (e.covered || !e.say.say) return;
-    var T = e.say, str = T.say.toUpperCase().slice(0, 64), n = str.length, x0 = 18, y = LH - 22, dimK = 1 - (focus ? focus.dim : 0);
-    var sp = Math.min(lerp(11, 7.4, glaser(ramp(e.t, T.start, T.end))), (LW - 36) / Math.max(1, n)), size = Math.min(11, sp * 1.25), wi = 0, ci = 0, wl = (T.words[0] || '').length;
-    for (var i = 0; i < n; i++) {
-      if (str[i] === ' ') { wi++; ci = 0; wl = (T.words[wi] || '').length; continue; }
-      var tw = T.at(wi), li = glaser(ramp(e.t, tw - T.D + (ci++ / Math.max(1, wl)) * T.D * 0.5, tw));
-      text(out, 'ty' + i, 'front', str[i], x0 + i * sp, y + (1 - li) * 9, size, col(C.ink, li), { al: 'left', stroke: C.ink, lw: (1 - li) * 1.4, op: (0.25 + 0.75 * li) * dimK });
-    }
-    path(out, 'tyrule', 'front', [[x0, y + 8], [x0 + n * sp, y + 8]], { stroke: C.focus(e.focusRole), lw: 1.6, op: 0.9 * dimK, e: glaser(ramp(e.t, T.start, T.end)) });
+    mz = mz || fallbackMeasure;
+    var T = e.say, size = SAY_PX, maxW = LW - 56, gap = mz(' ', size, SANS), lines = [[]], lw = [0], dimK = 1 - (focus ? focus.dim : 0);
+    T.words.forEach(function (w, wi) {
+      var ww = mz(w, size, SANS), k = lines.length - 1, add = (lines[k].length ? gap : 0) + ww;
+      if (lines[k].length && lw[k] + add > maxW) { lines.push([]); lw.push(0); k++; add = ww; }
+      lines[k].push({ w: w, wi: wi, x: lw[k] + (lines[k].length ? gap : 0), ww: ww }); lw[k] += add;
+    });
+    var lh = size * 1.3, x0 = 24, yLast = LH - 26, y0 = yLast - (lines.length - 1) * lh, bw = Math.max.apply(null, lw) + 20, bh = lines.length * lh + 10;
+    var plateK = glaser(ramp(e.t, T.start - 0.12, T.start + 0.08));
+    shape(out, 'rrect', 'typlate', 'front', x0 - 10 + bw / 2, y0 - size * 0.5 - 5 + bh / 2, bw, bh, { r: 6, fill: col(C.paper, 0.9), op: plateK * dimK });
+    lines.forEach(function (ln, li) {
+      ln.forEach(function (it) {
+        var k = glaser(ramp(e.t, T.at(it.wi) - T.D, T.at(it.wi)));
+        if (k > 0) text(out, 'ty' + it.wi, 'front', it.w, x0 + it.x, y0 + li * lh + (1 - k) * 6, size, col(C.ink, k), { al: 'left', f: SANS, w: 600, op: (0.25 + 0.75 * k) * dimK });
+      });
+    });
+    path(out, 'tyrule', 'front', [[x0, yLast + size * 0.6], [x0 + lw[lines.length - 1], yLast + size * 0.6]], { stroke: C.focus(e.focusRole), lw: 1.6, op: 0.9 * dimK, e: glaser(ramp(e.t, T.start, T.end)) });
   }
 
   // ---------- (B5) end-card lock-up: title + claim + callback mark, Glaser overshoot ----------
@@ -335,7 +348,7 @@
     var e = env(T, beat, palette, seed, P, opts), C = e.C, out = []; mz = mz || fallbackMeasure;
     parallax(e, C, out); cutouts(e, C, out); ribbons(e, C, out);
     var focus = spotlight(e, C, out), dg = diagram(e, C, out, mz), cv = counter(e, C, out, mz);
-    kinetic(e, C, out, focus); var ec = endcard(e, C, out, mz), tr = transition(e, C, out);
+    kinetic(e, C, out, focus, mz); var ec = endcard(e, C, out, mz), tr = transition(e, C, out);
     return { e: e, C: C, items: out, meta: { focus: focus, spotlights: 1, diagram: dg, counter: cv, endcard: ec, transition: tr, say: e.say.words.slice(0, e.say.shown(e.t)).join(' ') } };
   }
   function audit(T, beat, palette, seed, P, opts) { // G31 hook: every fill/stroke/gradient must come from the Wada combination

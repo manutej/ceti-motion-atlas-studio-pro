@@ -986,6 +986,7 @@
     const z = keys[keys.length - 1]; return [z[1], z[2]];
   }
   function beatLabel(ctx, P, t, beats) {
+    if (O.hideBeatLabel) return;
     let i = 0; for (let k = 0; k < beats.length; k++) if (t >= beats[k][0]) i = k;
     txt(ctx, (i + 1) + ' · ' + beats[i][1].toUpperCase(), 16, 288, '700 10px ' + MONO, rgba(P.ink, 0.7));
   }
@@ -2264,7 +2265,7 @@
         }
         const caps = [[0, 'A question arrives.'], [2.5, 'Retrieve the few pages that matter.'], [7, 'Answer from what you carried.']];
         let ci = 0; caps.forEach(function (c, i) { if (t >= c[0]) ci = i; });
-        txt(ctx, caps[ci][1], 240, 18, '500 12px ' + SANS, rgba(P.ink, 0.85), 'center');
+        if (!O.hideBeatLabel) txt(ctx, caps[ci][1], 240, 18, '500 12px ' + SANS, rgba(P.ink, 0.85), 'center'); // D3: the v9 `say` is the one caption
         beatLabel(ctx, P, t, STORIES[2].beats);
       }
     },
@@ -2674,7 +2675,7 @@
       wob: O.wob, streaks: O.streaks, guide: O.guide, ground: O.ground,
       grain: O.grain, charId: O.charId, partnerCharId: O.partnerCharId,
       renderMode: O.renderMode, rung: O.rung, captionsCovered: O.captionsCovered,
-      onionSkin: O.onionSkin
+      onionSkin: O.onionSkin, hideBeatLabel: O.hideBeatLabel
     };
     try {
       O.wob = op.wob == null ? 1 : op.wob;
@@ -2756,6 +2757,8 @@
 
       // v9 two.js vector layer, back pass (inside the camera save, after onion ghosts): parallax, ribbons, cutouts. No-op without Two.
       const twoOn = !!op.twoLayer && typeof global.TWO_LAYER !== 'undefined' && global.TWO_LAYER.isAvailable();
+      // D3 (EVAL-v9): one caption per card — when the vector layer types the beat's `say`, the legacy beat label stays silent.
+      O.hideBeatLabel = twoOn && !!(op.beat && op.beat.say);
       if (twoOn) global.TWO_LAYER.renderFrame(ctx, T, op.beat || null, pal, op.seed | 0, P, { pass: 'back', sheet: op.sheet || null, captionsCovered: O.captionsCovered });
       pr.draw(ctx, t, P, easeObj, bg);
       ctx.restore();
