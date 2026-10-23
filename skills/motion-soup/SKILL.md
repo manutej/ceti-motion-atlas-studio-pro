@@ -7,7 +7,18 @@ description: Build or upgrade any animated explainer / motion-graphics deliverab
 
 A model soup for motion work. N independent candidates per lane, one merger per lane, one integrator, one blind critic, the repo's test command as the only judge, a ledger that writes the next round's prompts. Workers are **Opus subagents** spawned with the `Agent` tool; the orchestrator (you — Fable when available, Opus otherwise) only frames, spawns, runs gates, and decides. Nothing here is accepted because an agent said so.
 
-Read `references/film-brief.md` before writing `work/BRIEF.md` (the 9-element film spec is the intake contract); `references/prompts.md` before spawning anything; `references/lanes.md` when choosing lanes; `references/gates.md` when a gate fails or a new one is needed.
+**The set.** This skill is the build loop of four. Each sibling owns part of the 9-element film spec, ships a runnable checker, and is called from a named step here:
+
+| Skill | Spec items | Called at | Checker |
+|---|---|---|---|
+| `motion-brief` | 1–6 (+ defaults for 7–9) | step 0 | `skills/motion-brief/scripts/brief-check.mjs BRIEF.md beats.json --ready` |
+| `motion-soup` (this) | 7 workflow gates | steps 1–11 | `soup-runner.mjs` + the repo test command |
+| `motion-critique` | 8 critique loop | step 8c | `skills/motion-critique/scripts/stills.mjs` + `critique-check.mjs` |
+| `motion-deliver` | 9 deliverables | step 10 (render) | `skills/motion-deliver/scripts/render.mjs` + `deliverables-check.mjs` |
+
+When a sibling is installed, use it instead of the inline fallback text in this file; the fallback exists so this skill still runs alone.
+
+Read `references/film-brief.md` (or motion-brief's `references/brief-template.md`) before writing `work/BRIEF.md` (the 9-element film spec is the intake contract); `references/prompts.md` before spawning anything; `references/lanes.md` when choosing lanes; `references/gates.md` when a gate fails or a new one is needed.
 
 ## When to use
 
@@ -31,7 +42,7 @@ Do not use for a one-line fix, a prose-only task with no checkable output, or wh
 
 Every step names what runs, how it is spawned, and what verifies it. Steps 3, 5 and 7 spawn **in a single message** so agents run concurrently.
 
-**0. Frame (you, ~3 min).** Read the brief; if it is not in the nine-section shape, copy the template from `references/film-brief.md`, ask the blank-slot question for each empty section once, export §5 to `work/beats.json`, run FS-hook + FS-cadence on it, and write the `stage: plan` ledger row with the bible hash (FS-identity). Confirm the test command exits 0 before anything changes (`npm test`). Pick lanes. Pick N (2 for a known lane, 3 for a new one). Pick the audit set. Freeze the contract: write `work/<lane>/CONTRACT.md` per lane (API stub + self-test shape from `references/lanes.md`, ≤ 60 lines) and walk the checklist in §Authoring a lane CONTRACT.md — every item the contract leaves silent is a gap all N candidates will hit independently (round 2: three of them, three times).
+**0. Frame (you, ~3 min).** With motion-brief installed: run its intake, then `brief-check.mjs work/BRIEF.md work/beats.json --ready`; exit 0 is the plan gate, and each OPEN line becomes an `open` ledger row. Without it: read the brief; if it is not in the nine-section shape, copy the template from `references/film-brief.md`, ask the blank-slot question for each empty section once, export §5 to `work/beats.json`, run FS-hook + FS-cadence on it, and write the `stage: plan` ledger row with the bible hash (FS-identity). Confirm the test command exits 0 before anything changes (`npm test`). Pick lanes. Pick N (2 for a known lane, 3 for a new one). Pick the audit set. Freeze the contract: write `work/<lane>/CONTRACT.md` per lane (API stub + self-test shape from `references/lanes.md`, ≤ 60 lines) and walk the checklist in §Authoring a lane CONTRACT.md — every item the contract leaves silent is a gap all N candidates will hit independently (round 2: three of them, three times).
 
 **1. Resolve tokens (you, 1 min).**
 ```
@@ -67,11 +78,11 @@ Each prompt is self-contained (no shared chat context): lens, contract path, tok
 
 **8b. Stage ladder (you, 1 min per stage).** The round walks the brief's §7 order — `plan → rig → stills → animatic → full → polish → audio → render` — and writes one `stage` row per stage reached, in that order, each with `pass:true` and the bible hash. Map onto the loop: `plan` = steps 0–2; `rig` = step 6 (lane soups green); `stills` = frames rendered at the payoff marks from the soups; `animatic` = the timed board with those stills; `full` = step 7 integrator green; `polish` = after the critique loop exits; `audio` = music lane mixed under SFX; `render` = final MP4. FS-gateorder fails any row whose predecessor is missing — a round that stops early logs where it stopped, it never jumps.
 
-**8c. Critique loop (critic + lane fixers, 5–10 min per pass).** At `stills` and again at `polish`: (1) render stills at every payoff mark (`work/stills/r<K>/p<n>/`); (2) spawn the stills critic (prompts.md §4b) — scores each brief-§8 axis 1–10, names the **3 worst** problems, one fix per problem, written as a `critique` row; (3) hand each fix to its lane (a one-candidate re-spawn with the fix as `{{LENS}}`, same contract); (4) repeat. Exit only when every score ≥ 8 — FS-critique refuses a `render` row otherwise. Cap passes at `wallMin / 10`; if the cap hits first, the round stops at `polish` and the open scores go into `open` rows.
+**8c. Critique loop (critic + lane fixers, 5–10 min per pass).** With motion-critique installed, run its loop (it captures stills deterministically, spawns the stills critic, validates each row with `critique-check.mjs`, and routes fixes); the steps below are the fallback. At `stills` and again at `polish`: (1) render stills at every payoff mark (`work/stills/r<K>/p<n>/`); (2) spawn the stills critic (prompts.md §4b) — scores each brief-§8 axis 1–10, names the **3 worst** problems, one fix per problem, written as a `critique` row; (3) hand each fix to its lane (a one-candidate re-spawn with the fix as `{{LENS}}`, same contract); (4) repeat. Exit only when every score ≥ 8 — FS-critique refuses a `render` row otherwise. Cap passes at `min(4, wallMin / 10)`; if the cap hits first, the round stops at `polish` and the open scores go into `open` rows.
 
 **9. Ledger (you, 2 min).** One row per candidate, merge, critic, integrate, stage, critique, verdict (plus `gate`/`open` rows as needed), in the exact shapes of §Ledger row schema — `ledger add` rejects anything else with exit 1 and the missing field names. Rows are best written as each agent hands back (step 3, 5, 7), not all at the end. Then `soup-runner.mjs report --round K`. Compare critic `predicted` with observed `firstFlag`; a wrong prediction becomes an `avoid:` line in next round's `required_slots`.
 
-**10. Accept or retain old.** Accept only if 8 passed in full and, when the round reached `render`, FS-gateorder, FS-critique, FS-identity and FS-deliverables pass at the verdict. Otherwise keep the **whole** previous (prompts, predictor, artifact); the round's atoms survive as E1 proposals. No partial acceptance — that is how coupling breaks silently.
+**10. Accept or retain old.** When the critique has exited at 8+, render with motion-deliver (`render.mjs`, then `deliverables-check.mjs` on the deliverables dir; it refuses a `render` row without an 8+ critique and writes only a labelled `final-preview.mp4` under `--allow-preview`). Accept only if 8 passed in full and, when the round reached `render`, FS-gateorder, FS-critique, FS-identity and FS-deliverables pass at the verdict. Otherwise keep the **whole** previous (prompts, predictor, artifact); the round's atoms survive as E1 proposals. No partial acceptance — that is how coupling breaks silently.
 
 **11. Stop** on budget, or two consecutive rounds with no accepted atom.
 
@@ -162,7 +173,7 @@ If dominance, pair compatibility, or the held-out comparison fails, keep the **e
 Exact rows the orchestrator passes (round-2 values):
 ```
 ledger add '{"round":2,"kind":"stage","stage":"plan","pass":true,"bibleHash":"3f9a1c0e7b2d4a66","minutes":3}'
-ledger add '{"round":2,"kind":"critique","pass":1,"stills":["work/stills/r2/p1/0.8s.png","work/stills/r2/p1/4.2s.png"],"scores":{"hook":8,"cadence":7,"readability":9,"identity":8},"worst3":["payoff at 4.2 s lands under the caption","hook mark is a cut, not a reveal","breather too short"],"fixes":["vector: move spotlight above textBox","transitions: iris on hook","wording: breather dur 3→4"],"minutes":6}'
+ledger add '{"round":2,"kind":"critique","pass":1,"stills":["work/stills/r2/p1/0.80s.png","work/stills/r2/p1/4.20s.png"],"scores":{"hook":8,"cadence":7,"readability":9,"identity":8},"worst3":["cadence 7 — 4.20s.png: payoff lands under the caption (§6 text room)","hook — 0.80s.png: hook mark is a cut, not a reveal (§5 hook)","cadence — 4.20s.png: breather too short to read as rest (§5 beat sheet)"],"fixes":["vector: move spotlight above textBox","transitions: iris on hook","wording: breather dur 3→4"],"minutes":6}'
 ledger add '{"round":2,"lane":"transitions","kind":"candidate","id":"A","selftest":0,"literals":0,"bytes":12266,"wow":0.55,"firstFlag":"P5 number scan on SECONDS_PER_MINUTE","toolCalls":10,"minutes":3.5}'
 ledger add '{"round":2,"lane":"transitions","kind":"merge","diversity":0.897,"predicates":"25/25","bestSingle":"A","bestSinglePredicates":"20/25","openContradictions":4,"atoms":10,"literals":0,"bytes":17869,"toolCalls":19,"minutes":8.5}'
 ledger add '{"round":2,"lane":"transitions","kind":"critic","phi":"φ-0","firstFlag":"G35.5","wow":0.6,"bestFirstFlag":"G35.4","bestWow":0.5,"rank":"soup","authority":"advisory","minutes":6}'

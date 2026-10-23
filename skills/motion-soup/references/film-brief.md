@@ -95,7 +95,7 @@ plan → rig → stills → animatic → full pass → polish → audio → rend
 
 ## Orchestrator rule for a blank slot
 
-A slot the owner does not fill is asked **once**, with the question above, in the frame step. If still blank: §1–§3 and §8–§9 take the simplest default and the brief says so under a `## defaults taken` footer; §4–§7 cannot default — their gates would fail on an empty slot — so the round does not start. Write the question into the `open` ledger row (`kind:"open"`) so the next round sees what was never answered.
+A slot the owner does not fill is asked **once**, with the question above, in the frame step. If still blank: §1–§3 are written as explicit `OPEN:` lines, never invented (motion-brief's rule: no guessed logline); §8–§9 take the simplest default and the brief says so under a `## defaults taken` footer; §4–§7 cannot default — their gates would fail on an empty slot — so the round does not start. Write the question into the `open` ledger row (`kind:"open"`) so the next round sees what was never answered.
 
 ## Where each ⟂ line lands in the loop
 

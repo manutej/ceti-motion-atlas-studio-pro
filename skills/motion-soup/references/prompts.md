@@ -185,7 +185,7 @@ AXES (brief §8, score each 1–10, integers): {{AXES}}   — 10 = nothing a str
 DELIVERABLE: {{REPO}}/work/critique-r{{K}}-p{{P}}.json, exactly the ledger `critique` row:
 { "round": {{K}}, "kind": "critique", "pass": {{P}}, "stills": [paths read], "scores": { axis: int }, "worst3": [exactly 3 strings: still + what is wrong + which brief line it breaks], "fixes": [one per worst3: "<lane>: <one-line change>"], "minutes": n }
 
-RULES: a score < 8 must appear in worst3 (lowest first); worst3 names a still by filename; a fix names one lane from {{LANES}} and one change a candidate can make under the contract — never "make it better". Nothing in the stills is fixed by you.
+RULES: a score < 8 must appear in worst3 (lowest first), named by its axis word; worst3 names a still by filename (`<t.toFixed(2)>s.png`, e.g. `1.00s.png`); fixes[i] answers worst3[i]; a fix names one lane from {{LANES}} and one change a candidate can make under the contract — never "make it better". Nothing in the stills is fixed by you.
 Budget ≤ 15 tool calls. REPORT ≤ 8 lines: 1 file · 2 scores one line · 3 worst3 · 4 fixes · 5 exit? (all ≥ 8 → yes | no) · 6 minutes.
 ` })
 ```
