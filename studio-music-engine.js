@@ -342,7 +342,7 @@
     noise: null, click: null, ks: {}, pal: null, enabled: true, loop: true, onend: null };
   var mix = { master: null, comp: null, music: null, duck: null, sfx: null, pad: null, bass: null, pluck: null, pulse: null, bell: null, _ctx: null };
 
-  // Graph: pad/bass/pluck/pulse/bell -> music(0.36 ~ -14 LUFS) -> duck -> comp(-18 dB 3:1) <- sfx(0.8) -> master -> out. SFX bypass the duck.
+  // Graph: pad/bass/pluck/pulse/bell -> music(0.72; v9.1 offline render -18.3 LUFS) -> duck -> comp(-18 dB 3:1) <- sfx(0.8) -> master -> out. SFX bypass the duck.
   function buildMix(ctx) {
     if (mix.master && mix._ctx === ctx) return;
     mix._ctx = ctx;
@@ -350,9 +350,9 @@
     mix.comp = ctx.createDynamicsCompressor ? ctx.createDynamicsCompressor() : ctx.createGain();
     try { mix.comp.threshold.value = -18; mix.comp.knee.value = 12; mix.comp.ratio.value = 3; mix.comp.attack.value = 0.01; mix.comp.release.value = 0.25; } catch (_e) {}
     mix.duck = ctx.createGain(); mix.duck.gain.value = 1;
-    mix.music = ctx.createGain(); mix.music.gain.value = 0.36;
+    mix.music = ctx.createGain(); mix.music.gain.value = 0.72;
     mix.sfx = ctx.createGain(); mix.sfx.gain.value = 0.8;
-    ['pad', 'bass', 'pluck', 'pulse', 'bell'].forEach(function (k, i) { mix[k] = ctx.createGain(); mix[k].gain.value = [0.5, 0.55, 0.5, 0.3, 0.4][i]; mix[k].connect(mix.music); });
+    ['pad', 'bass', 'pluck', 'pulse', 'bell'].forEach(function (k, i) { mix[k] = ctx.createGain(); mix[k].gain.value = [3, 0.55, 0.5, 0.3, 0.4][i]; mix[k].connect(mix.music); });
     mix.music.connect(mix.duck); mix.duck.connect(mix.comp); mix.sfx.connect(mix.comp);
     mix.comp.connect(mix.master); mix.master.connect(ctx.destination);
     var sr = ctx.sampleRate || 44100, r1 = mulberry32(0xC0FFEE);
@@ -397,14 +397,15 @@
   var INST = {
     // A's bed: detuned saw pair + triangle per voice through a slow-LFO lowpass whose cutoff rides the dynamics arc
     pad: function (e, at, end, mid) {
-      var dyn = e.dyn, lp = filt('lowpass', 500 + 1300 * dyn, 0.7), g = gain(0), lfo = osc('sine', 0.11, at, end + 0.7), lg = gain(120 + 100 * dyn);
+      // v9.1 D5: legato - 150 ms attack, release tail x overlaps the next chord, so chord changes never gap
+      var dyn = e.dyn, x = Math.min(1.2, Math.max(0.6, end - at)), z = end + x + 0.1, lp = filt('lowpass', 500 + 1300 * dyn, 0.7), g = gain(0), lfo = osc('sine', 0.11, at, z), lg = gain(120 + 100 * dyn);
       lfo.connect(lg); lg.connect(lp.frequency); var nodes = chain(lp, g, mix.pad).concat([lfo, lg]);
-      adsr(g, at, mid ? 0.08 : Math.min(1.2, (end - at) * 0.3), 0.12 * (0.5 + dyn), 0.12 * (0.5 + dyn) * 0.85, 0.6, end);
+      adsr(g, at, mid ? 0.08 : Math.min(0.15, (end - at) * 0.3), 0.12 * Math.max(0.9, 0.5 + dyn), 0.1 * Math.max(0.9, 0.5 + dyn), x, end + x);
       e.midis.forEach(function (m, i) {
-        [-6, 6].forEach(function (cents) { var o = osc('sawtooth', midiHz(m + 12), at, end + 0.7); o.detune.value = cents; nodes = nodes.concat(chain(o, gain(0.07 / (i + 1)), lp)); });
-        nodes = nodes.concat(chain(osc('triangle', midiHz(m), at, end + 0.7), gain(0.11 / (i + 1)), lp));
+        [-6, 6].forEach(function (cents) { var o = osc('sawtooth', midiHz(m + 12), at, z); o.detune.value = cents; nodes = nodes.concat(chain(o, gain(0.07 / (i + 1)), lp)); });
+        nodes = nodes.concat(chain(osc('triangle', midiHz(m), at, z), gain(0.11 / (i + 1)), lp));
       });
-      track(nodes, end + 0.8);
+      track(nodes, z + 0.1);
     },
     bass: function (e, at, end) {
       var g = gain(0), nodes = chain(osc('sine', midiHz(e.root - 24), at, end + 0.4), g, mix.bass);
@@ -417,7 +418,7 @@
     bell: function (e, at) {    // B's 2-op FM bell (3.5:1); plant and return share this exact recipe
       var f = midiHz(e.midi), c = osc('sine', f, at, at + e.dur + 0.05), m = osc('sine', f * 3.5, at, at + e.dur + 0.05), mg = gain(0), g = gain(0);
       ramp(mg.gain, at, f * 1.6, f * 0.05, e.dur * 0.6); m.connect(mg); mg.connect(c.frequency);
-      hit(g, at, 0.4, 0.004, e.dur); track(chain(c, g, mix.bell).concat([m, mg]), at + e.dur + 0.1);
+      hit(g, at, e.tag === 'echo' ? 0.4 : 1.8, 0.004, e.dur); track(chain(c, g, mix.bell).concat([m, mg]), at + e.dur + 0.1);
     },
     kick: function (e, at) {
       var o = osc('sine', 150, at, at + 0.25), g = gain(0); ramp(o.frequency, at, 150, 42, 0.1);
@@ -485,8 +486,8 @@
     if (S.plan && pos >= S.plan.loopSec) { if (S.loop) seek(0); else { pause(); S.pos = 0; if (S.onend) S.onend(); } }
   }
   // Rebase at t: kill live nodes, reset the cursor, re-enter still-sustaining pad/bass events (80 ms attack).
-  function rescheduleFrom(t) {
-    killAll(); S.cursor = 0;
+  function rescheduleFrom(t, soft) {
+    if (soft) gc(); else killAll(); S.cursor = 0;
     if (!S.events) return;
     for (var i = 0; i < S.events.length; i++) {
       var e = S.events[i];
@@ -529,7 +530,9 @@
   function pause() { S.pos = position(); S.playing = false; killAll(); if (S.timer) { clearInterval(S.timer); S.timer = null; } return S.pos; }
   function seek(t) {   // idempotent: cancel + reschedule from t
     t = clamp(Number(t) || 0, 0, S.plan ? S.plan.loopSec : 1e9);
-    if (S.playing && S.ctx) { S.startCtx = S.ctx.currentTime + 0.01; S.startPos = t; S.pos = t; rescheduleFrom(t); }
+    // v9.1 D7: a wrap at the loop seam keeps live voices, so the resolve chord rings under the restart (no hard cut)
+    var soft = S.plan && t < 0.3 && position() > S.plan.loopSec - 0.3;
+    if (S.playing && S.ctx) { S.startCtx = S.ctx.currentTime + 0.01; S.startPos = t; S.pos = t; rescheduleFrom(t, soft); }
     else S.pos = t;
     return t;
   }
