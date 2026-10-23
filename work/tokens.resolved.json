@@ -1,0 +1,79 @@
+{
+  "source": [
+    "css:index.html",
+    "wada:296",
+    "cjs:studio-music-engine.js#TEMPO"
+  ],
+  "resolvedAt": "2026-10-23T00:20:44.021Z",
+  "color": {
+    "extra": {
+      "paper2": "#f2e4ce",
+      "ink-soft": "rgba(26,31,46,0.72)",
+      "ink-faint": "rgba(26,31,46,0.16)",
+      "rust": "#8c4a2e",
+      "sage": "#2e5a44",
+      "ochre": "#c88a2e",
+      "tint": "#435861",
+      "disc": "#f5ecc2"
+    },
+    "paper": "#34454c",
+    "ink": "#f5ecc2",
+    "accent": "#d8a37b",
+    "highlight": "#f5ecc2",
+    "contrast": "#d8a37b"
+  },
+  "type": {
+    "display": "'Fraunces', Georgia, serif",
+    "body": "'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif",
+    "mono": "'Space Mono', ui-monospace, SFMono-Regular, monospace"
+  },
+  "motion": {
+    "feels": {
+      "rest": {},
+      "slow": {},
+      "held": {},
+      "glaser": {},
+      "rostrum": {},
+      "saul": {},
+      "beat": {},
+      "spring": {}
+    }
+  },
+  "tempo": {
+    "range": [
+      60,
+      120
+    ],
+    "byFeel": {
+      "rest": 60,
+      "slow": 64,
+      "held": 72,
+      "glaser": 84,
+      "rostrum": 88,
+      "saul": 92,
+      "beat": 120,
+      "spring": 104
+    }
+  },
+  "literals": [
+    "#2e5a44",
+    "#34454c",
+    "#435861",
+    "#8c4a2e",
+    "#c88a2e",
+    "#d8a37b",
+    "#f2e4ce",
+    "#f5ecc2",
+    "rgba(26,31,46,0.16)",
+    "rgba(26,31,46,0.72)"
+  ],
+  "missing": [
+    "type.scale"
+  ],
+  "palette": {
+    "id": "wada:296",
+    "label": "Sulpher Yellow · Ochraceous Salmon · Pale Raw Umber",
+    "ground": "dark",
+    "size": 4
+  }
+}
