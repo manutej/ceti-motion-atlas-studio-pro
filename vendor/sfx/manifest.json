@@ -1,0 +1,103 @@
+{
+  "version": 1,
+  "kit": "v9.2",
+  "license": "CC0 1.0",
+  "verified": "2026-10-12",
+  "map": {
+    "WHOOSH": "whoosh",
+    "THUD": "impact",
+    "CLICK": "click",
+    "BOOP": "pop",
+    "BOING": "pop",
+    "CHORD": "ding",
+    "TICK": "tick",
+    "RISER": "riser"
+  },
+  "files": [
+    {
+      "name": "whoosh",
+      "title": "Whoosh",
+      "author": "qubodup",
+      "source": "https://freesound.org/people/qubodup/sounds/60013/",
+      "from": "kit/whoosh.ogg",
+      "file": "sfx/whoosh.ogg",
+      "license": "CC0 1.0",
+      "verified": "2026-10-12",
+      "bytes": 10571,
+      "sha256": "1a9e7021641074ddd157af0a81a727a0f5260c7fcf26b97b7a88da36c96fdc8c"
+    },
+    {
+      "name": "impact",
+      "title": "soft_impact3",
+      "author": "peoplearehappy",
+      "source": "https://freesound.org/people/peoplearehappy/sounds/841274/",
+      "from": "kit/impact.ogg",
+      "file": "sfx/impact.ogg",
+      "license": "CC0 1.0",
+      "verified": "2026-10-12",
+      "bytes": 5606,
+      "sha256": "122c88861ce3ee60f701a4cf8d526d86f7bb55010e618089d0d7ebbc7c3abdfd"
+    },
+    {
+      "name": "pop",
+      "title": "POP SFX Neutral",
+      "author": "ethernel0",
+      "source": "https://freesound.org/people/ethernel0/sounds/776016/",
+      "from": "kit/pop.ogg",
+      "file": "sfx/pop.ogg",
+      "license": "CC0 1.0",
+      "verified": "2026-10-12",
+      "bytes": 4812,
+      "sha256": "aaccb740ee19515ec7f11e6002da20d4089ff3d31cfe2ccf26ad12daaf377068"
+    },
+    {
+      "name": "click",
+      "title": "Classic Click",
+      "author": "adh.dreaming",
+      "source": "https://freesound.org/people/adh.dreaming/sounds/671105/",
+      "from": "kit/click.ogg",
+      "file": "sfx/click.ogg",
+      "license": "CC0 1.0",
+      "verified": "2026-10-12",
+      "bytes": 6288,
+      "sha256": "092c399d65c104856b60b489f400939828112f60e08df2a0af92d2aa22eb940a"
+    },
+    {
+      "name": "tick",
+      "title": "Click / Tick",
+      "author": "Squirrel_404",
+      "source": "https://freesound.org/people/Squirrel_404/sounds/683048/",
+      "from": "kit/tick.ogg",
+      "file": "sfx/tick.ogg",
+      "license": "CC0 1.0",
+      "verified": "2026-10-12",
+      "bytes": 4016,
+      "sha256": "7f832454b8a49e95237bfe40a81da20d82b00a2074e8789393fa6a0b75678cff"
+    },
+    {
+      "name": "riser",
+      "title": "Cinematic Riser #3 subtle",
+      "author": "BeaconStudio",
+      "source": "https://freesound.org/people/BeaconStudio/sounds/859482/",
+      "from": "kit/riser.ogg",
+      "file": "sfx/riser.ogg",
+      "license": "CC0 1.0",
+      "verified": "2026-10-12",
+      "bytes": 17180,
+      "sha256": "22fb67a53f8335427e523531ad80720c9fbb963b70d1fff5112e095c0dd91e01"
+    },
+    {
+      "name": "ding",
+      "title": "confirmation_001 (Interface Sounds)",
+      "author": "Kenney (kenney.nl)",
+      "source": "https://kenney.nl/assets/interface-sounds",
+      "from": "ding/kenney-interface-confirmation-001.ogg",
+      "file": "sfx/ding.ogg",
+      "license": "CC0 1.0",
+      "verified": "2026-10-12",
+      "bytes": 4797,
+      "sha256": "111b82177bc58f2dd7d60625d2686f4d057c18b0dcc09c94514939c46234071e"
+    }
+  ],
+  "totalBytes": 53270
+}

@@ -28,6 +28,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import vm from 'node:vm';
+import crypto from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -139,7 +140,7 @@ const SANDBOX_BASE_KEYS = Object.keys(sandbox).filter((k) => k !== 'window' && k
 // G34 helper: boot a built Standalone the way an HTML parser would. Each inline <script> ends at the FIRST
 // `</script` (D1, EVAL-v9), so a literal close tag inside a string truncates the block. Blocks are cut that way,
 // syntax-checked, then run in a fresh copy of the mock sandbox; the expected globals must all exist afterwards.
-const STANDALONE_GLOBALS = ['MA', 'STUDIO_CANVAS_OAUTH', 'MUSIC', 'TWO_LAYER', 'GEOME_WADA_LIST'];
+const STANDALONE_GLOBALS = ['MA', 'STUDIO_CANVAS_OAUTH', 'MUSIC', 'TWO_LAYER', 'GEOME_WADA_LIST', 'SFX_KIT'];
 function checkStandaloneBoots(html) {
   const opens = (html.match(/<script\b/gi) || []).length;
   const closes = (html.match(/<\/script/gi) || []).length;
@@ -167,6 +168,7 @@ const filesToLoad = [
   'studio-motion-engine.js',
   'vendor/two.min.js',
   'studio-two-renderer.js',
+  'vendor/sfx-kit.js',
   'studio-music-engine.js',
   'studio-canvas-oauth.js',
   'studio-ui.js'
@@ -323,6 +325,26 @@ function checkTwoLayer(src, L) {
     failed,
     detail: `two.js ${sandbox.Two ? sandbox.Two.Version : 'absent'} · off-palette ${a.offPalette.length} · spotlights ${a.spotlights} · seek-history stable=${seekStable} · back+front composite once each · no-Two no-op${failed.length ? ' · FAILED ' + failed.join(',') : ''}`
   };
+}
+
+// G35 (v9.2 step 1): the vendored CC0 SFX kit. `man` = vendor/sfx/manifest.json, `lic` = vendor/sfx-kit-LICENSES.md, `kit` = vendor/sfx-kit.js source.
+function checkSfxKit(man, lic, kit, K) {
+  const failed = [];
+  const ck = (n, ok) => { if (!ok) failed.push(n); };
+  const files = (man && man.files) || [];
+  ck('cc0', files.length === 7 && files.every((f) => f.license === 'CC0 1.0' && /^https:\/\//.test(f.source) && f.author && f.verified));
+  ck('sha', files.every((f) => { const p = path.join(ROOT, 'vendor', f.file); return fs.existsSync(p) && crypto.createHash('sha256').update(fs.readFileSync(p)).digest('hex') === f.sha256 && fs.statSync(p).size === f.bytes; }));
+  ck('size', files.every((f) => f.bytes <= 20 * 1024) && files.reduce((s, f) => s + f.bytes, 0) <= 80 * 1024);
+  ck('script', !/<\/script/i.test(kit));
+  const rows = lic.split('\n').filter((l) => /^\| sfx\//.test(l));
+  ck('licenses', rows.length === files.length && files.every((f) => rows.some((r) => r.includes(f.file) && r.includes(f.sha256) && r.includes(f.source) && r.includes(f.license) && r.includes(f.author))) && /Vox/.test(lic));
+  ck('no-mixkit', !files.some((f) => /typing|mixkit/i.test(f.file + f.source)));
+  ck('map', Boolean(K) && ['WHOOSH', 'THUD', 'CLICK', 'BOOP', 'BOING', 'CHORD', 'TICK', 'RISER'].every((c) => files.some((f) => f.name === K.MAP[c])) && K.names.join() === files.map((f) => f.name).join() && K.decode({}) === null && K.play({}, {}, 'WHOOSH', 0, 1) === null);
+  const total = files.reduce((s, f) => s + f.bytes, 0);
+  return { pass: failed.length === 0, failed, detail: `${files.length} CC0 files · ${(total / 1024).toFixed(1)} KB raw / ${(Buffer.byteLength(kit) / 1024).toFixed(1)} KB inline · sha256 ${failed.includes('sha') ? 'MISMATCH' : 'match'} · LICENSES = manifest ${!failed.includes('licenses')} · no Mixkit · Node no-op${failed.length ? ' · FAILED ' + failed.join(',') : ''}` };
+}
+function readSfxKit() {
+  return { man: JSON.parse(fs.readFileSync(path.join(ROOT, 'vendor', 'sfx', 'manifest.json'), 'utf8')), lic: fs.readFileSync(path.join(ROOT, 'vendor', 'sfx-kit-LICENSES.md'), 'utf8'), kit: fs.readFileSync(path.join(ROOT, 'vendor', 'sfx-kit.js'), 'utf8') };
 }
 
 const results = [];
@@ -936,6 +958,11 @@ async function runAllGates() {
   const g34 = checkStandaloneBoots(fs.readFileSync(STANDALONE_PATH, 'utf8'));
   recordGate('G34', 'Standalone Boots (every inline block parses and runs; expected globals exist)', g34.pass, g34.detail);
 
+  // G35: CC0 SFX kit (v9.2 step 1) — licences, sha256, size caps, no </script, LICENSES rows = manifest, cue map complete
+  const kitFiles = readSfxKit();
+  const g35 = checkSfxKit(kitFiles.man, kitFiles.lic, kitFiles.kit, sandbox.SFX_KIT);
+  recordGate('G35', 'Real Sound-Effect Kit (all CC0, credited, checksummed, small)', g35.pass, g35.detail);
+
   // Print Summary Table
   const passedCount = results.filter((r) => r.pass).length;
   console.log('═══════════════════════════════════════════════════════════════════════════════');
@@ -1158,6 +1185,15 @@ async function runAllGates() {
       id: 'MUT-15',
       desc: "Inject a literal '</script>' string into an inlined block of the Standalone and verify G34 rejects the truncated bundle",
       caught: checkStandaloneBoots(sa15).pass === false && checkStandaloneBoots(sa).pass === true
+    });
+
+    // MUT-18: one kit licence flipped to CC-BY in a copy of the manifest must fail G35
+    const k18 = readSfxKit();
+    const man18 = JSON.parse(JSON.stringify(k18.man)); man18.files[2].license = 'CC-BY 4.0';
+    mutResults.push({
+      id: 'MUT-18',
+      desc: 'Flip one SFX kit licence to CC-BY in a copy of the manifest and verify G35 rejects it',
+      caught: checkSfxKit(man18, k18.lic, k18.kit, sandbox.SFX_KIT).pass === false && checkSfxKit(k18.man, k18.lic, k18.kit, sandbox.SFX_KIT).pass === true
     });
 
     for (const m of mutResults) {
