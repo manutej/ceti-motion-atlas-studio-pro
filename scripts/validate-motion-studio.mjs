@@ -64,6 +64,8 @@ function createMockCanvasContext(width = 480, height = 300) {
     rotate: noop,
     scale: noop,
     setTransform: noop,
+    transform: noop,
+    resetTransform: noop,
     drawImage: noop,
     setLineDash: noop,
     createImageData: (w, h) => ({ data: new Uint8Array(w * h * 4) }),
@@ -155,6 +157,147 @@ const FOUNDRY = sandbox.STUDIO_CHARACTER_FOUNDRY;
 const TAX = sandbox.STUDIO_ATLAS_TAXONOMY;
 const CO = sandbox.STUDIO_CANVAS_OAUTH;
 const MA = sandbox.MA;
+
+// ───────────────────────── v9 gate helpers (shared by G30/G31 and MUT-11/MUT-12) ─────────────────────────
+// Load one module's source into a fresh sandbox (used for mutated copies, so the live sandbox stays untouched).
+function loadIsolated(src, globalName) {
+  const sb = { console, Math, Date, JSON, Array, Object, String, Number, Boolean, RegExp, Map, Set, Promise, Float32Array, Uint8Array };
+  sb.window = sb; sb.globalThis = sb;
+  vm.createContext(sb);
+  vm.runInContext(src, sb, { filename: globalName + '.mutant.js' });
+  return sb[globalName];
+}
+
+function g30Sheet(extra) {
+  const roles = ['hook', 'threshold', 'escalation', 'turn', 'filter', 'breather', 'climax', 'callback'];
+  const hinges = ['THEREFORE', 'BUT', 'THEREFORE', 'BUT', 'THEREFORE', 'THEREFORE', 'BUT', 'THEREFORE'];
+  const cams = ['static-wide', 'pan-follow', 'push-in', 'dutch-tilt', 'tracking-drift', 'breather-hold', 'kick-shake', 'pull-back'];
+  const total = (extra && extra.totalDurationSec) || 12;
+  return Object.assign({
+    id: 'sb-g30', charId: 'saul-falcon', archetype: 'avian', feelKey: 'beat', palId: 343, totalDurationSec: total,
+    beats: roles.map((r, i) => ({ index: i, id: 'beat-' + (i + 1), tStartSec: +(i * total / 8).toFixed(2), tEndSec: +((i + 1) * total / 8).toFixed(2),
+      tMidSec: +((i + 0.5) * total / 8).toFixed(2), role: r, hinge: hinges[i], cameraMove: cams[i], activeSimultaneousMoves: i === 5 ? 1 : 2 }))
+  }, extra || {});
+}
+
+// G30 predicates (1)–(12) from work/music/MERGE-NOTES.md. Returns { pass, failed:[n], detail }.
+function checkMusic(src, M) {
+  const failed = [];
+  const ck = (n, ok) => { if (!ok) failed.push(n); };
+  const pal = { id: 343, a: '#ebd3a2', h: '#ae5224', b: '#527e91' };
+  let parses = true;
+  try { new vm.Script(src); } catch (_e) { parses = false; }
+  ck(1, parses && Buffer.byteLength(src) <= 40 * 1024 && !/Math\.random|Date\.now|requestAnimationFrame/.test(src));
+  const members = ['plan', 'scoreForBeat', 'schedule', 'seek', 'play', 'pause', 'duck', 'sfx', 'sync', 'dispose', 'keyFor', 'tempoFor', 'setPalette', 'setEnabled', 'mix'];
+  ck(2, Boolean(M) && M.VERSION === '9.0.0' && members.every((k) => (k === 'mix' ? (M.mix && typeof M.mix === 'object') : typeof M[k] === 'function')));
+  if (failed.includes(2)) return { pass: false, failed, detail: 'MUSIC API missing' };
+  const p1 = M.plan(g30Sheet(), pal, 'g30');
+  const p2 = M.plan(g30Sheet(), pal, 'g30');
+  const p3 = M.plan(g30Sheet(), pal, 'g30-b');
+  ck(3, JSON.stringify(p1) === JSON.stringify(p2) && JSON.stringify(p1.motif) !== JSON.stringify(p3.motif));
+  const br = p1.cues.filter((c) => c.role === 'breather');
+  ck(4, br.length === 1 && br[0].pulse.length === 0 && br[0].motif.length === 0);
+  ck(5, new Set(Object.keys(M.SIG).map((a) => M.plan(g30Sheet({ archetype: a }), pal, 'x').motif.rel.join())).size === 8);
+  const hook = p1.cues[0];
+  const cb = p1.cues[7];
+  ck(6, hook.bell.length > 0 && hook.bell.map((b) => b.midi).join() === cb.bell.map((b) => b.midi).join() && p1.callback.returnT > p1.callback.plantT);
+  const grid = p1.beatSec / 4;
+  ck(7, p1.sfx.length > 0 && p1.sfx.every((x) => (x.quantized
+    ? Math.abs(x.t - x.tRaw) <= 0.06 + 1e-9 && Math.abs(x.t / grid - Math.round(x.t / grid)) < 1e-6
+    : x.t === x.tRaw)));
+  // (8) duck law in the plan + on a mock AudioContext duck-param log (mix.duck is the 3rd gain node buildMix creates)
+  const dLog = [];
+  const param = (name) => {
+    const p = { value: 0 };
+    ['setValueAtTime', 'linearRampToValueAtTime', 'exponentialRampToValueAtTime', 'cancelScheduledValues'].forEach((k) => {
+      p[k] = (v, t) => { if (name === 'duck') dLog.push([k, v, t]); return p; };
+    });
+    return p;
+  };
+  const node = (extra) => Object.assign({ connect() { return this; }, disconnect() {}, start() {}, stop() {} }, extra);
+  const actx = {
+    currentTime: 0, sampleRate: 8000, state: 'running', resume() {}, destination: {},
+    createGain: () => node({ gain: param('gain') }),
+    createOscillator: () => node({ type: 'sine', frequency: param('f'), detune: { value: 0 } }),
+    createBiquadFilter: () => node({ type: 'lowpass', frequency: param('f'), Q: { value: 1 } }),
+    createDynamicsCompressor: () => node({ threshold: { value: 0 }, knee: { value: 0 }, ratio: { value: 1 }, attack: { value: 0 }, release: { value: 0 } }),
+    createBufferSource: () => node({ buffer: null, loop: false }),
+    createBuffer: (c, n) => ({ getChannelData: () => new Float32Array(n) })
+  };
+  let threw = false;
+  try {
+    M.dispose(); M.schedule(actx, p1, 0);
+    const dp = M.mix.duck.gain;   // the live duck bus param, wired by buildMix
+    ['setValueAtTime', 'linearRampToValueAtTime', 'cancelScheduledValues'].forEach((k) => { dp[k] = (v, t) => { dLog.push([k, v, t]); return dp; }; });
+    M.duck();
+  } catch (_e) { threw = true; }
+  const lo = Math.pow(10, -6 / 20);
+  ck(8, !threw && JSON.stringify(p1.duck) === JSON.stringify({ dB: -6, attackMs: 10, holdMs: 250, releaseMs: 150 }) && dLog.length === 5 &&
+    dLog[0][0] === 'cancelScheduledValues' && dLog[1][1] === 1 && Math.abs(dLog[2][1] - lo) < 1e-9 &&
+    Math.abs((dLog[2][2] - dLog[1][2]) - 0.010) < 1e-9 && Math.abs((dLog[3][2] - dLog[2][2]) - 0.250) < 1e-9 &&
+    dLog[4][1] === 1 && Math.abs((dLog[4][2] - dLog[3][2]) - 0.150) < 1e-9);
+  ck(9, p1.cues.reduce((n, c) => n + c.motif.length, 0) <= 12 * p1.totalSec / 12);
+  ck(10, ['saul', 'held', 'rostrum'].every((f) => {
+    const T = M.tempoFor(f);
+    return T.fps > 0 && Math.abs(T.beatSec * T.fps - Math.round(T.beatSec * T.fps)) < 1e-9;
+  }));
+  let seekOk = true;
+  try { actx.currentTime = 1.2; M.play(); M.seek(5); M._tick(); M.seek(9); M.pause(); M.dispose(); } catch (_e) { seekOk = false; }
+  const dry = M.schedule(null, p1, 0);
+  ck(11, seekOk && (dry.live === false || typeof dry.live === 'boolean'));
+  M.dispose();
+  ck(12, p1.key.rootMidi === [48, 50, 52, 53, 55, 57, 59, 60][343 % 8]);
+  return {
+    pass: failed.length === 0,
+    failed,
+    detail: `${12 - failed.length}/12 predicates · ${p1.key.root} ${p1.key.modeName} · ${p1.bpm} bpm · ${p1.cues.length} cues · ${p1.sfx.length} SFX · duck ${p1.duck.dB} dB / ${p1.duck.attackMs}·${p1.duck.holdMs}·${p1.duck.releaseMs} ms${failed.length ? ' · FAILED ' + failed.join(',') : ''}`
+  };
+}
+
+// G31 predicates from work/two/MERGE-NOTES.md. `L` is the TWO_LAYER loaded after vendor/two.min.js.
+function checkTwoLayer(src, L) {
+  const failed = [];
+  if (/two\.play\(|requestAnimationFrame|Math\.random|Date\.now|performance\.now/.test(src) ||
+    !/Two\.Types\.canvas/.test(src) || !/autostart:\s*false/.test(src) || !/two\.update\(\)/.test(src) || !/VERSION\s*=\s*'9\.0\.0'/.test(src)) {
+    failed.push('text');
+  }
+  if (!L || typeof L.renderFrame !== 'function') return { pass: false, failed: failed.concat('api'), detail: 'TWO_LAYER missing' };
+  const pal = { paper: '#fbf3e6', ink: '#064f6e', a: '#ebd3a2', h: '#ae5224', b: '#635a3a', c: '#064f6e' };
+  const P = Object.assign({}, pal);
+  const a = L.audit(2.1, null, pal, 7, null, {});
+  if (!(a.offPalette.length === 0 && a.spotlights === 1)) failed.push('palette');
+  if (!L.isAvailable()) failed.push('two');
+  // G06: the stage built for (t, seed) is identical whatever was rendered before it
+  const stageAt = (t, hist) => {
+    hist.forEach((h) => L.renderFrame(createMockCanvasContext(480, 300), h, null, pal, 7, P, { pass: 'all' }));
+    const meta = L.renderFrame(createMockCanvasContext(480, 300), t, null, pal, 7, P, { pass: 'all' });
+    return JSON.stringify(L.modules.scene(t, null, pal, 7, P, {}).items) + '|' + JSON.stringify(meta);
+  };
+  const s1 = stageAt(3.7, []);
+  const s2 = stageAt(3.7, [5.5]);
+  const s3 = stageAt(3.7, [9.0, 0.4]);
+  const seekStable = s1 === s2 && s2 === s3 && s1 !== stageAt(8.2, []);
+  if (!seekStable) failed.push('determinism');
+  // both passes composite exactly one offscreen image each
+  const draws = (pass) => {
+    const c = createMockCanvasContext(480, 300);
+    let n = 0;
+    const orig = c.drawImage;
+    c.drawImage = function () { n++; return orig.apply(this, arguments); };
+    const r = L.renderFrame(c, 2.1, null, pal, 7, P, { pass });
+    return r && r.pass === pass ? n : -1;
+  };
+  if (!(draws('back') === 1 && draws('front') === 1)) failed.push('passes');
+  // no Two ⇒ renderFrame false with zero ctx ops (the validator mock / headless path)
+  const bare = loadIsolated(src, 'TWO_LAYER');
+  const none = createMockCanvasContext(480, 300);
+  if (!(bare && bare.renderFrame(none, 3.7, null, pal, 7, P, { pass: 'all' }) === false && none.getOps() === 0)) failed.push('no-op');
+  return {
+    pass: failed.length === 0,
+    failed,
+    detail: `two.js ${sandbox.Two ? sandbox.Two.Version : 'absent'} · off-palette ${a.offPalette.length} · spotlights ${a.spotlights} · seek-history stable=${seekStable} · back+front composite once each · no-Two no-op${failed.length ? ' · FAILED ' + failed.join(',') : ''}`
+  };
+}
 
 const results = [];
 function recordGate(id, name, pass, detail) {
@@ -718,10 +861,55 @@ async function runAllGates() {
     `${tagRes.schemes.length} saved schemes; #color/brand-ocean-noir & /color/brand-ocean-noir resolve deterministically to Wada No. ${resolvedByHash ? resolvedByHash.palId : 'none'}`
   );
 
+  // ───────────────────────── v9 "Fable Soup" gates (G30–G33) ─────────────────────────
+  const MUSIC = sandbox.MUSIC;
+  const TWO_LAYER = sandbox.TWO_LAYER;
+
+  // G30: Adaptive procedural music score (work/music/MERGE-NOTES.md predicates 1–12)
+  const g30 = checkMusic(fs.readFileSync(path.join(ROOT, 'studio-music-engine.js'), 'utf8'), MUSIC);
+  recordGate(
+    'G30',
+    'Adaptive Procedural Music Score (deterministic, seekable, ducks under SFX)',
+    g30.pass,
+    g30.detail
+  );
+
+  // G31: two.js vector layer (frame = f(t), palette-locked, one spotlight, no-op without Two)
+  const g31 = checkTwoLayer(fs.readFileSync(path.join(ROOT, 'studio-two-renderer.js'), 'utf8'), TWO_LAYER);
+  recordGate(
+    'G31',
+    'two.js Vector Stage Layer (frame = f(t), palette lock, one spotlight, no-op fallback)',
+    g31.pass,
+    g31.detail
+  );
+
+  // G32: Storyboard grammar (hook → claim → proof → breather → callback → landing) on both v9 boards + every legacy story
+  const v9Boards = Object.keys(CO.V9_STORYBOARDS).map((k) => CO.buildStoryboardSheet({ boardKey: k, charId: 'ceti-whale', palId: 343 }));
+  const v9GrammarOk = v9Boards.filter((sh) => CO.auditStoryboardGrammar(sh).valid && sh.audit && sh.audit.allPassed).length;
+  const legacyGrammarOk = TAX.STORIES.filter((st) => CO.auditStoryboardGrammar(CO.buildStoryboardSheet({ storyKey: st.key, charId: 'ceti-whale', palId: 343 })).valid).length;
+  const v9Fields = ['grammar', 'say', 'show', 'hear', 'because', 'readingLevel'];
+  const fieldsOk = v9Boards.every((sh) => sh.beats.every((b) => v9Fields.every((k) => b[k] != null)));
+  const g32Pass = v9Boards.length === 2 && v9GrammarOk === 2 && legacyGrammarOk === TAX.STORIES.length && fieldsOk;
+  recordGate(
+    'G32',
+    'Storyboard Grammar (hook · claim · proof · breather · callback · landing)',
+    g32Pass,
+    `${v9GrammarOk}/2 v9 boards valid (${v9Boards.map((sh) => sh.beats.length).join('+')} beats, G08 laws hold), ${legacyGrammarOk}/${TAX.STORIES.length} legacy stories load with grammar defaults`
+  );
+
+  // G33: Wording clarity (work/wording/clarity-gate.md P1–P8)
+  const g33 = CO.auditWordingClarity(v9Boards, CO.VOCAB_LIBRARY, CO.DEFAULT_SAVED_SCHEMES);
+  recordGate(
+    'G33',
+    'Wording Clarity (plain words, short lines, grade ≤ 8)',
+    g33.valid,
+    g33.detail
+  );
+
   // Print Summary Table
   const passedCount = results.filter((r) => r.pass).length;
   console.log('═══════════════════════════════════════════════════════════════════════════════');
-  console.log(`CETI MOTION ATLAS STUDIO PRO — 29-GATE CONTRACT AUDIT (${passedCount}/${results.length} PASS)`);
+  console.log(`CETI MOTION ATLAS STUDIO PRO — ${results.length}-GATE CONTRACT AUDIT (${passedCount}/${results.length} PASS)`);
   console.log('═══════════════════════════════════════════════════════════════════════════════');
   for (const r of results) {
     console.log(`[${r.pass ? 'PASS' : 'FAIL'}] ${r.id} · ${r.name}`);
@@ -736,7 +924,7 @@ async function runAllGates() {
   // Negative Mutation Selftest (--selftest) per adversarial-moe-governance law
   if (process.argv.includes('--selftest')) {
     console.log('\n═══════════════════════════════════════════════════════════════════════════════');
-    console.log('RUNNING 10-TEST NEGATIVE MUTATION SELFTEST (--selftest)');
+    console.log('RUNNING 14-TEST NEGATIVE MUTATION SELFTEST (--selftest)');
     console.log('═══════════════════════════════════════════════════════════════════════════════');
     const mutResults = [];
 
@@ -876,6 +1064,60 @@ async function runAllGates() {
       id: 'MUT-10',
       desc: 'Inject out-of-range Wada ID (99999) & unsanitized tag characters into tagAndSaveColorScheme and verify G29 clamping + slug sanitization',
       caught: mut10Caught
+    });
+
+    // MUT-11: duck law -6 dB → -5 dB in a copy of studio-music-engine.js must fail G30 (predicate 8)
+    const musicSrc = fs.readFileSync(path.join(ROOT, 'studio-music-engine.js'), 'utf8');
+    const mutMusicSrc = musicSrc.replace('dB: -6', 'dB: -5');
+    const mut11 = checkMusic(mutMusicSrc, loadIsolated(mutMusicSrc, 'MUSIC'));
+    mutResults.push({
+      id: 'MUT-11',
+      desc: 'Weaken the duck law (-6 dB → -5 dB) in a copy of the music engine and verify G30 rejects it',
+      caught: mutMusicSrc !== musicSrc && mut11.pass === false && mut11.failed.includes(8)
+    });
+
+    // MUT-12: `two.update();` → `two.play(); two.update();` in a copy must fail G31's no-play-loop predicate
+    const twoSrc = fs.readFileSync(path.join(ROOT, 'studio-two-renderer.js'), 'utf8');
+    const mutTwoSrc = twoSrc.replace('two.update();', 'two.play(); two.update();');
+    const mut12 = checkTwoLayer(mutTwoSrc, TWO_LAYER);
+    mutResults.push({
+      id: 'MUT-12',
+      desc: 'Inject a two.play() render loop into a copy of the two.js layer and verify G31 rejects it',
+      caught: mutTwoSrc !== twoSrc && mut12.pass === false && mut12.failed.includes('text')
+    });
+
+    // MUT-13: storyboard grammar — hook moved to the end, a proof citing a missing claim, a lost callback, a removed breather must all fail G32
+    const g32Mut = () => CO.buildStoryboardSheet({ boardKey: 'v9-mcp-server', charId: 'ceti-whale', palId: 343 });
+    const m13a = g32Mut(); m13a.beats[0].grammar = 'landing';
+    const m13b = g32Mut(); m13b.beats[2].claimId = 'beat-9';
+    const m13c = g32Mut(); m13c.beats.forEach((b) => { b.returns = null; });
+    const m13d = g32Mut(); m13d.beats[4].grammar = 'proof'; m13d.beats[4].claimId = 'beat-2';
+    mutResults.push({
+      id: 'MUT-13',
+      desc: 'Corrupt the MCP board grammar (hook→landing, proof→missing claim, callback return removed, breather removed) and verify G32 rejects each',
+      caught: [m13a, m13b, m13c, m13d].every((sh) => CO.auditStoryboardGrammar(sh).valid === false)
+    });
+
+    // MUT-14: wording clarity P1–P8 corruptions (clarity-gate.md MUT-P1…P8) must each fail G33; the parenthesised control passes
+    const g33Base = () => Object.keys(CO.V9_STORYBOARDS).map((k) => CO.buildStoryboardSheet({ boardKey: k }));
+    const g33Run = (mutate, vocab) => { const bs = g33Base(); mutate(bs[0]); return CO.auditWordingClarity(bs, vocab || CO.VOCAB_LIBRARY, CO.DEFAULT_SAVED_SCHEMES); };
+    const longVocab = CO.VOCAB_LIBRARY.slice(); longVocab[0] = Object.assign({}, longVocab[0], { plainEnglish: longVocab[0].plainEnglish + ' and then a few more words to go past it' });
+    const p14 = {
+      P1: g33Run((sh) => { sh.beats[1].say = 'One two three four five six seven eight nine ten eleven twelve thirteen.'; }),
+      P2: g33Run(() => {}, longVocab),
+      P3: g33Run((sh) => { sh.beats[2].show = 'Add line boil to the outline'; }),
+      P4: g33Run((sh) => { sh.beats[2].claimId = 'beat-9'; }),
+      P5: g33Run((sh) => { sh.beats[4].grammar = 'proof'; }),
+      P6: g33Run((sh) => { sh.beats.forEach((b) => { b.returns = null; }); }),
+      P7: g33Run((sh) => { sh.beats[2].say = 'Alexandrov sheaf δ⁰ cohomology G18'; }),
+      P8: g33Run((sh) => { sh.beats[2].say = 'Heterogeneous orchestration necessitates interoperability'; })
+    };
+    const p3Control = g33Run((sh) => { sh.beats[2].show = 'Add hand-drawn wobble (line boil)'; });
+    const mut14Caught = Object.keys(p14).every((k) => p14[k].valid === false && p14[k].fails[k].length > 0) && p3Control.fails.P3.length === 0;
+    mutResults.push({
+      id: 'MUT-14',
+      desc: 'Apply the 8 clarity corruptions (13-word say, long blurb, bare jargon, orphan proof, no breather, lost return, internal names, grade-50 say) and verify G33 rejects each',
+      caught: mut14Caught
     });
 
     for (const m of mutResults) {

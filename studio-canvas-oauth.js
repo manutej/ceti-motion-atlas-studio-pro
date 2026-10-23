@@ -546,6 +546,70 @@
     return auditStoryboardSheet(sheet);
   }
 
+  // G33 · Wording clarity (work/wording/clarity-gate.md P1–P8). Pure; runs on v9 boards + vocabulary + saved schemes.
+  const WORDING_BANNED = ['boil', 'overshoot', 'misregistration', 'anticipation', 'follow-through', 'onion-skin', 'iris', 'negative-space', 'figure-ground',
+    'stipple', 'rostrum', 'dutch', 'hydrographic', 'telemetry', 'bathyal', 'pelagic', 'sumi', 'shoji', 'sonification', 'cohomology', 'sheaf', 'pushout', 'rung'];
+  const WORDING_INTERNAL_RX = /\bG\d\d\b|\brung ?\d|\be_[a-z]+\b|[δρ⊕]|Wada No\.? ?\d|cohomology|sheaf|pushout|PKCE/i;
+  function wordCount(str) { return String(str || '').trim().split(/\s+/).filter(Boolean).length; }
+  function bareJargon(str) {
+    const text = String(str || '');
+    return WORDING_BANNED.filter(function (term) {
+      const rx = new RegExp('\\b' + term.replace(/-/g, '\\-') + '\\b', 'i');
+      if (!rx.test(text)) return false;
+      return rx.test(text.replace(/\([^)]*\)/g, ' '));   // a hit outside every (...) is bare
+    });
+  }
+  function auditWordingClarity(sheets, vocab, schemes) {
+    const boards = (Array.isArray(sheets) ? sheets : [sheets]).filter(Boolean);
+    const lib = Array.isArray(vocab) ? vocab : VOCAB_LIBRARY;
+    const sch = Array.isArray(schemes) ? schemes : DEFAULT_SAVED_SCHEMES;
+    const fails = { P1: [], P2: [], P3: [], P4: [], P5: [], P6: [], P7: [], P8: [] };
+    let sayN = 0, sayOk = 0, blurbN = 0, blurbOk = 0, proofN = 0, proofOk = 0, maxGrade = 0, plantOk = true, breathers = [];
+    const copy = [];
+    boards.forEach(function (sh) {
+      const beats = sh.beats || [];
+      const tag = sh.id || sh.title || 'sheet';
+      beats.forEach(function (b, i) {
+        const at = tag + '#' + (i + 1);
+        sayN++; if (wordCount(b.say) <= 12) sayOk++; else fails.P1.push(at);
+        ['say', 'show', 'because'].forEach(function (k) { copy.push([at + '.' + k, b[k]]); });
+        if (b.grammar === 'proof') {
+          proofN++;
+          const ci = beats.findIndex(function (c) { return c.id === b.claimId; });
+          if (ci >= 0 && ci < i && beats[ci].grammar === 'claim') proofOk++; else fails.P4.push(at);
+        }
+        const g = readingGrade(String(b.say || '') + ' ' + String(b.show || ''));
+        if (g > maxGrade) maxGrade = g;
+        if (g > 8) fails.P8.push(at + ' grade ' + g);
+      });
+      const br = [];
+      beats.forEach(function (b, i) { if (b.grammar === 'breather') br.push(i); });
+      breathers.push(br.length);
+      if (br.length !== 1 || br[0] === 0 || br[0] === 1 || br[0] === beats.length - 1) fails.P5.push(tag + ' breathers=' + br.join(','));
+      const plant = beats[0] && beats[0].plant;
+      if (plant && !beats.some(function (b) { return (b.grammar === 'callback' || b.grammar === 'landing') && b.returns === plant; })) { plantOk = false; fails.P6.push(tag); }
+    });
+    lib.forEach(function (it) {
+      blurbN++; if (wordCount(it.plainEnglish) <= 14) blurbOk++; else fails.P2.push(it.token);
+      copy.push([it.token + '.title', it.title], [it.token + '.plainEnglish', it.plainEnglish]);
+    });
+    sch.forEach(function (sc) {
+      blurbN++; if (wordCount(sc.notes) <= 14) blurbOk++; else fails.P2.push(sc.token || sc.tag);
+      copy.push([(sc.token || sc.tag) + '.title', sc.title], [(sc.token || sc.tag) + '.notes', sc.notes]);
+    });
+    copy.forEach(function (c) {
+      const bad = bareJargon(c[1]);
+      if (bad.length) fails.P3.push(c[0] + ':' + bad.join('/'));
+      if (WORDING_INTERNAL_RX.test(String(c[1] || ''))) fails.P7.push(c[0]);
+    });
+    const valid = Object.keys(fails).every(function (k) { return fails[k].length === 0; });
+    return {
+      valid: valid, fails: fails, maxGrade: maxGrade,
+      detail: 'say≤12 ' + sayOk + '/' + sayN + ' · blurb≤14 ' + blurbOk + '/' + blurbN + ' · jargon ' + fails.P3.length + ' · proofs ' + proofOk + '/' + proofN +
+        ' · breather ' + breathers.join('/') + ' · plant→return ' + (plantOk ? 'y' : 'n') + ' · internal ' + fails.P7.length + ' · grade ' + maxGrade
+    };
+  }
+
   // `hear` drives the score: MUSIC.plan/scoreForBeat read `role` + `sfx`, so derive them from hear.music / hear.sfx.
   // Legacy beats keep their role unless it contradicts the section; empty hear.sfx keeps the engine's default cues.
   const SECTION_MUSIC_ROLE = { intro: 'hook', rest: 'breather', outro: 'callback' };
@@ -2811,6 +2875,16 @@
     const wadaChord = (global.MA && global.MA.computeWadaHarmonicChord) ? global.MA.computeWadaHarmonicChord(activePal, charSpec, st.rung || 1, 2.4) : { voices: [{}, {}, {}, {}], baseRootHz: 220 };
     const svgOut = compileCodeScaffold(st, 'svg-keyframes');
     const lottieOut = compileCodeScaffold(st, 'lottie-json');
+    // v9 HUD mirrors of validator G30–G33 (cheap live checks; the validator runs the full predicates)
+    const MUS = global.MUSIC;
+    let musPlan = null;
+    try { musPlan = MUS ? MUS.plan(storyboardToMusicSheet(sheet, st.feel), activePal, 'hud') : null; } catch (_e) { musPlan = null; }
+    const TWO = global.TWO_LAYER;
+    let twoAudit = null;
+    try { twoAudit = TWO ? TWO.audit(2.1, null, activePal, 7, null, {}) : null; } catch (_e) { twoAudit = null; }
+    const grammarCheck = auditStoryboardGrammar(sheet);
+    const v9Sheets = sheet.grammarVersion ? [sheet] : Object.keys(V9_STORYBOARDS).map(function (k) { return buildStoryboardSheet({ boardKey: k }); });
+    const wording = auditWordingClarity(v9Sheets, VOCAB_LIBRARY, st.savedColorSchemes || DEFAULT_SAVED_SCHEMES);
 
     const gates = [
       { id: 'G01', name: 'Wada Palette Closure', plainName: 'Color palette is one of the 348 Wada sets', pass: allWada.length >= 348 && activePal.wadaIndex >= 1 && activePal.wadaIndex <= 348, metric: allWada.length + ' Wada combos · ' + activePal.no },
@@ -2841,7 +2915,11 @@
       { id: 'G26', name: 'Freeform Card Dragging & Storyboard Beat Reordering', plainName: 'Cards and beats can be dragged', pass: typeof moveCanvasNode === 'function' && typeof duplicateCanvasCard === 'function' && typeof moveStoryboardBeat === 'function', metric: 'Whole-Card Drag + Duplicate + 8-Beat Reorder' },
       { id: 'G27', name: 'Direct Source A / Source B Picker & Context Switcher', plainName: 'Pick which cards to work from', pass: Boolean(st.selectedNodeId || dag.nodes[0]), metric: '1-Click Source A / Source B Pills + Toolbar Selector' },
       { id: 'G28', name: '# & / Studio Vocabulary, Theme & Element Library', plainName: 'Plain-English # and / vocabulary', pass: getFullVocabLibrary(st.savedColorSchemes).length >= 36 && typeof searchVocabLibrary === 'function' && typeof parsePromptTokens === 'function', metric: getFullVocabLibrary(st.savedColorSchemes).length + ' Plain-English # & / Tokens Active' },
-      { id: 'G29', name: 'Tagged & Saved Color Scheme Vault (#color/<tag>)', plainName: 'Saved color schemes', pass: typeof tagAndSaveColorScheme === 'function' && typeof resolveColorSchemeByTag === 'function' && ((st.savedColorSchemes || DEFAULT_SAVED_SCHEMES).length >= 6), metric: (st.savedColorSchemes || DEFAULT_SAVED_SCHEMES).length + ' Tagged Color Schemes Vaulted' }
+      { id: 'G29', name: 'Tagged & Saved Color Scheme Vault (#color/<tag>)', plainName: 'Saved color schemes', pass: typeof tagAndSaveColorScheme === 'function' && typeof resolveColorSchemeByTag === 'function' && ((st.savedColorSchemes || DEFAULT_SAVED_SCHEMES).length >= 6), metric: (st.savedColorSchemes || DEFAULT_SAVED_SCHEMES).length + ' Tagged Color Schemes Vaulted' },
+      { id: 'G30', name: 'Adaptive Procedural Music Score', plainName: 'Music follows the storyboard and ducks under sound effects', pass: !!(musPlan && musPlan.cues.length === (sheet.beats || []).length && musPlan.duck.dB === -6 && musPlan.cues.filter(function (c) { return c.role === 'breather'; }).length === 1), metric: musPlan ? (musPlan.key.root + ' ' + musPlan.key.modeName + ' · ' + Math.round(musPlan.bpm) + ' bpm · ' + musPlan.cues.length + ' cues') : 'music engine not loaded' },
+      { id: 'G31', name: 'two.js Vector Stage Layer', plainName: 'Vector layer stays on-palette and repeatable', pass: !!(twoAudit && twoAudit.offPalette.length === 0 && twoAudit.spotlights === 1), metric: twoAudit ? ((TWO.isAvailable() ? 'two.js live' : 'two.js not loaded (layer off)') + ' · ' + twoAudit.count + ' items · 1 spotlight') : 'vector layer not loaded' },
+      { id: 'G32', name: 'Storyboard Grammar', plainName: 'Story runs hook, claim, proof, pause, callback, landing', pass: grammarCheck.valid, metric: grammarCheck.valid ? (grammarCheck.beats + ' beats · ' + grammarCheck.claims + ' claim(s) · pause at beat ' + (grammarCheck.breatherIdx + 1)) : grammarCheck.errors[0] },
+      { id: 'G33', name: 'Wording Clarity', plainName: 'Wording is plain and clear', pass: wording.valid, metric: wording.detail }
     ];
 
     const passedCount = gates.filter(function (g) { return g.pass; }).length;
@@ -2871,6 +2949,7 @@
     applyStoryboardGrammarDefaults: applyStoryboardGrammarDefaults,
     auditStoryboardGrammar: auditStoryboardGrammar,
     storyboardToMusicSheet: storyboardToMusicSheet,
+    auditWordingClarity: auditWordingClarity,
     readingGrade: readingGrade,
     moveStoryboardBeat: moveStoryboardBeat,
     resolveNonOverlappingPosition: resolveNonOverlappingPosition,
