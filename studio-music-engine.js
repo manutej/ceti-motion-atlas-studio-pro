@@ -554,6 +554,7 @@
     var when = at == null ? S.ctx.currentTime : (S.playing ? Math.max(S.ctx.currentTime, ctxTime(q.t)) : S.ctx.currentTime);
     return fireSfx(nm, when, gain) ? { name: nm, t: q.t, quantized: q.q } : null;
   }
+  function gridTimes(p, d) { var g = p.beatSec / ({ beat: 1, '8th': 2 }[d] || 4), o = []; for (var i = 0; i * g <= p.totalSec + 1e-9; i++) o.push(r3(i * g)); return o; }
   function setPalette(pal) { S.pal = pal; }
   function setEnabled(on) { S.enabled = !!on; if (!S.enabled && S.playing) pause(); return S.enabled; }
   function dispose() {
@@ -565,7 +566,7 @@
   var API = {
     VERSION: VERSION, plan: plan, scoreForBeat: scoreForBeat, keyFor: keyFor, tempoFor: tempoFor, paletteFamily: paletteFamily,
     archetypeOf: archetypeOf, schedule: schedule, seek: seek, play: play, pause: pause, duck: duck, sfx: sfx, sync: sync, mix: mix,
-    dispose: dispose, setPalette: setPalette, setEnabled: setEnabled, position: position,
+    dispose: dispose, gridTimes: gridTimes, setPalette: setPalette, setEnabled: setEnabled, position: position,
     get enabled() { return S.enabled; },
     get state() { return { playing: S.playing, t: position(), cursor: S.cursor, live: S.live.length }; },
     MODES: MODES, ROLES: ROLES, TEMPO: TEMPO, FPS_GRID: FPS_GRID, SIG: SIG, DUCK: DUCK, PLUCK_CAP: PLUCK_CAP, _quantize: quantize, _tick: tick, live: !!Ctx

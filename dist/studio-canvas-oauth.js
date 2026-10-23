@@ -554,6 +554,14 @@
       if (b.plant === undefined) b.plant = null;
       if (b.returns === undefined) b.returns = null;
       if (typeof b.readingLevel !== 'number') b.readingLevel = Math.round(readingGrade(b.say + ' ' + b.show));
+      // v9.2 additive grammar fields (storyboard-grammar.md); defaults keep every older board valid
+      if (typeof b.oneThing !== 'string') b.oneThing = '';
+      if (typeof b.format !== 'string') b.format = 'explainer';
+      if (typeof b.line !== 'string') b.line = b.say;
+      if (!Array.isArray(b.illustrative)) b.illustrative = [];
+      if (['low', 'normal', 'high'].indexOf(b.density) < 0) b.density = 'normal';
+      if (b.snap === true) b.snap = '16th';
+      if (['beat', '8th', '16th', 'none'].indexOf(b.snap) < 0) b.snap = 'none';
     });
     return sheet;
   }
@@ -644,7 +652,7 @@
       beats.forEach(function (b, i) {
         const at = tag + '#' + (i + 1);
         sayN++; if (wordCount(b.say) <= 12) sayOk++; else fails.P1.push(at);
-        ['say', 'show', 'because'].forEach(function (k) { copy.push([at + '.' + k, b[k]]); });
+        ['say', 'show', 'because', 'oneThing'].forEach(function (k) { if (k !== 'oneThing' || b[k]) copy.push([at + '.' + k, b[k]]); });
         if (b.grammar === 'proof') {
           proofN++;
           const ci = beats.findIndex(function (c) { return c.id === b.claimId; });

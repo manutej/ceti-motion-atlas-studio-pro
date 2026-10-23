@@ -424,6 +424,26 @@ function g36Plans(CO, M, boards) {
   return out;
 }
 
+// G32b (v9.2 step 5): with `snap:'16th'` every two.js word reveal `at` lands within 60 ms of the MUSIC.gridTimes() time nearest its unsnapped instant.
+function checkSnap(L, M, CO) {
+  let worst = 0, n = 0, snapped = 0;
+  for (const k of Object.keys(CO.V9_STORYBOARDS)) {
+    const sh = CO.buildStoryboardSheet({ boardKey: k, charId: 'ceti-whale', palId: 343 });
+    const grid = M.gridTimes({ beatSec: M.tempoFor(sh.feelKey || 'beat').beatSec, totalSec: sh.totalDurationSec + 1 }, '16th');
+    for (const b of sh.beats) {
+      const beat = Object.assign({}, b, { snap: '16th' }), t0 = b.tStartSec, t1 = b.tEndSec;
+      const T = L.modules.sayTiming({ beat, t0, t1, len: t1 - t0, feel: sh.feelKey });
+      const T0 = L.modules.sayTiming({ beat: Object.assign({}, b, { snap: 'none' }), t0, t1, len: t1 - t0, feel: sh.feelKey });
+      for (let i = 0; i < T.n; i++) {
+        const x = T0.at(i), target = grid.reduce((bst, g) => (Math.abs(g - x) < Math.abs(bst - x) ? g : bst), grid[0]);
+        const d = Math.abs(T.at(i) - Math.min(Math.max(target, t0), t1));   // must land on the grid time nearest its unsnapped instant
+        worst = Math.max(worst, d); n++; if (Math.abs(T.at(i) - T0.at(i)) > 1e-9) snapped++;
+      }
+    }
+  }
+  return { pass: n > 0 && worst <= 0.06 + 1e-9 && snapped > 0, worstMs: Math.round(worst * 1000), n, snapped };
+}
+
 const results = [];
 function recordGate(id, name, pass, detail) {
   results.push({ id, name, pass: Boolean(pass), detail });
@@ -1022,6 +1042,12 @@ async function runAllGates() {
     `${v9GrammarOk}/2 v9 boards valid (${v9Boards.map((sh) => sh.beats.length).join('+')} beats, G08 laws hold), ${legacyGrammarOk}/${TAX.STORIES.length} legacy stories load with grammar defaults`
   );
 
+  // G32b: beat-grid snap (v9.2 step 5) — snap:'16th' lands every word reveal on the music grid; defaults ('none') leave G32 unchanged
+  const g32b = checkSnap(TWO_LAYER, MUSIC, CO);
+  const snapDefaultsOk = v9Boards.every((sh) => sh.beats.every((b) => b.snap === 'none' && b.density === 'normal' && b.line === b.say && Array.isArray(b.illustrative)));
+  recordGate('G32b', 'Beat-Grid Snap (word reveals land on the music grid)', g32b.pass && snapDefaultsOk,
+    `${g32b.n} word reveals on both boards with snap:'16th' · worst ${g32b.worstMs} ms off the MUSIC.gridTimes() grid (≤ 60) · ${g32b.snapped} moved · additive fields default (snap none, density normal, line = say) ${snapDefaultsOk}`);
+
   // G33: Wording clarity (work/wording/clarity-gate.md P1–P8)
   const g33 = CO.auditWordingClarity(v9Boards, CO.VOCAB_LIBRARY, CO.DEFAULT_SAVED_SCHEMES);
   recordGate(
@@ -1304,6 +1330,15 @@ async function runAllGates() {
       desc: 'Remove one payoff from the MCP board (and, separately, one text box) and verify G37 rejects it',
       caught: !CO.auditFilmSpec(m17).valid && CO.auditFilmSpec(m17).errors.some((e) => /rhythm/.test(e)) && !CO.auditFilmSpec(m17b).valid &&
         CO.auditFilmSpec(CO.buildStoryboardSheet({ boardKey: 'v9-mcp-server', charId: 'ceti-whale', palId: 343 })).valid
+    });
+
+    // MUT-19: G32b — a renderer copy whose snapped reveal lands 90 ms off the grid must fail
+    const mut19Src = fs.readFileSync(path.join(ROOT, 'studio-two-renderer.js'), 'utf8').replace('return clamp(G.reduce(', 'return 0.09 + clamp(G.reduce(');
+    const h19 = {}; const L19 = loadIsolated(mut19Src, 'TWO_LAYER', h19); h19.sb.MUSIC = MUSIC;
+    mutResults.push({
+      id: 'MUT-19',
+      desc: 'Shift snapped word reveals 90 ms off the beat grid in a copy of the two.js layer and verify G32b rejects it',
+      caught: mut19Src.includes('0.09 + clamp(G.reduce(') && checkSnap(L19, MUSIC, CO).pass === false && checkSnap(TWO_LAYER, MUSIC, CO).pass === true
     });
 
     // MUT-18: one kit licence flipped to CC-BY in a copy of the manifest must fail G35

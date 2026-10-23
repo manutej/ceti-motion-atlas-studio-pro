@@ -4356,7 +4356,10 @@ var Two=(()=>{var Re=Object.defineProperty;var $i=Object.getOwnPropertyDescripto
     var say = String(e.beat.say || e.beat.label || '').replace(/\s+/g, ' ').trim(), words = say ? say.split(' ') : [], n = Math.max(1, words.length);
     // D3 (EVAL-v9): the whole line has landed by 35% of the beat, so a card sampled at tMid shows the full sentence
     var start = e.t0 + Math.min(0.35, e.len * 0.08), span = Math.max(0.05, Math.min(e.len * 0.35 - (start - e.t0), n * 0.30));
-    var at = function (i) { return start + (clamp(i, 0, n - 1) + 1) / n * span; };
+    var at0 = function (i) { return start + (clamp(i, 0, n - 1) + 1) / n * span; }, M = root.MUSIC;
+    // v9.2 grammar `snap` (beat | 8th | 16th | true = 16th | none): each reveal lands on the nearest MUSIC.gridTimes() time
+    var sn = e.beat.snap === true ? '16th' : e.beat.snap, G = sn && sn !== 'none' && M && M.gridTimes ? M.gridTimes({ beatSec: M.tempoFor(e.feel || 'beat').beatSec, totalSec: e.t1 + 1 }, sn) : null;
+    var at = !G ? at0 : function (i) { var x = at0(i); return clamp(G.reduce(function (b, g) { return Math.abs(g - x) < Math.abs(b - x) ? g : b; }, G[0]), e.t0, e.t1); };
     return { say: say, words: words, n: n, start: start, end: start + span, at: at, D: clamp(span / n * 1.6, 0.18, 0.5),
       shown: function (t) { return clamp(Math.floor((t - start) / span * n + 1e-6), 0, n); } };
   }
@@ -4377,7 +4380,7 @@ var Two=(()=>{var Re=Object.defineProperty;var $i=Object.getOwnPropertyDescripto
       pose: { x: pose.x != null ? pose.x : 0.5, y: pose.y != null ? pose.y : 0.5, rot: pose.rot || 0, scale: pose.scale || 1, rung: clamp(pose.rung || 1, 1, 5) },
       C: C, seed: sd, rnd: mulberry(sd), reduced: reduced, covered: o.captionsCovered != null ? !!o.captionsCovered : S.covered,
       title: o.title || (sheet && sheet.title) || '', isLast: beats ? idx === beats.length - 1 : g === 'landing' };
-    e.say = sayTiming(e);
+    e.feel = sheet && sheet.feelKey; e.say = sayTiming(e);
     return e;
   }
 
@@ -5346,6 +5349,7 @@ var Two=(()=>{var Re=Object.defineProperty;var $i=Object.getOwnPropertyDescripto
     var when = at == null ? S.ctx.currentTime : (S.playing ? Math.max(S.ctx.currentTime, ctxTime(q.t)) : S.ctx.currentTime);
     return fireSfx(nm, when, gain) ? { name: nm, t: q.t, quantized: q.q } : null;
   }
+  function gridTimes(p, d) { var g = p.beatSec / ({ beat: 1, '8th': 2 }[d] || 4), o = []; for (var i = 0; i * g <= p.totalSec + 1e-9; i++) o.push(r3(i * g)); return o; }
   function setPalette(pal) { S.pal = pal; }
   function setEnabled(on) { S.enabled = !!on; if (!S.enabled && S.playing) pause(); return S.enabled; }
   function dispose() {
@@ -5357,7 +5361,7 @@ var Two=(()=>{var Re=Object.defineProperty;var $i=Object.getOwnPropertyDescripto
   var API = {
     VERSION: VERSION, plan: plan, scoreForBeat: scoreForBeat, keyFor: keyFor, tempoFor: tempoFor, paletteFamily: paletteFamily,
     archetypeOf: archetypeOf, schedule: schedule, seek: seek, play: play, pause: pause, duck: duck, sfx: sfx, sync: sync, mix: mix,
-    dispose: dispose, setPalette: setPalette, setEnabled: setEnabled, position: position,
+    dispose: dispose, gridTimes: gridTimes, setPalette: setPalette, setEnabled: setEnabled, position: position,
     get enabled() { return S.enabled; },
     get state() { return { playing: S.playing, t: position(), cursor: S.cursor, live: S.live.length }; },
     MODES: MODES, ROLES: ROLES, TEMPO: TEMPO, FPS_GRID: FPS_GRID, SIG: SIG, DUCK: DUCK, PLUCK_CAP: PLUCK_CAP, _quantize: quantize, _tick: tick, live: !!Ctx
@@ -5925,6 +5929,14 @@ var Two=(()=>{var Re=Object.defineProperty;var $i=Object.getOwnPropertyDescripto
       if (b.plant === undefined) b.plant = null;
       if (b.returns === undefined) b.returns = null;
       if (typeof b.readingLevel !== 'number') b.readingLevel = Math.round(readingGrade(b.say + ' ' + b.show));
+      // v9.2 additive grammar fields (storyboard-grammar.md); defaults keep every older board valid
+      if (typeof b.oneThing !== 'string') b.oneThing = '';
+      if (typeof b.format !== 'string') b.format = 'explainer';
+      if (typeof b.line !== 'string') b.line = b.say;
+      if (!Array.isArray(b.illustrative)) b.illustrative = [];
+      if (['low', 'normal', 'high'].indexOf(b.density) < 0) b.density = 'normal';
+      if (b.snap === true) b.snap = '16th';
+      if (['beat', '8th', '16th', 'none'].indexOf(b.snap) < 0) b.snap = 'none';
     });
     return sheet;
   }
@@ -6015,7 +6027,7 @@ var Two=(()=>{var Re=Object.defineProperty;var $i=Object.getOwnPropertyDescripto
       beats.forEach(function (b, i) {
         const at = tag + '#' + (i + 1);
         sayN++; if (wordCount(b.say) <= 12) sayOk++; else fails.P1.push(at);
-        ['say', 'show', 'because'].forEach(function (k) { copy.push([at + '.' + k, b[k]]); });
+        ['say', 'show', 'because', 'oneThing'].forEach(function (k) { if (k !== 'oneThing' || b[k]) copy.push([at + '.' + k, b[k]]); });
         if (b.grammar === 'proof') {
           proofN++;
           const ci = beats.findIndex(function (c) { return c.id === b.claimId; });

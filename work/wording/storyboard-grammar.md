@@ -26,6 +26,20 @@ Additive to the v8 beat schema (`studio-canvas-oauth.js` L118–142). Existing f
 | `plant` / `returns` | `hook` may set `plant` (a word or image); `callback` must set `returns` to that exact plant |
 | `readingLevel` | target 7 (Flesch-Kincaid grade of `say` + `show`), gate fails above 8 |
 
+### Additive fields (v9.2; all optional, defaults keep older boards valid)
+
+| Field | Default | Meaning |
+|---|---|---|
+| `oneThing` | `''` | the single idea the beat must leave behind; when set, G33 grades it like `say` (plain words, grade ≤ 8) |
+| `format` | `'explainer'` | the film format the beat belongs to (explainer, ad, story) |
+| `line` | `say` | the spoken words this beat covers (voice-over script) |
+| `illustrative` | `[]` | notes for the contact-sheet footer (what a still of this beat should show) |
+| `density` | `'normal'` | `low · normal · high` — how much is on screen at once |
+| `snap` | `'none'` | `beat · 8th · 16th · none` (`true` = `16th`): two.js word reveals land on the nearest `MUSIC.gridTimes(plan, snap)` time (G32b: within 60 ms) |
+| `dur` | even split | beat length in seconds; when every beat has one, `buildV9Board` takes beat times from them (G37) |
+| `payoff` | `false` | the beat lands a payoff at its end; payoffs must come every 3–5 s (G37) |
+| `textBox` | — | `{x, y, w, h}` as frame fractions: the area reserved for on-screen words; required on every beat with a `say` (G37) |
+
 ## Rules
 
 1. **One idea per beat.** If `say` needs an "and", split the beat.

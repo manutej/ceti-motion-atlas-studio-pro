@@ -78,7 +78,10 @@
     var say = String(e.beat.say || e.beat.label || '').replace(/\s+/g, ' ').trim(), words = say ? say.split(' ') : [], n = Math.max(1, words.length);
     // D3 (EVAL-v9): the whole line has landed by 35% of the beat, so a card sampled at tMid shows the full sentence
     var start = e.t0 + Math.min(0.35, e.len * 0.08), span = Math.max(0.05, Math.min(e.len * 0.35 - (start - e.t0), n * 0.30));
-    var at = function (i) { return start + (clamp(i, 0, n - 1) + 1) / n * span; };
+    var at0 = function (i) { return start + (clamp(i, 0, n - 1) + 1) / n * span; }, M = root.MUSIC;
+    // v9.2 grammar `snap` (beat | 8th | 16th | true = 16th | none): each reveal lands on the nearest MUSIC.gridTimes() time
+    var sn = e.beat.snap === true ? '16th' : e.beat.snap, G = sn && sn !== 'none' && M && M.gridTimes ? M.gridTimes({ beatSec: M.tempoFor(e.feel || 'beat').beatSec, totalSec: e.t1 + 1 }, sn) : null;
+    var at = !G ? at0 : function (i) { var x = at0(i); return clamp(G.reduce(function (b, g) { return Math.abs(g - x) < Math.abs(b - x) ? g : b; }, G[0]), e.t0, e.t1); };
     return { say: say, words: words, n: n, start: start, end: start + span, at: at, D: clamp(span / n * 1.6, 0.18, 0.5),
       shown: function (t) { return clamp(Math.floor((t - start) / span * n + 1e-6), 0, n); } };
   }
@@ -99,7 +102,7 @@
       pose: { x: pose.x != null ? pose.x : 0.5, y: pose.y != null ? pose.y : 0.5, rot: pose.rot || 0, scale: pose.scale || 1, rung: clamp(pose.rung || 1, 1, 5) },
       C: C, seed: sd, rnd: mulberry(sd), reduced: reduced, covered: o.captionsCovered != null ? !!o.captionsCovered : S.covered,
       title: o.title || (sheet && sheet.title) || '', isLast: beats ? idx === beats.length - 1 : g === 'landing' };
-    e.say = sayTiming(e);
+    e.feel = sheet && sheet.feelKey; e.say = sayTiming(e);
     return e;
   }
 
