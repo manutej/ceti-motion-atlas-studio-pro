@@ -1,33 +1,33 @@
-file '/Users/cairo/Documents/CETI/ACCENTURE/content-factory v2/ARTE/motion-atlas/recordings/screenshots/v9-final/01-surface1-living-canvas-default.png'
+file '<workspace>/ARTE/motion-atlas/recordings/screenshots/v9-final/01-surface1-living-canvas-default.png'
 duration 1.35
-file '/Users/cairo/Documents/CETI/ACCENTURE/content-factory v2/ARTE/motion-atlas/recordings/screenshots/v9-final/02-surface1-tri-fork-ab-compare.png'
+file '<workspace>/ARTE/motion-atlas/recordings/screenshots/v9-final/02-surface1-tri-fork-ab-compare.png'
 duration 1.35
-file '/Users/cairo/Documents/CETI/ACCENTURE/content-factory v2/ARTE/motion-atlas/recordings/screenshots/v9-final/03-surface1-micro-lod-rungs.png'
+file '<workspace>/ARTE/motion-atlas/recordings/screenshots/v9-final/03-surface1-micro-lod-rungs.png'
 duration 1.35
-file '/Users/cairo/Documents/CETI/ACCENTURE/content-factory v2/ARTE/motion-atlas/recordings/screenshots/v9-final/04-surface2-5lens-fork-explorer.png'
+file '<workspace>/ARTE/motion-atlas/recordings/screenshots/v9-final/04-surface2-5lens-fork-explorer.png'
 duration 1.35
-file '/Users/cairo/Documents/CETI/ACCENTURE/content-factory v2/ARTE/motion-atlas/recordings/screenshots/v9-final/05-surface3-character-foundry-orpheus.png'
+file '<workspace>/ARTE/motion-atlas/recordings/screenshots/v9-final/05-surface3-character-foundry-orpheus.png'
 duration 1.35
-file '/Users/cairo/Documents/CETI/ACCENTURE/content-factory v2/ARTE/motion-atlas/recordings/screenshots/v9-final/06-surface3-character-foundry-falcon.png'
+file '<workspace>/ARTE/motion-atlas/recordings/screenshots/v9-final/06-surface3-character-foundry-falcon.png'
 duration 1.35
-file '/Users/cairo/Documents/CETI/ACCENTURE/content-factory v2/ARTE/motion-atlas/recordings/screenshots/v9-final/07-surface4-8beat-storyboard.png'
+file '<workspace>/ARTE/motion-atlas/recordings/screenshots/v9-final/07-surface4-8beat-storyboard.png'
 duration 1.35
-file '/Users/cairo/Documents/CETI/ACCENTURE/content-factory v2/ARTE/motion-atlas/recordings/screenshots/v9-final/08-surface5-sanzo-wada-348-hydrography.png'
+file '<workspace>/ARTE/motion-atlas/recordings/screenshots/v9-final/08-surface5-sanzo-wada-348-hydrography.png'
 duration 1.35
-file '/Users/cairo/Documents/CETI/ACCENTURE/content-factory v2/ARTE/motion-atlas/recordings/screenshots/v9-final/09-surface6-15styles-24elements.png'
+file '<workspace>/ARTE/motion-atlas/recordings/screenshots/v9-final/09-surface6-15styles-24elements.png'
 duration 1.35
-file '/Users/cairo/Documents/CETI/ACCENTURE/content-factory v2/ARTE/motion-atlas/recordings/screenshots/v9-final/10-surface7-compile-export-room.png'
+file '<workspace>/ARTE/motion-atlas/recordings/screenshots/v9-final/10-surface7-compile-export-room.png'
 duration 1.35
-file '/Users/cairo/Documents/CETI/ACCENTURE/content-factory v2/ARTE/motion-atlas/recordings/screenshots/v9-final/11-modal-oauth-pkce-rsi-critique.png'
+file '<workspace>/ARTE/motion-atlas/recordings/screenshots/v9-final/11-modal-oauth-pkce-rsi-critique.png'
 duration 1.35
-file '/Users/cairo/Documents/CETI/ACCENTURE/content-factory v2/ARTE/motion-atlas/recordings/screenshots/v9-final/12-modal-vocab-themes-elements-library.png'
+file '<workspace>/ARTE/motion-atlas/recordings/screenshots/v9-final/12-modal-vocab-themes-elements-library.png'
 duration 1.35
-file '/Users/cairo/Documents/CETI/ACCENTURE/content-factory v2/ARTE/motion-atlas/recordings/screenshots/v9-final/13-modal-32gate-tellapart-sheaf.png'
+file '<workspace>/ARTE/motion-atlas/recordings/screenshots/v9-final/13-modal-32gate-tellapart-sheaf.png'
 duration 1.35
-file '/Users/cairo/Documents/CETI/ACCENTURE/content-factory v2/ARTE/motion-atlas/recordings/screenshots/v9-final/14-dark-ground-tweaks-spine-arc.png'
+file '<workspace>/ARTE/motion-atlas/recordings/screenshots/v9-final/14-dark-ground-tweaks-spine-arc.png'
 duration 1.35
-file '/Users/cairo/Documents/CETI/ACCENTURE/content-factory v2/ARTE/motion-atlas/recordings/screenshots/v9-final/15-mobile-390x844-living-canvas.png'
+file '<workspace>/ARTE/motion-atlas/recordings/screenshots/v9-final/15-mobile-390x844-living-canvas.png'
 duration 1.35
-file '/Users/cairo/Documents/CETI/ACCENTURE/content-factory v2/ARTE/motion-atlas/recordings/screenshots/v9-final/16-mobile-390x844-storyboard.png'
+file '<workspace>/ARTE/motion-atlas/recordings/screenshots/v9-final/16-mobile-390x844-storyboard.png'
 duration 1.35
-file '/Users/cairo/Documents/CETI/ACCENTURE/content-factory v2/ARTE/motion-atlas/recordings/screenshots/v9-final/16-mobile-390x844-storyboard.png'
+file '<workspace>/ARTE/motion-atlas/recordings/screenshots/v9-final/16-mobile-390x844-storyboard.png'
