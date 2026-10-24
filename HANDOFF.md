@@ -1,7 +1,7 @@
 # HANDOFF — CETI Motion Atlas Studio Pro (`v9.0.0`)
 
 **Cold-Resume Entry Point for Engineers, Motion Directors, and Autonomous Agents**  
-**Root:** `/Users/cairo/Documents/CETI/ACCENTURE/content-factory v2/ARTE/motion-atlas/`  
+**Root:** `<workspace>/ARTE/motion-atlas/`  
 **Public Repository:** `https://github.com/manutej/ceti-motion-atlas-studio-pro`
 
 ---
@@ -66,27 +66,27 @@ ARTE/motion-atlas/
 
 ### A. Run the 29-Gate Mechanical Audit + 10-Test Negative Mutation Selftest
 ```bash
-cd "/Users/cairo/Documents/CETI/ACCENTURE/content-factory v2/ARTE/motion-atlas"
+cd "<workspace>/ARTE/motion-atlas"
 npm test
 # Runs: node scripts/validate-motion-studio.mjs --selftest (29/29 Gates PASS + 10/10 Selftests CAUGHT)
 ```
 
 ### B. Capture `@2x` VBM Screenshots, UX Telemetry & Walkthrough Video (`MP4` + `GIF`)
 ```bash
-cd "/Users/cairo/Documents/CETI/ACCENTURE/content-factory v2/ARTE/motion-atlas"
+cd "<workspace>/ARTE/motion-atlas"
 npm run vbm
 # Runs: node scripts/vbm-walkthrough-recorder.mjs v8-final
 ```
 
 ### C. Rebuild Standalone Bundles & Unified Master Dossier
 ```bash
-cd "/Users/cairo/Documents/CETI/ACCENTURE/content-factory v2/ARTE/motion-atlas"
+cd "<workspace>/ARTE/motion-atlas"
 npm run build
 ```
 
 ### D. Start the Local Studio & OAuth 2.0 PKCE Loopback Server
 ```bash
-cd "/Users/cairo/Documents/CETI/ACCENTURE/content-factory v2/ARTE/motion-atlas"
+cd "<workspace>/ARTE/motion-atlas"
 npm start
 # Opens http://127.0.0.1:43110/ with live PKCE S256 handshake & /oauth/enhance endpoints
 ```

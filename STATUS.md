@@ -26,7 +26,7 @@
 ## 2. Verification & VBM Recording Commands
 
 ```bash
-cd "/Users/cairo/Documents/CETI/ACCENTURE/content-factory v2/ARTE/motion-atlas"
+cd "<workspace>/ARTE/motion-atlas"
 npm run build
 npm test
 npm run vbm

@@ -41,7 +41,7 @@
 ## 2. Verification & VBM Recording Commands
 
 ```bash
-cd "/Users/cairo/Documents/CETI/ACCENTURE/content-factory v2/ARTE/motion-atlas"
+cd "<workspace>/ARTE/motion-atlas"
 npm run build
 npm test
 npm run vbm
@@ -55,7 +55,7 @@ npm run vbm
 # HANDOFF — CETI Motion Atlas Studio Pro (`v9.0.0`)
 
 **Cold-Resume Entry Point for Engineers, Motion Directors, and Autonomous Agents**  
-**Root:** `/Users/cairo/Documents/CETI/ACCENTURE/content-factory v2/ARTE/motion-atlas/`  
+**Root:** `<workspace>/ARTE/motion-atlas/`  
 **Public Repository:** `https://github.com/manutej/ceti-motion-atlas-studio-pro`
 
 ---
@@ -120,27 +120,27 @@ ARTE/motion-atlas/
 
 ### A. Run the 29-Gate Mechanical Audit + 10-Test Negative Mutation Selftest
 ```bash
-cd "/Users/cairo/Documents/CETI/ACCENTURE/content-factory v2/ARTE/motion-atlas"
+cd "<workspace>/ARTE/motion-atlas"
 npm test
 # Runs: node scripts/validate-motion-studio.mjs --selftest (29/29 Gates PASS + 10/10 Selftests CAUGHT)
 ```
 
 ### B. Capture `@2x` VBM Screenshots, UX Telemetry & Walkthrough Video (`MP4` + `GIF`)
 ```bash
-cd "/Users/cairo/Documents/CETI/ACCENTURE/content-factory v2/ARTE/motion-atlas"
+cd "<workspace>/ARTE/motion-atlas"
 npm run vbm
 # Runs: node scripts/vbm-walkthrough-recorder.mjs v8-final
 ```
 
 ### C. Rebuild Standalone Bundles & Unified Master Dossier
 ```bash
-cd "/Users/cairo/Documents/CETI/ACCENTURE/content-factory v2/ARTE/motion-atlas"
+cd "<workspace>/ARTE/motion-atlas"
 npm run build
 ```
 
 ### D. Start the Local Studio & OAuth 2.0 PKCE Loopback Server
 ```bash
-cd "/Users/cairo/Documents/CETI/ACCENTURE/content-factory v2/ARTE/motion-atlas"
+cd "<workspace>/ARTE/motion-atlas"
 npm start
 # Opens http://127.0.0.1:43110/ with live PKCE S256 handshake & /oauth/enhance endpoints
 ```
@@ -160,7 +160,7 @@ npm start
 
 ## 0. Why This Contract Exists (What We Keep, What We Generalize, What We Refuse)
 
-From your existing exploration in [`Motion Atlas Explorer`](file:///Users/cairo/Documents/CETI/ACCENTURE/content-factory%20v2/ARTE/motion-atlas/source_bundle/Motion%20Atlas%20Explorer.dc.html), [`ARTE/hyperframes/pipeline/TYPES.md`](file:///Users/cairo/Documents/ARTE/hyperframes/pipeline/TYPES.md), [`ARTE/orpheum/docs/ORPHIC-META-SPEC.md`](file:///Users/cairo/Documents/CETI/ACCENTURE/content-factory%20v2/ARTE/orpheum/docs/ORPHIC-META-SPEC.md), and [`Kinetic Hydrography`](file:///Users/cairo/Downloads/philosophy.md), four structural truths are already proven:
+From your existing exploration in [`Motion Atlas Explorer`](file://WORKSPACE/ARTE/motion-atlas/source_bundle/Motion%20Atlas%20Explorer.dc.html), [`ARTE/hyperframes/pipeline/TYPES.md`](file://~/Documents/ARTE/hyperframes/pipeline/TYPES.md), [`ARTE/orpheum/docs/ORPHIC-META-SPEC.md`](file://WORKSPACE/ARTE/orpheum/docs/ORPHIC-META-SPEC.md), and [`Kinetic Hydrography`](file://~/Downloads/philosophy.md), four structural truths are already proven:
 
 1. **The Prompt is 10%; the Harness & Typed Packets are 90%.** Open strings and untyped "vibe prompts" produce LLM slop. Every stage in this studio is a typed packet (`CanvasDecision → Intake → ClaimsFile → Brief → Direction → Storyboard → ShotList → CompositionSet → CheckReport`) governed by four morphism classes (`collect`, `derive`, `choose`, `gate`) and sheaf restriction equality $\rho(\text{later}) = \text{frozen earlier}$.
 2. **One Deterministic Clock (`frame = f(t)` / `window.seek(t)`).** Every proof, storyboard panel, character rig preview, and infinite-canvas node is a pure function of time $t$, palette $P$, feel $F$, character rig $C$, and seed $s$. No `Math.random()`, no `Date.now()`, no CSS `@keyframes` for narrative motion.
@@ -478,7 +478,7 @@ The OAuth Enhancer **never** accepts freeform prose from an LLM. Every AI reques
 # META-PLAN & RECURSIVE SELF-IMPROVEMENT (RSI) PROTOCOL: Motion Atlas Studio Pro
 
 **Document ID:** `CETI-MOTION-RSI-V1.0`  
-**Contract Reference:** [`TYPED-CONTRACT-MOTION-ATLAS.md`](file:///Users/cairo/Documents/CETI/ACCENTURE/content-factory%20v2/ARTE/motion-atlas/docs/TYPED-CONTRACT-MOTION-ATLAS.md)  
+**Contract Reference:** [`TYPED-CONTRACT-MOTION-ATLAS.md`](file://WORKSPACE/ARTE/motion-atlas/docs/TYPED-CONTRACT-MOTION-ATLAS.md)  
 **Discipline:** `Brief → Typed Schema → Executed Instrument → 16-Gate Mechanical Audit → Adversarial Critique → Surgical v2 Refinement → Compounding Ledger`
 
 ---
@@ -573,10 +573,10 @@ flowchart LR
 
 # CETI MOTION ATLAS STUDIO PRO — 7-ROUND ADVERSARIAL MOE & VBM UX LEDGER (`v1 → v7`)
 
-**Workspace:** `/Users/cairo/Documents/CETI/ACCENTURE/content-factory v2/ARTE/motion-atlas/`  
+**Workspace:** `<workspace>/ARTE/motion-atlas/`  
 **Public Repository:** `https://github.com/manutej/ceti-motion-atlas-studio-pro`  
-**Contracts:** [`docs/TYPED-CONTRACT-MOTION-ATLAS.md`](file:///Users/cairo/Documents/CETI/ACCENTURE/content-factory%20v2/ARTE/motion-atlas/docs/TYPED-CONTRACT-MOTION-ATLAS.md) · [`docs/META-PLAN-AND-RSI.md`](file:///Users/cairo/Documents/CETI/ACCENTURE/content-factory%20v2/ARTE/motion-atlas/docs/META-PLAN-AND-RSI.md)  
-**Validators:** [`scripts/validate-motion-studio.mjs`](file:///Users/cairo/Documents/CETI/ACCENTURE/content-factory%20v2/ARTE/motion-atlas/scripts/validate-motion-studio.mjs) (`--selftest`) · [`scripts/vbm-walkthrough-recorder.mjs`](file:///Users/cairo/Documents/CETI/ACCENTURE/content-factory%20v2/ARTE/motion-atlas/scripts/vbm-walkthrough-recorder.mjs)
+**Contracts:** [`docs/TYPED-CONTRACT-MOTION-ATLAS.md`](file://WORKSPACE/ARTE/motion-atlas/docs/TYPED-CONTRACT-MOTION-ATLAS.md) · [`docs/META-PLAN-AND-RSI.md`](file://WORKSPACE/ARTE/motion-atlas/docs/META-PLAN-AND-RSI.md)  
+**Validators:** [`scripts/validate-motion-studio.mjs`](file://WORKSPACE/ARTE/motion-atlas/scripts/validate-motion-studio.mjs) (`--selftest`) · [`scripts/vbm-walkthrough-recorder.mjs`](file://WORKSPACE/ARTE/motion-atlas/scripts/vbm-walkthrough-recorder.mjs)
 
 ---
 
