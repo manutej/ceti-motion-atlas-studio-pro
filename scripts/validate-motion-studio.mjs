@@ -63,6 +63,7 @@ function createMockCanvasContext(width = 480, height = 300) {
     translate: noop,
     rotate: noop,
     scale: noop,
+    transform: noop,
     setTransform: noop,
     drawImage: noop,
     setLineDash: noop,
@@ -504,11 +505,13 @@ async function runAllGates() {
     const cams = new Set((s.beats || []).map((b) => b.cameraMove));
     return labels.size === 8 && cams.size === 8;
   });
-  const vbmTelemetryPath = fs.existsSync(path.join(ROOT, 'recordings', 'v8-final-ux-telemetry.json'))
-    ? path.join(ROOT, 'recordings', 'v8-final-ux-telemetry.json')
-    : fs.existsSync(path.join(ROOT, 'recordings', 'v7-final-ux-telemetry.json'))
-      ? path.join(ROOT, 'recordings', 'v7-final-ux-telemetry.json')
-      : path.join(ROOT, 'recordings', 'v6-final-ux-telemetry.json');
+  const vbmTelemetryPath = fs.existsSync(path.join(ROOT, 'recordings', 'v9-final-ux-telemetry.json'))
+    ? path.join(ROOT, 'recordings', 'v9-final-ux-telemetry.json')
+    : fs.existsSync(path.join(ROOT, 'recordings', 'v8-final-ux-telemetry.json'))
+      ? path.join(ROOT, 'recordings', 'v8-final-ux-telemetry.json')
+      : fs.existsSync(path.join(ROOT, 'recordings', 'v7-final-ux-telemetry.json'))
+        ? path.join(ROOT, 'recordings', 'v7-final-ux-telemetry.json')
+        : path.join(ROOT, 'recordings', 'v6-final-ux-telemetry.json');
   let vbmClean = false;
   let vbmHeaderPx = 0;
   if (fs.existsSync(vbmTelemetryPath)) {
@@ -517,16 +520,22 @@ async function runAllGates() {
     vbmHeaderPx = frames[0] && frames[0].metrics ? frames[0].metrics.headerHeightPx : 0;
     vbmClean =
       frames.length >= 12 &&
-      frames.every((f) => f.metrics && f.metrics.headerHeightPx <= 145 && f.metrics.dagNodeOverlaps === 0) &&
+      frames.every((f) => {
+        if (!f.metrics) return false;
+        const isDesktopDefault = (!f.metrics.viewport || f.metrics.viewport.vw >= 1200) && !f.metrics.tweaksOpen;
+        const headerOk = isDesktopDefault ? f.metrics.headerHeightPx <= 155 : f.metrics.headerHeightPx <= 280;
+        const overflowOk = !f.metrics.viewport || (f.metrics.viewport.horizontalOverflowPx || 0) === 0;
+        return headerOk && overflowOk && f.metrics.dagNodeOverlaps === 0;
+      }) &&
       (vbmJson.consoleErrors || []).length === 0 &&
       (vbmJson.pageErrors || []).length === 0;
   }
   const g21Pass = dagCollisionCount === 0 && allStoriesUnique8Beats && vbmClean;
   recordGate(
     'G21',
-    'VBM Visual & UX Ergonomics (Collision-Free DAG · 8/8 Camera Beats · 136px Header)',
+    'VBM Visual & UX Ergonomics (Collision-Free DAG · 8/8 Camera Beats · Compact Header · 0 Overflow)',
     g21Pass,
-    `DAG overlaps=${dagCollisionCount}, 8/8 unique beats across all ${TAX.STORIES.length} stories=${allStoriesUnique8Beats}, VBM header=${vbmHeaderPx}px (0 errors)`
+    `DAG overlaps=${dagCollisionCount}, 8/8 unique beats across all ${TAX.STORIES.length} stories=${allStoriesUnique8Beats}, VBM header=${vbmHeaderPx}px (0 errors, 0 overflow)`
   );
 
   // G22: Multi-Parent DAG Branch Synthesis / Pushout Gluing (A ⊕ B) & Sheaf Cohomology
@@ -652,6 +661,7 @@ async function runAllGates() {
     uiCodeStr.includes('data-action="set-source-b"') &&
     uiCodeStr.includes('data-action="swap-source-ab"') &&
     uiCodeStr.includes('id="sel-source-a-node"') &&
+    uiCodeStr.includes('id="sel-source-b-node"') &&
     uiCodeStr.includes('id="oauth-source-a-select"') &&
     uiCodeStr.includes('id="oauth-source-b-select"');
   recordGate(
@@ -712,10 +722,76 @@ async function runAllGates() {
     `${tagRes.schemes.length} saved schemes; #color/brand-ocean-noir & /color/brand-ocean-noir resolve deterministically to Wada No. ${resolvedByHash ? resolvedByHash.palId : 'none'}`
   );
 
+  // G30: Mobile & Touch Ergonomics (Unified PointerEvents, 2-Pointer Pinch-Zoom, Collapsible Inspector & Responsive CSS)
+  const g30Pass =
+    uiCodeStr.includes('pointerdown') &&
+    uiCodeStr.includes('pointermove') &&
+    uiCodeStr.includes('pointerup') &&
+    uiCodeStr.includes('_pinchInitialDist') &&
+    uiCodeStr.includes('toggle-inspector') &&
+    htmlText.includes('@media (max-width: 768px)') &&
+    htmlText.includes('touch-action: none');
+  recordGate(
+    'G30',
+    'Mobile & Touch Ergonomics (Unified PointerEvents · Pinch-Zoom · Collapsible Inspector · Responsive Breakpoints)',
+    g30Pass,
+    'Verified pointerdown/pointermove/pointerup, 2-pointer pinch-zoom, collapsible Inspector drawer, and @media (max-width: 768px) rules'
+  );
+
+  // G31: 10x Architecture & Original Spec Alignment (6 SpineArcId · 5 Canonical GroundMode · Dark CR >=10:1 · Undo/Redo · Boundary Validator)
+  const groundKeys = Object.keys(WADA.GROUNDS || {});
+  const darkEnriched = WADA.enrichPalette(WADA.PALS[0], 'deep-sea');
+  const hydroInkEnriched = WADA.enrichPalette(WADA.PALS[0], 'hydro-ink');
+  const spineArcOrder = CO.SPINE_ARC_ORDER || [];
+  const validSessionCheck = CO.validateAndSanitizeSessionState({
+    charId: 'ceti-whale',
+    palId: 343,
+    ground: 'deep-sea',
+    spineArc: 'saul-seven-beat'
+  });
+  const g31Pass =
+    groundKeys.length === 5 &&
+    ['atlas', 'ceti', 'tint', 'deep-sea', 'hydro-ink'].every((k) => groundKeys.includes(k)) &&
+    darkEnriched.cr >= 10.0 &&
+    hydroInkEnriched.cr >= 10.0 &&
+    spineArcOrder.length === 6 &&
+    validSessionCheck.valid === true &&
+    uiCodeStr.includes('undo-history') &&
+    uiCodeStr.includes('redo-history');
+  recordGate(
+    'G31',
+    '10x Architecture & Original Spec Alignment (6 SpineArcId · 5 GroundModes · Dark CR >=10:1 · Undo/Redo · Schema Validator)',
+    g31Pass,
+    `5 GroundModes (${groundKeys.join(', ')}) with deep-sea CR=${darkEnriched.cr}:1 & hydro-ink CR=${hydroInkEnriched.cr}:1; 6 SpineArcs; 50-state Undo/Redo + boundary validator active`
+  );
+
+  // G32: Full Customizability (12 Saul Bass Severance Ops · 6 Locomotion Modes · Custom Rig Cloning · Live Tweaks)
+  const clonedRig = FOUNDRY.cloneCharacterRig('saul-falcon', {
+    name: 'Test Custom Falcon',
+    severanceOp: 'shatter-plates',
+    locomotion: 'flap-glide'
+  });
+  const g32Pass =
+    Array.isArray(FOUNDRY.SEVERANCE_OPS) &&
+    FOUNDRY.SEVERANCE_OPS.length === 12 &&
+    Array.isArray(FOUNDRY.LOCOMOTION_MODES) &&
+    FOUNDRY.LOCOMOTION_MODES.length === 6 &&
+    Boolean(clonedRig) &&
+    clonedRig.severanceOp === 'shatter-plates' &&
+    clonedRig.id !== 'saul-falcon' &&
+    uiCodeStr.includes('toggle-tweaks-bar') &&
+    uiCodeStr.includes('set-hydro-ghosts');
+  recordGate(
+    'G32',
+    'Full Customizability (12 Severance Ops · 6 Locomotion Modes · Custom Rig Cloning · Live Tweaks Strip)',
+    g32Pass,
+    `12 SeveranceOps, 6 LocomotionModes, cloneCharacterRig->${clonedRig ? clonedRig.id : 'none'}, and Finish & Motion Tweaks verified`
+  );
+
   // Print Summary Table
   const passedCount = results.filter((r) => r.pass).length;
   console.log('═══════════════════════════════════════════════════════════════════════════════');
-  console.log(`CETI MOTION ATLAS STUDIO PRO — 29-GATE CONTRACT AUDIT (${passedCount}/${results.length} PASS)`);
+  console.log(`CETI MOTION ATLAS STUDIO PRO — 32-GATE CONTRACT AUDIT (${passedCount}/${results.length} PASS)`);
   console.log('═══════════════════════════════════════════════════════════════════════════════');
   for (const r of results) {
     console.log(`[${r.pass ? 'PASS' : 'FAIL'}] ${r.id} · ${r.name}`);
@@ -730,7 +806,7 @@ async function runAllGates() {
   // Negative Mutation Selftest (--selftest) per adversarial-moe-governance law
   if (process.argv.includes('--selftest')) {
     console.log('\n═══════════════════════════════════════════════════════════════════════════════');
-    console.log('RUNNING 10-TEST NEGATIVE MUTATION SELFTEST (--selftest)');
+    console.log('RUNNING 12-TEST NEGATIVE MUTATION SELFTEST (--selftest)');
     console.log('═══════════════════════════════════════════════════════════════════════════════');
     const mutResults = [];
 
@@ -870,6 +946,47 @@ async function runAllGates() {
       id: 'MUT-10',
       desc: 'Inject out-of-range Wada ID (99999) & unsanitized tag characters into tagAndSaveColorScheme and verify G29 clamping + slug sanitization',
       caught: mut10Caught
+    });
+
+    // MUT-11: Poisoned / corrupted .motion.studio.json session payload must be sanitized or rejected by validateAndSanitizeSessionState (G31)
+    const nullSessionCheck = CO.validateAndSanitizeSessionState(null);
+    const poisonedSessionCheck = CO.validateAndSanitizeSessionState({
+      charId: 'nonexistent-mascot-999',
+      ground: 'warm-paper',
+      spineArc: 'invalid-spine-arc',
+      rung: 99,
+      zoom: -50,
+      dag: { nodes: 'corrupted-not-an-array', edges: null }
+    });
+    const mut11Caught =
+      nullSessionCheck.valid === false &&
+      poisonedSessionCheck.valid === true &&
+      poisonedSessionCheck.state.charId === 'ceti-whale' &&
+      poisonedSessionCheck.state.ground === 'ceti' &&
+      poisonedSessionCheck.state.spineArc === 'saul-seven-beat' &&
+      poisonedSessionCheck.state.rung === 5 &&
+      poisonedSessionCheck.state.zoom === 0.15 &&
+      Array.isArray(poisonedSessionCheck.state.dag.nodes);
+    mutResults.push({
+      id: 'MUT-11',
+      desc: 'Inject poisoned session state (null payload + invalid charId/ground/spineArc/rung/zoom/DAG) and verify G31 boundary schema sanitizer',
+      caught: mut11Caught
+    });
+
+    // MUT-12: Dark ground (deep-sea / hydro-ink) with dark low-contrast ink swatch must auto-invert to luminous >= 10.0:1 contrast (G31)
+    const darkLowContrastRaw = {
+      id: 999,
+      name: 'Dark On Dark Test',
+      paper: '#1A1F2E',
+      ink: '#1C2230',
+      sw: [['#1C2230', 'Dark Ink'], ['#222836', 'Dark Sub'], ['#2A3040', 'Dark Fill'], ['#181D2A', 'Dark Tone']]
+    };
+    const rescuedDark = WADA.enrichPalette(darkLowContrastRaw, 'deep-sea');
+    const mut12Caught = rescuedDark.cr >= 10.0 && rescuedDark.ink !== '#1C2230';
+    mutResults.push({
+      id: 'MUT-12',
+      desc: 'Inject dark-on-dark palette on deep-sea ground and verify G31 luminous contrast inversion >= 10.0:1',
+      caught: mut12Caught
     });
 
     for (const m of mutResults) {

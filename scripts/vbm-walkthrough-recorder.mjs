@@ -191,11 +191,20 @@ const UX_PROBE_JS = `(() => {
   const tabBar = document.querySelector('.st-tabs');
   const tabBarDisplay = tabBar ? getComputedStyle(tabBar).display : 'missing';
 
+  const docScrollWidth = document.documentElement.scrollWidth;
+  const docClientWidth = document.documentElement.clientWidth;
+  const horizontalOverflowPx = Math.max(0, docScrollWidth - docClientWidth);
+
   return {
-    viewport: { vw, vh },
+    viewport: { vw, vh, docScrollWidth, docClientWidth, horizontalOverflowPx },
     surface: st.surface || 'unknown',
     charId: st.charId || 'unknown',
+    ground: st.ground || 'atlas',
+    spineArc: st.spineArc || 'hero-inner-change',
     zoom: st.zoom || 1,
+    tweaksOpen: !!st.tweaksOpen,
+    inspectorCollapsed: !!st.inspectorCollapsed,
+    undoDepth: app && app._undoStack ? app._undoStack.length : 0,
     headerHeightPx: headerRect ? Math.round(headerRect.height) : 0,
     headerViewportSharePct: headerRect ? Number(((headerRect.height / vh) * 100).toFixed(1)) : 0,
     mainTopPx: mainRect ? Math.round(mainRect.top) : 0,
@@ -224,7 +233,7 @@ async function main() {
     await cdp.screenshot(shotPath);
     const metrics = await cdp.evaluate(UX_PROBE_JS);
     frames.push({ file, label, metrics });
-    console.log(`[VBM] Captured ${file} — ${label} (header=${metrics.headerHeightPx}px, canvases=${metrics.nonBlankCanvases}/${metrics.canvasCount}, overlaps=${metrics.dagNodeOverlaps})`);
+    console.log(`[VBM] Captured ${file} — ${label} (vw=${metrics.viewport.vw}x${metrics.viewport.vh}, overflow=${metrics.viewport.horizontalOverflowPx}px, header=${metrics.headerHeightPx}px, canvases=${metrics.nonBlankCanvases}/${metrics.canvasCount}, overlaps=${metrics.dagNodeOverlaps})`);
   }
 
   try {
@@ -233,7 +242,7 @@ async function main() {
 
     await captureStep(
       '01-surface1-living-canvas-default.png',
-      'Surface I · Infinite-Zoom Living Canvas (Whole-Card Freeform Dragging · ● Src A / ◐ Src B Pills · Wada No. 343)',
+      'Surface I · Infinite-Zoom Living Canvas (Unified PointerEvents · ↶ Undo / ↷ Redo · ● Src A / ◐ Src B · Wada No. 343)',
       null
     );
 
@@ -257,7 +266,7 @@ async function main() {
 
     await captureStep(
       '05-surface3-character-foundry-orpheus.png',
-      'Surface III · Character & Emblem Foundry — Orpheum Lyre-Sphere (Mythic D8 Harmonic Mandala)',
+      'Surface III · Character & Emblem Foundry — Orpheum Lyre-Sphere (12 Severance Ops · 6 Locomotion Modes · Custom Rig Cloning)',
       `window.__MOTION_ATLAS_STUDIO_INSTANCE.setState({ surface: 'character-foundry', charId: 'geome-orpheus', palIdx: 7 });`
     );
 
@@ -269,7 +278,7 @@ async function main() {
 
     await captureStep(
       '07-surface4-8beat-storyboard.png',
-      'Surface IV · 8-Beat Draggable Storyboard Sheet, Beat Reordering (◀/▶) & Per-Beat #color/<tag> Pinning',
+      'Surface IV · 8-Beat Draggable Storyboard Sheet, 6 SpineArcId Selector, Beat Reordering (◀/▶) & Per-Beat #color/<tag> Pinning',
       `window.__MOTION_ATLAS_STUDIO_INSTANCE.setState({ surface: 'storyboard-sheet', charId: 'origami-crane', palIdx: 0, onionSkin: true });`
     );
 
@@ -304,9 +313,36 @@ async function main() {
     );
 
     await captureStep(
-      '13-modal-29gate-tellapart-sheaf.png',
-      'Modal · 29-Gate Mechanical Contract Audit (29/29 PASS) + Tell-Apart Kernel + Alexandrov Sheaf Cohomology',
+      '13-modal-32gate-tellapart-sheaf.png',
+      'Modal · 32-Gate Mechanical Contract Audit (32/32 PASS) + Tell-Apart Kernel + Alexandrov Sheaf Cohomology',
       `window.__MOTION_ATLAS_STUDIO_INSTANCE.setState({ vocabModalOpen: false, gateModalOpen: true });`
+    );
+
+    await captureStep(
+      '14-dark-ground-tweaks-spine-arc.png',
+      'Surface I · Dark Ground Mode (deep-sea #1A1F2E · CR >= 10:1) + Live Finish & Motion Tweaks Strip (⚙ Tweaks) + Spine Arc (count-scale-compare-rest)',
+      `window.__MOTION_ATLAS_STUDIO_INSTANCE.setState({ gateModalOpen: false, surface: 'infinite-canvas', ground: 'deep-sea', tweaksOpen: true, spineArc: 'count-scale-compare-rest', hydroGhostCount: 48, zoom: 0.72, panX: 18, panY: 16 });`
+    );
+
+    // Switch to Mobile 390x844 iPhone Pro @2x viewport
+    await cdp.send('Emulation.setDeviceMetricsOverride', {
+      width: 390,
+      height: 844,
+      deviceScaleFactor: 2,
+      mobile: true
+    });
+    await cdp.wait(350);
+
+    await captureStep(
+      '15-mobile-390x844-living-canvas.png',
+      'Mobile 390×844 (iPhone Pro @2x) · Responsive Living Canvas + Collapsible Inspector Drawer + Zero Horizontal Overflow',
+      `window.__MOTION_ATLAS_STUDIO_INSTANCE.setState({ ground: 'atlas', tweaksOpen: false, inspectorCollapsed: true, zoom: 0.55, panX: 12, panY: 12 });`
+    );
+
+    await captureStep(
+      '16-mobile-390x844-storyboard.png',
+      'Mobile 390×844 (iPhone Pro @2x) · Responsive 8-Beat Storyboard Sheet & SpineArc Selector',
+      `window.__MOTION_ATLAS_STUDIO_INSTANCE.setState({ surface: 'storyboard-sheet', inspectorCollapsed: false });`
     );
   } finally {
     cdp.close();

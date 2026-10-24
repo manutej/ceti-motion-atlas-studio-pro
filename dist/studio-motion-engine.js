@@ -48,24 +48,47 @@
   // 1. SANZO WADA HARMONIC COLOR ENGINE (G01 · G02)
   // ─────────────────────────────────────────────────────────────────────────
   const GROUNDS = {
-    atlas: { id: 'atlas', label: 'Atlas paper', hex: '#FBF3E6', dark: false },
-    ceti:  { id: 'ceti',  label: 'CETI paper',  hex: '#F5EFE3', dark: false },
-    tint:  { id: 'tint',  label: 'Palette tint', hex: null,     dark: false },
-    navy:  { id: 'navy',  label: 'Deep-sea navy', hex: '#141926', dark: true },
-    hydro: { id: 'hydro', label: 'Hydro ink',     hex: '#0E151B', dark: true }
+    atlas:       { id: 'atlas',       label: 'Atlas paper (#FBF3E6)',     hex: '#FBF3E6', dark: false },
+    ceti:        { id: 'ceti',        label: 'CETI paper (#F5EFE3)',      hex: '#F5EFE3', dark: false },
+    tint:        { id: 'tint',        label: 'Palette tint (78% wash)',   hex: null,      dark: false },
+    'deep-sea':  { id: 'deep-sea',    label: 'Deep-sea navy (#1A1F2E)',   hex: '#1A1F2E', dark: true },
+    'hydro-ink': { id: 'hydro-ink',   label: 'Hydro ink (#141A21)',       hex: '#141A21', dark: true }
   };
 
+  const GROUND_ALIASES = {
+    atlas: 'atlas',
+    ceti: 'ceti',
+    'warm-paper': 'ceti',
+    tint: 'tint',
+    'wada-tint': 'tint',
+    'deep-sea': 'deep-sea',
+    'hydro-ink': 'hydro-ink',
+    navy: 'deep-sea',
+    blueprint: 'deep-sea',
+    night: 'deep-sea',
+    hydro: 'hydro-ink',
+    sepia: 'ceti',
+    sumi: 'ceti'
+  };
+
+  function normalizeGroundKey(groundId) {
+    const raw = String(groundId || 'atlas').toLowerCase().trim();
+    return GROUND_ALIASES[raw] || 'atlas';
+  }
+
   const CETI_TOKENS = [
-    { token: '--paper',      name: 'Warm Paper',     hex: '#F5EFE3' },
-    { token: '--ink',        name: 'Deep Navy Ink',  hex: '#1A1F2E' },
-    { token: '--rust',       name: 'Signal Rust',    hex: '#8C4A2E' },
-    { token: '--indigo',     name: 'Pelagic Indigo', hex: '#1E3F66' },
-    { token: '--ochre',      name: 'Warm Ochre',     hex: '#C8963E' },
-    { token: '--forest',     name: 'Kelp Forest',    hex: '#2E5A44' },
-    { token: '--slate',      name: 'Sounding Slate', hex: '#34454C' },
-    { token: '--plum',       name: 'Cotinga Plum',   hex: '#501345' },
-    { token: '--vermilion',  name: 'Beacon Coral',   hex: '#D96629' },
-    { token: '--seafoam',    name: 'Shallows Foam',  hex: '#96D1AA' }
+    { token: '--mk-paper',     name: 'Warm Paper',     hex: '#F5EFE3' },
+    { token: '--mk-deep-sea',  name: 'Deep Navy Ink',  hex: '#1A1F2E' },
+    { token: '--mk-rust',      name: 'Signal Rust',    hex: '#8C4A2E' },
+    { token: '--mk-copper',    name: 'Burnished Copper', hex: '#AE5224' },
+    { token: '--mk-sage',      name: 'Kelp Sage',      hex: '#2E5A44' },
+    { token: '--mk-peach',     name: 'Warm Ochre Peach', hex: '#D8A37B' },
+    { token: '--mk-slate',     name: 'Sounding Slate', hex: '#34454C' },
+    { token: '--indigo',       name: 'Pelagic Indigo', hex: '#1E3F66' },
+    { token: '--ochre',        name: 'Warm Ochre',     hex: '#C8963E' },
+    { token: '--plum',         name: 'Cotinga Plum',   hex: '#501345' },
+    { token: '--vermilion',    name: 'Beacon Coral',   hex: '#D96629' },
+    { token: '--seafoam',      name: 'Shallows Foam',  hex: '#96D1AA' }
   ];
 
   function srgbToLinear(c) {
@@ -88,9 +111,9 @@
     const m = Math.cbrt(0.2119034982 * r + 0.6806995451 * g + 0.1073969566 * b);
     const s = Math.cbrt(0.0883024619 * r + 0.2817188376 * g + 0.6299787005 * b);
     return [
-      0.2104542553 * l + 0.7936177850 * m - 0.0040720468 * s,
-      1.9779984951 * l - 2.4285922050 * m + 0.4505937099 * s,
-      0.0259040371 * l + 0.7827717662 * m - 0.8086757660 * s
+      Number((0.2104542553 * l + 0.7936177850 * m - 0.0040720468 * s).toFixed(4)),
+      Number((1.9779984951 * l - 2.4285922050 * m + 0.4505937099 * s).toFixed(4)),
+      Number((0.0259040371 * l + 0.7827717662 * m - 0.8086757660 * s).toFixed(4))
     ];
   }
   function oklabDistance(hexA, hexB) {
@@ -107,7 +130,7 @@
     if (wcagContrast(cur, paperHex) >= target) return cur;
     const paperDark = relLuminance(paperHex) < 0.25;
     const pole = paperDark ? '#FBF3E6' : '#090D16';
-    for (let k = 0.08; k <= 1.0; k += 0.06) {
+    for (let k = 0.05; k <= 1.0; k += 0.05) {
       const cand = mix(inkHex, pole, k);
       if (wcagContrast(cand, paperHex) >= target) return cand;
     }
@@ -139,8 +162,8 @@
 
   // Convert any Wada entry (from PALS or window.GEOME_WADA_LIST 1..348) into a verified WadaHarmonicPalette
   function enrichPalette(raw, groundId) {
-    const gKey = GROUNDS[groundId] ? groundId : 'atlas';
-    const gSpec = GROUNDS[gKey];
+    const gKey = normalizeGroundKey(groundId);
+    const gSpec = GROUNDS[gKey] || GROUNDS.atlas;
     const sw = (raw.sw || []).map(function (s) { return Array.isArray(s) ? s : [s, 'Wada Swatch']; });
     while (sw.length < 4) sw.push([raw.ink || '#1A1F2E', 'Anchor Ink']);
     const a = raw.a || sw[0][0] || '#ebd3a2';
@@ -149,20 +172,46 @@
     const c = raw.c || sw[3][0] || raw.ink || '#1A1F2E';
     let paper = gSpec.hex;
     if (gKey === 'tint') paper = mix(a, '#FBF3E6', 0.78);
-    const rawInk = gSpec.dark ? ensureInkContrast(a, paper, 7.0) : ensureInkContrast(raw.ink || c, paper, 7.0);
+    // Contract §2 G02: >= 10.0:1 luminous contrast on dark grounds (deep-sea, hydro-ink), >= 7.0:1 on warm paper
+    const minContrast = gSpec.dark ? 10.0 : 7.0;
+    const rawInk = gSpec.dark ? ensureInkContrast(a, paper, minContrast) : ensureInkContrast(raw.ink || c, paper, minContrast);
     const cr = wcagContrast(rawInk, paper);
 
     const hexes = [a, h, b, c];
-    const chordTable = hexes.map(function (h1) {
+    const oklabs = hexes.map(function (hx) { return hexToOklab(hx); });
+    const distTable = hexes.map(function (h1) {
       return hexes.map(function (h2) { return oklabDistance(h1, h2); });
     });
-    const cetiMatches = sw.slice(0, 4).map(function (pair) {
+    // Closed N×N OKLab midpoint chord matrix: overlap(i, j) -> swatch index k in the same palette
+    const closedChordTable = oklabs.map(function (labI, i) {
+      return oklabs.map(function (labJ, j) {
+        if (i === j) return i;
+        const mid = [(labI[0] + labJ[0]) / 2, (labI[1] + labJ[1]) / 2, (labI[2] + labJ[2]) / 2];
+        let bestIdx = 0, bestD = Infinity;
+        oklabs.forEach(function (cand, k) {
+          const d = Math.hypot(cand[0] - mid[0], cand[1] - mid[1], cand[2] - mid[2]);
+          if (d < bestD) { bestD = d; bestIdx = k; }
+        });
+        return bestIdx;
+      });
+    });
+
+    const cetiMatches = sw.slice(0, 4).map(function (pair, sIdx) {
       let best = CETI_TOKENS[0], bestDe = 999;
       CETI_TOKENS.forEach(function (tk) {
         const de = deltaE2000Approx(pair[0], tk.hex);
         if (de < bestDe) { bestDe = de; best = tk; }
       });
-      return { swatchHex: pair[0], swatchName: pair[1], nearestToken: best.token, tokenName: best.name, tokenHex: best.hex, deltaE2000: bestDe };
+      return {
+        swatchHex: pair[0],
+        swatchName: pair[1],
+        oklab: oklabs[sIdx] || hexToOklab(pair[0]),
+        nearestCetiToken: best.token,
+        nearestToken: best.token,
+        tokenName: best.name,
+        tokenHex: best.hex,
+        deltaE2000: bestDe
+      };
     });
 
     return {
@@ -174,6 +223,8 @@
       mood: raw.mood || ('Sanzo Wada harmonic combination No. ' + raw.id + ' (' + sw.map(function (s) { return s[1]; }).join(' · ') + ').'),
       register: raw.register || 'field-notebook',
       hydro: !!raw.hydro,
+      ground: gKey,
+      dark: !!gSpec.dark,
       paper: paper,
       ink: rawInk,
       cr: cr,
@@ -191,7 +242,8 @@
         ink: rawInk,
         paper: paper
       },
-      oklabChordTable: chordTable,
+      chordTable: closedChordTable,
+      oklabChordTable: distTable,
       cetiTokenMatches: cetiMatches,
       contrastRatioInkPaper: cr
     };
@@ -411,6 +463,104 @@
   };
   const CHARACTER_ORDER = Object.keys(CHARACTERS);
 
+  const LOCOMOTION_MODES = [
+    { id: 'undulate',   label: 'Pelagic Undulation (Spine Wave)' },
+    { id: 'avian',      label: 'Avian Stoop & Thermal Glide' },
+    { id: 'biped',      label: 'Calligraphic / Biped Hop-Stride' },
+    { id: 'instrument', label: 'Counter-Rotating Gimbal / Sonar' },
+    { id: 'dihedral',   label: 'Dihedral Origami Fold-Flap' },
+    { id: 'emblem',     label: 'Resonant Emblem / Harmonic Pulse' }
+  ];
+
+  const SEVERANCE_OPS = [
+    { id: 'bend-wrong',       label: 'Bend-Wrong (Inverted Spine Hinge)' },
+    { id: 'dismember',        label: 'Dismember (Exploded Socket Gap)' },
+    { id: 'shear',            label: 'Shear (Saul Bass Diagonal Skew)' },
+    { id: 'subtract-wedge',   label: 'Subtract-Wedge (Negative-Space Cut)' },
+    { id: 'bisect',           label: 'Bisect (Meridian Datum Split)' },
+    { id: 'puncture',         label: 'Puncture (Off-Center Paper Void)' },
+    { id: 'invert-joint',     label: 'Invert-Joint (Reversed Fin Sweep)' },
+    { id: 'offset-register',  label: 'Offset-Register (Silkscreen Shift)' },
+    { id: 'flatten-plane',    label: 'Flatten-Plane (Orthographic Crush)' },
+    { id: 'compress-chord',   label: 'Compress-Chord (Aspect Squeeze)' },
+    { id: 'splay-rays',       label: 'Splay-Rays (Radial Vector Burst)' },
+    { id: 'notch-silhouette', label: 'Notch-Silhouette (Paper V-Notch)' }
+  ];
+
+  // Stamp full Contract §3 fields (locomotion, severanceOp, Rung 1..5 contract properties) onto all 8 canonical archetypes
+  const DEFAULT_LOCOMOTION_BY_ARCH = {
+    cetacean: 'undulate',
+    avian: 'avian',
+    submersible: 'instrument',
+    geometric: 'dihedral',
+    instrument: 'instrument',
+    calligraphic: 'biped',
+    mythic: 'emblem',
+    botanical: 'undulate'
+  };
+  const DEFAULT_SEVERANCE_BY_ARCH = {
+    cetacean: 'subtract-wedge',
+    avian: 'shear',
+    submersible: 'puncture',
+    geometric: 'bisect',
+    instrument: 'splay-rays',
+    calligraphic: 'notch-silhouette',
+    mythic: 'compress-chord',
+    botanical: 'bend-wrong'
+  };
+  CHARACTER_ORDER.forEach(function (cid) {
+    const c = CHARACTERS[cid];
+    if (!c.locomotion) c.locomotion = DEFAULT_LOCOMOTION_BY_ARCH[c.archetype] || 'undulate';
+    if (!c.severanceOp) c.severanceOp = DEFAULT_SEVERANCE_BY_ARCH[c.archetype] || 'subtract-wedge';
+    if (Array.isArray(c.reductionLadder)) {
+      c.reductionLadder.forEach(function (r) {
+        if (r.rung === 1 && !r.inventory) r.inventory = ['body', 'fin', 'fluke', 'grooves', 'eye', 'streaks'];
+        if (r.rung === 2 && !r.pivot) r.pivot = 'finRoot -> flukeRoot';
+        if (r.rung === 3 && !r.silhouetteDesc) r.silhouetteDesc = r.description;
+        if (r.rung === 4 && !r.severanceOp) r.severanceOp = c.severanceOp;
+        if (r.rung === 5) {
+          if (!r.oneMeaning) r.oneMeaning = c.subtitle;
+          if (!r.neverMistakeFor) r.neverMistakeFor = ['generic circle', 'unoriented blob'];
+          if (!r.constructionNote) r.constructionNote = r.description;
+        }
+      });
+    }
+  });
+  Object.defineProperty(CHARACTERS, 'orpheus-lyre', {
+    get: function () { return CHARACTERS['geome-orpheus']; },
+    enumerable: false,
+    configurable: true
+  });
+
+  function cloneCharacterRig(baseIdOrSpec, overrides) {
+    const src = (typeof baseIdOrSpec === 'object' && baseIdOrSpec)
+      ? baseIdOrSpec
+      : (CHARACTERS[baseIdOrSpec] || CHARACTERS['ceti-whale']);
+    const cloned = JSON.parse(JSON.stringify(src));
+    const baseSlug = String(src.id || 'custom-rig').replace(/-clone-\d+$/, '');
+    let cloneIdx = 1;
+    while (CHARACTERS[baseSlug + '-clone-' + cloneIdx]) cloneIdx++;
+    cloned.id = (overrides && overrides.id) ? overrides.id : (baseSlug + '-clone-' + cloneIdx);
+    if (overrides && typeof overrides === 'object') {
+      if (overrides.name) cloned.name = overrides.name;
+      if (overrides.subtitle) cloned.subtitle = overrides.subtitle;
+      if (overrides.archetype) cloned.archetype = overrides.archetype;
+      if (overrides.locomotion) cloned.locomotion = overrides.locomotion;
+      if (overrides.severanceOp) {
+        cloned.severanceOp = overrides.severanceOp;
+        if (Array.isArray(cloned.reductionLadder) && cloned.reductionLadder[3]) {
+          cloned.reductionLadder[3].severanceOp = overrides.severanceOp;
+        }
+      }
+      if (typeof overrides.aspectRatio === 'number') cloned.aspectRatio = overrides.aspectRatio;
+      if (overrides.bodyProfile) Object.assign(cloned.bodyProfile, overrides.bodyProfile);
+      if (overrides.spineWave) Object.assign(cloned.spineWave, overrides.spineWave);
+      if (overrides.appendages) Object.assign(cloned.appendages, overrides.appendages);
+      if (overrides.streaks) Object.assign(cloned.streaks, overrides.streaks);
+    }
+    return cloned;
+  }
+
   const INTERACTION_MODES = [
     { id: 'hero-journey',       proofKey: 'ix_hero-journey',       label: 'Hero Journey',       short: 'Hero',      desc: 'Actor traverses threshold stages and undergoes an inner palette/pose transformation.' },
     { id: 'filter-engine',      proofKey: 'ix_filter-engine',      label: 'Filter Engine',      short: 'Filter',    desc: 'High-frequency noise tokens enter the intake and emerge from the fluke as 3 clean harmonic waves.' },
@@ -424,10 +574,13 @@
 
   global.STUDIO_WADA_ENGINE = {
     GROUNDS: GROUNDS,
+    GROUND_ALIASES: GROUND_ALIASES,
+    normalizeGroundKey: normalizeGroundKey,
     CETI_TOKENS: CETI_TOKENS,
     PALS: PALS,
     enrichPalette: enrichPalette,
     getAllWadaCombos: getAllWadaCombos,
+    hexToOklab: hexToOklab,
     wcagContrast: wcagContrast,
     oklabDistance: oklabDistance,
     deltaE2000Approx: deltaE2000Approx,
@@ -436,6 +589,9 @@
   global.STUDIO_CHARACTER_FOUNDRY = {
     CHARACTERS: CHARACTERS,
     CHARACTER_ORDER: CHARACTER_ORDER,
+    LOCOMOTION_MODES: LOCOMOTION_MODES,
+    SEVERANCE_OPS: SEVERANCE_OPS,
+    cloneCharacterRig: cloneCharacterRig,
     INTERACTION_MODES: INTERACTION_MODES
   };
 })(typeof window !== 'undefined' ? window : globalThis);
@@ -764,6 +920,7 @@
     guide: true,
     ground: 'atlas',
     grain: 0.24,
+    hydroGhostCount: 24,
     charId: 'ceti-whale',
     partnerCharId: 'geome-orpheus',
     renderMode: null, // null = proof default, or override ('wash'|'paper'|'line'|'flat'|'pixel'|'hydrographic')
@@ -828,7 +985,7 @@
   }
 
   function prep(P) {
-    const g = O.ground || 'atlas';
+    const g = WADA.normalizeGroundKey ? WADA.normalizeGroundKey(O.ground || (P && P.ground) || 'atlas') : (O.ground || 'atlas');
     P._p = P._p || {};
     if (P._p[g]) return P._p[g];
     const enriched = WADA.enrichPalette(P, g);
@@ -836,6 +993,8 @@
       id: P.id + ':' + g,
       rawId: P.id,
       name: enriched.name,
+      ground: g,
+      dark: !!enriched.dark,
       paper: enriched.paper,
       ink: enriched.ink,
       a: enriched.a,
@@ -844,6 +1003,7 @@
       c: enriched.c,
       sw: enriched.swHex,
       cetiTokenMatches: enriched.cetiTokenMatches,
+      chordTable: enriched.chordTable,
       oklabChordTable: enriched.oklabChordTable,
       cr: enriched.cr
     };
@@ -905,7 +1065,8 @@
     pts.push([500, 320]); polyPath(ctx, pts);
   }
   function wash(ctx, pathFn, col, seed, al) {
-    ctx.save(); ctx.globalCompositeOperation = 'multiply';
+    const isDarkGround = (O.ground === 'deep-sea' || O.ground === 'hydro-ink' || O.ground === 'navy' || O.ground === 'hydro' || O.ground === 'blueprint');
+    ctx.save(); ctx.globalCompositeOperation = isDarkGround ? 'screen' : 'multiply';
     for (let i = 0; i < 5; i++) {
       ctx.save(); ctx.translate((hash(i, seed) - 0.5) * 5, (hash(i + 7, seed) - 0.5) * 4);
       pathFn(seed + i * 0.37); ctx.fillStyle = rgba(col, al); ctx.fill(); ctx.restore();
@@ -1317,17 +1478,25 @@
     ctx.restore();
   }
 
-  // Saul Bass 5-Rung Reduction Ladder renderer (G05) — Unmistakable visual differentiation across Rungs 1..5
+  // Saul Bass 5-Rung Reduction Ladder renderer (G05) — Unmistakable visual differentiation across Rungs 1..5 + 12 Severance Ops
   function renderReductionRung(ctx, P, g, o, rung) {
     const ink = P.ink;
     const archType = (g.spec && g.spec.archetype) || 'cetacean';
+    const sevOp = (g.spec && g.spec.severanceOp) || 'subtract-wedge';
     let bodyCol = o.body || P.h;
     if (o.grey) bodyCol = desat(bodyCol, o.grey);
     ctx.save();
     ctx.globalAlpha *= (o.alpha == null ? 1 : o.alpha);
     ctx.translate(o.x, o.y);
     if (o.rot) ctx.rotate(o.rot);
-    ctx.scale((o.flip ? -1 : 1) * (o.sx == null ? 1 : o.sx), o.sy == null ? 1 : o.sy);
+    let sx = (o.flip ? -1 : 1) * (o.sx == null ? 1 : o.sx);
+    let sy = o.sy == null ? 1 : o.sy;
+    if (sevOp === 'compress-chord') { sx *= 0.86; sy *= 1.16; }
+    else if (sevOp === 'flatten-plane') { sx *= 1.12; sy *= 0.78; }
+    ctx.scale(sx, sy);
+    if (sevOp === 'shear' && rung >= 2 && rung <= 4 && ctx.transform) {
+      ctx.transform(1, 0, -0.22, 1, 0, 0);
+    }
 
     if (rung === 5) {
       // Rung 5: 16px Favicon Benchmark & Signal Dot + Bearing Vector (≤ 1 stroke/mark)
@@ -1357,38 +1526,50 @@
     }
 
     if (rung === 4) {
-      // Rung 4: Saul Bass 3-Stroke Poster Glyph (≤ 3 bold graphic strokes)
+      // Rung 4: Saul Bass 3-Stroke Poster Glyph (≤ 3 bold graphic strokes + active severanceOp)
       const lw = Math.max(5.5, g.L / 15);
       ctx.lineCap = 'square'; ctx.lineJoin = 'miter';
+      const bendSign = sevOp === 'bend-wrong' ? -1 : 1;
       // Stroke 1 (Ink): Primary structural dorsal/hull vector
       ctx.strokeStyle = ink; ctx.lineWidth = lw;
       ctx.beginPath();
       if (archType === 'instrument' || archType === 'submersible') {
         ctx.arc(g.X(0.40), g.bend(0.40), g.H * 0.44, Math.PI * 0.15, Math.PI * 1.65);
       } else if (archType === 'geometric') {
-        ctx.moveTo(g.X(0.02), g.bend(0.02) - g.H * 0.55);
-        ctx.lineTo(g.X(0.42), g.bend(0.42) + g.H * 0.28);
-        ctx.lineTo(g.X(0.84), g.bend(0.84) - g.H * 0.36);
+        ctx.moveTo(g.X(0.02), g.bend(0.02) - g.H * 0.55 * bendSign);
+        ctx.lineTo(g.X(0.42), g.bend(0.42) + g.H * 0.28 * bendSign);
+        ctx.lineTo(g.X(0.84), g.bend(0.84) - g.H * 0.36 * bendSign);
       } else {
         ctx.moveTo(g.X(0.02), g.bend(0.02));
-        ctx.quadraticCurveTo(g.X(0.42), g.bend(0.42) - g.H * 0.62, g.X(0.84), g.bend(0.84));
+        ctx.quadraticCurveTo(g.X(0.42), g.bend(0.42) - g.H * 0.62 * bendSign, g.X(0.84), g.bend(0.84));
       }
       ctx.stroke();
 
       // Stroke 2 (Focal Accent): Primary wing / fin / azimuth slash
+      const invJ = sevOp === 'invert-joint' ? -1 : 1;
       ctx.strokeStyle = bodyCol; ctx.lineWidth = lw * 0.92;
       ctx.beginPath();
-      ctx.moveTo(g.finRoot[0] - g.L * 0.05, g.finRoot[1] - g.H * 0.18);
-      ctx.lineTo(g.fin[Math.min(2, g.fin.length - 1)][0] + g.L * 0.06, g.fin[Math.min(2, g.fin.length - 1)][1] + g.H * 0.15);
+      ctx.moveTo(g.finRoot[0] - g.L * 0.05, g.finRoot[1] - g.H * 0.18 * invJ);
+      ctx.lineTo(g.fin[Math.min(2, g.fin.length - 1)][0] + g.L * 0.06, g.fin[Math.min(2, g.fin.length - 1)][1] + g.H * 0.15 * invJ);
       ctx.stroke();
 
       // Stroke 3 (Structure B): Caudal fluke / counter-vane wedge
+      const dismOff = sevOp === 'dismember' ? g.L * 0.12 : 0;
       ctx.strokeStyle = P.b || ink; ctx.lineWidth = lw * 0.85;
       ctx.beginPath();
-      ctx.moveTo(g.fluke[1][0], g.fluke[1][1]);
-      ctx.lineTo(g.flukeRoot[0], g.flukeRoot[1]);
-      ctx.lineTo(g.fluke[Math.min(4, g.fluke.length - 1)][0], g.fluke[Math.min(4, g.fluke.length - 1)][1]);
+      ctx.moveTo(g.fluke[1][0] + dismOff, g.fluke[1][1]);
+      ctx.lineTo(g.flukeRoot[0] + dismOff, g.flukeRoot[1]);
+      ctx.lineTo(g.fluke[Math.min(4, g.fluke.length - 1)][0] + dismOff, g.fluke[Math.min(4, g.fluke.length - 1)][1]);
       ctx.stroke();
+      if (sevOp === 'splay-rays') {
+        ctx.strokeStyle = rgba(bodyCol, 0.85); ctx.lineWidth = lw * 0.45;
+        for (let sr = -1; sr <= 1; sr += 2) {
+          ctx.beginPath();
+          ctx.moveTo(g.X(0.32), g.bend(0.32));
+          ctx.lineTo(g.X(0.32) - g.L * 0.18, g.bend(0.32) + sr * g.H * 0.65);
+          ctx.stroke();
+        }
+      }
       ctx.restore();
       return g;
     }
@@ -1424,16 +1605,30 @@
     ctx.fillRect(-g.L * 0.44, -g.H * 0.68, g.L * 0.88, g.H * 0.18);
     ctx.fillStyle = rgba(P.b, 0.65);
     ctx.fillRect(-g.L * 0.36, g.H * 0.48, g.L * 0.76, g.H * 0.16);
-    // Drop-cut shadow in ink
-    ctx.save(); ctx.translate(3.5, 4.0);
-    polyPath(ctx, coarseBody); ctx.fillStyle = ink; ctx.fill();
+    // Drop-cut shadow in ink (with optional offset-register shift)
+    const regShift = sevOp === 'offset-register' ? 7.5 : 3.5;
+    ctx.save(); ctx.translate(regShift, regShift + 0.5);
+    polyPath(ctx, coarseBody); ctx.fillStyle = sevOp === 'offset-register' ? P.a : ink; ctx.fill();
     ctx.restore();
     // Caudal & pectoral cut-paper shards
+    const dismShift = sevOp === 'dismember' ? g.L * 0.08 : 0;
+    ctx.save(); ctx.translate(dismShift, 0);
     polyPath(ctx, g.fluke); ctx.fillStyle = P.b; ctx.fill();
     ctx.strokeStyle = P.paper; ctx.lineWidth = 3.5; ctx.stroke();
+    ctx.restore();
     // Main faceted body with thick paper knockout border
     polyPath(ctx, coarseBody); ctx.fillStyle = bodyCol; ctx.fill();
     ctx.strokeStyle = P.paper; ctx.lineWidth = 4.0; ctx.stroke();
+    if (sevOp === 'subtract-wedge' || sevOp === 'notch-silhouette') {
+      polyPath(ctx, [[g.X(0.34), g.bend(0.34) - g.H * 0.55], [g.X(0.46), g.bend(0.40) - g.H * 0.08], [g.X(0.54), g.bend(0.46) - g.H * 0.55]]);
+      ctx.fillStyle = P.paper; ctx.fill();
+    } else if (sevOp === 'puncture') {
+      ell(ctx, g.X(0.40), g.bend(0.40), g.H * 0.22, g.H * 0.22);
+      ctx.fillStyle = P.paper; ctx.fill();
+    } else if (sevOp === 'bisect') {
+      ctx.fillStyle = P.paper;
+      ctx.fillRect(g.X(0.38), -g.H * 0.75, 4.5, g.H * 1.5);
+    }
     polyPath(ctx, g.fin); ctx.fillStyle = mix(bodyCol, ink, 0.28); ctx.fill();
     ctx.strokeStyle = P.paper; ctx.lineWidth = 3.2; ctx.stroke();
     // Knockout paper eye
@@ -2106,9 +2301,10 @@
       },
       draw: function (ctx, t, P) {
         const uNow = t / 6;
-        // 25 ghost-position silhouettes along survey trajectory
-        for (let i = 0; i < 25; i++) {
-          const u = i / 24;
+        const gCount = clamp(Number(O.hydroGhostCount) || 24, 6, 64);
+        // Configurable ghost-position silhouettes along survey trajectory (default 24+1=25 soundings)
+        for (let i = 0; i <= gCount; i++) {
+          const u = i / gCount;
           if (u > uNow + 0.02) continue;
           const gx = lerp(430, 50, u), gy = 160 + 52 * Math.sin(TAU * u * 1.25 - 0.4);
           const dy = 52 * TAU * 1.25 * Math.cos(TAU * u * 1.25 - 0.4) / -380;
@@ -2126,7 +2322,7 @@
         ctx.strokeStyle = P.h; ctx.lineWidth = 2.2; ctx.beginPath(); ctx.moveTo(-36, 0); ctx.lineTo(36, 0); ctx.stroke();
         ell(ctx, -36, 0, 3.5, 3.5); ctx.fillStyle = P.h; ctx.fill();
         ctx.restore();
-        txt(ctx, 'BEARING ' + String(brg).padStart(3, '0') + '° · 25 GHOST SOUNDINGS', 16, 22, '700 9px ' + MONO, rgba(P.ink, 0.78));
+        txt(ctx, 'BEARING ' + String(brg).padStart(3, '0') + '° · ' + (gCount + 1) + ' GHOST SOUNDINGS', 16, 22, '700 9px ' + MONO, rgba(P.ink, 0.78));
       }
     },
     // Style 15: Saul Bass 3-Color Cut-Paper Overture
@@ -2643,13 +2839,15 @@
   const BG = new Map();
   function getBg(key, P) {
     if (typeof document === 'undefined') return null;
-    const id = key + '|' + P.id + '|' + O.charId + '|' + O.ground + '|' + O.rung;
+    const cs = getCharSpec(O.charId);
+    const rigKey = cs ? (cs.aspectRatio + ':' + (cs.bodyProfile ? cs.bodyProfile.dorsalArch : '') + ':' + (cs.severanceOp || '')) : '';
+    const id = key + '|' + P.id + '|' + O.charId + '|' + O.ground + '|' + O.rung + '|' + O.wob + '|' + rigKey;
     let c = BG.get(id); if (c) return c;
     c = document.createElement('canvas'); c.width = LW; c.height = LH; const x = c.getContext('2d');
     const pr = PROOFS[key];
     if (!(pr && pr.ownBg)) {
       x.fillStyle = P.paper; x.fillRect(0, 0, LW, LH);
-      x.save(); x.globalCompositeOperation = 'multiply';
+      x.save(); x.globalCompositeOperation = P.dark ? 'screen' : 'multiply';
       for (let i = 0; i < 7; i++) { blobR(x, hash(i, 91) * LW, hash(i, 92) * LH, 60 + hash(i, 93) * 90, 40 + hash(i, 94) * 60, i * 3 + 1); x.fillStyle = rgba(mix(P.paper, P.a, 0.6), 0.07); x.fill(); }
       x.restore();
     }
@@ -2672,7 +2870,7 @@
     const op = opts || {};
       const prevO = {
       wob: O.wob, streaks: O.streaks, guide: O.guide, ground: O.ground,
-      grain: O.grain, charId: O.charId, partnerCharId: O.partnerCharId,
+      grain: O.grain, hydroGhostCount: O.hydroGhostCount, charId: O.charId, partnerCharId: O.partnerCharId,
       renderMode: O.renderMode, rung: O.rung, captionsCovered: O.captionsCovered,
       onionSkin: O.onionSkin
     };
@@ -2680,8 +2878,9 @@
       O.wob = op.wob == null ? 1 : op.wob;
       O.streaks = op.streaks !== false;
       O.guide = op.guide !== false;
-      O.ground = op.ground || 'atlas';
+      O.ground = (global.STUDIO_WADA_ENGINE && global.STUDIO_WADA_ENGINE.normalizeGroundKey) ? global.STUDIO_WADA_ENGINE.normalizeGroundKey(op.ground || 'atlas') : (op.ground || 'atlas');
       O.grain = op.grain == null ? 0.24 : op.grain;
+      if (op.hydroGhostCount != null) O.hydroGhostCount = Number(op.hydroGhostCount) || 24;
       if (op.charId) O.charId = op.charId;
       if (op.partnerCharId) O.partnerCharId = op.partnerCharId;
       O.renderMode = op.renderMode || null;

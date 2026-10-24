@@ -37,11 +37,11 @@
 
 ---
 
-## 3. Final 25-Gate Mechanical Audit Scorecard (`v7.0.0`)
+## 3. Final 32-Gate Mechanical Audit Scorecard (`v9.0.0`)
 
-| Gate | Contract Invariant | Measured Metric (`v7.0.0`) | Verdict |
+| Gate | Contract Invariant | Measured Metric (`v9.0.0`) | Verdict |
 |---|---|---|---|
-| **G01** | Sanzo Wada Harmonic Pinning Closure | `GEOME_WADA_LIST=348`, Curated `PALS=19`, 4×4 OKLab chord matrix & CIEDE2000 token matcher active | **PASS** |
+| **G01** | Sanzo Wada Harmonic Pinning Closure | `GEOME_WADA_LIST=348`, Curated `PALS=19`, closed 4×4 OKLab chord matrix & CIEDE2000 token matcher active | **PASS** |
 | **G02** | WCAG AAA Ink-on-Paper Contrast ($\ge 7.0:1$) | Minimum contrast across all 19 curated grounds = `7.65:1` (`No. 343` = `14.12:1`) | **PASS** |
 | **G03** | Zero Hardcoded Whale Lock-In | `8` characters × `6` render modes (`wash`, `paper`, `line`, `flat`, `pixel`, `hydrographic`) = `48/48` verified | **PASS** |
 | **G04** | 5-Rung Saul Bass Reduction Ladder & Emblem Gauntlet | `40/40` reduction rungs rendered; `8/8` 4-Test Emblem Gauntlets (`16px`, `silhouette`, `oneMove`, `cutTest`) passed | **PASS** |
@@ -50,22 +50,29 @@
 | **G07** | 5-Lens Decision Fork Tree Completeness | `5` lenses verified: `look`, `use`, `story`, `character`, `register` | **PASS** |
 | **G08** | 8-Beat Storyboard Conservation Laws | `8/8` storylines pass `coveredOk`, `movementOk` (`BUT`/`THEREFORE`), `oneBreather`, `callback`, and $\le 2$ moves | **PASS** |
 | **G09** | Infinite-Zoom Living Canvas DAG Integrity | Non-destructive fork, A/B compare, and 3-tier LOD (`macro-topology`, `standard-studio`, `micro-inspection`) verified | **PASS** |
-| **G10** | Multi-Provider OAuth 2.0 PKCE + Local Bridge | RFC 7636 verifier (`43` chars), `S256` challenge (`43` chars), `?code=` auto-exchange, & `127.0.0.1:43110` bridge active | **PASS** |
+| **G10** | Multi-Provider OAuth 2.0 PKCE + Local Bridge | RFC 7636 verifier (`43` chars), `S256` challenge (`43` chars), `?code=` auto-exchange, & dual-port (`43110`/`8787`) bridge active | **PASS** |
 | **G11** | OAuth Live Storyboard & Character Schema Guard | Valid synthesizer payload accepted; malformed payload rejected | **PASS** |
 | **G12** | 100% Offline Embedded 171-Node Atlas Corpus | `15` styles, `24` elements, `8` laws, `16` gates embedded (`0` `/_blob/` network fetches) | **PASS** |
-| **G13** | Multi-Target Production Compiler | Stage-1 Brief `.md` (`2,573` chars), HyperFrames HTML (`8,559` chars), Remotion TSX (`895` chars) | **PASS** |
-| **G14** | Session Persistence & Portable `.motion.studio.json` | `localStorage` + `IndexedDB` + JSON export/import round-trip verified | **PASS** |
+| **G13** | Multi-Target Production Compiler | Stage-1 Brief `.md` (`2,658` chars), HyperFrames HTML (`12,536` chars), Remotion TSX (`895` chars) | **PASS** |
+| **G14** | Session Persistence & Portable `.motion.studio.json` | Cached `IndexedDB` + `localStorage` + JSON export/import round-trip verified | **PASS** |
 | **G15** | CETI Editorial & Anti-Slop Typography Compliance | `Fraunces` + `DM Sans` + `Space Mono` active; `0` banned fonts | **PASS** |
-| **G16** | Zero Runtime Errors & Full Bundle Integrity | All core files + keyboard shortcuts (`Space`, `[`, `]`, `C`, `F`, `O`, `Esc`) + `prefers-reduced-motion` verified | **PASS** |
+| **G16** | Zero Runtime Errors & Full Bundle Integrity | All core files + single consolidated keyboard handler + `prefers-reduced-motion` verified | **PASS** |
 | **G17** | `tell-apart` Archetype Discriminability Kernel & 8 Timing Feels | `28/28` character pairs distinct ($\min \Delta_{\text{geom}} = 0.6327$, $\max = 7.839$); `8` timing feels including `rostrum` | **PASS** |
 | **G18** | Alexandrov Sheaf Restriction Cohomology ($\delta^0 = 0$) | Verified $\rho(\text{child}) = \text{parent}$ across `9` DAG edges after 3-direction $\alpha/\beta/\gamma$ fork | **PASS** |
 | **G19** | 4-Lens Adversarial RSI Critique & Surgical Auto-Fix | `4/4` lenses (`A1 Saul Bass`, `A2 Koolhaas`, `A3 Hydrography`, `A4 HyperFrames Sheaf`) pass & auto-heal defects | **PASS** |
-| **G20** | Extended Compilers (`Anime.js v4` + `Playable HTML5`) | `Anime.js v4` timeline scaffold (`1,340` chars) + Playable Single-Clock HTML5 (`8,810` chars) verified | **PASS** |
-| **G21** | VBM Visual & UX Ergonomics Gate | `0` DAG node overlaps, `8/8` unique beat titles & camera moves across all 8 stories, `136px` sticky header (`12/12` VBM frames clean) | **PASS** |
-| **G22** | **Multi-Parent DAG Branch Synthesis / Pushout Gluing (`A ⊕ B`)** | Synthesized pushout node `node-synth-7` from `[node-proof-a ⊕ node-proof-b]` with `upstreamHash=ρ_6e20de63` ($\delta^0 = 0$: `true`) | **PASS** |
-| **G23** | **Multi-Frame Onion-Skinning (`-2Δt / -1Δt / +1Δt`) & Save/Restore Isolation** | `3` Wada-tinted onion-skin frames (`-2Δt@2.16s`, `-1Δt@2.28s`, `+1Δt@2.52s`), Canvas2D net `saveDepth=0` (`max=3`) | **PASS** |
-| **G24** | **Orpheum 4-Voice Harmonic Chord Sonification (`OKLab → Just-Intonation Hz`)** | `19/19` curated Wada palettes map deterministically to 4-voice Just-Intonation chords (`root=C4`) | **PASS** |
-| **G25** | **Resolution-Independent Vector Compilers (`SVG Keyframes` + `Lottie JSON v5.7.4`)** | SVG Keyframe Sprite (`3,417` chars) + Lottie JSON `v5.7.4` (`19,859` chars, `2` parametric layers) | **PASS** |
+| **G20** | Extended Compilers (`Anime.js v4` + `Playable HTML5`) | `Anime.js v4` timeline scaffold (`1,340` chars) + Playable Single-Clock HTML5 (`12,705` chars) verified | **PASS** |
+| **G21** | VBM Visual & UX Ergonomics Gate | `0` DAG node overlaps, `8/8` unique beat titles & camera moves across all 8 stories, `16/16` VBM frames clean (`overflow=0px`) | **PASS** |
+| **G22** | Multi-Parent DAG Branch Synthesis / Pushout Gluing (`A ⊕ B`) | Synthesized pushout node `node-synth-7` from `[node-proof-a ⊕ node-proof-b]` with `upstreamHash=ρ_6e20de63` ($\delta^0 = 0$: `true`) | **PASS** |
+| **G23** | Multi-Frame Onion-Skinning (`-2Δt / -1Δt / +1Δt`) & Save/Restore Isolation | `3` Wada-tinted onion-skin frames (`-2Δt@2.16s`, `-1Δt@2.28s`, `+1Δt@2.52s`), Canvas2D net `saveDepth=0` (`max=3`) | **PASS** |
+| **G24** | Orpheum 4-Voice Harmonic Chord Sonification (`OKLab → Just-Intonation Hz`) | `19/19` curated Wada palettes map deterministically to 4-voice Just-Intonation chords (`root=C4`) | **PASS** |
+| **G25** | Resolution-Independent Vector Compilers (`SVG Keyframes` + `Lottie JSON v5.7.4`) | SVG Keyframe Sprite (`3,417` chars) + Lottie JSON `v5.7.4` (`19,859` chars, `2` parametric layers) | **PASS** |
+| **G26** | Effortless Freeform Card Movement (Whole-Card Drag + Duplicate/Delete + Beat Reordering) | `moveCanvasNode=(142,318)`, `duplicate=7->delete=6`, Storyboard beat swap `[0<->1]` recomputed timestamps `[0s, 1.5s]` | **PASS** |
+| **G27** | Direct Source A & Source B Selection (1-Click Card Pills + Toolbar/Modal Dropdowns + Swap) | Verified `● Src A` / `◐ Src B` card buttons, toolbar selectors, OAuth modal selectors, and `⇄ Swap A/B` handler | **PASS** |
+| **G28** | Plain-English `#` & `/` Design Vocabulary, Themes & Elements Library + Live Autocomplete | `51` plain-English `#` and `/` tokens across `6` categories; parsed `5` tokens $\to$ Wada No. `126` | **PASS** |
+| **G29** | Tagged & Saved Color Scheme Vault (`#color/<tag>` & `/color/<tag>` Re-Invocation) | `7` saved schemes; `#color/brand-ocean-noir` & `/color/brand-ocean-noir` resolve deterministically to Wada No. `13` | **PASS** |
+| **G30** | **Mobile & Touch Ergonomics (`Unified PointerEvents` · `Pinch-Zoom` · `Collapsible Inspector` · `Responsive Breakpoints`)** | Verified `pointerdown`/`pointermove`/`pointerup`, 2-pointer pinch-zoom, collapsible Inspector drawer, and `@media (max-width: 768px)` rules (`390×844` `overflow=0px`) | **PASS** |
+| **G31** | **10x Architecture & Original Spec Alignment (`6 SpineArcId` · `5 GroundModes` · `Dark CR >=10:1` · `Undo/Redo` · `Schema Validator`)** | `5` GroundModes (`atlas`, `ceti`, `tint`, `deep-sea`, `hydro-ink`) with `deep-sea` `CR=11.23:1` & `hydro-ink` `CR=11.98:1`; `6` SpineArcs; 50-state Undo/Redo + boundary validator active | **PASS** |
+| **G32** | **Full Customizability (`12 Severance Ops` · `6 Locomotion Modes` · `Custom Rig Cloning` · `Live Tweaks Strip`)** | `12` SeveranceOps, `6` LocomotionModes, `cloneCharacterRig -> saul-falcon-clone-1`, and Finish & Motion Tweaks verified | **PASS** |
 
 ---
 
@@ -80,3 +87,9 @@
 | **MUT-05** | Inject malformed OAuth payload (`1` beat, Wada `#9999`, `null` character rig) | `G11` | **CAUGHT (PASS)** |
 | **MUT-06** | Tamper with multi-parent synthesis pushout hash $\rho(A \oplus B)$ and verify Sheaf cohomology catches mismatch | `G22` | **CAUGHT (PASS)** |
 | **MUT-07** | Inject collapsed `0s` onion-skin frames with identical timestamps & tints and verify `G23` rejection | `G23` | **CAUGHT (PASS)** |
+| **MUT-08** | Attempt to delete the last remaining card on the Living Canvas and verify `G26` guard preserves seed root | `G26` | **CAUGHT (PASS)** |
+| **MUT-09** | Inject unknown `#theme/nonexistent-slop-token` alongside valid `#theme/saul-bass-cutout` and verify `G28` parser filters invalid token cleanly | `G28` | **CAUGHT (PASS)** |
+| **MUT-10** | Inject out-of-range Wada ID (`99999`) & unsanitized tag characters into `tagAndSaveColorScheme` and verify `G29` clamping + slug sanitization | `G29` | **CAUGHT (PASS)** |
+| **MUT-11** | Inject poisoned session state (`null` payload + invalid `charId`/`ground`/`spineArc`/`rung`/`zoom`/`DAG`) and verify `G31` boundary schema sanitizer | `G31` | **CAUGHT (PASS)** |
+| **MUT-12** | Inject dark-on-dark palette on `deep-sea` ground and verify `G31` luminous contrast inversion $\ge 10.0:1$ (`CR = 10.12:1`) | `G31` | **CAUGHT (PASS)** |
+

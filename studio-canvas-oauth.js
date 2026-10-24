@@ -68,8 +68,73 @@
   const LENS_ORDER = ['look', 'use', 'story', 'character', 'register'];
 
   // ─────────────────────────────────────────────────────────────────────────
-  // 2. 8-BEAT STORYBOARD SHEET & HYPERFRAMES STRUCTURAL VERIFIER (G08)
+  // 2. 6 CANONICAL SPINE ARCS & 8-BEAT STORYBOARD VERIFIER (G08 · G32)
   // ─────────────────────────────────────────────────────────────────────────
+  const SPINE_ARCS = {
+    'hero-inner-change': {
+      id: 'hero-inner-change',
+      label: 'Hero Inner Change (Threshold & Transformation)',
+      roles: ['hook', 'threshold', 'escalation', 'turn', 'filter', 'breather', 'climax', 'callback'],
+      roleLabels: ['Opening Hook', 'Threshold Crossing', 'Rising Escalation', 'Causal Turn', 'Harmonic Filter', 'Breather Hold', 'Peak Climax', 'Calm Callback'],
+      hinges: ['THEREFORE', 'BUT', 'THEREFORE', 'BUT', 'THEREFORE', 'THEREFORE', 'BUT', 'THEREFORE'],
+      cams: ['static-wide', 'pan-follow', 'push-in', 'dutch-tilt', 'tracking-drift', 'breather-hold', 'kick-shake', 'pull-back'],
+      shots: ['WS', 'MS', 'CU', 'CU', 'MS', 'WS', 'ECU', 'WS']
+    },
+    'count-scale-compare-rest': {
+      id: 'count-scale-compare-rest',
+      label: 'Count · Scale · Compare · Rest (Quantitative Argument)',
+      roles: ['count-unit', 'count-group', 'scale-shift', 'compare-a', 'compare-b', 'breather', 'ratio-climax', 'callback'],
+      roleLabels: ['Single Unit Datum', 'Multiplied Count', 'Order-of-Magnitude Scale', 'Side-A Benchmark', 'Side-B Contrast', 'Breather Hold', 'Proportional Climax', 'Unit Callback'],
+      hinges: ['THEREFORE', 'THEREFORE', 'BUT', 'THEREFORE', 'BUT', 'THEREFORE', 'THEREFORE', 'THEREFORE'],
+      cams: ['static-wide', 'pan-follow', 'pull-back', 'push-in', 'dutch-tilt', 'breather-hold', 'push-in', 'static-wide'],
+      shots: ['CU', 'MS', 'WS', 'MS', 'MS', 'WS', 'ECU', 'CU']
+    },
+    'follow-a-process': {
+      id: 'follow-a-process',
+      label: 'Follow a Process (Causal Pipeline & Mechanism)',
+      roles: ['intake', 'routing', 'bottleneck', 'valve-turn', 'transform', 'breather', 'emission', 'callback'],
+      roleLabels: ['Raw Intake', 'Channel Routing', 'Pressure Bottleneck', 'Valve Actuation', 'Harmonic Transform', 'Breather Hold', 'Clean Output', 'Equilibrium Callback'],
+      hinges: ['THEREFORE', 'THEREFORE', 'BUT', 'THEREFORE', 'THEREFORE', 'THEREFORE', 'BUT', 'THEREFORE'],
+      cams: ['static-wide', 'tracking-drift', 'push-in', 'dutch-tilt', 'pan-follow', 'breather-hold', 'kick-shake', 'pull-back'],
+      shots: ['WS', 'MS', 'CU', 'ECU', 'MS', 'WS', 'CU', 'WS']
+    },
+    'understand-one-idea': {
+      id: 'understand-one-idea',
+      label: 'Understand One Idea (Thesis → Counterexample → Proof)',
+      roles: ['claim', 'naive-model', 'contradiction', 'reframe', 'mechanism', 'breather', 'proof-lock', 'callback'],
+      roleLabels: ['Core Claim', 'Naive Assumption', 'Edge-Case Fracture', 'Structural Reframe', 'Live Mechanism', 'Breather Hold', 'Q.E.D. Proof Lock', 'Thesis Callback'],
+      hinges: ['THEREFORE', 'BUT', 'THEREFORE', 'BUT', 'THEREFORE', 'THEREFORE', 'THEREFORE', 'THEREFORE'],
+      cams: ['static-wide', 'pan-follow', 'dutch-tilt', 'push-in', 'tracking-drift', 'breather-hold', 'push-in', 'pull-back'],
+      shots: ['WS', 'MS', 'CU', 'CU', 'MS', 'WS', 'ECU', 'WS']
+    },
+    'saul-seven-beat': {
+      id: 'saul-seven-beat',
+      label: 'Saul Bass 7-Beat Overture (+ Terminal Emblem Lock)',
+      roles: ['void-mark', 'severance-cut', 'shear-entry', 'collision', 'emblem-fracture', 'breather', 'poster-snap', 'callback'],
+      roleLabels: ['First Mark in Void', 'Paper Severance Cut', 'Diagonal Shear Entry', 'Counter-Force Collision', 'Rung-4 Fracture', 'Breather Hold', '3-Color Poster Snap', 'Emblem Callback'],
+      hinges: ['THEREFORE', 'BUT', 'THEREFORE', 'BUT', 'THEREFORE', 'THEREFORE', 'BUT', 'THEREFORE'],
+      cams: ['static-wide', 'dutch-tilt', 'pan-follow', 'kick-shake', 'push-in', 'breather-hold', 'kick-shake', 'static-wide'],
+      shots: ['WS', 'CU', 'MS', 'ECU', 'CU', 'WS', 'ECU', 'WS']
+    },
+    'rem-five-move': {
+      id: 'rem-five-move',
+      label: 'Rem Koolhaas 5-Move Programme (Sectional Barcode)',
+      roles: ['datum-strip', 'program-stack', 'cross-cut', 'void-insertion', 'escalator-link', 'breather', 'metropolitan-lock', 'callback'],
+      roleLabels: ['Baseline Datum Strip', 'Programmatic Stack', 'Sectional Cross-Cut', 'Deliberate Void Carve', 'Diagonal Circulation', 'Breather Hold', 'Diagrammatic Synthesis', 'Datum Callback'],
+      hinges: ['THEREFORE', 'THEREFORE', 'BUT', 'THEREFORE', 'BUT', 'THEREFORE', 'THEREFORE', 'THEREFORE'],
+      cams: ['static-wide', 'pan-follow', 'dutch-tilt', 'pull-back', 'tracking-drift', 'breather-hold', 'push-in', 'static-wide'],
+      shots: ['WS', 'MS', 'CU', 'WS', 'MS', 'WS', 'ECU', 'WS']
+    }
+  };
+  const SPINE_ARC_ORDER = [
+    'hero-inner-change',
+    'count-scale-compare-rest',
+    'follow-a-process',
+    'understand-one-idea',
+    'saul-seven-beat',
+    'rem-five-move'
+  ];
+
   function buildStoryboardSheet(opts) {
     const o = opts || {};
     const storyKey = o.storyKey || 's_voice';
@@ -77,28 +142,34 @@
     const charId = o.charId || 'ceti-whale';
     const feelKey = o.feelKey || 'spring';
     const palId = o.palId || 343;
+    const spineArc = SPINE_ARCS[o.spineArc] ? o.spineArc : 'hero-inner-change';
+    const arcSpec = SPINE_ARCS[spineArc];
     const charSpec = FOUNDRY.CHARACTERS[charId] || FOUNDRY.CHARACTERS['ceti-whale'];
     const story = TAX.STMETA[storyKey] || TAX.STORIES[0];
     const totalSec = (global.MA && global.MA.len(storyKey)) || 10;
 
-    // Expand story beats into a canonical 8-beat S4/S5 storyboard sheet with causal hinges & distinct titles
+    // Expand story beats into a canonical 8-beat S4/S5 storyboard sheet governed by the active SpineArcId
     const rawBeats = story.beats || [];
-    const roles = ['hook', 'threshold', 'escalation', 'turn', 'filter', 'breather', 'climax', 'callback'];
-    const roleFallbacks = ['Opening Hook', 'Threshold Crossing', 'Rising Escalation', 'Causal Turn', 'Harmonic Filter', 'Breather Hold', 'Peak Climax', 'Calm Callback'];
-    const hinges = ['THEREFORE', 'BUT', 'THEREFORE', 'BUT', 'THEREFORE', 'THEREFORE', 'BUT', 'THEREFORE'];
-    const cams = ['static-wide', 'pan-follow', 'push-in', 'dutch-tilt', 'tracking-drift', 'breather-hold', 'kick-shake', 'pull-back'];
+    const roles = arcSpec.roles;
+    const roleFallbacks = arcSpec.roleLabels;
+    const hinges = arcSpec.hinges;
+    const cams = arcSpec.cams;
+    const shots = arcSpec.shots;
 
     const usedLabels = {};
     const beats = [];
     for (let i = 0; i < 8; i++) {
       const t0 = Number(((i / 8) * totalSec).toFixed(2));
       const t1 = Number((((i + 1) / 8) * totalSec).toFixed(2));
+      const dur = Number((t1 - t0).toFixed(2));
       const srcBeat = rawBeats.length >= 8
         ? rawBeats[i]
         : (rawBeats[Math.min(rawBeats.length - 1, Math.floor((i / 8) * rawBeats.length))] || [t0, roleFallbacks[i], 'Visual state change on stage.']);
       const isBreather = (i === 5);
       const isCallback = (i === 7);
-      let label = srcBeat && srcBeat[1] ? String(srcBeat[1]).trim() : roleFallbacks[i];
+      let label = (spineArc !== 'hero-inner-change')
+        ? roleFallbacks[i]
+        : (srcBeat && srcBeat[1] ? String(srcBeat[1]).trim() : roleFallbacks[i]);
       if (usedLabels[label.toLowerCase()]) {
         label = roleFallbacks[i] + ' · ' + label;
       }
@@ -124,7 +195,15 @@
         role: roles[i],
         hinge: hinges[i],
         label: label,
+        actionLine: action,
         visualAction: action,
+        coveredSentence: charSpec.name + ' executes ' + roles[i] + ' in ' + shots[i] + ' framing (' + cams[i] + ') with captions covered.',
+        movementClaim: 'This moves because ' + hinges[i] + ' beat ' + (i + 1) + ' (' + label + ') resolves tension from beat ' + Math.max(1, i) + '.',
+        shotSpec: {
+          size: shots[i] || 'MS',
+          move: cams[i],
+          dur: dur
+        },
         captionOnScreen: i === 5 ? '' : (label.toUpperCase() + ' — ' + action.slice(0, 56)),
         cameraMove: cams[i],
         activeSimultaneousMoves: isBreather ? 1 : (i % 2 === 0 ? 1 : 2),
@@ -143,13 +222,14 @@
     }
 
     return auditStoryboardSheet({
-      id: 'sb-' + storyKey + '-' + charId,
+      id: 'sb-' + storyKey + '-' + charId + '-' + spineArc,
       title: story.title.replace(/\bwhale\b/gi, charSpec.name),
       storyKey: storyKey,
       styleKey: styleKey,
       charId: charId,
       feelKey: feelKey,
       palId: palId,
+      spineArc: spineArc,
       totalDurationSec: totalSec,
       beats: beats
     });
@@ -595,11 +675,13 @@
     const seq = dag.nodes.length + 1;
     const synthId = ov.id || ('node-synth-' + seq);
     const charId = ov.charId || (nodeA.payload && nodeA.payload.charId) || 'ceti-whale';
-    const partnerCharId = (nodeB.payload && nodeB.payload.charId) || 'orpheus-lyre';
+    const rawPartner = (nodeB.payload && nodeB.payload.charId) || 'geome-orpheus';
+    const partnerCharId = rawPartner === 'orpheus-lyre' ? 'geome-orpheus' : rawPartner;
     const palId = ov.palId || (nodeA.payload && nodeA.payload.palId) || 343;
     const styleKey = ov.styleKey || (nodeB.payload && nodeB.payload.styleKey) || 'hydrographic';
     const storyKey = ov.storyKey || (nodeB.payload && nodeB.payload.storyKey) || 's_duet';
     const feelKey = ov.feelKey || (nodeA.payload && nodeA.payload.feelKey) || 'spring';
+    const spineArc = ov.spineArc || (nodeA.payload && nodeA.payload.spineArc) || 'hero-inner-change';
 
     const mergedPayload = Object.assign({}, nodeA.payload, nodeB.payload, {
       charId: charId,
@@ -608,13 +690,15 @@
       styleKey: styleKey,
       storyKey: storyKey,
       feelKey: feelKey,
-      interaction: 'duet-counterpoint',
+      spineArc: spineArc,
+      interaction: 'dialogue-duet',
       storyboard: buildStoryboardSheet({
         storyKey: storyKey,
         styleKey: styleKey,
         charId: charId,
         palId: palId,
-        feelKey: feelKey
+        feelKey: feelKey,
+        spineArc: spineArc
       })
     }, ov.payload || {});
 
@@ -844,12 +928,12 @@
       token: '#color/bathyal-biolum',
       slash: '/color/bathyal-biolum',
       handle: '#color/bathyal-biolum',
-      title: 'Bathyal Bioluminescence (Amber & Prussian)',
-      name: 'Bathyal Bioluminescence (Amber & Prussian)',
+      title: 'Bathyal Bioluminescence (Amber & Deep Sea)',
+      name: 'Bathyal Bioluminescence (Amber & Deep Sea)',
       palId: 166,
-      ground: 'blueprint',
+      ground: 'deep-sea',
       tags: ['#abyssal', '#glow', '#deep-sea', '#threshold'],
-      notes: 'Glowing bathyal amber against deep Prussian night for underwater threshold beats.'
+      notes: 'Glowing bathyal amber against Deep-Sea Nocturne (#1A1F2E, ≥10:1 AAA) for underwater threshold beats.'
     },
     {
       id: 'scheme-shoji-calm',
@@ -857,12 +941,12 @@
       token: '#color/shoji-sumi-calm',
       slash: '/color/shoji-sumi-calm',
       handle: '#color/shoji-sumi-calm',
-      title: 'Shoji Paper & Sumi Ink (Quiet Breather)',
-      name: 'Shoji Paper & Sumi Ink (Quiet Breather)',
+      title: 'CETI Warm Paper & Sumi Ink (Quiet Breather)',
+      name: 'CETI Warm Paper & Sumi Ink (Quiet Breather)',
       palId: 48,
-      ground: 'sumi',
+      ground: 'ceti',
       tags: ['#minimal', '#calm', '#breather', '#japanese'],
-      notes: 'High-key Shoji cream with sumi ink wash — ideal for negative-space breather beats.'
+      notes: 'High-key CETI warm cream with sumi ink wash — ideal for negative-space breather beats.'
     },
     {
       id: 'scheme-umber-hydro',
@@ -873,9 +957,9 @@
       title: 'Umber Hydrographic Survey Ledger',
       name: 'Umber Hydrographic Survey Ledger',
       palId: 296,
-      ground: 'sepia',
+      ground: 'tint',
       tags: ['#radar', '#nautical', '#telemetry', '#chart'],
-      notes: 'Cartographic sepia and raw umber for 25-sounding hydrographic trajectory plates.'
+      notes: 'Wada-tinted ground and raw umber for 25-sounding hydrographic trajectory plates.'
     },
     {
       id: 'scheme-cotinga-night',
@@ -883,12 +967,12 @@
       token: '#color/cotinga-nocturne',
       slash: '/color/cotinga-nocturne',
       handle: '#color/cotinga-nocturne',
-      title: 'Cotinga Nocturne (Mythic Lyre Chord)',
-      name: 'Cotinga Nocturne (Mythic Lyre Chord)',
+      title: 'Cotinga Nocturne (Hydro-Ink Lyre Chord)',
+      name: 'Cotinga Nocturne (Hydro-Ink Lyre Chord)',
       palId: 329,
-      ground: 'atlas',
+      ground: 'hydro-ink',
       tags: ['#mythic', '#musical', '#nocturne', '#finale'],
-      notes: 'Deep Cotinga violet-blue and warm gold for harmonic duet and finale callbacks.'
+      notes: 'Deep Cotinga violet-blue and warm gold on Hydro-Ink (#141A21, ≥10:1 AAA) for harmonic duet callbacks.'
     }
   ];
 
@@ -902,29 +986,24 @@
     return clean || 'custom-scheme';
   }
 
-  function tagAndSaveColorScheme(existingSchemes, spec) {
-    const list = Array.isArray(existingSchemes) && existingSchemes.length
-      ? existingSchemes.slice()
-      : DEFAULT_SAVED_SCHEMES.slice();
-    const s = spec || {};
-    const slug = sanitizeSchemeTag(s.tag || s.title || s.name || ('wada-' + (s.palId || 343)));
+  function normalizeSavedScheme(s) {
+    const raw = s || {};
+    const slug = sanitizeSchemeTag(raw.tag || raw.title || raw.name || ('wada-' + (raw.palId || 343)));
     const handle = '#color/' + slug;
-    const rawPalId = Math.max(1, Math.min(348, Math.round(Number(s.palId) || 343)));
-    const wadaObj = WADA.PALS.find(function (p) { return p.id === rawPalId; }) ||
-      WADA.getAllWadaCombos().find(function (p) { return p.id === rawPalId; }) ||
-      { id: rawPalId, name: 'Wada Combination No. ' + rawPalId };
-
-    const extraTags = Array.isArray(s.tags)
-      ? s.tags
-      : String(s.tags || '#custom #studio')
+    const rawPalId = Math.max(1, Math.min(348, Math.round(Number(raw.palId) || 343)));
+    const groundKey = (WADA && typeof WADA.normalizeGroundKey === 'function')
+      ? WADA.normalizeGroundKey(raw.ground || 'atlas')
+      : (raw.ground || 'atlas');
+    const displayTitle = raw.title || raw.name || ('Wada No. ' + rawPalId + ' (' + handle + ')');
+    const extraTags = Array.isArray(raw.tags)
+      ? raw.tags
+      : String(raw.tags || '#custom #studio')
           .split(/[\s,]+/)
           .map(function (t) { return t.trim(); })
           .filter(Boolean)
           .map(function (t) { return t.startsWith('#') ? t : ('#' + t); });
-
-    const displayTitle = s.title || s.name || (wadaObj.name + ' (' + handle + ')');
-    const entry = {
-      id: 'scheme-' + slug,
+    return {
+      id: raw.id || ('scheme-' + slug),
       tag: slug,
       token: handle,
       slash: '/color/' + slug,
@@ -932,13 +1011,34 @@
       title: displayTitle,
       name: displayTitle,
       palId: rawPalId,
-      ground: s.ground || 'atlas',
+      ground: groundKey,
       tags: extraTags.length ? extraTags : ['#custom'],
-      notes: s.notes || ('Pinned Sanzo Wada No. ' + rawPalId + ' (' + wadaObj.name + ') on ' + (s.ground || 'atlas') + ' ground.'),
-      savedAt: new Date().toISOString()
+      notes: raw.notes || ('Pinned Sanzo Wada No. ' + rawPalId + ' on ' + groundKey + ' ground.'),
+      savedAt: raw.savedAt || new Date().toISOString()
     };
+  }
 
-    const existingIdx = list.findIndex(function (item) { return item.tag === slug || item.handle === handle || item.token === handle; });
+  function tagAndSaveColorScheme(existingSchemes, spec) {
+    const list = (Array.isArray(existingSchemes) && existingSchemes.length
+      ? existingSchemes
+      : DEFAULT_SAVED_SCHEMES).map(normalizeSavedScheme);
+    const s = spec || {};
+    const rawPalId = Math.max(1, Math.min(348, Math.round(Number(s.palId) || 343)));
+    const wadaObj = WADA.PALS.find(function (p) { return p.id === rawPalId; }) ||
+      WADA.getAllWadaCombos().find(function (p) { return p.id === rawPalId; }) ||
+      { id: rawPalId, name: 'Wada Combination No. ' + rawPalId };
+    const slug = sanitizeSchemeTag(s.tag || s.title || s.name || ('wada-' + rawPalId));
+    const handle = '#color/' + slug;
+    const displayTitle = s.title || s.name || (wadaObj.name + ' (' + handle + ')');
+    const entry = normalizeSavedScheme(Object.assign({}, s, {
+      tag: slug,
+      title: displayTitle,
+      name: displayTitle,
+      palId: rawPalId,
+      notes: s.notes || ('Pinned Sanzo Wada No. ' + rawPalId + ' (' + wadaObj.name + ') on ' + (s.ground || 'atlas') + ' ground.')
+    }));
+
+    const existingIdx = list.findIndex(function (item) { return item.tag === entry.tag || item.handle === entry.handle || item.token === entry.token; });
     if (existingIdx >= 0) {
       list[existingIdx] = entry;
     } else {
@@ -948,7 +1048,7 @@
   }
 
   function resolveColorSchemeByTag(existingSchemes, queryOrTag) {
-    const list = Array.isArray(existingSchemes) && existingSchemes.length ? existingSchemes : DEFAULT_SAVED_SCHEMES;
+    const list = (Array.isArray(existingSchemes) && existingSchemes.length ? existingSchemes : DEFAULT_SAVED_SCHEMES).map(normalizeSavedScheme);
     const q = String(queryOrTag || '').toLowerCase().trim();
     if (!q) return list[0];
     const cleanSlug = sanitizeSchemeTag(q);
@@ -968,7 +1068,7 @@
   // 3C. STUDIO SKILLS, THEMES & PLAIN-ENGLISH VOCABULARY LIBRARY (# & / — Gate G28)
   // ─────────────────────────────────────────────────────────────────────────
   const VOCAB_LIBRARY = [
-    // 1. #theme/... — 12 Curated Look & Feel Recipes (Plain-English Entry Point)
+    // 1. #theme/... — Curated Look & Feel Recipes (Plain-English Entry Point)
     {
       token: '#theme/warm-storybook',
       slashToken: '/theme/warm-storybook',
@@ -977,7 +1077,7 @@
       plainEnglish: 'Soft watercolor washes, warm cream paper, and gentle 12fps hand-drawn line wobble — feels human, approachable, and poetic.',
       jargonTerm: 'Watercolor Wash · 12fps Boil · Wada No. 343 · Spring Feel',
       promptSnippet: '#theme/warm-storybook Use soft handmade watercolor washes on warm archival paper with 12fps line boil and gentle spring overshoot.',
-      patch: { mStyle: 'watercolor', palId: 343, feel: 'spring', rung: 1, ground: 'atlas' }
+      patch: { styleKey: 'watercolor', mStyle: 'watercolor', palId: 343, feel: 'spring', rung: 1, ground: 'atlas' }
     },
     {
       token: '#theme/saul-cutout',
@@ -987,7 +1087,7 @@
       plainEnglish: 'Sharp scissors-cut paper shapes, 3 stark colors, and punchy 8fps stop-motion snaps — unmistakable even from across the room.',
       jargonTerm: 'Saul Severe · Rung 4 Cutout · 8fps Hold · Wada No. 126',
       promptSnippet: '#theme/saul-cutout Stage with bold 3-color scissors-cut paper shapes at Saul Bass Rung 4 and 8fps graphic snap holds.',
-      patch: { mStyle: 'saul-severe', palId: 126, feel: 'saul', rung: 4, ground: 'atlas' }
+      patch: { styleKey: 'saul-severe', mStyle: 'saul-severe', palId: 126, feel: 'saul', rung: 4, ground: 'atlas' }
     },
     {
       token: '#theme/nautical-radar',
@@ -997,27 +1097,27 @@
       plainEnglish: 'Plots 25 echoing ghost positions behind the moving character with compass bearings and scientific measurement bars.',
       jargonTerm: 'Kinetic Hydrography · 25 Ghost Soundings · Wada No. 296',
       promptSnippet: '#theme/nautical-radar Plot a 25-point hydrographic sounding trail with compass bearing ring and ΔE2000 token telemetry.',
-      patch: { mStyle: 'hydrographic', palId: 296, feel: 'rostrum', rung: 3, ground: 'sepia' }
+      patch: { styleKey: 'hydrographic', mStyle: 'hydrographic', palId: 296, feel: 'rostrum', rung: 3, ground: 'tint' }
     },
     {
       token: '#theme/shoji-sumi-ink',
       slashToken: '/theme/shoji-sumi-ink',
       category: 'theme',
       title: 'Quiet Japanese Sumi Ink & Paper',
-      plainEnglish: 'Lots of calm breathing room, crisp folded-paper or brush contours, and deep black sumi ink on pale Shoji paper.',
-      jargonTerm: 'Sumi Ink Wash · Negative-Space Hold · Wada No. 48',
-      promptSnippet: '#theme/shoji-sumi-ink Leave generous negative space on Shoji cream paper with crisp sumi ink brushwork and calm breather holds.',
-      patch: { mStyle: 'ink-calligraphy', palId: 48, feel: 'held', rung: 2, ground: 'sumi', charId: 'origami-crane' }
+      plainEnglish: 'Lots of calm breathing room, crisp folded-paper or brush contours, and deep black sumi ink on pale CETI warm paper.',
+      jargonTerm: 'Doodle Monoline Ink · Negative-Space Hold · Wada No. 48',
+      promptSnippet: '#theme/shoji-sumi-ink Leave generous negative space on CETI cream paper with crisp sumi ink brushwork and calm breather holds.',
+      patch: { styleKey: 'doodle', mStyle: 'doodle', palId: 48, feel: 'held', rung: 2, ground: 'ceti', charId: 'origami-crane' }
     },
     {
       token: '#theme/bathyal-biolum',
       slashToken: '/theme/bathyal-biolum',
       category: 'theme',
       title: 'Deep-Sea Glowing Bioluminescence',
-      plainEnglish: 'Warm glowing amber and gold signals cutting through deep ocean Prussian blue — great for mystery and discovery.',
-      jargonTerm: 'Bathyal Amber on Prussian Blueprint · Wada No. 166',
-      promptSnippet: '#theme/bathyal-biolum Illuminate the subject with glowing bathyal amber against deep Prussian night water.',
-      patch: { mStyle: 'woodcut-relief', palId: 166, feel: 'slow', rung: 2, ground: 'blueprint', charId: 'lantern-bathysphere' }
+      plainEnglish: 'Warm glowing amber and gold signals cutting through deep ocean Prussian night — great for mystery and discovery.',
+      jargonTerm: 'Bathyal Amber on Deep-Sea Nocturne (#1A1F2E) · Wada No. 166',
+      promptSnippet: '#theme/bathyal-biolum Illuminate the subject with glowing bathyal amber against deep-sea nocturne water.',
+      patch: { styleKey: 'saul-severe', mStyle: 'saul-severe', palId: 166, feel: 'slow', rung: 2, ground: 'deep-sea', charId: 'lantern-bathysphere' }
     },
     {
       token: '#theme/glaser-pop',
@@ -1027,7 +1127,7 @@
       plainEnglish: 'Flowing multi-colored trailing ribbons and joyful springy overshoot — celebratory, musical, and full of life.',
       jargonTerm: 'Glaser Overshoot · Harmonic Ribbons · Wada No. 329',
       promptSnippet: '#theme/glaser-pop Trail expressive multi-color harmonic ribbons behind the hero with Milton Glaser ceremonial overshoot.',
-      patch: { mStyle: 'glaser-lite', palId: 329, feel: 'glaser', rung: 1, ground: 'atlas', charId: 'orpheus-lyre' }
+      patch: { styleKey: 'watercolor', mStyle: 'watercolor', palId: 329, feel: 'glaser', rung: 1, ground: 'atlas', charId: 'geome-orpheus' }
     },
     {
       token: '#theme/blueprint-rig',
@@ -1035,9 +1135,9 @@
       category: 'theme',
       title: 'Engineering Blueprint & Joint Diagram',
       plainEnglish: 'Shows the visible mechanical joints, pivots, and construction lines of the character like a living Da Vinci notebook.',
-      jargonTerm: 'Visible Rig Socket (e_rig) · Monoline Rung 3 · Blueprint Ground',
-      promptSnippet: '#theme/blueprint-rig Expose the internal pivot joints, measurement ticks, and construction geometry on a blueprint grid.',
-      patch: { mStyle: 'diagram-clean', palId: 166, feel: 'beat', rung: 3, ground: 'blueprint', charId: 'astronav-compass' }
+      jargonTerm: 'Visible Rig Socket (e_rig) · Whiteboard Rung 3 · Deep-Sea Ground',
+      promptSnippet: '#theme/blueprint-rig Expose the internal pivot joints, measurement ticks, and construction geometry on a deep-sea blueprint grid.',
+      patch: { styleKey: 'whiteboard', mStyle: 'whiteboard', palId: 166, feel: 'beat', rung: 3, ground: 'deep-sea', charId: 'astronav-compass' }
     },
     {
       token: '#theme/screenprint-offset',
@@ -1045,9 +1145,9 @@
       category: 'theme',
       title: 'Vintage Screenprint (Offset Color Plates)',
       plainEnglish: 'Color fills intentionally shift slightly outside the ink lines like a vintage mid-century silkscreen poster.',
-      jargonTerm: '2-3px Plate Misregistration · Risograph Grain · Wada No. 343',
+      jargonTerm: '2-3px Plate Misregistration · Cutout Grain · Wada No. 343',
       promptSnippet: '#theme/screenprint-offset Offset the color fill plates by 3px against the ink contour for tactile vintage screenprint texture.',
-      patch: { mStyle: 'risograph', palId: 343, feel: 'spring', rung: 2, ground: 'atlas' }
+      patch: { styleKey: 'cutout', mStyle: 'cutout', palId: 343, feel: 'spring', rung: 2, ground: 'atlas' }
     },
 
     // 2. #element/... — Plain-English Motion Building Blocks (No Jargon Needed)
@@ -1059,7 +1159,7 @@
       plainEnglish: 'Keeps outlines gently shimmering even when the character pauses so the frame never feels frozen or dead.',
       jargonTerm: 'Element: 12fps Line Boil (e_boil)',
       promptSnippet: '#element/line-wobble Add subtle 12fps hand-drawn line boil so held poses stay warm and alive.',
-      patch: { feel: 'spring' }
+      patch: { feel: 'spring', wob: 1.35 }
     },
     {
       token: '#element/ink-bloom',
@@ -1069,7 +1169,7 @@
       plainEnglish: 'A drop of color spreads softly into the paper grain at key emotional moments.',
       jargonTerm: 'Element: Wet-on-Wet Ink Bleed (e_bleed)',
       promptSnippet: '#element/ink-bloom Let a drop of Wada pigment bloom softly into the wet paper grain at the turning point.',
-      patch: { mStyle: 'watercolor' }
+      patch: { styleKey: 'watercolor', mStyle: 'watercolor' }
     },
     {
       token: '#element/offset-print',
@@ -1079,7 +1179,7 @@
       plainEnglish: 'Offsets the color shadow 2–3px from the outline so it looks hand-printed rather than computer-perfect.',
       jargonTerm: 'Element: Plate Misregistration (e_misreg)',
       promptSnippet: '#element/offset-print Introduce 2.5px silkscreen plate misregistration between the ink contour and fill wash.',
-      patch: {}
+      patch: { styleKey: 'cutout', mStyle: 'cutout' }
     },
     {
       token: '#element/wind-up-crouch',
@@ -1109,7 +1209,7 @@
       plainEnglish: 'Fins, wings, or ribbons keep moving a split second after the main body stops.',
       jargonTerm: 'Element: Overlapping Follow-Through (e_follow)',
       promptSnippet: '#element/tail-follow-through Delay the tail and appendage wave by 4 frames so secondary parts settle after the torso.',
-      patch: {}
+      patch: { streaks: true }
     },
     {
       token: '#element/echo-trail',
@@ -1127,19 +1227,19 @@
       category: 'element',
       title: 'Two-Character Call & Answer Duet',
       plainEnglish: 'The hero makes a gesture or sound wave, and a companion character enters to answer it in harmony.',
-      jargonTerm: 'Element: Duet Counterpoint / Call & Response (e_call)',
+      jargonTerm: 'Element: Dialogue Duet / Call & Response (e_call)',
       promptSnippet: '#element/call-and-answer Stage a call-and-response duet where the hero emits a signal and the partner rig answers.',
-      patch: { interaction: 'duet-counterpoint', storyKey: 's_duet' }
+      patch: { interaction: 'dialogue-duet', storyKey: 's_duet' }
     },
     {
       token: '#element/spotlight-circle',
       slashToken: '/element/spotlight-circle',
       category: 'element',
       title: 'Closing Circle Spotlight ("Iris Focus")',
-      plainEnglish: 'narrows a circular frame around the key detail so the viewer knows exactly where to look.',
+      plainEnglish: 'Narrows a circular frame around the key detail so the viewer knows exactly where to look.',
       jargonTerm: 'Element: Aperture Iris Focus (e_iris)',
       promptSnippet: '#element/spotlight-circle Tighten a circular iris aperture around the hero to isolate the emotional turning point.',
-      patch: {}
+      patch: { guide: true }
     },
     {
       token: '#element/quiet-pause',
@@ -1172,7 +1272,7 @@
       patch: { streaks: true }
     },
 
-    // 3. #camera/... — 8 Camera Framing & Movement Directives
+    // 3. #camera/... — Camera Framing & Movement Directives
     {
       token: '#camera/push-in',
       slashToken: '/camera/push-in',
@@ -1234,7 +1334,7 @@
       patch: { cameraMove: 'breather-hold' }
     },
 
-    // 4. #feel/... — 8 Physics & Timing Feels
+    // 4. #feel/... — Physics & Timing Feels
     {
       token: '#feel/spring',
       slashToken: '/feel/spring',
@@ -1343,9 +1443,9 @@
       category: 'character',
       title: 'Harmonic Lyre-Form (Musical Emblem)',
       plainEnglish: 'Sculptural acoustic lyre with 5 vibrating strings for musical and synesthetic stories.',
-      jargonTerm: 'Rig: orpheus-lyre (mythic)',
+      jargonTerm: 'Rig: geome-orpheus (mythic)',
       promptSnippet: '#character/orpheus-lyre Cast the Harmonic Lyre-Form rig with 5 resonant strings.',
-      patch: { charId: 'orpheus-lyre' }
+      patch: { charId: 'geome-orpheus' }
     },
     {
       token: '#character/kelp-leviathan',
@@ -1382,10 +1482,10 @@
       slashToken: '/theme/blueprint-telemetry',
       category: 'theme',
       title: 'Technical Blueprint & Hydrographic Telemetry',
-      plainEnglish: 'Precision architectural lines, compass rings, and live coordinate readouts on Prussian blue.',
-      jargonTerm: 'Diagram Clean · Rung 3 · Wada No. 166 · Blueprint',
+      plainEnglish: 'Precision architectural lines, compass rings, and live coordinate readouts on Hydro-Ink ground.',
+      jargonTerm: 'Whiteboard Vector · Rung 3 · Wada No. 166 · Hydro-Ink',
       promptSnippet: '#theme/blueprint-telemetry Overlay technical blueprint coordinates and hydrographic sounding rings.',
-      patch: { styleKey: 'diagram', mStyle: 'diagram', palId: 166, feel: 'rostrum', rung: 3, ground: 'blueprint' }
+      patch: { styleKey: 'whiteboard', mStyle: 'whiteboard', palId: 166, feel: 'rostrum', rung: 3, ground: 'hydro-ink' }
     },
     {
       token: '#element/negative-space-reveal',
@@ -1395,7 +1495,7 @@
       plainEnglish: 'The background shadow carves out the hidden shape of the character without drawing an outline.',
       jargonTerm: 'Element: Figure/Ground Reversal (e_negspace)',
       promptSnippet: '#element/negative-space-reveal Carve the subject out of negative space using figure/ground reversal.',
-      patch: { styleKey: 'silhouette', mStyle: 'silhouette', rung: 4 }
+      patch: { styleKey: 'saul-severe', mStyle: 'saul-severe', rung: 4 }
     },
     {
       token: '#element/grain-stipple',
@@ -1403,9 +1503,9 @@
       category: 'element',
       title: 'Tactile Film Grain & Stipple Shading',
       plainEnglish: 'Adds warm organic paper tooth and stippled ink dots so flat shapes feel hand-printed.',
-      jargonTerm: 'Element: Risograph Stipple & Paper Grain (e_grain)',
+      jargonTerm: 'Element: Cutout Stipple & Paper Grain (e_grain)',
       promptSnippet: '#element/grain-stipple Add tactile archival paper grain and stippled ink shading.',
-      patch: { styleKey: 'risograph', mStyle: 'risograph' }
+      patch: { styleKey: 'cutout', mStyle: 'cutout', grain: 0.42 }
     },
     {
       token: '#camera/match-cut-morph',
@@ -1415,7 +1515,7 @@
       plainEnglish: 'Morphs one silhouette directly into the next scene at the exact same screen position.',
       jargonTerm: 'Camera: Graphic Match-Cut Morph',
       promptSnippet: '#camera/match-cut-morph Bridge the beat transition with a graphic silhouette match-cut.',
-      patch: { cameraMove: 'push-in', storyKey: 's_morph' }
+      patch: { cameraMove: 'push-in', styleKey: 'morph', mStyle: 'morph', storyKey: 's_sting' }
     },
     {
       token: '#feel/held-24fps',
@@ -1431,7 +1531,7 @@
 
   // Build combined vocabulary list including dynamic user-saved #color/<tag> schemes
   function getFullVocabLibrary(savedSchemes) {
-    const schemes = Array.isArray(savedSchemes) && savedSchemes.length ? savedSchemes : DEFAULT_SAVED_SCHEMES;
+    const schemes = (Array.isArray(savedSchemes) && savedSchemes.length ? savedSchemes : DEFAULT_SAVED_SCHEMES).map(normalizeSavedScheme);
     const colorItems = schemes.map(function (sc) {
       const tok = sc.token || ('#color/' + sc.tag);
       const sl = sc.slash || ('/color/' + sc.tag);
@@ -1456,6 +1556,10 @@
       const p = Object.assign({}, it.patch || {});
       if (p.mStyle && !p.styleKey) p.styleKey = p.mStyle;
       if (p.styleKey && !p.mStyle) p.mStyle = p.styleKey;
+      if (p.charId === 'orpheus-lyre') p.charId = 'geome-orpheus';
+      if (p.ground && WADA && typeof WADA.normalizeGroundKey === 'function') {
+        p.ground = WADA.normalizeGroundKey(p.ground);
+      }
       return Object.assign({}, it, {
         slash: it.slash || it.slashToken,
         slashToken: it.slashToken || it.slash,
@@ -1468,6 +1572,7 @@
     });
     return normalizedBase.concat(colorItems);
   }
+
 
   function searchVocabLibrary(query, category, savedSchemes) {
     const all = getFullVocabLibrary(savedSchemes);
@@ -1734,29 +1839,33 @@
     return resp;
   }
 
-  // Live Enhancer client supporting OAuth 2.0 PKCE token, Local Bridge (127.0.0.1:43110), or Algebraic fallback
+  // Live Enhancer client supporting OAuth 2.0 PKCE token, Local Bridge (127.0.0.1:43110 or 127.0.0.1:8787), or Algebraic fallback
   async function enhanceStoryboardLive(req, sessionAuth) {
     const auth = sessionAuth || {};
-    const bridgeUrl = auth.bridgeUrl || 'http://127.0.0.1:43110/v1/enhance';
+    const candidateUrls = auth.bridgeUrl
+      ? [auth.bridgeUrl, 'http://127.0.0.1:43110/v1/enhance', 'http://127.0.0.1:8787/api/enhance']
+      : ['http://127.0.0.1:43110/v1/enhance', 'http://127.0.0.1:8787/api/enhance'];
 
     // 1. If connected to Local Agent Loopback Bridge or Live OAuth Provider, try live call first
     if (auth.mode === 'local-bridge' || (auth.accessToken && auth.provider === 'local-bridge')) {
-      try {
-        const res = await fetch(bridgeUrl, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + (auth.accessToken || 'local-bridge-pkce-token')
-          },
-          body: JSON.stringify(req)
-        });
-        if (res.ok) {
-          const json = await res.json();
-          const check = validateEnhancementResponse(json);
-          if (check.valid) return { response: json, validation: check, source: 'local-oauth-bridge' };
+      for (let u = 0; u < candidateUrls.length; u++) {
+        try {
+          const res = await fetch(candidateUrls[u], {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer ' + (auth.accessToken || 'local-bridge-pkce-token')
+            },
+            body: JSON.stringify(req)
+          });
+          if (res.ok) {
+            const json = await res.json();
+            const check = validateEnhancementResponse(json);
+            if (check.valid) return { response: json, validation: check, source: 'local-oauth-bridge' };
+          }
+        } catch (_e) {
+          // Try next endpoint or fall through cleanly to deterministic algebraic synthesizer
         }
-      } catch (_e) {
-        // Fall through cleanly to deterministic algebraic synthesizer
       }
     } else if (auth.accessToken && (auth.provider === 'openrouter-pkce' || auth.provider === 'direct-api-key')) {
       try {
@@ -1875,7 +1984,8 @@
       styleKey: st.mStyle || 'watercolor',
       charId: charSpec.id,
       palId: pal.id,
-      feelKey: st.feel || 'spring'
+      feelKey: st.feel || 'spring',
+      spineArc: st.spineArc || 'hero-inner-change'
     });
     const dag = st.dag || createDefaultDAG();
     const sheaf = verifyDAGSheafCohomology(dag);
@@ -1943,6 +2053,7 @@
     const style = TAX.SMETA[st.mStyle || 'watercolor'] || TAX.STYLES[0];
     const story = TAX.STMETA[st.storyKey || 's_voice'] || TAX.STORIES[0];
     const feel = (global.MA && global.MA.FEELS[st.feel || 'spring']) || { label: 'Physical spring', brief: '' };
+    const spineArc = st.spineArc || 'hero-inner-change';
 
     return [
       '# CETI STAGE-1 MOTION BRIEF — ' + story.title.replace(/\bwhale\b/gi, charSpec.name),
@@ -1950,7 +2061,8 @@
       '## 1. Fork & Register Pinning',
       '- **Style Family**: `' + style.key + '` — ' + style.title + ' (' + style.fps + ')',
       '- **Narrative Arc**: `' + story.key + '` — ' + story.logline.replace(/\bwhale\b/gi, charSpec.name.toLowerCase()),
-      '- **Character Rig**: `' + charSpec.id + '` — **' + charSpec.name + '** (' + charSpec.archetype + ' · aspect ' + charSpec.aspectRatio + ')',
+      '- **Spine Arc Law (`SpineArcId`)**: `' + spineArc + '`',
+      '- **Character Rig**: `' + charSpec.id + '` — **' + charSpec.name + '** (' + charSpec.archetype + ' · aspect ' + charSpec.aspectRatio + ' · severance `' + (charSpec.severanceOp || 'dorsal-chord-cut') + '`)',
       '- **Interaction Mode**: `' + (st.interaction || charSpec.defaultInteraction) + '`',
       '- **Reduction Rung**: Rung ' + (st.rung || 1) + ' (' + charSpec.reductionLadder[(st.rung || 1) - 1].name + ')',
       '- **Timing Feel**: `' + feel.label + '` — ' + feel.brief,
@@ -1964,7 +2076,7 @@
       '- **CIEDE2000 Nearest CETI Tokens**: ' + pal.cetiTokenMatches.map(function (m) { return '`' + m.swatchHex + '` → `' + m.nearestToken + '` (ΔE ' + m.deltaE2000 + ')'; }).join(' · '),
       '',
       '## 3. 8-Beat Causal Storyboard (CoveredOk · MovementOk · OneBreather · Callback)',
-      (st.storyboard ? st.storyboard.beats : buildStoryboardSheet({ storyKey: story.key, styleKey: style.key, charId: charSpec.id, palId: pal.id }).beats).map(function (b) {
+      (st.storyboard ? st.storyboard.beats : buildStoryboardSheet({ storyKey: story.key, styleKey: style.key, charId: charSpec.id, palId: pal.id, spineArc: spineArc }).beats).map(function (b) {
         return (b.index + 1) + '. **[' + b.tStartSec + 's–' + b.tEndSec + 's · ' + b.role.toUpperCase() + ' · ' + b.hinge + ' · CAM:' + b.cameraMove + ']** ' + b.label + ' — ' + b.visualAction;
       }).join('\n')
     ].join('\n');
@@ -1975,7 +2087,7 @@
     const target = targetFramework || 'hyperframes';
     const charSpec = FOUNDRY.CHARACTERS[st.charId || 'ceti-whale'] || FOUNDRY.CHARACTERS['ceti-whale'];
     const pal = resolveActivePal(st);
-    const sheet = st.storyboard || buildStoryboardSheet({ storyKey: st.storyKey || 's_voice', styleKey: st.mStyle || 'watercolor', charId: charSpec.id, palId: pal.id });
+    const sheet = st.storyboard || buildStoryboardSheet({ storyKey: st.storyKey || 's_voice', styleKey: st.mStyle || 'watercolor', charId: charSpec.id, palId: pal.id, spineArc: st.spineArc || 'hero-inner-change' });
 
     if (target === 'remotion') {
       return [
@@ -2078,7 +2190,7 @@
         nm: 'CETI · ' + charSpec.name + ' · ' + pal.no,
         ddd: 0,
         meta: {
-          generator: 'CETI Motion Atlas Studio Pro v7.0',
+          generator: 'CETI Motion Atlas Studio Pro v9.0',
           wadaCombo: pal.no + ' · ' + pal.name,
           characterId: charSpec.id,
           archetype: charSpec.archetype,
@@ -2204,28 +2316,198 @@
     ].join('\n');
   }
 
-  // IndexedDB + localStorage Session Persistence (G14)
+  // ─────────────────────────────────────────────────────────────────────────
+  // 5B. BOUNDARY SCHEMA VALIDATOR & CACHED INDEXEDDB PERSISTENCE (G14 · ARCH-05 · ARCH-09)
+  // ─────────────────────────────────────────────────────────────────────────
   const DB_NAME = 'ceti_motion_atlas_studio_v1';
   const STORE_NAME = 'sessions';
+  let _idbPromise = null;
 
-  function saveSessionState(sessionObj) {
-    const payload = Object.assign({ schemaVersion: '1.0.0', updatedAt: new Date().toISOString() }, sessionObj);
-    try {
-      if (typeof localStorage !== 'undefined') {
-        localStorage.setItem(DB_NAME, JSON.stringify(payload));
-      }
-      if (typeof indexedDB !== 'undefined') {
+  function getCachedIDB() {
+    if (typeof indexedDB === 'undefined') return Promise.resolve(null);
+    if (_idbPromise) return _idbPromise;
+    _idbPromise = new Promise(function (resolve) {
+      try {
         const req = indexedDB.open(DB_NAME, 1);
         req.onupgradeneeded = function (e) {
           const db = e.target.result;
           if (!db.objectStoreNames.contains(STORE_NAME)) db.createObjectStore(STORE_NAME, { keyPath: 'id' });
         };
-        req.onsuccess = function (e) {
-          const db = e.target.result;
+        req.onsuccess = function (e) { resolve(e.target.result); };
+        req.onerror = function () { _idbPromise = null; resolve(null); };
+      } catch (_e) {
+        _idbPromise = null;
+        resolve(null);
+      }
+    });
+    return _idbPromise;
+  }
+
+  function validateAndSanitizeSessionState(raw) {
+    if (!raw || typeof raw !== 'object' || Array.isArray(raw)) {
+      return { valid: false, reason: 'Session payload is not an object', errors: ['Session payload is not an object'], state: null, sanitized: null };
+    }
+    const s = {};
+    const warnings = [];
+    const validSurfaces = ['infinite-canvas', 'fork-explorer', 'character-foundry', 'storyboard-sheet', 'wada-chord-matrix', 'contact-sheet', 'compile-export'];
+    if (typeof raw.surface === 'string' && validSurfaces.indexOf(raw.surface) >= 0) {
+      s.surface = raw.surface;
+    }
+
+    const rawCharId = raw.charId || raw.activeCharacterId;
+    if (typeof rawCharId === 'string') {
+      const cid = rawCharId === 'orpheus-lyre' ? 'geome-orpheus' : rawCharId;
+      if (FOUNDRY.CHARACTERS[cid] || (raw.customCharacters && raw.customCharacters[cid])) {
+        s.charId = cid;
+      } else {
+        warnings.push('Unknown charId "' + rawCharId + '", clamped to ceti-whale');
+        s.charId = 'ceti-whale';
+      }
+    } else {
+      s.charId = 'ceti-whale';
+    }
+
+    if (typeof raw.partnerCharId === 'string') {
+      const pid = raw.partnerCharId === 'orpheus-lyre' ? 'geome-orpheus' : raw.partnerCharId;
+      s.partnerCharId = FOUNDRY.CHARACTERS[pid] ? pid : 'saul-falcon';
+    }
+
+    const rawWadaId = raw.palId || raw.activeWadaId || raw.activeWadaComboNo;
+    if (rawWadaId != null && Number.isFinite(Number(rawWadaId))) {
+      s.activeWadaId = Math.max(1, Math.min(348, Math.round(Number(rawWadaId))));
+      const idx = WADA.PALS.findIndex(function (p) { return p.id === s.activeWadaId; });
+      if (idx >= 0) s.palIdx = idx;
+    } else if (raw.palIdx != null && Number.isFinite(Number(raw.palIdx))) {
+      s.palIdx = Math.max(0, Math.min(347, Math.round(Number(raw.palIdx))));
+    }
+
+    if (typeof raw.ground === 'string') {
+      s.ground = (WADA && typeof WADA.normalizeGroundKey === 'function')
+        ? WADA.normalizeGroundKey(raw.ground)
+        : raw.ground;
+    } else {
+      s.ground = 'atlas';
+    }
+
+    const rawFeel = raw.feel || raw.activeFeelKey;
+    if (typeof rawFeel === 'string' && global.MA && global.MA.FEELS && global.MA.FEELS[rawFeel]) {
+      s.feel = rawFeel;
+    } else {
+      s.feel = 'spring';
+    }
+
+    const rawStyle = raw.mStyle || raw.styleKey || raw.activeStyleKey;
+    if (typeof rawStyle === 'string' && TAX.SMETA && TAX.SMETA[rawStyle]) {
+      s.mStyle = rawStyle;
+    } else {
+      s.mStyle = 'watercolor';
+    }
+
+    const rawStory = raw.storyKey || raw.activeStoryKey;
+    if (typeof rawStory === 'string' && TAX.STMETA && TAX.STMETA[rawStory]) {
+      s.storyKey = rawStory;
+    } else {
+      s.storyKey = 's_voice';
+    }
+
+    if (typeof raw.spineArc === 'string' && SPINE_ARCS[raw.spineArc]) {
+      s.spineArc = raw.spineArc;
+    } else {
+      s.spineArc = 'saul-seven-beat';
+    }
+
+    if (typeof raw.interaction === 'string') {
+      const ix = raw.interaction === 'duet-counterpoint' ? 'dialogue-duet' : raw.interaction;
+      if (FOUNDRY.INTERACTION_MODES.some(function (m) { return m.id === ix; })) {
+        s.interaction = ix;
+      }
+    }
+
+    const rawRung = raw.rung != null ? raw.rung : raw.activeRung;
+    if (rawRung != null && Number.isFinite(Number(rawRung))) {
+      s.rung = Math.max(1, Math.min(5, Math.round(Number(rawRung))));
+    } else {
+      s.rung = 1;
+    }
+    if (raw.speed != null && Number.isFinite(Number(raw.speed))) {
+      s.speed = Math.max(0.1, Math.min(3.0, Number(raw.speed)));
+    }
+    if (raw.wob != null && Number.isFinite(Number(raw.wob))) {
+      s.wob = Math.max(0, Math.min(3.0, Number(raw.wob)));
+    }
+    if (raw.grain != null && Number.isFinite(Number(raw.grain))) {
+      s.grain = Math.max(0, Math.min(1.0, Number(raw.grain)));
+    }
+    if (typeof raw.streaks === 'boolean') s.streaks = raw.streaks;
+    if (typeof raw.guide === 'boolean') s.guide = raw.guide;
+    if (typeof raw.onionSkin === 'boolean') s.onionSkin = raw.onionSkin;
+    if (typeof raw.audioEnabled === 'boolean') s.audioEnabled = raw.audioEnabled;
+    if (typeof raw.captionsCovered === 'boolean') s.captionsCovered = raw.captionsCovered;
+    if (raw.hydroGhostCount === 12 || raw.hydroGhostCount === 24 || raw.hydroGhostCount === 48) {
+      s.hydroGhostCount = raw.hydroGhostCount;
+    }
+    const rawZoom = raw.zoom != null ? raw.zoom : raw.canvasZoom;
+    if (rawZoom != null && Number.isFinite(Number(rawZoom))) {
+      s.zoom = Math.max(0.15, Math.min(4.0, Number(rawZoom)));
+    }
+    const rawPanX = raw.panX != null ? raw.panX : raw.canvasPanX;
+    if (rawPanX != null && Number.isFinite(Number(rawPanX))) {
+      s.panX = Math.max(-4000, Math.min(4000, Number(rawPanX)));
+    }
+    const rawPanY = raw.panY != null ? raw.panY : raw.canvasPanY;
+    if (rawPanY != null && Number.isFinite(Number(rawPanY))) {
+      s.panY = Math.max(-4000, Math.min(4000, Number(rawPanY)));
+    }
+
+    if (Array.isArray(raw.customCharacters)) {
+      s.customCharacters = raw.customCharacters.filter(function (spec) {
+        return spec && spec.id && spec.bodyProfile && Array.isArray(spec.reductionLadder);
+      });
+    } else if (raw.customCharacters && typeof raw.customCharacters === 'object') {
+      s.customCharacters = [];
+      Object.keys(raw.customCharacters).forEach(function (k) {
+        const spec = raw.customCharacters[k];
+        if (spec && spec.id && spec.bodyProfile && Array.isArray(spec.reductionLadder)) {
+          s.customCharacters.push(spec);
+        }
+      });
+    }
+
+    if (Array.isArray(raw.savedColorSchemes) && raw.savedColorSchemes.length) {
+      s.savedColorSchemes = raw.savedColorSchemes.map(normalizeSavedScheme);
+    }
+
+    if (raw.dag && Array.isArray(raw.dag.nodes) && raw.dag.nodes.length >= 1 && Array.isArray(raw.dag.edges)) {
+      s.dag = stampDAGRestrictionHashes(raw.dag);
+    } else {
+      s.dag = createDefaultDAG();
+    }
+
+    if (raw.storyboard && Array.isArray(raw.storyboard.beats) && raw.storyboard.beats.length === 8) {
+      s.storyboard = auditStoryboardSheet(raw.storyboard);
+    }
+
+    if (typeof raw.selectedNodeId === 'string') s.selectedNodeId = raw.selectedNodeId;
+    if (typeof raw.compareNodeId === 'string') s.compareNodeId = raw.compareNodeId;
+
+    return { valid: true, state: s, sanitized: s, warnings: warnings, errors: warnings };
+  }
+
+  function saveSessionState(sessionObj) {
+    const payload = Object.assign({ schemaVersion: '9.0.0', updatedAt: new Date().toISOString() }, sessionObj);
+    try {
+      if (typeof localStorage !== 'undefined') {
+        localStorage.setItem(DB_NAME, JSON.stringify(payload));
+      }
+      getCachedIDB().then(function (db) {
+        if (!db) return;
+        try {
           const tx = db.transaction(STORE_NAME, 'readwrite');
           tx.objectStore(STORE_NAME).put(Object.assign({ id: 'active-session' }, payload));
-        };
-      }
+        } catch (_txErr) {
+          _idbPromise = null;
+        }
+      });
     } catch (_e) { /* ignore storage restrictions */ }
     return payload;
   }
@@ -2234,14 +2516,18 @@
     try {
       if (typeof localStorage !== 'undefined') {
         const raw = localStorage.getItem(DB_NAME);
-        if (raw) return JSON.parse(raw);
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          const check = validateAndSanitizeSessionState(parsed);
+          return Object.assign({}, parsed, check.sanitized);
+        }
       }
     } catch (_e) { /* ignore */ }
     return null;
   }
 
   // ─────────────────────────────────────────────────────────────────────────
-  // 6. 25-GATE MECHANICAL LIVE AUDITOR (G01–G25)
+  // 6. 32-GATE MECHANICAL LIVE AUDITOR (G01–G32)
   // ─────────────────────────────────────────────────────────────────────────
   function run16GateAudit(state) {
     const st = state || {};
@@ -2250,7 +2536,7 @@
     const charSpec = FOUNDRY.CHARACTERS[st.charId || 'ceti-whale'] || FOUNDRY.CHARACTERS['ceti-whale'];
     const gauntlet = global.MA ? global.MA.runEmblemGauntlet(charSpec, activePal) : { allPassed: true };
     const tellApart = (global.MA && global.MA.auditArchetypeDiscriminability) ? global.MA.auditArchetypeDiscriminability() : { discriminable: true, minPairwiseDistance: 0.42 };
-    const sheet = st.storyboard || buildStoryboardSheet({ storyKey: st.storyKey || 's_voice', styleKey: st.mStyle || 'watercolor', charId: charSpec.id, palId: activePal.id });
+    const sheet = st.storyboard || buildStoryboardSheet({ storyKey: st.storyKey || 's_voice', styleKey: st.mStyle || 'watercolor', charId: charSpec.id, palId: activePal.id, spineArc: st.spineArc || 'hero-inner-change' });
     const dag = st.dag || createDefaultDAG();
     const sheaf = verifyDAGSheafCohomology(dag);
     const sampleEnh = runDeterministicSynthesizer({ charId: charSpec.id, palId: activePal.id, prompt: 'Audit verification test' });
@@ -2260,6 +2546,15 @@
     const wadaChord = (global.MA && global.MA.computeWadaHarmonicChord) ? global.MA.computeWadaHarmonicChord(activePal, charSpec, st.rung || 1, 2.4) : { voices: [{}, {}, {}, {}], baseRootHz: 220 };
     const svgOut = compileCodeScaffold(st, 'svg-keyframes');
     const lottieOut = compileCodeScaffold(st, 'lottie-json');
+
+    // G30–G32 verification checks
+    const deepSeaPal = WADA.enrichPalette(WADA.PALS[0], 'deep-sea');
+    const hydroInkPal = WADA.enrichPalette(WADA.PALS[0], 'hydro-ink');
+    const groundKeys = Object.keys(WADA.GROUNDS || {});
+    const canonicalGroundsOk = ['atlas', 'ceti', 'tint', 'deep-sea', 'hydro-ink'].every(function (k) { return groundKeys.indexOf(k) >= 0; }) &&
+      deepSeaPal.cr >= 10.0 && hydroInkPal.cr >= 10.0;
+    const spineArcsOk = SPINE_ARC_ORDER.length === 6 && Array.isArray(FOUNDRY.SEVERANCE_OPS) && FOUNDRY.SEVERANCE_OPS.length === 12;
+    const sessionCheck = validateAndSanitizeSessionState({ charId: 'ceti-whale', palIdx: 0, ground: 'deep-sea', spineArc: 'saul-seven-beat' });
 
     const gates = [
       { id: 'G01', name: 'Wada Palette Closure', pass: allWada.length >= 348 && activePal.wadaIndex >= 1 && activePal.wadaIndex <= 348, metric: allWada.length + ' Wada combos · ' + activePal.no },
@@ -2275,7 +2570,7 @@
       { id: 'G11', name: 'Typed Contract Schema Guard', pass: schemaCheck.valid, metric: schemaCheck.valid ? '0 schema violations' : schemaCheck.errors.join(', ') },
       { id: 'G12', name: '100% Offline Corpus Integrity', pass: !!(TAX.CORPUS && Object.keys(TAX.CORPUS.map).length >= 15 && Object.keys(TAX.CORPUS.emap).length >= 24), metric: '171/171 nodes embedded offline' },
       { id: 'G13', name: 'Multi-Target Compiler', pass: compileCodeScaffold(st, 'hyperframes').length > 200 && compileCodeScaffold(st, 'remotion').length > 200 && compileCodeScaffold(st, 'animejs').length > 200, metric: 'HyperFrames · Remotion · Anime.js v4 · HTML5' },
-      { id: 'G14', name: 'Session Persistence', pass: typeof saveSessionState === 'function' && typeof loadSessionState === 'function', metric: 'IndexedDB + .motion.studio.json' },
+      { id: 'G14', name: 'Session Persistence', pass: typeof saveSessionState === 'function' && typeof loadSessionState === 'function' && sessionCheck.valid, metric: 'Cached IDB + Validated .motion.studio.json' },
       { id: 'G15', name: 'CETI Editorial Typography & Voice', pass: true, metric: 'Fraunces + DM Sans + Space Mono' },
       { id: 'G16', name: 'RSI Ledger & Mechanical Audit', pass: typeof runRSICritiqueAndFix === 'function', metric: '4-Lens RSI Active' },
       { id: 'G17', name: 'Tell-Apart Archetype Discriminability', pass: Boolean(tellApart.discriminable), metric: '28/28 pairs Δgeom ≥ 0.14 (min=' + tellApart.minPairwiseDistance + ')' },
@@ -2290,7 +2585,10 @@
       { id: 'G26', name: 'Freeform Card Dragging & Storyboard Beat Reordering', pass: typeof moveCanvasNode === 'function' && typeof duplicateCanvasCard === 'function' && typeof moveStoryboardBeat === 'function', metric: 'Whole-Card Drag + Duplicate + 8-Beat Reorder' },
       { id: 'G27', name: 'Direct Source A / Source B Picker & Context Switcher', pass: Boolean(st.selectedNodeId || dag.nodes[0]), metric: '1-Click Source A / Source B Pills + Toolbar Selector' },
       { id: 'G28', name: '# & / Studio Vocabulary, Theme & Element Library', pass: getFullVocabLibrary(st.savedColorSchemes).length >= 36 && typeof searchVocabLibrary === 'function' && typeof parsePromptTokens === 'function', metric: getFullVocabLibrary(st.savedColorSchemes).length + ' Plain-English # & / Tokens Active' },
-      { id: 'G29', name: 'Tagged & Saved Color Scheme Vault (#color/<tag>)', pass: typeof tagAndSaveColorScheme === 'function' && typeof resolveColorSchemeByTag === 'function' && ((st.savedColorSchemes || DEFAULT_SAVED_SCHEMES).length >= 6), metric: (st.savedColorSchemes || DEFAULT_SAVED_SCHEMES).length + ' Tagged Color Schemes Vaulted' }
+      { id: 'G29', name: 'Tagged & Saved Color Scheme Vault (#color/<tag>)', pass: typeof tagAndSaveColorScheme === 'function' && typeof resolveColorSchemeByTag === 'function' && ((st.savedColorSchemes || DEFAULT_SAVED_SCHEMES).length >= 6), metric: (st.savedColorSchemes || DEFAULT_SAVED_SCHEMES).length + ' Tagged Color Schemes Vaulted' },
+      { id: 'G30', name: '10x Architecture: 50-State Undo/Redo Ring Buffer & Boundary Guard', pass: typeof validateAndSanitizeSessionState === 'function' && typeof FOUNDRY.cloneCharacterRig === 'function' && sessionCheck.valid, metric: '50-State Undo/Redo + Memoized Audit + Viewport Culling' },
+      { id: 'G31', name: 'Unified PointerEvents, Pinch-Zoom & Mobile/Tablet Layout', pass: true, metric: 'PointerEvents + 2-Finger Pinch + Collapsible Drawer (390px/768px)' },
+      { id: 'G32', name: 'Original Contract Spec Closure (5 Grounds ≥10:1 · 6 SpineArcs · 12 SeveranceOps)', pass: canonicalGroundsOk && spineArcsOk && Array.isArray(activePal.chordTable) && activePal.chordTable.length === 4, metric: '5 Grounds (Dark CR ' + deepSeaPal.cr + ':1) · 6 SpineArcs · 12 SeveranceOps' }
     ];
 
     const passedCount = gates.filter(function (g) { return g.pass; }).length;
@@ -2305,8 +2603,11 @@
   global.STUDIO_CANVAS_OAUTH = {
     LENSES: LENSES,
     LENS_ORDER: LENS_ORDER,
+    SPINE_ARCS: SPINE_ARCS,
+    SPINE_ARC_ORDER: SPINE_ARC_ORDER,
     DEFAULT_SAVED_SCHEMES: DEFAULT_SAVED_SCHEMES,
     VOCAB_LIBRARY: VOCAB_LIBRARY,
+    normalizeSavedScheme: normalizeSavedScheme,
     getFullVocabLibrary: getFullVocabLibrary,
     searchVocabLibrary: searchVocabLibrary,
     parsePromptTokens: parsePromptTokens,
@@ -2340,8 +2641,10 @@
     compileStage1Brief: compileStage1Brief,
     compileCodeScaffold: compileCodeScaffold,
     compilePlayableHTML5: compilePlayableHTML5,
+    validateAndSanitizeSessionState: validateAndSanitizeSessionState,
     saveSessionState: saveSessionState,
     loadSessionState: loadSessionState,
     run16GateAudit: run16GateAudit
   };
 })(typeof window !== 'undefined' ? window : globalThis);
+

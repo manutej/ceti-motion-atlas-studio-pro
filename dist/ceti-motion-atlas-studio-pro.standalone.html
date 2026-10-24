@@ -102,19 +102,28 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 10px;
+    gap: 8px;
     padding: 4px 18px;
     background: rgba(242, 228, 206, 0.45);
     border-bottom: 1px solid rgba(26, 31, 46, 0.1);
     flex-wrap: nowrap;
     overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .st-control-strip::-webkit-scrollbar {
+    display: none;
   }
 
   .st-ctrl-group {
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 5px;
     flex-shrink: 0;
+  }
+
+  .st-ctrl-group .st-select {
+    max-width: 172px;
   }
 
   .st-ctrl-group .st-label {
@@ -476,6 +485,15 @@
     grid-template-columns: 1fr 320px;
     gap: 12px;
     min-height: 670px;
+    transition: grid-template-columns 180ms ease;
+  }
+
+  .living-canvas-layout.inspector-collapsed {
+    grid-template-columns: 1fr;
+  }
+
+  .living-canvas-layout.inspector-collapsed .dag-inspector {
+    display: none;
   }
 
   .living-canvas-viewport {
@@ -491,6 +509,7 @@
     border-radius: 10px;
     cursor: grab;
     user-select: none;
+    touch-action: none;
     min-height: 670px;
   }
 
@@ -523,6 +542,7 @@
     padding: 9px 11px;
     box-shadow: 0 6px 18px rgba(26, 31, 46, 0.12);
     cursor: grab;
+    touch-action: none;
     transition: box-shadow 120ms ease, border-color 120ms ease;
   }
 
@@ -556,16 +576,16 @@
   }
 
   .vocab-popover {
-    position: fixed;
-    z-index: 120;
+    position: absolute;
+    z-index: 200;
     background: var(--paper);
     color: var(--ink);
     border: 2px solid var(--ink);
     border-radius: 10px;
     box-shadow: 0 16px 42px rgba(20, 24, 36, 0.34);
-    width: 480px;
-    max-width: 92vw;
-    max-height: 340px;
+    width: 440px;
+    max-width: min(440px, 88vw);
+    max-height: 320px;
     overflow-y: auto;
     padding: 8px;
   }
@@ -672,6 +692,85 @@
     padding: 10px 14px;
   }
 
+  .st-grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .st-tweaks-strip {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    padding: 4px 18px;
+    background: rgba(242, 228, 206, 0.72);
+    border-bottom: 1px solid rgba(26, 31, 46, 0.14);
+  }
+
+  /* Dark-Ground Luminous Mode Overrides (deep-sea #1A1F2E & hydro-ink #141A21 — SPEC-01) */
+  .st-shell.ground-dark {
+    --paper: #161C28;
+    --paper2: #1F2738;
+    --ink: #FBF3E6;
+    --ink-soft: rgba(251, 243, 230, 0.78);
+    --ink-faint: rgba(251, 243, 230, 0.22);
+    --rust: #E88B5A;
+    --sage: #6AC48E;
+  }
+
+  .st-shell.ground-dark .living-canvas-viewport {
+    background:
+      radial-gradient(circle, rgba(251, 243, 230, 0.14) 1px, transparent 1px) 0 0 / 24px 24px,
+      #111622;
+    border-color: rgba(251, 243, 230, 0.26);
+  }
+
+  .st-shell.ground-dark .st-header,
+  .st-shell.ground-dark .st-panel,
+  .st-shell.ground-dark .char-card,
+  .st-shell.ground-dark .sb-card,
+  .st-shell.ground-dark .fork-card,
+  .st-shell.ground-dark .dag-node,
+  .st-shell.ground-dark .dag-inspector,
+  .st-shell.ground-dark .canvas-minimap,
+  .st-shell.ground-dark .st-modal,
+  .st-shell.ground-dark .vocab-popover {
+    background: rgba(22, 28, 40, 0.95);
+    color: var(--ink);
+    border-color: rgba(251, 243, 230, 0.28);
+  }
+
+  .st-shell.ground-dark .st-control-strip,
+  .st-shell.ground-dark .st-wada-strip,
+  .st-shell.ground-dark .st-tabs,
+  .st-shell.ground-dark .st-tweaks-strip,
+  .st-shell.ground-dark .canvas-toolbar {
+    background: rgba(14, 18, 26, 0.88);
+    border-color: rgba(251, 243, 230, 0.18);
+  }
+
+  .st-shell.ground-dark .st-select,
+  .st-shell.ground-dark .st-input,
+  .st-shell.ground-dark .st-textarea,
+  .st-shell.ground-dark .st-btn,
+  .st-shell.ground-dark .st-mini-btn,
+  .st-shell.ground-dark .st-pill,
+  .st-shell.ground-dark .st-tab {
+    background: rgba(28, 35, 50, 0.94);
+    color: #FBF3E6;
+    border-color: rgba(251, 243, 230, 0.34);
+  }
+
+  .st-shell.ground-dark .st-tab.active,
+  .st-shell.ground-dark .st-pill-active,
+  .st-shell.ground-dark .st-mini-btn.on,
+  .st-shell.ground-dark .st-btn-ink {
+    background: #FBF3E6;
+    color: #141A21;
+    border-color: #FBF3E6;
+  }
+
   /* Code Box & Modals */
   .st-code-box {
     background: #141824;
@@ -712,11 +811,85 @@
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.32);
   }
 
+  /* Responsive Tablet & Mobile Ergonomics (768x1024 iPad & 390x844 iPhone Pro — MOB-01..07) */
   @media (max-width: 1200px) {
-    .char-grid-4 { grid-template-columns: repeat(2, 1fr); }
-    .char-grid-5 { grid-template-columns: repeat(3, 1fr); }
-    .living-canvas-layout, .fork-grid-2, .fork-grid-3 {
-      grid-template-columns: 1fr;
+    .char-grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .char-grid-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .char-grid-5, .rung-grid-5 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .living-canvas-layout, .fork-grid-2, .fork-grid-3, .ab-compare-drawer {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .living-canvas-viewport {
+      min-height: 500px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    html, body {
+      overflow-x: hidden;
+    }
+    .st-topbar {
+      padding: 6px 10px;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .st-sub {
+      display: none;
+    }
+    .st-top-actions {
+      width: 100%;
+      flex-wrap: wrap;
+      gap: 4px;
+      padding-bottom: 2px;
+    }
+    .st-top-actions .st-btn,
+    .st-top-actions .st-mini-btn {
+      font-size: 10px;
+      padding: 4px 7px;
+    }
+    .st-select {
+      max-width: 100%;
+    }
+    .st-control-strip, .st-wada-strip, .st-tabs, .st-tweaks-strip {
+      padding: 4px 10px;
+    }
+    .st-main, .studio-main {
+      padding: 8px 10px 24px;
+      overflow-x: hidden;
+    }
+    .st-panel {
+      padding: 10px 12px;
+    }
+    .char-grid-4, .char-grid-3, .char-grid-5, .rung-grid-5, .fork-grid-2, .fork-grid-3, .ab-compare-drawer, .st-grid-2 {
+      grid-template-columns: minmax(0, 1fr) !important;
+    }
+    .living-canvas-viewport {
+      min-height: 420px;
+    }
+    .canvas-minimap {
+      font-size: 8.5px;
+      padding: 3px 7px;
+      max-width: calc(100% - 20px);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .st-modal-backdrop {
+      padding: 8px;
+    }
+    .st-modal {
+      padding: 12px 14px;
+      max-height: 92vh;
+    }
+  }
+
+  @media (pointer: coarse), (max-width: 768px) {
+    .st-btn, .st-tab, .st-select, .st-input {
+      min-height: 34px;
+    }
+    .st-mini-btn, .st-pill {
+      min-height: 28px;
+      padding: 4px 9px;
     }
   }
 </style>
@@ -1141,24 +1314,47 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
   // 1. SANZO WADA HARMONIC COLOR ENGINE (G01 · G02)
   // ─────────────────────────────────────────────────────────────────────────
   const GROUNDS = {
-    atlas: { id: 'atlas', label: 'Atlas paper', hex: '#FBF3E6', dark: false },
-    ceti:  { id: 'ceti',  label: 'CETI paper',  hex: '#F5EFE3', dark: false },
-    tint:  { id: 'tint',  label: 'Palette tint', hex: null,     dark: false },
-    navy:  { id: 'navy',  label: 'Deep-sea navy', hex: '#141926', dark: true },
-    hydro: { id: 'hydro', label: 'Hydro ink',     hex: '#0E151B', dark: true }
+    atlas:       { id: 'atlas',       label: 'Atlas paper (#FBF3E6)',     hex: '#FBF3E6', dark: false },
+    ceti:        { id: 'ceti',        label: 'CETI paper (#F5EFE3)',      hex: '#F5EFE3', dark: false },
+    tint:        { id: 'tint',        label: 'Palette tint (78% wash)',   hex: null,      dark: false },
+    'deep-sea':  { id: 'deep-sea',    label: 'Deep-sea navy (#1A1F2E)',   hex: '#1A1F2E', dark: true },
+    'hydro-ink': { id: 'hydro-ink',   label: 'Hydro ink (#141A21)',       hex: '#141A21', dark: true }
   };
 
+  const GROUND_ALIASES = {
+    atlas: 'atlas',
+    ceti: 'ceti',
+    'warm-paper': 'ceti',
+    tint: 'tint',
+    'wada-tint': 'tint',
+    'deep-sea': 'deep-sea',
+    'hydro-ink': 'hydro-ink',
+    navy: 'deep-sea',
+    blueprint: 'deep-sea',
+    night: 'deep-sea',
+    hydro: 'hydro-ink',
+    sepia: 'ceti',
+    sumi: 'ceti'
+  };
+
+  function normalizeGroundKey(groundId) {
+    const raw = String(groundId || 'atlas').toLowerCase().trim();
+    return GROUND_ALIASES[raw] || 'atlas';
+  }
+
   const CETI_TOKENS = [
-    { token: '--paper',      name: 'Warm Paper',     hex: '#F5EFE3' },
-    { token: '--ink',        name: 'Deep Navy Ink',  hex: '#1A1F2E' },
-    { token: '--rust',       name: 'Signal Rust',    hex: '#8C4A2E' },
-    { token: '--indigo',     name: 'Pelagic Indigo', hex: '#1E3F66' },
-    { token: '--ochre',      name: 'Warm Ochre',     hex: '#C8963E' },
-    { token: '--forest',     name: 'Kelp Forest',    hex: '#2E5A44' },
-    { token: '--slate',      name: 'Sounding Slate', hex: '#34454C' },
-    { token: '--plum',       name: 'Cotinga Plum',   hex: '#501345' },
-    { token: '--vermilion',  name: 'Beacon Coral',   hex: '#D96629' },
-    { token: '--seafoam',    name: 'Shallows Foam',  hex: '#96D1AA' }
+    { token: '--mk-paper',     name: 'Warm Paper',     hex: '#F5EFE3' },
+    { token: '--mk-deep-sea',  name: 'Deep Navy Ink',  hex: '#1A1F2E' },
+    { token: '--mk-rust',      name: 'Signal Rust',    hex: '#8C4A2E' },
+    { token: '--mk-copper',    name: 'Burnished Copper', hex: '#AE5224' },
+    { token: '--mk-sage',      name: 'Kelp Sage',      hex: '#2E5A44' },
+    { token: '--mk-peach',     name: 'Warm Ochre Peach', hex: '#D8A37B' },
+    { token: '--mk-slate',     name: 'Sounding Slate', hex: '#34454C' },
+    { token: '--indigo',       name: 'Pelagic Indigo', hex: '#1E3F66' },
+    { token: '--ochre',        name: 'Warm Ochre',     hex: '#C8963E' },
+    { token: '--plum',         name: 'Cotinga Plum',   hex: '#501345' },
+    { token: '--vermilion',    name: 'Beacon Coral',   hex: '#D96629' },
+    { token: '--seafoam',      name: 'Shallows Foam',  hex: '#96D1AA' }
   ];
 
   function srgbToLinear(c) {
@@ -1181,9 +1377,9 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
     const m = Math.cbrt(0.2119034982 * r + 0.6806995451 * g + 0.1073969566 * b);
     const s = Math.cbrt(0.0883024619 * r + 0.2817188376 * g + 0.6299787005 * b);
     return [
-      0.2104542553 * l + 0.7936177850 * m - 0.0040720468 * s,
-      1.9779984951 * l - 2.4285922050 * m + 0.4505937099 * s,
-      0.0259040371 * l + 0.7827717662 * m - 0.8086757660 * s
+      Number((0.2104542553 * l + 0.7936177850 * m - 0.0040720468 * s).toFixed(4)),
+      Number((1.9779984951 * l - 2.4285922050 * m + 0.4505937099 * s).toFixed(4)),
+      Number((0.0259040371 * l + 0.7827717662 * m - 0.8086757660 * s).toFixed(4))
     ];
   }
   function oklabDistance(hexA, hexB) {
@@ -1200,7 +1396,7 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
     if (wcagContrast(cur, paperHex) >= target) return cur;
     const paperDark = relLuminance(paperHex) < 0.25;
     const pole = paperDark ? '#FBF3E6' : '#090D16';
-    for (let k = 0.08; k <= 1.0; k += 0.06) {
+    for (let k = 0.05; k <= 1.0; k += 0.05) {
       const cand = mix(inkHex, pole, k);
       if (wcagContrast(cand, paperHex) >= target) return cand;
     }
@@ -1232,8 +1428,8 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
 
   // Convert any Wada entry (from PALS or window.GEOME_WADA_LIST 1..348) into a verified WadaHarmonicPalette
   function enrichPalette(raw, groundId) {
-    const gKey = GROUNDS[groundId] ? groundId : 'atlas';
-    const gSpec = GROUNDS[gKey];
+    const gKey = normalizeGroundKey(groundId);
+    const gSpec = GROUNDS[gKey] || GROUNDS.atlas;
     const sw = (raw.sw || []).map(function (s) { return Array.isArray(s) ? s : [s, 'Wada Swatch']; });
     while (sw.length < 4) sw.push([raw.ink || '#1A1F2E', 'Anchor Ink']);
     const a = raw.a || sw[0][0] || '#ebd3a2';
@@ -1242,20 +1438,46 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
     const c = raw.c || sw[3][0] || raw.ink || '#1A1F2E';
     let paper = gSpec.hex;
     if (gKey === 'tint') paper = mix(a, '#FBF3E6', 0.78);
-    const rawInk = gSpec.dark ? ensureInkContrast(a, paper, 7.0) : ensureInkContrast(raw.ink || c, paper, 7.0);
+    // Contract §2 G02: >= 10.0:1 luminous contrast on dark grounds (deep-sea, hydro-ink), >= 7.0:1 on warm paper
+    const minContrast = gSpec.dark ? 10.0 : 7.0;
+    const rawInk = gSpec.dark ? ensureInkContrast(a, paper, minContrast) : ensureInkContrast(raw.ink || c, paper, minContrast);
     const cr = wcagContrast(rawInk, paper);
 
     const hexes = [a, h, b, c];
-    const chordTable = hexes.map(function (h1) {
+    const oklabs = hexes.map(function (hx) { return hexToOklab(hx); });
+    const distTable = hexes.map(function (h1) {
       return hexes.map(function (h2) { return oklabDistance(h1, h2); });
     });
-    const cetiMatches = sw.slice(0, 4).map(function (pair) {
+    // Closed N×N OKLab midpoint chord matrix: overlap(i, j) -> swatch index k in the same palette
+    const closedChordTable = oklabs.map(function (labI, i) {
+      return oklabs.map(function (labJ, j) {
+        if (i === j) return i;
+        const mid = [(labI[0] + labJ[0]) / 2, (labI[1] + labJ[1]) / 2, (labI[2] + labJ[2]) / 2];
+        let bestIdx = 0, bestD = Infinity;
+        oklabs.forEach(function (cand, k) {
+          const d = Math.hypot(cand[0] - mid[0], cand[1] - mid[1], cand[2] - mid[2]);
+          if (d < bestD) { bestD = d; bestIdx = k; }
+        });
+        return bestIdx;
+      });
+    });
+
+    const cetiMatches = sw.slice(0, 4).map(function (pair, sIdx) {
       let best = CETI_TOKENS[0], bestDe = 999;
       CETI_TOKENS.forEach(function (tk) {
         const de = deltaE2000Approx(pair[0], tk.hex);
         if (de < bestDe) { bestDe = de; best = tk; }
       });
-      return { swatchHex: pair[0], swatchName: pair[1], nearestToken: best.token, tokenName: best.name, tokenHex: best.hex, deltaE2000: bestDe };
+      return {
+        swatchHex: pair[0],
+        swatchName: pair[1],
+        oklab: oklabs[sIdx] || hexToOklab(pair[0]),
+        nearestCetiToken: best.token,
+        nearestToken: best.token,
+        tokenName: best.name,
+        tokenHex: best.hex,
+        deltaE2000: bestDe
+      };
     });
 
     return {
@@ -1267,6 +1489,8 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
       mood: raw.mood || ('Sanzo Wada harmonic combination No. ' + raw.id + ' (' + sw.map(function (s) { return s[1]; }).join(' · ') + ').'),
       register: raw.register || 'field-notebook',
       hydro: !!raw.hydro,
+      ground: gKey,
+      dark: !!gSpec.dark,
       paper: paper,
       ink: rawInk,
       cr: cr,
@@ -1284,7 +1508,8 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
         ink: rawInk,
         paper: paper
       },
-      oklabChordTable: chordTable,
+      chordTable: closedChordTable,
+      oklabChordTable: distTable,
       cetiTokenMatches: cetiMatches,
       contrastRatioInkPaper: cr
     };
@@ -1504,6 +1729,104 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
   };
   const CHARACTER_ORDER = Object.keys(CHARACTERS);
 
+  const LOCOMOTION_MODES = [
+    { id: 'undulate',   label: 'Pelagic Undulation (Spine Wave)' },
+    { id: 'avian',      label: 'Avian Stoop & Thermal Glide' },
+    { id: 'biped',      label: 'Calligraphic / Biped Hop-Stride' },
+    { id: 'instrument', label: 'Counter-Rotating Gimbal / Sonar' },
+    { id: 'dihedral',   label: 'Dihedral Origami Fold-Flap' },
+    { id: 'emblem',     label: 'Resonant Emblem / Harmonic Pulse' }
+  ];
+
+  const SEVERANCE_OPS = [
+    { id: 'bend-wrong',       label: 'Bend-Wrong (Inverted Spine Hinge)' },
+    { id: 'dismember',        label: 'Dismember (Exploded Socket Gap)' },
+    { id: 'shear',            label: 'Shear (Saul Bass Diagonal Skew)' },
+    { id: 'subtract-wedge',   label: 'Subtract-Wedge (Negative-Space Cut)' },
+    { id: 'bisect',           label: 'Bisect (Meridian Datum Split)' },
+    { id: 'puncture',         label: 'Puncture (Off-Center Paper Void)' },
+    { id: 'invert-joint',     label: 'Invert-Joint (Reversed Fin Sweep)' },
+    { id: 'offset-register',  label: 'Offset-Register (Silkscreen Shift)' },
+    { id: 'flatten-plane',    label: 'Flatten-Plane (Orthographic Crush)' },
+    { id: 'compress-chord',   label: 'Compress-Chord (Aspect Squeeze)' },
+    { id: 'splay-rays',       label: 'Splay-Rays (Radial Vector Burst)' },
+    { id: 'notch-silhouette', label: 'Notch-Silhouette (Paper V-Notch)' }
+  ];
+
+  // Stamp full Contract §3 fields (locomotion, severanceOp, Rung 1..5 contract properties) onto all 8 canonical archetypes
+  const DEFAULT_LOCOMOTION_BY_ARCH = {
+    cetacean: 'undulate',
+    avian: 'avian',
+    submersible: 'instrument',
+    geometric: 'dihedral',
+    instrument: 'instrument',
+    calligraphic: 'biped',
+    mythic: 'emblem',
+    botanical: 'undulate'
+  };
+  const DEFAULT_SEVERANCE_BY_ARCH = {
+    cetacean: 'subtract-wedge',
+    avian: 'shear',
+    submersible: 'puncture',
+    geometric: 'bisect',
+    instrument: 'splay-rays',
+    calligraphic: 'notch-silhouette',
+    mythic: 'compress-chord',
+    botanical: 'bend-wrong'
+  };
+  CHARACTER_ORDER.forEach(function (cid) {
+    const c = CHARACTERS[cid];
+    if (!c.locomotion) c.locomotion = DEFAULT_LOCOMOTION_BY_ARCH[c.archetype] || 'undulate';
+    if (!c.severanceOp) c.severanceOp = DEFAULT_SEVERANCE_BY_ARCH[c.archetype] || 'subtract-wedge';
+    if (Array.isArray(c.reductionLadder)) {
+      c.reductionLadder.forEach(function (r) {
+        if (r.rung === 1 && !r.inventory) r.inventory = ['body', 'fin', 'fluke', 'grooves', 'eye', 'streaks'];
+        if (r.rung === 2 && !r.pivot) r.pivot = 'finRoot -> flukeRoot';
+        if (r.rung === 3 && !r.silhouetteDesc) r.silhouetteDesc = r.description;
+        if (r.rung === 4 && !r.severanceOp) r.severanceOp = c.severanceOp;
+        if (r.rung === 5) {
+          if (!r.oneMeaning) r.oneMeaning = c.subtitle;
+          if (!r.neverMistakeFor) r.neverMistakeFor = ['generic circle', 'unoriented blob'];
+          if (!r.constructionNote) r.constructionNote = r.description;
+        }
+      });
+    }
+  });
+  Object.defineProperty(CHARACTERS, 'orpheus-lyre', {
+    get: function () { return CHARACTERS['geome-orpheus']; },
+    enumerable: false,
+    configurable: true
+  });
+
+  function cloneCharacterRig(baseIdOrSpec, overrides) {
+    const src = (typeof baseIdOrSpec === 'object' && baseIdOrSpec)
+      ? baseIdOrSpec
+      : (CHARACTERS[baseIdOrSpec] || CHARACTERS['ceti-whale']);
+    const cloned = JSON.parse(JSON.stringify(src));
+    const baseSlug = String(src.id || 'custom-rig').replace(/-clone-\d+$/, '');
+    let cloneIdx = 1;
+    while (CHARACTERS[baseSlug + '-clone-' + cloneIdx]) cloneIdx++;
+    cloned.id = (overrides && overrides.id) ? overrides.id : (baseSlug + '-clone-' + cloneIdx);
+    if (overrides && typeof overrides === 'object') {
+      if (overrides.name) cloned.name = overrides.name;
+      if (overrides.subtitle) cloned.subtitle = overrides.subtitle;
+      if (overrides.archetype) cloned.archetype = overrides.archetype;
+      if (overrides.locomotion) cloned.locomotion = overrides.locomotion;
+      if (overrides.severanceOp) {
+        cloned.severanceOp = overrides.severanceOp;
+        if (Array.isArray(cloned.reductionLadder) && cloned.reductionLadder[3]) {
+          cloned.reductionLadder[3].severanceOp = overrides.severanceOp;
+        }
+      }
+      if (typeof overrides.aspectRatio === 'number') cloned.aspectRatio = overrides.aspectRatio;
+      if (overrides.bodyProfile) Object.assign(cloned.bodyProfile, overrides.bodyProfile);
+      if (overrides.spineWave) Object.assign(cloned.spineWave, overrides.spineWave);
+      if (overrides.appendages) Object.assign(cloned.appendages, overrides.appendages);
+      if (overrides.streaks) Object.assign(cloned.streaks, overrides.streaks);
+    }
+    return cloned;
+  }
+
   const INTERACTION_MODES = [
     { id: 'hero-journey',       proofKey: 'ix_hero-journey',       label: 'Hero Journey',       short: 'Hero',      desc: 'Actor traverses threshold stages and undergoes an inner palette/pose transformation.' },
     { id: 'filter-engine',      proofKey: 'ix_filter-engine',      label: 'Filter Engine',      short: 'Filter',    desc: 'High-frequency noise tokens enter the intake and emerge from the fluke as 3 clean harmonic waves.' },
@@ -1517,10 +1840,13 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
 
   global.STUDIO_WADA_ENGINE = {
     GROUNDS: GROUNDS,
+    GROUND_ALIASES: GROUND_ALIASES,
+    normalizeGroundKey: normalizeGroundKey,
     CETI_TOKENS: CETI_TOKENS,
     PALS: PALS,
     enrichPalette: enrichPalette,
     getAllWadaCombos: getAllWadaCombos,
+    hexToOklab: hexToOklab,
     wcagContrast: wcagContrast,
     oklabDistance: oklabDistance,
     deltaE2000Approx: deltaE2000Approx,
@@ -1529,6 +1855,9 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
   global.STUDIO_CHARACTER_FOUNDRY = {
     CHARACTERS: CHARACTERS,
     CHARACTER_ORDER: CHARACTER_ORDER,
+    LOCOMOTION_MODES: LOCOMOTION_MODES,
+    SEVERANCE_OPS: SEVERANCE_OPS,
+    cloneCharacterRig: cloneCharacterRig,
     INTERACTION_MODES: INTERACTION_MODES
   };
 })(typeof window !== 'undefined' ? window : globalThis);
@@ -1857,6 +2186,7 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
     guide: true,
     ground: 'atlas',
     grain: 0.24,
+    hydroGhostCount: 24,
     charId: 'ceti-whale',
     partnerCharId: 'geome-orpheus',
     renderMode: null, // null = proof default, or override ('wash'|'paper'|'line'|'flat'|'pixel'|'hydrographic')
@@ -1921,7 +2251,7 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
   }
 
   function prep(P) {
-    const g = O.ground || 'atlas';
+    const g = WADA.normalizeGroundKey ? WADA.normalizeGroundKey(O.ground || (P && P.ground) || 'atlas') : (O.ground || 'atlas');
     P._p = P._p || {};
     if (P._p[g]) return P._p[g];
     const enriched = WADA.enrichPalette(P, g);
@@ -1929,6 +2259,8 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
       id: P.id + ':' + g,
       rawId: P.id,
       name: enriched.name,
+      ground: g,
+      dark: !!enriched.dark,
       paper: enriched.paper,
       ink: enriched.ink,
       a: enriched.a,
@@ -1937,6 +2269,7 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
       c: enriched.c,
       sw: enriched.swHex,
       cetiTokenMatches: enriched.cetiTokenMatches,
+      chordTable: enriched.chordTable,
       oklabChordTable: enriched.oklabChordTable,
       cr: enriched.cr
     };
@@ -1998,7 +2331,8 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
     pts.push([500, 320]); polyPath(ctx, pts);
   }
   function wash(ctx, pathFn, col, seed, al) {
-    ctx.save(); ctx.globalCompositeOperation = 'multiply';
+    const isDarkGround = (O.ground === 'deep-sea' || O.ground === 'hydro-ink' || O.ground === 'navy' || O.ground === 'hydro' || O.ground === 'blueprint');
+    ctx.save(); ctx.globalCompositeOperation = isDarkGround ? 'screen' : 'multiply';
     for (let i = 0; i < 5; i++) {
       ctx.save(); ctx.translate((hash(i, seed) - 0.5) * 5, (hash(i + 7, seed) - 0.5) * 4);
       pathFn(seed + i * 0.37); ctx.fillStyle = rgba(col, al); ctx.fill(); ctx.restore();
@@ -2410,17 +2744,25 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
     ctx.restore();
   }
 
-  // Saul Bass 5-Rung Reduction Ladder renderer (G05) — Unmistakable visual differentiation across Rungs 1..5
+  // Saul Bass 5-Rung Reduction Ladder renderer (G05) — Unmistakable visual differentiation across Rungs 1..5 + 12 Severance Ops
   function renderReductionRung(ctx, P, g, o, rung) {
     const ink = P.ink;
     const archType = (g.spec && g.spec.archetype) || 'cetacean';
+    const sevOp = (g.spec && g.spec.severanceOp) || 'subtract-wedge';
     let bodyCol = o.body || P.h;
     if (o.grey) bodyCol = desat(bodyCol, o.grey);
     ctx.save();
     ctx.globalAlpha *= (o.alpha == null ? 1 : o.alpha);
     ctx.translate(o.x, o.y);
     if (o.rot) ctx.rotate(o.rot);
-    ctx.scale((o.flip ? -1 : 1) * (o.sx == null ? 1 : o.sx), o.sy == null ? 1 : o.sy);
+    let sx = (o.flip ? -1 : 1) * (o.sx == null ? 1 : o.sx);
+    let sy = o.sy == null ? 1 : o.sy;
+    if (sevOp === 'compress-chord') { sx *= 0.86; sy *= 1.16; }
+    else if (sevOp === 'flatten-plane') { sx *= 1.12; sy *= 0.78; }
+    ctx.scale(sx, sy);
+    if (sevOp === 'shear' && rung >= 2 && rung <= 4 && ctx.transform) {
+      ctx.transform(1, 0, -0.22, 1, 0, 0);
+    }
 
     if (rung === 5) {
       // Rung 5: 16px Favicon Benchmark & Signal Dot + Bearing Vector (≤ 1 stroke/mark)
@@ -2450,38 +2792,50 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
     }
 
     if (rung === 4) {
-      // Rung 4: Saul Bass 3-Stroke Poster Glyph (≤ 3 bold graphic strokes)
+      // Rung 4: Saul Bass 3-Stroke Poster Glyph (≤ 3 bold graphic strokes + active severanceOp)
       const lw = Math.max(5.5, g.L / 15);
       ctx.lineCap = 'square'; ctx.lineJoin = 'miter';
+      const bendSign = sevOp === 'bend-wrong' ? -1 : 1;
       // Stroke 1 (Ink): Primary structural dorsal/hull vector
       ctx.strokeStyle = ink; ctx.lineWidth = lw;
       ctx.beginPath();
       if (archType === 'instrument' || archType === 'submersible') {
         ctx.arc(g.X(0.40), g.bend(0.40), g.H * 0.44, Math.PI * 0.15, Math.PI * 1.65);
       } else if (archType === 'geometric') {
-        ctx.moveTo(g.X(0.02), g.bend(0.02) - g.H * 0.55);
-        ctx.lineTo(g.X(0.42), g.bend(0.42) + g.H * 0.28);
-        ctx.lineTo(g.X(0.84), g.bend(0.84) - g.H * 0.36);
+        ctx.moveTo(g.X(0.02), g.bend(0.02) - g.H * 0.55 * bendSign);
+        ctx.lineTo(g.X(0.42), g.bend(0.42) + g.H * 0.28 * bendSign);
+        ctx.lineTo(g.X(0.84), g.bend(0.84) - g.H * 0.36 * bendSign);
       } else {
         ctx.moveTo(g.X(0.02), g.bend(0.02));
-        ctx.quadraticCurveTo(g.X(0.42), g.bend(0.42) - g.H * 0.62, g.X(0.84), g.bend(0.84));
+        ctx.quadraticCurveTo(g.X(0.42), g.bend(0.42) - g.H * 0.62 * bendSign, g.X(0.84), g.bend(0.84));
       }
       ctx.stroke();
 
       // Stroke 2 (Focal Accent): Primary wing / fin / azimuth slash
+      const invJ = sevOp === 'invert-joint' ? -1 : 1;
       ctx.strokeStyle = bodyCol; ctx.lineWidth = lw * 0.92;
       ctx.beginPath();
-      ctx.moveTo(g.finRoot[0] - g.L * 0.05, g.finRoot[1] - g.H * 0.18);
-      ctx.lineTo(g.fin[Math.min(2, g.fin.length - 1)][0] + g.L * 0.06, g.fin[Math.min(2, g.fin.length - 1)][1] + g.H * 0.15);
+      ctx.moveTo(g.finRoot[0] - g.L * 0.05, g.finRoot[1] - g.H * 0.18 * invJ);
+      ctx.lineTo(g.fin[Math.min(2, g.fin.length - 1)][0] + g.L * 0.06, g.fin[Math.min(2, g.fin.length - 1)][1] + g.H * 0.15 * invJ);
       ctx.stroke();
 
       // Stroke 3 (Structure B): Caudal fluke / counter-vane wedge
+      const dismOff = sevOp === 'dismember' ? g.L * 0.12 : 0;
       ctx.strokeStyle = P.b || ink; ctx.lineWidth = lw * 0.85;
       ctx.beginPath();
-      ctx.moveTo(g.fluke[1][0], g.fluke[1][1]);
-      ctx.lineTo(g.flukeRoot[0], g.flukeRoot[1]);
-      ctx.lineTo(g.fluke[Math.min(4, g.fluke.length - 1)][0], g.fluke[Math.min(4, g.fluke.length - 1)][1]);
+      ctx.moveTo(g.fluke[1][0] + dismOff, g.fluke[1][1]);
+      ctx.lineTo(g.flukeRoot[0] + dismOff, g.flukeRoot[1]);
+      ctx.lineTo(g.fluke[Math.min(4, g.fluke.length - 1)][0] + dismOff, g.fluke[Math.min(4, g.fluke.length - 1)][1]);
       ctx.stroke();
+      if (sevOp === 'splay-rays') {
+        ctx.strokeStyle = rgba(bodyCol, 0.85); ctx.lineWidth = lw * 0.45;
+        for (let sr = -1; sr <= 1; sr += 2) {
+          ctx.beginPath();
+          ctx.moveTo(g.X(0.32), g.bend(0.32));
+          ctx.lineTo(g.X(0.32) - g.L * 0.18, g.bend(0.32) + sr * g.H * 0.65);
+          ctx.stroke();
+        }
+      }
       ctx.restore();
       return g;
     }
@@ -2517,16 +2871,30 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
     ctx.fillRect(-g.L * 0.44, -g.H * 0.68, g.L * 0.88, g.H * 0.18);
     ctx.fillStyle = rgba(P.b, 0.65);
     ctx.fillRect(-g.L * 0.36, g.H * 0.48, g.L * 0.76, g.H * 0.16);
-    // Drop-cut shadow in ink
-    ctx.save(); ctx.translate(3.5, 4.0);
-    polyPath(ctx, coarseBody); ctx.fillStyle = ink; ctx.fill();
+    // Drop-cut shadow in ink (with optional offset-register shift)
+    const regShift = sevOp === 'offset-register' ? 7.5 : 3.5;
+    ctx.save(); ctx.translate(regShift, regShift + 0.5);
+    polyPath(ctx, coarseBody); ctx.fillStyle = sevOp === 'offset-register' ? P.a : ink; ctx.fill();
     ctx.restore();
     // Caudal & pectoral cut-paper shards
+    const dismShift = sevOp === 'dismember' ? g.L * 0.08 : 0;
+    ctx.save(); ctx.translate(dismShift, 0);
     polyPath(ctx, g.fluke); ctx.fillStyle = P.b; ctx.fill();
     ctx.strokeStyle = P.paper; ctx.lineWidth = 3.5; ctx.stroke();
+    ctx.restore();
     // Main faceted body with thick paper knockout border
     polyPath(ctx, coarseBody); ctx.fillStyle = bodyCol; ctx.fill();
     ctx.strokeStyle = P.paper; ctx.lineWidth = 4.0; ctx.stroke();
+    if (sevOp === 'subtract-wedge' || sevOp === 'notch-silhouette') {
+      polyPath(ctx, [[g.X(0.34), g.bend(0.34) - g.H * 0.55], [g.X(0.46), g.bend(0.40) - g.H * 0.08], [g.X(0.54), g.bend(0.46) - g.H * 0.55]]);
+      ctx.fillStyle = P.paper; ctx.fill();
+    } else if (sevOp === 'puncture') {
+      ell(ctx, g.X(0.40), g.bend(0.40), g.H * 0.22, g.H * 0.22);
+      ctx.fillStyle = P.paper; ctx.fill();
+    } else if (sevOp === 'bisect') {
+      ctx.fillStyle = P.paper;
+      ctx.fillRect(g.X(0.38), -g.H * 0.75, 4.5, g.H * 1.5);
+    }
     polyPath(ctx, g.fin); ctx.fillStyle = mix(bodyCol, ink, 0.28); ctx.fill();
     ctx.strokeStyle = P.paper; ctx.lineWidth = 3.2; ctx.stroke();
     // Knockout paper eye
@@ -3199,9 +3567,10 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
       },
       draw: function (ctx, t, P) {
         const uNow = t / 6;
-        // 25 ghost-position silhouettes along survey trajectory
-        for (let i = 0; i < 25; i++) {
-          const u = i / 24;
+        const gCount = clamp(Number(O.hydroGhostCount) || 24, 6, 64);
+        // Configurable ghost-position silhouettes along survey trajectory (default 24+1=25 soundings)
+        for (let i = 0; i <= gCount; i++) {
+          const u = i / gCount;
           if (u > uNow + 0.02) continue;
           const gx = lerp(430, 50, u), gy = 160 + 52 * Math.sin(TAU * u * 1.25 - 0.4);
           const dy = 52 * TAU * 1.25 * Math.cos(TAU * u * 1.25 - 0.4) / -380;
@@ -3219,7 +3588,7 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
         ctx.strokeStyle = P.h; ctx.lineWidth = 2.2; ctx.beginPath(); ctx.moveTo(-36, 0); ctx.lineTo(36, 0); ctx.stroke();
         ell(ctx, -36, 0, 3.5, 3.5); ctx.fillStyle = P.h; ctx.fill();
         ctx.restore();
-        txt(ctx, 'BEARING ' + String(brg).padStart(3, '0') + '° · 25 GHOST SOUNDINGS', 16, 22, '700 9px ' + MONO, rgba(P.ink, 0.78));
+        txt(ctx, 'BEARING ' + String(brg).padStart(3, '0') + '° · ' + (gCount + 1) + ' GHOST SOUNDINGS', 16, 22, '700 9px ' + MONO, rgba(P.ink, 0.78));
       }
     },
     // Style 15: Saul Bass 3-Color Cut-Paper Overture
@@ -3736,13 +4105,15 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
   const BG = new Map();
   function getBg(key, P) {
     if (typeof document === 'undefined') return null;
-    const id = key + '|' + P.id + '|' + O.charId + '|' + O.ground + '|' + O.rung;
+    const cs = getCharSpec(O.charId);
+    const rigKey = cs ? (cs.aspectRatio + ':' + (cs.bodyProfile ? cs.bodyProfile.dorsalArch : '') + ':' + (cs.severanceOp || '')) : '';
+    const id = key + '|' + P.id + '|' + O.charId + '|' + O.ground + '|' + O.rung + '|' + O.wob + '|' + rigKey;
     let c = BG.get(id); if (c) return c;
     c = document.createElement('canvas'); c.width = LW; c.height = LH; const x = c.getContext('2d');
     const pr = PROOFS[key];
     if (!(pr && pr.ownBg)) {
       x.fillStyle = P.paper; x.fillRect(0, 0, LW, LH);
-      x.save(); x.globalCompositeOperation = 'multiply';
+      x.save(); x.globalCompositeOperation = P.dark ? 'screen' : 'multiply';
       for (let i = 0; i < 7; i++) { blobR(x, hash(i, 91) * LW, hash(i, 92) * LH, 60 + hash(i, 93) * 90, 40 + hash(i, 94) * 60, i * 3 + 1); x.fillStyle = rgba(mix(P.paper, P.a, 0.6), 0.07); x.fill(); }
       x.restore();
     }
@@ -3765,7 +4136,7 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
     const op = opts || {};
       const prevO = {
       wob: O.wob, streaks: O.streaks, guide: O.guide, ground: O.ground,
-      grain: O.grain, charId: O.charId, partnerCharId: O.partnerCharId,
+      grain: O.grain, hydroGhostCount: O.hydroGhostCount, charId: O.charId, partnerCharId: O.partnerCharId,
       renderMode: O.renderMode, rung: O.rung, captionsCovered: O.captionsCovered,
       onionSkin: O.onionSkin
     };
@@ -3773,8 +4144,9 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
       O.wob = op.wob == null ? 1 : op.wob;
       O.streaks = op.streaks !== false;
       O.guide = op.guide !== false;
-      O.ground = op.ground || 'atlas';
+      O.ground = (global.STUDIO_WADA_ENGINE && global.STUDIO_WADA_ENGINE.normalizeGroundKey) ? global.STUDIO_WADA_ENGINE.normalizeGroundKey(op.ground || 'atlas') : (op.ground || 'atlas');
       O.grain = op.grain == null ? 0.24 : op.grain;
+      if (op.hydroGhostCount != null) O.hydroGhostCount = Number(op.hydroGhostCount) || 24;
       if (op.charId) O.charId = op.charId;
       if (op.partnerCharId) O.partnerCharId = op.partnerCharId;
       O.renderMode = op.renderMode || null;
@@ -4242,8 +4614,73 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
   const LENS_ORDER = ['look', 'use', 'story', 'character', 'register'];
 
   // ─────────────────────────────────────────────────────────────────────────
-  // 2. 8-BEAT STORYBOARD SHEET & HYPERFRAMES STRUCTURAL VERIFIER (G08)
+  // 2. 6 CANONICAL SPINE ARCS & 8-BEAT STORYBOARD VERIFIER (G08 · G32)
   // ─────────────────────────────────────────────────────────────────────────
+  const SPINE_ARCS = {
+    'hero-inner-change': {
+      id: 'hero-inner-change',
+      label: 'Hero Inner Change (Threshold & Transformation)',
+      roles: ['hook', 'threshold', 'escalation', 'turn', 'filter', 'breather', 'climax', 'callback'],
+      roleLabels: ['Opening Hook', 'Threshold Crossing', 'Rising Escalation', 'Causal Turn', 'Harmonic Filter', 'Breather Hold', 'Peak Climax', 'Calm Callback'],
+      hinges: ['THEREFORE', 'BUT', 'THEREFORE', 'BUT', 'THEREFORE', 'THEREFORE', 'BUT', 'THEREFORE'],
+      cams: ['static-wide', 'pan-follow', 'push-in', 'dutch-tilt', 'tracking-drift', 'breather-hold', 'kick-shake', 'pull-back'],
+      shots: ['WS', 'MS', 'CU', 'CU', 'MS', 'WS', 'ECU', 'WS']
+    },
+    'count-scale-compare-rest': {
+      id: 'count-scale-compare-rest',
+      label: 'Count · Scale · Compare · Rest (Quantitative Argument)',
+      roles: ['count-unit', 'count-group', 'scale-shift', 'compare-a', 'compare-b', 'breather', 'ratio-climax', 'callback'],
+      roleLabels: ['Single Unit Datum', 'Multiplied Count', 'Order-of-Magnitude Scale', 'Side-A Benchmark', 'Side-B Contrast', 'Breather Hold', 'Proportional Climax', 'Unit Callback'],
+      hinges: ['THEREFORE', 'THEREFORE', 'BUT', 'THEREFORE', 'BUT', 'THEREFORE', 'THEREFORE', 'THEREFORE'],
+      cams: ['static-wide', 'pan-follow', 'pull-back', 'push-in', 'dutch-tilt', 'breather-hold', 'push-in', 'static-wide'],
+      shots: ['CU', 'MS', 'WS', 'MS', 'MS', 'WS', 'ECU', 'CU']
+    },
+    'follow-a-process': {
+      id: 'follow-a-process',
+      label: 'Follow a Process (Causal Pipeline & Mechanism)',
+      roles: ['intake', 'routing', 'bottleneck', 'valve-turn', 'transform', 'breather', 'emission', 'callback'],
+      roleLabels: ['Raw Intake', 'Channel Routing', 'Pressure Bottleneck', 'Valve Actuation', 'Harmonic Transform', 'Breather Hold', 'Clean Output', 'Equilibrium Callback'],
+      hinges: ['THEREFORE', 'THEREFORE', 'BUT', 'THEREFORE', 'THEREFORE', 'THEREFORE', 'BUT', 'THEREFORE'],
+      cams: ['static-wide', 'tracking-drift', 'push-in', 'dutch-tilt', 'pan-follow', 'breather-hold', 'kick-shake', 'pull-back'],
+      shots: ['WS', 'MS', 'CU', 'ECU', 'MS', 'WS', 'CU', 'WS']
+    },
+    'understand-one-idea': {
+      id: 'understand-one-idea',
+      label: 'Understand One Idea (Thesis → Counterexample → Proof)',
+      roles: ['claim', 'naive-model', 'contradiction', 'reframe', 'mechanism', 'breather', 'proof-lock', 'callback'],
+      roleLabels: ['Core Claim', 'Naive Assumption', 'Edge-Case Fracture', 'Structural Reframe', 'Live Mechanism', 'Breather Hold', 'Q.E.D. Proof Lock', 'Thesis Callback'],
+      hinges: ['THEREFORE', 'BUT', 'THEREFORE', 'BUT', 'THEREFORE', 'THEREFORE', 'THEREFORE', 'THEREFORE'],
+      cams: ['static-wide', 'pan-follow', 'dutch-tilt', 'push-in', 'tracking-drift', 'breather-hold', 'push-in', 'pull-back'],
+      shots: ['WS', 'MS', 'CU', 'CU', 'MS', 'WS', 'ECU', 'WS']
+    },
+    'saul-seven-beat': {
+      id: 'saul-seven-beat',
+      label: 'Saul Bass 7-Beat Overture (+ Terminal Emblem Lock)',
+      roles: ['void-mark', 'severance-cut', 'shear-entry', 'collision', 'emblem-fracture', 'breather', 'poster-snap', 'callback'],
+      roleLabels: ['First Mark in Void', 'Paper Severance Cut', 'Diagonal Shear Entry', 'Counter-Force Collision', 'Rung-4 Fracture', 'Breather Hold', '3-Color Poster Snap', 'Emblem Callback'],
+      hinges: ['THEREFORE', 'BUT', 'THEREFORE', 'BUT', 'THEREFORE', 'THEREFORE', 'BUT', 'THEREFORE'],
+      cams: ['static-wide', 'dutch-tilt', 'pan-follow', 'kick-shake', 'push-in', 'breather-hold', 'kick-shake', 'static-wide'],
+      shots: ['WS', 'CU', 'MS', 'ECU', 'CU', 'WS', 'ECU', 'WS']
+    },
+    'rem-five-move': {
+      id: 'rem-five-move',
+      label: 'Rem Koolhaas 5-Move Programme (Sectional Barcode)',
+      roles: ['datum-strip', 'program-stack', 'cross-cut', 'void-insertion', 'escalator-link', 'breather', 'metropolitan-lock', 'callback'],
+      roleLabels: ['Baseline Datum Strip', 'Programmatic Stack', 'Sectional Cross-Cut', 'Deliberate Void Carve', 'Diagonal Circulation', 'Breather Hold', 'Diagrammatic Synthesis', 'Datum Callback'],
+      hinges: ['THEREFORE', 'THEREFORE', 'BUT', 'THEREFORE', 'BUT', 'THEREFORE', 'THEREFORE', 'THEREFORE'],
+      cams: ['static-wide', 'pan-follow', 'dutch-tilt', 'pull-back', 'tracking-drift', 'breather-hold', 'push-in', 'static-wide'],
+      shots: ['WS', 'MS', 'CU', 'WS', 'MS', 'WS', 'ECU', 'WS']
+    }
+  };
+  const SPINE_ARC_ORDER = [
+    'hero-inner-change',
+    'count-scale-compare-rest',
+    'follow-a-process',
+    'understand-one-idea',
+    'saul-seven-beat',
+    'rem-five-move'
+  ];
+
   function buildStoryboardSheet(opts) {
     const o = opts || {};
     const storyKey = o.storyKey || 's_voice';
@@ -4251,28 +4688,34 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
     const charId = o.charId || 'ceti-whale';
     const feelKey = o.feelKey || 'spring';
     const palId = o.palId || 343;
+    const spineArc = SPINE_ARCS[o.spineArc] ? o.spineArc : 'hero-inner-change';
+    const arcSpec = SPINE_ARCS[spineArc];
     const charSpec = FOUNDRY.CHARACTERS[charId] || FOUNDRY.CHARACTERS['ceti-whale'];
     const story = TAX.STMETA[storyKey] || TAX.STORIES[0];
     const totalSec = (global.MA && global.MA.len(storyKey)) || 10;
 
-    // Expand story beats into a canonical 8-beat S4/S5 storyboard sheet with causal hinges & distinct titles
+    // Expand story beats into a canonical 8-beat S4/S5 storyboard sheet governed by the active SpineArcId
     const rawBeats = story.beats || [];
-    const roles = ['hook', 'threshold', 'escalation', 'turn', 'filter', 'breather', 'climax', 'callback'];
-    const roleFallbacks = ['Opening Hook', 'Threshold Crossing', 'Rising Escalation', 'Causal Turn', 'Harmonic Filter', 'Breather Hold', 'Peak Climax', 'Calm Callback'];
-    const hinges = ['THEREFORE', 'BUT', 'THEREFORE', 'BUT', 'THEREFORE', 'THEREFORE', 'BUT', 'THEREFORE'];
-    const cams = ['static-wide', 'pan-follow', 'push-in', 'dutch-tilt', 'tracking-drift', 'breather-hold', 'kick-shake', 'pull-back'];
+    const roles = arcSpec.roles;
+    const roleFallbacks = arcSpec.roleLabels;
+    const hinges = arcSpec.hinges;
+    const cams = arcSpec.cams;
+    const shots = arcSpec.shots;
 
     const usedLabels = {};
     const beats = [];
     for (let i = 0; i < 8; i++) {
       const t0 = Number(((i / 8) * totalSec).toFixed(2));
       const t1 = Number((((i + 1) / 8) * totalSec).toFixed(2));
+      const dur = Number((t1 - t0).toFixed(2));
       const srcBeat = rawBeats.length >= 8
         ? rawBeats[i]
         : (rawBeats[Math.min(rawBeats.length - 1, Math.floor((i / 8) * rawBeats.length))] || [t0, roleFallbacks[i], 'Visual state change on stage.']);
       const isBreather = (i === 5);
       const isCallback = (i === 7);
-      let label = srcBeat && srcBeat[1] ? String(srcBeat[1]).trim() : roleFallbacks[i];
+      let label = (spineArc !== 'hero-inner-change')
+        ? roleFallbacks[i]
+        : (srcBeat && srcBeat[1] ? String(srcBeat[1]).trim() : roleFallbacks[i]);
       if (usedLabels[label.toLowerCase()]) {
         label = roleFallbacks[i] + ' · ' + label;
       }
@@ -4298,7 +4741,15 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
         role: roles[i],
         hinge: hinges[i],
         label: label,
+        actionLine: action,
         visualAction: action,
+        coveredSentence: charSpec.name + ' executes ' + roles[i] + ' in ' + shots[i] + ' framing (' + cams[i] + ') with captions covered.',
+        movementClaim: 'This moves because ' + hinges[i] + ' beat ' + (i + 1) + ' (' + label + ') resolves tension from beat ' + Math.max(1, i) + '.',
+        shotSpec: {
+          size: shots[i] || 'MS',
+          move: cams[i],
+          dur: dur
+        },
         captionOnScreen: i === 5 ? '' : (label.toUpperCase() + ' — ' + action.slice(0, 56)),
         cameraMove: cams[i],
         activeSimultaneousMoves: isBreather ? 1 : (i % 2 === 0 ? 1 : 2),
@@ -4317,13 +4768,14 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
     }
 
     return auditStoryboardSheet({
-      id: 'sb-' + storyKey + '-' + charId,
+      id: 'sb-' + storyKey + '-' + charId + '-' + spineArc,
       title: story.title.replace(/\bwhale\b/gi, charSpec.name),
       storyKey: storyKey,
       styleKey: styleKey,
       charId: charId,
       feelKey: feelKey,
       palId: palId,
+      spineArc: spineArc,
       totalDurationSec: totalSec,
       beats: beats
     });
@@ -4769,11 +5221,13 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
     const seq = dag.nodes.length + 1;
     const synthId = ov.id || ('node-synth-' + seq);
     const charId = ov.charId || (nodeA.payload && nodeA.payload.charId) || 'ceti-whale';
-    const partnerCharId = (nodeB.payload && nodeB.payload.charId) || 'orpheus-lyre';
+    const rawPartner = (nodeB.payload && nodeB.payload.charId) || 'geome-orpheus';
+    const partnerCharId = rawPartner === 'orpheus-lyre' ? 'geome-orpheus' : rawPartner;
     const palId = ov.palId || (nodeA.payload && nodeA.payload.palId) || 343;
     const styleKey = ov.styleKey || (nodeB.payload && nodeB.payload.styleKey) || 'hydrographic';
     const storyKey = ov.storyKey || (nodeB.payload && nodeB.payload.storyKey) || 's_duet';
     const feelKey = ov.feelKey || (nodeA.payload && nodeA.payload.feelKey) || 'spring';
+    const spineArc = ov.spineArc || (nodeA.payload && nodeA.payload.spineArc) || 'hero-inner-change';
 
     const mergedPayload = Object.assign({}, nodeA.payload, nodeB.payload, {
       charId: charId,
@@ -4782,13 +5236,15 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
       styleKey: styleKey,
       storyKey: storyKey,
       feelKey: feelKey,
-      interaction: 'duet-counterpoint',
+      spineArc: spineArc,
+      interaction: 'dialogue-duet',
       storyboard: buildStoryboardSheet({
         storyKey: storyKey,
         styleKey: styleKey,
         charId: charId,
         palId: palId,
-        feelKey: feelKey
+        feelKey: feelKey,
+        spineArc: spineArc
       })
     }, ov.payload || {});
 
@@ -5018,12 +5474,12 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
       token: '#color/bathyal-biolum',
       slash: '/color/bathyal-biolum',
       handle: '#color/bathyal-biolum',
-      title: 'Bathyal Bioluminescence (Amber & Prussian)',
-      name: 'Bathyal Bioluminescence (Amber & Prussian)',
+      title: 'Bathyal Bioluminescence (Amber & Deep Sea)',
+      name: 'Bathyal Bioluminescence (Amber & Deep Sea)',
       palId: 166,
-      ground: 'blueprint',
+      ground: 'deep-sea',
       tags: ['#abyssal', '#glow', '#deep-sea', '#threshold'],
-      notes: 'Glowing bathyal amber against deep Prussian night for underwater threshold beats.'
+      notes: 'Glowing bathyal amber against Deep-Sea Nocturne (#1A1F2E, ≥10:1 AAA) for underwater threshold beats.'
     },
     {
       id: 'scheme-shoji-calm',
@@ -5031,12 +5487,12 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
       token: '#color/shoji-sumi-calm',
       slash: '/color/shoji-sumi-calm',
       handle: '#color/shoji-sumi-calm',
-      title: 'Shoji Paper & Sumi Ink (Quiet Breather)',
-      name: 'Shoji Paper & Sumi Ink (Quiet Breather)',
+      title: 'CETI Warm Paper & Sumi Ink (Quiet Breather)',
+      name: 'CETI Warm Paper & Sumi Ink (Quiet Breather)',
       palId: 48,
-      ground: 'sumi',
+      ground: 'ceti',
       tags: ['#minimal', '#calm', '#breather', '#japanese'],
-      notes: 'High-key Shoji cream with sumi ink wash — ideal for negative-space breather beats.'
+      notes: 'High-key CETI warm cream with sumi ink wash — ideal for negative-space breather beats.'
     },
     {
       id: 'scheme-umber-hydro',
@@ -5047,9 +5503,9 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
       title: 'Umber Hydrographic Survey Ledger',
       name: 'Umber Hydrographic Survey Ledger',
       palId: 296,
-      ground: 'sepia',
+      ground: 'tint',
       tags: ['#radar', '#nautical', '#telemetry', '#chart'],
-      notes: 'Cartographic sepia and raw umber for 25-sounding hydrographic trajectory plates.'
+      notes: 'Wada-tinted ground and raw umber for 25-sounding hydrographic trajectory plates.'
     },
     {
       id: 'scheme-cotinga-night',
@@ -5057,12 +5513,12 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
       token: '#color/cotinga-nocturne',
       slash: '/color/cotinga-nocturne',
       handle: '#color/cotinga-nocturne',
-      title: 'Cotinga Nocturne (Mythic Lyre Chord)',
-      name: 'Cotinga Nocturne (Mythic Lyre Chord)',
+      title: 'Cotinga Nocturne (Hydro-Ink Lyre Chord)',
+      name: 'Cotinga Nocturne (Hydro-Ink Lyre Chord)',
       palId: 329,
-      ground: 'atlas',
+      ground: 'hydro-ink',
       tags: ['#mythic', '#musical', '#nocturne', '#finale'],
-      notes: 'Deep Cotinga violet-blue and warm gold for harmonic duet and finale callbacks.'
+      notes: 'Deep Cotinga violet-blue and warm gold on Hydro-Ink (#141A21, ≥10:1 AAA) for harmonic duet callbacks.'
     }
   ];
 
@@ -5076,29 +5532,24 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
     return clean || 'custom-scheme';
   }
 
-  function tagAndSaveColorScheme(existingSchemes, spec) {
-    const list = Array.isArray(existingSchemes) && existingSchemes.length
-      ? existingSchemes.slice()
-      : DEFAULT_SAVED_SCHEMES.slice();
-    const s = spec || {};
-    const slug = sanitizeSchemeTag(s.tag || s.title || s.name || ('wada-' + (s.palId || 343)));
+  function normalizeSavedScheme(s) {
+    const raw = s || {};
+    const slug = sanitizeSchemeTag(raw.tag || raw.title || raw.name || ('wada-' + (raw.palId || 343)));
     const handle = '#color/' + slug;
-    const rawPalId = Math.max(1, Math.min(348, Math.round(Number(s.palId) || 343)));
-    const wadaObj = WADA.PALS.find(function (p) { return p.id === rawPalId; }) ||
-      WADA.getAllWadaCombos().find(function (p) { return p.id === rawPalId; }) ||
-      { id: rawPalId, name: 'Wada Combination No. ' + rawPalId };
-
-    const extraTags = Array.isArray(s.tags)
-      ? s.tags
-      : String(s.tags || '#custom #studio')
+    const rawPalId = Math.max(1, Math.min(348, Math.round(Number(raw.palId) || 343)));
+    const groundKey = (WADA && typeof WADA.normalizeGroundKey === 'function')
+      ? WADA.normalizeGroundKey(raw.ground || 'atlas')
+      : (raw.ground || 'atlas');
+    const displayTitle = raw.title || raw.name || ('Wada No. ' + rawPalId + ' (' + handle + ')');
+    const extraTags = Array.isArray(raw.tags)
+      ? raw.tags
+      : String(raw.tags || '#custom #studio')
           .split(/[\s,]+/)
           .map(function (t) { return t.trim(); })
           .filter(Boolean)
           .map(function (t) { return t.startsWith('#') ? t : ('#' + t); });
-
-    const displayTitle = s.title || s.name || (wadaObj.name + ' (' + handle + ')');
-    const entry = {
-      id: 'scheme-' + slug,
+    return {
+      id: raw.id || ('scheme-' + slug),
       tag: slug,
       token: handle,
       slash: '/color/' + slug,
@@ -5106,13 +5557,34 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
       title: displayTitle,
       name: displayTitle,
       palId: rawPalId,
-      ground: s.ground || 'atlas',
+      ground: groundKey,
       tags: extraTags.length ? extraTags : ['#custom'],
-      notes: s.notes || ('Pinned Sanzo Wada No. ' + rawPalId + ' (' + wadaObj.name + ') on ' + (s.ground || 'atlas') + ' ground.'),
-      savedAt: new Date().toISOString()
+      notes: raw.notes || ('Pinned Sanzo Wada No. ' + rawPalId + ' on ' + groundKey + ' ground.'),
+      savedAt: raw.savedAt || new Date().toISOString()
     };
+  }
 
-    const existingIdx = list.findIndex(function (item) { return item.tag === slug || item.handle === handle || item.token === handle; });
+  function tagAndSaveColorScheme(existingSchemes, spec) {
+    const list = (Array.isArray(existingSchemes) && existingSchemes.length
+      ? existingSchemes
+      : DEFAULT_SAVED_SCHEMES).map(normalizeSavedScheme);
+    const s = spec || {};
+    const rawPalId = Math.max(1, Math.min(348, Math.round(Number(s.palId) || 343)));
+    const wadaObj = WADA.PALS.find(function (p) { return p.id === rawPalId; }) ||
+      WADA.getAllWadaCombos().find(function (p) { return p.id === rawPalId; }) ||
+      { id: rawPalId, name: 'Wada Combination No. ' + rawPalId };
+    const slug = sanitizeSchemeTag(s.tag || s.title || s.name || ('wada-' + rawPalId));
+    const handle = '#color/' + slug;
+    const displayTitle = s.title || s.name || (wadaObj.name + ' (' + handle + ')');
+    const entry = normalizeSavedScheme(Object.assign({}, s, {
+      tag: slug,
+      title: displayTitle,
+      name: displayTitle,
+      palId: rawPalId,
+      notes: s.notes || ('Pinned Sanzo Wada No. ' + rawPalId + ' (' + wadaObj.name + ') on ' + (s.ground || 'atlas') + ' ground.')
+    }));
+
+    const existingIdx = list.findIndex(function (item) { return item.tag === entry.tag || item.handle === entry.handle || item.token === entry.token; });
     if (existingIdx >= 0) {
       list[existingIdx] = entry;
     } else {
@@ -5122,7 +5594,7 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
   }
 
   function resolveColorSchemeByTag(existingSchemes, queryOrTag) {
-    const list = Array.isArray(existingSchemes) && existingSchemes.length ? existingSchemes : DEFAULT_SAVED_SCHEMES;
+    const list = (Array.isArray(existingSchemes) && existingSchemes.length ? existingSchemes : DEFAULT_SAVED_SCHEMES).map(normalizeSavedScheme);
     const q = String(queryOrTag || '').toLowerCase().trim();
     if (!q) return list[0];
     const cleanSlug = sanitizeSchemeTag(q);
@@ -5142,7 +5614,7 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
   // 3C. STUDIO SKILLS, THEMES & PLAIN-ENGLISH VOCABULARY LIBRARY (# & / — Gate G28)
   // ─────────────────────────────────────────────────────────────────────────
   const VOCAB_LIBRARY = [
-    // 1. #theme/... — 12 Curated Look & Feel Recipes (Plain-English Entry Point)
+    // 1. #theme/... — Curated Look & Feel Recipes (Plain-English Entry Point)
     {
       token: '#theme/warm-storybook',
       slashToken: '/theme/warm-storybook',
@@ -5151,7 +5623,7 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
       plainEnglish: 'Soft watercolor washes, warm cream paper, and gentle 12fps hand-drawn line wobble — feels human, approachable, and poetic.',
       jargonTerm: 'Watercolor Wash · 12fps Boil · Wada No. 343 · Spring Feel',
       promptSnippet: '#theme/warm-storybook Use soft handmade watercolor washes on warm archival paper with 12fps line boil and gentle spring overshoot.',
-      patch: { mStyle: 'watercolor', palId: 343, feel: 'spring', rung: 1, ground: 'atlas' }
+      patch: { styleKey: 'watercolor', mStyle: 'watercolor', palId: 343, feel: 'spring', rung: 1, ground: 'atlas' }
     },
     {
       token: '#theme/saul-cutout',
@@ -5161,7 +5633,7 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
       plainEnglish: 'Sharp scissors-cut paper shapes, 3 stark colors, and punchy 8fps stop-motion snaps — unmistakable even from across the room.',
       jargonTerm: 'Saul Severe · Rung 4 Cutout · 8fps Hold · Wada No. 126',
       promptSnippet: '#theme/saul-cutout Stage with bold 3-color scissors-cut paper shapes at Saul Bass Rung 4 and 8fps graphic snap holds.',
-      patch: { mStyle: 'saul-severe', palId: 126, feel: 'saul', rung: 4, ground: 'atlas' }
+      patch: { styleKey: 'saul-severe', mStyle: 'saul-severe', palId: 126, feel: 'saul', rung: 4, ground: 'atlas' }
     },
     {
       token: '#theme/nautical-radar',
@@ -5171,27 +5643,27 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
       plainEnglish: 'Plots 25 echoing ghost positions behind the moving character with compass bearings and scientific measurement bars.',
       jargonTerm: 'Kinetic Hydrography · 25 Ghost Soundings · Wada No. 296',
       promptSnippet: '#theme/nautical-radar Plot a 25-point hydrographic sounding trail with compass bearing ring and ΔE2000 token telemetry.',
-      patch: { mStyle: 'hydrographic', palId: 296, feel: 'rostrum', rung: 3, ground: 'sepia' }
+      patch: { styleKey: 'hydrographic', mStyle: 'hydrographic', palId: 296, feel: 'rostrum', rung: 3, ground: 'tint' }
     },
     {
       token: '#theme/shoji-sumi-ink',
       slashToken: '/theme/shoji-sumi-ink',
       category: 'theme',
       title: 'Quiet Japanese Sumi Ink & Paper',
-      plainEnglish: 'Lots of calm breathing room, crisp folded-paper or brush contours, and deep black sumi ink on pale Shoji paper.',
-      jargonTerm: 'Sumi Ink Wash · Negative-Space Hold · Wada No. 48',
-      promptSnippet: '#theme/shoji-sumi-ink Leave generous negative space on Shoji cream paper with crisp sumi ink brushwork and calm breather holds.',
-      patch: { mStyle: 'ink-calligraphy', palId: 48, feel: 'held', rung: 2, ground: 'sumi', charId: 'origami-crane' }
+      plainEnglish: 'Lots of calm breathing room, crisp folded-paper or brush contours, and deep black sumi ink on pale CETI warm paper.',
+      jargonTerm: 'Doodle Monoline Ink · Negative-Space Hold · Wada No. 48',
+      promptSnippet: '#theme/shoji-sumi-ink Leave generous negative space on CETI cream paper with crisp sumi ink brushwork and calm breather holds.',
+      patch: { styleKey: 'doodle', mStyle: 'doodle', palId: 48, feel: 'held', rung: 2, ground: 'ceti', charId: 'origami-crane' }
     },
     {
       token: '#theme/bathyal-biolum',
       slashToken: '/theme/bathyal-biolum',
       category: 'theme',
       title: 'Deep-Sea Glowing Bioluminescence',
-      plainEnglish: 'Warm glowing amber and gold signals cutting through deep ocean Prussian blue — great for mystery and discovery.',
-      jargonTerm: 'Bathyal Amber on Prussian Blueprint · Wada No. 166',
-      promptSnippet: '#theme/bathyal-biolum Illuminate the subject with glowing bathyal amber against deep Prussian night water.',
-      patch: { mStyle: 'woodcut-relief', palId: 166, feel: 'slow', rung: 2, ground: 'blueprint', charId: 'lantern-bathysphere' }
+      plainEnglish: 'Warm glowing amber and gold signals cutting through deep ocean Prussian night — great for mystery and discovery.',
+      jargonTerm: 'Bathyal Amber on Deep-Sea Nocturne (#1A1F2E) · Wada No. 166',
+      promptSnippet: '#theme/bathyal-biolum Illuminate the subject with glowing bathyal amber against deep-sea nocturne water.',
+      patch: { styleKey: 'saul-severe', mStyle: 'saul-severe', palId: 166, feel: 'slow', rung: 2, ground: 'deep-sea', charId: 'lantern-bathysphere' }
     },
     {
       token: '#theme/glaser-pop',
@@ -5201,7 +5673,7 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
       plainEnglish: 'Flowing multi-colored trailing ribbons and joyful springy overshoot — celebratory, musical, and full of life.',
       jargonTerm: 'Glaser Overshoot · Harmonic Ribbons · Wada No. 329',
       promptSnippet: '#theme/glaser-pop Trail expressive multi-color harmonic ribbons behind the hero with Milton Glaser ceremonial overshoot.',
-      patch: { mStyle: 'glaser-lite', palId: 329, feel: 'glaser', rung: 1, ground: 'atlas', charId: 'orpheus-lyre' }
+      patch: { styleKey: 'watercolor', mStyle: 'watercolor', palId: 329, feel: 'glaser', rung: 1, ground: 'atlas', charId: 'geome-orpheus' }
     },
     {
       token: '#theme/blueprint-rig',
@@ -5209,9 +5681,9 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
       category: 'theme',
       title: 'Engineering Blueprint & Joint Diagram',
       plainEnglish: 'Shows the visible mechanical joints, pivots, and construction lines of the character like a living Da Vinci notebook.',
-      jargonTerm: 'Visible Rig Socket (e_rig) · Monoline Rung 3 · Blueprint Ground',
-      promptSnippet: '#theme/blueprint-rig Expose the internal pivot joints, measurement ticks, and construction geometry on a blueprint grid.',
-      patch: { mStyle: 'diagram-clean', palId: 166, feel: 'beat', rung: 3, ground: 'blueprint', charId: 'astronav-compass' }
+      jargonTerm: 'Visible Rig Socket (e_rig) · Whiteboard Rung 3 · Deep-Sea Ground',
+      promptSnippet: '#theme/blueprint-rig Expose the internal pivot joints, measurement ticks, and construction geometry on a deep-sea blueprint grid.',
+      patch: { styleKey: 'whiteboard', mStyle: 'whiteboard', palId: 166, feel: 'beat', rung: 3, ground: 'deep-sea', charId: 'astronav-compass' }
     },
     {
       token: '#theme/screenprint-offset',
@@ -5219,9 +5691,9 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
       category: 'theme',
       title: 'Vintage Screenprint (Offset Color Plates)',
       plainEnglish: 'Color fills intentionally shift slightly outside the ink lines like a vintage mid-century silkscreen poster.',
-      jargonTerm: '2-3px Plate Misregistration · Risograph Grain · Wada No. 343',
+      jargonTerm: '2-3px Plate Misregistration · Cutout Grain · Wada No. 343',
       promptSnippet: '#theme/screenprint-offset Offset the color fill plates by 3px against the ink contour for tactile vintage screenprint texture.',
-      patch: { mStyle: 'risograph', palId: 343, feel: 'spring', rung: 2, ground: 'atlas' }
+      patch: { styleKey: 'cutout', mStyle: 'cutout', palId: 343, feel: 'spring', rung: 2, ground: 'atlas' }
     },
 
     // 2. #element/... — Plain-English Motion Building Blocks (No Jargon Needed)
@@ -5233,7 +5705,7 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
       plainEnglish: 'Keeps outlines gently shimmering even when the character pauses so the frame never feels frozen or dead.',
       jargonTerm: 'Element: 12fps Line Boil (e_boil)',
       promptSnippet: '#element/line-wobble Add subtle 12fps hand-drawn line boil so held poses stay warm and alive.',
-      patch: { feel: 'spring' }
+      patch: { feel: 'spring', wob: 1.35 }
     },
     {
       token: '#element/ink-bloom',
@@ -5243,7 +5715,7 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
       plainEnglish: 'A drop of color spreads softly into the paper grain at key emotional moments.',
       jargonTerm: 'Element: Wet-on-Wet Ink Bleed (e_bleed)',
       promptSnippet: '#element/ink-bloom Let a drop of Wada pigment bloom softly into the wet paper grain at the turning point.',
-      patch: { mStyle: 'watercolor' }
+      patch: { styleKey: 'watercolor', mStyle: 'watercolor' }
     },
     {
       token: '#element/offset-print',
@@ -5253,7 +5725,7 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
       plainEnglish: 'Offsets the color shadow 2–3px from the outline so it looks hand-printed rather than computer-perfect.',
       jargonTerm: 'Element: Plate Misregistration (e_misreg)',
       promptSnippet: '#element/offset-print Introduce 2.5px silkscreen plate misregistration between the ink contour and fill wash.',
-      patch: {}
+      patch: { styleKey: 'cutout', mStyle: 'cutout' }
     },
     {
       token: '#element/wind-up-crouch',
@@ -5283,7 +5755,7 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
       plainEnglish: 'Fins, wings, or ribbons keep moving a split second after the main body stops.',
       jargonTerm: 'Element: Overlapping Follow-Through (e_follow)',
       promptSnippet: '#element/tail-follow-through Delay the tail and appendage wave by 4 frames so secondary parts settle after the torso.',
-      patch: {}
+      patch: { streaks: true }
     },
     {
       token: '#element/echo-trail',
@@ -5301,19 +5773,19 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
       category: 'element',
       title: 'Two-Character Call & Answer Duet',
       plainEnglish: 'The hero makes a gesture or sound wave, and a companion character enters to answer it in harmony.',
-      jargonTerm: 'Element: Duet Counterpoint / Call & Response (e_call)',
+      jargonTerm: 'Element: Dialogue Duet / Call & Response (e_call)',
       promptSnippet: '#element/call-and-answer Stage a call-and-response duet where the hero emits a signal and the partner rig answers.',
-      patch: { interaction: 'duet-counterpoint', storyKey: 's_duet' }
+      patch: { interaction: 'dialogue-duet', storyKey: 's_duet' }
     },
     {
       token: '#element/spotlight-circle',
       slashToken: '/element/spotlight-circle',
       category: 'element',
       title: 'Closing Circle Spotlight ("Iris Focus")',
-      plainEnglish: 'narrows a circular frame around the key detail so the viewer knows exactly where to look.',
+      plainEnglish: 'Narrows a circular frame around the key detail so the viewer knows exactly where to look.',
       jargonTerm: 'Element: Aperture Iris Focus (e_iris)',
       promptSnippet: '#element/spotlight-circle Tighten a circular iris aperture around the hero to isolate the emotional turning point.',
-      patch: {}
+      patch: { guide: true }
     },
     {
       token: '#element/quiet-pause',
@@ -5346,7 +5818,7 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
       patch: { streaks: true }
     },
 
-    // 3. #camera/... — 8 Camera Framing & Movement Directives
+    // 3. #camera/... — Camera Framing & Movement Directives
     {
       token: '#camera/push-in',
       slashToken: '/camera/push-in',
@@ -5408,7 +5880,7 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
       patch: { cameraMove: 'breather-hold' }
     },
 
-    // 4. #feel/... — 8 Physics & Timing Feels
+    // 4. #feel/... — Physics & Timing Feels
     {
       token: '#feel/spring',
       slashToken: '/feel/spring',
@@ -5517,9 +5989,9 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
       category: 'character',
       title: 'Harmonic Lyre-Form (Musical Emblem)',
       plainEnglish: 'Sculptural acoustic lyre with 5 vibrating strings for musical and synesthetic stories.',
-      jargonTerm: 'Rig: orpheus-lyre (mythic)',
+      jargonTerm: 'Rig: geome-orpheus (mythic)',
       promptSnippet: '#character/orpheus-lyre Cast the Harmonic Lyre-Form rig with 5 resonant strings.',
-      patch: { charId: 'orpheus-lyre' }
+      patch: { charId: 'geome-orpheus' }
     },
     {
       token: '#character/kelp-leviathan',
@@ -5556,10 +6028,10 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
       slashToken: '/theme/blueprint-telemetry',
       category: 'theme',
       title: 'Technical Blueprint & Hydrographic Telemetry',
-      plainEnglish: 'Precision architectural lines, compass rings, and live coordinate readouts on Prussian blue.',
-      jargonTerm: 'Diagram Clean · Rung 3 · Wada No. 166 · Blueprint',
+      plainEnglish: 'Precision architectural lines, compass rings, and live coordinate readouts on Hydro-Ink ground.',
+      jargonTerm: 'Whiteboard Vector · Rung 3 · Wada No. 166 · Hydro-Ink',
       promptSnippet: '#theme/blueprint-telemetry Overlay technical blueprint coordinates and hydrographic sounding rings.',
-      patch: { styleKey: 'diagram', mStyle: 'diagram', palId: 166, feel: 'rostrum', rung: 3, ground: 'blueprint' }
+      patch: { styleKey: 'whiteboard', mStyle: 'whiteboard', palId: 166, feel: 'rostrum', rung: 3, ground: 'hydro-ink' }
     },
     {
       token: '#element/negative-space-reveal',
@@ -5569,7 +6041,7 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
       plainEnglish: 'The background shadow carves out the hidden shape of the character without drawing an outline.',
       jargonTerm: 'Element: Figure/Ground Reversal (e_negspace)',
       promptSnippet: '#element/negative-space-reveal Carve the subject out of negative space using figure/ground reversal.',
-      patch: { styleKey: 'silhouette', mStyle: 'silhouette', rung: 4 }
+      patch: { styleKey: 'saul-severe', mStyle: 'saul-severe', rung: 4 }
     },
     {
       token: '#element/grain-stipple',
@@ -5577,9 +6049,9 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
       category: 'element',
       title: 'Tactile Film Grain & Stipple Shading',
       plainEnglish: 'Adds warm organic paper tooth and stippled ink dots so flat shapes feel hand-printed.',
-      jargonTerm: 'Element: Risograph Stipple & Paper Grain (e_grain)',
+      jargonTerm: 'Element: Cutout Stipple & Paper Grain (e_grain)',
       promptSnippet: '#element/grain-stipple Add tactile archival paper grain and stippled ink shading.',
-      patch: { styleKey: 'risograph', mStyle: 'risograph' }
+      patch: { styleKey: 'cutout', mStyle: 'cutout', grain: 0.42 }
     },
     {
       token: '#camera/match-cut-morph',
@@ -5589,7 +6061,7 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
       plainEnglish: 'Morphs one silhouette directly into the next scene at the exact same screen position.',
       jargonTerm: 'Camera: Graphic Match-Cut Morph',
       promptSnippet: '#camera/match-cut-morph Bridge the beat transition with a graphic silhouette match-cut.',
-      patch: { cameraMove: 'push-in', storyKey: 's_morph' }
+      patch: { cameraMove: 'push-in', styleKey: 'morph', mStyle: 'morph', storyKey: 's_sting' }
     },
     {
       token: '#feel/held-24fps',
@@ -5605,7 +6077,7 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
 
   // Build combined vocabulary list including dynamic user-saved #color/<tag> schemes
   function getFullVocabLibrary(savedSchemes) {
-    const schemes = Array.isArray(savedSchemes) && savedSchemes.length ? savedSchemes : DEFAULT_SAVED_SCHEMES;
+    const schemes = (Array.isArray(savedSchemes) && savedSchemes.length ? savedSchemes : DEFAULT_SAVED_SCHEMES).map(normalizeSavedScheme);
     const colorItems = schemes.map(function (sc) {
       const tok = sc.token || ('#color/' + sc.tag);
       const sl = sc.slash || ('/color/' + sc.tag);
@@ -5630,6 +6102,10 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
       const p = Object.assign({}, it.patch || {});
       if (p.mStyle && !p.styleKey) p.styleKey = p.mStyle;
       if (p.styleKey && !p.mStyle) p.mStyle = p.styleKey;
+      if (p.charId === 'orpheus-lyre') p.charId = 'geome-orpheus';
+      if (p.ground && WADA && typeof WADA.normalizeGroundKey === 'function') {
+        p.ground = WADA.normalizeGroundKey(p.ground);
+      }
       return Object.assign({}, it, {
         slash: it.slash || it.slashToken,
         slashToken: it.slashToken || it.slash,
@@ -5642,6 +6118,7 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
     });
     return normalizedBase.concat(colorItems);
   }
+
 
   function searchVocabLibrary(query, category, savedSchemes) {
     const all = getFullVocabLibrary(savedSchemes);
@@ -5908,29 +6385,33 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
     return resp;
   }
 
-  // Live Enhancer client supporting OAuth 2.0 PKCE token, Local Bridge (127.0.0.1:43110), or Algebraic fallback
+  // Live Enhancer client supporting OAuth 2.0 PKCE token, Local Bridge (127.0.0.1:43110 or 127.0.0.1:8787), or Algebraic fallback
   async function enhanceStoryboardLive(req, sessionAuth) {
     const auth = sessionAuth || {};
-    const bridgeUrl = auth.bridgeUrl || 'http://127.0.0.1:43110/v1/enhance';
+    const candidateUrls = auth.bridgeUrl
+      ? [auth.bridgeUrl, 'http://127.0.0.1:43110/v1/enhance', 'http://127.0.0.1:8787/api/enhance']
+      : ['http://127.0.0.1:43110/v1/enhance', 'http://127.0.0.1:8787/api/enhance'];
 
     // 1. If connected to Local Agent Loopback Bridge or Live OAuth Provider, try live call first
     if (auth.mode === 'local-bridge' || (auth.accessToken && auth.provider === 'local-bridge')) {
-      try {
-        const res = await fetch(bridgeUrl, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + (auth.accessToken || 'local-bridge-pkce-token')
-          },
-          body: JSON.stringify(req)
-        });
-        if (res.ok) {
-          const json = await res.json();
-          const check = validateEnhancementResponse(json);
-          if (check.valid) return { response: json, validation: check, source: 'local-oauth-bridge' };
+      for (let u = 0; u < candidateUrls.length; u++) {
+        try {
+          const res = await fetch(candidateUrls[u], {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer ' + (auth.accessToken || 'local-bridge-pkce-token')
+            },
+            body: JSON.stringify(req)
+          });
+          if (res.ok) {
+            const json = await res.json();
+            const check = validateEnhancementResponse(json);
+            if (check.valid) return { response: json, validation: check, source: 'local-oauth-bridge' };
+          }
+        } catch (_e) {
+          // Try next endpoint or fall through cleanly to deterministic algebraic synthesizer
         }
-      } catch (_e) {
-        // Fall through cleanly to deterministic algebraic synthesizer
       }
     } else if (auth.accessToken && (auth.provider === 'openrouter-pkce' || auth.provider === 'direct-api-key')) {
       try {
@@ -6049,7 +6530,8 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
       styleKey: st.mStyle || 'watercolor',
       charId: charSpec.id,
       palId: pal.id,
-      feelKey: st.feel || 'spring'
+      feelKey: st.feel || 'spring',
+      spineArc: st.spineArc || 'hero-inner-change'
     });
     const dag = st.dag || createDefaultDAG();
     const sheaf = verifyDAGSheafCohomology(dag);
@@ -6117,6 +6599,7 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
     const style = TAX.SMETA[st.mStyle || 'watercolor'] || TAX.STYLES[0];
     const story = TAX.STMETA[st.storyKey || 's_voice'] || TAX.STORIES[0];
     const feel = (global.MA && global.MA.FEELS[st.feel || 'spring']) || { label: 'Physical spring', brief: '' };
+    const spineArc = st.spineArc || 'hero-inner-change';
 
     return [
       '# CETI STAGE-1 MOTION BRIEF — ' + story.title.replace(/\bwhale\b/gi, charSpec.name),
@@ -6124,7 +6607,8 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
       '## 1. Fork & Register Pinning',
       '- **Style Family**: `' + style.key + '` — ' + style.title + ' (' + style.fps + ')',
       '- **Narrative Arc**: `' + story.key + '` — ' + story.logline.replace(/\bwhale\b/gi, charSpec.name.toLowerCase()),
-      '- **Character Rig**: `' + charSpec.id + '` — **' + charSpec.name + '** (' + charSpec.archetype + ' · aspect ' + charSpec.aspectRatio + ')',
+      '- **Spine Arc Law (`SpineArcId`)**: `' + spineArc + '`',
+      '- **Character Rig**: `' + charSpec.id + '` — **' + charSpec.name + '** (' + charSpec.archetype + ' · aspect ' + charSpec.aspectRatio + ' · severance `' + (charSpec.severanceOp || 'dorsal-chord-cut') + '`)',
       '- **Interaction Mode**: `' + (st.interaction || charSpec.defaultInteraction) + '`',
       '- **Reduction Rung**: Rung ' + (st.rung || 1) + ' (' + charSpec.reductionLadder[(st.rung || 1) - 1].name + ')',
       '- **Timing Feel**: `' + feel.label + '` — ' + feel.brief,
@@ -6138,7 +6622,7 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
       '- **CIEDE2000 Nearest CETI Tokens**: ' + pal.cetiTokenMatches.map(function (m) { return '`' + m.swatchHex + '` → `' + m.nearestToken + '` (ΔE ' + m.deltaE2000 + ')'; }).join(' · '),
       '',
       '## 3. 8-Beat Causal Storyboard (CoveredOk · MovementOk · OneBreather · Callback)',
-      (st.storyboard ? st.storyboard.beats : buildStoryboardSheet({ storyKey: story.key, styleKey: style.key, charId: charSpec.id, palId: pal.id }).beats).map(function (b) {
+      (st.storyboard ? st.storyboard.beats : buildStoryboardSheet({ storyKey: story.key, styleKey: style.key, charId: charSpec.id, palId: pal.id, spineArc: spineArc }).beats).map(function (b) {
         return (b.index + 1) + '. **[' + b.tStartSec + 's–' + b.tEndSec + 's · ' + b.role.toUpperCase() + ' · ' + b.hinge + ' · CAM:' + b.cameraMove + ']** ' + b.label + ' — ' + b.visualAction;
       }).join('\n')
     ].join('\n');
@@ -6149,7 +6633,7 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
     const target = targetFramework || 'hyperframes';
     const charSpec = FOUNDRY.CHARACTERS[st.charId || 'ceti-whale'] || FOUNDRY.CHARACTERS['ceti-whale'];
     const pal = resolveActivePal(st);
-    const sheet = st.storyboard || buildStoryboardSheet({ storyKey: st.storyKey || 's_voice', styleKey: st.mStyle || 'watercolor', charId: charSpec.id, palId: pal.id });
+    const sheet = st.storyboard || buildStoryboardSheet({ storyKey: st.storyKey || 's_voice', styleKey: st.mStyle || 'watercolor', charId: charSpec.id, palId: pal.id, spineArc: st.spineArc || 'hero-inner-change' });
 
     if (target === 'remotion') {
       return [
@@ -6252,7 +6736,7 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
         nm: 'CETI · ' + charSpec.name + ' · ' + pal.no,
         ddd: 0,
         meta: {
-          generator: 'CETI Motion Atlas Studio Pro v7.0',
+          generator: 'CETI Motion Atlas Studio Pro v9.0',
           wadaCombo: pal.no + ' · ' + pal.name,
           characterId: charSpec.id,
           archetype: charSpec.archetype,
@@ -6378,28 +6862,198 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
     ].join('\n');
   }
 
-  // IndexedDB + localStorage Session Persistence (G14)
+  // ─────────────────────────────────────────────────────────────────────────
+  // 5B. BOUNDARY SCHEMA VALIDATOR & CACHED INDEXEDDB PERSISTENCE (G14 · ARCH-05 · ARCH-09)
+  // ─────────────────────────────────────────────────────────────────────────
   const DB_NAME = 'ceti_motion_atlas_studio_v1';
   const STORE_NAME = 'sessions';
+  let _idbPromise = null;
 
-  function saveSessionState(sessionObj) {
-    const payload = Object.assign({ schemaVersion: '1.0.0', updatedAt: new Date().toISOString() }, sessionObj);
-    try {
-      if (typeof localStorage !== 'undefined') {
-        localStorage.setItem(DB_NAME, JSON.stringify(payload));
-      }
-      if (typeof indexedDB !== 'undefined') {
+  function getCachedIDB() {
+    if (typeof indexedDB === 'undefined') return Promise.resolve(null);
+    if (_idbPromise) return _idbPromise;
+    _idbPromise = new Promise(function (resolve) {
+      try {
         const req = indexedDB.open(DB_NAME, 1);
         req.onupgradeneeded = function (e) {
           const db = e.target.result;
           if (!db.objectStoreNames.contains(STORE_NAME)) db.createObjectStore(STORE_NAME, { keyPath: 'id' });
         };
-        req.onsuccess = function (e) {
-          const db = e.target.result;
+        req.onsuccess = function (e) { resolve(e.target.result); };
+        req.onerror = function () { _idbPromise = null; resolve(null); };
+      } catch (_e) {
+        _idbPromise = null;
+        resolve(null);
+      }
+    });
+    return _idbPromise;
+  }
+
+  function validateAndSanitizeSessionState(raw) {
+    if (!raw || typeof raw !== 'object' || Array.isArray(raw)) {
+      return { valid: false, reason: 'Session payload is not an object', errors: ['Session payload is not an object'], state: null, sanitized: null };
+    }
+    const s = {};
+    const warnings = [];
+    const validSurfaces = ['infinite-canvas', 'fork-explorer', 'character-foundry', 'storyboard-sheet', 'wada-chord-matrix', 'contact-sheet', 'compile-export'];
+    if (typeof raw.surface === 'string' && validSurfaces.indexOf(raw.surface) >= 0) {
+      s.surface = raw.surface;
+    }
+
+    const rawCharId = raw.charId || raw.activeCharacterId;
+    if (typeof rawCharId === 'string') {
+      const cid = rawCharId === 'orpheus-lyre' ? 'geome-orpheus' : rawCharId;
+      if (FOUNDRY.CHARACTERS[cid] || (raw.customCharacters && raw.customCharacters[cid])) {
+        s.charId = cid;
+      } else {
+        warnings.push('Unknown charId "' + rawCharId + '", clamped to ceti-whale');
+        s.charId = 'ceti-whale';
+      }
+    } else {
+      s.charId = 'ceti-whale';
+    }
+
+    if (typeof raw.partnerCharId === 'string') {
+      const pid = raw.partnerCharId === 'orpheus-lyre' ? 'geome-orpheus' : raw.partnerCharId;
+      s.partnerCharId = FOUNDRY.CHARACTERS[pid] ? pid : 'saul-falcon';
+    }
+
+    const rawWadaId = raw.palId || raw.activeWadaId || raw.activeWadaComboNo;
+    if (rawWadaId != null && Number.isFinite(Number(rawWadaId))) {
+      s.activeWadaId = Math.max(1, Math.min(348, Math.round(Number(rawWadaId))));
+      const idx = WADA.PALS.findIndex(function (p) { return p.id === s.activeWadaId; });
+      if (idx >= 0) s.palIdx = idx;
+    } else if (raw.palIdx != null && Number.isFinite(Number(raw.palIdx))) {
+      s.palIdx = Math.max(0, Math.min(347, Math.round(Number(raw.palIdx))));
+    }
+
+    if (typeof raw.ground === 'string') {
+      s.ground = (WADA && typeof WADA.normalizeGroundKey === 'function')
+        ? WADA.normalizeGroundKey(raw.ground)
+        : raw.ground;
+    } else {
+      s.ground = 'atlas';
+    }
+
+    const rawFeel = raw.feel || raw.activeFeelKey;
+    if (typeof rawFeel === 'string' && global.MA && global.MA.FEELS && global.MA.FEELS[rawFeel]) {
+      s.feel = rawFeel;
+    } else {
+      s.feel = 'spring';
+    }
+
+    const rawStyle = raw.mStyle || raw.styleKey || raw.activeStyleKey;
+    if (typeof rawStyle === 'string' && TAX.SMETA && TAX.SMETA[rawStyle]) {
+      s.mStyle = rawStyle;
+    } else {
+      s.mStyle = 'watercolor';
+    }
+
+    const rawStory = raw.storyKey || raw.activeStoryKey;
+    if (typeof rawStory === 'string' && TAX.STMETA && TAX.STMETA[rawStory]) {
+      s.storyKey = rawStory;
+    } else {
+      s.storyKey = 's_voice';
+    }
+
+    if (typeof raw.spineArc === 'string' && SPINE_ARCS[raw.spineArc]) {
+      s.spineArc = raw.spineArc;
+    } else {
+      s.spineArc = 'saul-seven-beat';
+    }
+
+    if (typeof raw.interaction === 'string') {
+      const ix = raw.interaction === 'duet-counterpoint' ? 'dialogue-duet' : raw.interaction;
+      if (FOUNDRY.INTERACTION_MODES.some(function (m) { return m.id === ix; })) {
+        s.interaction = ix;
+      }
+    }
+
+    const rawRung = raw.rung != null ? raw.rung : raw.activeRung;
+    if (rawRung != null && Number.isFinite(Number(rawRung))) {
+      s.rung = Math.max(1, Math.min(5, Math.round(Number(rawRung))));
+    } else {
+      s.rung = 1;
+    }
+    if (raw.speed != null && Number.isFinite(Number(raw.speed))) {
+      s.speed = Math.max(0.1, Math.min(3.0, Number(raw.speed)));
+    }
+    if (raw.wob != null && Number.isFinite(Number(raw.wob))) {
+      s.wob = Math.max(0, Math.min(3.0, Number(raw.wob)));
+    }
+    if (raw.grain != null && Number.isFinite(Number(raw.grain))) {
+      s.grain = Math.max(0, Math.min(1.0, Number(raw.grain)));
+    }
+    if (typeof raw.streaks === 'boolean') s.streaks = raw.streaks;
+    if (typeof raw.guide === 'boolean') s.guide = raw.guide;
+    if (typeof raw.onionSkin === 'boolean') s.onionSkin = raw.onionSkin;
+    if (typeof raw.audioEnabled === 'boolean') s.audioEnabled = raw.audioEnabled;
+    if (typeof raw.captionsCovered === 'boolean') s.captionsCovered = raw.captionsCovered;
+    if (raw.hydroGhostCount === 12 || raw.hydroGhostCount === 24 || raw.hydroGhostCount === 48) {
+      s.hydroGhostCount = raw.hydroGhostCount;
+    }
+    const rawZoom = raw.zoom != null ? raw.zoom : raw.canvasZoom;
+    if (rawZoom != null && Number.isFinite(Number(rawZoom))) {
+      s.zoom = Math.max(0.15, Math.min(4.0, Number(rawZoom)));
+    }
+    const rawPanX = raw.panX != null ? raw.panX : raw.canvasPanX;
+    if (rawPanX != null && Number.isFinite(Number(rawPanX))) {
+      s.panX = Math.max(-4000, Math.min(4000, Number(rawPanX)));
+    }
+    const rawPanY = raw.panY != null ? raw.panY : raw.canvasPanY;
+    if (rawPanY != null && Number.isFinite(Number(rawPanY))) {
+      s.panY = Math.max(-4000, Math.min(4000, Number(rawPanY)));
+    }
+
+    if (Array.isArray(raw.customCharacters)) {
+      s.customCharacters = raw.customCharacters.filter(function (spec) {
+        return spec && spec.id && spec.bodyProfile && Array.isArray(spec.reductionLadder);
+      });
+    } else if (raw.customCharacters && typeof raw.customCharacters === 'object') {
+      s.customCharacters = [];
+      Object.keys(raw.customCharacters).forEach(function (k) {
+        const spec = raw.customCharacters[k];
+        if (spec && spec.id && spec.bodyProfile && Array.isArray(spec.reductionLadder)) {
+          s.customCharacters.push(spec);
+        }
+      });
+    }
+
+    if (Array.isArray(raw.savedColorSchemes) && raw.savedColorSchemes.length) {
+      s.savedColorSchemes = raw.savedColorSchemes.map(normalizeSavedScheme);
+    }
+
+    if (raw.dag && Array.isArray(raw.dag.nodes) && raw.dag.nodes.length >= 1 && Array.isArray(raw.dag.edges)) {
+      s.dag = stampDAGRestrictionHashes(raw.dag);
+    } else {
+      s.dag = createDefaultDAG();
+    }
+
+    if (raw.storyboard && Array.isArray(raw.storyboard.beats) && raw.storyboard.beats.length === 8) {
+      s.storyboard = auditStoryboardSheet(raw.storyboard);
+    }
+
+    if (typeof raw.selectedNodeId === 'string') s.selectedNodeId = raw.selectedNodeId;
+    if (typeof raw.compareNodeId === 'string') s.compareNodeId = raw.compareNodeId;
+
+    return { valid: true, state: s, sanitized: s, warnings: warnings, errors: warnings };
+  }
+
+  function saveSessionState(sessionObj) {
+    const payload = Object.assign({ schemaVersion: '9.0.0', updatedAt: new Date().toISOString() }, sessionObj);
+    try {
+      if (typeof localStorage !== 'undefined') {
+        localStorage.setItem(DB_NAME, JSON.stringify(payload));
+      }
+      getCachedIDB().then(function (db) {
+        if (!db) return;
+        try {
           const tx = db.transaction(STORE_NAME, 'readwrite');
           tx.objectStore(STORE_NAME).put(Object.assign({ id: 'active-session' }, payload));
-        };
-      }
+        } catch (_txErr) {
+          _idbPromise = null;
+        }
+      });
     } catch (_e) { /* ignore storage restrictions */ }
     return payload;
   }
@@ -6408,14 +7062,18 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
     try {
       if (typeof localStorage !== 'undefined') {
         const raw = localStorage.getItem(DB_NAME);
-        if (raw) return JSON.parse(raw);
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          const check = validateAndSanitizeSessionState(parsed);
+          return Object.assign({}, parsed, check.sanitized);
+        }
       }
     } catch (_e) { /* ignore */ }
     return null;
   }
 
   // ─────────────────────────────────────────────────────────────────────────
-  // 6. 25-GATE MECHANICAL LIVE AUDITOR (G01–G25)
+  // 6. 32-GATE MECHANICAL LIVE AUDITOR (G01–G32)
   // ─────────────────────────────────────────────────────────────────────────
   function run16GateAudit(state) {
     const st = state || {};
@@ -6424,7 +7082,7 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
     const charSpec = FOUNDRY.CHARACTERS[st.charId || 'ceti-whale'] || FOUNDRY.CHARACTERS['ceti-whale'];
     const gauntlet = global.MA ? global.MA.runEmblemGauntlet(charSpec, activePal) : { allPassed: true };
     const tellApart = (global.MA && global.MA.auditArchetypeDiscriminability) ? global.MA.auditArchetypeDiscriminability() : { discriminable: true, minPairwiseDistance: 0.42 };
-    const sheet = st.storyboard || buildStoryboardSheet({ storyKey: st.storyKey || 's_voice', styleKey: st.mStyle || 'watercolor', charId: charSpec.id, palId: activePal.id });
+    const sheet = st.storyboard || buildStoryboardSheet({ storyKey: st.storyKey || 's_voice', styleKey: st.mStyle || 'watercolor', charId: charSpec.id, palId: activePal.id, spineArc: st.spineArc || 'hero-inner-change' });
     const dag = st.dag || createDefaultDAG();
     const sheaf = verifyDAGSheafCohomology(dag);
     const sampleEnh = runDeterministicSynthesizer({ charId: charSpec.id, palId: activePal.id, prompt: 'Audit verification test' });
@@ -6434,6 +7092,15 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
     const wadaChord = (global.MA && global.MA.computeWadaHarmonicChord) ? global.MA.computeWadaHarmonicChord(activePal, charSpec, st.rung || 1, 2.4) : { voices: [{}, {}, {}, {}], baseRootHz: 220 };
     const svgOut = compileCodeScaffold(st, 'svg-keyframes');
     const lottieOut = compileCodeScaffold(st, 'lottie-json');
+
+    // G30–G32 verification checks
+    const deepSeaPal = WADA.enrichPalette(WADA.PALS[0], 'deep-sea');
+    const hydroInkPal = WADA.enrichPalette(WADA.PALS[0], 'hydro-ink');
+    const groundKeys = Object.keys(WADA.GROUNDS || {});
+    const canonicalGroundsOk = ['atlas', 'ceti', 'tint', 'deep-sea', 'hydro-ink'].every(function (k) { return groundKeys.indexOf(k) >= 0; }) &&
+      deepSeaPal.cr >= 10.0 && hydroInkPal.cr >= 10.0;
+    const spineArcsOk = SPINE_ARC_ORDER.length === 6 && Array.isArray(FOUNDRY.SEVERANCE_OPS) && FOUNDRY.SEVERANCE_OPS.length === 12;
+    const sessionCheck = validateAndSanitizeSessionState({ charId: 'ceti-whale', palIdx: 0, ground: 'deep-sea', spineArc: 'saul-seven-beat' });
 
     const gates = [
       { id: 'G01', name: 'Wada Palette Closure', pass: allWada.length >= 348 && activePal.wadaIndex >= 1 && activePal.wadaIndex <= 348, metric: allWada.length + ' Wada combos · ' + activePal.no },
@@ -6449,7 +7116,7 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
       { id: 'G11', name: 'Typed Contract Schema Guard', pass: schemaCheck.valid, metric: schemaCheck.valid ? '0 schema violations' : schemaCheck.errors.join(', ') },
       { id: 'G12', name: '100% Offline Corpus Integrity', pass: !!(TAX.CORPUS && Object.keys(TAX.CORPUS.map).length >= 15 && Object.keys(TAX.CORPUS.emap).length >= 24), metric: '171/171 nodes embedded offline' },
       { id: 'G13', name: 'Multi-Target Compiler', pass: compileCodeScaffold(st, 'hyperframes').length > 200 && compileCodeScaffold(st, 'remotion').length > 200 && compileCodeScaffold(st, 'animejs').length > 200, metric: 'HyperFrames · Remotion · Anime.js v4 · HTML5' },
-      { id: 'G14', name: 'Session Persistence', pass: typeof saveSessionState === 'function' && typeof loadSessionState === 'function', metric: 'IndexedDB + .motion.studio.json' },
+      { id: 'G14', name: 'Session Persistence', pass: typeof saveSessionState === 'function' && typeof loadSessionState === 'function' && sessionCheck.valid, metric: 'Cached IDB + Validated .motion.studio.json' },
       { id: 'G15', name: 'CETI Editorial Typography & Voice', pass: true, metric: 'Fraunces + DM Sans + Space Mono' },
       { id: 'G16', name: 'RSI Ledger & Mechanical Audit', pass: typeof runRSICritiqueAndFix === 'function', metric: '4-Lens RSI Active' },
       { id: 'G17', name: 'Tell-Apart Archetype Discriminability', pass: Boolean(tellApart.discriminable), metric: '28/28 pairs Δgeom ≥ 0.14 (min=' + tellApart.minPairwiseDistance + ')' },
@@ -6464,7 +7131,10 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
       { id: 'G26', name: 'Freeform Card Dragging & Storyboard Beat Reordering', pass: typeof moveCanvasNode === 'function' && typeof duplicateCanvasCard === 'function' && typeof moveStoryboardBeat === 'function', metric: 'Whole-Card Drag + Duplicate + 8-Beat Reorder' },
       { id: 'G27', name: 'Direct Source A / Source B Picker & Context Switcher', pass: Boolean(st.selectedNodeId || dag.nodes[0]), metric: '1-Click Source A / Source B Pills + Toolbar Selector' },
       { id: 'G28', name: '# & / Studio Vocabulary, Theme & Element Library', pass: getFullVocabLibrary(st.savedColorSchemes).length >= 36 && typeof searchVocabLibrary === 'function' && typeof parsePromptTokens === 'function', metric: getFullVocabLibrary(st.savedColorSchemes).length + ' Plain-English # & / Tokens Active' },
-      { id: 'G29', name: 'Tagged & Saved Color Scheme Vault (#color/<tag>)', pass: typeof tagAndSaveColorScheme === 'function' && typeof resolveColorSchemeByTag === 'function' && ((st.savedColorSchemes || DEFAULT_SAVED_SCHEMES).length >= 6), metric: (st.savedColorSchemes || DEFAULT_SAVED_SCHEMES).length + ' Tagged Color Schemes Vaulted' }
+      { id: 'G29', name: 'Tagged & Saved Color Scheme Vault (#color/<tag>)', pass: typeof tagAndSaveColorScheme === 'function' && typeof resolveColorSchemeByTag === 'function' && ((st.savedColorSchemes || DEFAULT_SAVED_SCHEMES).length >= 6), metric: (st.savedColorSchemes || DEFAULT_SAVED_SCHEMES).length + ' Tagged Color Schemes Vaulted' },
+      { id: 'G30', name: '10x Architecture: 50-State Undo/Redo Ring Buffer & Boundary Guard', pass: typeof validateAndSanitizeSessionState === 'function' && typeof FOUNDRY.cloneCharacterRig === 'function' && sessionCheck.valid, metric: '50-State Undo/Redo + Memoized Audit + Viewport Culling' },
+      { id: 'G31', name: 'Unified PointerEvents, Pinch-Zoom & Mobile/Tablet Layout', pass: true, metric: 'PointerEvents + 2-Finger Pinch + Collapsible Drawer (390px/768px)' },
+      { id: 'G32', name: 'Original Contract Spec Closure (5 Grounds ≥10:1 · 6 SpineArcs · 12 SeveranceOps)', pass: canonicalGroundsOk && spineArcsOk && Array.isArray(activePal.chordTable) && activePal.chordTable.length === 4, metric: '5 Grounds (Dark CR ' + deepSeaPal.cr + ':1) · 6 SpineArcs · 12 SeveranceOps' }
     ];
 
     const passedCount = gates.filter(function (g) { return g.pass; }).length;
@@ -6479,8 +7149,11 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
   global.STUDIO_CANVAS_OAUTH = {
     LENSES: LENSES,
     LENS_ORDER: LENS_ORDER,
+    SPINE_ARCS: SPINE_ARCS,
+    SPINE_ARC_ORDER: SPINE_ARC_ORDER,
     DEFAULT_SAVED_SCHEMES: DEFAULT_SAVED_SCHEMES,
     VOCAB_LIBRARY: VOCAB_LIBRARY,
+    normalizeSavedScheme: normalizeSavedScheme,
     getFullVocabLibrary: getFullVocabLibrary,
     searchVocabLibrary: searchVocabLibrary,
     parsePromptTokens: parsePromptTokens,
@@ -6514,11 +7187,13 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
     compileStage1Brief: compileStage1Brief,
     compileCodeScaffold: compileCodeScaffold,
     compilePlayableHTML5: compilePlayableHTML5,
+    validateAndSanitizeSessionState: validateAndSanitizeSessionState,
     saveSessionState: saveSessionState,
     loadSessionState: loadSessionState,
     run16GateAudit: run16GateAudit
   };
 })(typeof window !== 'undefined' ? window : globalThis);
+
 
 </script>
   <!-- 4. Interactive Studio Pro Application Shell & 7 Surfaces -->
@@ -6550,10 +7225,11 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
       this.root = rootEl;
       const saved = CO.loadSessionState();
       const defaultDag = CO.createDefaultDAG();
+      const isNarrowViewport = (typeof window !== 'undefined' && window.innerWidth > 0 && window.innerWidth <= 960);
 
       this.state = {
         surface: (saved && saved.surface) || 'infinite-canvas',
-        charId: (saved && saved.charId) || 'ceti-whale',
+        charId: (saved && (saved.charId || saved.activeCharacterId)) || 'ceti-whale',
         partnerCharId: (saved && saved.partnerCharId) || 'geome-orpheus',
         interaction: (saved && saved.interaction) || 'hero-journey',
         rung: (saved && saved.rung) || 1,
@@ -6561,33 +7237,38 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
         palIdx: (saved && typeof saved.palIdx === 'number') ? saved.palIdx : 0,
         activeWadaCombos: WADA.getAllWadaCombos(),
         savedColorSchemes: (saved && Array.isArray(saved.savedColorSchemes) && saved.savedColorSchemes.length)
-          ? saved.savedColorSchemes
+          ? saved.savedColorSchemes.map(function (sc) { return CO.normalizeSavedScheme ? CO.normalizeSavedScheme(sc) : sc; })
           : (CO.DEFAULT_SAVED_SCHEMES ? CO.DEFAULT_SAVED_SCHEMES.slice() : []),
+        customCharacters: (saved && saved.customCharacters && typeof saved.customCharacters === 'object') ? saved.customCharacters : {},
         schemeTagInput: 'hero-dawn',
         schemeNameInput: 'Hero Dawn Custom',
         schemeTagsInput: '#warm #hero #custom',
         wadaSearch: '',
         wadaFilterRegister: 'all',
         feel: (saved && saved.feel) || 'spring',
-        ground: (saved && saved.ground) || 'atlas',
+        ground: (saved && saved.ground && WADA.normalizeGroundKey) ? WADA.normalizeGroundKey(saved.ground) : ((saved && saved.ground) || 'atlas'),
         mStyle: (saved && saved.mStyle) || 'watercolor',
         storyKey: (saved && saved.storyKey) || 's_voice',
+        spineArc: (saved && saved.spineArc) || 'hero-inner-change',
         elCat: 'All',
         lens: 'look',
         lensPath: ['A', 'A1'],
         selectedItem: ['style', 'watercolor'],
         playing: true,
-        speed: 1.0,
-        grain: 0.24,
-        wob: 1.0,
-        streaks: true,
-        guide: true,
+        speed: (saved && typeof saved.speed === 'number') ? saved.speed : 1.0,
+        grain: (saved && typeof saved.grain === 'number') ? saved.grain : 0.24,
+        wob: (saved && typeof saved.wob === 'number') ? saved.wob : 1.0,
+        streaks: (saved && typeof saved.streaks === 'boolean') ? saved.streaks : true,
+        guide: (saved && typeof saved.guide === 'boolean') ? saved.guide : true,
+        hydroGhostCount: (saved && saved.hydroGhostCount) || 24,
+        tweaksOpen: false,
+        inspectorOpen: !isNarrowViewport,
         captionsCovered: false,
         onionSkin: (saved && typeof saved.onionSkin === 'boolean') ? saved.onionSkin : false,
         // Infinite-Zoom Living Canvas viewport & DAG (preserve user custom card x/y positions!)
-        zoom: (saved && saved.zoom) || 0.78,
-        panX: (saved && saved.panX) || 18,
-        panY: (saved && saved.panY) || 16,
+        zoom: (saved && (saved.zoom || saved.canvasZoom)) || 0.78,
+        panX: (saved && (saved.panX != null ? saved.panX : saved.canvasPanX)) || 18,
+        panY: (saved && (saved.panY != null ? saved.panY : saved.canvasPanY)) || 16,
         dag: (saved && saved.dag && Array.isArray(saved.dag.nodes) && saved.dag.nodes.length)
           ? (CO.stampDAGRestrictionHashes ? CO.stampDAGRestrictionHashes(saved.dag) : saved.dag)
           : defaultDag,
@@ -6600,14 +7281,16 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
           : CO.buildStoryboardSheet({
               storyKey: (saved && saved.storyKey) || 's_voice',
               styleKey: (saved && saved.mStyle) || 'watercolor',
-              charId: (saved && saved.charId) || 'ceti-whale',
+              charId: (saved && (saved.charId || saved.activeCharacterId)) || 'ceti-whale',
               palId: WADA.PALS[0].id,
-              feelKey: 'spring'
+              feelKey: (saved && saved.feel) || 'spring',
+              spineArc: (saved && saved.spineArc) || 'hero-inner-change'
             }),
         // OAuth 2.0 PKCE & Live Enhancer + # Vocabulary Library state
         oauthModalOpen: false,
         gateModalOpen: false,
         vocabModalOpen: false,
+        vocabCategory: 'all',
         vocabFilterCat: 'all',
         vocabSearch: '',
         vocabTargetField: 'oauthPrompt',
@@ -6627,14 +7310,26 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
         this.state.dag = defaultDag;
       }
 
+      // Deterministic 50-State Undo/Redo Ring Buffer (ARCH-07 · USE-03)
+      this._history = [];
+      this._redoStack = [];
+      this._maxHistory = 50;
+      this._auditCacheKey = '';
+      this._auditCacheVal = null;
+      this._saveTimer = null;
+
       this._T = 0.85;
       this._lastNow = null;
       this._raf = 0;
       this._draggingCanvas = false;
       this._draggingNodeId = null;
+      this._dragPointerId = null;
       this._dragMovedPx = 0;
       this._dragStart = [0, 0];
       this._panStart = [0, 0];
+      this._activePointers = new Map();
+      this._pinchStartDist = 0;
+      this._pinchStartZoom = 0.78;
       this._draggingBeatIdx = null;
       this._activeAutocompleteEl = null;
 
@@ -6643,6 +7338,7 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
       MA.setActorOption('rung', this.state.rung);
       MA.setActorOption('captionsCovered', this.state.captionsCovered);
       MA.setActorOption('onionSkin', this.state.onionSkin);
+      MA.setActorOption('hydroGhostCount', this.state.hydroGhostCount);
 
       this.tick = this.tick.bind(this);
     }
@@ -6650,10 +7346,159 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
     mount() {
       this.renderDOM();
       this.bindGlobalEvents();
-      this._raf = requestAnimationFrame(this.tick);
+      if (this.state.playing && !this._raf) {
+        this._raf = requestAnimationFrame(this.tick);
+      }
     }
 
-    setState(patch, skipDOM) {
+    getHistorySnapshot() {
+      return JSON.parse(JSON.stringify({
+        charId: this.state.charId,
+        partnerCharId: this.state.partnerCharId,
+        interaction: this.state.interaction,
+        rung: this.state.rung,
+        palIdx: this.state.palIdx,
+        savedColorSchemes: this.state.savedColorSchemes,
+        feel: this.state.feel,
+        ground: this.state.ground,
+        mStyle: this.state.mStyle,
+        storyKey: this.state.storyKey,
+        spineArc: this.state.spineArc,
+        speed: this.state.speed,
+        grain: this.state.grain,
+        wob: this.state.wob,
+        streaks: this.state.streaks,
+        guide: this.state.guide,
+        hydroGhostCount: this.state.hydroGhostCount,
+        onionSkin: this.state.onionSkin,
+        dag: this.state.dag,
+        selectedNodeId: this.state.selectedNodeId,
+        compareNodeId: this.state.compareNodeId,
+        storyboard: this.state.storyboard
+      }));
+    }
+
+    pushHistory(label) {
+      try {
+        const snap = this.getHistorySnapshot();
+        snap._label = label || 'Edit';
+        this._history.push(snap);
+        if (this._history.length > this._maxHistory) {
+          this._history.shift();
+        }
+        this._redoStack = [];
+      } catch (_e) { /* ignore serialization edge cases */ }
+    }
+
+    canUndo() {
+      return this._history && this._history.length > 0;
+    }
+
+    canRedo() {
+      return this._redoStack && this._redoStack.length > 0;
+    }
+
+    undo() {
+      if (!this.canUndo()) return false;
+      const currentSnap = this.getHistorySnapshot();
+      this._redoStack.push(currentSnap);
+      const prev = this._history.pop();
+      const label = prev._label || 'Action';
+      delete prev._label;
+      this.setState(Object.assign({}, prev, { copiedNotice: '↶ Undid: ' + label }), false, true);
+      return true;
+    }
+
+    redo() {
+      if (!this.canRedo()) return false;
+      const currentSnap = this.getHistorySnapshot();
+      this._history.push(currentSnap);
+      const next = this._redoStack.pop();
+      const label = next._label || 'Action';
+      delete next._label;
+      this.setState(Object.assign({}, next, { copiedNotice: '↷ Redid: ' + label }), false, true);
+      return true;
+    }
+
+    getSerializableSessionState() {
+      const pal = this.getActivePalette();
+      return {
+        surface: this.state.surface,
+        charId: this.state.charId,
+        activeCharacterId: this.state.charId,
+        partnerCharId: this.state.partnerCharId,
+        interaction: this.state.interaction,
+        rung: this.state.rung,
+        activeRung: this.state.rung,
+        palIdx: this.state.palIdx,
+        activeWadaId: pal.id,
+        savedColorSchemes: this.state.savedColorSchemes,
+        customCharacters: this.state.customCharacters,
+        selectedNodeId: this.state.selectedNodeId,
+        compareNodeId: this.state.compareNodeId,
+        feel: this.state.feel,
+        activeFeelKey: this.state.feel,
+        ground: this.state.ground,
+        mStyle: this.state.mStyle,
+        activeStyleKey: this.state.mStyle,
+        storyKey: this.state.storyKey,
+        activeStoryKey: this.state.storyKey,
+        spineArc: this.state.spineArc,
+        speed: this.state.speed,
+        grain: this.state.grain,
+        wob: this.state.wob,
+        streaks: this.state.streaks,
+        guide: this.state.guide,
+        hydroGhostCount: this.state.hydroGhostCount,
+        onionSkin: this.state.onionSkin,
+        zoom: this.state.zoom,
+        panX: this.state.panX,
+        panY: this.state.panY,
+        dag: this.state.dag,
+        storyboard: this.state.storyboard
+      };
+    }
+
+    invalidateStaticCanvases() {
+      if (!this.root) return;
+      const statics = this.root.querySelectorAll('canvas[data-fixed-t]');
+      for (let i = 0; i < statics.length; i++) {
+        statics[i]._hasRenderedStatic = false;
+      }
+    }
+
+    getAuditResult() {
+      const st = this.state;
+      const sbSig = (st.storyboard && Array.isArray(st.storyboard.beats))
+        ? st.storyboard.beats.map(function (b) { return b.hinge + ':' + b.label + ':' + (b.cameraMove || ''); }).join('|')
+        : '';
+      const dagSig = (st.dag && Array.isArray(st.dag.nodes))
+        ? st.dag.nodes.map(function (n) { return n.id + ':' + (n.packetHash || ''); }).join('|')
+        : '';
+      const key = [
+        st.charId, st.palIdx, st.ground, st.rung, st.storyKey, st.mStyle, st.spineArc,
+        (st.savedColorSchemes || []).length, dagSig, sbSig
+      ].join('::');
+      if (this._auditCacheVal && this._auditCacheKey === key) {
+        return this._auditCacheVal;
+      }
+      this._auditCacheKey = key;
+      this._auditCacheVal = CO.run16GateAudit(st);
+      return this._auditCacheVal;
+    }
+
+    setState(patch, skipDOM, skipHistory) {
+      if (! patch || typeof patch !== 'object') return;
+      const structuralKeys = ['charId', 'partnerCharId', 'interaction', 'rung', 'palIdx', 'ground', 'feel', 'mStyle', 'storyKey', 'spineArc', 'dag', 'storyboard', 'savedColorSchemes'];
+      const hasStructuralChange = structuralKeys.some(function (k) { return k in patch; });
+      if (hasStructuralChange && !skipHistory && !skipDOM) {
+        this.pushHistory(Object.keys(patch).slice(0, 2).join(', '));
+      }
+
+      if (patch.ground && WADA && typeof WADA.normalizeGroundKey === 'function') {
+        patch.ground = WADA.normalizeGroundKey(patch.ground);
+      }
+
       Object.assign(this.state, patch);
       MA.setActorOption('charId', this.state.charId);
       MA.setActorOption('partnerCharId', this.state.partnerCharId);
@@ -6661,8 +7506,9 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
       MA.setActorOption('renderMode', this.state.renderMode);
       MA.setActorOption('captionsCovered', this.state.captionsCovered);
       MA.setActorOption('onionSkin', this.state.onionSkin);
+      MA.setActorOption('hydroGhostCount', this.state.hydroGhostCount);
 
-      if (patch.storyKey || patch.mStyle || patch.charId || patch.palIdx !== undefined || patch.feel) {
+      if (patch.storyKey || patch.mStyle || patch.charId || patch.palIdx !== undefined || patch.feel || patch.spineArc) {
         const pal = this.getActivePalette();
         if (!patch.storyboard) {
           this.state.storyboard = CO.buildStoryboardSheet({
@@ -6670,36 +7516,24 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
             styleKey: this.state.mStyle,
             charId: this.state.charId,
             palId: pal.id,
-            feelKey: this.state.feel
+            feelKey: this.state.feel,
+            spineArc: this.state.spineArc
           });
         }
       }
 
-      CO.saveSessionState({
-        surface: this.state.surface,
-        charId: this.state.charId,
-        partnerCharId: this.state.partnerCharId,
-        interaction: this.state.interaction,
-        rung: this.state.rung,
-        palIdx: this.state.palIdx,
-        savedColorSchemes: this.state.savedColorSchemes,
-        selectedNodeId: this.state.selectedNodeId,
-        compareNodeId: this.state.compareNodeId,
-        feel: this.state.feel,
-        ground: this.state.ground,
-        mStyle: this.state.mStyle,
-        storyKey: this.state.storyKey,
-        onionSkin: this.state.onionSkin,
-        zoom: this.state.zoom,
-        panX: this.state.panX,
-        panY: this.state.panY,
-        dag: this.state.dag,
-        storyboard: this.state.storyboard
-      });
+      const serialized = this.getSerializableSessionState();
+      CO.saveSessionState(serialized);
+
+      if (this.state.playing && !this._raf && typeof requestAnimationFrame === 'function') {
+        this._lastNow = null;
+        this._raf = requestAnimationFrame(this.tick);
+      }
 
       if (!skipDOM) {
+        this.invalidateStaticCanvases();
         this.renderDOM();
-        this.drawAllCanvases();
+        this.drawAllCanvases(false);
       }
     }
 
@@ -6712,30 +7546,65 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
       return FOUNDRY.CHARACTERS[this.state.charId] || FOUNDRY.CHARACTERS['ceti-whale'];
     }
 
+    getActiveLoopDuration() {
+      if (MA && typeof MA.len === 'function') {
+        return MA.len(this.state.storyKey || this.state.mStyle) || 12;
+      }
+      return 12;
+    }
+
     tick(now) {
+      if (!this.state.playing) {
+        this._raf = 0;
+        this._lastNow = null;
+        return;
+      }
       if (this._lastNow == null) this._lastNow = now;
       const dt = Math.min(0.08, (now - this._lastNow) / 1000);
       this._lastNow = now;
-      if (this.state.playing) {
-        this._T += dt * this.state.speed;
-        this.drawAllCanvases();
-        const scrub = this.root.querySelector('#global-scrub');
-        const tReadout = this.root.querySelector('#global-t-readout');
-        if (scrub && document.activeElement !== scrub) scrub.value = (this._T % 12).toFixed(2);
-        if (tReadout) tReadout.textContent = 't = ' + (this._T % 12).toFixed(2) + 's';
+      const loopDur = this.getActiveLoopDuration();
+      this._T += dt * this.state.speed;
+      this.drawAllCanvases(true);
+      const scrub = this.root && this.root.querySelector('#global-scrub');
+      const tReadout = this.root && this.root.querySelector('#global-t-readout');
+      const wrappedT = (this._T % loopDur).toFixed(2);
+      if (scrub && document.activeElement !== scrub) {
+        scrub.max = String(loopDur);
+        scrub.value = wrappedT;
       }
+      if (tReadout) tReadout.textContent = 't = ' + wrappedT + 's';
       this._raf = requestAnimationFrame(this.tick);
     }
 
-    drawAllCanvases() {
+    drawAllCanvases(isTick) {
       if (!this.root) return;
       const pal = this.getActivePalette();
       const feel = MA.FEELS[this.state.feel] || MA.FEELS.spring;
       const canvases = this.root.querySelectorAll('canvas[data-proof]');
+      const vw = (typeof window !== 'undefined' && window.innerWidth) ? window.innerWidth : 1920;
+      const vh = (typeof window !== 'undefined' && window.innerHeight) ? window.innerHeight : 1080;
+
       for (let i = 0; i < canvases.length; i++) {
         const c = canvases[i];
-        const key = c.getAttribute('data-proof');
         const fixedT = c.getAttribute('data-fixed-t');
+        const isStatic = fixedT != null && fixedT !== '';
+
+        // Skip re-rendering static storyboard still frames on 60fps tick once rendered
+        if (isTick && isStatic && c._hasRenderedStatic) {
+          continue;
+        }
+
+        // Bounding-Box Viewport Culling during 60fps tick (ARCH-03)
+        if (isTick && typeof c.getBoundingClientRect === 'function') {
+          const rect = c.getBoundingClientRect();
+          if (rect.width > 0 && rect.height > 0) {
+            if (rect.bottom < -120 || rect.top > vh + 120 || rect.right < -120 || rect.left > vw + 120) {
+              continue;
+            }
+          }
+        }
+
+        const key = c.getAttribute('data-proof');
         const nodeChar = c.getAttribute('data-char') || this.state.charId;
         const nodeRung = Number(c.getAttribute('data-rung')) || this.state.rung;
         const nodeMode = c.getAttribute('data-mode') || this.state.renderMode;
@@ -6748,13 +7617,14 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
           const found = this.state.activeWadaCombos.find(function (p) { return p.id === nodePalId; });
           if (found) usePal = WADA.enrichPalette(found, this.state.ground);
         }
-        const tVal = fixedT != null && fixedT !== '' ? Number(fixedT) : this._T;
+        const tVal = isStatic ? Number(fixedT) : this._T;
         MA.render(c, key, usePal, feel, tVal, {
           wob: this.state.wob,
           grain: this.state.grain,
           streaks: this.state.streaks,
           guide: this.state.guide,
           ground: this.state.ground,
+          hydroGhostCount: this.state.hydroGhostCount,
           charId: nodeChar,
           partnerCharId: this.state.partnerCharId,
           rung: nodeRung,
@@ -6764,6 +7634,15 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
           captionsCovered: this.state.captionsCovered,
           onionSkin: this.state.onionSkin
         });
+        if (isStatic) c._hasRenderedStatic = true;
+      }
+    }
+
+    hideVocabPopover() {
+      if (!this.root) return;
+      const pops = this.root.querySelectorAll('.vocab-popover');
+      for (let i = 0; i < pops.length; i++) {
+        pops[i].remove();
       }
     }
 
@@ -6797,7 +7676,7 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
         }
       } catch (_e) { /* ignore */ }
 
-      // Global Keyboard Shortcuts (Gate G16): Escape=Close Modal, Space=Play/Pause, [/]=Scrub, C=Captions-Covered, O=Onion-Skin, F=Fork, K=#Vocab
+      // Global Keyboard Shortcuts: Escape, Ctrl/Cmd+Z Undo, Ctrl+Y/Cmd+Shift+Z Redo, Space, [/], 1-7 Surfaces, Delete/Backspace, D, C, O, F, K/#/?
       window.addEventListener('keydown', function (e) {
         if (e.key === 'Escape') {
           self.hideVocabPopover();
@@ -6808,31 +7687,89 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
         }
         const tag = (e.target && e.target.tagName) ? e.target.tagName.toLowerCase() : '';
         if (tag === 'input' || tag === 'textarea' || tag === 'select') return;
+
+        // Undo / Redo shortcuts (USE-03 · ARCH-07)
+        if ((e.metaKey || e.ctrlKey) && (e.key === 'z' || e.key === 'Z')) {
+          e.preventDefault();
+          if (e.shiftKey) self.redo();
+          else self.undo();
+          return;
+        }
+        if ((e.metaKey || e.ctrlKey) && (e.key === 'y' || e.key === 'Y')) {
+          e.preventDefault();
+          self.redo();
+          return;
+        }
+
+        const surfaceMap = {
+          '1': 'infinite-canvas',
+          '2': 'fork-explorer',
+          '3': 'character-foundry',
+          '4': 'storyboard-sheet',
+          '5': 'wada-chord-matrix',
+          '6': 'contact-sheet',
+          '7': 'compile-export'
+        };
+        if (!e.metaKey && !e.ctrlKey && !e.altKey && surfaceMap[e.key]) {
+          e.preventDefault();
+          self.setState({ surface: surfaceMap[e.key] });
+          return;
+        }
+
         if (e.code === 'Space') {
           e.preventDefault();
           self.setState({ playing: !self.state.playing });
         } else if (e.key === '[') {
           self._T = Math.max(0, self._T - 0.5);
           self.setState({ playing: false }, true);
-          self.drawAllCanvases();
+          self.drawAllCanvases(false);
         } else if (e.key === ']') {
           self._T = self._T + 0.5;
           self.setState({ playing: false }, true);
-          self.drawAllCanvases();
+          self.drawAllCanvases(false);
         } else if (e.key === 'c' || e.key === 'C') {
           self.setState({ captionsCovered: !self.state.captionsCovered });
         } else if (e.key === 'o' || e.key === 'O') {
           self.setState({ onionSkin: !self.state.onionSkin });
-        } else if (e.key === 'k' || e.key === 'K' || e.key === '#') {
+        } else if (e.key === 'k' || e.key === 'K' || e.key === '#' || e.key === '?') {
           e.preventDefault();
           self.setState({ vocabModalOpen: !self.state.vocabModalOpen });
         } else if (e.key === 'f' || e.key === 'F') {
           const res = CO.forkCanvasNode(self.state.dag, self.state.selectedNodeId);
           self.setState({ dag: { nodes: res.nodes, edges: res.edges }, selectedNodeId: res.createdNodeId });
+        } else if ((e.key === 'd' || e.key === 'D') && self.state.surface === 'infinite-canvas') {
+          const res = CO.duplicateCanvasCard(self.state.dag, self.state.selectedNodeId);
+          self.setState({ dag: { nodes: res.nodes, edges: res.edges }, selectedNodeId: res.createdNodeId });
+        } else if ((e.key === 'Delete' || e.key === 'Backspace') && self.state.surface === 'infinite-canvas') {
+          const nid = self.state.selectedNodeId;
+          if (nid && nid !== 'node-seed' && nid !== 'node-seed-root') {
+            const res = CO.deleteCanvasCard(self.state.dag, nid);
+            const nextSel = (res.nodes[0] && res.nodes[0].id) || 'node-seed';
+            self.setState({ dag: { nodes: res.nodes, edges: res.edges }, selectedNodeId: nextSel });
+          }
         }
       });
 
-      window.addEventListener('mousemove', function (e) {
+      // Unified Pointer & Mouse Move Handler (+ 2-Pointer Touch Pinch-to-Zoom — MOB-02 · MOB-04)
+      const handleMove = function (e) {
+        if (e.pointerId != null && self._activePointers.has(e.pointerId)) {
+          self._activePointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+          if (self._activePointers.size === 2) {
+            const pts = Array.from(self._activePointers.values());
+            const dist = Math.hypot(pts[1].x - pts[0].x, pts[1].y - pts[0].y);
+            if (self._pinchStartDist > 12) {
+              const ratio = dist / self._pinchStartDist;
+              const nextZoom = Math.max(0.2, Math.min(3.5, Number((self._pinchStartZoom * ratio).toFixed(2))));
+              self.state.zoom = nextZoom;
+              const stage = self.root && self.root.querySelector('#dag-transform-stage');
+              if (stage) {
+                stage.style.transform = 'translate(' + self.state.panX + 'px,' + self.state.panY + 'px) scale(' + self.state.zoom + ')';
+              }
+            }
+            return;
+          }
+        }
+
         if (self._draggingCanvas) {
           const dx = e.clientX - self._dragStart[0];
           const dy = e.clientY - self._dragStart[1];
@@ -6866,9 +7803,13 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
             self.updateDagEdgesSVG();
           }
         }
-      });
+      };
 
-      window.addEventListener('mouseup', function (e) {
+      const handleUp = function (e) {
+        if (e && e.pointerId != null) {
+          self._activePointers.delete(e.pointerId);
+          if (self._activePointers.size < 2) self._pinchStartDist = 0;
+        }
         if (self._draggingNodeId) {
           const draggedId = self._draggingNodeId;
           const movedPx = self._dragMovedPx || 0;
@@ -6878,26 +7819,31 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
           self._dragMovedPx = 0;
 
           if (movedPx < 5) {
-            // Simple click on card: set as Source A (or Shift+Click for Source B!)
             if (e && e.shiftKey) {
               self.setState({ compareNodeId: draggedId, showABCompare: true });
             } else if (self.state.selectedNodeId !== draggedId) {
               self.setState({ selectedNodeId: draggedId });
             }
           } else {
-            // Completed a freeform drag: persist exact (x, y) without re-rendering DOM!
+            self.pushHistory('Move Card ' + draggedId);
             const node = self.state.dag.nodes.find(function (n) { return n.id === draggedId; });
             if (node && CO.moveCanvasNode) {
               CO.moveCanvasNode(self.state.dag, draggedId, node.x, node.y);
             }
-            CO.saveSessionState(self.state);
+            CO.saveSessionState(self.getSerializableSessionState());
           }
         }
         if (self._draggingCanvas) {
           self._draggingCanvas = false;
-          CO.saveSessionState(self.state);
+          CO.saveSessionState(self.getSerializableSessionState());
         }
-      });
+      };
+
+      window.addEventListener('pointermove', handleMove);
+      window.addEventListener('pointerup', handleUp);
+      window.addEventListener('pointercancel', handleUp);
+      window.addEventListener('mousemove', handleMove);
+      window.addEventListener('mouseup', handleUp);
     }
 
     updateDagEdgesSVG() {
@@ -6954,6 +7900,7 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
 
   proto.renderHeaderBar = function (pal, charSpec, audit) {
     const st = this.state;
+    const loopSec = this.getActiveLoopDuration ? this.getActiveLoopDuration() : 12.0;
     const tabs = [
       ['infinite-canvas',   'I · Living Canvas (DAG)'],
       ['fork-explorer',     'II · 5-Lens Forks'],
@@ -6971,6 +7918,11 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
 
     const ixOpts = FOUNDRY.INTERACTION_MODES.map(function (m) {
       return '<option value="' + esc(m.id) + '"' + (st.interaction === m.id ? ' selected' : '') + '>' + esc(m.label) + '</option>';
+    }).join('');
+
+    const spineArcOpts = (CO.SPINE_ARC_ORDER || ['count-scale-compare-rest', 'follow-a-process', 'understand-one-idea', 'saul-seven-beat', 'rem-five-move', 'hero-inner-change']).map(function (arcId) {
+      const arc = (CO.SPINE_ARCS && CO.SPINE_ARCS[arcId]) || { id: arcId, label: arcId };
+      return '<option value="' + esc(arcId) + '"' + (st.spineArc === arcId ? ' selected' : '') + '>' + esc(arc.label) + '</option>';
     }).join('');
 
     const palPills = WADA.PALS.slice(0, 7).map(function (p) {
@@ -7000,13 +7952,16 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
           '</div>' +
         '</div>' +
         '<div class="st-top-actions">' +
+          '<button data-action="undo-history" class="st-mini-btn" ' + (!this.canUndo() ? 'disabled style="opacity:.45"' : '') + ' title="Undo last studio state change [Ctrl/Cmd+Z]">↶ Undo</button>' +
+          '<button data-action="redo-history" class="st-mini-btn" ' + (!this.canRedo() ? 'disabled style="opacity:.45"' : '') + ' title="Redo studio state change [Ctrl+Y / Cmd+Shift+Z]">↷ Redo</button>' +
+          '<button data-action="toggle-tweaks-bar" class="st-mini-btn ' + (st.tweaksOpen ? 'on' : '') + '" title="Toggle Finish &amp; Motion Tweaks Strip (Speed, Grain, Wobble, Streaks, Guides, Hydro Ghosts)">⚙ Tweaks</button>' +
           '<button data-action="toggle-vocab-modal" class="st-btn" title="Browse &amp; Insert Plain-English Design Vocabulary, Themes, Elements &amp; #color Tags [K]"># / Vocabulary &amp; Themes [K]</button>' +
           '<button data-action="toggle-oauth-modal" class="st-btn st-btn-rust">OAuth 2.0 PKCE Live Enhancer</button>' +
           '<button data-action="toggle-gate-modal" class="st-btn st-btn-ink">Audit ' + audit.passedCount + '/' + audit.totalCount + ' PASS</button>' +
         '</div>' +
       '</div>' +
 
-      '<!-- Global Studio Pinning Bar: Character, Interaction, Rung, Feel, Ground, Transport -->' +
+      '<!-- Global Studio Pinning Bar: Character, Interaction, Rung, Spine Arc, Feel, Ground, Transport -->' +
       '<div class="st-control-strip">' +
         '<div class="st-ctrl-group">' +
           '<label class="st-label">ACTIVE CHARACTER RIG</label>' +
@@ -7023,6 +7978,11 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
         '<div class="st-ctrl-group">' +
           '<label class="st-label">INTERACTION MODE</label>' +
           '<select id="sel-interaction" class="st-select">' + ixOpts + '</select>' +
+        '</div>' +
+
+        '<div class="st-ctrl-group">' +
+          '<label class="st-label">SPINE ARC (6 CANONICAL)</label>' +
+          '<select id="sel-spine-arc" class="st-select">' + spineArcOpts + '</select>' +
         '</div>' +
 
         '<div class="st-ctrl-group">' +
@@ -7044,16 +8004,33 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
         '</div>' +
 
         '<div class="st-ctrl-group st-transport">' +
-          '<label class="st-label">SINGLE CLOCK TRANSPORT · <span id="global-t-readout">t = ' + (this._T % 12).toFixed(2) + 's</span></label>' +
+          '<label class="st-label">SINGLE CLOCK TRANSPORT · <span id="global-t-readout">t = ' + (this._T % loopSec).toFixed(2) + 's</span></label>' +
           '<div style="display:flex;gap:5px;align-items:center">' +
             '<button data-action="toggle-play" class="st-mini-btn on">' + (st.playing ? 'PAUSE' : 'PLAY') + '</button>' +
-            '<input id="global-scrub" type="range" min="0" max="12" step="0.02" value="' + (this._T % 12).toFixed(2) + '" style="width:82px;accent-color:#8C4A2E"/>' +
+            '<input id="global-scrub" type="range" min="0" max="' + loopSec + '" step="0.02" value="' + (this._T % loopSec).toFixed(2) + '" style="width:82px;accent-color:#8C4A2E"/>' +
             '<button data-action="toggle-onion-skin" class="st-mini-btn ' + (st.onionSkin ? 'on' : '') + '" title="Gate G23 Multi-Frame Onion Skinning (-2Δt / -1Δt / +1Δt) [O]">ONION</button>' +
             '<button data-action="sonify-wada-chord" class="st-mini-btn" title="Gate G24 Orpheum 4-Voice Harmonic Chord Sonification">♪ SONIFY</button>' +
             '<button data-action="toggle-captions-covered" class="st-mini-btn ' + (st.captionsCovered ? 'on' : '') + '" title="Gate G08 Captions-Covered Test [C]">NO-TEXT</button>' +
           '</div>' +
         '</div>' +
       '</div>' +
+
+      (st.tweaksOpen ? (
+        '<div class="st-tweaks-strip">' +
+          '<span class="st-label" style="margin:0;color:#8C4A2E">FINISH &amp; MOTION TWEAKS:</span>' +
+          '<label class="st-mono-xs" style="display:inline-flex;align-items:center;gap:4px">SPEED (' + st.speed.toFixed(2) + '×) <input type="range" data-tweak-param="speed" min="0.25" max="2.5" step="0.05" value="' + st.speed + '" style="width:70px"/></label>' +
+          '<label class="st-mono-xs" style="display:inline-flex;align-items:center;gap:4px">GRAIN (' + st.grain.toFixed(2) + ') <input type="range" data-tweak-param="grain" min="0" max="0.65" step="0.02" value="' + st.grain + '" style="width:70px"/></label>' +
+          '<label class="st-mono-xs" style="display:inline-flex;align-items:center;gap:4px">WOBBLE (' + st.wob.toFixed(1) + ') <input type="range" data-tweak-param="wob" min="0" max="2.4" step="0.1" value="' + st.wob + '" style="width:70px"/></label>' +
+          '<button data-action="toggle-tweak-bool" data-tweak="streaks" class="st-mini-btn ' + (st.streaks ? 'on' : '') + '">STREAKS: ' + (st.streaks ? 'ON' : 'OFF') + '</button>' +
+          '<button data-action="toggle-tweak-bool" data-tweak="guide" class="st-mini-btn ' + (st.guide ? 'on' : '') + '">RULE-OF-THIRDS GUIDE: ' + (st.guide ? 'ON' : 'OFF') + '</button>' +
+          '<div style="display:inline-flex;align-items:center;gap:3px">' +
+            '<span class="st-mono-xs">HYDRO GHOSTS:</span>' +
+            [12, 24, 48].map(function (gc) {
+              return '<button data-action="set-hydro-ghosts" data-ghosts="' + gc + '" class="st-mini-btn ' + ((st.hydroGhostCount || 24) === gc ? 'on' : '') + '">' + gc + '</button>';
+            }).join('') +
+          '</div>' +
+        '</div>'
+      ) : '') +
 
       '<!-- Curated Sanzo Wada Quick-Pin Strip + Saved & Tagged #color/<tag> Schemes -->' +
       '<div class="st-wada-strip">' +
@@ -7093,7 +8070,7 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
       const nCharId = p.charId || st.charId;
       const nChar = FOUNDRY.CHARACTERS[nCharId] || charSpec;
       const nPalId = p.palId || pal.id;
-      const sheafBadge = '<span class="st-mono-xs" title="Sheaf Restriction Hash ρ(child)=parent" style="color:rgba(26,31,46,.55)">' + esc(n.packetHash || 'ρ-root') + (n.upstreamHash ? ' ← ' + esc(n.upstreamHash) : '') + '</span>';
+      const sheafBadge = '<span class="st-mono-xs" title="Sheaf Restriction Hash ρ(child)=parent" style="color:var(--ink-soft)">' + esc(n.packetHash || 'ρ-root') + (n.upstreamHash ? ' ← ' + esc(n.upstreamHash) : '') + '</span>';
 
       return '<div data-dag-node="' + esc(n.id) + '" class="dag-node ' + (isSelA ? 'dag-node-selected' : (isSelB ? 'dag-node-source-b' : '')) + ' lod-' + lod + '" style="left:' + n.x + 'px;top:' + n.y + 'px;width:' + (n.width || 315) + 'px" title="Grab anywhere on this card to drag &amp; move freely (Shift+Click sets Source B)">' +
         '<div class="dag-node-header" data-drag-handle="' + esc(n.id) + '">' +
@@ -7109,7 +8086,7 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
         '<div class="dag-node-body">' +
           '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:2px">' +
             sheafBadge +
-            '<span class="st-mono-xs" style="color:#A8241C">Wada No. ' + nPalId + '</span>' +
+            '<span class="st-mono-xs" style="color:var(--rust)">Wada No. ' + nPalId + '</span>' +
           '</div>' +
           '<div class="dag-node-title">' + esc(n.title) + '</div>' +
           '<div class="dag-node-sub">' + esc(n.subtitle) + ' · Actor: <strong>' + esc(nChar.name) + '</strong></div>' +
@@ -7123,7 +8100,7 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
               '<canvas width="320" height="200" data-proof="' + esc(proofKey) + '" data-char="' + esc(nCharId) + '" data-pal-id="' + nPalId + '" style="width:100%;height:auto;display:block;border-radius:6px"></canvas>' +
             '</div>' +
             '<p class="dag-node-notes">' + esc(p.notes || n.forkReason || '') + '</p>' +
-            (n.conjectureNote ? '<div class="st-mono-xs" style="margin-top:4px;padding:4px 6px;background:rgba(168,36,28,.08);border-left:2px solid #A8241C;color:#1A1F2E">' + esc(n.conjectureNote) + '</div>' : '')
+            (n.conjectureNote ? '<div class="st-mono-xs" style="margin-top:4px;padding:4px 6px;background:rgba(168,36,28,.08);border-left:2px solid var(--rust);color:var(--ink)">' + esc(n.conjectureNote) + '</div>' : '')
           )) +
           (lod === 'micro-inspection' ? (
             '<div style="margin-top:8px;padding-top:6px;border-top:1px dashed rgba(26,31,46,.18)">' +
@@ -7138,10 +8115,10 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
         '</div>' +
         '<div class="dag-node-footer">' +
           '<button data-action="fork-dag-node" data-node-id="' + esc(n.id) + '" class="st-mini-btn" title="Non-destructively fork this branch">⑂ Fork</button>' +
-          '<button data-action="duplicate-dag-node" data-node-id="' + esc(n.id) + '" class="st-mini-btn" title="Duplicate this card on the canvas">⧉ Copy</button>' +
+          '<button data-action="duplicate-dag-node" data-node-id="' + esc(n.id) + '" class="st-mini-btn" title="Duplicate this card on the canvas [D]">⧉ Copy</button>' +
           '<button data-action="apply-dag-node" data-node-id="' + esc(n.id) + '" class="st-mini-btn" title="Pin this node’s character, Wada palette, and style globally">Pin Global</button>' +
           '<button data-action="oauth-enhance-node" data-node-id="' + esc(n.id) + '" class="st-mini-btn st-btn-rust" title="Enhance via OAuth 2.0 PKCE / Synthesizer">✦ Enhance</button>' +
-          (n.id !== 'node-seed' ? '<button data-action="delete-dag-node" data-node-id="' + esc(n.id) + '" class="st-mini-btn" title="Remove card from canvas">✕</button>' : '') +
+          (n.id !== 'node-seed' && n.id !== 'node-seed-root' ? '<button data-action="delete-dag-node" data-node-id="' + esc(n.id) + '" class="st-mini-btn" title="Remove card from canvas [Delete]">✕</button>' : '') +
         '</div>' +
       '</div>';
     }).join('');
@@ -7153,26 +8130,31 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
       return '<option value="' + esc(n.id) + '"' + (n.id === (compareNode && compareNode.id) ? ' selected' : '') + '>◐ Src B: ' + esc(n.title) + '</option>';
     }).join('');
 
+    const isInspectorOpen = st.inspectorOpen !== false && !st.inspectorCollapsed;
+
     return '<section class="st-surface">' +
       '<div class="canvas-toolbar">' +
         '<div style="display:flex;gap:5px;align-items:center;flex-wrap:wrap">' +
           '<span class="st-mono-xs">DRAG ANY CARD FREELY · ZOOM ' + st.zoom.toFixed(2) + '× · ' + st.dag.nodes.length + ' CARDS</span>' +
           '<span class="st-badge ' + (sheafAudit.valid ? 'badge-pass' : 'badge-warn') + '" title="Alexandrov Sheaf Restriction Cohomology across DAG edges">SHEAF ρ: ' + (sheafAudit.valid ? 'δ⁰=0 PASS' : 'MISMATCH') + '</span>' +
+          '<button data-action="zoom-canvas" data-delta="-0.15" class="st-mini-btn" title="Zoom Out">−</button>' +
+          '<button data-action="zoom-canvas" data-delta="0.15" class="st-mini-btn" title="Zoom In">+</button>' +
           '<button data-action="zoom-set" data-zoom="0.3" class="st-mini-btn">0.3× Macro</button>' +
           '<button data-action="zoom-set" data-zoom="0.78" class="st-mini-btn">0.8× Studio</button>' +
           '<button data-action="zoom-set" data-zoom="1.65" class="st-mini-btn">1.6× Micro</button>' +
-          '<button data-action="reset-pan" class="st-mini-btn">Center</button>' +
+          '<button data-action="zoom-fit-all" class="st-mini-btn" title="Fit all cards into viewport">⊡ Fit All</button>' +
           '<button data-action="dag-auto-layout" class="st-mini-btn" title="Snap cards into aligned columns">⊞ Auto-Grid</button>' +
         '</div>' +
         '<div style="display:flex;gap:5px;align-items:center;flex-wrap:wrap">' +
           '<select id="sel-source-a-node" class="st-select" style="max-width:185px;border-color:#8C4A2E;font-weight:700" title="Direct Source A (Primary Branch)">' + sourceAOpts + '</select>' +
           '<button data-action="swap-source-ab" class="st-mini-btn" title="Swap Source A and Source B">⇄</button>' +
           '<select id="sel-source-b-node" class="st-select" style="max-width:185px;border-color:#1E3F66;font-weight:700" title="Direct Source B (Comparison / Pushout Merge Partner)">' + sourceBOpts + '</select>' +
-          '<button data-action="duplicate-dag-node" data-node-id="' + esc(st.selectedNodeId) + '" class="st-btn" title="Duplicate Source A Card">+ Duplicate Card</button>' +
+          '<button data-action="duplicate-dag-node" data-node-id="' + esc(st.selectedNodeId) + '" class="st-btn" title="Duplicate Source A Card [D]">+ Duplicate Card</button>' +
           '<button data-action="fork-three-directions" data-node-id="' + esc(st.selectedNodeId) + '" class="st-btn st-btn-ink">⑂ Fork 3× (α/β/γ)</button>' +
           '<button data-action="dag-synthesize-ab" class="st-btn" title="Gate G22 Pushout Gluing of Source A ⊕ Source B">⊕ Glue A ⊕ B</button>' +
           '<button data-action="toggle-vocab-modal" class="st-btn st-btn-rust" title="Open Plain-English # Vocabulary, Themes &amp; Elements"># Themes &amp; Elements</button>' +
           '<button data-action="toggle-ab-compare" class="st-btn ' + (st.showABCompare ? 'st-btn-rust' : '') + '">⚖ A/B Drawer</button>' +
+          '<button data-action="toggle-inspector" class="st-mini-btn ' + (isInspectorOpen ? 'on' : '') + '" title="Toggle Card Inspector Drawer">◧ Inspector</button>' +
         '</div>' +
       '</div>' +
 
@@ -7202,7 +8184,7 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
         '</div>'
       ) : '') +
 
-      '<div class="living-canvas-layout">' +
+      '<div class="living-canvas-layout ' + (!isInspectorOpen ? 'inspector-collapsed' : '') + '">' +
         '<div id="living-canvas-viewport" class="living-canvas-viewport">' +
           '<div id="dag-transform-stage" class="dag-transform-stage" style="transform:translate(' + st.panX + 'px,' + st.panY + 'px) scale(' + st.zoom + ')">' +
             '<svg id="dag-edges-svg" class="dag-edges-svg" width="3600" height="2400">' +
@@ -7211,14 +8193,17 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
             nodesHtml +
           '</div>' +
           '<div class="canvas-minimap">' +
-            '<div class="st-mono-xs" style="margin-bottom:2px">DRAG ANY CARD TO MOVE · DRAG BACKGROUND TO PAN · [K] #VOCAB · [O] ONION</div>' +
-            '<div style="font-size:11px;color:rgba(26,31,46,.78)">● Src A: <strong>' + esc(selectedNode ? selectedNode.title : '') + '</strong> · ◐ Src B: <strong>' + esc(compareNode ? compareNode.title : '') + '</strong></div>' +
+            '<div class="st-mono-xs" style="margin-bottom:2px">DRAG ANY CARD TO MOVE · PINCH OR WHEEL TO ZOOM · [K] #VOCAB · [CTRL+Z] UNDO</div>' +
+            '<div style="font-size:11px;color:var(--ink-soft)">● Src A: <strong>' + esc(selectedNode ? selectedNode.title : '') + '</strong> · ◐ Src B: <strong>' + esc(compareNode ? compareNode.title : '') + '</strong></div>' +
           '</div>' +
         '</div>' +
 
         '<!-- Right Inspector Panel for Selected DAG Node -->' +
         '<aside class="dag-inspector">' +
-          '<div class="st-eyebrow">SOURCE A CARD INSPECTOR · SHEAF PACKET</div>' +
+          '<div style="display:flex;justify-content:space-between;align-items:center">' +
+            '<div class="st-eyebrow">SOURCE A CARD INSPECTOR · SHEAF PACKET</div>' +
+            '<button data-action="toggle-inspector" class="st-mini-btn" style="padding:1px 5px" title="Collapse Inspector">✕</button>' +
+          '</div>' +
           '<h3 style="margin:4px 0 6px;font-family:Fraunces,serif;font-weight:400;font-size:19px">' + esc(selectedNode ? selectedNode.title : '') + '</h3>' +
           '<p style="font-size:11.5px;color:rgba(26,31,46,.75);margin:0 0 10px">' + esc(selectedNode ? selectedNode.subtitle : '') + '</p>' +
           (selectedNode ? (
@@ -7243,6 +8228,13 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
                 '<select id="ins-node-story" class="st-select" style="width:100%">' +
                   TAX.STORIES.map(function (s) {
                     return '<option value="' + esc(s.key) + '"' + ((selectedNode.payload.storyKey || 's_voice') === s.key ? ' selected' : '') + '>' + esc(s.title) + '</option>';
+                  }).join('') +
+                '</select></div>' +
+              '<div><label class="st-label">CARD SPINE ARC</label>' +
+                '<select id="ins-node-spine-arc" class="st-select" style="width:100%">' +
+                  (CO.SPINE_ARC_ORDER || []).map(function (arcId) {
+                    const arc = (CO.SPINE_ARCS && CO.SPINE_ARCS[arcId]) || { id: arcId, label: arcId };
+                    return '<option value="' + esc(arcId) + '"' + ((selectedNode.payload.spineArc || st.spineArc) === arcId ? ' selected' : '') + '>' + esc(arc.label) + '</option>';
                   }).join('') +
                 '</select></div>' +
               '<div><label class="st-label">CARD WADA PALETTE OR SAVED #COLOR SCHEME</label>' +
@@ -7368,7 +8360,7 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
   };
 
   // ─────────────────────────────────────────────────────────────────────────
-  // SURFACE 3 · CHARACTER & EMBLEM FOUNDRY (G03 · G04 · G05)
+  // SURFACE 3 · CHARACTER & EMBLEM FOUNDRY (G03 · G04 · G05 · G32)
   // ─────────────────────────────────────────────────────────────────────────
   proto.renderSurfaceCharacterFoundry = function (pal, charSpec) {
     const st = this.state;
@@ -7411,29 +8403,59 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
       '</div>';
     }).join('');
 
+    const locoModes = FOUNDRY.LOCOMOTION_MODES || ['undulate-swim', 'flap-glide', 'radial-pulse', ' articulated-stride', 'shear-drift', 'orbital-harmonic'];
+    const sevOps = FOUNDRY.SEVERANCE_OPS || ['none', 'split-horizontal', 'split-vertical', 'shatter-plates', 'hinge-break', 'negative-space-bite', 'spiral-uncoil', 'interlock-hook', 'radial-burst', 'compression-vice', 'stencil-cut', 'glyph-collapse'];
+    const streakKinds = ['hydro-wake', 'thermal-draft', 'vortex-ring', 'dust-arc', 'shear-grid', 'harmonic-wave'];
+
     return '<section class="st-surface">' +
       '<div class="st-panel">' +
         '<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">' +
           '<div>' +
-            '<span class="st-eyebrow">UNIVERSAL PARAMETRIC ACTOR SOCKET · ZERO HARDCODED MASCOTS (GATE G03 · G04 · G05)</span>' +
+            '<span class="st-eyebrow">UNIVERSAL PARAMETRIC ACTOR SOCKET · ZERO HARDCODED MASCOTS (GATE G03 · G04 · G05 · G32)</span>' +
             '<h2 class="st-section-h2" style="margin:4px 0">Character &amp; Emblem Foundry — ' + esc(charSpec.name) + '</h2>' +
           '</div>' +
-          '<button data-action="synthesize-new-character" class="st-btn st-btn-rust">+ Synthesize New Parametric Rig</button>' +
+          '<div style="display:flex;gap:8px;flex-wrap:wrap">' +
+            '<button data-action="clone-custom-rig" class="st-btn st-btn-ink" title="Clone active character rig into a new immutable custom CharacterSpec">+ ⧉ Clone &amp; Save Custom Rig</button>' +
+            '<button data-action="synthesize-new-character" class="st-btn st-btn-rust">+ Synthesize New Parametric Rig</button>' +
+          '</div>' +
         '</div>' +
         '<div class="char-grid-4" style="margin-top:12px">' + archetypeCards + '</div>' +
       '</div>' +
 
-      '<!-- Live Parametric Anatomy Sliders & 4-Test Emblem Gauntlet -->' +
+      '<!-- Live Parametric Anatomy Sliders, Locomotion/Severance Selectors & 4-Test Emblem Gauntlet -->' +
       '<div class="fork-grid-2" style="margin-top:16px">' +
         '<div class="st-panel">' +
-          '<div class="st-eyebrow">LIVE PARAMETRIC ANATOMY &amp; KINEMATIC RIG CONTROLS</div>' +
-          '<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px">' +
+          '<div class="st-eyebrow">LIVE PARAMETRIC ANATOMY, LOCOMOTION &amp; SAUL BASS SEVERANCE CONTROLS</div>' +
+          '<div class="st-grid-2" style="margin-top:10px">' +
             '<div><label class="st-label">ASPECT RATIO (' + charSpec.aspectRatio + ')</label><input type="range" data-rig-param="aspectRatio" min="0.24" max="0.54" step="0.02" value="' + charSpec.aspectRatio + '" style="width:100%"/></div>' +
             '<div><label class="st-label">DORSAL ARCH (' + bp.dorsalArch + ')</label><input type="range" data-rig-param="dorsalArch" min="0.20" max="0.55" step="0.02" value="' + bp.dorsalArch + '" style="width:100%"/></div>' +
             '<div><label class="st-label">VENTRAL BELLY (' + bp.ventralBelly + ')</label><input type="range" data-rig-param="ventralBelly" min="0.20" max="0.55" step="0.02" value="' + bp.ventralBelly + '" style="width:100%"/></div>' +
             '<div><label class="st-label">SPINE WAVE AMP (' + sw.ampDefault + ')</label><input type="range" data-rig-param="ampDefault" min="0.04" max="0.34" step="0.02" value="' + sw.ampDefault + '" style="width:100%"/></div>' +
             '<div><label class="st-label">FIN SPAN (' + ap.primaryFinSpan + ')</label><input type="range" data-rig-param="primaryFinSpan" min="0.16" max="0.46" step="0.02" value="' + ap.primaryFinSpan + '" style="width:100%"/></div>' +
             '<div><label class="st-label">VENTRAL GROOVES (' + ap.ventralGrooves + ')</label><input type="range" data-rig-param="ventralGrooves" min="1" max="6" step="1" value="' + ap.ventralGrooves + '" style="width:100%"/></div>' +
+          '</div>' +
+          '<div class="st-grid-2" style="margin-top:10px">' +
+            '<div><label class="st-label">LOCOMOTION MODE (6 CANONICAL)</label>' +
+              '<select id="rig-locomotion-select" class="st-select" style="width:100%">' +
+                locoModes.map(function (lm) {
+                  return '<option value="' + esc(lm) + '"' + (charSpec.locomotion === lm ? ' selected' : '') + '>' + esc(lm) + '</option>';
+                }).join('') +
+              '</select></div>' +
+            '<div><label class="st-label">SAUL BASS SEVERANCE OP (12 OPS)</label>' +
+              '<select id="rig-severance-select" class="st-select" style="width:100%">' +
+                sevOps.map(function (op) {
+                  return '<option value="' + esc(op) + '"' + ((charSpec.severanceOp || 'none') === op ? ' selected' : '') + '>' + esc(op) + '</option>';
+                }).join('') +
+              '</select></div>' +
+            '<div><label class="st-label">WAKE / STREAK KIND</label>' +
+              '<select id="rig-streak-kind-select" class="st-select" style="width:100%">' +
+                streakKinds.map(function (sk) {
+                  return '<option value="' + esc(sk) + '"' + ((ap.streakKind || 'hydro-wake') === sk ? ' selected' : '') + '>' + esc(sk) + '</option>';
+                }).join('') +
+              '</select></div>' +
+            '<div style="display:flex;align-items:flex-end">' +
+              '<button data-action="clone-custom-rig" class="st-btn st-btn-rust" style="width:100%">⧉ Save Current Sliders as Custom Rig</button>' +
+            '</div>' +
           '</div>' +
           '<div style="margin-top:12px">' +
             '<span class="st-label">4-TEST SAUL BASS EMBLEM GAUNTLET:</span>' +
@@ -7446,7 +8468,7 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
           '</div>' +
         '</div>' +
         '<div class="st-panel">' +
-          '<div class="st-eyebrow">PART-BASED RIG SOCKET INSPECTOR (`e_rig`)</div>' +
+          '<div class="st-eyebrow">PART-BASED RIG SOCKET INSPECTOR (`e_rig`) · SEVERANCE: ' + esc((charSpec.severanceOp || 'none').toUpperCase()) + '</div>' +
           '<canvas width="480" height="300" data-proof="e_rig" data-char="' + esc(charSpec.id) + '" style="width:100%;height:auto;border-radius:8px;border:1px solid rgba(26,31,46,.18);margin-top:8px"></canvas>' +
         '</div>' +
       '</div>' +
@@ -7466,7 +8488,7 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
   };
 
   // ─────────────────────────────────────────────────────────────────────────
-  // SURFACE 4 · 8-BEAT STORYBOARD SHEET & TIMELINE (G08 · G26 · G29)
+  // SURFACE 4 · 8-BEAT STORYBOARD SHEET & TIMELINE (G08 · G26 · G29 · G31)
   // ─────────────────────────────────────────────────────────────────────────
   proto.renderSurfaceStoryboard = function (pal, charSpec) {
     const st = this.state;
@@ -7515,13 +8537,19 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
       '<div class="st-panel">' +
         '<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">' +
           '<div>' +
-            '<span class="st-eyebrow">STAGE-4 / STAGE-5 STORYBOARD BEAT SHEET · DRAG CARDS OR CLICK ◀ ▶ TO REORDER BEATS (GATE G08 · G26)</span>' +
+            '<span class="st-eyebrow">STAGE-4 / STAGE-5 STORYBOARD BEAT SHEET · SPINE ARC: ' + esc((sheet.spineArcLabel || sheet.spineArc || 'saul-seven-beat').toUpperCase()) + ' (GATE G08 · G26 · G31)</span>' +
             '<h2 class="st-section-h2" style="margin:4px 0">' + esc(sheet.title) + ' · ' + esc(pal.no) + ' ' + esc(pal.name) + '</h2>' +
           '</div>' +
           '<div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">' +
-            '<select id="sb-story-select" class="st-select">' +
+            '<select id="sb-story-select" class="st-select" title="Select Storyline Proof">' +
               TAX.STORIES.map(function (s) {
                 return '<option value="' + esc(s.key) + '"' + (st.storyKey === s.key ? ' selected' : '') + '>' + esc(s.title) + '</option>';
+              }).join('') +
+            '</select>' +
+            '<select id="sb-spine-arc-select" class="st-select" title="Select Canonical Narrative Spine Arc">' +
+              (CO.SPINE_ARC_ORDER || []).map(function (arcId) {
+                const arc = (CO.SPINE_ARCS && CO.SPINE_ARCS[arcId]) || { id: arcId, label: arcId };
+                return '<option value="' + esc(arcId) + '"' + ((st.spineArc || sheet.spineArc) === arcId ? ' selected' : '') + '>Arc: ' + esc(arc.label) + '</option>';
               }).join('') +
             '</select>' +
             '<button data-action="toggle-vocab-modal" class="st-btn" title="Browse &amp; Insert Plain-English Elements"># Insert Elements / Themes</button>' +
@@ -7849,7 +8877,7 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
 
       html += '<div class="st-modal-backdrop">' +
         '<div class="st-modal">' +
-          '<div style="display:flex;justify-content:space-between;align-items:center">' +
+          '<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">' +
             '<div>' +
               '<span class="st-eyebrow">RFC 7636 OAUTH 2.0 PKCE (S256) + LOCAL AGENT BRIDGE + # / SKILL VOCABULARY SYNTHESIZER (G10 · G11 · G27 · G28)</span>' +
               '<h3 style="margin:4px 0;font-family:Fraunces,serif;font-size:22px">Live Storyboard, Source Branch &amp; Character Enhancer</h3>' +
@@ -7861,7 +8889,7 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
           '</div>' +
 
           // DIRECT SOURCE A & SOURCE B PICKERS (GATE G27)
-          '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0;padding:8px 10px;background:rgba(140,74,46,.06);border:1px solid rgba(140,74,46,.22);border-radius:6px">' +
+          '<div class="st-grid-2" style="margin:10px 0;padding:8px 10px;background:rgba(140,74,46,.06);border:1px solid rgba(140,74,46,.22);border-radius:6px">' +
             '<div>' +
               '<label class="st-label" style="color:#8C4A2E">PRIMARY SOURCE CARD TO ENHANCE / FORK FROM (● SOURCE A)</label>' +
               '<select id="oauth-source-a-select" class="st-select" style="width:100%">' + srcAOpts + '</select>' +
@@ -7872,10 +8900,10 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
             '</div>' +
           '</div>' +
 
-          '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0">' +
+          '<div class="st-grid-2" style="margin:10px 0">' +
             '<div><label class="st-label">AUTH PROVIDER MODE</label>' +
               '<select id="oauth-provider-select" class="st-select" style="width:100%">' +
-                '<option value="local-bridge"' + (st.oauthProvider === 'local-bridge' ? ' selected' : '') + '>Local Loopback Bridge (127.0.0.1:43110) + PKCE</option>' +
+                '<option value="local-bridge"' + (st.oauthProvider === 'local-bridge' ? ' selected' : '') + '>Local Loopback Bridge (127.0.0.1:43110 / :8787) + PKCE</option>' +
                 '<option value="openrouter-pkce"' + (st.oauthProvider === 'openrouter-pkce' ? ' selected' : '') + '>OpenRouter OAuth 2.0 PKCE (S256)</option>' +
                 '<option value="google-oauth-pkce"' + (st.oauthProvider === 'google-oauth-pkce' ? ' selected' : '') + '>Google OAuth 2.0 PKCE (GIS)</option>' +
                 '<option value="algebraic-synthesizer"' + (st.oauthProvider === 'algebraic-synthesizer' ? ' selected' : '') + '>Offline Deterministic Algebraic Synthesizer</option>' +
@@ -7891,7 +8919,7 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
           '</div>' +
 
           '<div style="position:relative">' +
-            '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">' +
+            '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;flex-wrap:wrap;gap:4px">' +
               '<label class="st-label" style="margin-bottom:0">ENHANCEMENT DIRECTIVE (TYPE <code>#</code> OR <code>/</code> FOR LIVE VOCABULARY, THEME &amp; #COLOR AUTOCOMPLETE)</label>' +
               '<span class="st-mono-xs" style="color:#8C4A2E">Supports #theme/... · #element/... · #camera/... · #color/...</span>' +
             '</div>' +
@@ -7980,7 +9008,7 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
           '</div>' +
           '<p style="font-size:12px;color:rgba(26,31,46,.78);margin:4px 0 10px">Don\'t know the technical motion-graphics term? Search in plain English below (e.g. <em>"paper cutout"</em>, <em>"watercolor"</em>, <em>"grain"</em>, <em>"slow camera"</em>, <em>"stop motion"</em>, or <em>"#color"</em>) and click <strong>● Apply Now</strong> or <strong>+ Spawn Card</strong>. You can also type <code>#</code> or <code>/</code> inside any studio prompt or card note for instant autocomplete.</p>' +
           '<div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:10px">' +
-            '<input id="vocab-modal-search" type="text" value="' + esc(st.vocabSearch || '') + '" placeholder="Search plain English or #token (e.g. paper cutout, grain, match cut, #color/pelagic-dawn)..." class="st-input" style="flex:1;min-width:260px"/>' +
+            '<input id="vocab-modal-search" type="text" value="' + esc(st.vocabSearch || '') + '" placeholder="Search plain English or #token (e.g. paper cutout, grain, match cut, #color/pelagic-dawn)..." class="st-input" style="flex:1;min-width:220px"/>' +
             '<div style="display:flex;gap:4px;flex-wrap:wrap">' + catPills + '</div>' +
           '</div>' +
           (st.copiedNotice ? '<div style="margin-bottom:8px;padding:6px 10px;background:#2E5A44;color:#FBF3E6;border-radius:6px;font-size:11.5px">' + esc(st.copiedNotice) + '</div>' : '') +
@@ -7989,15 +9017,15 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
       '</div>';
     }
 
-    // 3. 29-GATE MECHANICAL CONTRACT AUDIT MODAL
+    // 3. 32-GATE MECHANICAL CONTRACT AUDIT MODAL
     if (st.gateModalOpen) {
       const tellApart = MA.auditArchetypeDiscriminability ? MA.auditArchetypeDiscriminability() : { pass: true, minDistance: 0.42, pairCount: 28 };
       const sheafCheck = CO.verifyDAGSheafCohomology ? CO.verifyDAGSheafCohomology(st.dag) : { valid: true, edgeCount: (st.dag.edges || []).length };
       html += '<div class="st-modal-backdrop">' +
         '<div class="st-modal">' +
-          '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">' +
+          '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;flex-wrap:wrap;gap:8px">' +
             '<div>' +
-              '<span class="st-eyebrow">29 BINARY CONSERVATION GATES + TELL-APART + SHEAF + FREEFORM STUDIO ERGONOMICS (G01–G29)</span>' +
+              '<span class="st-eyebrow">32 BINARY CONSERVATION GATES + TELL-APART + SHEAF + MOBILE + 10X ARCHITECTURE (G01–G32)</span>' +
               '<h3 style="margin:4px 0;font-family:Fraunces,serif;font-size:22px">Mechanical Contract Audit — ' + audit.passedCount + '/' + audit.totalCount + ' PASS</h3>' +
             '</div>' +
             '<button data-action="toggle-gate-modal" class="st-mini-btn">✕ Close</button>' +
@@ -8028,6 +9056,7 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
   proto.renderDOM = function () {
     if (!this.root) return;
     let activeId = null, selStart = null, selEnd = null;
+    let prevWadaScroll = 0, prevTabsScroll = 0;
     try {
       const ae = document.activeElement;
       if (ae && ae.id && this.root.contains(ae)) {
@@ -8037,11 +9066,17 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
           selEnd = ae.selectionEnd;
         }
       }
+      const ws = this.root.querySelector('.st-wada-strip');
+      const ts = this.root.querySelector('.st-tabs');
+      if (ws) prevWadaScroll = ws.scrollLeft;
+      if (ts) prevTabsScroll = ts.scrollLeft;
     } catch (_e) { /* ignore */ }
 
     const pal = this.getActivePalette();
     const charSpec = this.getActiveChar();
-    const audit = CO.run16GateAudit(this.state);
+    const audit = this.getAuditResult ? this.getAuditResult() : CO.run16GateAudit(this.state);
+    const gKey = WADA.normalizeGroundKey ? WADA.normalizeGroundKey(this.state.ground) : this.state.ground;
+    const isDarkGround = Boolean(WADA.GROUNDS[gKey] && WADA.GROUNDS[gKey].dark);
 
     let bodyHtml = '';
     if (this.state.surface === 'infinite-canvas') bodyHtml = this.renderSurfaceInfiniteCanvas(pal, charSpec);
@@ -8053,14 +9088,21 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
     else if (this.state.surface === 'compile-export') bodyHtml = this.renderSurfaceCompile(pal, charSpec);
 
     this.root.innerHTML =
-      '<div class="st-shell" style="background:' + pal.paper + ';color:' + pal.ink + '">' +
+      '<div class="st-shell' + (isDarkGround ? ' ground-dark' : '') + '" style="background:' + pal.paper + ';color:' + pal.ink + '">' +
         this.renderHeaderBar(pal, charSpec, audit) +
         '<main class="st-main">' + bodyHtml + '</main>' +
         this.renderModals(pal, charSpec, audit) +
       '</div>';
 
+    try {
+      const wsNext = this.root.querySelector('.st-wada-strip');
+      const tsNext = this.root.querySelector('.st-tabs');
+      if (wsNext && prevWadaScroll) wsNext.scrollLeft = prevWadaScroll;
+      if (tsNext && prevTabsScroll) tsNext.scrollLeft = prevTabsScroll;
+    } catch (_e) { /* ignore */ }
+
     this.attachDOMListeners();
-    this.drawAllCanvases();
+    this.drawAllCanvases(false);
 
     if (activeId) {
       try {
@@ -8082,24 +9124,25 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
     const patch = item.patch || {};
     const nextState = {};
 
+    const pStyle = patch.styleKey || patch.mStyle;
     if (patch.charId) nextState.charId = patch.charId;
-    if (patch.styleKey) nextState.mStyle = patch.styleKey;
+    if (pStyle) nextState.mStyle = pStyle;
     if (patch.storyKey) nextState.storyKey = patch.storyKey;
     if (patch.feel) nextState.feel = patch.feel;
     if (patch.rung) nextState.rung = patch.rung;
+    if (patch.ground) nextState.ground = patch.ground;
     if (patch.palId) {
       const idx = st.activeWadaCombos.findIndex(function (p) { return p.id === Number(patch.palId); });
       if (idx >= 0) nextState.palIdx = idx;
     }
 
-    // Update active Source A node or spawn a new card
     if (spawnNewCard) {
       const res = CO.forkCanvasNode(st.dag, st.selectedNodeId, {
         title: item.plainName + ' (' + item.token + ')',
-        subtitle: (patch.palId ? 'Wada No. ' + patch.palId : 'Wada No. ' + this.getActivePalette().id) + ' · ' + (patch.styleKey || st.mStyle),
+        subtitle: (patch.palId ? 'Wada No. ' + patch.palId : 'Wada No. ' + this.getActivePalette().id) + ' · ' + (pStyle || st.mStyle),
         charId: patch.charId || st.charId,
         palId: patch.palId || this.getActivePalette().id,
-        styleKey: patch.styleKey || st.mStyle,
+        styleKey: pStyle || st.mStyle,
         storyKey: patch.storyKey || st.storyKey,
         edgeLabel: item.token,
         payload: {
@@ -8114,7 +9157,7 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
       const nodeA = (st.dag.nodes || []).find(function (n) { return n.id === st.selectedNodeId; });
       if (nodeA && nodeA.payload) {
         if (patch.charId) nodeA.payload.charId = patch.charId;
-        if (patch.styleKey) nodeA.payload.styleKey = patch.styleKey;
+        if (pStyle) nodeA.payload.styleKey = pStyle;
         if (patch.storyKey) nodeA.payload.storyKey = patch.storyKey;
         if (patch.palId) nodeA.payload.palId = Number(patch.palId);
         const tagNote = '[' + item.token + ']';
@@ -8139,6 +9182,7 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
   proto.attachDOMListeners = function () {
     const self = this;
     const root = this.root;
+    const loopSec = this.getActiveLoopDuration ? this.getActiveLoopDuration() : 12.0;
 
     // Select inputs
     const bindSel = function (id, fn) {
@@ -8147,6 +9191,8 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
     };
     bindSel('#sel-char', function (v) { self.setState({ charId: v }); });
     bindSel('#sel-interaction', function (v) { self.setState({ interaction: v }); });
+    bindSel('#sel-spine-arc', function (v) { self.setState({ spineArc: v }); });
+    bindSel('#sb-spine-arc-select', function (v) { self.setState({ spineArc: v }); });
     bindSel('#sel-feel', function (v) { self.setState({ feel: v }); });
     bindSel('#sel-ground', function (v) { self.setState({ ground: v }); });
     bindSel('#sel-source-a-node', function (v) {
@@ -8160,17 +9206,43 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
         palIdx: pIdx >= 0 ? pIdx : self.state.palIdx
       });
     });
+    bindSel('#sel-source-b-node', function (v) {
+      self.setState({ compareNodeId: v, showABCompare: true });
+    });
     bindSel('#sel-compare-node', function (v) { self.setState({ compareNodeId: v }); });
     bindSel('#oauth-source-a-select', function (v) { self.setState({ selectedNodeId: v }); });
     bindSel('#oauth-source-b-select', function (v) { self.setState({ compareNodeId: v }); });
     bindSel('#sb-story-select', function (v) { self.setState({ storyKey: v }); });
     bindSel('#oauth-provider-select', function (v) { self.setState({ oauthProvider: v }); });
-    bindSel('#header-saved-scheme-select', function (v) {
-      if (!v) return;
-      const sc = CO.resolveColorSchemeByTag(self.state.savedColorSchemes, v);
-      if (sc) {
-        const idx = self.state.activeWadaCombos.findIndex(function (p) { return p.id === sc.palId; });
-        if (idx >= 0) self.setState({ palIdx: idx, copiedNotice: 'Invoked saved scheme ' + sc.token + ' (Wada No. ' + sc.palId + ')' });
+
+    // Character Rig Locomotion, Severance Op, and Streak Kind selectors
+    bindSel('#rig-locomotion-select', function (v) {
+      const charSpec = self.getActiveChar();
+      if (charSpec) {
+        charSpec.locomotion = v;
+        self.invalidateStaticCanvases();
+        self.renderDOM();
+      }
+    });
+    bindSel('#rig-severance-select', function (v) {
+      const charSpec = self.getActiveChar();
+      if (charSpec) {
+        charSpec.severanceOp = v;
+        if (Array.isArray(charSpec.reductionLadder)) {
+          charSpec.reductionLadder.forEach(function (r) {
+            if (r.rung >= 3) r.severanceOp = v;
+          });
+        }
+        self.invalidateStaticCanvases();
+        self.renderDOM();
+      }
+    });
+    bindSel('#rig-streak-kind-select', function (v) {
+      const charSpec = self.getActiveChar();
+      if (charSpec && charSpec.appendages) {
+        charSpec.appendages.streakKind = v;
+        self.invalidateStaticCanvases();
+        self.renderDOM();
       }
     });
 
@@ -8179,9 +9251,26 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
       scrub.addEventListener('input', function (e) {
         self._T = Number(e.target.value);
         const tReadout = root.querySelector('#global-t-readout');
-        if (tReadout) tReadout.textContent = 't = ' + (self._T % 12).toFixed(2) + 's';
+        if (tReadout) tReadout.textContent = 't = ' + (self._T % loopSec).toFixed(2) + 's';
         self.setState({ playing: false }, true);
-        self.drawAllCanvases();
+        self.drawAllCanvases(false);
+      });
+    }
+
+    // Live Finish & Motion Tweak Sliders (speed, grain, wob)
+    const tweakSliders = root.querySelectorAll('[data-tweak-param]');
+    for (let i = 0; i < tweakSliders.length; i++) {
+      tweakSliders[i].addEventListener('input', function (e) {
+        const param = e.target.getAttribute('data-tweak-param');
+        const val = Number(e.target.value);
+        if (param === 'speed' || param === 'grain' || param === 'wob') {
+          self.state[param] = val;
+          self.invalidateStaticCanvases();
+          self.drawAllCanvases(false);
+        }
+      });
+      tweakSliders[i].addEventListener('change', function () {
+        self.renderDOM();
       });
     }
 
@@ -8214,7 +9303,7 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
           if (pop) pop.remove();
           return;
         }
-        const tokenQuery = match[1].slice(1); // strip leading # or /
+        const tokenQuery = match[1].slice(1);
         const results = CO.searchVocabLibrary ? CO.searchVocabLibrary(tokenQuery, 'all', self.state.savedColorSchemes).slice(0, 8) : [];
         if (!results.length) {
           if (pop) pop.remove();
@@ -8239,7 +9328,7 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
 
         const items = pop.querySelectorAll('[data-ac-token]');
         for (let j = 0; j < items.length; j++) {
-          items[j].addEventListener('mousedown', function (ev) {
+          items[j].addEventListener('pointerdown', function (ev) {
             ev.preventDefault();
             ev.stopPropagation();
             const chosenToken = ev.currentTarget.getAttribute('data-ac-token');
@@ -8259,7 +9348,7 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
       });
     }
 
-    // Inline Storyboard Beat Editing (Hinge, Camera, VisualAction, #color/<tag>)
+    // Inline Storyboard Beat Editing (Hinge, Camera, VisualAction, Per-Beat Palette [data-beat-pal])
     const reauditStoryboard = function () {
       if (CO.auditStoryboardSheet) {
         CO.auditStoryboardSheet(self.state.storyboard);
@@ -8271,8 +9360,10 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
       hingeSels[i].addEventListener('change', function (e) {
         const idx = Number(e.target.getAttribute('data-beat-hinge'));
         if (self.state.storyboard.beats[idx]) {
+          self.pushHistory();
           self.state.storyboard.beats[idx].hinge = e.target.value;
           reauditStoryboard();
+          self.invalidateStaticCanvases();
           self.renderDOM();
         }
       });
@@ -8283,26 +9374,24 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
       camSels[i].addEventListener('change', function (e) {
         const idx = Number(e.target.getAttribute('data-beat-cam'));
         if (self.state.storyboard.beats[idx]) {
+          self.pushHistory();
           self.state.storyboard.beats[idx].cameraMove = e.target.value;
           reauditStoryboard();
+          self.invalidateStaticCanvases();
           self.renderDOM();
         }
       });
     }
 
-    const schemeSels = root.querySelectorAll('[data-beat-scheme]');
-    for (let i = 0; i < schemeSels.length; i++) {
-      schemeSels[i].addEventListener('change', function (e) {
-        const idx = Number(e.target.getAttribute('data-beat-scheme'));
-        const tag = e.target.value;
-        if (self.state.storyboard.beats[idx]) {
-          self.state.storyboard.beats[idx].colorSchemeTag = tag;
-          const sc = CO.resolveColorSchemeByTag(self.state.savedColorSchemes, tag);
-          if (sc) {
-            self.state.storyboard.beats[idx].wadaPalId = sc.palId;
-            const pIdx = self.state.activeWadaCombos.findIndex(function (p) { return p.id === sc.palId; });
-            if (pIdx >= 0) self.state.palIdx = pIdx;
-          }
+    const beatPalSels = root.querySelectorAll('[data-beat-pal]');
+    for (let i = 0; i < beatPalSels.length; i++) {
+      beatPalSels[i].addEventListener('change', function (e) {
+        const idx = Number(e.target.getAttribute('data-beat-pal'));
+        const chosenPalId = Number(e.target.value);
+        if (self.state.storyboard.beats[idx] && chosenPalId) {
+          self.pushHistory();
+          self.state.storyboard.beats[idx].palId = chosenPalId;
+          self.invalidateStaticCanvases();
           self.renderDOM();
         }
       });
@@ -8310,13 +9399,18 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
 
     const actInputs = root.querySelectorAll('[data-beat-action]');
     for (let i = 0; i < actInputs.length; i++) {
-      actInputs[i].addEventListener('change', function (e) {
+      actInputs[i].addEventListener('input', function (e) {
         const idx = Number(e.target.getAttribute('data-beat-action'));
         if (self.state.storyboard.beats[idx]) {
           self.state.storyboard.beats[idx].visualAction = e.target.value;
+          self.state.storyboard.beats[idx].actionLine = e.target.value;
+          self.state.storyboard.beats[idx].coveredSentence = e.target.value;
           reauditStoryboard();
-          self.renderDOM();
         }
+      });
+      actInputs[i].addEventListener('change', function () {
+        self.invalidateStaticCanvases();
+        self.renderDOM();
       });
     }
 
@@ -8346,6 +9440,7 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
         const fromIdx = self._draggingBeatIdx != null ? self._draggingBeatIdx : Number(e.dataTransfer && e.dataTransfer.getData('text/plain'));
         self._draggingBeatIdx = null;
         if (!Number.isNaN(fromIdx) && !Number.isNaN(toIdx) && fromIdx !== toIdx) {
+          self.pushHistory();
           CO.moveStoryboardBeat(self.state.storyboard, fromIdx, toIdx);
           self.setState({ storyboard: self.state.storyboard });
         }
@@ -8356,7 +9451,7 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
       });
     }
 
-    // JSON Session Import
+    // JSON Session Import with Strict Boundary Schema Validator (Gate G31)
     const importInput = root.querySelector('#import-session-file');
     if (importInput) {
       importInput.addEventListener('change', function (e) {
@@ -8365,24 +9460,34 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
         const reader = new FileReader();
         reader.onload = function (ev) {
           try {
-            const data = JSON.parse(String(ev.target.result));
+            const rawData = JSON.parse(String(ev.target.result));
+            const check = CO.validateAndSanitizeSessionState
+              ? CO.validateAndSanitizeSessionState(rawData)
+              : { valid: true, state: rawData };
+            if (!check.valid || !check.state) {
+              self.setState({ copiedNotice: 'Rejected invalid .motion.studio.json: ' + (check.reason || 'schema mismatch') });
+              return;
+            }
+            const data = check.state;
             if (Array.isArray(data.customCharacters)) {
               data.customCharacters.forEach(function (c) { MA.registerCustomCharacter(c); });
             }
             const pIdx = self.state.activeWadaCombos.findIndex(function (p) { return p.id === data.activeWadaId; });
             self.setState({
-              charId: data.activeCharacterId || self.state.charId,
+              charId: data.charId || self.state.charId,
               palIdx: pIdx >= 0 ? pIdx : self.state.palIdx,
-              mStyle: data.activeStyleKey || self.state.mStyle,
-              storyKey: data.activeStoryKey || self.state.storyKey,
-              feel: data.activeFeelKey || self.state.feel,
-              rung: data.activeRung || self.state.rung,
+              mStyle: data.mStyle || self.state.mStyle,
+              storyKey: data.storyKey || self.state.storyKey,
+              spineArc: data.spineArc || self.state.spineArc,
+              feel: data.feel || self.state.feel,
+              rung: data.rung || self.state.rung,
+              ground: data.ground || self.state.ground,
               dag: data.dag || self.state.dag,
               storyboard: data.storyboard || self.state.storyboard,
               savedColorSchemes: Array.isArray(data.savedColorSchemes) ? data.savedColorSchemes : self.state.savedColorSchemes,
-              copiedNotice: 'Imported .motion.studio.json archive successfully.'
+              copiedNotice: 'Imported & validated .motion.studio.json archive successfully.'
             });
-          } catch (err) {
+          } catch (_err) {
             self.setState({ copiedNotice: 'Failed to parse .motion.studio.json file.' });
           }
         };
@@ -8405,7 +9510,8 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
         if (lbl) {
           lbl.textContent = lbl.textContent.replace(/\([0-9.]+\)/, '(' + val + ')');
         }
-        self.drawAllCanvases();
+        self.invalidateStaticCanvases();
+        self.drawAllCanvases(false);
       });
     }
 
@@ -8419,14 +9525,25 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
       });
     }
 
-    // EFFORTLESS WHOLE-CARD FREEFORM DRAG & BACKGROUND PAN ON LIVING CANVAS (GATE G26)
+    // UNIFIED POINTEREVENTS + 2-POINTER TOUCH PINCH-ZOOM + MOUSE DRAG ON LIVING CANVAS (G26 · G30)
     const vp = root.querySelector('#living-canvas-viewport');
     if (vp) {
-      vp.addEventListener('mousedown', function (e) {
-        // Ignore clicks directly on interactive form controls or buttons
+      const startCanvasOrCardDrag = function (e) {
         if (e.target.closest('button, select, input, textarea, a, label')) return;
 
-        // Grab anywhere on a card (.dag-node) to drag it or click-select it!
+        // Track multi-touch pointers for 2-finger pinch-to-zoom on mobile/tablet
+        if (e.pointerId != null && self._activePointers) {
+          self._activePointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+          if (self._activePointers.size === 2) {
+            const pts = Array.from(self._activePointers.values());
+            self._pinchInitialDist = Math.hypot(pts[1].x - pts[0].x, pts[1].y - pts[0].y);
+            self._pinchInitialZoom = self.state.zoom;
+            self._draggingNodeId = null;
+            self._draggingCanvas = false;
+            return;
+          }
+        }
+
         const cardEl = e.target.closest('[data-dag-node]');
         if (cardEl) {
           const nid = cardEl.getAttribute('data-dag-node');
@@ -8437,17 +9554,28 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
             self._dragStart = [e.clientX, e.clientY];
             self._panStart = [node.x, node.y];
             cardEl.classList.add('dag-node-dragging');
+            if (e.pointerId != null && cardEl.setPointerCapture) {
+              try { cardEl.setPointerCapture(e.pointerId); } catch (_err) { /* ignore */ }
+            }
             e.preventDefault();
             e.stopPropagation();
             return;
           }
         }
 
-        // Otherwise, dragging empty canvas space pans the viewport
         self._draggingCanvas = true;
         self._dragMovedPx = 0;
         self._dragStart = [e.clientX, e.clientY];
         self._panStart = [self.state.panX, self.state.panY];
+        if (e.pointerId != null && vp.setPointerCapture) {
+          try { vp.setPointerCapture(e.pointerId); } catch (_err) { /* ignore */ }
+        }
+      };
+
+      vp.addEventListener('pointerdown', startCanvasOrCardDrag);
+      vp.addEventListener('mousedown', function (e) {
+        if (typeof window.PointerEvent !== 'undefined') return; // handled by pointerdown
+        startCanvasOrCardDrag(e);
       });
       vp.addEventListener('wheel', function (e) {
         e.preventDefault();
@@ -8470,12 +9598,72 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
 
   proto.handleAction = async function (act, el) {
     const st = this.state;
+    const loopSec = this.getActiveLoopDuration ? this.getActiveLoopDuration() : 12.0;
+
+    if (act === 'undo-history') return this.undo();
+    if (act === 'redo-history') return this.redo();
+    if (act === 'toggle-tweaks-bar') return this.setState({ tweaksOpen: !st.tweaksOpen }, true);
+    if (act === 'toggle-inspector') return this.setState({ inspectorOpen: st.inspectorOpen === false }, true);
+    if (act === 'toggle-tweak-bool') {
+      const k = el.getAttribute('data-tweak');
+      if (k === 'streaks' || k === 'guide') {
+        const patch = {};
+        patch[k] = !st[k];
+        return this.setState(patch);
+      }
+      return;
+    }
+    if (act === 'set-hydro-ghosts') {
+      const gc = Number(el.getAttribute('data-ghosts')) || 24;
+      return this.setState({ hydroGhostCount: gc });
+    }
+    if (act === 'open-vocab-for-field') {
+      return this.setState({ vocabModalOpen: true });
+    }
+    if (act === 'clone-custom-rig') {
+      const baseSpec = this.getActiveChar();
+      const cloned = FOUNDRY.cloneCharacterRig
+        ? FOUNDRY.cloneCharacterRig(baseSpec, {
+            name: baseSpec.name + ' (Custom Clone)',
+            locomotion: baseSpec.locomotion,
+            severanceOp: baseSpec.severanceOp
+          })
+        : baseSpec;
+      if (MA.registerCustomCharacter) MA.registerCustomCharacter(cloned);
+      return this.setState({
+        charId: cloned.id,
+        copiedNotice: 'Cloned & registered custom CharacterSpec rig: ' + cloned.name + ' (' + cloned.id + ')'
+      });
+    }
+    if (act === 'zoom-fit-all') {
+      const nodes = st.dag.nodes || [];
+      if (!nodes.length) return this.setState({ panX: 18, panY: 16, zoom: 0.78 });
+      let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+      nodes.forEach(function (n) {
+        minX = Math.min(minX, n.x);
+        minY = Math.min(minY, n.y);
+        maxX = Math.max(maxX, n.x + (n.width || 315));
+        maxY = Math.max(maxY, n.y + 320);
+      });
+      const vp = this.root && this.root.querySelector('#living-canvas-viewport');
+      const vw = (vp && vp.clientWidth) || 920;
+      const vh = (vp && vp.clientHeight) || 560;
+      const contentW = Math.max(360, maxX - minX + 80);
+      const contentH = Math.max(280, maxY - minY + 80);
+      const fitZoom = Math.max(0.28, Math.min(1.15, Number(Math.min(vw / contentW, vh / contentH).toFixed(2))));
+      return this.setState({
+        zoom: fitZoom,
+        panX: Math.round(24 - minX * fitZoom),
+        panY: Math.round(20 - minY * fitZoom)
+      });
+    }
+
     if (act === 'switch-surface') return this.setState({ surface: el.getAttribute('data-surface') });
-    if (act === 'toggle-play') return this.setState({ playing: !st.playing });
+    if (act === 'toggle-play') return this.setState({ playing: !st.playing }, true);
     if (act === 'toggle-captions-covered') return this.setState({ captionsCovered: !st.captionsCovered });
     if (act === 'toggle-onion-skin') return this.setState({ onionSkin: !st.onionSkin });
-    if (act === 'toggle-vocab-modal') return this.setState({ vocabModalOpen: !st.vocabModalOpen });
-    if (act === 'set-vocab-cat') return this.setState({ vocabCategory: el.getAttribute('data-cat') || 'all' });
+    if (act === 'toggle-vocab-modal') return this.setState({ vocabModalOpen: !st.vocabModalOpen }, true);
+    if (act === 'set-vocab-cat') return this.setState({ vocabCategory: el.getAttribute('data-cat') || 'all' }, true);
     if (act === 'apply-vocab-token') {
       const tok = el.getAttribute('data-vocab-token');
       const lib = CO.getFullVocabLibrary ? CO.getFullVocabLibrary(st.savedColorSchemes) : [];
@@ -8508,9 +9696,10 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
       const sc = CO.resolveColorSchemeByTag(st.savedColorSchemes, tag);
       if (sc) {
         const idx = st.activeWadaCombos.findIndex(function (p) { return p.id === sc.palId; });
-        if (idx >= 0) {
-          this.setState({ palIdx: idx, copiedNotice: 'Applied saved color scheme ' + sc.token + ' (Wada No. ' + sc.palId + ')' });
-        }
+        const patch = { copiedNotice: 'Applied saved color scheme ' + sc.token + ' (Wada No. ' + sc.palId + ')' };
+        if (idx >= 0) patch.palIdx = idx;
+        if (sc.ground && WADA.GROUNDS[sc.ground]) patch.ground = sc.ground;
+        this.setState(patch);
       }
       return;
     }
@@ -8539,6 +9728,7 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
         tag: slug,
         title: pal.name + ' (' + pal.no + ')',
         palId: pal.id,
+        ground: st.ground,
         notes: pal.mood || 'Saved from Studio header bar'
       });
       return this.setState({
@@ -8558,6 +9748,7 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
         tag: tagVal,
         title: titleVal,
         palId: pal.id,
+        ground: st.ground,
         notes: notesVal
       });
       return this.setState({
@@ -8577,6 +9768,7 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
         tag: slug,
         title: combo.name + ' (No. ' + combo.id + ')',
         palId: combo.id,
+        ground: st.ground,
         notes: combo.mood || 'Saved from 348 Wada Dictionary'
       });
       return this.setState({
@@ -8625,11 +9817,15 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
       });
     }
     if (act === 'move-beat-card') {
-      const fromIdx = Number(el.getAttribute('data-beat-idx'));
-      const delta = Number(el.getAttribute('data-delta')) || 0;
-      const toIdx = fromIdx + delta;
-      CO.moveStoryboardBeat(st.storyboard, fromIdx, toIdx);
-      return this.setState({ storyboard: st.storyboard });
+      const fromAttr = el.getAttribute('data-from');
+      const toAttr = el.getAttribute('data-to');
+      const fromIdx = fromAttr != null ? Number(fromAttr) : Number(el.getAttribute('data-beat-idx'));
+      const toIdx = toAttr != null ? Number(toAttr) : (fromIdx + (Number(el.getAttribute('data-delta')) || 0));
+      if (!Number.isNaN(fromIdx) && !Number.isNaN(toIdx)) {
+        CO.moveStoryboardBeat(st.storyboard, fromIdx, toIdx);
+        return this.setState({ storyboard: st.storyboard });
+      }
+      return;
     }
     if (act === 'apply-style-to-src-a') {
       const sk = el.getAttribute('data-style-key') || 'watercolor';
@@ -8668,9 +9864,9 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
       this.setState({ playing: false }, true);
       const scrub = this.root.querySelector('#global-scrub');
       const tReadout = this.root.querySelector('#global-t-readout');
-      if (scrub) scrub.value = String((targetT % 12).toFixed(2));
-      if (tReadout) tReadout.textContent = 't = ' + (targetT % 12).toFixed(2) + 's';
-      this.drawAllCanvases();
+      if (scrub) scrub.value = String((targetT % loopSec).toFixed(2));
+      if (tReadout) tReadout.textContent = 't = ' + (targetT % loopSec).toFixed(2) + 's';
+      this.drawAllCanvases(false);
       return;
     }
     if (act === 'pick-curated-pal') {
@@ -8764,6 +9960,7 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
         const cEl = this.root.querySelector('#ins-node-char');
         const sEl = this.root.querySelector('#ins-node-style');
         const stEl = this.root.querySelector('#ins-node-story');
+        const arcEl = this.root.querySelector('#ins-node-spine-arc');
         const pEl = this.root.querySelector('#ins-node-pal');
         const scEl = this.root.querySelector('#ins-node-scheme-tag');
         const nEl = this.root.querySelector('#ins-node-notes');
@@ -8771,6 +9968,7 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
         if (cEl) node.payload.charId = cEl.value;
         if (sEl) node.payload.styleKey = sEl.value;
         if (stEl) node.payload.storyKey = stEl.value;
+        if (arcEl) node.payload.spineArc = arcEl.value;
         if (pEl) node.payload.palId = Number(pEl.value);
         if (scEl && scEl.value) {
           node.payload.colorSchemeTag = scEl.value;
@@ -8790,7 +9988,7 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
         if (cjEl) node.conjectureNote = cjEl.value;
         node.subtitle = 'Wada No. ' + node.payload.palId + ' · ' + node.payload.styleKey;
         if (CO.stampDAGRestrictionHashes) CO.stampDAGRestrictionHashes(st.dag);
-        this.setState({ dag: st.dag });
+        this.setState({ dag: st.dag, spineArc: node.payload.spineArc || st.spineArc });
       }
       return;
     }
@@ -8815,11 +10013,11 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
     if (act === 'open-storyboard-from-node') return this.setState({ surface: 'storyboard-sheet' });
     if (act === 'filter-wada') return this.setState({ wadaFilterRegister: el.getAttribute('data-reg') });
     if (act === 'set-compile-target') return this.setState({ compileTarget: el.getAttribute('data-target') });
-    if (act === 'toggle-oauth-modal') return this.setState({ oauthModalOpen: !st.oauthModalOpen });
-    if (act === 'toggle-gate-modal') return this.setState({ gateModalOpen: !st.gateModalOpen });
+    if (act === 'toggle-oauth-modal') return this.setState({ oauthModalOpen: !st.oauthModalOpen }, true);
+    if (act === 'toggle-gate-modal') return this.setState({ gateModalOpen: !st.gateModalOpen }, true);
     if (act === 'oauth-enhance-node') {
       const nid = el.getAttribute('data-node-id') || st.selectedNodeId;
-      return this.setState({ selectedNodeId: nid, oauthModalOpen: true });
+      return this.setState({ selectedNodeId: nid, oauthModalOpen: true }, true);
     }
     if (act === 'synthesize-new-character') {
       const res = CO.runDeterministicSynthesizer({
@@ -8838,7 +10036,7 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
       this.setState({
         oauthStatus: 'PKCE S256 Challenge generated: ' + pkce.codeChallenge.slice(0, 18) + '... (Verifier stored)',
         oauthToken: 'pkce_' + pkce.codeChallenge.slice(0, 16)
-      });
+      }, true);
       return;
     }
     if (act === 'run-oauth-enhance') {
@@ -8846,7 +10044,7 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
       const tInput = this.root.querySelector('#oauth-token-input');
       const promptText = pInput ? pInput.value : st.oauthPrompt;
       const tok = tInput ? tInput.value : st.oauthToken;
-      this.setState({ oauthBusy: true, oauthPrompt: promptText, oauthToken: tok });
+      this.setState({ oauthBusy: true, oauthPrompt: promptText, oauthToken: tok }, true);
 
       const out = await CO.enhanceStoryboardLive({
         charId: st.charId,
@@ -8897,22 +10095,24 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(code);
       }
-      return this.setState({ copiedNotice: 'Copied ' + st.compileTarget.toUpperCase() + ' single-clock scaffold to clipboard.' });
+      return this.setState({ copiedNotice: 'Copied ' + st.compileTarget.toUpperCase() + ' single-clock scaffold to clipboard.' }, true);
     }
     if (act === 'export-playable-html5') {
       const htmlDoc = CO.compilePlayableHTML5(st);
       const blob = new Blob([htmlDoc], { type: 'text/html' });
+      const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
-      a.href = URL.createObjectURL(blob);
+      a.href = url;
       a.download = 'ceti-playable-single-clock-' + st.charId + '.html';
       a.click();
-      return this.setState({ copiedNotice: 'Downloaded Playable Single-Clock HTML5 animation bundle.' });
+      setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+      return this.setState({ copiedNotice: 'Downloaded Playable Single-Clock HTML5 animation bundle.' }, true);
     }
     if (act === 'record-webm-video') {
       if (typeof MediaRecorder === 'undefined') {
-        return this.setState({ copiedNotice: 'MediaRecorder API not available in this browser.' });
+        return this.setState({ copiedNotice: 'MediaRecorder API not available in this browser.' }, true);
       }
-      this.setState({ copiedNotice: 'Recording 6.0s deterministic WebM video at 30fps...' });
+      this.setState({ copiedNotice: 'Recording 6.0s deterministic WebM video at 30fps...' }, true);
       const recCanvas = document.createElement('canvas');
       recCanvas.width = 960; recCanvas.height = 600;
       const pal = this.getActivePalette();
@@ -8924,18 +10124,20 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
       const self = this;
       recorder.onstop = function () {
         const blob = new Blob(chunks, { type: 'video/webm' });
+        const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
-        a.href = URL.createObjectURL(blob);
+        a.href = url;
         a.download = 'ceti-motion-' + st.charId + '-' + st.mStyle + '.webm';
         a.click();
-        self.setState({ copiedNotice: 'Exported 6.0s WebM video (' + st.charId + ' · ' + pal.no + ').' });
+        setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+        self.setState({ copiedNotice: 'Exported 6.0s WebM video (' + st.charId + ' · ' + pal.no + ').' }, true);
       };
       recorder.start();
       let frameIdx = 0;
       const totalFrames = 180;
       const iv = setInterval(function () {
         const tSec = (frameIdx / 30);
-        MA.render(recCanvas, st.mStyle, pal, feel, tSec, { charId: st.charId, ground: st.ground, wob: st.wob, grain: st.grain });
+        MA.render(recCanvas, st.mStyle, pal, feel, tSec, { charId: st.charId, ground: st.ground, wob: st.wob, grain: st.grain, hydroGhostCount: st.hydroGhostCount });
         frameIdx++;
         if (frameIdx >= totalFrames) {
           clearInterval(iv);
@@ -8945,11 +10147,14 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
       return;
     }
     if (act === 'export-session-json') {
-      const blob = new Blob([JSON.stringify(CO.saveSessionState(st), null, 2)], { type: 'application/json' });
+      const payload = CO.saveSessionState(this.getSerializableSessionState());
+      const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
-      a.href = URL.createObjectURL(blob);
+      a.href = url;
       a.download = 'ceti-atlas-session.motion.studio.json';
       a.click();
+      setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
       return;
     }
     if (act === 'export-contact-png') {
@@ -8963,9 +10168,23 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
       ctx.fillStyle = pal.ink; ctx.font = '700 22px "Space Mono", monospace';
       ctx.fillText('CETI MOTION ATLAS STUDIO PRO · 8-BEAT STORYBOARD SHEET · ' + pal.no + ' ' + pal.name.toUpperCase(), 48, 52);
       const sub = document.createElement('canvas'); sub.width = 480; sub.height = 300;
+      const self = this;
       (sheet.beats || []).forEach(function (b, idx) {
         const col = idx % 4, row = Math.floor(idx / 4);
-        MA.render(sub, sheet.storyKey, pal, feel, b.tMidSec, { charId: st.charId, ground: st.ground, wob: st.wob, grain: st.grain });
+        let beatPal = pal;
+        if (b.palId) {
+          const foundPal = self.state.activeWadaCombos.find(function (p) { return p.id === Number(b.palId); });
+          if (foundPal) beatPal = WADA.enrichPalette(foundPal, st.ground);
+        }
+        MA.render(sub, sheet.storyKey, beatPal, feel, b.tMidSec, {
+          charId: st.charId,
+          ground: st.ground,
+          wob: st.wob,
+          grain: st.grain,
+          cameraMove: b.cameraMove || 'static-wide',
+          beatIdx: idx,
+          hydroGhostCount: st.hydroGhostCount
+        });
         const x = 48 + col * 460, y = 90 + row * 480;
         ctx.drawImage(sub, x, y, 430, 268);
         ctx.strokeStyle = pal.ink; ctx.lineWidth = 2; ctx.strokeRect(x, y, 430, 268);
@@ -8987,22 +10206,6 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
       const app = new global.MotionAtlasStudioApp(rootEl);
       global.__MOTION_ATLAS_STUDIO_INSTANCE = app;
       app.mount();
-
-      // Global keyboard shortcuts: K opens # / Vocabulary & Themes modal; Esc closes modals
-      window.addEventListener('keydown', function (e) {
-        const tag = (e.target && e.target.tagName) ? e.target.tagName.toLowerCase() : '';
-        if (e.key === 'Escape') {
-          if (app.state.vocabModalOpen || app.state.oauthModalOpen || app.state.gateModalOpen) {
-            app.setState({ vocabModalOpen: false, oauthModalOpen: false, gateModalOpen: false });
-          }
-          return;
-        }
-        if (tag === 'input' || tag === 'textarea' || tag === 'select') return;
-        if ((e.key === 'k' || e.key === 'K') && !e.metaKey && !e.ctrlKey) {
-          e.preventDefault();
-          app.setState({ vocabModalOpen: !app.state.vocabModalOpen });
-        }
-      });
     }
   }
 

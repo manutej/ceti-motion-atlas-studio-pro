@@ -1,14 +1,14 @@
 {
   "name": "ceti-motion-atlas-studio-pro",
-  "version": "8.0.0",
-  "description": "CETI Motion Atlas Studio Pro — Transcendental Motion Graphic & Narrative Design Studio with Whole-Card Freeform Dragging, Direct Source A/B Selection, Plain-English # and / Design Vocabulary & Themes Library, Tagged & Saved #Color Scheme Vault, Sanzo Wada 348 Harmonic Pinning, Orpheum 4-Voice Harmonic Sonification, 8 Parametric Character Archetypes, Multi-Frame Onion-Skinning, Infinite-Zoom Living Canvas Sheaf Pushout DAG (A ⊕ B), RFC 7636 OAuth 2.0 PKCE Live Storyboard Enhancer, and SVG/Lottie Vector Compilers",
+  "version": "9.0.0",
+  "description": "CETI Motion Atlas Studio Pro v9.0 — Transcendental Motion Graphic & Narrative Design Studio with Unified PointerEvents & Mobile Pinch-Zoom, 50-State Undo/Redo Ring Buffer, 6 Canonical SpineArcIds, 5 GroundModes with Dark >=10:1 Luminous Inversion, 12 Saul Bass Severance Ops, 6 Locomotion Modes, Custom Rig Cloning, Live Finish & Motion Tweaks, Plain-English # and / Design Vocabulary Library, Tagged #Color Vault, Sanzo Wada 348 Dictionary, Orpheum 4-Voice Sonification, Infinite-Zoom Sheaf Pushout DAG (A ⊕ B), and 32 Binary Conservation Gates",
   "main": "studio-ui.js",
   "scripts": {
     "start": "node scripts/oauth-bridge-server.mjs",
     "build": "node scripts/build-package.mjs",
     "validate": "node scripts/validate-motion-studio.mjs",
     "selftest": "node scripts/validate-motion-studio.mjs --selftest",
-    "vbm": "node scripts/vbm-walkthrough-recorder.mjs v8-final",
+    "vbm": "node scripts/vbm-walkthrough-recorder.mjs v9-final",
     "test": "node scripts/validate-motion-studio.mjs --selftest"
   },
   "keywords": [

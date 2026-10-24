@@ -102,19 +102,28 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 10px;
+    gap: 8px;
     padding: 4px 18px;
     background: rgba(242, 228, 206, 0.45);
     border-bottom: 1px solid rgba(26, 31, 46, 0.1);
     flex-wrap: nowrap;
     overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .st-control-strip::-webkit-scrollbar {
+    display: none;
   }
 
   .st-ctrl-group {
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 5px;
     flex-shrink: 0;
+  }
+
+  .st-ctrl-group .st-select {
+    max-width: 172px;
   }
 
   .st-ctrl-group .st-label {
@@ -476,6 +485,15 @@
     grid-template-columns: 1fr 320px;
     gap: 12px;
     min-height: 670px;
+    transition: grid-template-columns 180ms ease;
+  }
+
+  .living-canvas-layout.inspector-collapsed {
+    grid-template-columns: 1fr;
+  }
+
+  .living-canvas-layout.inspector-collapsed .dag-inspector {
+    display: none;
   }
 
   .living-canvas-viewport {
@@ -491,6 +509,7 @@
     border-radius: 10px;
     cursor: grab;
     user-select: none;
+    touch-action: none;
     min-height: 670px;
   }
 
@@ -523,6 +542,7 @@
     padding: 9px 11px;
     box-shadow: 0 6px 18px rgba(26, 31, 46, 0.12);
     cursor: grab;
+    touch-action: none;
     transition: box-shadow 120ms ease, border-color 120ms ease;
   }
 
@@ -556,16 +576,16 @@
   }
 
   .vocab-popover {
-    position: fixed;
-    z-index: 120;
+    position: absolute;
+    z-index: 200;
     background: var(--paper);
     color: var(--ink);
     border: 2px solid var(--ink);
     border-radius: 10px;
     box-shadow: 0 16px 42px rgba(20, 24, 36, 0.34);
-    width: 480px;
-    max-width: 92vw;
-    max-height: 340px;
+    width: 440px;
+    max-width: min(440px, 88vw);
+    max-height: 320px;
     overflow-y: auto;
     padding: 8px;
   }
@@ -672,6 +692,85 @@
     padding: 10px 14px;
   }
 
+  .st-grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .st-tweaks-strip {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    padding: 4px 18px;
+    background: rgba(242, 228, 206, 0.72);
+    border-bottom: 1px solid rgba(26, 31, 46, 0.14);
+  }
+
+  /* Dark-Ground Luminous Mode Overrides (deep-sea #1A1F2E & hydro-ink #141A21 — SPEC-01) */
+  .st-shell.ground-dark {
+    --paper: #161C28;
+    --paper2: #1F2738;
+    --ink: #FBF3E6;
+    --ink-soft: rgba(251, 243, 230, 0.78);
+    --ink-faint: rgba(251, 243, 230, 0.22);
+    --rust: #E88B5A;
+    --sage: #6AC48E;
+  }
+
+  .st-shell.ground-dark .living-canvas-viewport {
+    background:
+      radial-gradient(circle, rgba(251, 243, 230, 0.14) 1px, transparent 1px) 0 0 / 24px 24px,
+      #111622;
+    border-color: rgba(251, 243, 230, 0.26);
+  }
+
+  .st-shell.ground-dark .st-header,
+  .st-shell.ground-dark .st-panel,
+  .st-shell.ground-dark .char-card,
+  .st-shell.ground-dark .sb-card,
+  .st-shell.ground-dark .fork-card,
+  .st-shell.ground-dark .dag-node,
+  .st-shell.ground-dark .dag-inspector,
+  .st-shell.ground-dark .canvas-minimap,
+  .st-shell.ground-dark .st-modal,
+  .st-shell.ground-dark .vocab-popover {
+    background: rgba(22, 28, 40, 0.95);
+    color: var(--ink);
+    border-color: rgba(251, 243, 230, 0.28);
+  }
+
+  .st-shell.ground-dark .st-control-strip,
+  .st-shell.ground-dark .st-wada-strip,
+  .st-shell.ground-dark .st-tabs,
+  .st-shell.ground-dark .st-tweaks-strip,
+  .st-shell.ground-dark .canvas-toolbar {
+    background: rgba(14, 18, 26, 0.88);
+    border-color: rgba(251, 243, 230, 0.18);
+  }
+
+  .st-shell.ground-dark .st-select,
+  .st-shell.ground-dark .st-input,
+  .st-shell.ground-dark .st-textarea,
+  .st-shell.ground-dark .st-btn,
+  .st-shell.ground-dark .st-mini-btn,
+  .st-shell.ground-dark .st-pill,
+  .st-shell.ground-dark .st-tab {
+    background: rgba(28, 35, 50, 0.94);
+    color: #FBF3E6;
+    border-color: rgba(251, 243, 230, 0.34);
+  }
+
+  .st-shell.ground-dark .st-tab.active,
+  .st-shell.ground-dark .st-pill-active,
+  .st-shell.ground-dark .st-mini-btn.on,
+  .st-shell.ground-dark .st-btn-ink {
+    background: #FBF3E6;
+    color: #141A21;
+    border-color: #FBF3E6;
+  }
+
   /* Code Box & Modals */
   .st-code-box {
     background: #141824;
@@ -712,11 +811,85 @@
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.32);
   }
 
+  /* Responsive Tablet & Mobile Ergonomics (768x1024 iPad & 390x844 iPhone Pro — MOB-01..07) */
   @media (max-width: 1200px) {
-    .char-grid-4 { grid-template-columns: repeat(2, 1fr); }
-    .char-grid-5 { grid-template-columns: repeat(3, 1fr); }
-    .living-canvas-layout, .fork-grid-2, .fork-grid-3 {
-      grid-template-columns: 1fr;
+    .char-grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .char-grid-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .char-grid-5, .rung-grid-5 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .living-canvas-layout, .fork-grid-2, .fork-grid-3, .ab-compare-drawer {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .living-canvas-viewport {
+      min-height: 500px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    html, body {
+      overflow-x: hidden;
+    }
+    .st-topbar {
+      padding: 6px 10px;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .st-sub {
+      display: none;
+    }
+    .st-top-actions {
+      width: 100%;
+      flex-wrap: wrap;
+      gap: 4px;
+      padding-bottom: 2px;
+    }
+    .st-top-actions .st-btn,
+    .st-top-actions .st-mini-btn {
+      font-size: 10px;
+      padding: 4px 7px;
+    }
+    .st-select {
+      max-width: 100%;
+    }
+    .st-control-strip, .st-wada-strip, .st-tabs, .st-tweaks-strip {
+      padding: 4px 10px;
+    }
+    .st-main, .studio-main {
+      padding: 8px 10px 24px;
+      overflow-x: hidden;
+    }
+    .st-panel {
+      padding: 10px 12px;
+    }
+    .char-grid-4, .char-grid-3, .char-grid-5, .rung-grid-5, .fork-grid-2, .fork-grid-3, .ab-compare-drawer, .st-grid-2 {
+      grid-template-columns: minmax(0, 1fr) !important;
+    }
+    .living-canvas-viewport {
+      min-height: 420px;
+    }
+    .canvas-minimap {
+      font-size: 8.5px;
+      padding: 3px 7px;
+      max-width: calc(100% - 20px);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .st-modal-backdrop {
+      padding: 8px;
+    }
+    .st-modal {
+      padding: 12px 14px;
+      max-height: 92vh;
+    }
+  }
+
+  @media (pointer: coarse), (max-width: 768px) {
+    .st-btn, .st-tab, .st-select, .st-input {
+      min-height: 34px;
+    }
+    .st-mini-btn, .st-pill {
+      min-height: 28px;
+      padding: 4px 9px;
     }
   }
 </style>

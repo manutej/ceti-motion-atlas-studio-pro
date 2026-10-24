@@ -13,12 +13,12 @@
 
 ## PART 1 · LIVE STATUS & DELIVERABLE MANIFEST
 
-# STATUS — CETI Motion Atlas Studio Pro (`v8.0.0` Locked)
+# STATUS — CETI Motion Atlas Studio Pro (`v9.0.0` Locked)
 
-**Last Updated:** 2026-10-17  
+**Last Updated:** 2026-10-23  
 **Workspace:** `/Users/cairo/Documents/CETI/ACCENTURE/content-factory v2/ARTE/motion-atlas/`  
 **Public Repository:** `https://github.com/manutej/ceti-motion-atlas-studio-pro`  
-**Current Version:** `v8.0.0` (8 Adversarial MOE + VBM Visual/UX & Studio Ergonomics Rounds Complete · `29/29 Gates PASS` · `10/10 Negative Mutation Selftests CAUGHT`)
+**Current Version:** `v9.0.0` (9 Adversarial MOE + 4-Panel UI/UX, Mobile Ergonomics, Original Spec & 10x Senior Architecture Rounds Complete · `32/32 Gates PASS` · `12/12 Negative Mutation Selftests CAUGHT`)
 
 ---
 
@@ -26,15 +26,15 @@
 
 | Deliverable | Path / URL | Status |
 |---|---|---|
-| **Public GitHub Repository** | `https://github.com/manutej/ceti-motion-atlas-studio-pro` | **PUBLIC (`v8.0.0`)** |
+| **Public GitHub Repository** | `https://github.com/manutej/ceti-motion-atlas-studio-pro` | **PUBLIC (`v9.0.0`)** |
 | **Live Local Studio & OAuth 2.0 PKCE Server** | `http://127.0.0.1:43110/` (served by [`scripts/oauth-bridge-server.mjs`](file:///Users/cairo/Documents/CETI/ACCENTURE/content-factory%20v2/ARTE/motion-atlas/scripts/oauth-bridge-server.mjs)) | **ONLINE** |
-| **Standalone Single-File Studio (Downloads)** | [`/Users/cairo/Downloads/CETI Motion Atlas Studio Pro.html`](file:///Users/cairo/Downloads/CETI%20Motion%20Atlas%20Studio%20Pro.html) (`556 KB`) | **LOCKED (`v8`)** |
-| **Standalone Single-File Studio (Workspace)** | [`ARTE/motion-atlas/Motion Atlas Studio Pro — Standalone.html`](file:///Users/cairo/Documents/CETI/ACCENTURE/content-factory%20v2/ARTE/motion-atlas/Motion%20Atlas%20Studio%20Pro%20%E2%80%94%20Standalone.html) (`556 KB`) | **LOCKED (`v8`)** |
-| **VBM `@2x` Walkthrough Video (`MP4` + `GIF`)** | [`recordings/v8-final-walkthrough.mp4`](file:///Users/cairo/Documents/CETI/ACCENTURE/content-factory%20v2/ARTE/motion-atlas/recordings/v8-final-walkthrough.mp4) & [`recordings/v8-final-walkthrough.gif`](file:///Users/cairo/Documents/CETI/ACCENTURE/content-factory%20v2/ARTE/motion-atlas/recordings/v8-final-walkthrough.gif) | **CAPTURED (`v8-final`)** |
-| **VBM `@2x` Screenshot Progression (`v4-baseline` → `v6-final` → `v7-final` → `v8-final`)** | [`recordings/screenshots/v8-final/`](file:///Users/cairo/Documents/CETI/ACCENTURE/content-factory%20v2/ARTE/motion-atlas/recordings/screenshots/v8-final/) (`13` surfaces/modals at `@2x` Retina) | **VERIFIED (`136px` shell, `0` overlaps, `0` clips)** |
-| **VBM Automated CDP Walkthrough Recorder** | [`ARTE/motion-atlas/scripts/vbm-walkthrough-recorder.mjs`](file:///Users/cairo/Documents/CETI/ACCENTURE/content-factory%20v2/ARTE/motion-atlas/scripts/vbm-walkthrough-recorder.mjs) | **LOCKED (`v8`)** |
-| **29-Gate Mechanical Validator + Selftest** | [`ARTE/motion-atlas/scripts/validate-motion-studio.mjs`](file:///Users/cairo/Documents/CETI/ACCENTURE/content-factory%20v2/ARTE/motion-atlas/scripts/validate-motion-studio.mjs) | **`29/29 PASS` + `10/10 SELFTEST`** |
-| **Typed Contract, Meta-Plan & RSI Ledger** | [`docs/TYPED-CONTRACT-MOTION-ATLAS.md`](file:///Users/cairo/Documents/CETI/ACCENTURE/content-factory%20v2/ARTE/motion-atlas/docs/TYPED-CONTRACT-MOTION-ATLAS.md) · [`docs/META-PLAN-AND-RSI.md`](file:///Users/cairo/Documents/CETI/ACCENTURE/content-factory%20v2/ARTE/motion-atlas/docs/META-PLAN-AND-RSI.md) · [`docs/RSI-LEDGER.md`](file:///Users/cairo/Documents/CETI/ACCENTURE/content-factory%20v2/ARTE/motion-atlas/docs/RSI-LEDGER.md) | **COMPLETE (`v1 → v8`)** |
+| **Standalone Single-File Studio (Downloads)** | [`/Users/cairo/Downloads/CETI Motion Atlas Studio Pro.html`](file:///Users/cairo/Downloads/CETI%20Motion%20Atlas%20Studio%20Pro.html) (`612 KB`) | **LOCKED (`v9`)** |
+| **Standalone Single-File Studio (Workspace)** | [`ARTE/motion-atlas/Motion Atlas Studio Pro — Standalone.html`](file:///Users/cairo/Documents/CETI/ACCENTURE/content-factory%20v2/ARTE/motion-atlas/Motion%20Atlas%20Studio%20Pro%20%E2%80%94%20Standalone.html) (`612 KB`) | **LOCKED (`v9`)** |
+| **VBM `@2x` Walkthrough Video (`MP4` + `GIF`)** | [`recordings/v9-final-walkthrough.mp4`](file:///Users/cairo/Documents/CETI/ACCENTURE/content-factory%20v2/ARTE/motion-atlas/recordings/v9-final-walkthrough.mp4) & [`recordings/v9-final-walkthrough.gif`](file:///Users/cairo/Documents/CETI/ACCENTURE/content-factory%20v2/ARTE/motion-atlas/recordings/v9-final-walkthrough.gif) | **CAPTURED (`v9-final`)** |
+| **VBM `@2x` Screenshot Progression (`v4-baseline` → `v9-final`)** | [`recordings/screenshots/v9-final/`](file:///Users/cairo/Documents/CETI/ACCENTURE/content-factory%20v2/ARTE/motion-atlas/recordings/screenshots/v9-final/) (`16` Desktop + Mobile `390×844` frames at `@2x` Retina) | **VERIFIED (`0` overflows, `0` overlaps, `0` clips)** |
+| **VBM Automated CDP Walkthrough Recorder** | [`ARTE/motion-atlas/scripts/vbm-walkthrough-recorder.mjs`](file:///Users/cairo/Documents/CETI/ACCENTURE/content-factory%20v2/ARTE/motion-atlas/scripts/vbm-walkthrough-recorder.mjs) | **LOCKED (`v9`)** |
+| **32-Gate Mechanical Validator + Selftest** | [`ARTE/motion-atlas/scripts/validate-motion-studio.mjs`](file:///Users/cairo/Documents/CETI/ACCENTURE/content-factory%20v2/ARTE/motion-atlas/scripts/validate-motion-studio.mjs) | **`32/32 PASS` + `12/12 SELFTEST`** |
+| **Typed Contract, Meta-Plan & RSI Ledger** | [`docs/TYPED-CONTRACT-MOTION-ATLAS.md`](file:///Users/cairo/Documents/CETI/ACCENTURE/content-factory%20v2/ARTE/motion-atlas/docs/TYPED-CONTRACT-MOTION-ATLAS.md) · [`docs/META-PLAN-AND-RSI.md`](file:///Users/cairo/Documents/CETI/ACCENTURE/content-factory%20v2/ARTE/motion-atlas/docs/META-PLAN-AND-RSI.md) · [`docs/RSI-LEDGER.md`](file:///Users/cairo/Documents/CETI/ACCENTURE/content-factory%20v2/ARTE/motion-atlas/docs/RSI-LEDGER.md) | **COMPLETE (`v1 → v9`)** |
 
 ---
 
@@ -52,7 +52,7 @@ npm run vbm
 
 ## PART 2 · COLD-RESUME ARCHITECTURE & EXTENSION HANDOFF
 
-# HANDOFF — CETI Motion Atlas Studio Pro (`v8.0.0`)
+# HANDOFF — CETI Motion Atlas Studio Pro (`v9.0.0`)
 
 **Cold-Resume Entry Point for Engineers, Motion Directors, and Autonomous Agents**  
 **Root:** `/Users/cairo/Documents/CETI/ACCENTURE/content-factory v2/ARTE/motion-atlas/`  
@@ -60,22 +60,21 @@ npm run vbm
 
 ---
 
-## 1. Executive Summary — What Was Built & Locked In (`v1 → v8.0.0`)
+## 1. Executive Summary — What Was Built & Locked In (`v1 → v9.0.0`)
 
-**CETI Motion Atlas Studio Pro** elevates the original single-character *Motion Atlas Explorer* (`whale.html`) into a complete, contract-governed **Transcendental Motion Graphic & Narrative Design Studio** inspired by **Orpheum / GEOME** (`Sanzo Wada 348` harmonic dictionary + 4-voice WebAudio Just-Intonation sonification), **Saul Bass** (5-rung graphic reduction ladder), **Milton Glaser / Push Pin Studios** (ceremonial overshoot & warm editorial ink), and **Alexandrov Sheaf Topology** ($\rho(\text{child}) = \text{parent}$ and multi-parent pushout gluing $\rho(A \oplus B)$ across living canvas forks).
+**CETI Motion Atlas Studio Pro** elevates the original single-character *Motion Atlas Explorer* (`whale.html`) into a complete, contract-governed **Transcendental Motion Graphic & Narrative Design Studio** inspired by **Orpheum / GEOME** (`Sanzo Wada 348` harmonic dictionary + 4-voice WebAudio Just-Intonation sonification), **Saul Bass** (5-rung graphic reduction ladder + 12 severance operations), **Milton Glaser / Push Pin Studios** (ceremonial overshoot & warm editorial ink), and **Alexandrov Sheaf Topology** ($\rho(\text{child}) = \text{parent}$ and multi-parent pushout gluing $\rho(A \oplus B)$ across living canvas forks).
 
-Across **8 rounds of Adversarial MOE + VBM Visual Browser Monitor & Studio Workflow evaluation (`v1 → v8.0.0`)**, the studio was hardened to pass **29 binary conservation gates (`G01–G29`)** and **10 negative mutation selftests (`MUT-01` through `MUT-10`)**, backed by automated `@2x` CDP screenshot and `.mp4`/`.gif` video walkthrough recording (`scripts/vbm-walkthrough-recorder.mjs`).
+Across **9 rounds of Adversarial MOE + 4-Panel UI/UX, Mobile Ergonomics, Original Spec & 10x Senior Systems Architecture evaluation (`v1 → v9.0.0`)**, the studio was hardened to pass **32 binary conservation gates (`G01–G32`)** and **12 negative mutation selftests (`MUT-01` through `MUT-12`)**, backed by automated `@2x` CDP screenshot and `.mp4`/`.gif` video walkthrough recording (`scripts/vbm-walkthrough-recorder.mjs`) across both Desktop (`1680×1040` `@2x`) and Mobile (`390×844` iPhone Pro `@2x`).
 
 ---
 
-## 2. Round 8 (`v8.0.0`) Studio Ergonomics, `# /` Vocabulary Library & `#color/<tag>` Vault (`v7-final` $\to$ `v8-final`)
+## 2. Round 9 (`v9.0.0`) 4-Panel Adversarial Ledger, Mobile/Touch, Original Spec & 10x Senior Architecture (`v8-final` $\to$ `v9-final`)
 
-| Area Upgraded | Why It Was Restricted in `v7` (Root Cause) | `v8.0.0` Resolution | Verified Gate / Metric |
+| Panel & Focus | Key Findings Resolved (`38/38` Total) | `v9.0.0` Engineering Resolution | Verified Gate / Metric |
 |---|---|---|---|
-| **Effortless Freeform Card Movement (`Surface I` & `Surface IV`)** | 1) On `Surface I`, `mousedown` only checked `[data-drag-handle]` (the 20px `.dag-node-header`) and blocked dragging if you grabbed the card body, title, canvas, or notes.<br>2) `.dag-node-body` had `data-action="select-dag-node"`, triggering a DOM re-render on click release.<br>3) Session reload called `CO.autoLayoutDAG(saved.dag)`, wiping custom `(x, y)` coordinates.<br>4) Storyboard beat cards (`Surface IV`) had no drag-and-drop or `◀`/`▶` reordering. | 1) Whole-card freeform dragging on `.dag-node` (grab anywhere except buttons/inputs) at 60fps with `< 5px` click vs `>= 5px` drag threshold.<br>2) Added `CO.moveCanvasNode`, `CO.duplicateCanvasCard` (`⧉ Copy`), and `CO.deleteCanvasCard` (`✕`).<br>3) Preserved custom `(x, y)` positions across session reloads (`CO.stampDAGRestrictionHashes`).<br>4) Added HTML5 drag-and-drop + `◀`/`▶` beat reordering on `Surface IV` (`CO.moveStoryboardBeat`). | **Gate `G26` PASS + `MUT-08` CAUGHT (`01-surface1`, `07-surface4`)** |
-| **Direct 1-Click `Source A` & `Source B` Selection** | Selecting which card was the primary source (`Source A`) or secondary comparison/pushout source (`Source B`) previously required hidden inspector or side-drawer steps. | Added 1-click **`● Src A`** (`rust`) and **`◐ Src B`** (`slate-blue` dashed outline) pills on every card (`Shift+Click` also sets `Source B`), plus always-visible **`Source A`** and **`Source B`** dropdowns and a **`⇄` Swap** button in both the Living Canvas toolbar and the OAuth Enhancer Modal. | **Gate `G27` PASS (`01-surface1`, `11-modal-oauth`)** |
-| **Plain-English `#` and `/` Vocabulary, Themes & Elements Library (`[K]`)** | Users who did not know technical motion-design jargon (*"12fps line boil"*, *"plate misregistration"*, *"Saul Bass Rung 4"*) had no plain-English way to browse or invoke looks and elements inside prompts. | Built a **52-item Plain-English In-Studio Skills & Vocabulary Library** (`#theme/...`, `#element/...`, `#camera/...`, `#feel/...`, `#character/...`, `#color/...`) invocable via **both `#` and `/`**:<br>• **Live Floating `.vocab-popover` Autocomplete** whenever you type `#` or `/` in any prompt or card note.<br>• **Full Visual Browser Modal (`# / Vocabulary & Themes [K]`)** with plain-English search, category filters, and 1-click `● Apply Now`, `+ Spawn Card`, and `↵ #Prompt` actions. | **Gate `G28` PASS + `MUT-09` CAUGHT (`12-modal-vocab-themes-elements-library.png`)** |
-| **Tagged & Saved Color Scheme Vault (`#color/<tag>`)** | Users could pick from the 348 Wada combinations, but could not tag, name, save, and re-invoke custom color schemes across cards, beats, and prompts. | Built the **Tagged & Saved Color Scheme Vault** (`CO.DEFAULT_SAVED_SCHEMES`, `CO.tagAndSaveColorScheme`, `CO.resolveColorSchemeByTag`) persisted in `localStorage` and `.motion.studio.json`. Users can tag any palette (e.g. `#color/pelagic-dawn`, `#color/saul-cutout-ocher`, `#color/brand-ocean-noir`) and re-invoke it from the top header bar, `Surface V` Vault panel, Living Canvas Card Inspector, per-beat Storyboard selector (`Surface IV`), or inside any `#`/`/` prompt. | **Gate `G29` PASS + `MUT-10` CAUGHT (`08-surface5-sanzo-wada-348-hydrography.png`)** |
+| **Panel A & B: UI/UX Editorial & Mobile/Touch Ergonomics (`UX-01..06`, `MOB-01..07`, `USE-01..05`)** | 1) Mouse-only `mousedown`/`mousemove` prevented touch dragging and pinch-zoom on mobile/tablet.<br>2) Fixed `340px` right inspector column crushed the Living Canvas on mobile.<br>3) Horizontal strip scroll positions (`Wada` & `Tabs`) reset on `renderDOM()`.<br>4) Missing `⊡ Fit All` and `◧ Inspector` drawer toggle. | 1) Unified `PointerEvents` (`pointerdown`, `pointermove`, `pointerup`, `pointercancel`, `setPointerCapture`, `touch-action: none`) + 2-pointer touch pinch-to-zoom (`0.2×–3.5×`).<br>2) Collapsible Inspector Drawer (`◧ Inspector`) + `⊡ Fit All` + responsive `@media (max-width: 1200px / 768px)` breakpoints (`390×844` `overflow=0px`).<br>3) Scroll position & caret preservation across DOM renders. | **Gate `G30` PASS (`15-mobile-390x844`, `16-mobile-390x844`)** |
+| **Panel C: Original Spec Alignment & Full Customizability (`SPEC-01..11`)** | 1) `GroundMode` lacked canonical IDs (`atlas`, `ceti`, `tint`, `deep-sea`, `hydro-ink`) and dark grounds (`deep-sea` `#1A1F2E`, `hydro-ink` `#141A21`) lacked luminous $\ge 10.0:1$ contrast inversion and `'screen'` composite washes.<br>2) `SpineArcId` (`6` canonical arcs) was hardcoded to `hero-inner-change`.<br>3) Only 4 sliders were exposed on Character Foundry; `12` Saul Bass `severanceOp`s, `6` `locomotion` modes, custom rig cloning, and live `speed`/`grain`/`wobble`/`streaks`/`guide`/`hydroGhostCount` tweaks were hidden. | 1) Canonicalized all 5 `GroundMode` keys with automatic luminous inversion ($\ge 10.0:1$ contrast floor: `deep-sea` `CR=11.23:1`, `hydro-ink` `CR=11.98:1`), `.st-shell.ground-dark` luminous CSS, and `'screen'` composite washes.<br>2) Implemented all 6 canonical `SpineArcId`s (`count-scale-compare-rest`, `follow-a-process`, `understand-one-idea`, `saul-seven-beat`, `rem-five-move`, `hero-inner-change`) selectable in header & Storyboard.<br>3) Added `12` `SEVERANCE_OPS`, `6` `LOCOMOTION_MODES`, `cloneCharacterRig`, and the collapsible **`⚙ Tweaks`** strip (`speed`, `grain`, `wob`, `streaks`, `guide`, `hydroGhostCount` `12/24/48`). | **Gates `G31` & `G32` PASS + `MUT-12` CAUGHT (`05-surface3`, `14-dark-ground-tweaks`)** |
+| **Panel D: 10x Senior Engineer Architecture at Scale (`ARCH-01..09`)** | 1) No Undo/Redo state history.<br>2) Unmemoized `run16GateAudit()` ran on every `renderDOM()`.<br>3) `drawAllCanvases()` redrew offscreen canvases and static storyboard stills (`data-fixed-t`) on every 60fps tick.<br>4) Unvalidated `localStorage`/JSON session payloads could poison state.<br>5) Runtime bugs (`self.hideVocabPopover` `TypeError` on `Escape`, duplicate `keydown` listener in `bootStudio()`, `move-beat-card` attribute mismatch, `[data-beat-pal]` mismatch). | 1) Built deterministic **50-state Undo/Redo Ring Buffer** (`pushHistory`, `undo`, `redo`, `Ctrl/Cmd+Z`, `Ctrl+Y`/`Cmd+Shift+Z`, header `↶ Undo` / `↷ Redo`).<br>2) Memoized `getAuditResult()` with state fingerprint key.<br>3) Added bounding-box viewport culling + static `data-fixed-t` still caching + RAF pause-halt in `drawAllCanvases()`.<br>4) Built `CO.validateAndSanitizeSessionState(raw)` boundary schema guard + cached `IndexedDB` connection (`getCachedIDB()`), and fixed all dead/mismatched bindings. | **Gates `G16` & `G31` PASS + `MUT-11` CAUGHT (`13-modal-32gate`)** |
 
 ---
 
@@ -611,11 +610,11 @@ flowchart LR
 
 ---
 
-## 3. Final 25-Gate Mechanical Audit Scorecard (`v7.0.0`)
+## 3. Final 32-Gate Mechanical Audit Scorecard (`v9.0.0`)
 
-| Gate | Contract Invariant | Measured Metric (`v7.0.0`) | Verdict |
+| Gate | Contract Invariant | Measured Metric (`v9.0.0`) | Verdict |
 |---|---|---|---|
-| **G01** | Sanzo Wada Harmonic Pinning Closure | `GEOME_WADA_LIST=348`, Curated `PALS=19`, 4×4 OKLab chord matrix & CIEDE2000 token matcher active | **PASS** |
+| **G01** | Sanzo Wada Harmonic Pinning Closure | `GEOME_WADA_LIST=348`, Curated `PALS=19`, closed 4×4 OKLab chord matrix & CIEDE2000 token matcher active | **PASS** |
 | **G02** | WCAG AAA Ink-on-Paper Contrast ($\ge 7.0:1$) | Minimum contrast across all 19 curated grounds = `7.65:1` (`No. 343` = `14.12:1`) | **PASS** |
 | **G03** | Zero Hardcoded Whale Lock-In | `8` characters × `6` render modes (`wash`, `paper`, `line`, `flat`, `pixel`, `hydrographic`) = `48/48` verified | **PASS** |
 | **G04** | 5-Rung Saul Bass Reduction Ladder & Emblem Gauntlet | `40/40` reduction rungs rendered; `8/8` 4-Test Emblem Gauntlets (`16px`, `silhouette`, `oneMove`, `cutTest`) passed | **PASS** |
@@ -624,22 +623,29 @@ flowchart LR
 | **G07** | 5-Lens Decision Fork Tree Completeness | `5` lenses verified: `look`, `use`, `story`, `character`, `register` | **PASS** |
 | **G08** | 8-Beat Storyboard Conservation Laws | `8/8` storylines pass `coveredOk`, `movementOk` (`BUT`/`THEREFORE`), `oneBreather`, `callback`, and $\le 2$ moves | **PASS** |
 | **G09** | Infinite-Zoom Living Canvas DAG Integrity | Non-destructive fork, A/B compare, and 3-tier LOD (`macro-topology`, `standard-studio`, `micro-inspection`) verified | **PASS** |
-| **G10** | Multi-Provider OAuth 2.0 PKCE + Local Bridge | RFC 7636 verifier (`43` chars), `S256` challenge (`43` chars), `?code=` auto-exchange, & `127.0.0.1:43110` bridge active | **PASS** |
+| **G10** | Multi-Provider OAuth 2.0 PKCE + Local Bridge | RFC 7636 verifier (`43` chars), `S256` challenge (`43` chars), `?code=` auto-exchange, & dual-port (`43110`/`8787`) bridge active | **PASS** |
 | **G11** | OAuth Live Storyboard & Character Schema Guard | Valid synthesizer payload accepted; malformed payload rejected | **PASS** |
 | **G12** | 100% Offline Embedded 171-Node Atlas Corpus | `15` styles, `24` elements, `8` laws, `16` gates embedded (`0` `/_blob/` network fetches) | **PASS** |
-| **G13** | Multi-Target Production Compiler | Stage-1 Brief `.md` (`2,573` chars), HyperFrames HTML (`8,559` chars), Remotion TSX (`895` chars) | **PASS** |
-| **G14** | Session Persistence & Portable `.motion.studio.json` | `localStorage` + `IndexedDB` + JSON export/import round-trip verified | **PASS** |
+| **G13** | Multi-Target Production Compiler | Stage-1 Brief `.md` (`2,658` chars), HyperFrames HTML (`12,536` chars), Remotion TSX (`895` chars) | **PASS** |
+| **G14** | Session Persistence & Portable `.motion.studio.json` | Cached `IndexedDB` + `localStorage` + JSON export/import round-trip verified | **PASS** |
 | **G15** | CETI Editorial & Anti-Slop Typography Compliance | `Fraunces` + `DM Sans` + `Space Mono` active; `0` banned fonts | **PASS** |
-| **G16** | Zero Runtime Errors & Full Bundle Integrity | All core files + keyboard shortcuts (`Space`, `[`, `]`, `C`, `F`, `O`, `Esc`) + `prefers-reduced-motion` verified | **PASS** |
+| **G16** | Zero Runtime Errors & Full Bundle Integrity | All core files + single consolidated keyboard handler + `prefers-reduced-motion` verified | **PASS** |
 | **G17** | `tell-apart` Archetype Discriminability Kernel & 8 Timing Feels | `28/28` character pairs distinct ($\min \Delta_{\text{geom}} = 0.6327$, $\max = 7.839$); `8` timing feels including `rostrum` | **PASS** |
 | **G18** | Alexandrov Sheaf Restriction Cohomology ($\delta^0 = 0$) | Verified $\rho(\text{child}) = \text{parent}$ across `9` DAG edges after 3-direction $\alpha/\beta/\gamma$ fork | **PASS** |
 | **G19** | 4-Lens Adversarial RSI Critique & Surgical Auto-Fix | `4/4` lenses (`A1 Saul Bass`, `A2 Koolhaas`, `A3 Hydrography`, `A4 HyperFrames Sheaf`) pass & auto-heal defects | **PASS** |
-| **G20** | Extended Compilers (`Anime.js v4` + `Playable HTML5`) | `Anime.js v4` timeline scaffold (`1,340` chars) + Playable Single-Clock HTML5 (`8,810` chars) verified | **PASS** |
-| **G21** | VBM Visual & UX Ergonomics Gate | `0` DAG node overlaps, `8/8` unique beat titles & camera moves across all 8 stories, `136px` sticky header (`12/12` VBM frames clean) | **PASS** |
-| **G22** | **Multi-Parent DAG Branch Synthesis / Pushout Gluing (`A ⊕ B`)** | Synthesized pushout node `node-synth-7` from `[node-proof-a ⊕ node-proof-b]` with `upstreamHash=ρ_6e20de63` ($\delta^0 = 0$: `true`) | **PASS** |
-| **G23** | **Multi-Frame Onion-Skinning (`-2Δt / -1Δt / +1Δt`) & Save/Restore Isolation** | `3` Wada-tinted onion-skin frames (`-2Δt@2.16s`, `-1Δt@2.28s`, `+1Δt@2.52s`), Canvas2D net `saveDepth=0` (`max=3`) | **PASS** |
-| **G24** | **Orpheum 4-Voice Harmonic Chord Sonification (`OKLab → Just-Intonation Hz`)** | `19/19` curated Wada palettes map deterministically to 4-voice Just-Intonation chords (`root=C4`) | **PASS** |
-| **G25** | **Resolution-Independent Vector Compilers (`SVG Keyframes` + `Lottie JSON v5.7.4`)** | SVG Keyframe Sprite (`3,417` chars) + Lottie JSON `v5.7.4` (`19,859` chars, `2` parametric layers) | **PASS** |
+| **G20** | Extended Compilers (`Anime.js v4` + `Playable HTML5`) | `Anime.js v4` timeline scaffold (`1,340` chars) + Playable Single-Clock HTML5 (`12,705` chars) verified | **PASS** |
+| **G21** | VBM Visual & UX Ergonomics Gate | `0` DAG node overlaps, `8/8` unique beat titles & camera moves across all 8 stories, `16/16` VBM frames clean (`overflow=0px`) | **PASS** |
+| **G22** | Multi-Parent DAG Branch Synthesis / Pushout Gluing (`A ⊕ B`) | Synthesized pushout node `node-synth-7` from `[node-proof-a ⊕ node-proof-b]` with `upstreamHash=ρ_6e20de63` ($\delta^0 = 0$: `true`) | **PASS** |
+| **G23** | Multi-Frame Onion-Skinning (`-2Δt / -1Δt / +1Δt`) & Save/Restore Isolation | `3` Wada-tinted onion-skin frames (`-2Δt@2.16s`, `-1Δt@2.28s`, `+1Δt@2.52s`), Canvas2D net `saveDepth=0` (`max=3`) | **PASS** |
+| **G24** | Orpheum 4-Voice Harmonic Chord Sonification (`OKLab → Just-Intonation Hz`) | `19/19` curated Wada palettes map deterministically to 4-voice Just-Intonation chords (`root=C4`) | **PASS** |
+| **G25** | Resolution-Independent Vector Compilers (`SVG Keyframes` + `Lottie JSON v5.7.4`) | SVG Keyframe Sprite (`3,417` chars) + Lottie JSON `v5.7.4` (`19,859` chars, `2` parametric layers) | **PASS** |
+| **G26** | Effortless Freeform Card Movement (Whole-Card Drag + Duplicate/Delete + Beat Reordering) | `moveCanvasNode=(142,318)`, `duplicate=7->delete=6`, Storyboard beat swap `[0<->1]` recomputed timestamps `[0s, 1.5s]` | **PASS** |
+| **G27** | Direct Source A & Source B Selection (1-Click Card Pills + Toolbar/Modal Dropdowns + Swap) | Verified `● Src A` / `◐ Src B` card buttons, toolbar selectors, OAuth modal selectors, and `⇄ Swap A/B` handler | **PASS** |
+| **G28** | Plain-English `#` & `/` Design Vocabulary, Themes & Elements Library + Live Autocomplete | `51` plain-English `#` and `/` tokens across `6` categories; parsed `5` tokens $\to$ Wada No. `126` | **PASS** |
+| **G29** | Tagged & Saved Color Scheme Vault (`#color/<tag>` & `/color/<tag>` Re-Invocation) | `7` saved schemes; `#color/brand-ocean-noir` & `/color/brand-ocean-noir` resolve deterministically to Wada No. `13` | **PASS** |
+| **G30** | **Mobile & Touch Ergonomics (`Unified PointerEvents` · `Pinch-Zoom` · `Collapsible Inspector` · `Responsive Breakpoints`)** | Verified `pointerdown`/`pointermove`/`pointerup`, 2-pointer pinch-zoom, collapsible Inspector drawer, and `@media (max-width: 768px)` rules (`390×844` `overflow=0px`) | **PASS** |
+| **G31** | **10x Architecture & Original Spec Alignment (`6 SpineArcId` · `5 GroundModes` · `Dark CR >=10:1` · `Undo/Redo` · `Schema Validator`)** | `5` GroundModes (`atlas`, `ceti`, `tint`, `deep-sea`, `hydro-ink`) with `deep-sea` `CR=11.23:1` & `hydro-ink` `CR=11.98:1`; `6` SpineArcs; 50-state Undo/Redo + boundary validator active | **PASS** |
+| **G32** | **Full Customizability (`12 Severance Ops` · `6 Locomotion Modes` · `Custom Rig Cloning` · `Live Tweaks Strip`)** | `12` SeveranceOps, `6` LocomotionModes, `cloneCharacterRig -> saul-falcon-clone-1`, and Finish & Motion Tweaks verified | **PASS** |
 
 ---
 
@@ -654,4 +660,10 @@ flowchart LR
 | **MUT-05** | Inject malformed OAuth payload (`1` beat, Wada `#9999`, `null` character rig) | `G11` | **CAUGHT (PASS)** |
 | **MUT-06** | Tamper with multi-parent synthesis pushout hash $\rho(A \oplus B)$ and verify Sheaf cohomology catches mismatch | `G22` | **CAUGHT (PASS)** |
 | **MUT-07** | Inject collapsed `0s` onion-skin frames with identical timestamps & tints and verify `G23` rejection | `G23` | **CAUGHT (PASS)** |
+| **MUT-08** | Attempt to delete the last remaining card on the Living Canvas and verify `G26` guard preserves seed root | `G26` | **CAUGHT (PASS)** |
+| **MUT-09** | Inject unknown `#theme/nonexistent-slop-token` alongside valid `#theme/saul-bass-cutout` and verify `G28` parser filters invalid token cleanly | `G28` | **CAUGHT (PASS)** |
+| **MUT-10** | Inject out-of-range Wada ID (`99999`) & unsanitized tag characters into `tagAndSaveColorScheme` and verify `G29` clamping + slug sanitization | `G29` | **CAUGHT (PASS)** |
+| **MUT-11** | Inject poisoned session state (`null` payload + invalid `charId`/`ground`/`spineArc`/`rung`/`zoom`/`DAG`) and verify `G31` boundary schema sanitizer | `G31` | **CAUGHT (PASS)** |
+| **MUT-12** | Inject dark-on-dark palette on `deep-sea` ground and verify `G31` luminous contrast inversion $\ge 10.0:1$ (`CR = 10.12:1`) | `G31` | **CAUGHT (PASS)** |
+
 

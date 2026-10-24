@@ -25,10 +25,11 @@
       this.root = rootEl;
       const saved = CO.loadSessionState();
       const defaultDag = CO.createDefaultDAG();
+      const isNarrowViewport = (typeof window !== 'undefined' && window.innerWidth > 0 && window.innerWidth <= 960);
 
       this.state = {
         surface: (saved && saved.surface) || 'infinite-canvas',
-        charId: (saved && saved.charId) || 'ceti-whale',
+        charId: (saved && (saved.charId || saved.activeCharacterId)) || 'ceti-whale',
         partnerCharId: (saved && saved.partnerCharId) || 'geome-orpheus',
         interaction: (saved && saved.interaction) || 'hero-journey',
         rung: (saved && saved.rung) || 1,
@@ -36,33 +37,38 @@
         palIdx: (saved && typeof saved.palIdx === 'number') ? saved.palIdx : 0,
         activeWadaCombos: WADA.getAllWadaCombos(),
         savedColorSchemes: (saved && Array.isArray(saved.savedColorSchemes) && saved.savedColorSchemes.length)
-          ? saved.savedColorSchemes
+          ? saved.savedColorSchemes.map(function (sc) { return CO.normalizeSavedScheme ? CO.normalizeSavedScheme(sc) : sc; })
           : (CO.DEFAULT_SAVED_SCHEMES ? CO.DEFAULT_SAVED_SCHEMES.slice() : []),
+        customCharacters: (saved && saved.customCharacters && typeof saved.customCharacters === 'object') ? saved.customCharacters : {},
         schemeTagInput: 'hero-dawn',
         schemeNameInput: 'Hero Dawn Custom',
         schemeTagsInput: '#warm #hero #custom',
         wadaSearch: '',
         wadaFilterRegister: 'all',
         feel: (saved && saved.feel) || 'spring',
-        ground: (saved && saved.ground) || 'atlas',
+        ground: (saved && saved.ground && WADA.normalizeGroundKey) ? WADA.normalizeGroundKey(saved.ground) : ((saved && saved.ground) || 'atlas'),
         mStyle: (saved && saved.mStyle) || 'watercolor',
         storyKey: (saved && saved.storyKey) || 's_voice',
+        spineArc: (saved && saved.spineArc) || 'hero-inner-change',
         elCat: 'All',
         lens: 'look',
         lensPath: ['A', 'A1'],
         selectedItem: ['style', 'watercolor'],
         playing: true,
-        speed: 1.0,
-        grain: 0.24,
-        wob: 1.0,
-        streaks: true,
-        guide: true,
+        speed: (saved && typeof saved.speed === 'number') ? saved.speed : 1.0,
+        grain: (saved && typeof saved.grain === 'number') ? saved.grain : 0.24,
+        wob: (saved && typeof saved.wob === 'number') ? saved.wob : 1.0,
+        streaks: (saved && typeof saved.streaks === 'boolean') ? saved.streaks : true,
+        guide: (saved && typeof saved.guide === 'boolean') ? saved.guide : true,
+        hydroGhostCount: (saved && saved.hydroGhostCount) || 24,
+        tweaksOpen: false,
+        inspectorOpen: !isNarrowViewport,
         captionsCovered: false,
         onionSkin: (saved && typeof saved.onionSkin === 'boolean') ? saved.onionSkin : false,
         // Infinite-Zoom Living Canvas viewport & DAG (preserve user custom card x/y positions!)
-        zoom: (saved && saved.zoom) || 0.78,
-        panX: (saved && saved.panX) || 18,
-        panY: (saved && saved.panY) || 16,
+        zoom: (saved && (saved.zoom || saved.canvasZoom)) || 0.78,
+        panX: (saved && (saved.panX != null ? saved.panX : saved.canvasPanX)) || 18,
+        panY: (saved && (saved.panY != null ? saved.panY : saved.canvasPanY)) || 16,
         dag: (saved && saved.dag && Array.isArray(saved.dag.nodes) && saved.dag.nodes.length)
           ? (CO.stampDAGRestrictionHashes ? CO.stampDAGRestrictionHashes(saved.dag) : saved.dag)
           : defaultDag,
@@ -75,14 +81,16 @@
           : CO.buildStoryboardSheet({
               storyKey: (saved && saved.storyKey) || 's_voice',
               styleKey: (saved && saved.mStyle) || 'watercolor',
-              charId: (saved && saved.charId) || 'ceti-whale',
+              charId: (saved && (saved.charId || saved.activeCharacterId)) || 'ceti-whale',
               palId: WADA.PALS[0].id,
-              feelKey: 'spring'
+              feelKey: (saved && saved.feel) || 'spring',
+              spineArc: (saved && saved.spineArc) || 'hero-inner-change'
             }),
         // OAuth 2.0 PKCE & Live Enhancer + # Vocabulary Library state
         oauthModalOpen: false,
         gateModalOpen: false,
         vocabModalOpen: false,
+        vocabCategory: 'all',
         vocabFilterCat: 'all',
         vocabSearch: '',
         vocabTargetField: 'oauthPrompt',
@@ -102,14 +110,26 @@
         this.state.dag = defaultDag;
       }
 
+      // Deterministic 50-State Undo/Redo Ring Buffer (ARCH-07 · USE-03)
+      this._history = [];
+      this._redoStack = [];
+      this._maxHistory = 50;
+      this._auditCacheKey = '';
+      this._auditCacheVal = null;
+      this._saveTimer = null;
+
       this._T = 0.85;
       this._lastNow = null;
       this._raf = 0;
       this._draggingCanvas = false;
       this._draggingNodeId = null;
+      this._dragPointerId = null;
       this._dragMovedPx = 0;
       this._dragStart = [0, 0];
       this._panStart = [0, 0];
+      this._activePointers = new Map();
+      this._pinchStartDist = 0;
+      this._pinchStartZoom = 0.78;
       this._draggingBeatIdx = null;
       this._activeAutocompleteEl = null;
 
@@ -118,6 +138,7 @@
       MA.setActorOption('rung', this.state.rung);
       MA.setActorOption('captionsCovered', this.state.captionsCovered);
       MA.setActorOption('onionSkin', this.state.onionSkin);
+      MA.setActorOption('hydroGhostCount', this.state.hydroGhostCount);
 
       this.tick = this.tick.bind(this);
     }
@@ -125,10 +146,159 @@
     mount() {
       this.renderDOM();
       this.bindGlobalEvents();
-      this._raf = requestAnimationFrame(this.tick);
+      if (this.state.playing && !this._raf) {
+        this._raf = requestAnimationFrame(this.tick);
+      }
     }
 
-    setState(patch, skipDOM) {
+    getHistorySnapshot() {
+      return JSON.parse(JSON.stringify({
+        charId: this.state.charId,
+        partnerCharId: this.state.partnerCharId,
+        interaction: this.state.interaction,
+        rung: this.state.rung,
+        palIdx: this.state.palIdx,
+        savedColorSchemes: this.state.savedColorSchemes,
+        feel: this.state.feel,
+        ground: this.state.ground,
+        mStyle: this.state.mStyle,
+        storyKey: this.state.storyKey,
+        spineArc: this.state.spineArc,
+        speed: this.state.speed,
+        grain: this.state.grain,
+        wob: this.state.wob,
+        streaks: this.state.streaks,
+        guide: this.state.guide,
+        hydroGhostCount: this.state.hydroGhostCount,
+        onionSkin: this.state.onionSkin,
+        dag: this.state.dag,
+        selectedNodeId: this.state.selectedNodeId,
+        compareNodeId: this.state.compareNodeId,
+        storyboard: this.state.storyboard
+      }));
+    }
+
+    pushHistory(label) {
+      try {
+        const snap = this.getHistorySnapshot();
+        snap._label = label || 'Edit';
+        this._history.push(snap);
+        if (this._history.length > this._maxHistory) {
+          this._history.shift();
+        }
+        this._redoStack = [];
+      } catch (_e) { /* ignore serialization edge cases */ }
+    }
+
+    canUndo() {
+      return this._history && this._history.length > 0;
+    }
+
+    canRedo() {
+      return this._redoStack && this._redoStack.length > 0;
+    }
+
+    undo() {
+      if (!this.canUndo()) return false;
+      const currentSnap = this.getHistorySnapshot();
+      this._redoStack.push(currentSnap);
+      const prev = this._history.pop();
+      const label = prev._label || 'Action';
+      delete prev._label;
+      this.setState(Object.assign({}, prev, { copiedNotice: '↶ Undid: ' + label }), false, true);
+      return true;
+    }
+
+    redo() {
+      if (!this.canRedo()) return false;
+      const currentSnap = this.getHistorySnapshot();
+      this._history.push(currentSnap);
+      const next = this._redoStack.pop();
+      const label = next._label || 'Action';
+      delete next._label;
+      this.setState(Object.assign({}, next, { copiedNotice: '↷ Redid: ' + label }), false, true);
+      return true;
+    }
+
+    getSerializableSessionState() {
+      const pal = this.getActivePalette();
+      return {
+        surface: this.state.surface,
+        charId: this.state.charId,
+        activeCharacterId: this.state.charId,
+        partnerCharId: this.state.partnerCharId,
+        interaction: this.state.interaction,
+        rung: this.state.rung,
+        activeRung: this.state.rung,
+        palIdx: this.state.palIdx,
+        activeWadaId: pal.id,
+        savedColorSchemes: this.state.savedColorSchemes,
+        customCharacters: this.state.customCharacters,
+        selectedNodeId: this.state.selectedNodeId,
+        compareNodeId: this.state.compareNodeId,
+        feel: this.state.feel,
+        activeFeelKey: this.state.feel,
+        ground: this.state.ground,
+        mStyle: this.state.mStyle,
+        activeStyleKey: this.state.mStyle,
+        storyKey: this.state.storyKey,
+        activeStoryKey: this.state.storyKey,
+        spineArc: this.state.spineArc,
+        speed: this.state.speed,
+        grain: this.state.grain,
+        wob: this.state.wob,
+        streaks: this.state.streaks,
+        guide: this.state.guide,
+        hydroGhostCount: this.state.hydroGhostCount,
+        onionSkin: this.state.onionSkin,
+        zoom: this.state.zoom,
+        panX: this.state.panX,
+        panY: this.state.panY,
+        dag: this.state.dag,
+        storyboard: this.state.storyboard
+      };
+    }
+
+    invalidateStaticCanvases() {
+      if (!this.root) return;
+      const statics = this.root.querySelectorAll('canvas[data-fixed-t]');
+      for (let i = 0; i < statics.length; i++) {
+        statics[i]._hasRenderedStatic = false;
+      }
+    }
+
+    getAuditResult() {
+      const st = this.state;
+      const sbSig = (st.storyboard && Array.isArray(st.storyboard.beats))
+        ? st.storyboard.beats.map(function (b) { return b.hinge + ':' + b.label + ':' + (b.cameraMove || ''); }).join('|')
+        : '';
+      const dagSig = (st.dag && Array.isArray(st.dag.nodes))
+        ? st.dag.nodes.map(function (n) { return n.id + ':' + (n.packetHash || ''); }).join('|')
+        : '';
+      const key = [
+        st.charId, st.palIdx, st.ground, st.rung, st.storyKey, st.mStyle, st.spineArc,
+        (st.savedColorSchemes || []).length, dagSig, sbSig
+      ].join('::');
+      if (this._auditCacheVal && this._auditCacheKey === key) {
+        return this._auditCacheVal;
+      }
+      this._auditCacheKey = key;
+      this._auditCacheVal = CO.run16GateAudit(st);
+      return this._auditCacheVal;
+    }
+
+    setState(patch, skipDOM, skipHistory) {
+      if (! patch || typeof patch !== 'object') return;
+      const structuralKeys = ['charId', 'partnerCharId', 'interaction', 'rung', 'palIdx', 'ground', 'feel', 'mStyle', 'storyKey', 'spineArc', 'dag', 'storyboard', 'savedColorSchemes'];
+      const hasStructuralChange = structuralKeys.some(function (k) { return k in patch; });
+      if (hasStructuralChange && !skipHistory && !skipDOM) {
+        this.pushHistory(Object.keys(patch).slice(0, 2).join(', '));
+      }
+
+      if (patch.ground && WADA && typeof WADA.normalizeGroundKey === 'function') {
+        patch.ground = WADA.normalizeGroundKey(patch.ground);
+      }
+
       Object.assign(this.state, patch);
       MA.setActorOption('charId', this.state.charId);
       MA.setActorOption('partnerCharId', this.state.partnerCharId);
@@ -136,8 +306,9 @@
       MA.setActorOption('renderMode', this.state.renderMode);
       MA.setActorOption('captionsCovered', this.state.captionsCovered);
       MA.setActorOption('onionSkin', this.state.onionSkin);
+      MA.setActorOption('hydroGhostCount', this.state.hydroGhostCount);
 
-      if (patch.storyKey || patch.mStyle || patch.charId || patch.palIdx !== undefined || patch.feel) {
+      if (patch.storyKey || patch.mStyle || patch.charId || patch.palIdx !== undefined || patch.feel || patch.spineArc) {
         const pal = this.getActivePalette();
         if (!patch.storyboard) {
           this.state.storyboard = CO.buildStoryboardSheet({
@@ -145,36 +316,24 @@
             styleKey: this.state.mStyle,
             charId: this.state.charId,
             palId: pal.id,
-            feelKey: this.state.feel
+            feelKey: this.state.feel,
+            spineArc: this.state.spineArc
           });
         }
       }
 
-      CO.saveSessionState({
-        surface: this.state.surface,
-        charId: this.state.charId,
-        partnerCharId: this.state.partnerCharId,
-        interaction: this.state.interaction,
-        rung: this.state.rung,
-        palIdx: this.state.palIdx,
-        savedColorSchemes: this.state.savedColorSchemes,
-        selectedNodeId: this.state.selectedNodeId,
-        compareNodeId: this.state.compareNodeId,
-        feel: this.state.feel,
-        ground: this.state.ground,
-        mStyle: this.state.mStyle,
-        storyKey: this.state.storyKey,
-        onionSkin: this.state.onionSkin,
-        zoom: this.state.zoom,
-        panX: this.state.panX,
-        panY: this.state.panY,
-        dag: this.state.dag,
-        storyboard: this.state.storyboard
-      });
+      const serialized = this.getSerializableSessionState();
+      CO.saveSessionState(serialized);
+
+      if (this.state.playing && !this._raf && typeof requestAnimationFrame === 'function') {
+        this._lastNow = null;
+        this._raf = requestAnimationFrame(this.tick);
+      }
 
       if (!skipDOM) {
+        this.invalidateStaticCanvases();
         this.renderDOM();
-        this.drawAllCanvases();
+        this.drawAllCanvases(false);
       }
     }
 
@@ -187,30 +346,65 @@
       return FOUNDRY.CHARACTERS[this.state.charId] || FOUNDRY.CHARACTERS['ceti-whale'];
     }
 
+    getActiveLoopDuration() {
+      if (MA && typeof MA.len === 'function') {
+        return MA.len(this.state.storyKey || this.state.mStyle) || 12;
+      }
+      return 12;
+    }
+
     tick(now) {
+      if (!this.state.playing) {
+        this._raf = 0;
+        this._lastNow = null;
+        return;
+      }
       if (this._lastNow == null) this._lastNow = now;
       const dt = Math.min(0.08, (now - this._lastNow) / 1000);
       this._lastNow = now;
-      if (this.state.playing) {
-        this._T += dt * this.state.speed;
-        this.drawAllCanvases();
-        const scrub = this.root.querySelector('#global-scrub');
-        const tReadout = this.root.querySelector('#global-t-readout');
-        if (scrub && document.activeElement !== scrub) scrub.value = (this._T % 12).toFixed(2);
-        if (tReadout) tReadout.textContent = 't = ' + (this._T % 12).toFixed(2) + 's';
+      const loopDur = this.getActiveLoopDuration();
+      this._T += dt * this.state.speed;
+      this.drawAllCanvases(true);
+      const scrub = this.root && this.root.querySelector('#global-scrub');
+      const tReadout = this.root && this.root.querySelector('#global-t-readout');
+      const wrappedT = (this._T % loopDur).toFixed(2);
+      if (scrub && document.activeElement !== scrub) {
+        scrub.max = String(loopDur);
+        scrub.value = wrappedT;
       }
+      if (tReadout) tReadout.textContent = 't = ' + wrappedT + 's';
       this._raf = requestAnimationFrame(this.tick);
     }
 
-    drawAllCanvases() {
+    drawAllCanvases(isTick) {
       if (!this.root) return;
       const pal = this.getActivePalette();
       const feel = MA.FEELS[this.state.feel] || MA.FEELS.spring;
       const canvases = this.root.querySelectorAll('canvas[data-proof]');
+      const vw = (typeof window !== 'undefined' && window.innerWidth) ? window.innerWidth : 1920;
+      const vh = (typeof window !== 'undefined' && window.innerHeight) ? window.innerHeight : 1080;
+
       for (let i = 0; i < canvases.length; i++) {
         const c = canvases[i];
-        const key = c.getAttribute('data-proof');
         const fixedT = c.getAttribute('data-fixed-t');
+        const isStatic = fixedT != null && fixedT !== '';
+
+        // Skip re-rendering static storyboard still frames on 60fps tick once rendered
+        if (isTick && isStatic && c._hasRenderedStatic) {
+          continue;
+        }
+
+        // Bounding-Box Viewport Culling during 60fps tick (ARCH-03)
+        if (isTick && typeof c.getBoundingClientRect === 'function') {
+          const rect = c.getBoundingClientRect();
+          if (rect.width > 0 && rect.height > 0) {
+            if (rect.bottom < -120 || rect.top > vh + 120 || rect.right < -120 || rect.left > vw + 120) {
+              continue;
+            }
+          }
+        }
+
+        const key = c.getAttribute('data-proof');
         const nodeChar = c.getAttribute('data-char') || this.state.charId;
         const nodeRung = Number(c.getAttribute('data-rung')) || this.state.rung;
         const nodeMode = c.getAttribute('data-mode') || this.state.renderMode;
@@ -223,13 +417,14 @@
           const found = this.state.activeWadaCombos.find(function (p) { return p.id === nodePalId; });
           if (found) usePal = WADA.enrichPalette(found, this.state.ground);
         }
-        const tVal = fixedT != null && fixedT !== '' ? Number(fixedT) : this._T;
+        const tVal = isStatic ? Number(fixedT) : this._T;
         MA.render(c, key, usePal, feel, tVal, {
           wob: this.state.wob,
           grain: this.state.grain,
           streaks: this.state.streaks,
           guide: this.state.guide,
           ground: this.state.ground,
+          hydroGhostCount: this.state.hydroGhostCount,
           charId: nodeChar,
           partnerCharId: this.state.partnerCharId,
           rung: nodeRung,
@@ -239,6 +434,15 @@
           captionsCovered: this.state.captionsCovered,
           onionSkin: this.state.onionSkin
         });
+        if (isStatic) c._hasRenderedStatic = true;
+      }
+    }
+
+    hideVocabPopover() {
+      if (!this.root) return;
+      const pops = this.root.querySelectorAll('.vocab-popover');
+      for (let i = 0; i < pops.length; i++) {
+        pops[i].remove();
       }
     }
 
@@ -272,7 +476,7 @@
         }
       } catch (_e) { /* ignore */ }
 
-      // Global Keyboard Shortcuts (Gate G16): Escape=Close Modal, Space=Play/Pause, [/]=Scrub, C=Captions-Covered, O=Onion-Skin, F=Fork, K=#Vocab
+      // Global Keyboard Shortcuts: Escape, Ctrl/Cmd+Z Undo, Ctrl+Y/Cmd+Shift+Z Redo, Space, [/], 1-7 Surfaces, Delete/Backspace, D, C, O, F, K/#/?
       window.addEventListener('keydown', function (e) {
         if (e.key === 'Escape') {
           self.hideVocabPopover();
@@ -283,31 +487,89 @@
         }
         const tag = (e.target && e.target.tagName) ? e.target.tagName.toLowerCase() : '';
         if (tag === 'input' || tag === 'textarea' || tag === 'select') return;
+
+        // Undo / Redo shortcuts (USE-03 · ARCH-07)
+        if ((e.metaKey || e.ctrlKey) && (e.key === 'z' || e.key === 'Z')) {
+          e.preventDefault();
+          if (e.shiftKey) self.redo();
+          else self.undo();
+          return;
+        }
+        if ((e.metaKey || e.ctrlKey) && (e.key === 'y' || e.key === 'Y')) {
+          e.preventDefault();
+          self.redo();
+          return;
+        }
+
+        const surfaceMap = {
+          '1': 'infinite-canvas',
+          '2': 'fork-explorer',
+          '3': 'character-foundry',
+          '4': 'storyboard-sheet',
+          '5': 'wada-chord-matrix',
+          '6': 'contact-sheet',
+          '7': 'compile-export'
+        };
+        if (!e.metaKey && !e.ctrlKey && !e.altKey && surfaceMap[e.key]) {
+          e.preventDefault();
+          self.setState({ surface: surfaceMap[e.key] });
+          return;
+        }
+
         if (e.code === 'Space') {
           e.preventDefault();
           self.setState({ playing: !self.state.playing });
         } else if (e.key === '[') {
           self._T = Math.max(0, self._T - 0.5);
           self.setState({ playing: false }, true);
-          self.drawAllCanvases();
+          self.drawAllCanvases(false);
         } else if (e.key === ']') {
           self._T = self._T + 0.5;
           self.setState({ playing: false }, true);
-          self.drawAllCanvases();
+          self.drawAllCanvases(false);
         } else if (e.key === 'c' || e.key === 'C') {
           self.setState({ captionsCovered: !self.state.captionsCovered });
         } else if (e.key === 'o' || e.key === 'O') {
           self.setState({ onionSkin: !self.state.onionSkin });
-        } else if (e.key === 'k' || e.key === 'K' || e.key === '#') {
+        } else if (e.key === 'k' || e.key === 'K' || e.key === '#' || e.key === '?') {
           e.preventDefault();
           self.setState({ vocabModalOpen: !self.state.vocabModalOpen });
         } else if (e.key === 'f' || e.key === 'F') {
           const res = CO.forkCanvasNode(self.state.dag, self.state.selectedNodeId);
           self.setState({ dag: { nodes: res.nodes, edges: res.edges }, selectedNodeId: res.createdNodeId });
+        } else if ((e.key === 'd' || e.key === 'D') && self.state.surface === 'infinite-canvas') {
+          const res = CO.duplicateCanvasCard(self.state.dag, self.state.selectedNodeId);
+          self.setState({ dag: { nodes: res.nodes, edges: res.edges }, selectedNodeId: res.createdNodeId });
+        } else if ((e.key === 'Delete' || e.key === 'Backspace') && self.state.surface === 'infinite-canvas') {
+          const nid = self.state.selectedNodeId;
+          if (nid && nid !== 'node-seed' && nid !== 'node-seed-root') {
+            const res = CO.deleteCanvasCard(self.state.dag, nid);
+            const nextSel = (res.nodes[0] && res.nodes[0].id) || 'node-seed';
+            self.setState({ dag: { nodes: res.nodes, edges: res.edges }, selectedNodeId: nextSel });
+          }
         }
       });
 
-      window.addEventListener('mousemove', function (e) {
+      // Unified Pointer & Mouse Move Handler (+ 2-Pointer Touch Pinch-to-Zoom — MOB-02 · MOB-04)
+      const handleMove = function (e) {
+        if (e.pointerId != null && self._activePointers.has(e.pointerId)) {
+          self._activePointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+          if (self._activePointers.size === 2) {
+            const pts = Array.from(self._activePointers.values());
+            const dist = Math.hypot(pts[1].x - pts[0].x, pts[1].y - pts[0].y);
+            if (self._pinchStartDist > 12) {
+              const ratio = dist / self._pinchStartDist;
+              const nextZoom = Math.max(0.2, Math.min(3.5, Number((self._pinchStartZoom * ratio).toFixed(2))));
+              self.state.zoom = nextZoom;
+              const stage = self.root && self.root.querySelector('#dag-transform-stage');
+              if (stage) {
+                stage.style.transform = 'translate(' + self.state.panX + 'px,' + self.state.panY + 'px) scale(' + self.state.zoom + ')';
+              }
+            }
+            return;
+          }
+        }
+
         if (self._draggingCanvas) {
           const dx = e.clientX - self._dragStart[0];
           const dy = e.clientY - self._dragStart[1];
@@ -341,9 +603,13 @@
             self.updateDagEdgesSVG();
           }
         }
-      });
+      };
 
-      window.addEventListener('mouseup', function (e) {
+      const handleUp = function (e) {
+        if (e && e.pointerId != null) {
+          self._activePointers.delete(e.pointerId);
+          if (self._activePointers.size < 2) self._pinchStartDist = 0;
+        }
         if (self._draggingNodeId) {
           const draggedId = self._draggingNodeId;
           const movedPx = self._dragMovedPx || 0;
@@ -353,26 +619,31 @@
           self._dragMovedPx = 0;
 
           if (movedPx < 5) {
-            // Simple click on card: set as Source A (or Shift+Click for Source B!)
             if (e && e.shiftKey) {
               self.setState({ compareNodeId: draggedId, showABCompare: true });
             } else if (self.state.selectedNodeId !== draggedId) {
               self.setState({ selectedNodeId: draggedId });
             }
           } else {
-            // Completed a freeform drag: persist exact (x, y) without re-rendering DOM!
+            self.pushHistory('Move Card ' + draggedId);
             const node = self.state.dag.nodes.find(function (n) { return n.id === draggedId; });
             if (node && CO.moveCanvasNode) {
               CO.moveCanvasNode(self.state.dag, draggedId, node.x, node.y);
             }
-            CO.saveSessionState(self.state);
+            CO.saveSessionState(self.getSerializableSessionState());
           }
         }
         if (self._draggingCanvas) {
           self._draggingCanvas = false;
-          CO.saveSessionState(self.state);
+          CO.saveSessionState(self.getSerializableSessionState());
         }
-      });
+      };
+
+      window.addEventListener('pointermove', handleMove);
+      window.addEventListener('pointerup', handleUp);
+      window.addEventListener('pointercancel', handleUp);
+      window.addEventListener('mousemove', handleMove);
+      window.addEventListener('mouseup', handleUp);
     }
 
     updateDagEdgesSVG() {
@@ -429,6 +700,7 @@
 
   proto.renderHeaderBar = function (pal, charSpec, audit) {
     const st = this.state;
+    const loopSec = this.getActiveLoopDuration ? this.getActiveLoopDuration() : 12.0;
     const tabs = [
       ['infinite-canvas',   'I · Living Canvas (DAG)'],
       ['fork-explorer',     'II · 5-Lens Forks'],
@@ -446,6 +718,11 @@
 
     const ixOpts = FOUNDRY.INTERACTION_MODES.map(function (m) {
       return '<option value="' + esc(m.id) + '"' + (st.interaction === m.id ? ' selected' : '') + '>' + esc(m.label) + '</option>';
+    }).join('');
+
+    const spineArcOpts = (CO.SPINE_ARC_ORDER || ['count-scale-compare-rest', 'follow-a-process', 'understand-one-idea', 'saul-seven-beat', 'rem-five-move', 'hero-inner-change']).map(function (arcId) {
+      const arc = (CO.SPINE_ARCS && CO.SPINE_ARCS[arcId]) || { id: arcId, label: arcId };
+      return '<option value="' + esc(arcId) + '"' + (st.spineArc === arcId ? ' selected' : '') + '>' + esc(arc.label) + '</option>';
     }).join('');
 
     const palPills = WADA.PALS.slice(0, 7).map(function (p) {
@@ -475,13 +752,16 @@
           '</div>' +
         '</div>' +
         '<div class="st-top-actions">' +
+          '<button data-action="undo-history" class="st-mini-btn" ' + (!this.canUndo() ? 'disabled style="opacity:.45"' : '') + ' title="Undo last studio state change [Ctrl/Cmd+Z]">↶ Undo</button>' +
+          '<button data-action="redo-history" class="st-mini-btn" ' + (!this.canRedo() ? 'disabled style="opacity:.45"' : '') + ' title="Redo studio state change [Ctrl+Y / Cmd+Shift+Z]">↷ Redo</button>' +
+          '<button data-action="toggle-tweaks-bar" class="st-mini-btn ' + (st.tweaksOpen ? 'on' : '') + '" title="Toggle Finish &amp; Motion Tweaks Strip (Speed, Grain, Wobble, Streaks, Guides, Hydro Ghosts)">⚙ Tweaks</button>' +
           '<button data-action="toggle-vocab-modal" class="st-btn" title="Browse &amp; Insert Plain-English Design Vocabulary, Themes, Elements &amp; #color Tags [K]"># / Vocabulary &amp; Themes [K]</button>' +
           '<button data-action="toggle-oauth-modal" class="st-btn st-btn-rust">OAuth 2.0 PKCE Live Enhancer</button>' +
           '<button data-action="toggle-gate-modal" class="st-btn st-btn-ink">Audit ' + audit.passedCount + '/' + audit.totalCount + ' PASS</button>' +
         '</div>' +
       '</div>' +
 
-      '<!-- Global Studio Pinning Bar: Character, Interaction, Rung, Feel, Ground, Transport -->' +
+      '<!-- Global Studio Pinning Bar: Character, Interaction, Rung, Spine Arc, Feel, Ground, Transport -->' +
       '<div class="st-control-strip">' +
         '<div class="st-ctrl-group">' +
           '<label class="st-label">ACTIVE CHARACTER RIG</label>' +
@@ -498,6 +778,11 @@
         '<div class="st-ctrl-group">' +
           '<label class="st-label">INTERACTION MODE</label>' +
           '<select id="sel-interaction" class="st-select">' + ixOpts + '</select>' +
+        '</div>' +
+
+        '<div class="st-ctrl-group">' +
+          '<label class="st-label">SPINE ARC (6 CANONICAL)</label>' +
+          '<select id="sel-spine-arc" class="st-select">' + spineArcOpts + '</select>' +
         '</div>' +
 
         '<div class="st-ctrl-group">' +
@@ -519,16 +804,33 @@
         '</div>' +
 
         '<div class="st-ctrl-group st-transport">' +
-          '<label class="st-label">SINGLE CLOCK TRANSPORT · <span id="global-t-readout">t = ' + (this._T % 12).toFixed(2) + 's</span></label>' +
+          '<label class="st-label">SINGLE CLOCK TRANSPORT · <span id="global-t-readout">t = ' + (this._T % loopSec).toFixed(2) + 's</span></label>' +
           '<div style="display:flex;gap:5px;align-items:center">' +
             '<button data-action="toggle-play" class="st-mini-btn on">' + (st.playing ? 'PAUSE' : 'PLAY') + '</button>' +
-            '<input id="global-scrub" type="range" min="0" max="12" step="0.02" value="' + (this._T % 12).toFixed(2) + '" style="width:82px;accent-color:#8C4A2E"/>' +
+            '<input id="global-scrub" type="range" min="0" max="' + loopSec + '" step="0.02" value="' + (this._T % loopSec).toFixed(2) + '" style="width:82px;accent-color:#8C4A2E"/>' +
             '<button data-action="toggle-onion-skin" class="st-mini-btn ' + (st.onionSkin ? 'on' : '') + '" title="Gate G23 Multi-Frame Onion Skinning (-2Δt / -1Δt / +1Δt) [O]">ONION</button>' +
             '<button data-action="sonify-wada-chord" class="st-mini-btn" title="Gate G24 Orpheum 4-Voice Harmonic Chord Sonification">♪ SONIFY</button>' +
             '<button data-action="toggle-captions-covered" class="st-mini-btn ' + (st.captionsCovered ? 'on' : '') + '" title="Gate G08 Captions-Covered Test [C]">NO-TEXT</button>' +
           '</div>' +
         '</div>' +
       '</div>' +
+
+      (st.tweaksOpen ? (
+        '<div class="st-tweaks-strip">' +
+          '<span class="st-label" style="margin:0;color:#8C4A2E">FINISH &amp; MOTION TWEAKS:</span>' +
+          '<label class="st-mono-xs" style="display:inline-flex;align-items:center;gap:4px">SPEED (' + st.speed.toFixed(2) + '×) <input type="range" data-tweak-param="speed" min="0.25" max="2.5" step="0.05" value="' + st.speed + '" style="width:70px"/></label>' +
+          '<label class="st-mono-xs" style="display:inline-flex;align-items:center;gap:4px">GRAIN (' + st.grain.toFixed(2) + ') <input type="range" data-tweak-param="grain" min="0" max="0.65" step="0.02" value="' + st.grain + '" style="width:70px"/></label>' +
+          '<label class="st-mono-xs" style="display:inline-flex;align-items:center;gap:4px">WOBBLE (' + st.wob.toFixed(1) + ') <input type="range" data-tweak-param="wob" min="0" max="2.4" step="0.1" value="' + st.wob + '" style="width:70px"/></label>' +
+          '<button data-action="toggle-tweak-bool" data-tweak="streaks" class="st-mini-btn ' + (st.streaks ? 'on' : '') + '">STREAKS: ' + (st.streaks ? 'ON' : 'OFF') + '</button>' +
+          '<button data-action="toggle-tweak-bool" data-tweak="guide" class="st-mini-btn ' + (st.guide ? 'on' : '') + '">RULE-OF-THIRDS GUIDE: ' + (st.guide ? 'ON' : 'OFF') + '</button>' +
+          '<div style="display:inline-flex;align-items:center;gap:3px">' +
+            '<span class="st-mono-xs">HYDRO GHOSTS:</span>' +
+            [12, 24, 48].map(function (gc) {
+              return '<button data-action="set-hydro-ghosts" data-ghosts="' + gc + '" class="st-mini-btn ' + ((st.hydroGhostCount || 24) === gc ? 'on' : '') + '">' + gc + '</button>';
+            }).join('') +
+          '</div>' +
+        '</div>'
+      ) : '') +
 
       '<!-- Curated Sanzo Wada Quick-Pin Strip + Saved & Tagged #color/<tag> Schemes -->' +
       '<div class="st-wada-strip">' +
@@ -568,7 +870,7 @@
       const nCharId = p.charId || st.charId;
       const nChar = FOUNDRY.CHARACTERS[nCharId] || charSpec;
       const nPalId = p.palId || pal.id;
-      const sheafBadge = '<span class="st-mono-xs" title="Sheaf Restriction Hash ρ(child)=parent" style="color:rgba(26,31,46,.55)">' + esc(n.packetHash || 'ρ-root') + (n.upstreamHash ? ' ← ' + esc(n.upstreamHash) : '') + '</span>';
+      const sheafBadge = '<span class="st-mono-xs" title="Sheaf Restriction Hash ρ(child)=parent" style="color:var(--ink-soft)">' + esc(n.packetHash || 'ρ-root') + (n.upstreamHash ? ' ← ' + esc(n.upstreamHash) : '') + '</span>';
 
       return '<div data-dag-node="' + esc(n.id) + '" class="dag-node ' + (isSelA ? 'dag-node-selected' : (isSelB ? 'dag-node-source-b' : '')) + ' lod-' + lod + '" style="left:' + n.x + 'px;top:' + n.y + 'px;width:' + (n.width || 315) + 'px" title="Grab anywhere on this card to drag &amp; move freely (Shift+Click sets Source B)">' +
         '<div class="dag-node-header" data-drag-handle="' + esc(n.id) + '">' +
@@ -584,7 +886,7 @@
         '<div class="dag-node-body">' +
           '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:2px">' +
             sheafBadge +
-            '<span class="st-mono-xs" style="color:#A8241C">Wada No. ' + nPalId + '</span>' +
+            '<span class="st-mono-xs" style="color:var(--rust)">Wada No. ' + nPalId + '</span>' +
           '</div>' +
           '<div class="dag-node-title">' + esc(n.title) + '</div>' +
           '<div class="dag-node-sub">' + esc(n.subtitle) + ' · Actor: <strong>' + esc(nChar.name) + '</strong></div>' +
@@ -598,7 +900,7 @@
               '<canvas width="320" height="200" data-proof="' + esc(proofKey) + '" data-char="' + esc(nCharId) + '" data-pal-id="' + nPalId + '" style="width:100%;height:auto;display:block;border-radius:6px"></canvas>' +
             '</div>' +
             '<p class="dag-node-notes">' + esc(p.notes || n.forkReason || '') + '</p>' +
-            (n.conjectureNote ? '<div class="st-mono-xs" style="margin-top:4px;padding:4px 6px;background:rgba(168,36,28,.08);border-left:2px solid #A8241C;color:#1A1F2E">' + esc(n.conjectureNote) + '</div>' : '')
+            (n.conjectureNote ? '<div class="st-mono-xs" style="margin-top:4px;padding:4px 6px;background:rgba(168,36,28,.08);border-left:2px solid var(--rust);color:var(--ink)">' + esc(n.conjectureNote) + '</div>' : '')
           )) +
           (lod === 'micro-inspection' ? (
             '<div style="margin-top:8px;padding-top:6px;border-top:1px dashed rgba(26,31,46,.18)">' +
@@ -613,10 +915,10 @@
         '</div>' +
         '<div class="dag-node-footer">' +
           '<button data-action="fork-dag-node" data-node-id="' + esc(n.id) + '" class="st-mini-btn" title="Non-destructively fork this branch">⑂ Fork</button>' +
-          '<button data-action="duplicate-dag-node" data-node-id="' + esc(n.id) + '" class="st-mini-btn" title="Duplicate this card on the canvas">⧉ Copy</button>' +
+          '<button data-action="duplicate-dag-node" data-node-id="' + esc(n.id) + '" class="st-mini-btn" title="Duplicate this card on the canvas [D]">⧉ Copy</button>' +
           '<button data-action="apply-dag-node" data-node-id="' + esc(n.id) + '" class="st-mini-btn" title="Pin this node’s character, Wada palette, and style globally">Pin Global</button>' +
           '<button data-action="oauth-enhance-node" data-node-id="' + esc(n.id) + '" class="st-mini-btn st-btn-rust" title="Enhance via OAuth 2.0 PKCE / Synthesizer">✦ Enhance</button>' +
-          (n.id !== 'node-seed' ? '<button data-action="delete-dag-node" data-node-id="' + esc(n.id) + '" class="st-mini-btn" title="Remove card from canvas">✕</button>' : '') +
+          (n.id !== 'node-seed' && n.id !== 'node-seed-root' ? '<button data-action="delete-dag-node" data-node-id="' + esc(n.id) + '" class="st-mini-btn" title="Remove card from canvas [Delete]">✕</button>' : '') +
         '</div>' +
       '</div>';
     }).join('');
@@ -628,26 +930,31 @@
       return '<option value="' + esc(n.id) + '"' + (n.id === (compareNode && compareNode.id) ? ' selected' : '') + '>◐ Src B: ' + esc(n.title) + '</option>';
     }).join('');
 
+    const isInspectorOpen = st.inspectorOpen !== false && !st.inspectorCollapsed;
+
     return '<section class="st-surface">' +
       '<div class="canvas-toolbar">' +
         '<div style="display:flex;gap:5px;align-items:center;flex-wrap:wrap">' +
           '<span class="st-mono-xs">DRAG ANY CARD FREELY · ZOOM ' + st.zoom.toFixed(2) + '× · ' + st.dag.nodes.length + ' CARDS</span>' +
           '<span class="st-badge ' + (sheafAudit.valid ? 'badge-pass' : 'badge-warn') + '" title="Alexandrov Sheaf Restriction Cohomology across DAG edges">SHEAF ρ: ' + (sheafAudit.valid ? 'δ⁰=0 PASS' : 'MISMATCH') + '</span>' +
+          '<button data-action="zoom-canvas" data-delta="-0.15" class="st-mini-btn" title="Zoom Out">−</button>' +
+          '<button data-action="zoom-canvas" data-delta="0.15" class="st-mini-btn" title="Zoom In">+</button>' +
           '<button data-action="zoom-set" data-zoom="0.3" class="st-mini-btn">0.3× Macro</button>' +
           '<button data-action="zoom-set" data-zoom="0.78" class="st-mini-btn">0.8× Studio</button>' +
           '<button data-action="zoom-set" data-zoom="1.65" class="st-mini-btn">1.6× Micro</button>' +
-          '<button data-action="reset-pan" class="st-mini-btn">Center</button>' +
+          '<button data-action="zoom-fit-all" class="st-mini-btn" title="Fit all cards into viewport">⊡ Fit All</button>' +
           '<button data-action="dag-auto-layout" class="st-mini-btn" title="Snap cards into aligned columns">⊞ Auto-Grid</button>' +
         '</div>' +
         '<div style="display:flex;gap:5px;align-items:center;flex-wrap:wrap">' +
           '<select id="sel-source-a-node" class="st-select" style="max-width:185px;border-color:#8C4A2E;font-weight:700" title="Direct Source A (Primary Branch)">' + sourceAOpts + '</select>' +
           '<button data-action="swap-source-ab" class="st-mini-btn" title="Swap Source A and Source B">⇄</button>' +
           '<select id="sel-source-b-node" class="st-select" style="max-width:185px;border-color:#1E3F66;font-weight:700" title="Direct Source B (Comparison / Pushout Merge Partner)">' + sourceBOpts + '</select>' +
-          '<button data-action="duplicate-dag-node" data-node-id="' + esc(st.selectedNodeId) + '" class="st-btn" title="Duplicate Source A Card">+ Duplicate Card</button>' +
+          '<button data-action="duplicate-dag-node" data-node-id="' + esc(st.selectedNodeId) + '" class="st-btn" title="Duplicate Source A Card [D]">+ Duplicate Card</button>' +
           '<button data-action="fork-three-directions" data-node-id="' + esc(st.selectedNodeId) + '" class="st-btn st-btn-ink">⑂ Fork 3× (α/β/γ)</button>' +
           '<button data-action="dag-synthesize-ab" class="st-btn" title="Gate G22 Pushout Gluing of Source A ⊕ Source B">⊕ Glue A ⊕ B</button>' +
           '<button data-action="toggle-vocab-modal" class="st-btn st-btn-rust" title="Open Plain-English # Vocabulary, Themes &amp; Elements"># Themes &amp; Elements</button>' +
           '<button data-action="toggle-ab-compare" class="st-btn ' + (st.showABCompare ? 'st-btn-rust' : '') + '">⚖ A/B Drawer</button>' +
+          '<button data-action="toggle-inspector" class="st-mini-btn ' + (isInspectorOpen ? 'on' : '') + '" title="Toggle Card Inspector Drawer">◧ Inspector</button>' +
         '</div>' +
       '</div>' +
 
@@ -677,7 +984,7 @@
         '</div>'
       ) : '') +
 
-      '<div class="living-canvas-layout">' +
+      '<div class="living-canvas-layout ' + (!isInspectorOpen ? 'inspector-collapsed' : '') + '">' +
         '<div id="living-canvas-viewport" class="living-canvas-viewport">' +
           '<div id="dag-transform-stage" class="dag-transform-stage" style="transform:translate(' + st.panX + 'px,' + st.panY + 'px) scale(' + st.zoom + ')">' +
             '<svg id="dag-edges-svg" class="dag-edges-svg" width="3600" height="2400">' +
@@ -686,14 +993,17 @@
             nodesHtml +
           '</div>' +
           '<div class="canvas-minimap">' +
-            '<div class="st-mono-xs" style="margin-bottom:2px">DRAG ANY CARD TO MOVE · DRAG BACKGROUND TO PAN · [K] #VOCAB · [O] ONION</div>' +
-            '<div style="font-size:11px;color:rgba(26,31,46,.78)">● Src A: <strong>' + esc(selectedNode ? selectedNode.title : '') + '</strong> · ◐ Src B: <strong>' + esc(compareNode ? compareNode.title : '') + '</strong></div>' +
+            '<div class="st-mono-xs" style="margin-bottom:2px">DRAG ANY CARD TO MOVE · PINCH OR WHEEL TO ZOOM · [K] #VOCAB · [CTRL+Z] UNDO</div>' +
+            '<div style="font-size:11px;color:var(--ink-soft)">● Src A: <strong>' + esc(selectedNode ? selectedNode.title : '') + '</strong> · ◐ Src B: <strong>' + esc(compareNode ? compareNode.title : '') + '</strong></div>' +
           '</div>' +
         '</div>' +
 
         '<!-- Right Inspector Panel for Selected DAG Node -->' +
         '<aside class="dag-inspector">' +
-          '<div class="st-eyebrow">SOURCE A CARD INSPECTOR · SHEAF PACKET</div>' +
+          '<div style="display:flex;justify-content:space-between;align-items:center">' +
+            '<div class="st-eyebrow">SOURCE A CARD INSPECTOR · SHEAF PACKET</div>' +
+            '<button data-action="toggle-inspector" class="st-mini-btn" style="padding:1px 5px" title="Collapse Inspector">✕</button>' +
+          '</div>' +
           '<h3 style="margin:4px 0 6px;font-family:Fraunces,serif;font-weight:400;font-size:19px">' + esc(selectedNode ? selectedNode.title : '') + '</h3>' +
           '<p style="font-size:11.5px;color:rgba(26,31,46,.75);margin:0 0 10px">' + esc(selectedNode ? selectedNode.subtitle : '') + '</p>' +
           (selectedNode ? (
@@ -718,6 +1028,13 @@
                 '<select id="ins-node-story" class="st-select" style="width:100%">' +
                   TAX.STORIES.map(function (s) {
                     return '<option value="' + esc(s.key) + '"' + ((selectedNode.payload.storyKey || 's_voice') === s.key ? ' selected' : '') + '>' + esc(s.title) + '</option>';
+                  }).join('') +
+                '</select></div>' +
+              '<div><label class="st-label">CARD SPINE ARC</label>' +
+                '<select id="ins-node-spine-arc" class="st-select" style="width:100%">' +
+                  (CO.SPINE_ARC_ORDER || []).map(function (arcId) {
+                    const arc = (CO.SPINE_ARCS && CO.SPINE_ARCS[arcId]) || { id: arcId, label: arcId };
+                    return '<option value="' + esc(arcId) + '"' + ((selectedNode.payload.spineArc || st.spineArc) === arcId ? ' selected' : '') + '>' + esc(arc.label) + '</option>';
                   }).join('') +
                 '</select></div>' +
               '<div><label class="st-label">CARD WADA PALETTE OR SAVED #COLOR SCHEME</label>' +
@@ -843,7 +1160,7 @@
   };
 
   // ─────────────────────────────────────────────────────────────────────────
-  // SURFACE 3 · CHARACTER & EMBLEM FOUNDRY (G03 · G04 · G05)
+  // SURFACE 3 · CHARACTER & EMBLEM FOUNDRY (G03 · G04 · G05 · G32)
   // ─────────────────────────────────────────────────────────────────────────
   proto.renderSurfaceCharacterFoundry = function (pal, charSpec) {
     const st = this.state;
@@ -886,29 +1203,59 @@
       '</div>';
     }).join('');
 
+    const locoModes = FOUNDRY.LOCOMOTION_MODES || ['undulate-swim', 'flap-glide', 'radial-pulse', ' articulated-stride', 'shear-drift', 'orbital-harmonic'];
+    const sevOps = FOUNDRY.SEVERANCE_OPS || ['none', 'split-horizontal', 'split-vertical', 'shatter-plates', 'hinge-break', 'negative-space-bite', 'spiral-uncoil', 'interlock-hook', 'radial-burst', 'compression-vice', 'stencil-cut', 'glyph-collapse'];
+    const streakKinds = ['hydro-wake', 'thermal-draft', 'vortex-ring', 'dust-arc', 'shear-grid', 'harmonic-wave'];
+
     return '<section class="st-surface">' +
       '<div class="st-panel">' +
         '<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">' +
           '<div>' +
-            '<span class="st-eyebrow">UNIVERSAL PARAMETRIC ACTOR SOCKET · ZERO HARDCODED MASCOTS (GATE G03 · G04 · G05)</span>' +
+            '<span class="st-eyebrow">UNIVERSAL PARAMETRIC ACTOR SOCKET · ZERO HARDCODED MASCOTS (GATE G03 · G04 · G05 · G32)</span>' +
             '<h2 class="st-section-h2" style="margin:4px 0">Character &amp; Emblem Foundry — ' + esc(charSpec.name) + '</h2>' +
           '</div>' +
-          '<button data-action="synthesize-new-character" class="st-btn st-btn-rust">+ Synthesize New Parametric Rig</button>' +
+          '<div style="display:flex;gap:8px;flex-wrap:wrap">' +
+            '<button data-action="clone-custom-rig" class="st-btn st-btn-ink" title="Clone active character rig into a new immutable custom CharacterSpec">+ ⧉ Clone &amp; Save Custom Rig</button>' +
+            '<button data-action="synthesize-new-character" class="st-btn st-btn-rust">+ Synthesize New Parametric Rig</button>' +
+          '</div>' +
         '</div>' +
         '<div class="char-grid-4" style="margin-top:12px">' + archetypeCards + '</div>' +
       '</div>' +
 
-      '<!-- Live Parametric Anatomy Sliders & 4-Test Emblem Gauntlet -->' +
+      '<!-- Live Parametric Anatomy Sliders, Locomotion/Severance Selectors & 4-Test Emblem Gauntlet -->' +
       '<div class="fork-grid-2" style="margin-top:16px">' +
         '<div class="st-panel">' +
-          '<div class="st-eyebrow">LIVE PARAMETRIC ANATOMY &amp; KINEMATIC RIG CONTROLS</div>' +
-          '<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px">' +
+          '<div class="st-eyebrow">LIVE PARAMETRIC ANATOMY, LOCOMOTION &amp; SAUL BASS SEVERANCE CONTROLS</div>' +
+          '<div class="st-grid-2" style="margin-top:10px">' +
             '<div><label class="st-label">ASPECT RATIO (' + charSpec.aspectRatio + ')</label><input type="range" data-rig-param="aspectRatio" min="0.24" max="0.54" step="0.02" value="' + charSpec.aspectRatio + '" style="width:100%"/></div>' +
             '<div><label class="st-label">DORSAL ARCH (' + bp.dorsalArch + ')</label><input type="range" data-rig-param="dorsalArch" min="0.20" max="0.55" step="0.02" value="' + bp.dorsalArch + '" style="width:100%"/></div>' +
             '<div><label class="st-label">VENTRAL BELLY (' + bp.ventralBelly + ')</label><input type="range" data-rig-param="ventralBelly" min="0.20" max="0.55" step="0.02" value="' + bp.ventralBelly + '" style="width:100%"/></div>' +
             '<div><label class="st-label">SPINE WAVE AMP (' + sw.ampDefault + ')</label><input type="range" data-rig-param="ampDefault" min="0.04" max="0.34" step="0.02" value="' + sw.ampDefault + '" style="width:100%"/></div>' +
             '<div><label class="st-label">FIN SPAN (' + ap.primaryFinSpan + ')</label><input type="range" data-rig-param="primaryFinSpan" min="0.16" max="0.46" step="0.02" value="' + ap.primaryFinSpan + '" style="width:100%"/></div>' +
             '<div><label class="st-label">VENTRAL GROOVES (' + ap.ventralGrooves + ')</label><input type="range" data-rig-param="ventralGrooves" min="1" max="6" step="1" value="' + ap.ventralGrooves + '" style="width:100%"/></div>' +
+          '</div>' +
+          '<div class="st-grid-2" style="margin-top:10px">' +
+            '<div><label class="st-label">LOCOMOTION MODE (6 CANONICAL)</label>' +
+              '<select id="rig-locomotion-select" class="st-select" style="width:100%">' +
+                locoModes.map(function (lm) {
+                  return '<option value="' + esc(lm) + '"' + (charSpec.locomotion === lm ? ' selected' : '') + '>' + esc(lm) + '</option>';
+                }).join('') +
+              '</select></div>' +
+            '<div><label class="st-label">SAUL BASS SEVERANCE OP (12 OPS)</label>' +
+              '<select id="rig-severance-select" class="st-select" style="width:100%">' +
+                sevOps.map(function (op) {
+                  return '<option value="' + esc(op) + '"' + ((charSpec.severanceOp || 'none') === op ? ' selected' : '') + '>' + esc(op) + '</option>';
+                }).join('') +
+              '</select></div>' +
+            '<div><label class="st-label">WAKE / STREAK KIND</label>' +
+              '<select id="rig-streak-kind-select" class="st-select" style="width:100%">' +
+                streakKinds.map(function (sk) {
+                  return '<option value="' + esc(sk) + '"' + ((ap.streakKind || 'hydro-wake') === sk ? ' selected' : '') + '>' + esc(sk) + '</option>';
+                }).join('') +
+              '</select></div>' +
+            '<div style="display:flex;align-items:flex-end">' +
+              '<button data-action="clone-custom-rig" class="st-btn st-btn-rust" style="width:100%">⧉ Save Current Sliders as Custom Rig</button>' +
+            '</div>' +
           '</div>' +
           '<div style="margin-top:12px">' +
             '<span class="st-label">4-TEST SAUL BASS EMBLEM GAUNTLET:</span>' +
@@ -921,7 +1268,7 @@
           '</div>' +
         '</div>' +
         '<div class="st-panel">' +
-          '<div class="st-eyebrow">PART-BASED RIG SOCKET INSPECTOR (`e_rig`)</div>' +
+          '<div class="st-eyebrow">PART-BASED RIG SOCKET INSPECTOR (`e_rig`) · SEVERANCE: ' + esc((charSpec.severanceOp || 'none').toUpperCase()) + '</div>' +
           '<canvas width="480" height="300" data-proof="e_rig" data-char="' + esc(charSpec.id) + '" style="width:100%;height:auto;border-radius:8px;border:1px solid rgba(26,31,46,.18);margin-top:8px"></canvas>' +
         '</div>' +
       '</div>' +
@@ -941,7 +1288,7 @@
   };
 
   // ─────────────────────────────────────────────────────────────────────────
-  // SURFACE 4 · 8-BEAT STORYBOARD SHEET & TIMELINE (G08 · G26 · G29)
+  // SURFACE 4 · 8-BEAT STORYBOARD SHEET & TIMELINE (G08 · G26 · G29 · G31)
   // ─────────────────────────────────────────────────────────────────────────
   proto.renderSurfaceStoryboard = function (pal, charSpec) {
     const st = this.state;
@@ -990,13 +1337,19 @@
       '<div class="st-panel">' +
         '<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">' +
           '<div>' +
-            '<span class="st-eyebrow">STAGE-4 / STAGE-5 STORYBOARD BEAT SHEET · DRAG CARDS OR CLICK ◀ ▶ TO REORDER BEATS (GATE G08 · G26)</span>' +
+            '<span class="st-eyebrow">STAGE-4 / STAGE-5 STORYBOARD BEAT SHEET · SPINE ARC: ' + esc((sheet.spineArcLabel || sheet.spineArc || 'saul-seven-beat').toUpperCase()) + ' (GATE G08 · G26 · G31)</span>' +
             '<h2 class="st-section-h2" style="margin:4px 0">' + esc(sheet.title) + ' · ' + esc(pal.no) + ' ' + esc(pal.name) + '</h2>' +
           '</div>' +
           '<div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">' +
-            '<select id="sb-story-select" class="st-select">' +
+            '<select id="sb-story-select" class="st-select" title="Select Storyline Proof">' +
               TAX.STORIES.map(function (s) {
                 return '<option value="' + esc(s.key) + '"' + (st.storyKey === s.key ? ' selected' : '') + '>' + esc(s.title) + '</option>';
+              }).join('') +
+            '</select>' +
+            '<select id="sb-spine-arc-select" class="st-select" title="Select Canonical Narrative Spine Arc">' +
+              (CO.SPINE_ARC_ORDER || []).map(function (arcId) {
+                const arc = (CO.SPINE_ARCS && CO.SPINE_ARCS[arcId]) || { id: arcId, label: arcId };
+                return '<option value="' + esc(arcId) + '"' + ((st.spineArc || sheet.spineArc) === arcId ? ' selected' : '') + '>Arc: ' + esc(arc.label) + '</option>';
               }).join('') +
             '</select>' +
             '<button data-action="toggle-vocab-modal" class="st-btn" title="Browse &amp; Insert Plain-English Elements"># Insert Elements / Themes</button>' +
@@ -1324,7 +1677,7 @@
 
       html += '<div class="st-modal-backdrop">' +
         '<div class="st-modal">' +
-          '<div style="display:flex;justify-content:space-between;align-items:center">' +
+          '<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">' +
             '<div>' +
               '<span class="st-eyebrow">RFC 7636 OAUTH 2.0 PKCE (S256) + LOCAL AGENT BRIDGE + # / SKILL VOCABULARY SYNTHESIZER (G10 · G11 · G27 · G28)</span>' +
               '<h3 style="margin:4px 0;font-family:Fraunces,serif;font-size:22px">Live Storyboard, Source Branch &amp; Character Enhancer</h3>' +
@@ -1336,7 +1689,7 @@
           '</div>' +
 
           // DIRECT SOURCE A & SOURCE B PICKERS (GATE G27)
-          '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0;padding:8px 10px;background:rgba(140,74,46,.06);border:1px solid rgba(140,74,46,.22);border-radius:6px">' +
+          '<div class="st-grid-2" style="margin:10px 0;padding:8px 10px;background:rgba(140,74,46,.06);border:1px solid rgba(140,74,46,.22);border-radius:6px">' +
             '<div>' +
               '<label class="st-label" style="color:#8C4A2E">PRIMARY SOURCE CARD TO ENHANCE / FORK FROM (● SOURCE A)</label>' +
               '<select id="oauth-source-a-select" class="st-select" style="width:100%">' + srcAOpts + '</select>' +
@@ -1347,10 +1700,10 @@
             '</div>' +
           '</div>' +
 
-          '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0">' +
+          '<div class="st-grid-2" style="margin:10px 0">' +
             '<div><label class="st-label">AUTH PROVIDER MODE</label>' +
               '<select id="oauth-provider-select" class="st-select" style="width:100%">' +
-                '<option value="local-bridge"' + (st.oauthProvider === 'local-bridge' ? ' selected' : '') + '>Local Loopback Bridge (127.0.0.1:43110) + PKCE</option>' +
+                '<option value="local-bridge"' + (st.oauthProvider === 'local-bridge' ? ' selected' : '') + '>Local Loopback Bridge (127.0.0.1:43110 / :8787) + PKCE</option>' +
                 '<option value="openrouter-pkce"' + (st.oauthProvider === 'openrouter-pkce' ? ' selected' : '') + '>OpenRouter OAuth 2.0 PKCE (S256)</option>' +
                 '<option value="google-oauth-pkce"' + (st.oauthProvider === 'google-oauth-pkce' ? ' selected' : '') + '>Google OAuth 2.0 PKCE (GIS)</option>' +
                 '<option value="algebraic-synthesizer"' + (st.oauthProvider === 'algebraic-synthesizer' ? ' selected' : '') + '>Offline Deterministic Algebraic Synthesizer</option>' +
@@ -1366,7 +1719,7 @@
           '</div>' +
 
           '<div style="position:relative">' +
-            '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">' +
+            '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;flex-wrap:wrap;gap:4px">' +
               '<label class="st-label" style="margin-bottom:0">ENHANCEMENT DIRECTIVE (TYPE <code>#</code> OR <code>/</code> FOR LIVE VOCABULARY, THEME &amp; #COLOR AUTOCOMPLETE)</label>' +
               '<span class="st-mono-xs" style="color:#8C4A2E">Supports #theme/... · #element/... · #camera/... · #color/...</span>' +
             '</div>' +
@@ -1455,7 +1808,7 @@
           '</div>' +
           '<p style="font-size:12px;color:rgba(26,31,46,.78);margin:4px 0 10px">Don\'t know the technical motion-graphics term? Search in plain English below (e.g. <em>"paper cutout"</em>, <em>"watercolor"</em>, <em>"grain"</em>, <em>"slow camera"</em>, <em>"stop motion"</em>, or <em>"#color"</em>) and click <strong>● Apply Now</strong> or <strong>+ Spawn Card</strong>. You can also type <code>#</code> or <code>/</code> inside any studio prompt or card note for instant autocomplete.</p>' +
           '<div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:10px">' +
-            '<input id="vocab-modal-search" type="text" value="' + esc(st.vocabSearch || '') + '" placeholder="Search plain English or #token (e.g. paper cutout, grain, match cut, #color/pelagic-dawn)..." class="st-input" style="flex:1;min-width:260px"/>' +
+            '<input id="vocab-modal-search" type="text" value="' + esc(st.vocabSearch || '') + '" placeholder="Search plain English or #token (e.g. paper cutout, grain, match cut, #color/pelagic-dawn)..." class="st-input" style="flex:1;min-width:220px"/>' +
             '<div style="display:flex;gap:4px;flex-wrap:wrap">' + catPills + '</div>' +
           '</div>' +
           (st.copiedNotice ? '<div style="margin-bottom:8px;padding:6px 10px;background:#2E5A44;color:#FBF3E6;border-radius:6px;font-size:11.5px">' + esc(st.copiedNotice) + '</div>' : '') +
@@ -1464,15 +1817,15 @@
       '</div>';
     }
 
-    // 3. 29-GATE MECHANICAL CONTRACT AUDIT MODAL
+    // 3. 32-GATE MECHANICAL CONTRACT AUDIT MODAL
     if (st.gateModalOpen) {
       const tellApart = MA.auditArchetypeDiscriminability ? MA.auditArchetypeDiscriminability() : { pass: true, minDistance: 0.42, pairCount: 28 };
       const sheafCheck = CO.verifyDAGSheafCohomology ? CO.verifyDAGSheafCohomology(st.dag) : { valid: true, edgeCount: (st.dag.edges || []).length };
       html += '<div class="st-modal-backdrop">' +
         '<div class="st-modal">' +
-          '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">' +
+          '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;flex-wrap:wrap;gap:8px">' +
             '<div>' +
-              '<span class="st-eyebrow">29 BINARY CONSERVATION GATES + TELL-APART + SHEAF + FREEFORM STUDIO ERGONOMICS (G01–G29)</span>' +
+              '<span class="st-eyebrow">32 BINARY CONSERVATION GATES + TELL-APART + SHEAF + MOBILE + 10X ARCHITECTURE (G01–G32)</span>' +
               '<h3 style="margin:4px 0;font-family:Fraunces,serif;font-size:22px">Mechanical Contract Audit — ' + audit.passedCount + '/' + audit.totalCount + ' PASS</h3>' +
             '</div>' +
             '<button data-action="toggle-gate-modal" class="st-mini-btn">✕ Close</button>' +
@@ -1503,6 +1856,7 @@
   proto.renderDOM = function () {
     if (!this.root) return;
     let activeId = null, selStart = null, selEnd = null;
+    let prevWadaScroll = 0, prevTabsScroll = 0;
     try {
       const ae = document.activeElement;
       if (ae && ae.id && this.root.contains(ae)) {
@@ -1512,11 +1866,17 @@
           selEnd = ae.selectionEnd;
         }
       }
+      const ws = this.root.querySelector('.st-wada-strip');
+      const ts = this.root.querySelector('.st-tabs');
+      if (ws) prevWadaScroll = ws.scrollLeft;
+      if (ts) prevTabsScroll = ts.scrollLeft;
     } catch (_e) { /* ignore */ }
 
     const pal = this.getActivePalette();
     const charSpec = this.getActiveChar();
-    const audit = CO.run16GateAudit(this.state);
+    const audit = this.getAuditResult ? this.getAuditResult() : CO.run16GateAudit(this.state);
+    const gKey = WADA.normalizeGroundKey ? WADA.normalizeGroundKey(this.state.ground) : this.state.ground;
+    const isDarkGround = Boolean(WADA.GROUNDS[gKey] && WADA.GROUNDS[gKey].dark);
 
     let bodyHtml = '';
     if (this.state.surface === 'infinite-canvas') bodyHtml = this.renderSurfaceInfiniteCanvas(pal, charSpec);
@@ -1528,14 +1888,21 @@
     else if (this.state.surface === 'compile-export') bodyHtml = this.renderSurfaceCompile(pal, charSpec);
 
     this.root.innerHTML =
-      '<div class="st-shell" style="background:' + pal.paper + ';color:' + pal.ink + '">' +
+      '<div class="st-shell' + (isDarkGround ? ' ground-dark' : '') + '" style="background:' + pal.paper + ';color:' + pal.ink + '">' +
         this.renderHeaderBar(pal, charSpec, audit) +
         '<main class="st-main">' + bodyHtml + '</main>' +
         this.renderModals(pal, charSpec, audit) +
       '</div>';
 
+    try {
+      const wsNext = this.root.querySelector('.st-wada-strip');
+      const tsNext = this.root.querySelector('.st-tabs');
+      if (wsNext && prevWadaScroll) wsNext.scrollLeft = prevWadaScroll;
+      if (tsNext && prevTabsScroll) tsNext.scrollLeft = prevTabsScroll;
+    } catch (_e) { /* ignore */ }
+
     this.attachDOMListeners();
-    this.drawAllCanvases();
+    this.drawAllCanvases(false);
 
     if (activeId) {
       try {
@@ -1557,24 +1924,25 @@
     const patch = item.patch || {};
     const nextState = {};
 
+    const pStyle = patch.styleKey || patch.mStyle;
     if (patch.charId) nextState.charId = patch.charId;
-    if (patch.styleKey) nextState.mStyle = patch.styleKey;
+    if (pStyle) nextState.mStyle = pStyle;
     if (patch.storyKey) nextState.storyKey = patch.storyKey;
     if (patch.feel) nextState.feel = patch.feel;
     if (patch.rung) nextState.rung = patch.rung;
+    if (patch.ground) nextState.ground = patch.ground;
     if (patch.palId) {
       const idx = st.activeWadaCombos.findIndex(function (p) { return p.id === Number(patch.palId); });
       if (idx >= 0) nextState.palIdx = idx;
     }
 
-    // Update active Source A node or spawn a new card
     if (spawnNewCard) {
       const res = CO.forkCanvasNode(st.dag, st.selectedNodeId, {
         title: item.plainName + ' (' + item.token + ')',
-        subtitle: (patch.palId ? 'Wada No. ' + patch.palId : 'Wada No. ' + this.getActivePalette().id) + ' · ' + (patch.styleKey || st.mStyle),
+        subtitle: (patch.palId ? 'Wada No. ' + patch.palId : 'Wada No. ' + this.getActivePalette().id) + ' · ' + (pStyle || st.mStyle),
         charId: patch.charId || st.charId,
         palId: patch.palId || this.getActivePalette().id,
-        styleKey: patch.styleKey || st.mStyle,
+        styleKey: pStyle || st.mStyle,
         storyKey: patch.storyKey || st.storyKey,
         edgeLabel: item.token,
         payload: {
@@ -1589,7 +1957,7 @@
       const nodeA = (st.dag.nodes || []).find(function (n) { return n.id === st.selectedNodeId; });
       if (nodeA && nodeA.payload) {
         if (patch.charId) nodeA.payload.charId = patch.charId;
-        if (patch.styleKey) nodeA.payload.styleKey = patch.styleKey;
+        if (pStyle) nodeA.payload.styleKey = pStyle;
         if (patch.storyKey) nodeA.payload.storyKey = patch.storyKey;
         if (patch.palId) nodeA.payload.palId = Number(patch.palId);
         const tagNote = '[' + item.token + ']';
@@ -1614,6 +1982,7 @@
   proto.attachDOMListeners = function () {
     const self = this;
     const root = this.root;
+    const loopSec = this.getActiveLoopDuration ? this.getActiveLoopDuration() : 12.0;
 
     // Select inputs
     const bindSel = function (id, fn) {
@@ -1622,6 +1991,8 @@
     };
     bindSel('#sel-char', function (v) { self.setState({ charId: v }); });
     bindSel('#sel-interaction', function (v) { self.setState({ interaction: v }); });
+    bindSel('#sel-spine-arc', function (v) { self.setState({ spineArc: v }); });
+    bindSel('#sb-spine-arc-select', function (v) { self.setState({ spineArc: v }); });
     bindSel('#sel-feel', function (v) { self.setState({ feel: v }); });
     bindSel('#sel-ground', function (v) { self.setState({ ground: v }); });
     bindSel('#sel-source-a-node', function (v) {
@@ -1635,17 +2006,43 @@
         palIdx: pIdx >= 0 ? pIdx : self.state.palIdx
       });
     });
+    bindSel('#sel-source-b-node', function (v) {
+      self.setState({ compareNodeId: v, showABCompare: true });
+    });
     bindSel('#sel-compare-node', function (v) { self.setState({ compareNodeId: v }); });
     bindSel('#oauth-source-a-select', function (v) { self.setState({ selectedNodeId: v }); });
     bindSel('#oauth-source-b-select', function (v) { self.setState({ compareNodeId: v }); });
     bindSel('#sb-story-select', function (v) { self.setState({ storyKey: v }); });
     bindSel('#oauth-provider-select', function (v) { self.setState({ oauthProvider: v }); });
-    bindSel('#header-saved-scheme-select', function (v) {
-      if (!v) return;
-      const sc = CO.resolveColorSchemeByTag(self.state.savedColorSchemes, v);
-      if (sc) {
-        const idx = self.state.activeWadaCombos.findIndex(function (p) { return p.id === sc.palId; });
-        if (idx >= 0) self.setState({ palIdx: idx, copiedNotice: 'Invoked saved scheme ' + sc.token + ' (Wada No. ' + sc.palId + ')' });
+
+    // Character Rig Locomotion, Severance Op, and Streak Kind selectors
+    bindSel('#rig-locomotion-select', function (v) {
+      const charSpec = self.getActiveChar();
+      if (charSpec) {
+        charSpec.locomotion = v;
+        self.invalidateStaticCanvases();
+        self.renderDOM();
+      }
+    });
+    bindSel('#rig-severance-select', function (v) {
+      const charSpec = self.getActiveChar();
+      if (charSpec) {
+        charSpec.severanceOp = v;
+        if (Array.isArray(charSpec.reductionLadder)) {
+          charSpec.reductionLadder.forEach(function (r) {
+            if (r.rung >= 3) r.severanceOp = v;
+          });
+        }
+        self.invalidateStaticCanvases();
+        self.renderDOM();
+      }
+    });
+    bindSel('#rig-streak-kind-select', function (v) {
+      const charSpec = self.getActiveChar();
+      if (charSpec && charSpec.appendages) {
+        charSpec.appendages.streakKind = v;
+        self.invalidateStaticCanvases();
+        self.renderDOM();
       }
     });
 
@@ -1654,9 +2051,26 @@
       scrub.addEventListener('input', function (e) {
         self._T = Number(e.target.value);
         const tReadout = root.querySelector('#global-t-readout');
-        if (tReadout) tReadout.textContent = 't = ' + (self._T % 12).toFixed(2) + 's';
+        if (tReadout) tReadout.textContent = 't = ' + (self._T % loopSec).toFixed(2) + 's';
         self.setState({ playing: false }, true);
-        self.drawAllCanvases();
+        self.drawAllCanvases(false);
+      });
+    }
+
+    // Live Finish & Motion Tweak Sliders (speed, grain, wob)
+    const tweakSliders = root.querySelectorAll('[data-tweak-param]');
+    for (let i = 0; i < tweakSliders.length; i++) {
+      tweakSliders[i].addEventListener('input', function (e) {
+        const param = e.target.getAttribute('data-tweak-param');
+        const val = Number(e.target.value);
+        if (param === 'speed' || param === 'grain' || param === 'wob') {
+          self.state[param] = val;
+          self.invalidateStaticCanvases();
+          self.drawAllCanvases(false);
+        }
+      });
+      tweakSliders[i].addEventListener('change', function () {
+        self.renderDOM();
       });
     }
 
@@ -1689,7 +2103,7 @@
           if (pop) pop.remove();
           return;
         }
-        const tokenQuery = match[1].slice(1); // strip leading # or /
+        const tokenQuery = match[1].slice(1);
         const results = CO.searchVocabLibrary ? CO.searchVocabLibrary(tokenQuery, 'all', self.state.savedColorSchemes).slice(0, 8) : [];
         if (!results.length) {
           if (pop) pop.remove();
@@ -1714,7 +2128,7 @@
 
         const items = pop.querySelectorAll('[data-ac-token]');
         for (let j = 0; j < items.length; j++) {
-          items[j].addEventListener('mousedown', function (ev) {
+          items[j].addEventListener('pointerdown', function (ev) {
             ev.preventDefault();
             ev.stopPropagation();
             const chosenToken = ev.currentTarget.getAttribute('data-ac-token');
@@ -1734,7 +2148,7 @@
       });
     }
 
-    // Inline Storyboard Beat Editing (Hinge, Camera, VisualAction, #color/<tag>)
+    // Inline Storyboard Beat Editing (Hinge, Camera, VisualAction, Per-Beat Palette [data-beat-pal])
     const reauditStoryboard = function () {
       if (CO.auditStoryboardSheet) {
         CO.auditStoryboardSheet(self.state.storyboard);
@@ -1746,8 +2160,10 @@
       hingeSels[i].addEventListener('change', function (e) {
         const idx = Number(e.target.getAttribute('data-beat-hinge'));
         if (self.state.storyboard.beats[idx]) {
+          self.pushHistory();
           self.state.storyboard.beats[idx].hinge = e.target.value;
           reauditStoryboard();
+          self.invalidateStaticCanvases();
           self.renderDOM();
         }
       });
@@ -1758,26 +2174,24 @@
       camSels[i].addEventListener('change', function (e) {
         const idx = Number(e.target.getAttribute('data-beat-cam'));
         if (self.state.storyboard.beats[idx]) {
+          self.pushHistory();
           self.state.storyboard.beats[idx].cameraMove = e.target.value;
           reauditStoryboard();
+          self.invalidateStaticCanvases();
           self.renderDOM();
         }
       });
     }
 
-    const schemeSels = root.querySelectorAll('[data-beat-scheme]');
-    for (let i = 0; i < schemeSels.length; i++) {
-      schemeSels[i].addEventListener('change', function (e) {
-        const idx = Number(e.target.getAttribute('data-beat-scheme'));
-        const tag = e.target.value;
-        if (self.state.storyboard.beats[idx]) {
-          self.state.storyboard.beats[idx].colorSchemeTag = tag;
-          const sc = CO.resolveColorSchemeByTag(self.state.savedColorSchemes, tag);
-          if (sc) {
-            self.state.storyboard.beats[idx].wadaPalId = sc.palId;
-            const pIdx = self.state.activeWadaCombos.findIndex(function (p) { return p.id === sc.palId; });
-            if (pIdx >= 0) self.state.palIdx = pIdx;
-          }
+    const beatPalSels = root.querySelectorAll('[data-beat-pal]');
+    for (let i = 0; i < beatPalSels.length; i++) {
+      beatPalSels[i].addEventListener('change', function (e) {
+        const idx = Number(e.target.getAttribute('data-beat-pal'));
+        const chosenPalId = Number(e.target.value);
+        if (self.state.storyboard.beats[idx] && chosenPalId) {
+          self.pushHistory();
+          self.state.storyboard.beats[idx].palId = chosenPalId;
+          self.invalidateStaticCanvases();
           self.renderDOM();
         }
       });
@@ -1785,13 +2199,18 @@
 
     const actInputs = root.querySelectorAll('[data-beat-action]');
     for (let i = 0; i < actInputs.length; i++) {
-      actInputs[i].addEventListener('change', function (e) {
+      actInputs[i].addEventListener('input', function (e) {
         const idx = Number(e.target.getAttribute('data-beat-action'));
         if (self.state.storyboard.beats[idx]) {
           self.state.storyboard.beats[idx].visualAction = e.target.value;
+          self.state.storyboard.beats[idx].actionLine = e.target.value;
+          self.state.storyboard.beats[idx].coveredSentence = e.target.value;
           reauditStoryboard();
-          self.renderDOM();
         }
+      });
+      actInputs[i].addEventListener('change', function () {
+        self.invalidateStaticCanvases();
+        self.renderDOM();
       });
     }
 
@@ -1821,6 +2240,7 @@
         const fromIdx = self._draggingBeatIdx != null ? self._draggingBeatIdx : Number(e.dataTransfer && e.dataTransfer.getData('text/plain'));
         self._draggingBeatIdx = null;
         if (!Number.isNaN(fromIdx) && !Number.isNaN(toIdx) && fromIdx !== toIdx) {
+          self.pushHistory();
           CO.moveStoryboardBeat(self.state.storyboard, fromIdx, toIdx);
           self.setState({ storyboard: self.state.storyboard });
         }
@@ -1831,7 +2251,7 @@
       });
     }
 
-    // JSON Session Import
+    // JSON Session Import with Strict Boundary Schema Validator (Gate G31)
     const importInput = root.querySelector('#import-session-file');
     if (importInput) {
       importInput.addEventListener('change', function (e) {
@@ -1840,24 +2260,34 @@
         const reader = new FileReader();
         reader.onload = function (ev) {
           try {
-            const data = JSON.parse(String(ev.target.result));
+            const rawData = JSON.parse(String(ev.target.result));
+            const check = CO.validateAndSanitizeSessionState
+              ? CO.validateAndSanitizeSessionState(rawData)
+              : { valid: true, state: rawData };
+            if (!check.valid || !check.state) {
+              self.setState({ copiedNotice: 'Rejected invalid .motion.studio.json: ' + (check.reason || 'schema mismatch') });
+              return;
+            }
+            const data = check.state;
             if (Array.isArray(data.customCharacters)) {
               data.customCharacters.forEach(function (c) { MA.registerCustomCharacter(c); });
             }
             const pIdx = self.state.activeWadaCombos.findIndex(function (p) { return p.id === data.activeWadaId; });
             self.setState({
-              charId: data.activeCharacterId || self.state.charId,
+              charId: data.charId || self.state.charId,
               palIdx: pIdx >= 0 ? pIdx : self.state.palIdx,
-              mStyle: data.activeStyleKey || self.state.mStyle,
-              storyKey: data.activeStoryKey || self.state.storyKey,
-              feel: data.activeFeelKey || self.state.feel,
-              rung: data.activeRung || self.state.rung,
+              mStyle: data.mStyle || self.state.mStyle,
+              storyKey: data.storyKey || self.state.storyKey,
+              spineArc: data.spineArc || self.state.spineArc,
+              feel: data.feel || self.state.feel,
+              rung: data.rung || self.state.rung,
+              ground: data.ground || self.state.ground,
               dag: data.dag || self.state.dag,
               storyboard: data.storyboard || self.state.storyboard,
               savedColorSchemes: Array.isArray(data.savedColorSchemes) ? data.savedColorSchemes : self.state.savedColorSchemes,
-              copiedNotice: 'Imported .motion.studio.json archive successfully.'
+              copiedNotice: 'Imported & validated .motion.studio.json archive successfully.'
             });
-          } catch (err) {
+          } catch (_err) {
             self.setState({ copiedNotice: 'Failed to parse .motion.studio.json file.' });
           }
         };
@@ -1880,7 +2310,8 @@
         if (lbl) {
           lbl.textContent = lbl.textContent.replace(/\([0-9.]+\)/, '(' + val + ')');
         }
-        self.drawAllCanvases();
+        self.invalidateStaticCanvases();
+        self.drawAllCanvases(false);
       });
     }
 
@@ -1894,14 +2325,25 @@
       });
     }
 
-    // EFFORTLESS WHOLE-CARD FREEFORM DRAG & BACKGROUND PAN ON LIVING CANVAS (GATE G26)
+    // UNIFIED POINTEREVENTS + 2-POINTER TOUCH PINCH-ZOOM + MOUSE DRAG ON LIVING CANVAS (G26 · G30)
     const vp = root.querySelector('#living-canvas-viewport');
     if (vp) {
-      vp.addEventListener('mousedown', function (e) {
-        // Ignore clicks directly on interactive form controls or buttons
+      const startCanvasOrCardDrag = function (e) {
         if (e.target.closest('button, select, input, textarea, a, label')) return;
 
-        // Grab anywhere on a card (.dag-node) to drag it or click-select it!
+        // Track multi-touch pointers for 2-finger pinch-to-zoom on mobile/tablet
+        if (e.pointerId != null && self._activePointers) {
+          self._activePointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+          if (self._activePointers.size === 2) {
+            const pts = Array.from(self._activePointers.values());
+            self._pinchInitialDist = Math.hypot(pts[1].x - pts[0].x, pts[1].y - pts[0].y);
+            self._pinchInitialZoom = self.state.zoom;
+            self._draggingNodeId = null;
+            self._draggingCanvas = false;
+            return;
+          }
+        }
+
         const cardEl = e.target.closest('[data-dag-node]');
         if (cardEl) {
           const nid = cardEl.getAttribute('data-dag-node');
@@ -1912,17 +2354,28 @@
             self._dragStart = [e.clientX, e.clientY];
             self._panStart = [node.x, node.y];
             cardEl.classList.add('dag-node-dragging');
+            if (e.pointerId != null && cardEl.setPointerCapture) {
+              try { cardEl.setPointerCapture(e.pointerId); } catch (_err) { /* ignore */ }
+            }
             e.preventDefault();
             e.stopPropagation();
             return;
           }
         }
 
-        // Otherwise, dragging empty canvas space pans the viewport
         self._draggingCanvas = true;
         self._dragMovedPx = 0;
         self._dragStart = [e.clientX, e.clientY];
         self._panStart = [self.state.panX, self.state.panY];
+        if (e.pointerId != null && vp.setPointerCapture) {
+          try { vp.setPointerCapture(e.pointerId); } catch (_err) { /* ignore */ }
+        }
+      };
+
+      vp.addEventListener('pointerdown', startCanvasOrCardDrag);
+      vp.addEventListener('mousedown', function (e) {
+        if (typeof window.PointerEvent !== 'undefined') return; // handled by pointerdown
+        startCanvasOrCardDrag(e);
       });
       vp.addEventListener('wheel', function (e) {
         e.preventDefault();
@@ -1945,12 +2398,72 @@
 
   proto.handleAction = async function (act, el) {
     const st = this.state;
+    const loopSec = this.getActiveLoopDuration ? this.getActiveLoopDuration() : 12.0;
+
+    if (act === 'undo-history') return this.undo();
+    if (act === 'redo-history') return this.redo();
+    if (act === 'toggle-tweaks-bar') return this.setState({ tweaksOpen: !st.tweaksOpen }, true);
+    if (act === 'toggle-inspector') return this.setState({ inspectorOpen: st.inspectorOpen === false }, true);
+    if (act === 'toggle-tweak-bool') {
+      const k = el.getAttribute('data-tweak');
+      if (k === 'streaks' || k === 'guide') {
+        const patch = {};
+        patch[k] = !st[k];
+        return this.setState(patch);
+      }
+      return;
+    }
+    if (act === 'set-hydro-ghosts') {
+      const gc = Number(el.getAttribute('data-ghosts')) || 24;
+      return this.setState({ hydroGhostCount: gc });
+    }
+    if (act === 'open-vocab-for-field') {
+      return this.setState({ vocabModalOpen: true });
+    }
+    if (act === 'clone-custom-rig') {
+      const baseSpec = this.getActiveChar();
+      const cloned = FOUNDRY.cloneCharacterRig
+        ? FOUNDRY.cloneCharacterRig(baseSpec, {
+            name: baseSpec.name + ' (Custom Clone)',
+            locomotion: baseSpec.locomotion,
+            severanceOp: baseSpec.severanceOp
+          })
+        : baseSpec;
+      if (MA.registerCustomCharacter) MA.registerCustomCharacter(cloned);
+      return this.setState({
+        charId: cloned.id,
+        copiedNotice: 'Cloned & registered custom CharacterSpec rig: ' + cloned.name + ' (' + cloned.id + ')'
+      });
+    }
+    if (act === 'zoom-fit-all') {
+      const nodes = st.dag.nodes || [];
+      if (!nodes.length) return this.setState({ panX: 18, panY: 16, zoom: 0.78 });
+      let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+      nodes.forEach(function (n) {
+        minX = Math.min(minX, n.x);
+        minY = Math.min(minY, n.y);
+        maxX = Math.max(maxX, n.x + (n.width || 315));
+        maxY = Math.max(maxY, n.y + 320);
+      });
+      const vp = this.root && this.root.querySelector('#living-canvas-viewport');
+      const vw = (vp && vp.clientWidth) || 920;
+      const vh = (vp && vp.clientHeight) || 560;
+      const contentW = Math.max(360, maxX - minX + 80);
+      const contentH = Math.max(280, maxY - minY + 80);
+      const fitZoom = Math.max(0.28, Math.min(1.15, Number(Math.min(vw / contentW, vh / contentH).toFixed(2))));
+      return this.setState({
+        zoom: fitZoom,
+        panX: Math.round(24 - minX * fitZoom),
+        panY: Math.round(20 - minY * fitZoom)
+      });
+    }
+
     if (act === 'switch-surface') return this.setState({ surface: el.getAttribute('data-surface') });
-    if (act === 'toggle-play') return this.setState({ playing: !st.playing });
+    if (act === 'toggle-play') return this.setState({ playing: !st.playing }, true);
     if (act === 'toggle-captions-covered') return this.setState({ captionsCovered: !st.captionsCovered });
     if (act === 'toggle-onion-skin') return this.setState({ onionSkin: !st.onionSkin });
-    if (act === 'toggle-vocab-modal') return this.setState({ vocabModalOpen: !st.vocabModalOpen });
-    if (act === 'set-vocab-cat') return this.setState({ vocabCategory: el.getAttribute('data-cat') || 'all' });
+    if (act === 'toggle-vocab-modal') return this.setState({ vocabModalOpen: !st.vocabModalOpen }, true);
+    if (act === 'set-vocab-cat') return this.setState({ vocabCategory: el.getAttribute('data-cat') || 'all' }, true);
     if (act === 'apply-vocab-token') {
       const tok = el.getAttribute('data-vocab-token');
       const lib = CO.getFullVocabLibrary ? CO.getFullVocabLibrary(st.savedColorSchemes) : [];
@@ -1983,9 +2496,10 @@
       const sc = CO.resolveColorSchemeByTag(st.savedColorSchemes, tag);
       if (sc) {
         const idx = st.activeWadaCombos.findIndex(function (p) { return p.id === sc.palId; });
-        if (idx >= 0) {
-          this.setState({ palIdx: idx, copiedNotice: 'Applied saved color scheme ' + sc.token + ' (Wada No. ' + sc.palId + ')' });
-        }
+        const patch = { copiedNotice: 'Applied saved color scheme ' + sc.token + ' (Wada No. ' + sc.palId + ')' };
+        if (idx >= 0) patch.palIdx = idx;
+        if (sc.ground && WADA.GROUNDS[sc.ground]) patch.ground = sc.ground;
+        this.setState(patch);
       }
       return;
     }
@@ -2014,6 +2528,7 @@
         tag: slug,
         title: pal.name + ' (' + pal.no + ')',
         palId: pal.id,
+        ground: st.ground,
         notes: pal.mood || 'Saved from Studio header bar'
       });
       return this.setState({
@@ -2033,6 +2548,7 @@
         tag: tagVal,
         title: titleVal,
         palId: pal.id,
+        ground: st.ground,
         notes: notesVal
       });
       return this.setState({
@@ -2052,6 +2568,7 @@
         tag: slug,
         title: combo.name + ' (No. ' + combo.id + ')',
         palId: combo.id,
+        ground: st.ground,
         notes: combo.mood || 'Saved from 348 Wada Dictionary'
       });
       return this.setState({
@@ -2100,11 +2617,15 @@
       });
     }
     if (act === 'move-beat-card') {
-      const fromIdx = Number(el.getAttribute('data-beat-idx'));
-      const delta = Number(el.getAttribute('data-delta')) || 0;
-      const toIdx = fromIdx + delta;
-      CO.moveStoryboardBeat(st.storyboard, fromIdx, toIdx);
-      return this.setState({ storyboard: st.storyboard });
+      const fromAttr = el.getAttribute('data-from');
+      const toAttr = el.getAttribute('data-to');
+      const fromIdx = fromAttr != null ? Number(fromAttr) : Number(el.getAttribute('data-beat-idx'));
+      const toIdx = toAttr != null ? Number(toAttr) : (fromIdx + (Number(el.getAttribute('data-delta')) || 0));
+      if (!Number.isNaN(fromIdx) && !Number.isNaN(toIdx)) {
+        CO.moveStoryboardBeat(st.storyboard, fromIdx, toIdx);
+        return this.setState({ storyboard: st.storyboard });
+      }
+      return;
     }
     if (act === 'apply-style-to-src-a') {
       const sk = el.getAttribute('data-style-key') || 'watercolor';
@@ -2143,9 +2664,9 @@
       this.setState({ playing: false }, true);
       const scrub = this.root.querySelector('#global-scrub');
       const tReadout = this.root.querySelector('#global-t-readout');
-      if (scrub) scrub.value = String((targetT % 12).toFixed(2));
-      if (tReadout) tReadout.textContent = 't = ' + (targetT % 12).toFixed(2) + 's';
-      this.drawAllCanvases();
+      if (scrub) scrub.value = String((targetT % loopSec).toFixed(2));
+      if (tReadout) tReadout.textContent = 't = ' + (targetT % loopSec).toFixed(2) + 's';
+      this.drawAllCanvases(false);
       return;
     }
     if (act === 'pick-curated-pal') {
@@ -2239,6 +2760,7 @@
         const cEl = this.root.querySelector('#ins-node-char');
         const sEl = this.root.querySelector('#ins-node-style');
         const stEl = this.root.querySelector('#ins-node-story');
+        const arcEl = this.root.querySelector('#ins-node-spine-arc');
         const pEl = this.root.querySelector('#ins-node-pal');
         const scEl = this.root.querySelector('#ins-node-scheme-tag');
         const nEl = this.root.querySelector('#ins-node-notes');
@@ -2246,6 +2768,7 @@
         if (cEl) node.payload.charId = cEl.value;
         if (sEl) node.payload.styleKey = sEl.value;
         if (stEl) node.payload.storyKey = stEl.value;
+        if (arcEl) node.payload.spineArc = arcEl.value;
         if (pEl) node.payload.palId = Number(pEl.value);
         if (scEl && scEl.value) {
           node.payload.colorSchemeTag = scEl.value;
@@ -2265,7 +2788,7 @@
         if (cjEl) node.conjectureNote = cjEl.value;
         node.subtitle = 'Wada No. ' + node.payload.palId + ' · ' + node.payload.styleKey;
         if (CO.stampDAGRestrictionHashes) CO.stampDAGRestrictionHashes(st.dag);
-        this.setState({ dag: st.dag });
+        this.setState({ dag: st.dag, spineArc: node.payload.spineArc || st.spineArc });
       }
       return;
     }
@@ -2290,11 +2813,11 @@
     if (act === 'open-storyboard-from-node') return this.setState({ surface: 'storyboard-sheet' });
     if (act === 'filter-wada') return this.setState({ wadaFilterRegister: el.getAttribute('data-reg') });
     if (act === 'set-compile-target') return this.setState({ compileTarget: el.getAttribute('data-target') });
-    if (act === 'toggle-oauth-modal') return this.setState({ oauthModalOpen: !st.oauthModalOpen });
-    if (act === 'toggle-gate-modal') return this.setState({ gateModalOpen: !st.gateModalOpen });
+    if (act === 'toggle-oauth-modal') return this.setState({ oauthModalOpen: !st.oauthModalOpen }, true);
+    if (act === 'toggle-gate-modal') return this.setState({ gateModalOpen: !st.gateModalOpen }, true);
     if (act === 'oauth-enhance-node') {
       const nid = el.getAttribute('data-node-id') || st.selectedNodeId;
-      return this.setState({ selectedNodeId: nid, oauthModalOpen: true });
+      return this.setState({ selectedNodeId: nid, oauthModalOpen: true }, true);
     }
     if (act === 'synthesize-new-character') {
       const res = CO.runDeterministicSynthesizer({
@@ -2313,7 +2836,7 @@
       this.setState({
         oauthStatus: 'PKCE S256 Challenge generated: ' + pkce.codeChallenge.slice(0, 18) + '... (Verifier stored)',
         oauthToken: 'pkce_' + pkce.codeChallenge.slice(0, 16)
-      });
+      }, true);
       return;
     }
     if (act === 'run-oauth-enhance') {
@@ -2321,7 +2844,7 @@
       const tInput = this.root.querySelector('#oauth-token-input');
       const promptText = pInput ? pInput.value : st.oauthPrompt;
       const tok = tInput ? tInput.value : st.oauthToken;
-      this.setState({ oauthBusy: true, oauthPrompt: promptText, oauthToken: tok });
+      this.setState({ oauthBusy: true, oauthPrompt: promptText, oauthToken: tok }, true);
 
       const out = await CO.enhanceStoryboardLive({
         charId: st.charId,
@@ -2372,22 +2895,24 @@
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(code);
       }
-      return this.setState({ copiedNotice: 'Copied ' + st.compileTarget.toUpperCase() + ' single-clock scaffold to clipboard.' });
+      return this.setState({ copiedNotice: 'Copied ' + st.compileTarget.toUpperCase() + ' single-clock scaffold to clipboard.' }, true);
     }
     if (act === 'export-playable-html5') {
       const htmlDoc = CO.compilePlayableHTML5(st);
       const blob = new Blob([htmlDoc], { type: 'text/html' });
+      const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
-      a.href = URL.createObjectURL(blob);
+      a.href = url;
       a.download = 'ceti-playable-single-clock-' + st.charId + '.html';
       a.click();
-      return this.setState({ copiedNotice: 'Downloaded Playable Single-Clock HTML5 animation bundle.' });
+      setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+      return this.setState({ copiedNotice: 'Downloaded Playable Single-Clock HTML5 animation bundle.' }, true);
     }
     if (act === 'record-webm-video') {
       if (typeof MediaRecorder === 'undefined') {
-        return this.setState({ copiedNotice: 'MediaRecorder API not available in this browser.' });
+        return this.setState({ copiedNotice: 'MediaRecorder API not available in this browser.' }, true);
       }
-      this.setState({ copiedNotice: 'Recording 6.0s deterministic WebM video at 30fps...' });
+      this.setState({ copiedNotice: 'Recording 6.0s deterministic WebM video at 30fps...' }, true);
       const recCanvas = document.createElement('canvas');
       recCanvas.width = 960; recCanvas.height = 600;
       const pal = this.getActivePalette();
@@ -2399,18 +2924,20 @@
       const self = this;
       recorder.onstop = function () {
         const blob = new Blob(chunks, { type: 'video/webm' });
+        const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
-        a.href = URL.createObjectURL(blob);
+        a.href = url;
         a.download = 'ceti-motion-' + st.charId + '-' + st.mStyle + '.webm';
         a.click();
-        self.setState({ copiedNotice: 'Exported 6.0s WebM video (' + st.charId + ' · ' + pal.no + ').' });
+        setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+        self.setState({ copiedNotice: 'Exported 6.0s WebM video (' + st.charId + ' · ' + pal.no + ').' }, true);
       };
       recorder.start();
       let frameIdx = 0;
       const totalFrames = 180;
       const iv = setInterval(function () {
         const tSec = (frameIdx / 30);
-        MA.render(recCanvas, st.mStyle, pal, feel, tSec, { charId: st.charId, ground: st.ground, wob: st.wob, grain: st.grain });
+        MA.render(recCanvas, st.mStyle, pal, feel, tSec, { charId: st.charId, ground: st.ground, wob: st.wob, grain: st.grain, hydroGhostCount: st.hydroGhostCount });
         frameIdx++;
         if (frameIdx >= totalFrames) {
           clearInterval(iv);
@@ -2420,11 +2947,14 @@
       return;
     }
     if (act === 'export-session-json') {
-      const blob = new Blob([JSON.stringify(CO.saveSessionState(st), null, 2)], { type: 'application/json' });
+      const payload = CO.saveSessionState(this.getSerializableSessionState());
+      const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
-      a.href = URL.createObjectURL(blob);
+      a.href = url;
       a.download = 'ceti-atlas-session.motion.studio.json';
       a.click();
+      setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
       return;
     }
     if (act === 'export-contact-png') {
@@ -2438,9 +2968,23 @@
       ctx.fillStyle = pal.ink; ctx.font = '700 22px "Space Mono", monospace';
       ctx.fillText('CETI MOTION ATLAS STUDIO PRO · 8-BEAT STORYBOARD SHEET · ' + pal.no + ' ' + pal.name.toUpperCase(), 48, 52);
       const sub = document.createElement('canvas'); sub.width = 480; sub.height = 300;
+      const self = this;
       (sheet.beats || []).forEach(function (b, idx) {
         const col = idx % 4, row = Math.floor(idx / 4);
-        MA.render(sub, sheet.storyKey, pal, feel, b.tMidSec, { charId: st.charId, ground: st.ground, wob: st.wob, grain: st.grain });
+        let beatPal = pal;
+        if (b.palId) {
+          const foundPal = self.state.activeWadaCombos.find(function (p) { return p.id === Number(b.palId); });
+          if (foundPal) beatPal = WADA.enrichPalette(foundPal, st.ground);
+        }
+        MA.render(sub, sheet.storyKey, beatPal, feel, b.tMidSec, {
+          charId: st.charId,
+          ground: st.ground,
+          wob: st.wob,
+          grain: st.grain,
+          cameraMove: b.cameraMove || 'static-wide',
+          beatIdx: idx,
+          hydroGhostCount: st.hydroGhostCount
+        });
         const x = 48 + col * 460, y = 90 + row * 480;
         ctx.drawImage(sub, x, y, 430, 268);
         ctx.strokeStyle = pal.ink; ctx.lineWidth = 2; ctx.strokeRect(x, y, 430, 268);
@@ -2462,22 +3006,6 @@
       const app = new global.MotionAtlasStudioApp(rootEl);
       global.__MOTION_ATLAS_STUDIO_INSTANCE = app;
       app.mount();
-
-      // Global keyboard shortcuts: K opens # / Vocabulary & Themes modal; Esc closes modals
-      window.addEventListener('keydown', function (e) {
-        const tag = (e.target && e.target.tagName) ? e.target.tagName.toLowerCase() : '';
-        if (e.key === 'Escape') {
-          if (app.state.vocabModalOpen || app.state.oauthModalOpen || app.state.gateModalOpen) {
-            app.setState({ vocabModalOpen: false, oauthModalOpen: false, gateModalOpen: false });
-          }
-          return;
-        }
-        if (tag === 'input' || tag === 'textarea' || tag === 'select') return;
-        if ((e.key === 'k' || e.key === 'K') && !e.metaKey && !e.ctrlKey) {
-          e.preventDefault();
-          app.setState({ vocabModalOpen: !app.state.vocabModalOpen });
-        }
-      });
     }
   }
 
