@@ -21,12 +21,15 @@ const DOCS = path.join(ROOT, 'docs');
 if (!fs.existsSync(DIST)) fs.mkdirSync(DIST, { recursive: true });
 if (!fs.existsSync(DOCS)) fs.mkdirSync(DOCS, { recursive: true });
 
-// 1. Compile Standalone Single-File HTML Studio
+// 1. Sync index.html from canonical Motion Atlas Studio Pro.dc.html & Compile Standalone Single-File HTML Studio
 const html = fs.readFileSync(path.join(ROOT, 'Motion Atlas Studio Pro.dc.html'), 'utf8');
-const wada = fs.readFileSync(path.join(ROOT, 'geome-wada.js'), 'utf8');
-const eng = fs.readFileSync(path.join(ROOT, 'studio-motion-engine.js'), 'utf8');
-const co = fs.readFileSync(path.join(ROOT, 'studio-canvas-oauth.js'), 'utf8');
-const ui = fs.readFileSync(path.join(ROOT, 'studio-ui.js'), 'utf8');
+fs.writeFileSync(path.join(ROOT, 'index.html'), html, 'utf8');
+
+const safeInlineJs = (src) => String(src).replace(/<\/script/gi, '<\\/script');
+const wada = safeInlineJs(fs.readFileSync(path.join(ROOT, 'geome-wada.js'), 'utf8'));
+const eng = safeInlineJs(fs.readFileSync(path.join(ROOT, 'studio-motion-engine.js'), 'utf8'));
+const co = safeInlineJs(fs.readFileSync(path.join(ROOT, 'studio-canvas-oauth.js'), 'utf8'));
+const ui = safeInlineJs(fs.readFileSync(path.join(ROOT, 'studio-ui.js'), 'utf8'));
 
 const standalone = html
   .replace('<script src="./geome-wada.js"></script>', () => '<script>\n' + wada + '\n</script>')
@@ -36,12 +39,19 @@ const standalone = html
 
 const standaloneRootPath = path.join(ROOT, 'Motion Atlas Studio Pro — Standalone.html');
 const standaloneDistPath = path.join(DIST, 'ceti-motion-atlas-studio-pro.standalone.html');
+const standaloneShortDistPath = path.join(DIST, 'standalone.html');
 fs.writeFileSync(standaloneRootPath, standalone, 'utf8');
 fs.writeFileSync(standaloneDistPath, standalone, 'utf8');
+fs.writeFileSync(standaloneShortDistPath, standalone, 'utf8');
 
-// Copy modular assets to dist/ as well for clean static deployment
-for (const file of ['index.html', 'Motion Atlas Studio Pro.dc.html', 'geome-wada.js', 'studio-motion-engine.js', 'studio-canvas-oauth.js', 'studio-ui.js']) {
-  fs.copyFileSync(path.join(ROOT, file), path.join(DIST, file));
+// Copy modular assets to dist/ as well for clean static deployment (Vercel outputDirectory: "dist")
+for (const file of ['index.html', 'Motion Atlas Studio Pro.dc.html', 'Motion Atlas Studio Pro — Standalone.html', 'whale.html', 'geome-wada.js', 'studio-motion-engine.js', 'studio-canvas-oauth.js', 'studio-ui.js']) {
+  if (fs.existsSync(path.join(ROOT, file))) {
+    fs.copyFileSync(path.join(ROOT, file), path.join(DIST, file));
+  }
+}
+if (fs.existsSync(path.join(ROOT, 'whale.html'))) {
+  fs.copyFileSync(path.join(ROOT, 'whale.html'), path.join(DIST, 'explorer.html'));
 }
 
 // 2. Compile Unified Master Specification, RSI & Handoff Dossier

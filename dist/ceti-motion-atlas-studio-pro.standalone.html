@@ -6825,9 +6825,9 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
     return [
       '<!-- HyperFrames Deterministic Single-Clock Composition (frame(t)) -->',
       '<div id="ceti-stage" data-wada="' + pal.no + '" data-actor="' + charSpec.id + '" data-duration="' + sheet.totalDurationSec + '">',
-      '  <canvas id="stage-canvas" width="960" height="600"></canvas>',
-      '</div>',
-      '<script>',
+      '  <canvas id="stage-canvas" width="960" height="600"><' + '/canvas>',
+      '<' + '/div>',
+      '<' + 'script>',
       'const WADA_PALETTE = ' + JSON.stringify({ id: pal.id, name: pal.name, paper: pal.paper, ink: pal.ink, a: pal.a, h: pal.h, b: pal.b, c: pal.c, sw: pal.sw }, null, 2) + ';',
       'const CHARACTER_SPEC = ' + JSON.stringify(charSpec, null, 2) + ';',
       'const BEATS = ' + JSON.stringify(sheet.beats, null, 2) + ';',
@@ -6842,7 +6842,7 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
       '    });',
       '  }',
       '};',
-      '</script>'
+      '<' + '/script>'
     ].join('\n');
   }
 
@@ -6853,12 +6853,12 @@ global.GEOME_WADA=BY;global.GEOME_WADA_LIST=L;
     const pal = resolveActivePal(st);
     return [
       '<!doctype html>',
-      '<html lang="en"><head><meta charset="utf-8"/><title>CETI Single-Clock Sequence — ' + charSpec.name + ' (' + pal.no + ')</title>',
-      '<style>body{margin:0;background:' + pal.paper + ';color:' + pal.ink + ';font-family:system-ui,sans-serif;display:flex;flex-direction:column;align-items:center;padding:24px}</style>',
-      '</head><body>',
-      '<h2 style="margin:0 0 8px">' + charSpec.name + ' · ' + pal.no + ' ' + pal.name + '</h2>',
+      '<html lang="en"><head><meta charset="utf-8"/><title>CETI Single-Clock Sequence — ' + charSpec.name + ' (' + pal.no + ')<' + '/title>',
+      '<style>body{margin:0;background:' + pal.paper + ';color:' + pal.ink + ';font-family:system-ui,sans-serif;display:flex;flex-direction:column;align-items:center;padding:24px}<' + '/style>',
+      '<' + '/head><body>',
+      '<h2 style="margin:0 0 8px">' + charSpec.name + ' · ' + pal.no + ' ' + pal.name + '<' + '/h2>',
       compileCodeScaffold(st, 'hyperframes'),
-      '</body></html>'
+      '<' + '/body><' + '/html>'
     ].join('\n');
   }
 

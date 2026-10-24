@@ -1,0 +1,845 @@
+{
+  "tag": "v9-vercel-live",
+  "capturedAt": "2026-10-24T03:54:14.458Z",
+  "frames": [
+    {
+      "file": "01-surface1-living-canvas-default.png",
+      "label": "Surface I · Infinite-Zoom Living Canvas (Unified PointerEvents · ↶ Undo / ↷ Redo · ● Src A / ◐ Src B · Wada No. 343)",
+      "metrics": {
+        "viewport": {
+          "vw": 1680,
+          "vh": 1040,
+          "docScrollWidth": 1680,
+          "docClientWidth": 1680,
+          "horizontalOverflowPx": 0
+        },
+        "surface": "infinite-canvas",
+        "charId": "ceti-whale",
+        "ground": "atlas",
+        "spineArc": "hero-inner-change",
+        "zoom": 0.78,
+        "tweaksOpen": false,
+        "inspectorCollapsed": false,
+        "undoDepth": 0,
+        "headerHeightPx": 151,
+        "headerViewportSharePct": 14.5,
+        "mainTopPx": 151,
+        "ctrlStripDisplay": "flex",
+        "tabBarDisplay": "flex",
+        "canvasCount": 6,
+        "nonBlankCanvases": 6,
+        "dagNodeCount": 6,
+        "dagNodeOverlaps": 0,
+        "overlappingPairs": [],
+        "dagNodes": [
+          {
+            "id": "node-seed",
+            "x": 69,
+            "y": 292,
+            "w": 242,
+            "h": 312
+          },
+          {
+            "id": "node-fork-look",
+            "x": 357,
+            "y": 292,
+            "w": 246,
+            "h": 314
+          },
+          {
+            "id": "node-char-rig",
+            "x": 357,
+            "y": 689,
+            "w": 246,
+            "h": 301
+          },
+          {
+            "id": "node-proof-a",
+            "x": 650,
+            "y": 292,
+            "w": 250,
+            "h": 304
+          },
+          {
+            "id": "node-proof-b",
+            "x": 650,
+            "y": 689,
+            "w": 250,
+            "h": 315
+          },
+          {
+            "id": "node-storyboard",
+            "x": 946,
+            "y": 292,
+            "w": 257,
+            "h": 309
+          }
+        ]
+      }
+    },
+    {
+      "file": "02-surface1-tri-fork-ab-compare.png",
+      "label": "Surface I · 3-Direction Orthogonal Fork (α/β/γ) + Pushout Gluing (A ⊕ B) + Freeform Card Move & Copy",
+      "metrics": {
+        "viewport": {
+          "vw": 1680,
+          "vh": 1040,
+          "docScrollWidth": 1680,
+          "docClientWidth": 1680,
+          "horizontalOverflowPx": 0
+        },
+        "surface": "infinite-canvas",
+        "charId": "ceti-whale",
+        "ground": "atlas",
+        "spineArc": "hero-inner-change",
+        "zoom": 0.78,
+        "tweaksOpen": false,
+        "inspectorCollapsed": false,
+        "undoDepth": 0,
+        "headerHeightPx": 151,
+        "headerViewportSharePct": 14.5,
+        "mainTopPx": 151,
+        "ctrlStripDisplay": "flex",
+        "tabBarDisplay": "flex",
+        "canvasCount": 12,
+        "nonBlankCanvases": 12,
+        "dagNodeCount": 10,
+        "dagNodeOverlaps": 0,
+        "overlappingPairs": [],
+        "dagNodes": [
+          {
+            "id": "node-seed",
+            "x": 52,
+            "y": 691,
+            "w": 242,
+            "h": 312
+          },
+          {
+            "id": "node-fork-look",
+            "x": 357,
+            "y": 575,
+            "w": 246,
+            "h": 314
+          },
+          {
+            "id": "node-char-rig",
+            "x": 357,
+            "y": 972,
+            "w": 246,
+            "h": 301
+          },
+          {
+            "id": "node-proof-a",
+            "x": 650,
+            "y": 575,
+            "w": 250,
+            "h": 304
+          },
+          {
+            "id": "node-proof-b",
+            "x": 650,
+            "y": 972,
+            "w": 250,
+            "h": 315
+          },
+          {
+            "id": "node-storyboard",
+            "x": 946,
+            "y": 575,
+            "w": 257,
+            "h": 309
+          },
+          {
+            "id": "node-tri-alpha-6",
+            "x": 1254,
+            "y": 575,
+            "w": 250,
+            "h": 315
+          },
+          {
+            "id": "node-tri-beta-8",
+            "x": 1254,
+            "y": 977,
+            "w": 250,
+            "h": 304
+          },
+          {
+            "id": "node-tri-gamma-10",
+            "x": 1254,
+            "y": 1378,
+            "w": 250,
+            "h": 315
+          },
+          {
+            "id": "node-synth-10",
+            "x": 1566,
+            "y": 776,
+            "w": 250,
+            "h": 315
+          }
+        ]
+      }
+    },
+    {
+      "file": "03-surface1-micro-lod-rungs.png",
+      "label": "Surface I · 1.65x Micro-Inspection LOD + Multi-Frame Onion Skinning (-2Δt / -1Δt / +1Δt)",
+      "metrics": {
+        "viewport": {
+          "vw": 1680,
+          "vh": 1040,
+          "docScrollWidth": 1680,
+          "docClientWidth": 1680,
+          "horizontalOverflowPx": 0
+        },
+        "surface": "infinite-canvas",
+        "charId": "ceti-whale",
+        "ground": "atlas",
+        "spineArc": "hero-inner-change",
+        "zoom": 1.65,
+        "tweaksOpen": false,
+        "inspectorCollapsed": false,
+        "undoDepth": 0,
+        "headerHeightPx": 151,
+        "headerViewportSharePct": 14.5,
+        "mainTopPx": 151,
+        "ctrlStripDisplay": "flex",
+        "tabBarDisplay": "flex",
+        "canvasCount": 40,
+        "nonBlankCanvases": 40,
+        "dagNodeCount": 10,
+        "dagNodeOverlaps": 0,
+        "overlappingPairs": [],
+        "dagNodes": [
+          {
+            "id": "node-seed",
+            "x": 67,
+            "y": 266,
+            "w": 512,
+            "h": 811
+          },
+          {
+            "id": "node-fork-look",
+            "x": 714,
+            "y": 20,
+            "w": 520,
+            "h": 818
+          },
+          {
+            "id": "node-char-rig",
+            "x": 714,
+            "y": 860,
+            "w": 520,
+            "h": 790
+          },
+          {
+            "id": "node-proof-a",
+            "x": 1333,
+            "y": 20,
+            "w": 528,
+            "h": 797
+          },
+          {
+            "id": "node-proof-b",
+            "x": 1333,
+            "y": 860,
+            "w": 528,
+            "h": 820
+          },
+          {
+            "id": "node-storyboard",
+            "x": 1960,
+            "y": 20,
+            "w": 545,
+            "h": 811
+          },
+          {
+            "id": "node-tri-alpha-6",
+            "x": 2612,
+            "y": 20,
+            "w": 528,
+            "h": 820
+          },
+          {
+            "id": "node-tri-beta-8",
+            "x": 2612,
+            "y": 870,
+            "w": 528,
+            "h": 798
+          },
+          {
+            "id": "node-tri-gamma-10",
+            "x": 2612,
+            "y": 1720,
+            "w": 528,
+            "h": 820
+          },
+          {
+            "id": "node-synth-10",
+            "x": 3272,
+            "y": 446,
+            "w": 528,
+            "h": 821
+          }
+        ]
+      }
+    },
+    {
+      "file": "04-surface2-5lens-fork-explorer.png",
+      "label": "Surface II · 5-Lens Decision Fork Explorer (Look · Use · Story · Character · Register)",
+      "metrics": {
+        "viewport": {
+          "vw": 1680,
+          "vh": 1040,
+          "docScrollWidth": 1680,
+          "docClientWidth": 1680,
+          "horizontalOverflowPx": 0
+        },
+        "surface": "fork-explorer",
+        "charId": "ceti-whale",
+        "ground": "atlas",
+        "spineArc": "hero-inner-change",
+        "zoom": 0.78,
+        "tweaksOpen": false,
+        "inspectorCollapsed": false,
+        "undoDepth": 0,
+        "headerHeightPx": 151,
+        "headerViewportSharePct": 14.5,
+        "mainTopPx": 151,
+        "ctrlStripDisplay": "flex",
+        "tabBarDisplay": "flex",
+        "canvasCount": 4,
+        "nonBlankCanvases": 4,
+        "dagNodeCount": 0,
+        "dagNodeOverlaps": 0,
+        "overlappingPairs": [],
+        "dagNodes": []
+      }
+    },
+    {
+      "file": "05-surface3-character-foundry-orpheus.png",
+      "label": "Surface III · Character & Emblem Foundry — Orpheum Lyre-Sphere (12 Severance Ops · 6 Locomotion Modes · Custom Rig Cloning)",
+      "metrics": {
+        "viewport": {
+          "vw": 1680,
+          "vh": 1040,
+          "docScrollWidth": 1680,
+          "docClientWidth": 1680,
+          "horizontalOverflowPx": 0
+        },
+        "surface": "character-foundry",
+        "charId": "geome-orpheus",
+        "ground": "atlas",
+        "spineArc": "hero-inner-change",
+        "zoom": 0.78,
+        "tweaksOpen": false,
+        "inspectorCollapsed": false,
+        "undoDepth": 0,
+        "headerHeightPx": 151,
+        "headerViewportSharePct": 14.5,
+        "mainTopPx": 151,
+        "ctrlStripDisplay": "flex",
+        "tabBarDisplay": "flex",
+        "canvasCount": 22,
+        "nonBlankCanvases": 22,
+        "dagNodeCount": 0,
+        "dagNodeOverlaps": 0,
+        "overlappingPairs": [],
+        "dagNodes": []
+      }
+    },
+    {
+      "file": "06-surface3-character-foundry-falcon.png",
+      "label": "Surface III · Character & Emblem Foundry — Peregrine Cut (Saul Bass Avian Raptor · Wada No. 126)",
+      "metrics": {
+        "viewport": {
+          "vw": 1680,
+          "vh": 1040,
+          "docScrollWidth": 1680,
+          "docClientWidth": 1680,
+          "horizontalOverflowPx": 0
+        },
+        "surface": "character-foundry",
+        "charId": "saul-falcon",
+        "ground": "atlas",
+        "spineArc": "hero-inner-change",
+        "zoom": 0.78,
+        "tweaksOpen": false,
+        "inspectorCollapsed": false,
+        "undoDepth": 0,
+        "headerHeightPx": 151,
+        "headerViewportSharePct": 14.5,
+        "mainTopPx": 151,
+        "ctrlStripDisplay": "flex",
+        "tabBarDisplay": "flex",
+        "canvasCount": 22,
+        "nonBlankCanvases": 22,
+        "dagNodeCount": 0,
+        "dagNodeOverlaps": 0,
+        "overlappingPairs": [],
+        "dagNodes": []
+      }
+    },
+    {
+      "file": "07-surface4-8beat-storyboard.png",
+      "label": "Surface IV · 8-Beat Draggable Storyboard Sheet, 6 SpineArcId Selector, Beat Reordering (◀/▶) & Per-Beat #color/<tag> Pinning",
+      "metrics": {
+        "viewport": {
+          "vw": 1680,
+          "vh": 1040,
+          "docScrollWidth": 1680,
+          "docClientWidth": 1680,
+          "horizontalOverflowPx": 0
+        },
+        "surface": "storyboard-sheet",
+        "charId": "origami-crane",
+        "ground": "atlas",
+        "spineArc": "hero-inner-change",
+        "zoom": 0.78,
+        "tweaksOpen": false,
+        "inspectorCollapsed": false,
+        "undoDepth": 0,
+        "headerHeightPx": 151,
+        "headerViewportSharePct": 14.5,
+        "mainTopPx": 151,
+        "ctrlStripDisplay": "flex",
+        "tabBarDisplay": "flex",
+        "canvasCount": 8,
+        "nonBlankCanvases": 8,
+        "dagNodeCount": 0,
+        "dagNodeOverlaps": 0,
+        "overlappingPairs": [],
+        "dagNodes": []
+      }
+    },
+    {
+      "file": "08-surface5-sanzo-wada-348-hydrography.png",
+      "label": "Surface V · Tagged & Saved #Color Scheme Vault + Sanzo Wada 348 Dictionary + Orpheum 4-Voice Sonification",
+      "metrics": {
+        "viewport": {
+          "vw": 1680,
+          "vh": 1040,
+          "docScrollWidth": 1680,
+          "docClientWidth": 1680,
+          "horizontalOverflowPx": 0
+        },
+        "surface": "wada-chord-matrix",
+        "charId": "astronav-compass",
+        "ground": "atlas",
+        "spineArc": "hero-inner-change",
+        "zoom": 0.78,
+        "tweaksOpen": false,
+        "inspectorCollapsed": false,
+        "undoDepth": 0,
+        "headerHeightPx": 151,
+        "headerViewportSharePct": 14.5,
+        "mainTopPx": 151,
+        "ctrlStripDisplay": "flex",
+        "tabBarDisplay": "flex",
+        "canvasCount": 1,
+        "nonBlankCanvases": 1,
+        "dagNodeCount": 0,
+        "dagNodeOverlaps": 0,
+        "overlappingPairs": [],
+        "dagNodes": []
+      }
+    },
+    {
+      "file": "09-surface6-15styles-24elements.png",
+      "label": "Surface VI · All 15 Motion Styles & 24 Building Blocks (1-Click + Insert on Canvas / → Apply to Src A)",
+      "metrics": {
+        "viewport": {
+          "vw": 1680,
+          "vh": 1040,
+          "docScrollWidth": 1680,
+          "docClientWidth": 1680,
+          "horizontalOverflowPx": 0
+        },
+        "surface": "contact-sheet",
+        "charId": "kelp-leviathan",
+        "ground": "atlas",
+        "spineArc": "hero-inner-change",
+        "zoom": 0.78,
+        "tweaksOpen": false,
+        "inspectorCollapsed": false,
+        "undoDepth": 0,
+        "headerHeightPx": 151,
+        "headerViewportSharePct": 14.5,
+        "mainTopPx": 151,
+        "ctrlStripDisplay": "flex",
+        "tabBarDisplay": "flex",
+        "canvasCount": 39,
+        "nonBlankCanvases": 39,
+        "dagNodeCount": 0,
+        "dagNodeOverlaps": 0,
+        "overlappingPairs": [],
+        "dagNodes": []
+      }
+    },
+    {
+      "file": "10-surface7-compile-export-room.png",
+      "label": "Surface VII · Multi-Target Production Compiler (Brief · HyperFrames · Remotion · Anime.js · SVG · Lottie JSON)",
+      "metrics": {
+        "viewport": {
+          "vw": 1680,
+          "vh": 1040,
+          "docScrollWidth": 1680,
+          "docClientWidth": 1680,
+          "horizontalOverflowPx": 0
+        },
+        "surface": "compile-export",
+        "charId": "kelp-leviathan",
+        "ground": "atlas",
+        "spineArc": "hero-inner-change",
+        "zoom": 0.78,
+        "tweaksOpen": false,
+        "inspectorCollapsed": false,
+        "undoDepth": 0,
+        "headerHeightPx": 151,
+        "headerViewportSharePct": 14.5,
+        "mainTopPx": 151,
+        "ctrlStripDisplay": "flex",
+        "tabBarDisplay": "flex",
+        "canvasCount": 0,
+        "nonBlankCanvases": 0,
+        "dagNodeCount": 0,
+        "dagNodeOverlaps": 0,
+        "overlappingPairs": [],
+        "dagNodes": []
+      }
+    },
+    {
+      "file": "11-modal-oauth-pkce-rsi-critique.png",
+      "label": "Modal · OAuth 2.0 PKCE Live Enhancer with Direct Source A/B Selectors & # / Vocabulary Chips",
+      "metrics": {
+        "viewport": {
+          "vw": 1680,
+          "vh": 1040,
+          "docScrollWidth": 1680,
+          "docClientWidth": 1680,
+          "horizontalOverflowPx": 0
+        },
+        "surface": "compile-export",
+        "charId": "kelp-leviathan",
+        "ground": "atlas",
+        "spineArc": "hero-inner-change",
+        "zoom": 0.78,
+        "tweaksOpen": false,
+        "inspectorCollapsed": false,
+        "undoDepth": 0,
+        "headerHeightPx": 151,
+        "headerViewportSharePct": 14.5,
+        "mainTopPx": 151,
+        "ctrlStripDisplay": "flex",
+        "tabBarDisplay": "flex",
+        "canvasCount": 0,
+        "nonBlankCanvases": 0,
+        "dagNodeCount": 0,
+        "dagNodeOverlaps": 0,
+        "overlappingPairs": [],
+        "dagNodes": []
+      }
+    },
+    {
+      "file": "12-modal-vocab-themes-elements-library.png",
+      "label": "Modal · Plain-English # and / Design Vocabulary, Themes, Elements & #Color Vault Browser [K]",
+      "metrics": {
+        "viewport": {
+          "vw": 1680,
+          "vh": 1040,
+          "docScrollWidth": 1680,
+          "docClientWidth": 1680,
+          "horizontalOverflowPx": 0
+        },
+        "surface": "compile-export",
+        "charId": "kelp-leviathan",
+        "ground": "atlas",
+        "spineArc": "hero-inner-change",
+        "zoom": 0.78,
+        "tweaksOpen": false,
+        "inspectorCollapsed": false,
+        "undoDepth": 0,
+        "headerHeightPx": 151,
+        "headerViewportSharePct": 14.5,
+        "mainTopPx": 151,
+        "ctrlStripDisplay": "flex",
+        "tabBarDisplay": "flex",
+        "canvasCount": 0,
+        "nonBlankCanvases": 0,
+        "dagNodeCount": 0,
+        "dagNodeOverlaps": 0,
+        "overlappingPairs": [],
+        "dagNodes": []
+      }
+    },
+    {
+      "file": "13-modal-32gate-tellapart-sheaf.png",
+      "label": "Modal · 32-Gate Mechanical Contract Audit (32/32 PASS) + Tell-Apart Kernel + Alexandrov Sheaf Cohomology",
+      "metrics": {
+        "viewport": {
+          "vw": 1680,
+          "vh": 1040,
+          "docScrollWidth": 1680,
+          "docClientWidth": 1680,
+          "horizontalOverflowPx": 0
+        },
+        "surface": "compile-export",
+        "charId": "kelp-leviathan",
+        "ground": "atlas",
+        "spineArc": "hero-inner-change",
+        "zoom": 0.78,
+        "tweaksOpen": false,
+        "inspectorCollapsed": false,
+        "undoDepth": 0,
+        "headerHeightPx": 151,
+        "headerViewportSharePct": 14.5,
+        "mainTopPx": 151,
+        "ctrlStripDisplay": "flex",
+        "tabBarDisplay": "flex",
+        "canvasCount": 0,
+        "nonBlankCanvases": 0,
+        "dagNodeCount": 0,
+        "dagNodeOverlaps": 0,
+        "overlappingPairs": [],
+        "dagNodes": []
+      }
+    },
+    {
+      "file": "14-dark-ground-tweaks-spine-arc.png",
+      "label": "Surface I · Dark Ground Mode (deep-sea #1A1F2E · CR >= 10:1) + Live Finish & Motion Tweaks Strip (⚙ Tweaks) + Spine Arc (count-scale-compare-rest)",
+      "metrics": {
+        "viewport": {
+          "vw": 1680,
+          "vh": 1040,
+          "docScrollWidth": 1680,
+          "docClientWidth": 1680,
+          "horizontalOverflowPx": 0
+        },
+        "surface": "infinite-canvas",
+        "charId": "kelp-leviathan",
+        "ground": "deep-sea",
+        "spineArc": "count-scale-compare-rest",
+        "zoom": 0.72,
+        "tweaksOpen": true,
+        "inspectorCollapsed": false,
+        "undoDepth": 0,
+        "headerHeightPx": 182,
+        "headerViewportSharePct": 17.5,
+        "mainTopPx": 182,
+        "ctrlStripDisplay": "flex",
+        "tabBarDisplay": "flex",
+        "canvasCount": 10,
+        "nonBlankCanvases": 10,
+        "dagNodeCount": 10,
+        "dagNodeOverlaps": 0,
+        "overlappingPairs": [],
+        "dagNodes": [
+          {
+            "id": "node-seed",
+            "x": 50,
+            "y": 428,
+            "w": 223,
+            "h": 288
+          },
+          {
+            "id": "node-fork-look",
+            "x": 333,
+            "y": 321,
+            "w": 227,
+            "h": 290
+          },
+          {
+            "id": "node-char-rig",
+            "x": 333,
+            "y": 687,
+            "w": 227,
+            "h": 278
+          },
+          {
+            "id": "node-proof-a",
+            "x": 603,
+            "y": 321,
+            "w": 230,
+            "h": 280
+          },
+          {
+            "id": "node-proof-b",
+            "x": 603,
+            "y": 687,
+            "w": 230,
+            "h": 291
+          },
+          {
+            "id": "node-storyboard",
+            "x": 876,
+            "y": 321,
+            "w": 238,
+            "h": 285
+          },
+          {
+            "id": "node-tri-alpha-6",
+            "x": 1161,
+            "y": 321,
+            "w": 230,
+            "h": 291
+          },
+          {
+            "id": "node-tri-beta-8",
+            "x": 1161,
+            "y": 692,
+            "w": 230,
+            "h": 281
+          },
+          {
+            "id": "node-tri-gamma-10",
+            "x": 1161,
+            "y": 1063,
+            "w": 230,
+            "h": 291
+          },
+          {
+            "id": "node-synth-10",
+            "x": 1449,
+            "y": 507,
+            "w": 230,
+            "h": 291
+          }
+        ]
+      }
+    },
+    {
+      "file": "15-mobile-390x844-living-canvas.png",
+      "label": "Mobile 390×844 (iPhone Pro @2x) · Responsive Living Canvas + Collapsible Inspector Drawer + Zero Horizontal Overflow",
+      "metrics": {
+        "viewport": {
+          "vw": 390,
+          "vh": 844,
+          "docScrollWidth": 390,
+          "docClientWidth": 390,
+          "horizontalOverflowPx": 0
+        },
+        "surface": "infinite-canvas",
+        "charId": "kelp-leviathan",
+        "ground": "atlas",
+        "spineArc": "count-scale-compare-rest",
+        "zoom": 0.55,
+        "tweaksOpen": false,
+        "inspectorCollapsed": true,
+        "undoDepth": 0,
+        "headerHeightPx": 260,
+        "headerViewportSharePct": 30.7,
+        "mainTopPx": 260,
+        "ctrlStripDisplay": "flex",
+        "tabBarDisplay": "flex",
+        "canvasCount": 10,
+        "nonBlankCanvases": 10,
+        "dagNodeCount": 10,
+        "dagNodeOverlaps": 0,
+        "overlappingPairs": [],
+        "dagNodes": [
+          {
+            "id": "node-seed",
+            "x": 33,
+            "y": 648,
+            "w": 171,
+            "h": 230
+          },
+          {
+            "id": "node-fork-look",
+            "x": 249,
+            "y": 566,
+            "w": 173,
+            "h": 249
+          },
+          {
+            "id": "node-char-rig",
+            "x": 249,
+            "y": 846,
+            "w": 173,
+            "h": 240
+          },
+          {
+            "id": "node-proof-a",
+            "x": 455,
+            "y": 566,
+            "w": 176,
+            "h": 241
+          },
+          {
+            "id": "node-proof-b",
+            "x": 455,
+            "y": 846,
+            "w": 176,
+            "h": 249
+          },
+          {
+            "id": "node-storyboard",
+            "x": 664,
+            "y": 566,
+            "w": 182,
+            "h": 227
+          },
+          {
+            "id": "node-tri-alpha-6",
+            "x": 882,
+            "y": 566,
+            "w": 176,
+            "h": 249
+          },
+          {
+            "id": "node-tri-beta-8",
+            "x": 882,
+            "y": 849,
+            "w": 176,
+            "h": 242
+          },
+          {
+            "id": "node-tri-gamma-10",
+            "x": 882,
+            "y": 1132,
+            "w": 176,
+            "h": 249
+          },
+          {
+            "id": "node-synth-10",
+            "x": 1102,
+            "y": 708,
+            "w": 176,
+            "h": 250
+          }
+        ]
+      }
+    },
+    {
+      "file": "16-mobile-390x844-storyboard.png",
+      "label": "Mobile 390×844 (iPhone Pro @2x) · Responsive 8-Beat Storyboard Sheet & SpineArc Selector",
+      "metrics": {
+        "viewport": {
+          "vw": 390,
+          "vh": 844,
+          "docScrollWidth": 390,
+          "docClientWidth": 390,
+          "horizontalOverflowPx": 0
+        },
+        "surface": "storyboard-sheet",
+        "charId": "kelp-leviathan",
+        "ground": "atlas",
+        "spineArc": "count-scale-compare-rest",
+        "zoom": 0.55,
+        "tweaksOpen": false,
+        "inspectorCollapsed": false,
+        "undoDepth": 0,
+        "headerHeightPx": 260,
+        "headerViewportSharePct": 30.7,
+        "mainTopPx": 260,
+        "ctrlStripDisplay": "flex",
+        "tabBarDisplay": "flex",
+        "canvasCount": 8,
+        "nonBlankCanvases": 8,
+        "dagNodeCount": 0,
+        "dagNodeOverlaps": 0,
+        "overlappingPairs": [],
+        "dagNodes": []
+      }
+    }
+  ]
+}

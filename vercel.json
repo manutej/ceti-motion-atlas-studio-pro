@@ -1,0 +1,9 @@
+{
+  "version": 2,
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "rewrites": [
+    { "source": "/standalone", "destination": "/standalone.html" },
+    { "source": "/explorer", "destination": "/explorer.html" }
+  ]
+}

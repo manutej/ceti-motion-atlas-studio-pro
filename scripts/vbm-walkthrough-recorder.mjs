@@ -238,7 +238,12 @@ async function main() {
 
   try {
     await cdp.send('Page.navigate', { url: targetUrl });
-    await cdp.wait(800);
+    for (let attempt = 0; attempt < 25; attempt++) {
+      await cdp.wait(400);
+      const ready = await cdp.evaluate('Boolean(window.__MOTION_ATLAS_STUDIO_INSTANCE)').catch(() => false);
+      if (ready) break;
+    }
+    await cdp.wait(500);
 
     await captureStep(
       '01-surface1-living-canvas-default.png',
